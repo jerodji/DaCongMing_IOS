@@ -185,19 +185,23 @@
     }
     else{
         
-        if (sender.text.length > 6) {
+        if (sender.text.length >= 6) {
             _loginBtn.backgroundColor = KCOLOR(@"53d76f");
         }
         else{
-            _loginBtn.backgroundColor = [UIColor whiteColor];
+            _loginBtn.backgroundColor = KCOLOR(@"c2c2c2");
         }
     }
-   
 }
 
 - (void)loginAction{
 
     
+}
+
+- (void)weChatAction{
+    
+    self.weChatBlock();
 }
 
 #pragma mark - lazyload
@@ -348,7 +352,7 @@
         
         _weChatLoginBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_weChatLoginBtn setImage:[UIImage imageNamed:@"weChatLogo"] forState:UIControlStateNormal];
-        
+        [_weChatLoginBtn addTarget:self action:@selector(weChatAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return _weChatLoginBtn;
 }

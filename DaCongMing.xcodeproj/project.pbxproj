@@ -19,6 +19,9 @@
 		3E2754511F6F96E00010053E /* HYSortTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2754501F6F96E00010053E /* HYSortTableViewCell.m */; };
 		3E2754551F6F9C6B0010053E /* HYLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2754541F6F9C6B0010053E /* HYLoginViewController.m */; };
 		3E2754581F6F9D520010053E /* HYLoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2754571F6F9D520010053E /* HYLoginView.m */; };
+		3E27545B1F6FBF3A0010053E /* HYCompleteInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E27545A1F6FBF3A0010053E /* HYCompleteInfoViewController.m */; };
+		3E27545E1F6FBF850010053E /* HYCompleteView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E27545D1F6FBF850010053E /* HYCompleteView.m */; };
+		3E2754611F6FD6610010053E /* HYSetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2754601F6FD6610010053E /* HYSetPasswordViewController.m */; };
 		3E56201E1F6B6A800063AA5B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E56201D1F6B6A800063AA5B /* main.m */; };
 		3E5620211F6B6A800063AA5B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E5620201F6B6A800063AA5B /* AppDelegate.m */; };
 		3E5620291F6B6A800063AA5B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E5620281F6B6A800063AA5B /* Assets.xcassets */; };
@@ -84,6 +87,12 @@
 		3E2754541F6F9C6B0010053E /* HYLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYLoginViewController.m; sourceTree = "<group>"; };
 		3E2754561F6F9D520010053E /* HYLoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYLoginView.h; sourceTree = "<group>"; };
 		3E2754571F6F9D520010053E /* HYLoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYLoginView.m; sourceTree = "<group>"; };
+		3E2754591F6FBF3A0010053E /* HYCompleteInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYCompleteInfoViewController.h; sourceTree = "<group>"; };
+		3E27545A1F6FBF3A0010053E /* HYCompleteInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYCompleteInfoViewController.m; sourceTree = "<group>"; };
+		3E27545C1F6FBF850010053E /* HYCompleteView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYCompleteView.h; sourceTree = "<group>"; };
+		3E27545D1F6FBF850010053E /* HYCompleteView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYCompleteView.m; sourceTree = "<group>"; };
+		3E27545F1F6FD6610010053E /* HYSetPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYSetPasswordViewController.h; sourceTree = "<group>"; };
+		3E2754601F6FD6610010053E /* HYSetPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYSetPasswordViewController.m; sourceTree = "<group>"; };
 		3E5620191F6B6A800063AA5B /* DaCongMing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DaCongMing.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E56201D1F6B6A800063AA5B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3E56201F1F6B6A800063AA5B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ../AppDelegate.h; sourceTree = "<group>"; };
@@ -183,6 +192,12 @@
 				3E2754541F6F9C6B0010053E /* HYLoginViewController.m */,
 				3E2754561F6F9D520010053E /* HYLoginView.h */,
 				3E2754571F6F9D520010053E /* HYLoginView.m */,
+				3E2754591F6FBF3A0010053E /* HYCompleteInfoViewController.h */,
+				3E27545A1F6FBF3A0010053E /* HYCompleteInfoViewController.m */,
+				3E27545C1F6FBF850010053E /* HYCompleteView.h */,
+				3E27545D1F6FBF850010053E /* HYCompleteView.m */,
+				3E27545F1F6FD6610010053E /* HYSetPasswordViewController.h */,
+				3E2754601F6FD6610010053E /* HYSetPasswordViewController.m */,
 			);
 			path = LoginRegister;
 			sourceTree = "<group>";
@@ -710,6 +725,7 @@
 				3E5620781F6B6DAC0063AA5B /* MBProgressHUD+HYExtension.m in Sources */,
 				3E5620971F6B72F30063AA5B /* HYMineViewController.m in Sources */,
 				3E56204E1F6B6D5C0063AA5B /* HYBaseViewController.m in Sources */,
+				3E27545E1F6FBF850010053E /* HYCompleteView.m in Sources */,
 				3E5620841F6B6DAC0063AA5B /* HYPhotoBrowseView.m in Sources */,
 				3E5620A81F6BBD550063AA5B /* HYHomeImgCell.m in Sources */,
 				3E5620A11F6BA0D60063AA5B /* HYHomePageView.m in Sources */,
@@ -732,6 +748,7 @@
 				3E5620821F6B6DAC0063AA5B /* HYLocationManager.m in Sources */,
 				3E5620791F6B6DAC0063AA5B /* UIColor+HexString.m in Sources */,
 				3E2754421F6F6CD00010053E /* HYBrands.m in Sources */,
+				3E27545B1F6FBF3A0010053E /* HYCompleteInfoViewController.m in Sources */,
 				3E5620851F6B6DAC0063AA5B /* JRToast.m in Sources */,
 				3E56207E1F6B6DAC0063AA5B /* HTTPManager.m in Sources */,
 				3E56207F1F6B6DAC0063AA5B /* DESECB.m in Sources */,
@@ -743,6 +760,7 @@
 				3E5620511F6B6D720063AA5B /* HYBaseNavController.m in Sources */,
 				3E934DDC1F6BD4CE00F3ADE4 /* HYHomeCollectionViewCell.m in Sources */,
 				3E27544E1F6F952B0010053E /* HYSortModel.m in Sources */,
+				3E2754611F6FD6610010053E /* HYSetPasswordViewController.m in Sources */,
 				3E56208B1F6B72750063AA5B /* HYTabBarController.m in Sources */,
 				3E2754581F6F9D520010053E /* HYLoginView.m in Sources */,
 				3E56204B1F6B6D440063AA5B /* HYBaseModel.m in Sources */,

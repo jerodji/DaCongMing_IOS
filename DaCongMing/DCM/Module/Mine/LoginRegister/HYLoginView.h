@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void(^weChatSuccessBlock)();
+
 @interface HYLoginView : UIView
+
+/** block */
+@property (nonatomic,copy) weChatSuccessBlock weChatBlock;
 
 @end

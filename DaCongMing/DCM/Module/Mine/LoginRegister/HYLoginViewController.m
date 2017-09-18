@@ -8,6 +8,7 @@
 
 #import "HYLoginViewController.h"
 #import "HYLoginView.h"
+#import "HYCompleteInfoViewController.h"
 
 @interface HYLoginViewController ()
 
@@ -28,6 +29,12 @@
     [self.view addSubview:self.bgImgView];
     [self.view addSubview:self.loginView];
     
+    __weak typeof (self) weakSelf = self;
+    _loginView.weChatBlock = ^{
+      
+        HYCompleteInfoViewController *completeInfoVC = [[HYCompleteInfoViewController alloc] init];
+        [weakSelf presentViewController:completeInfoVC animated:YES completion:nil];
+    };
 }
 
 #pragma mark - lazyload
