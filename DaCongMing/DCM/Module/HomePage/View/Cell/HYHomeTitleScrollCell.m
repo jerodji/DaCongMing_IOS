@@ -62,6 +62,12 @@
     return 10;
 }
 
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout
+         insetForSectionAtIndex:(NSInteger)section
+{
+    return UIEdgeInsetsMake(0, 5.0f, 0, 5.0f);
+}
+
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -70,7 +76,6 @@
     
     NSDictionary *dict = _model.reCommendTday[indexPath.item];
     cell.commendTodayModel = [HYReCommendTday modelWithDictionary:dict];
-    cell.backgroundColor = [UIColor yellowColor];
     
     return cell;
 }
@@ -94,7 +99,7 @@
 
     if (!_subTitleLabel) {
         
-        _subTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.titleLabel.bottom + 6 * WIDTH_MULTIPLE, KSCREEN_WIDTH, 20)];
+        _subTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.titleLabel.bottom + 6, KSCREEN_WIDTH, 20)];
         _subTitleLabel.font = KFont(12);
         _subTitleLabel.textColor = KCOLOR(@"7b7b7b");
         _subTitleLabel.textAlignment = NSTextAlignmentCenter;
@@ -111,13 +116,14 @@
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
         //设置collectionView滚动方向
         [layout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
-        layout.itemSize =CGSizeMake(KSCREEN_WIDTH / 3, 170 * WIDTH_MULTIPLE);
+        layout.itemSize =CGSizeMake((KSCREEN_WIDTH - 20 ) / 3, 170 * WIDTH_MULTIPLE);
 
         _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, self.subTitleLabel.bottom + 10, KSCREEN_WIDTH, 170 * WIDTH_MULTIPLE) collectionViewLayout:layout];
         _collectionView.backgroundColor = KAPP_WHITE_COLOR;
         _collectionView.showsVerticalScrollIndicator = NO;
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
+        _collectionView.showsVerticalScrollIndicator = NO;
         
         [_collectionView registerClass:[HYHomeCollectionViewCell class] forCellWithReuseIdentifier:@"collectionCell"];
     }

@@ -9,10 +9,6 @@
 
 #import "HYHomePageModel.h"
 
-@implementation HYBrands
-
-
-@end
 
 @implementation HYTypeReCommend
 

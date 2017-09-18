@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "HYTabBarController.h"
+#import "HYLoginViewController.h"
 
 @interface AppDelegate ()
 
@@ -23,8 +24,11 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
-    HYTabBarController *tabBar = [[HYTabBarController alloc] init];
-    self.window.rootViewController = tabBar;
+//    HYTabBarController *tabBar = [[HYTabBarController alloc] init];
+//    self.window.rootViewController = tabBar;
+    
+    HYLoginViewController *loginVC = [[HYLoginViewController alloc] init];
+    self.window.rootViewController = loginVC;
     
     return YES;
 }

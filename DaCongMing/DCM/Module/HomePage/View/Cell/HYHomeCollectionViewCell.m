@@ -35,9 +35,21 @@
 
 - (void)setCommendTodayModel:(HYReCommendTday *)commendTodayModel{
 
+    _commendTodayModel = commendTodayModel;
+    
     [_imgView sd_setImageWithURL:[NSURL URLWithString:commendTodayModel.image_url] placeholderImage:[UIImage imageNamed:@"placeholder"]];
     
     _titleLabel.text = commendTodayModel.item_name;
+    _priceLabel.text = commendTodayModel.price.description;
+}
+
+- (void)setItemListModel:(HYItemListModel *)itemListModel{
+
+    _itemListModel = itemListModel;
+    [_imgView sd_setImageWithURL:[NSURL URLWithString:itemListModel.item_title_image] placeholderImage:[UIImage imageNamed:@"placeholder"]];
+    
+    _titleLabel.text = itemListModel.item_name;
+    _priceLabel.text = itemListModel.item_min_price.description;
 }
 
 #pragma mark - lazyload
@@ -45,7 +57,7 @@
     
     if (!_imgView) {
         
-        _imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.width, 130 * WIDTH_MULTIPLE)];
+        _imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.width, 130)];
         _imgView.contentMode = UIViewContentModeScaleAspectFill;
         _imgView.clipsToBounds = YES;
     }
@@ -57,9 +69,9 @@
     
     if (!_titleLabel) {
         
-        _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.imgView.bottom + 5, KSCREEN_WIDTH, 20)];
+        _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.imgView.bottom + 5, self.width, 20)];
         _titleLabel.font = KFont(14);
-        _titleLabel.textColor = KCOLOR(@"272727");
+        _titleLabel.textColor = KAPP_BLACK_COLOR;
         _titleLabel.textAlignment = NSTextAlignmentCenter;
     }
     return _titleLabel;
@@ -70,9 +82,9 @@
     
     if (!_priceLabel) {
         
-        _priceLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.imgView.bottom + 5, KSCREEN_WIDTH, 20)];
+        _priceLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.titleLabel.bottom + 5, self.width, 20)];
         _priceLabel.font = KFont(14);
-        _priceLabel.textColor = KCOLOR(@"7b7b7b");
+        _priceLabel.textColor = KAPP_PRICE_COLOR;
         _priceLabel.textAlignment = NSTextAlignmentCenter;
     }
     return _priceLabel;

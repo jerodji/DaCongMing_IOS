@@ -8,29 +8,7 @@
 
 #import "HYBaseModel.h"
 #import "HYReCommendTday.h"
-
-
-/** -------------------商家推荐（也是banner）------------------------ */
-@interface HYBrands : NSObject
-
-/**
- "guid": "8106d1fa-7c32-11e7-9ae8-80a589568544",
- "image_url": "http://116.62.118.249:80/menu_image/brands/bod_21.png",
- "seller_id": "001",
- "itemList": null
- */
-
-/** guid */
-@property (nonatomic,copy) NSString *guid;
-/** image_url */
-@property (nonatomic,copy) NSString *image_url;
-/** seller_id */
-@property (nonatomic,copy) NSString *seller_id;
-/** image_url */
-@property (nonatomic,copy) NSString *itemList;
-
-@end
-
+#import "HYGoodHealthModel.h"
 
 
 /** -------------------banner下面的图------------------------ */
@@ -112,7 +90,7 @@
 @property (nonatomic,copy) NSArray *reCommendTday;
 
 /** 商家推荐（也是banner） */
-@property (nonatomic,strong) HYBrands *brands;
+@property (nonatomic,copy) NSArray *brands;
 
 /** banner下面的图 */
 @property (nonatomic,strong) HYDisCount *disCount;
@@ -125,5 +103,8 @@
 
 /** hotSale */
 @property (nonatomic,copy) NSDictionary *hotSale;
+
+/** 健康养生 */
+@property (nonatomic,strong) HYGoodHealthModel *goodHealth;
 
 @end

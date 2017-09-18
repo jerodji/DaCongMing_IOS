@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HYGoodHealthModel.h"
 
 @interface HYHomeImgScrollCell : UITableViewCell
+
+/** model */
+@property (nonatomic,strong) HYGoodHealthModel *goodHealthModel;
 
 @end

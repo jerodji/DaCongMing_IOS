@@ -18,6 +18,7 @@
 #import "HYHomeCollectionCell.h"
 #import "HYHomeBannerCell.h"
 #import "HYHomeDoodsCell.h"
+#import "HYTypeRecommendCell.h"
 
 @interface HYHomePageViewController () <UITableViewDelegate,UITableViewDataSource,SDCycleScrollViewDelegate>
 
@@ -62,7 +63,7 @@
 }
 
 #pragma mark - lazyload
-- (UIView *)headerView{
+- (SDCycleScrollView *)headerView{
     
     if (!_headerView) {
         
@@ -83,14 +84,12 @@
 #pragma mark - TableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     
-    NSLog(@"xxx");
     return 1;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    NSLog(@"ggg");
-    return 2;
+    return 7;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -98,22 +97,71 @@
     if (indexPath.row == 0) {
         //纯图片的cell
         
-        static NSString *cellID = @"HYImgCell";
-        HYHomeImgCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+        static NSString *imgCellID = @"HYImgCell";
+        HYHomeImgCell *cell = [tableView dequeueReusableCellWithIdentifier:imgCellID];
         if (!cell) {
-            cell = [[HYHomeImgCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+            cell = [[HYHomeImgCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:imgCellID];
         }
         cell.imgUrl = _model.disCount.image_url;
         return cell;
     }
     else if (indexPath.row == 1){
-        
-        static NSString *cellID = @"HYTitle";
-        HYHomeTitleScrollCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+        //今日推荐
+        static NSString *titleScrollID = @"HYTitle";
+        HYHomeTitleScrollCell *cell = [tableView dequeueReusableCellWithIdentifier:titleScrollID];
         if (!cell) {
-            cell = [[HYHomeTitleScrollCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+            cell = [[HYHomeTitleScrollCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:titleScrollID];
         }
         cell.model = _model;
+        return cell;
+    }
+    else if (indexPath.row == 2){
+        //健康养生
+        static NSString *imageScrollID = @"HYImageScroll";
+        HYHomeImgScrollCell *cell = [tableView dequeueReusableCellWithIdentifier:imageScrollID];
+        if (!cell) {
+            cell = [[HYHomeImgScrollCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:imageScrollID];
+        }
+        cell.goodHealthModel = _model.goodHealth;
+        return cell;
+    }
+    else if (indexPath.row == 3){
+        //item
+        static NSString *collectionCellID = @"HYCollectionCell";
+        HYHomeCollectionCell *cell = [tableView dequeueReusableCellWithIdentifier:collectionCellID];
+        if (!cell) {
+            cell = [[HYHomeCollectionCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:collectionCellID];
+        }
+        cell.model = _model;
+        return cell;
+    }
+    else if (indexPath.row == 4){
+        //banner
+        static NSString *bannerID = @"HYBannerCell";
+        HYHomeBannerCell *cell = [tableView dequeueReusableCellWithIdentifier:bannerID];
+        if (!cell) {
+            cell = [[HYHomeBannerCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:bannerID];
+        }
+        cell.model = _model;
+        return cell;
+    }
+    else if (indexPath.row == 5){
+        //类型推荐
+        static NSString *typeRecommendID = @"typeRecommendID";
+        HYTypeRecommendCell *cell = [tableView dequeueReusableCellWithIdentifier:typeRecommendID];
+        if (!cell) {
+            cell = [[HYTypeRecommendCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:typeRecommendID];
+        }
+        cell.model = _model;
+        return cell;
+    }
+    else if (indexPath.row == 6){
+        //猜你喜欢
+        static NSString *typeRecommendID = @"typeRecommendID";
+        HYHomeDoodsCell *cell = [tableView dequeueReusableCellWithIdentifier:typeRecommendID];
+        if (!cell) {
+            cell = [[HYHomeDoodsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:typeRecommendID];
+        }
         return cell;
     }
     else{
@@ -141,8 +189,35 @@
     }
     else if(indexPath.row == 1) {
         
-        return 170 * WIDTH_MULTIPLE;
+        //今日推荐
+        return 76 +  (170 + 30) * WIDTH_MULTIPLE;
     }
+    else if(indexPath.row == 2) {
+        
+        //健康养生
+        return 150 + (170 + 30) * WIDTH_MULTIPLE;
+    }
+    else if(indexPath.row == 3) {
+        
+        //tags
+        return 20 + _model.tags.count / 2 * 110 + 10;
+    }
+    else if(indexPath.row == 4) {
+        
+        //banner
+        return 170;
+    }
+    else if(indexPath.row == 5) {
+        
+        //推荐
+        return 90 + 10;
+    }
+    else if(indexPath.row == 6) {
+        
+        //猜你喜欢
+        return 40 + 10;
+    }
+    
     return 100;
 }
 
@@ -161,7 +236,7 @@
 - (UITableView *)tableView{
     if (!_tableView) {
         
-        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, KSCREEN_WIDTH, KSCREEN_HEIGHT - 49) style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, KSCREEN_WIDTH, KSCREEN_HEIGHT - 49 - 64) style:UITableViewStylePlain];
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;

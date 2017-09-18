@@ -20,5 +20,8 @@
 //首页接口
 #define API_HomePage            @"HAILIN_SERVER/showMenu.do"
 
+//分类
+#define API_Sort                @"HAILIN_SERVER/showType.do"
+
 
 #endif /* WebApi_h */

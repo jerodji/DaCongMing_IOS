@@ -7,7 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HYHomePageModel.h"
 
 @interface HYHomeBannerCell : UITableViewCell
+
+/** model */
+@property (nonatomic,strong) HYHomePageModel *model;
+
+/** bannerArray */
+@property (nonatomic,strong) NSMutableArray *bannerArray;
 
 @end

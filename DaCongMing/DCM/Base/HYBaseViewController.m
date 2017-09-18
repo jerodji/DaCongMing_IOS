@@ -24,6 +24,9 @@
     //设置导航栏的字体颜色
     self.navigationController.navigationBar.tintColor = KAPP_WHITE_COLOR;
     
+    [self.navigationController.navigationBar setTitleTextAttributes:
+     @{NSForegroundColorAttributeName:[UIColor redColor]}];
+    
     self.edgesForExtendedLayout = UIRectEdgeNone;
     self.navigationController.navigationBar.translucent = NO;
 

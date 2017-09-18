@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HYHomePageModel.h"
 
 @interface HYHomeCollectionCell : UITableViewCell
+
+/** model */
+@property (nonatomic,strong) HYHomePageModel *model;
 
 @end
