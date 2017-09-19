@@ -155,7 +155,7 @@
 
 - (void)confirmAction{
 
-    
+    self.confirmBlock();
 }
 
 - (void)skipAction{

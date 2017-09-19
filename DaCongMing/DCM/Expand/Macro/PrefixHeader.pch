@@ -27,5 +27,10 @@
 #import "Const.h"
 #import "Macro.h"
 #import "WebApi.h"
+#import "HYButton.h"
+#import "HYUserModel.h"
+#import "HYUserHandle.h"
+#import "HYRequestGoodsList.h"
+#import "HYGoodsItemModel.h"
 
 #endif /* PrefixHeader_pch */

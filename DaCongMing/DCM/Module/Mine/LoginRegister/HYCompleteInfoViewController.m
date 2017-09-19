@@ -8,6 +8,7 @@
 
 #import "HYCompleteInfoViewController.h"
 #import "HYCompleteView.h"
+#import "HYSetPasswordViewController.h"
 
 @interface HYCompleteInfoViewController ()
 
@@ -27,6 +28,13 @@
     
     [self.view addSubview:self.bgImgView];
     [self.view addSubview:self.complecteView];
+    
+    __weak typeof (self)weakSelf = self;
+    self.complecteView.confirmBlock = ^{
+       
+        HYSetPasswordViewController *setPasswordVC = [[HYSetPasswordViewController alloc] init];
+        [weakSelf presentViewController:setPasswordVC animated:YES completion:nil];
+    };
 }
 
 - (UIImageView *)bgImgView{

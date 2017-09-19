@@ -22,6 +22,17 @@
 		3E27545B1F6FBF3A0010053E /* HYCompleteInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E27545A1F6FBF3A0010053E /* HYCompleteInfoViewController.m */; };
 		3E27545E1F6FBF850010053E /* HYCompleteView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E27545D1F6FBF850010053E /* HYCompleteView.m */; };
 		3E2754611F6FD6610010053E /* HYSetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2754601F6FD6610010053E /* HYSetPasswordViewController.m */; };
+		3E2754641F70AA4A0010053E /* HYMineHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2754631F70AA4A0010053E /* HYMineHeaderView.m */; };
+		3E2754681F70B2620010053E /* HYInviteFriendsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2754671F70B2620010053E /* HYInviteFriendsTableViewCell.m */; };
+		3E27546B1F70B2970010053E /* HYOrderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E27546A1F70B2970010053E /* HYOrderTableViewCell.m */; };
+		3E27546E1F70B2BC0010053E /* HYMineInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E27546D1F70B2BC0010053E /* HYMineInfoTableViewCell.m */; };
+		3E2754711F70C06C0010053E /* HYButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2754701F70C06C0010053E /* HYButton.m */; };
+		3E2754741F70D3600010053E /* HYUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2754731F70D3600010053E /* HYUserModel.m */; };
+		3E27547A1F70EDF10010053E /* HYUserHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2754791F70EDF10010053E /* HYUserHandle.m */; };
+		3E27547F1F70FBED0010053E /* HYNoGoodsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E27547E1F70FBED0010053E /* HYNoGoodsTableViewCell.m */; };
+		3E2754841F7101540010053E /* HYGoodsItemCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2754831F7101540010053E /* HYGoodsItemCollectionViewCell.m */; };
+		3E2754881F710DCF0010053E /* HYGoodsItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2754871F710DCF0010053E /* HYGoodsItemModel.m */; };
+		3E27548B1F7111800010053E /* HYRequestGoodsList.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E27548A1F7111800010053E /* HYRequestGoodsList.m */; };
 		3E56201E1F6B6A800063AA5B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E56201D1F6B6A800063AA5B /* main.m */; };
 		3E5620211F6B6A800063AA5B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E5620201F6B6A800063AA5B /* AppDelegate.m */; };
 		3E5620291F6B6A800063AA5B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E5620281F6B6A800063AA5B /* Assets.xcassets */; };
@@ -93,6 +104,28 @@
 		3E27545D1F6FBF850010053E /* HYCompleteView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYCompleteView.m; sourceTree = "<group>"; };
 		3E27545F1F6FD6610010053E /* HYSetPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYSetPasswordViewController.h; sourceTree = "<group>"; };
 		3E2754601F6FD6610010053E /* HYSetPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYSetPasswordViewController.m; sourceTree = "<group>"; };
+		3E2754621F70AA4A0010053E /* HYMineHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYMineHeaderView.h; sourceTree = "<group>"; };
+		3E2754631F70AA4A0010053E /* HYMineHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYMineHeaderView.m; sourceTree = "<group>"; };
+		3E2754661F70B2620010053E /* HYInviteFriendsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYInviteFriendsTableViewCell.h; sourceTree = "<group>"; };
+		3E2754671F70B2620010053E /* HYInviteFriendsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYInviteFriendsTableViewCell.m; sourceTree = "<group>"; };
+		3E2754691F70B2970010053E /* HYOrderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYOrderTableViewCell.h; sourceTree = "<group>"; };
+		3E27546A1F70B2970010053E /* HYOrderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYOrderTableViewCell.m; sourceTree = "<group>"; };
+		3E27546C1F70B2BC0010053E /* HYMineInfoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYMineInfoTableViewCell.h; sourceTree = "<group>"; };
+		3E27546D1F70B2BC0010053E /* HYMineInfoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYMineInfoTableViewCell.m; sourceTree = "<group>"; };
+		3E27546F1F70C06C0010053E /* HYButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYButton.h; sourceTree = "<group>"; };
+		3E2754701F70C06C0010053E /* HYButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYButton.m; sourceTree = "<group>"; };
+		3E2754721F70D3600010053E /* HYUserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYUserModel.h; sourceTree = "<group>"; };
+		3E2754731F70D3600010053E /* HYUserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYUserModel.m; sourceTree = "<group>"; };
+		3E2754781F70EDF10010053E /* HYUserHandle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYUserHandle.h; sourceTree = "<group>"; };
+		3E2754791F70EDF10010053E /* HYUserHandle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYUserHandle.m; sourceTree = "<group>"; };
+		3E27547D1F70FBED0010053E /* HYNoGoodsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYNoGoodsTableViewCell.h; sourceTree = "<group>"; };
+		3E27547E1F70FBED0010053E /* HYNoGoodsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYNoGoodsTableViewCell.m; sourceTree = "<group>"; };
+		3E2754821F7101540010053E /* HYGoodsItemCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYGoodsItemCollectionViewCell.h; sourceTree = "<group>"; };
+		3E2754831F7101540010053E /* HYGoodsItemCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYGoodsItemCollectionViewCell.m; sourceTree = "<group>"; };
+		3E2754861F710DCF0010053E /* HYGoodsItemModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYGoodsItemModel.h; sourceTree = "<group>"; };
+		3E2754871F710DCF0010053E /* HYGoodsItemModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYGoodsItemModel.m; sourceTree = "<group>"; };
+		3E2754891F7111800010053E /* HYRequestGoodsList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYRequestGoodsList.h; sourceTree = "<group>"; };
+		3E27548A1F7111800010053E /* HYRequestGoodsList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYRequestGoodsList.m; sourceTree = "<group>"; };
 		3E5620191F6B6A800063AA5B /* DaCongMing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DaCongMing.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E56201D1F6B6A800063AA5B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3E56201F1F6B6A800063AA5B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ../AppDelegate.h; sourceTree = "<group>"; };
@@ -202,6 +235,58 @@
 			path = LoginRegister;
 			sourceTree = "<group>";
 		};
+		3E2754651F70B23C0010053E /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				3E2754661F70B2620010053E /* HYInviteFriendsTableViewCell.h */,
+				3E2754671F70B2620010053E /* HYInviteFriendsTableViewCell.m */,
+				3E2754691F70B2970010053E /* HYOrderTableViewCell.h */,
+				3E27546A1F70B2970010053E /* HYOrderTableViewCell.m */,
+				3E27546C1F70B2BC0010053E /* HYMineInfoTableViewCell.h */,
+				3E27546D1F70B2BC0010053E /* HYMineInfoTableViewCell.m */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		3E27547C1F70FBC60010053E /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				3E27547D1F70FBED0010053E /* HYNoGoodsTableViewCell.h */,
+				3E27547E1F70FBED0010053E /* HYNoGoodsTableViewCell.m */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		3E2754801F7100F60010053E /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				3E2754851F710DBA0010053E /* Model */,
+				3E2754811F7101140010053E /* Cell */,
+			);
+			name = Common;
+			path = Mine/Common;
+			sourceTree = "<group>";
+		};
+		3E2754811F7101140010053E /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				3E2754821F7101540010053E /* HYGoodsItemCollectionViewCell.h */,
+				3E2754831F7101540010053E /* HYGoodsItemCollectionViewCell.m */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		3E2754851F710DBA0010053E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3E2754861F710DCF0010053E /* HYGoodsItemModel.h */,
+				3E2754871F710DCF0010053E /* HYGoodsItemModel.m */,
+				3E2754891F7111800010053E /* HYRequestGoodsList.h */,
+				3E27548A1F7111800010053E /* HYRequestGoodsList.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		3E5620101F6B6A800063AA5B = {
 			isa = PBXGroup;
 			children = (
@@ -294,6 +379,7 @@
 				3E5620441F6B6D080063AA5B /* Sort */,
 				3E5620401F6B6D080063AA5B /* shoppingCart */,
 				3E56203C1F6B6D080063AA5B /* Mine */,
+				3E2754801F7100F60010053E /* Common */,
 			);
 			path = Module;
 			sourceTree = "<group>";
@@ -375,6 +461,10 @@
 		3E56203E1F6B6D080063AA5B /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				3E2754721F70D3600010053E /* HYUserModel.h */,
+				3E2754731F70D3600010053E /* HYUserModel.m */,
+				3E2754781F70EDF10010053E /* HYUserHandle.h */,
+				3E2754791F70EDF10010053E /* HYUserHandle.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -382,6 +472,9 @@
 		3E56203F1F6B6D080063AA5B /* View */ = {
 			isa = PBXGroup;
 			children = (
+				3E2754651F70B23C0010053E /* Cell */,
+				3E2754621F70AA4A0010053E /* HYMineHeaderView.h */,
+				3E2754631F70AA4A0010053E /* HYMineHeaderView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -415,6 +508,7 @@
 		3E5620431F6B6D080063AA5B /* View */ = {
 			isa = PBXGroup;
 			children = (
+				3E27547C1F70FBC60010053E /* Cell */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -524,6 +618,8 @@
 				3E5620751F6B6DAC0063AA5B /* JRToast.m */,
 				3E5620761F6B6DAC0063AA5B /* TitleRoll.h */,
 				3E5620771F6B6DAC0063AA5B /* TitleRoll.m */,
+				3E27546F1F70C06C0010053E /* HYButton.h */,
+				3E2754701F70C06C0010053E /* HYButton.m */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -718,13 +814,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				3E5620B41F6BBDD00063AA5B /* HYHomeImgScrollCell.m in Sources */,
+				3E27547A1F70EDF10010053E /* HYUserHandle.m in Sources */,
+				3E2754881F710DCF0010053E /* HYGoodsItemModel.m in Sources */,
 				3E2754391F6F56EE0010053E /* HYItemListModel.m in Sources */,
 				3E934DDF1F6BD78100F3ADE4 /* HYReCommendTday.m in Sources */,
 				3E56207A1F6B6DAC0063AA5B /* UIView+Toast.m in Sources */,
+				3E2754711F70C06C0010053E /* HYButton.m in Sources */,
 				3E5620B11F6BBDC00063AA5B /* HYHomeTitleScrollCell.m in Sources */,
 				3E5620781F6B6DAC0063AA5B /* MBProgressHUD+HYExtension.m in Sources */,
 				3E5620971F6B72F30063AA5B /* HYMineViewController.m in Sources */,
 				3E56204E1F6B6D5C0063AA5B /* HYBaseViewController.m in Sources */,
+				3E2754741F70D3600010053E /* HYUserModel.m in Sources */,
 				3E27545E1F6FBF850010053E /* HYCompleteView.m in Sources */,
 				3E5620841F6B6DAC0063AA5B /* HYPhotoBrowseView.m in Sources */,
 				3E5620A81F6BBD550063AA5B /* HYHomeImgCell.m in Sources */,
@@ -734,26 +834,33 @@
 				3E56207B1F6B6DAC0063AA5B /* Const.m in Sources */,
 				3E27543F1F6F64630010053E /* HYTagsItemModel.m in Sources */,
 				3E2754551F6F9C6B0010053E /* HYLoginViewController.m in Sources */,
+				3E2754641F70AA4A0010053E /* HYMineHeaderView.m in Sources */,
 				3E5620911F6B72D90063AA5B /* HYSortViewController.m in Sources */,
 				3E56208E1F6B728E0063AA5B /* HYHomePageViewController.m in Sources */,
 				3E5620BA1F6BBDFE0063AA5B /* HYHomeBannerCell.m in Sources */,
+				3E27546B1F70B2970010053E /* HYOrderTableViewCell.m in Sources */,
 				3E2754451F6F71DE0010053E /* HYTypeRecommendCell.m in Sources */,
 				3E56209A1F6B7BB10063AA5B /* HYNavTitleView.m in Sources */,
 				3E5620B71F6BBDE40063AA5B /* HYHomeCollectionCell.m in Sources */,
 				3E5620211F6B6A800063AA5B /* AppDelegate.m in Sources */,
+				3E2754841F7101540010053E /* HYGoodsItemCollectionViewCell.m in Sources */,
 				3E2754511F6F96E00010053E /* HYSortTableViewCell.m in Sources */,
 				3E56201E1F6B6A800063AA5B /* main.m in Sources */,
 				3E27544B1F6F734B0010053E /* HYTypeRecommendItemModel.m in Sources */,
 				3E2754361F6F56580010053E /* HYGoodHealthModel.m in Sources */,
+				3E27548B1F7111800010053E /* HYRequestGoodsList.m in Sources */,
 				3E5620821F6B6DAC0063AA5B /* HYLocationManager.m in Sources */,
+				3E27546E1F70B2BC0010053E /* HYMineInfoTableViewCell.m in Sources */,
 				3E5620791F6B6DAC0063AA5B /* UIColor+HexString.m in Sources */,
 				3E2754421F6F6CD00010053E /* HYBrands.m in Sources */,
 				3E27545B1F6FBF3A0010053E /* HYCompleteInfoViewController.m in Sources */,
 				3E5620851F6B6DAC0063AA5B /* JRToast.m in Sources */,
 				3E56207E1F6B6DAC0063AA5B /* HTTPManager.m in Sources */,
+				3E2754681F70B2620010053E /* HYInviteFriendsTableViewCell.m in Sources */,
 				3E56207F1F6B6DAC0063AA5B /* DESECB.m in Sources */,
 				3E5620801F6B6DAC0063AA5B /* GTMBase64.m in Sources */,
 				3E27543C1F6F61E40010053E /* HYHomeTagsCollectionViewCell.m in Sources */,
+				3E27547F1F70FBED0010053E /* HYNoGoodsTableViewCell.m in Sources */,
 				3E56209E1F6B9EEF0063AA5B /* HYHomePageModel.m in Sources */,
 				3E5620941F6B72E90063AA5B /* HYShoppingCartViewController.m in Sources */,
 				3E5620A41F6BA16D0063AA5B /* HYHomeViewModel.m in Sources */,

@@ -8,6 +8,8 @@
 
 #import "HYLoginView.h"
 
+#import "HYUserHandle.h"
+
 @interface HYLoginView() <UITextFieldDelegate>
 
 /** iconImg */
@@ -196,12 +198,65 @@
 
 - (void)loginAction{
 
-    
+    if ([self checkLoginInfo]) {
+        
+        [HYUserHandle userLoginWithPhone:_phoneTextField.text password:_passwordTextField.text complectionBlock:^(BOOL isLoginSuccess) {
+           
+            if (isLoginSuccess) {
+                
+                self.userLoginSuccess();
+            }
+        }];
+    }
 }
 
 - (void)weChatAction{
     
     self.weChatBlock();
+}
+
+- (void)closeAction{
+
+    self.loginCloseBlock();
+}
+
+#pragma mark - request
+
+
+- (BOOL)checkLoginInfo{
+    
+    if ([self.phoneTextField.text isEqualToString:@""] || self.phoneTextField.text.length == 0) {
+        
+        [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"请输入手机号"];
+        return NO;
+    }
+    else if (![self validatePhoneNum:_phoneTextField.text]){
+        
+        [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"请输入正确的手机号"];
+        return NO;
+
+    }
+    else if ([_passwordTextField.text isEqualToString:@""] || _passwordTextField.text.length == 0){
+        
+        [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"密码不能为空"];
+        return NO;
+
+    }
+    else if (_passwordTextField.text.length < 6){
+        
+        [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"密码不能低于6位"];
+        return NO;
+    }
+    return YES;
+}
+
+/**判断手机号是否有效*/
+- (BOOL)validatePhoneNum:(NSString *)phoneNum{
+    
+    NSString *numReg = @"^(1)\\d{10}$";
+    NSPredicate *numCheck = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",numReg];
+    
+    return [numCheck evaluateWithObject:phoneNum];
 }
 
 #pragma mark - lazyload
@@ -211,6 +266,7 @@
         
         _closeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_closeBtn setImage:[UIImage imageNamed:@"close"] forState:UIControlStateNormal];
+        [_closeBtn addTarget:self action:@selector(closeAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return _closeBtn;
 }

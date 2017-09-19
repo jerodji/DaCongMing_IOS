@@ -23,5 +23,14 @@
 //分类
 #define API_Sort                @"HAILIN_SERVER/showType.do"
 
+//登录
+#define API_Login               @"HAILIN_SERVER/userlogin.do"
+
+//购物车
+#define API_ShoppingCart        @"HAILIN_SERVER/showCart.do"
+
+//商品列表
+#define API_GoogsList           @"HAILIN_SERVER/loaditemMsg.do"
+
 
 #endif /* WebApi_h */

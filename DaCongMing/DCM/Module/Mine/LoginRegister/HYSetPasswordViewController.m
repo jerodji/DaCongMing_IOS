@@ -7,6 +7,7 @@
 //
 
 #import "HYSetPasswordViewController.h"
+#import "HYTabBarController.h"
 
 @interface HYSetPasswordViewController () <UITextFieldDelegate>
 
@@ -36,6 +37,7 @@
     
     [super viewDidLoad];
     [self setupSubviews];
+    [self setMasonryLayout];
 }
 
 - (void)setupSubviews{
@@ -49,49 +51,57 @@
 
 }
 
-- (void)viewDidLayoutSubviews{
-    
+
+- (void)setMasonryLayout{
+
     [_closeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-       
-        make.right.equalTo(self).offset(-15 * WIDTH_MULTIPLE);
-        make.top.equalTo(self).offset(30);
+        
+        make.right.equalTo(self.view).offset(-15 * WIDTH_MULTIPLE);
+        make.top.equalTo(self.view).offset(30);
         make.width.height.equalTo(@40);
     }];
     
     [_hintLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-       
-        make.top.equalTo(self).offset(68 * WIDTH_MULTIPLE);
-        make.left.right.equalTo(self);
+        
+        make.top.equalTo(self.view).offset(68 * WIDTH_MULTIPLE);
+        make.left.right.equalTo(self.view);
         make.height.equalTo(@60);
     }];
     
     [_passwordTextField mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.top.equalTo(self.hintLabel.mas_bottom).offset(68 * WIDTH_MULTIPLE);
-        make.right.equalTo(self).offset(-15 * WIDTH_MULTIPLE);
+        make.right.equalTo(self.view).offset(-15 * WIDTH_MULTIPLE);
         make.height.equalTo(@(30 * WIDTH_MULTIPLE));
-        make.left.equalTo(self).offset(15 * WIDTH_MULTIPLE);
+        make.left.equalTo(self.view).offset(15 * WIDTH_MULTIPLE);
     }];
     
     [_line mas_makeConstraints:^(MASConstraintMaker *make) {
-       
+        
         make.left.right.equalTo(self.passwordTextField);
         make.height.equalTo(@1);
         make.top.equalTo(self.passwordTextField.mas_bottom).offset(9);
     }];
     
     [_confirmBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-       
+        
         make.left.right.equalTo(self.passwordTextField);
         make.height.equalTo(@(40 * WIDTH_MULTIPLE));
         make.top.equalTo(self.line.mas_bottom).offset(40);
     }];
+
 }
 
 #pragma mark - action
 - (void)confirmAction{
 
-    
+    HYTabBarController *tabBar = [[HYTabBarController alloc] init];
+    [self presentViewController:tabBar animated:YES completion:nil];
+}
+
+- (void)closeAction{
+
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - lazyload
@@ -111,6 +121,7 @@
         
         _closeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_closeBtn setImage:[UIImage imageNamed:@"close"] forState:UIControlStateNormal];
+        [_closeBtn addTarget:self action:@selector(closeAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return _closeBtn;
 }
@@ -121,8 +132,10 @@
         
         _hintLabel = [[UILabel alloc] initWithFrame:CGRectZero];
         NSString *str = @"设置账号登录密码\n下次登录可用手机号为账号";
-        
-        NSMutableAttributedString *attributeStr = [[NSMutableAttributedString alloc] initWithString:str attributes:@{NSForegroundColorAttributeName : KAPP_WHITE_COLOR,NSFontAttributeName : KFitFont(18)}];
+        NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+        paragraphStyle.lineSpacing = 11;
+        paragraphStyle.alignment = NSTextAlignmentCenter;
+        NSMutableAttributedString *attributeStr = [[NSMutableAttributedString alloc] initWithString:str attributes:@{NSForegroundColorAttributeName : KAPP_WHITE_COLOR,NSFontAttributeName : KFitFont(18),NSParagraphStyleAttributeName:paragraphStyle}];
         NSRange redRange = NSMakeRange(str.length - 12, 12);
         [attributeStr addAttributes:@{NSForegroundColorAttributeName : KAPP_WHITE_COLOR,NSFontAttributeName : KFitFont(13)} range:redRange];
         _hintLabel.numberOfLines = 0;
@@ -136,9 +149,9 @@
     if (!_passwordTextField) {
         
         _passwordTextField = [[UITextField alloc] init];
-        _passwordTextField.attributedPlaceholder = [[NSAttributedString alloc]initWithString:@"请设置您的账号登录密码" attributes:@{NSForegroundColorAttributeName:KAPP_WHITE_COLOR,NSFontAttributeName : [UIFont systemFontOfSize:18]}];
+        
+        _passwordTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"请设置您的账号登录密码" attributes:@{NSForegroundColorAttributeName:KAPP_WHITE_COLOR,NSFontAttributeName : [UIFont systemFontOfSize:18]}];
         _passwordTextField.delegate = self;
-        _passwordTextField.backgroundColor = [UIColor whiteColor];
         _passwordTextField.secureTextEntry = YES;
         _passwordTextField.clearButtonMode = UITextFieldViewModeAlways;
         _passwordTextField.font = [UIFont systemFontOfSize:18];

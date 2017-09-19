@@ -70,7 +70,7 @@
     
     // 设置超时时间
     [manager.requestSerializer willChangeValueForKey:@"timeoutInterval"];
-    manager.requestSerializer.timeoutInterval = 30.0f;
+    manager.requestSerializer.timeoutInterval = 15.0f;
     [manager.requestSerializer didChangeValueForKey:@"timeoutInterval"];
     
     [manager POST:urlString parameters:para progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {

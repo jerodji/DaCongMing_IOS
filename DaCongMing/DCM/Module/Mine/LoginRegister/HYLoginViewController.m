@@ -29,11 +29,40 @@
     [self.view addSubview:self.bgImgView];
     [self.view addSubview:self.loginView];
     
+    [self handelAction];
+    
     __weak typeof (self) weakSelf = self;
+    
     _loginView.weChatBlock = ^{
       
         HYCompleteInfoViewController *completeInfoVC = [[HYCompleteInfoViewController alloc] init];
         [weakSelf presentViewController:completeInfoVC animated:YES completion:nil];
+    };
+    
+    _loginView.userLoginSuccess = ^{
+      
+        [weakSelf dismissViewControllerAnimated:YES completion:nil];
+    };
+}
+
+- (void)handelAction{
+
+    __weak typeof (self) weakSelf = self;
+    
+    _loginView.weChatBlock = ^{
+        
+        HYCompleteInfoViewController *completeInfoVC = [[HYCompleteInfoViewController alloc] init];
+        [weakSelf presentViewController:completeInfoVC animated:YES completion:nil];
+    };
+    
+    _loginView.userLoginSuccess = ^{
+        
+        [weakSelf dismissViewControllerAnimated:YES completion:nil];
+    };
+    
+    _loginView.loginCloseBlock = ^{
+        
+        [weakSelf dismissViewControllerAnimated:YES completion:nil];
     };
 }
 

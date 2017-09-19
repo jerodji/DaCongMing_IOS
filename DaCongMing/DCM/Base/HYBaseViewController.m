@@ -25,7 +25,7 @@
     self.navigationController.navigationBar.tintColor = KAPP_WHITE_COLOR;
     
     [self.navigationController.navigationBar setTitleTextAttributes:
-     @{NSForegroundColorAttributeName:[UIColor redColor]}];
+     @{NSForegroundColorAttributeName:KAPP_WHITE_COLOR}];
     
     self.edgesForExtendedLayout = UIRectEdgeNone;
     self.navigationController.navigationBar.translucent = NO;

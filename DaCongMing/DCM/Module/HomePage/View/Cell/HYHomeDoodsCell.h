@@ -10,4 +10,7 @@
 
 @interface HYHomeDoodsCell : UITableViewCell
 
+/** datalist */
+@property (nonatomic,strong) NSMutableArray *datalist;
+
 @end

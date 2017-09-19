@@ -30,6 +30,8 @@
 @property (nonatomic,strong) SDCycleScrollView *headerView;
 /** model */
 @property (nonatomic,strong) HYHomePageModel *model;
+/** 商品列表 */
+@property (nonatomic,strong) NSMutableArray *goodsList;
 
 @end
 
@@ -41,7 +43,13 @@
 
     [self setupUI];
     
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    
+    [super viewWillAppear:animated];
     [self requestNetwork];
+
 }
 
 - (void)setupUI{
@@ -54,10 +62,18 @@
 
 - (void)requestNetwork{
     
+    _goodsList = [NSMutableArray array];
+    
     [HYHomeViewModel requestHomePageData:^(HYHomePageModel *model) {
         
         _headerView.imageURLStringsGroup = model.banners;
         _model = model;
+        [self.tableView reloadData];
+    }];
+    
+    [HYRequestGoodsList requestGoodsListItem_type:@"001" pageNo:1 andPage:5 complectionBlock:^(NSArray *datalist) {
+        
+        [_goodsList addObjectsFromArray:datalist];
         [self.tableView reloadData];
     }];
 }
@@ -111,6 +127,8 @@
         HYHomeTitleScrollCell *cell = [tableView dequeueReusableCellWithIdentifier:titleScrollID];
         if (!cell) {
             cell = [[HYHomeTitleScrollCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:titleScrollID];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+
         }
         cell.model = _model;
         return cell;
@@ -121,6 +139,8 @@
         HYHomeImgScrollCell *cell = [tableView dequeueReusableCellWithIdentifier:imageScrollID];
         if (!cell) {
             cell = [[HYHomeImgScrollCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:imageScrollID];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+
         }
         cell.goodHealthModel = _model.goodHealth;
         return cell;
@@ -131,6 +151,8 @@
         HYHomeCollectionCell *cell = [tableView dequeueReusableCellWithIdentifier:collectionCellID];
         if (!cell) {
             cell = [[HYHomeCollectionCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:collectionCellID];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+
         }
         cell.model = _model;
         return cell;
@@ -141,6 +163,8 @@
         HYHomeBannerCell *cell = [tableView dequeueReusableCellWithIdentifier:bannerID];
         if (!cell) {
             cell = [[HYHomeBannerCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:bannerID];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+
         }
         cell.model = _model;
         return cell;
@@ -151,17 +175,21 @@
         HYTypeRecommendCell *cell = [tableView dequeueReusableCellWithIdentifier:typeRecommendID];
         if (!cell) {
             cell = [[HYTypeRecommendCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:typeRecommendID];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+
         }
         cell.model = _model;
         return cell;
     }
     else if (indexPath.row == 6){
         //猜你喜欢
-        static NSString *typeRecommendID = @"typeRecommendID";
-        HYHomeDoodsCell *cell = [tableView dequeueReusableCellWithIdentifier:typeRecommendID];
+        static NSString *goodsCellID = @"goodsCellID";
+        HYHomeDoodsCell *cell = [tableView dequeueReusableCellWithIdentifier:goodsCellID];
         if (!cell) {
-            cell = [[HYHomeDoodsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:typeRecommendID];
+            cell = [[HYHomeDoodsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:goodsCellID];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
+        cell.datalist = self.goodsList;
         return cell;
     }
     else{
@@ -215,7 +243,8 @@
     else if(indexPath.row == 6) {
         
         //猜你喜欢
-        return 40 + 10;
+        CGFloat height = ceil(_goodsList.count / 2.0) * 350 * WIDTH_MULTIPLE;
+        return 40 + 10 + height;
     }
     
     return 100;
