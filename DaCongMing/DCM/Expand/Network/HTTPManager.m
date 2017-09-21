@@ -41,12 +41,18 @@
     
     [manager GET:urlString parameters:para progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
+        if (isShowHUD) {
+            
+            [MBProgressHUD hidePregressHUD:KEYWINDOW];
+        }
         successBlock(responseObject);
-        [MBProgressHUD hidePregressHUD:KEYWINDOW];
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
-        [MBProgressHUD hidePregressHUD:KEYWINDOW];
+        if (isShowHUD) {
+            
+            [MBProgressHUD hidePregressHUD:KEYWINDOW];
+        }
         [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"请求失败，请检查网络"];
     }];
 }
@@ -75,12 +81,18 @@
     
     [manager POST:urlString parameters:para progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
+        if (isShowHUD) {
+            
+            [MBProgressHUD hidePregressHUD:KEYWINDOW];
+        }
         successBlock(responseObject);
-        [MBProgressHUD hidePregressHUD:KEYWINDOW];
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
-        [MBProgressHUD hidePregressHUD:KEYWINDOW];
+        if (isShowHUD) {
+            
+            [MBProgressHUD hidePregressHUD:KEYWINDOW];
+        }
         [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"请求失败，请检查网络"];
     }];
 }

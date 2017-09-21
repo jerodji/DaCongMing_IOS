@@ -127,8 +127,8 @@
         _collectionView.showsVerticalScrollIndicator = NO;
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
-        _collectionView.showsVerticalScrollIndicator = NO;
-        
+        _collectionView.showsHorizontalScrollIndicator = NO;
+
         [_collectionView registerClass:[HYHomeCollectionViewCell class] forCellWithReuseIdentifier:@"collectionCell"];
     }
     return _collectionView;

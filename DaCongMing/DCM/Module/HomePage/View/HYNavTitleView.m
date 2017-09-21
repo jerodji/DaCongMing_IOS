@@ -50,8 +50,8 @@
     [self.searchView mas_makeConstraints:^(MASConstraintMaker *make) {
        
         make.left.equalTo(self.iconImgView.mas_right).offset(14 * WIDTH_MULTIPLE);
-        make.top.equalTo(self).offset(4 * WIDTH_MULTIPLE);
-        make.bottom.equalTo(self).offset(- 4 * WIDTH_MULTIPLE);
+        make.top.equalTo(self).offset(8 * WIDTH_MULTIPLE);
+        make.bottom.equalTo(self).offset(- 8 * WIDTH_MULTIPLE);
         make.right.equalTo(self).offset(- 23);
        
     }];
@@ -59,8 +59,8 @@
     [self.searchIconImgView mas_makeConstraints:^(MASConstraintMaker *make) {
        
         make.left.equalTo(self.searchView).offset(7 * WIDTH_MULTIPLE);
-        make.top.equalTo(self.searchView).offset(5);
-        make.bottom.equalTo(self.searchView).offset(-5);
+        make.top.equalTo(self.searchView).offset(4);
+        make.bottom.equalTo(self.searchView).offset(-4);
         make.width.equalTo(@20);
     }];
     
@@ -77,7 +77,7 @@
     if (!_iconImgView) {
         
         _iconImgView = [[UIImageView alloc] initWithFrame:CGRectZero];
-        _iconImgView.contentMode = UIViewContentModeScaleAspectFill;
+        _iconImgView.contentMode = UIViewContentModeScaleAspectFit;
         _iconImgView.clipsToBounds = YES;
         _iconImgView.image = [UIImage imageNamed:@"home_title_icon"];
     }

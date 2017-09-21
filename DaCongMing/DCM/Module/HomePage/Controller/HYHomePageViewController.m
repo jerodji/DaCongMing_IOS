@@ -7,6 +7,7 @@
 //
 
 #import "HYHomePageViewController.h"
+#import "HYGoodsDetailInfoViewController.h"
 
 #import "HYNavTitleView.h"
 #import "HYHomePageView.h"
@@ -71,7 +72,7 @@
         [self.tableView reloadData];
     }];
     
-    [HYRequestGoodsList requestGoodsListItem_type:@"001" pageNo:1 andPage:5 complectionBlock:^(NSArray *datalist) {
+    [HYRequestGoodsList requestGoodsListItem_type:@"001" pageNo:1 andPage:5 order:nil hotsale:nil complectionBlock:^(NSArray *datalist) {
         
         [_goodsList addObjectsFromArray:datalist];
         [self.tableView reloadData];
@@ -116,7 +117,9 @@
         static NSString *imgCellID = @"HYImgCell";
         HYHomeImgCell *cell = [tableView dequeueReusableCellWithIdentifier:imgCellID];
         if (!cell) {
-            cell = [[HYHomeImgCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:imgCellID];
+            cell = [[HYHomeImgCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:imgCellID];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+
         }
         cell.imgUrl = _model.disCount.image_url;
         return cell;
@@ -190,6 +193,13 @@
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
         cell.datalist = self.goodsList;
+        cell.collectionSelect = ^(NSString *productID) {
+          
+            HYGoodsDetailInfoViewController *detailVC = [[HYGoodsDetailInfoViewController alloc] init];
+            detailVC.navigationController.navigationBar.hidden = YES;
+            detailVC.goodsID = productID;
+            [self.navigationController pushViewController:detailVC animated:YES];
+        };
         return cell;
     }
     else{

@@ -10,5 +10,11 @@
 
 @implementation Const
 
+NSString * const KUserPhone = @"userLoginPhone";
+
+NSString * const KUserPassword = @"userLoginPassword";
+
+NSString * const KWeChatLoginNotification = @"KWeChatLoginNotification";
+
 
 @end

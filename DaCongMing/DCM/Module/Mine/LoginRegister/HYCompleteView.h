@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 typedef void(^SkipBlock)();
-typedef void(^ConfirmBlock)();
+typedef void(^ConfirmBlock)(NSString *phone);
 
 @interface HYCompleteView : UIView
 

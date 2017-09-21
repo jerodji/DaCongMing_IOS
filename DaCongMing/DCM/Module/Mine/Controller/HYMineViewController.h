@@ -8,6 +8,6 @@
 
 #import "HYBaseViewController.h"
 
-@interface HYMineViewController : HYBaseViewController
+@interface HYMineViewController : UIViewController
 
 @end

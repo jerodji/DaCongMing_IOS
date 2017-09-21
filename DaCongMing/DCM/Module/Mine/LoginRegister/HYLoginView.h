@@ -14,6 +14,12 @@ typedef void(^loginVCCloseBlock)();
 
 @interface HYLoginView : UIView
 
+/** WeChatToken */
+@property (nonatomic,copy) NSString *token;
+
+/** weChatCallbackCode */
+@property (nonatomic,copy) NSString *weChatCallbackCode;
+
 /** block */
 @property (nonatomic,copy) weChatSuccessBlock weChatBlock;
 

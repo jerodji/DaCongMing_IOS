@@ -30,9 +30,10 @@
     [self.view addSubview:self.complecteView];
     
     __weak typeof (self)weakSelf = self;
-    self.complecteView.confirmBlock = ^{
+    self.complecteView.confirmBlock = ^(NSString *phone) {
        
         HYSetPasswordViewController *setPasswordVC = [[HYSetPasswordViewController alloc] init];
+        setPasswordVC.phone = phone;
         [weakSelf presentViewController:setPasswordVC animated:YES completion:nil];
     };
 }

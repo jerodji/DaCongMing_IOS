@@ -39,7 +39,7 @@
 @property (nonatomic,strong) UIButton *forgetPassBtn;
 /** wechatLogin */
 @property (nonatomic,strong) UIButton *weChatLoginBtn;
-/**  */
+/** 快速登录 */
 @property (nonatomic,strong) UILabel *loginLabel;
 
 @end
@@ -50,11 +50,14 @@
     
     if (self = [super initWithFrame:frame]) {
         
-                
         [self setupSubViews];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(weChatLoginCallBack:) name:KWeChatLoginNotification object:nil];
     }
     return self;
 }
+
+
 
 - (void)setupSubViews{
     
@@ -174,6 +177,17 @@
         make.bottom.equalTo(_loginLabel.mas_top).offset(-17 * WIDTH_MULTIPLE);
         make.width.height.equalTo(@(50 * WIDTH_MULTIPLE));
     }];
+    
+    [self hideWeChatLoginBtn];
+}
+
+- (void)hideWeChatLoginBtn{
+    
+    if (![WXApi isWXAppInstalled]) {
+        
+        _weChatLoginBtn.hidden = YES;
+        _loginLabel.hidden = YES;
+    }
 }
 
 #pragma mark - action
@@ -188,9 +202,11 @@
     else{
         
         if (sender.text.length >= 6) {
+            _loginBtn.userInteractionEnabled = YES;
             _loginBtn.backgroundColor = KCOLOR(@"53d76f");
         }
         else{
+            _loginBtn.userInteractionEnabled = NO;
             _loginBtn.backgroundColor = KCOLOR(@"c2c2c2");
         }
     }
@@ -212,7 +228,56 @@
 
 - (void)weChatAction{
     
-    self.weChatBlock();
+    if ([WXApi isWXAppInstalled]) {
+        
+        SendAuthReq *req = [SendAuthReq new];
+        req.scope = @"snsapi_userinfo";
+        req.state = @"com.dacongming";
+        [WXApi sendReq:req];
+    }
+    else{
+        [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"please install WeChat"];
+    }
+    
+}
+
+- (void)weChatLoginCallBack:(NSNotification *)notification{
+    
+    self.weChatCallbackCode = notification.object;
+    DLog(@"wechatLogin callBack code %@",self.weChatCallbackCode);
+    
+    NSDictionary *dict = @{@"code" : _weChatCallbackCode};
+    [[HTTPManager shareHTTPManager] postDataFromUrl:API_WeChatLogin withParameter:dict isShowHUD:YES success:^(id returnData) {
+       
+        if (returnData) {
+            
+            if ([[returnData objectForKey:@"successed"] integerValue] == 000) {
+                
+                NSString *isNewUser = [returnData objectForKey:@"dataInfo"][@"isNewUser"];
+                NSDictionary *dict = [returnData objectForKey:@"dataInfo"];
+                HYUserModel *user = [HYUserModel sharedInstance];
+                [user modelSetWithDictionary:dict];
+                
+                if ([isNewUser isEqualToString:@"true"]) {
+                    
+                    //登录成功 跳转设置密码页面
+                   
+                    self.weChatBlock();
+                }
+                else{
+                    //老用户，直接跳回首页
+//                    self.userLoginSuccess();
+                    self.weChatBlock();
+
+                }
+                
+            }
+            else{
+                
+                [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"WeChat login error"];
+            }
+        }
+    }];
 }
 
 - (void)closeAction{
@@ -220,8 +285,10 @@
     self.loginCloseBlock();
 }
 
-#pragma mark - request
 
+
+
+#pragma mark - request
 
 - (BOOL)checkLoginInfo{
     

@@ -10,4 +10,7 @@
 
 @interface HYSetPasswordViewController : HYBaseViewController
 
+/** phone */
+@property (nonatomic,copy) NSString *phone;
+
 @end

@@ -95,13 +95,35 @@
 #pragma mark - action
 - (void)confirmAction{
 
-    HYTabBarController *tabBar = [[HYTabBarController alloc] init];
-    [self presentViewController:tabBar animated:YES completion:nil];
+    
+    [HYUserHandle setPasswordWithPhone:_phone password:_passwordTextField.text complectionBlock:^(BOOL isSuccess) {
+        
+        if (isSuccess) {
+            
+            HYTabBarController *tabBar = [[HYTabBarController alloc] init];
+            [self presentViewController:tabBar animated:YES completion:nil];
+        }
+    }];
+    
 }
 
 - (void)closeAction{
 
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)phoneNumEditChanged:(UITextField *)sender{
+    
+    
+    if (sender.text.length >= 6) {
+            _confirmBtn.userInteractionEnabled = YES;
+            _confirmBtn.backgroundColor = KCOLOR(@"53d76f");
+    }
+    else{
+            _confirmBtn.userInteractionEnabled = NO;
+            _confirmBtn.backgroundColor = KCOLOR(@"c2c2c2");
+    }
+
 }
 
 #pragma mark - lazyload
@@ -155,7 +177,7 @@
         _passwordTextField.secureTextEntry = YES;
         _passwordTextField.clearButtonMode = UITextFieldViewModeAlways;
         _passwordTextField.font = [UIFont systemFontOfSize:18];
-        
+         [_passwordTextField addTarget:self action:@selector(phoneNumEditChanged:) forControlEvents:UIControlEventEditingChanged];
     }
     return _passwordTextField;
 }
@@ -176,8 +198,8 @@
         
         _confirmBtn = [[UIButton alloc] init];
         [_confirmBtn setTitle:@"确定" forState:UIControlStateNormal];
-        _confirmBtn.backgroundColor = KCOLOR(@"53d76f");
-        _confirmBtn.layer.cornerRadius = 3;
+        _confirmBtn.userInteractionEnabled = NO;
+        _confirmBtn.backgroundColor = KCOLOR(@"c2c2c2");        _confirmBtn.layer.cornerRadius = 3;
         _confirmBtn.layer.masksToBounds = YES;
         _confirmBtn.titleLabel.font = KFitFont(18);
         [_confirmBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];

@@ -50,7 +50,7 @@
     
     _user = user;
     
-    if (![user.token isNotBlank]) {
+    if ([user.token isNotBlank]) {
         
         [_headerImgView sd_setImageWithURL:[NSURL URLWithString:user.userInfo.head_image_url] placeholderImage:[UIImage imageNamed:@"header_placeholder"]];
         _nickNameLabel.text = user.userInfo.name;

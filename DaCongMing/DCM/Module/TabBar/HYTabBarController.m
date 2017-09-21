@@ -31,6 +31,7 @@
     
     
     [self setupChildVC];
+    [self autoLogin];
 }
 
 - (void)setupChildVC{
@@ -59,11 +60,14 @@
     self.viewControllers = navArray;
 }
 
+- (void)autoLogin{
+    
+    
+}
+
 - (void)didReceiveMemoryWarning {
     
     [super didReceiveMemoryWarning];
-    
-    
     
 }
 

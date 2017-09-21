@@ -19,33 +19,27 @@
     
     [self setupNav];
     
-    //设置导航栏的颜色
-    self.navigationController.navigationBar.barTintColor = KAPP_NAV_COLOR;
-    //设置导航栏的字体颜色
-    self.navigationController.navigationBar.tintColor = KAPP_WHITE_COLOR;
-    
-    [self.navigationController.navigationBar setTitleTextAttributes:
-     @{NSForegroundColorAttributeName:KAPP_WHITE_COLOR}];
-    
     self.edgesForExtendedLayout = UIRectEdgeNone;
-    self.navigationController.navigationBar.translucent = NO;
 
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    
+    [self.view endEditing:YES];
 }
 
 - (void)setupNav{
     
-    UIButton *back = [UIButton buttonWithType:UIButtonTypeCustom];
-    back.frame = CGRectMake(0, 0, 60, 40);
-    UIImage* image = [UIImage imageNamed:@"top_back"];
-    [back setImage:image forState:UIControlStateNormal];
-    [back setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 10)];
-    [back setTitle:@"返回" forState:UIControlStateNormal];
-    [back setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [back addTarget:self action:@selector(backBtnAction) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithCustomView:back];
-    self.navigationItem.backBarButtonItem = backButton;
+    //设置导航栏的颜色
+    self.navigationController.navigationBar.barTintColor = KAPP_NAV_COLOR;
+    //设置导航栏的字体颜色
+    [self.navigationController.navigationBar setTitleTextAttributes:
+     @{NSForegroundColorAttributeName:KAPP_WHITE_COLOR}];
+    self.navigationController.navigationBar.translucent = NO;
     
-    
+    //修改返回按钮
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:nil action:nil];
+    self.navigationController.navigationItem.backBarButtonItem = item;
 }
 
 #pragma mark - action

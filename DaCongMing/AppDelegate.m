@@ -6,11 +6,35 @@
 //  Copyright © 2017年 胡勇. All rights reserved.
 //
 
+////////////////////////////////////////////////////////////////////
+//                          _ooOoo_                               //
+//                         o8888888o                              //
+//                         88" . "88                              //
+//                         (| ^_^ |)                              //
+//                         O\  =  /O                              //
+//                      ____/`---'\____                           //
+//                    .'  \\|     |//  `.                         //
+//                   /  \\|||  :  |||//  \                        //
+//                  /  _||||| -:- |||||-  \                       //
+//                  |   | \\\  -  /// |   |                       //
+//                  | \_|  ''\---/''  |   |                       //
+//                  \  .-\__  `-`  ___/-. /                       //
+//                ___`. .'  /--.--\  `. . ___                     //
+//              ."" '<  `.___\_<|>_/___.'  >'"".                  //
+//            | | :  `- \`.;`\ _ /`;.`/ - ` : | |                 //
+//            \  \ `-.   \_ __\ /__ _/   .-` /  /                 //
+//      ========`-.____`-.___\_____/___.-`____.-'========         //
+//                           `=---='                              //
+//      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^        //
+//         佛祖保佑            永无BUG              永不修改         //
+////////////////////////////////////////////////////////////////////
+
+
 #import "AppDelegate.h"
 #import "HYTabBarController.h"
 #import "HYLoginViewController.h"
 
-@interface AppDelegate ()
+@interface AppDelegate ()<WXApiDelegate>
 
 @end
 
@@ -30,9 +54,32 @@
 //    HYLoginViewController *loginVC = [[HYLoginViewController alloc] init];
 //    self.window.rootViewController = loginVC;
     
+    [WXApi registerApp:WXAppID withDescription:@"Wechat"];
+    
     return YES;
 }
 
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+    
+    [WXApi handleOpenURL:url delegate:self];
+    return YES;
+}
+
+/**
+ *  微信回调
+ */
+- (void)onResp:(BaseResp *)resp{
+    
+    DLog(@"WeChat login callBack errorCode %@",resp.errStr);
+    if ([resp isKindOfClass:[SendAuthResp class]]) {
+        
+        if (resp.errCode == 0) {
+            //登录成功 发出通知
+            SendAuthResp *atuhResp = (SendAuthResp *)resp;
+            [[NSNotificationCenter defaultCenter] postNotificationName:KWeChatLoginNotification object:atuhResp.code];
+        }
+    }
+}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

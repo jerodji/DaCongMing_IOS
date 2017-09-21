@@ -36,10 +36,13 @@
 
 - (void)layoutSubviews{
     
-    [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-       
+    [_collectionView mas_updateConstraints:^(MASConstraintMaker *make) {
+        
         make.top.left.right.equalTo(self);
         make.height.equalTo(@(_model.tags.count / 2 * 110 + 10));
+        
+        CGFloat height = ceil(_model.tags.count / 2.0) * 110 + 10;
+        make.height.equalTo(@(height));
     }];
 }
 

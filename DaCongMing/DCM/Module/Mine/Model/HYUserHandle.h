@@ -11,9 +11,24 @@
 @interface HYUserHandle : HYBaseModel
 
 /*!
- 手机号登录
+     手机号登录
  */
 + (void)userLoginWithPhone:(NSString *)phone password:(NSString *)password complectionBlock:(void(^)(BOOL isLoginSuccess))complection;
+
+/*!
+     获取验证码
+ */
++ (void)getAuthCodeWithPhone:(NSString *)phone complectionBlock:(void(^)(BOOL isSuccess))complection;
+
+/*!
+     验证手机验证码
+ */
++ (void)verifyAuthCodeWithPhone:(NSString *)phone authCode:(NSString *)authCode complectionBlock:(void(^)(BOOL isSuccess))complection;
+
+/*!
+     设置用户密码
+ */
++ (void)setPasswordWithPhone:(NSString *)phone password:(NSString *)password complectionBlock:(void(^)(BOOL isSuccess))complection;
 
 /*!
  @method

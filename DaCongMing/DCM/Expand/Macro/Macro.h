@@ -62,14 +62,18 @@
 #define KAPP_BLACK_COLOR                   [UIColor blackColor]
 
 #define KAPP_PRICE_COLOR                   [UIColor colorWithHexString:@"d0021b"]
-/** APP主文字颜色 */
-#define KAPP_THEME_TITLE_COLOR             
+/** APPb7b7b7文字颜色 */
+#define KAPP_b7b7b7_COLOR                   [UIColor colorWithHexString:@"b7b7b7"]
+/** APP272727文字颜色 */
+#define KAPP_272727_COLOR                   [UIColor colorWithHexString:@"272727"]
+/** APP7b7b7b文字颜色 */
+#define KAPP_7b7b7b_COLOR                   [UIColor colorWithHexString:@"7b7b7b"]
 /** APPTableView背景色 */
 #define KAPP_TABLEVIEW_BGCOLOR
 /** APP占位符颜色 */
 #define KAPP_PLACEHOLDER_COLOR
 /** APP分割线颜色 */
-#define KAPP_SEPERATOR_COLOR
+#define KAPP_SEPERATOR_COLOR               [UIColor colorWithHexString:@"ebe9e9"]
 /** 颜色宏 */
 #define KCOLOR(hexStr)                     [UIColor colorWithHexString:hexStr]
 /** RGB颜色 */

@@ -7,6 +7,9 @@
 //
 
 #import "HYSortViewController.h"
+#import "HYGoodsListViewController.h"
+
+
 #import "HYSortModel.h"
 #import "HYSortTableViewCell.h"
 
@@ -34,6 +37,8 @@
 
 - (void)setupNav{
     
+    
+    self.navigationController.navigationBar.barTintColor = KAPP_NAV_COLOR;
     UIImageView *titleImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 5, KSCREEN_WIDTH, 34)];
     titleImgView.image = [UIImage imageNamed:@"sort_title"];
     titleImgView.contentMode = UIViewContentModeScaleAspectFit;
@@ -92,7 +97,13 @@
 #pragma mark - tableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
+    HYSortModel *model = self.datalist[indexPath.row];
+    HYGoodsListViewController *goodsListVC = [[HYGoodsListViewController alloc] init];
+    goodsListVC.title = model.type_name;
+    goodsListVC.type = model.type_id;
+    [self.navigationController pushViewController:goodsListVC animated:YES];
 }
 
 

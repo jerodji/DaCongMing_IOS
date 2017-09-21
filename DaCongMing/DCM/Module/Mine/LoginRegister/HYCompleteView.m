@@ -155,11 +155,95 @@
 
 - (void)confirmAction{
 
-    self.confirmBlock();
+    [HYUserHandle verifyAuthCodeWithPhone:_phoneTextField.text authCode:_authCodeTextField.text complectionBlock:^(BOOL isSuccess) {
+        
+        if (isSuccess) {
+            
+            self.confirmBlock(_phoneTextField.text);
+        }
+    }];
 }
 
 - (void)skipAction{
 
+    self.skipBlock();
+}
+
+- (void)getAuthCodeAction{
+    
+    [self.phoneTextField resignFirstResponder];
+    if ([self checkLoginInfo]) {
+        
+        [HYUserHandle getAuthCodeWithPhone:_phoneTextField.text complectionBlock:^(BOOL isSuccess) {
+           
+            if (isSuccess) {
+                
+                //开始倒计时
+                [self countDown];
+            }
+        }];
+    }
+    
+}
+
+#pragma mark - Private Method
+- (BOOL)checkLoginInfo{
+    
+    if ([self.phoneTextField.text isEqualToString:@""] || self.phoneTextField.text.length == 0) {
+        
+        [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"请输入手机号"];
+        return NO;
+    }
+    else if (![self validatePhoneNum:_phoneTextField.text]){
+        
+        [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"请输入正确的手机号"];
+        return NO;
+        
+    }
+    return YES;
+}
+
+/**判断手机号是否有效*/
+- (BOOL)validatePhoneNum:(NSString *)phoneNum{
+    
+    NSString *numReg = @"^(1)\\d{10}$";
+    NSPredicate *numCheck = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",numReg];
+    
+    return [numCheck evaluateWithObject:phoneNum];
+}
+
+/** 倒计时的方法 */
+- (void)countDown{
+    
+    __block NSInteger time = 59;
+    //创建全局队列
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    //创建监视时间变化的对象
+    dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
+    //每秒执行
+    dispatch_source_set_timer(timer, dispatch_walltime(NULL, 0), 1.0 * NSEC_PER_SEC, 0);
+    dispatch_source_set_event_handler(timer, ^{
+        //倒计时结束，关闭
+        if (time <= 0) {
+            dispatch_source_cancel(timer);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                [self.getAuthCodeBtn setTitle:@"重新发送" forState:UIControlStateNormal];
+                self.getAuthCodeBtn.userInteractionEnabled = YES;
+            });
+        }
+        else{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                self.getAuthCodeBtn.userInteractionEnabled = NO;
+                [self.getAuthCodeBtn setTitle:[NSString stringWithFormat:@"%ld秒后重试",time] forState:UIControlStateNormal];
+                self.getAuthCodeBtn.backgroundColor = KAPP_THEME_COLOR;
+                time--;
+            });
+        }
+        
+    });
+    dispatch_resume(timer);
 }
 
 #pragma mark - lazyload
@@ -215,6 +299,7 @@
         _getAuthCodeBtn.clipsToBounds  = YES;
         [_getAuthCodeBtn setTitleColor:KAPP_WHITE_COLOR forState:UIControlStateNormal];
         _getAuthCodeBtn.titleLabel.font = KFont(14);
+        [_getAuthCodeBtn addTarget:self action:@selector(getAuthCodeAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return _getAuthCodeBtn;
 }
