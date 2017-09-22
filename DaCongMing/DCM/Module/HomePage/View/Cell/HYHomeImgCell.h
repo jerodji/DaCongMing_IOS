@@ -16,4 +16,8 @@
 /** img */
 @property (nonatomic,strong) UIImageView *imgView;
 
+/** cellHeight */
+@property (nonatomic,assign) CGFloat cellHeight;
+
+
 @end

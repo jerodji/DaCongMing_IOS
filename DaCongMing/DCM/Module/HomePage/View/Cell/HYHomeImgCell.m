@@ -21,6 +21,7 @@
         
         [self addSubview:self.imgView];
         
+        
         [self.imgView mas_makeConstraints:^(MASConstraintMaker *make) {
            
             make.top.left.equalTo(self).offset(10);
@@ -33,7 +34,24 @@
 - (void)setImgUrl:(NSString *)imgUrl{
 
     _imgUrl = imgUrl;
-     [_imgView sd_setImageWithURL:[NSURL URLWithString:_imgUrl] placeholderImage:[UIImage imageNamed:@"placeHolderImg"]];
+    self.cellHeight = 0.f;
+
+    
+    __block CGFloat originalImageWidth = 0;
+    __block CGFloat originalImageHeight = 0;
+    __block CGFloat imageScale = 0;
+    __block CGFloat imageWidth = KSCREEN_WIDTH;
+    __block CGFloat imageHeight = imageWidth * imageScale;
+    [_imgView sd_setImageWithURL:[NSURL URLWithString:_imgUrl] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+       
+        originalImageWidth = image.size.width;
+        originalImageHeight = image.size.height;
+        imageScale = originalImageHeight / originalImageWidth;
+        imageWidth = KSCREEN_WIDTH;
+        imageHeight = imageWidth * imageScale;
+        
+        _cellHeight = imageHeight + 20;
+    }];
 }
 
 #pragma mark - lazyload

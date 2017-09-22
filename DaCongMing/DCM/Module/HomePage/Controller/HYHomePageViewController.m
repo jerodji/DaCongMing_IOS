@@ -34,6 +34,9 @@
 /** 商品列表 */
 @property (nonatomic,strong) NSMutableArray *goodsList;
 
+/** 存放Cell的高度 */
+@property (nonatomic,strong) NSMutableDictionary *cellHeightDict;
+
 @end
 
 @implementation HYHomePageViewController
@@ -122,6 +125,7 @@
 
         }
         cell.imgUrl = _model.disCount.image_url;
+        [self.cellHeightDict setValue:[NSNumber numberWithFloat:cell.cellHeight] forKey:[NSString stringWithFormat:@"%ld",(long)indexPath.row]];
         return cell;
     }
     else if (indexPath.row == 1){
@@ -134,6 +138,7 @@
 
         }
         cell.model = _model;
+        [self.cellHeightDict setValue:[NSNumber numberWithFloat:cell.cellHeight] forKey:[NSString stringWithFormat:@"%ld",(long)indexPath.row]];
         return cell;
     }
     else if (indexPath.row == 2){
@@ -146,6 +151,7 @@
 
         }
         cell.goodHealthModel = _model.goodHealth;
+        [self.cellHeightDict setValue:[NSNumber numberWithFloat:cell.cellHeight] forKey:[NSString stringWithFormat:@"%ld",(long)indexPath.row]];
         return cell;
     }
     else if (indexPath.row == 3){
@@ -158,6 +164,7 @@
 
         }
         cell.model = _model;
+        
         return cell;
     }
     else if (indexPath.row == 4){
@@ -223,17 +230,26 @@
     
     if (indexPath.row == 0) {
         
-        return 150;
+        NSNumber *num = [_cellHeightDict objectForKey:@"0"];
+        if (isnan(num.floatValue) || num.floatValue == 0) {
+            return 150;
+        }
+        return num.floatValue;
     }
     else if(indexPath.row == 1) {
         
         //今日推荐
-        return 76 +  (170 + 30) * WIDTH_MULTIPLE;
+//        return 76 +  (170 + 30) * WIDTH_MULTIPLE;
+        
+        NSNumber *num = [_cellHeightDict objectForKey:@"1"];
+        return num.floatValue;
     }
     else if(indexPath.row == 2) {
         
         //健康养生
-        return 150 + (170 + 30) * WIDTH_MULTIPLE;
+//        return 150 + (170 + 30) * WIDTH_MULTIPLE;
+        NSNumber *num = [_cellHeightDict objectForKey:@"2"];
+        return num.floatValue;
     }
     else if(indexPath.row == 3) {
         
@@ -282,6 +298,15 @@
         _tableView.tableHeaderView = self.headerView;
     }
     return _tableView;
+}
+
+- (NSMutableDictionary *)cellHeightDict{
+    
+    if (!_cellHeightDict) {
+        
+        _cellHeightDict = [NSMutableDictionary dictionary];
+    }
+    return _cellHeightDict;
 }
 
 - (void)didReceiveMemoryWarning {

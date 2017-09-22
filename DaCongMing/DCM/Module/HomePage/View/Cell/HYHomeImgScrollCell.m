@@ -45,11 +45,15 @@
         make.height.equalTo(@150);
     }];
     
+    
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
        
         make.left.right.equalTo(self);
         make.top.equalTo(self.imgView.mas_bottom).offset(10);
-        make.height.equalTo(@(170 * WIDTH_MULTIPLE));
+        
+        CGFloat itemWidth = (KSCREEN_WIDTH - 20) / 3;
+        CGFloat height = (itemWidth * 1.2 + 50) * WIDTH_MULTIPLE;
+        make.height.equalTo(@(height));
     }];
 
 }
@@ -60,6 +64,8 @@
     
     [_imgView sd_setImageWithURL:[NSURL URLWithString:goodHealthModel.image_url] placeholderImage:[UIImage imageNamed:@"placeHolder"]];
     [_collectionView reloadData];
+    
+    _cellHeight = _collectionView.bottom + 20;
 }
 
 #pragma mark - collectionViewDataSource
@@ -76,14 +82,13 @@
 }
 
 //设置每个item水平间距
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
-    
-    return 10;
-}
+//- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
+//
+//    return 10;
+//}
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout
-        insetForSectionAtIndex:(NSInteger)section
-{
+        insetForSectionAtIndex:(NSInteger)section{
     return UIEdgeInsetsMake(0, 5.0f, 0, 5.0f);
 }
 
@@ -120,7 +125,11 @@
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
         //设置collectionView滚动方向
         [layout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
-        layout.itemSize =CGSizeMake((KSCREEN_WIDTH - 20 ) / 3, 170 * WIDTH_MULTIPLE);
+        CGFloat itemWidth = (KSCREEN_WIDTH - 20) / 3;
+        layout.itemSize = CGSizeMake(itemWidth, (itemWidth * 1.2 + 50) * WIDTH_MULTIPLE);
+        layout.minimumLineSpacing = 0;
+        layout.minimumInteritemSpacing = 5;
+        
         
         _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
         _collectionView.backgroundColor = KAPP_WHITE_COLOR;

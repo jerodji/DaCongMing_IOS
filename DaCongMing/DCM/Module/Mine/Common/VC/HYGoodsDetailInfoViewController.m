@@ -17,6 +17,7 @@
 #import "HYGoodsDetailBottomView.h"
 #import "HYGoodSpecificationSelectView.h"
 #import "HYOrderConfirmViewController.h"
+#import "HYShareView.h"
 
 @interface HYGoodsDetailInfoViewController () <UITableViewDelegate,UITableViewDataSource,HYGoodsSpecificationSelectDelegate>
 
@@ -38,6 +39,8 @@
 @property (nonatomic,strong) HYGoodsDetailBottomView *bottomView;
 /** 选择规格View */
 @property (nonatomic,strong) HYGoodSpecificationSelectView *selectSpeciView;
+/** shareView */
+@property (nonatomic,strong) HYShareView *shareView;
 
 @end
 
@@ -76,6 +79,7 @@
     [self.view addSubview:self.shareBtn];
     [self.view addSubview:self.bottomView];
     [self.view addSubview:self.selectSpeciView];
+    [self.view addSubview:self.shareView];
 }
 
 - (void)requestNetwork{
@@ -126,10 +130,17 @@
         make.height.equalTo(@(60));
     }];
     
-    [_selectSpeciView mas_updateConstraints:^(MASConstraintMaker *make) {
+    [_selectSpeciView mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.left.right.equalTo(self.view);
         make.top.equalTo(self.view.mas_bottom);
+        make.height.equalTo(self.view);
+    }];
+    
+    [_shareView mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.left.right.equalTo(self.view);
+        make.bottom.equalTo(self.view.mas_top);
         make.height.equalTo(self.view);
     }];
 }
@@ -142,6 +153,17 @@
 
 - (void)shareAction{
     
+    [self setupSubviews];
+    [_shareView mas_updateConstraints:^(MASConstraintMaker *make) {
+        
+        make.left.top.right.bottom.equalTo(self.view);
+    }];
+    
+    [UIView animateWithDuration:0.2 animations:^{
+        
+        [self setupMasonryLayout];
+        [self.view layoutIfNeeded];
+    }];
 }
 
 - (void)bottomBtnAction{
@@ -253,12 +275,14 @@
         
         [self setupSubviews];
         _selectSpeciView.goodsModel = _detailModel;
+        [_selectSpeciView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.left.top.right.bottom.equalTo(self.view);
+        }];
         //规格
         [UIView animateWithDuration:0.2 animations:^{
            
-            [_selectSpeciView mas_updateConstraints:^(MASConstraintMaker *make) {
-                make.left.top.right.bottom.equalTo(self.view);
-            }];
+            [self setupMasonryLayout];
+            [self.view layoutIfNeeded];
         }];
     }
     else if (indexPath.row == 3){
@@ -351,6 +375,15 @@
         
     }
     return _selectSpeciView;
+}
+
+- (HYShareView *)shareView{
+    
+    if (!_shareView) {
+        
+        _shareView = [HYShareView new];
+    }
+    return _shareView;
 }
 
 - (NSMutableArray *)imageArray{

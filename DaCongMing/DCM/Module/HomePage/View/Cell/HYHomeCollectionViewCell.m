@@ -57,7 +57,7 @@
     
     if (!_imgView) {
         
-        _imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.width, 130)];
+        _imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.width, self.width * 1.2)];
         _imgView.contentMode = UIViewContentModeScaleAspectFill;
         _imgView.clipsToBounds = YES;
     }
@@ -69,7 +69,7 @@
     
     if (!_titleLabel) {
         
-        _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.imgView.bottom + 5, self.width, 20)];
+        _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.imgView.bottom + 5 * WIDTH_MULTIPLE, self.width, 20 * WIDTH_MULTIPLE)];
         _titleLabel.font = KFont(14);
         _titleLabel.textColor = KAPP_BLACK_COLOR;
         _titleLabel.textAlignment = NSTextAlignmentCenter;
@@ -82,7 +82,7 @@
     
     if (!_priceLabel) {
         
-        _priceLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.titleLabel.bottom + 5, self.width, 20)];
+        _priceLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.titleLabel.bottom + 5 * WIDTH_MULTIPLE, self.width, 20 * WIDTH_MULTIPLE)];
         _priceLabel.font = KFont(14);
         _priceLabel.textColor = KAPP_PRICE_COLOR;
         _priceLabel.textAlignment = NSTextAlignmentCenter;

@@ -14,4 +14,7 @@
 /** model */
 @property (nonatomic,strong) HYHomePageModel *model;
 
+/** cellHeight */
+@property (nonatomic,assign) CGFloat cellHeight;
+
 @end

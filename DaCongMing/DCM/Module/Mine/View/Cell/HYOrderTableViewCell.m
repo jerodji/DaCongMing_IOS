@@ -12,6 +12,8 @@
 
 /** label */
 @property (nonatomic,strong) UILabel *orderLabel;
+/** lookAllOrderBtn */
+@property (nonatomic,strong) UIButton *lookAllOrderBtn;
 /** order */
 @property (nonatomic,strong) UIButton *myOrderBtn;
 /** 售后 */
@@ -110,7 +112,7 @@
         _orderLabel = [[UILabel alloc] init];
         _orderLabel.font = KFitFont(13);
         _orderLabel.textColor = KCOLOR(@"272727");
-        _orderLabel.text = @"订单";
+        _orderLabel.text = @"我的订单";
         _orderLabel.textAlignment = NSTextAlignmentLeft;
     }
     return _orderLabel;
@@ -134,6 +136,21 @@
         _verticalLine.backgroundColor = KCOLOR(@"e9e9e9");
     }
     return _verticalLine;
+}
+
+- (UIButton *)lookAllOrderBtn{
+    
+    if (!_lookAllOrderBtn) {
+        
+        _lookAllOrderBtn = [[UIButton alloc] init];
+        [_lookAllOrderBtn setTitle:@"我的订单" forState:UIControlStateNormal];
+//        [_lookAllOrderBtn setImage:[UIImage imageNamed:@"mine_myOrder"] forState:UIControlStateNormal];
+        [_lookAllOrderBtn setTitleColor:KAPP_b7b7b7_COLOR forState:UIControlStateNormal];
+        _lookAllOrderBtn.titleLabel.font = KFitFont(14);
+        _lookAllOrderBtn.imageEdgeInsets = UIEdgeInsetsMake(0, -8, 0, 0);
+        [_lookAllOrderBtn addTarget:self action:@selector(myOrderAction) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _lookAllOrderBtn;
 }
 
 - (UIButton *)myOrderBtn{

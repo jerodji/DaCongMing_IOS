@@ -41,6 +41,12 @@
     }];
 }
 
+- (void)setModel:(HYHomePageModel *)model{
+    
+    _model = model;
+    [_collectionView reloadData];
+}
+
 #pragma mark - collectionViewDataSource
 //返回section个数
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
@@ -85,14 +91,14 @@
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
         //设置collectionView滚动方向
         [layout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
-        layout.itemSize =CGSizeMake(90 * WIDTH_MULTIPLE, 90 * WIDTH_MULTIPLE);
+        layout.itemSize = CGSizeMake(90 * WIDTH_MULTIPLE, 90 * WIDTH_MULTIPLE);
         
         _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
         _collectionView.backgroundColor = KAPP_WHITE_COLOR;
         _collectionView.showsVerticalScrollIndicator = NO;
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
-        _collectionView.showsVerticalScrollIndicator = NO;
+        _collectionView.showsHorizontalScrollIndicator = NO;
         
         [_collectionView registerClass:[HYTypeRecommendCollectionViewCell class] forCellWithReuseIdentifier:@"collectionCell"];
     }

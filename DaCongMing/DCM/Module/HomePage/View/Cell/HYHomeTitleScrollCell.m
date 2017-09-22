@@ -41,8 +41,9 @@
 - (void)setModel:(HYHomePageModel *)model{
 
     _model = model;
-    
     [_collectionView reloadData];
+    
+    _cellHeight = _collectionView.bottom + 20;
 }
 
 #pragma mark - collectionViewDataSource
@@ -57,14 +58,14 @@
 }
 
 //设置每个item水平间距
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
-    
-    return 10;
-}
+//- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
+//    
+//    return 10;
+//}
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout
-         insetForSectionAtIndex:(NSInteger)section
-{
+         insetForSectionAtIndex:(NSInteger)section{
+    
     return UIEdgeInsetsMake(0, 5.0f, 0, 5.0f);
 }
 
@@ -116,13 +117,18 @@
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
         //设置collectionView滚动方向
         [layout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
-        layout.itemSize =CGSizeMake((KSCREEN_WIDTH - 20 ) / 3, 170 * WIDTH_MULTIPLE);
+        
+        CGFloat itemWidth = (KSCREEN_WIDTH - 20) / 3;
+         layout.itemSize = CGSizeMake(itemWidth, (itemWidth * 1.2 + 50) * WIDTH_MULTIPLE);
+        layout.minimumLineSpacing = 0;
+        layout.minimumInteritemSpacing = 5;
 
-        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, self.subTitleLabel.bottom + 10, KSCREEN_WIDTH, 170 * WIDTH_MULTIPLE) collectionViewLayout:layout];
+        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, self.subTitleLabel.bottom + 10, KSCREEN_WIDTH, (itemWidth * 1.2 * 1.2 + 50) * WIDTH_MULTIPLE) collectionViewLayout:layout];
         _collectionView.backgroundColor = KAPP_WHITE_COLOR;
         _collectionView.showsVerticalScrollIndicator = NO;
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
+        
         _collectionView.showsHorizontalScrollIndicator = NO;
         
         [_collectionView registerClass:[HYHomeCollectionViewCell class] forCellWithReuseIdentifier:@"collectionCell"];

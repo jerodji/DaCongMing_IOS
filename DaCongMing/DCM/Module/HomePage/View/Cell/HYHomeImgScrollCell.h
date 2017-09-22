@@ -14,4 +14,7 @@
 /** model */
 @property (nonatomic,strong) HYGoodHealthModel *goodHealthModel;
 
+/** cellHeight */
+@property (nonatomic,assign) CGFloat cellHeight;
+
 @end

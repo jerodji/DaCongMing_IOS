@@ -18,7 +18,7 @@
     
     [super viewDidLoad];
     
-    self.title = @"订单确认";
+    self.title = @"填写订单";
 }
 
 - (void)didReceiveMemoryWarning {
