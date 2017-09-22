@@ -266,8 +266,8 @@
                 }
                 else{
                     //老用户，直接跳回首页
-//                    self.userLoginSuccess();
-                    self.weChatBlock();
+                    self.userLoginSuccess();
+//                    self.weChatBlock();
 
                 }
                 

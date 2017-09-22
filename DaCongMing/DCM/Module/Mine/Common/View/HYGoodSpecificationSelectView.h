@@ -7,6 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HYGoodsItemProp.h"
+
+
+@protocol HYGoodsSpecificationSelectDelegate <NSObject>
+
+- (void)confirmGoodsSpeciSelectWithModel:(HYGoodsItemProp *)item buyCount:(NSInteger)count;
+
+@end
+
 
 @interface HYGoodSpecificationSelectView : UIView
 
@@ -15,5 +24,8 @@
 
 /** 规格质量 */
 @property (nonatomic, strong) NSMutableArray *specificationUnitArray;
+
+/** delegate */
+@property (nonatomic,weak) id<HYGoodsSpecificationSelectDelegate> delegate;
 
 @end

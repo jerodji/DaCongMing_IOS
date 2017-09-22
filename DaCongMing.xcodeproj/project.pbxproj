@@ -81,6 +81,8 @@
 		3EA0BC101F73651100F78FDD /* HYGoodsDetailBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA0BC0F1F73651100F78FDD /* HYGoodsDetailBottomView.m */; };
 		3EA0BC131F739EF700F78FDD /* HYGoodSpecificationSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA0BC121F739EF700F78FDD /* HYGoodSpecificationSelectView.m */; };
 		3EA0BC161F73A4D900F78FDD /* HYBuyCountEditView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA0BC151F73A4D900F78FDD /* HYBuyCountEditView.m */; };
+		3EA0BC191F74DF1600F78FDD /* HYOrderConfirmViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA0BC181F74DF1600F78FDD /* HYOrderConfirmViewController.m */; };
+		3EA0BC1C1F74E3AD00F78FDD /* HYShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA0BC1B1F74E3AD00F78FDD /* HYShareView.m */; };
 		3EEDC9581F7244DC007171FA /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EEDC9571F7244DC007171FA /* libc++.tbd */; settings = {ATTRIBUTES = (Weak, ); }; };
 		3EEDC95A1F724511007171FA /* libz.1.1.3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EEDC9591F724511007171FA /* libz.1.1.3.tbd */; };
 		3EEDC95C1F724521007171FA /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EEDC95B1F724521007171FA /* libsqlite3.0.tbd */; };
@@ -241,6 +243,10 @@
 		3EA0BC121F739EF700F78FDD /* HYGoodSpecificationSelectView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYGoodSpecificationSelectView.m; sourceTree = "<group>"; };
 		3EA0BC141F73A4D900F78FDD /* HYBuyCountEditView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYBuyCountEditView.h; sourceTree = "<group>"; };
 		3EA0BC151F73A4D900F78FDD /* HYBuyCountEditView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYBuyCountEditView.m; sourceTree = "<group>"; };
+		3EA0BC171F74DF1600F78FDD /* HYOrderConfirmViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYOrderConfirmViewController.h; sourceTree = "<group>"; };
+		3EA0BC181F74DF1600F78FDD /* HYOrderConfirmViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYOrderConfirmViewController.m; sourceTree = "<group>"; };
+		3EA0BC1A1F74E3AD00F78FDD /* HYShareView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYShareView.h; sourceTree = "<group>"; };
+		3EA0BC1B1F74E3AD00F78FDD /* HYShareView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYShareView.m; sourceTree = "<group>"; };
 		3EEDC9571F7244DC007171FA /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		3EEDC9591F724511007171FA /* libz.1.1.3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.1.1.3.tbd; path = usr/lib/libz.1.1.3.tbd; sourceTree = SDKROOT; };
 		3EEDC95B1F724521007171FA /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
@@ -346,6 +352,8 @@
 			children = (
 				3E2754991F72166E0010053E /* HYGoodsDetailInfoViewController.h */,
 				3E27549A1F72166E0010053E /* HYGoodsDetailInfoViewController.m */,
+				3EA0BC171F74DF1600F78FDD /* HYOrderConfirmViewController.h */,
+				3EA0BC181F74DF1600F78FDD /* HYOrderConfirmViewController.m */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -754,6 +762,8 @@
 				3EA0BC0F1F73651100F78FDD /* HYGoodsDetailBottomView.m */,
 				3EA0BC111F739EF700F78FDD /* HYGoodSpecificationSelectView.h */,
 				3EA0BC121F739EF700F78FDD /* HYGoodSpecificationSelectView.m */,
+				3EA0BC1A1F74E3AD00F78FDD /* HYShareView.h */,
+				3EA0BC1B1F74E3AD00F78FDD /* HYShareView.m */,
 				3EA0BC141F73A4D900F78FDD /* HYBuyCountEditView.h */,
 				3EA0BC151F73A4D900F78FDD /* HYBuyCountEditView.m */,
 			);
@@ -972,8 +982,10 @@
 				3E5620941F6B72E90063AA5B /* HYShoppingCartViewController.m in Sources */,
 				3E5620A41F6BA16D0063AA5B /* HYHomeViewModel.m in Sources */,
 				3E5620511F6B6D720063AA5B /* HYBaseNavController.m in Sources */,
+				3EA0BC191F74DF1600F78FDD /* HYOrderConfirmViewController.m in Sources */,
 				3E934DDC1F6BD4CE00F3ADE4 /* HYHomeCollectionViewCell.m in Sources */,
 				3E27544E1F6F952B0010053E /* HYSortModel.m in Sources */,
+				3EA0BC1C1F74E3AD00F78FDD /* HYShareView.m in Sources */,
 				3E2754611F6FD6610010053E /* HYSetPasswordViewController.m in Sources */,
 				3E56208B1F6B72750063AA5B /* HYTabBarController.m in Sources */,
 				3E2754A41F721BE60010053E /* HYGoodsItemImage.m in Sources */,

@@ -16,8 +16,9 @@
 #import "HYGoodsItemImage.h"
 #import "HYGoodsDetailBottomView.h"
 #import "HYGoodSpecificationSelectView.h"
+#import "HYOrderConfirmViewController.h"
 
-@interface HYGoodsDetailInfoViewController () <UITableViewDelegate,UITableViewDataSource>
+@interface HYGoodsDetailInfoViewController () <UITableViewDelegate,UITableViewDataSource,HYGoodsSpecificationSelectDelegate>
 
 /** tableView */
 @property (nonatomic,strong) UITableView *tableView;
@@ -49,6 +50,8 @@
     [self setupSubviews];
     [self requestNetwork];
     [self setupMasonryLayout];
+    
+    [self bottomBtnAction];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -115,11 +118,7 @@
         make.width.height.equalTo(@40);
     }];
     
-    [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-       
-        make.top.left.right.equalTo(self.view);
-        make.bottom.equalTo(self.view).offset(-60);
-    }];
+  
     
     [_bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
        
@@ -127,8 +126,8 @@
         make.height.equalTo(@(60));
     }];
     
-    [_selectSpeciView mas_makeConstraints:^(MASConstraintMaker *make) {
-       
+    [_selectSpeciView mas_updateConstraints:^(MASConstraintMaker *make) {
+        
         make.left.right.equalTo(self.view);
         make.top.equalTo(self.view.mas_bottom);
         make.height.equalTo(self.view);
@@ -142,6 +141,31 @@
 }
 
 - (void)shareAction{
+    
+}
+
+- (void)bottomBtnAction{
+    
+    __weak typeof (self)weakSelf = self;
+    self.bottomView.buyNowAction = ^{
+        
+        [weakSelf setupSubviews];
+        weakSelf.selectSpeciView.goodsModel = weakSelf.detailModel;
+        //规格
+        [UIView animateWithDuration:0.2 animations:^{
+            
+            [weakSelf.selectSpeciView mas_updateConstraints:^(MASConstraintMaker *make) {
+                make.left.top.right.bottom.equalTo(weakSelf.view);
+            }];
+        }];
+    };
+}
+
+#pragma mark - HYGoodsSpecSelectDelegate
+- (void)confirmGoodsSpeciSelectWithModel:(HYGoodsItemProp *)item buyCount:(NSInteger)count{
+    
+    HYOrderConfirmViewController *orderConfirmVC = [[HYOrderConfirmViewController alloc] init];
+    [self.navigationController pushViewController:orderConfirmVC animated:YES];
     
 }
 
@@ -299,7 +323,7 @@
 - (UITableView *)tableView{
     if (!_tableView) {
         
-        _tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, -20, KSCREEN_WIDTH, KSCREEN_HEIGHT - 40) style:UITableViewStylePlain];
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -313,6 +337,7 @@
     if (!_bottomView) {
         
         _bottomView = [[HYGoodsDetailBottomView alloc] init];
+        
     }
     return _bottomView;
 }
@@ -322,6 +347,8 @@
     if (!_selectSpeciView) {
         
         _selectSpeciView = [HYGoodSpecificationSelectView new];
+        _selectSpeciView.delegate = self;
+        
     }
     return _selectSpeciView;
 }

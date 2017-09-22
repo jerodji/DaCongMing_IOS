@@ -9,7 +9,6 @@
 #import "HYGoodSpecificationSelectView.h"
 
 #import "HYBuyCountEditView.h"
-#import "HYGoodsItemProp.h"
 
 @interface HYGoodSpecificationSelectView()
 
@@ -36,6 +35,18 @@
 /** 确定 */
 @property (nonatomic,strong) UIButton *confirmBtn;
 
+
+/** 规格起始高度 */
+@property (nonatomic,assign) CGFloat startY;
+/** 规格截止高度 */
+@property (nonatomic,assign) CGFloat endY;
+/** 记录上一次点击的规格按钮 */
+@property (nonatomic,strong) UIButton *previousSelectBtn;
+/** 记录上一次点击的规格的model */
+@property (nonatomic,strong) HYGoodsItemProp *previousItemModel;
+/** 记录购买数量 */
+@property (nonatomic,assign) NSInteger buyCountNum;
+
 @end
 
 @implementation HYGoodSpecificationSelectView
@@ -46,7 +57,7 @@
         
         [self setupSubviews];
         
-        self.backgroundColor = [UIColor colorWithWhite:0 alpha:0.4];
+        self.backgroundColor = [UIColor colorWithWhite:0 alpha:0.6];
         
         self.userInteractionEnabled = YES;
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithActionBlock:^(id  _Nonnull sender) {
@@ -76,6 +87,13 @@
     [self addSubview:self.buyCountView];
     [self addSubview:self.closeBtn];
     [self addSubview:self.confirmBtn];
+    
+    __weak typeof (self)weakSelf = self;
+    self.buyCountView.countCallback = ^(NSInteger count) {
+        
+        weakSelf.buyCountNum = count;
+         weakSelf.selectSepcLabel.text = [NSString stringWithFormat:@"%@  x  %ld",weakSelf.previousItemModel.unit,(long)weakSelf.buyCountNum];
+    };
 }
 
 - (void)layoutSubviews{
@@ -117,7 +135,6 @@
         make.height.equalTo(@(20 * WIDTH_MULTIPLE));
     }];
     
-    [self  layoutIfNeeded];
     
     [_line mas_makeConstraints:^(MASConstraintMaker *make) {
        
@@ -134,10 +151,13 @@
         make.height.equalTo(@(20 * WIDTH_MULTIPLE));
     }];
     
-    [_buyCountLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self layoutIfNeeded];
+    _startY = _speciLabel.bottom + 20;
+    
+    [_buyCountLabel mas_updateConstraints:^(MASConstraintMaker *make) {
         
         make.left.equalTo(_speciLabel);
-        make.top.equalTo(_speciLabel.mas_bottom).offset(80 * WIDTH_MULTIPLE);
+        make.top.equalTo(@(_endY + 15));
         make.width.equalTo(@(80 * WIDTH_MULTIPLE));
         make.height.equalTo(@(30 * WIDTH_MULTIPLE));
     }];
@@ -145,7 +165,7 @@
     [_buyCountView mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.left.equalTo(_buyCountLabel.mas_right);
-        make.top.equalTo(_speciLabel.mas_bottom).offset(80 * WIDTH_MULTIPLE);
+        make.top.equalTo(_buyCountLabel);
         make.width.equalTo(@(120 * WIDTH_MULTIPLE));
         make.height.equalTo(@(30 * WIDTH_MULTIPLE));
     }];
@@ -155,16 +175,23 @@
         make.left.right.bottom.equalTo(_bgView);
         make.height.equalTo(@(50));
     }];
+    
+    
 }
 
 - (void)setGoodsModel:(HYGoodsDetailModel *)goodsModel{
     
     _goodsModel = goodsModel;
+    
+    [_specificationUnitArray removeAllObjects];
     for (NSDictionary *dict in goodsModel.item_prop) {
         
         HYGoodsItemProp *specificationModel = [HYGoodsItemProp modelWithDictionary:dict];
-        [self.specificationUnitArray addObject:specificationModel.unit];
+        [self.specificationUnitArray addObject:specificationModel];
     }
+    
+    [self layoutIfNeeded];
+    [self createSpecificationButtonWithArray:_specificationUnitArray];
     
     [_iconImgView sd_setImageWithURL:[NSURL URLWithString:_goodsModel.item_title_image] placeholderImage:[UIImage imageNamed:@"header_placeholder"]];
     NSDictionary *dict =  _goodsModel.item_prop[0];
@@ -172,10 +199,84 @@
     
 }
 
+//创建规格按钮
+- (void)createSpecificationButtonWithArray:(NSArray *)array{
+    
+    //保存前一个button的宽，以及前一个button到屏幕的距离
+    CGFloat w = 26 * WIDTH_MULTIPLE;
+    CGFloat h = _startY ;      //用来保存button距离父视图的高
+    
+    //移除button
+    for (UIView *subView in self.subviews) {
+        
+        if (subView.tag >= 1000) {
+            
+            [subView removeFromSuperview];
+        }
+    }
+    
+    if (array.count) {
+        for (NSInteger i = 0; i < array.count; i ++) {
+            
+            UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+            button.layer.cornerRadius = 3;
+            button.layer.masksToBounds = YES;
+            [button setBackgroundImage:[UIImage imageWithColor:KCOLOR(@"f5f5f5")] forState:UIControlStateNormal];
+            [button setBackgroundImage:[UIImage imageWithColor:KAPP_THEME_COLOR] forState:UIControlStateSelected];
+            [button setTitleColor:KAPP_WHITE_COLOR forState:UIControlStateSelected];
+            [button setTitleColor:KAPP_272727_COLOR forState:UIControlStateNormal];
+            button.titleLabel.font = KFitFont(14);
+            [button addTarget:self action:@selector(specificationBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+            button.highlighted = NO;
+            button.tag = 1000 + i;
+            
+            HYGoodsItemProp *model = model = array[i];
+            NSString *itemUnit = model.unit;
+            
+            [button setTitle:itemUnit forState:UIControlStateNormal];
+            CGFloat itemWidth = [itemUnit widthForFont:KFitFont(14)] + 40;
+            
+            button.frame = CGRectMake(w, h, itemWidth, 30);
+            w = w + itemWidth + 20;
+            //如果button的位置超过屏幕边缘就换行
+            if (w > KSCREEN_WIDTH - 40) {
+                w = 26 * WIDTH_MULTIPLE;
+                h = h + button.height + 20;
+                //重设button的frame
+                button.frame = CGRectMake(w, h, itemWidth, 30);
+            }
+            
+            _endY = button.bottom + 10;
+            [self addSubview:button];
+        }
+    }
+    
+    [_buyCountLabel layoutIfNeeded];
+}
+
 #pragma mark - action
 - (void)confirmAction{
     
     
+    if (_delegate && [_delegate respondsToSelector:@selector(confirmGoodsSpeciSelectWithModel:buyCount:)]) {
+        
+        [_delegate confirmGoodsSpeciSelectWithModel:_previousItemModel buyCount:_buyCountNum];
+    }
+}
+
+- (void)specificationBtnAction:(UIButton *)button{
+    
+    _previousSelectBtn.selected = NO;
+    button.selected = YES;
+    _previousSelectBtn = button;
+    
+    HYGoodsItemProp *item = _specificationUnitArray[button.tag - 1000];
+    _priceLabel.text = [NSString stringWithFormat:@"￥%@",item.price];
+    _inventoryLabel.text = [NSString stringWithFormat:@"库存:%@",item.qty];
+    
+    _selectSepcLabel.text = [NSString stringWithFormat:@"%@  x  %ld",item.unit,(long)_buyCountNum];
+    
+    _previousItemModel = item;
 }
 
 #pragma mark - lazyload
@@ -287,6 +388,7 @@
     if (!_buyCountView) {
         
         _buyCountView = [HYBuyCountEditView new];
+       
     }
     return _buyCountView;
 }

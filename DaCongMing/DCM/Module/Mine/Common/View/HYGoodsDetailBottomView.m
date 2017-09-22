@@ -89,7 +89,27 @@
 #pragma mark - action
 - (void)cartsBtnAction{
     
+    self.shoppingCartsAction();
+}
+
+- (void)brandShopBtnAction{
     
+    self.brandShopAction();
+}
+
+- (void)collectBtnAction{
+    
+    self.collectAction();
+}
+
+- (void)addToCartsBtnAction{
+    
+    self.addToCartsAction();
+}
+
+- (void)buyNowBtnAction{
+    
+    self.buyNowAction();
 }
 
 #pragma mark - lazyload
@@ -115,7 +135,7 @@
         [_brandStoreBtn setImage:[UIImage imageNamed:@"product_shop"] forState:UIControlStateNormal];
         [_brandStoreBtn setTitleColor:KAPP_b7b7b7_COLOR forState:UIControlStateNormal];
         _brandStoreBtn.titleLabel.font = KFont(11);
-        [_brandStoreBtn addTarget:self action:@selector(cartsBtnAction) forControlEvents:UIControlEventTouchUpInside];
+        [_brandStoreBtn addTarget:self action:@selector(brandShopBtnAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return _brandStoreBtn;
 }
@@ -125,11 +145,11 @@
     if (!_collectionBtn) {
         
         _collectionBtn = [HYButton buttonWithType:UIButtonTypeCustom];
-        [_collectionBtn setTitle:@"品牌店铺" forState:UIControlStateNormal];
+        [_collectionBtn setTitle:@"收藏" forState:UIControlStateNormal];
         [_collectionBtn setImage:[UIImage imageNamed:@"product_collect"] forState:UIControlStateNormal];
         [_collectionBtn setTitleColor:KAPP_b7b7b7_COLOR forState:UIControlStateNormal];
         _collectionBtn.titleLabel.font = KFont(11);
-        [_collectionBtn addTarget:self action:@selector(cartsBtnAction) forControlEvents:UIControlEventTouchUpInside];
+        [_collectionBtn addTarget:self action:@selector(collectBtnAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return _collectionBtn;
 }
@@ -143,7 +163,7 @@
         _addToCartsBtn.backgroundColor = KCOLOR(@"606060");
         [_addToCartsBtn setTitleColor:KAPP_WHITE_COLOR forState:UIControlStateNormal];
         _addToCartsBtn.titleLabel.font = KFitFont(16);
-        [_addToCartsBtn addTarget:self action:@selector(cartsBtnAction) forControlEvents:UIControlEventTouchUpInside];
+        [_addToCartsBtn addTarget:self action:@selector(addToCartsBtnAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return _addToCartsBtn;
 }
@@ -157,7 +177,7 @@
         _buyBtn.backgroundColor = KCOLOR(@"53d76f");
         [_buyBtn setTitleColor:KAPP_WHITE_COLOR forState:UIControlStateNormal];
         _buyBtn.titleLabel.font = KFitFont(16);
-        [_buyBtn addTarget:self action:@selector(cartsBtnAction) forControlEvents:UIControlEventTouchUpInside];
+        [_buyBtn addTarget:self action:@selector(buyNowBtnAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return _buyBtn;
 }
