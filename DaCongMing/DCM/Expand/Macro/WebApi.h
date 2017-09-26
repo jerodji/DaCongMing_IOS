@@ -40,6 +40,7 @@
 //设置密码
 #define API_SetPassword           @"HAILIN_SERVER/setUserPwd.do"
 
+/********************************订单相关*********************************/
 //购物车
 #define API_ShoppingCart        @"HAILIN_SERVER/showCart.do"
 
@@ -49,6 +50,13 @@
 //商品详情
 #define API_GoodsDetail         @"HAILIN_SERVER/loaditemDetail.do"
 
+//创建订单
+#define API_CreateOrder         @"HAILIN_SERVER/getSellerOrder.do"
 
+//支付宝支付
+#define API_Alipay              @"HAILIN_PAY/getAliPayOrder.do"
+
+//微信支付
+#define API_WeChatPay              @"HAILIN_PAY/getWechatPayOrder.do"
 
 #endif /* WebApi_h */

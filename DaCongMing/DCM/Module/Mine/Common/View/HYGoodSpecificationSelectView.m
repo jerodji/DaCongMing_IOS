@@ -274,6 +274,9 @@
     _priceLabel.text = [NSString stringWithFormat:@"￥%@",item.price];
     _inventoryLabel.text = [NSString stringWithFormat:@"库存:%@",item.qty];
     
+    if (!_buyCountNum) {
+        _buyCountNum = 1;
+    }
     _selectSepcLabel.text = [NSString stringWithFormat:@"%@  x  %ld",item.unit,(long)_buyCountNum];
     
     _previousItemModel = item;

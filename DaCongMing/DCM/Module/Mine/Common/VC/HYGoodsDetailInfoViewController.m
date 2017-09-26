@@ -16,7 +16,7 @@
 #import "HYGoodsItemImage.h"
 #import "HYGoodsDetailBottomView.h"
 #import "HYGoodSpecificationSelectView.h"
-#import "HYOrderConfirmViewController.h"
+#import "HYFillOrderViewController.h"
 #import "HYShareView.h"
 
 @interface HYGoodsDetailInfoViewController () <UITableViewDelegate,UITableViewDataSource,HYGoodsSpecificationSelectDelegate>
@@ -84,7 +84,7 @@
 
 - (void)requestNetwork{
     
-    [HYRequestGoodsList requestProductsDetailWithGoodsID:_goodsID andToken:nil complectionBlock:^(HYGoodsDetailModel *model) {
+    [HYGoodsHandle requestProductsDetailWithGoodsID:_goodsID andToken:nil complectionBlock:^(HYGoodsDetailModel *model) {
        
         self.detailModel = model;
         for (NSDictionary *dict in model.item_images) {
@@ -186,9 +186,27 @@
 #pragma mark - HYGoodsSpecSelectDelegate
 - (void)confirmGoodsSpeciSelectWithModel:(HYGoodsItemProp *)item buyCount:(NSInteger)count{
     
-    HYOrderConfirmViewController *orderConfirmVC = [[HYOrderConfirmViewController alloc] init];
-    [self.navigationController pushViewController:orderConfirmVC animated:YES];
+    if (![HYUserModel sharedInstance].token) {
+        
+        [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"请登录!!!"];
+        [HYUserHandle jumpToLoginViewControllerFromVC:self];
+    }
     
+    if (item) {
+       
+        HYFillOrderViewController *fillOrderVC = [[HYFillOrderViewController alloc] init];
+        fillOrderVC.buyCount = count;
+        fillOrderVC.goodsDetailModel = _detailModel;
+        fillOrderVC.specifical = item.unit;
+        [self.navigationController pushViewController:fillOrderVC animated:YES];
+    }
+    else{
+        [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"请选择商品规格"];
+    }
+    
+    
+    
+
 }
 
 #pragma mark - TableViewDataSource

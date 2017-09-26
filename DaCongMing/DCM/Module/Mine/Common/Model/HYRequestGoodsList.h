@@ -21,4 +21,6 @@
  */
 + (void)requestProductsDetailWithGoodsID:(NSString *)goodsID andToken:(NSString *)token complectionBlock:(void(^)(HYGoodsDetailModel *model))complection;
 
+
+
 @end

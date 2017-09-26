@@ -66,6 +66,8 @@
 #define KAPP_b7b7b7_COLOR                   [UIColor colorWithHexString:@"b7b7b7"]
 /** APP272727文字颜色 */
 #define KAPP_272727_COLOR                   [UIColor colorWithHexString:@"272727"]
+/** APP484848文字颜色 */
+#define KAPP_484848_COLOR                   [UIColor colorWithHexString:@"484848"]
 /** APP7b7b7b文字颜色 */
 #define KAPP_7b7b7b_COLOR                   [UIColor colorWithHexString:@"7b7b7b"]
 /** APPTableView背景色 */

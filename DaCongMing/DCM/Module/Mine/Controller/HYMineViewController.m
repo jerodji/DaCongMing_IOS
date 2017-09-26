@@ -7,6 +7,7 @@
 //
 
 #import "HYMineViewController.h"
+#import "HYGoodsDetailInfoViewController.h"
 
 #import "HYMineHeaderView.h"
 #import "HYInviteFriendsTableViewCell.h"
@@ -61,7 +62,7 @@
     
     _goodsList = [NSMutableArray array];
 
-    [HYRequestGoodsList requestGoodsListItem_type:@"001" pageNo:1 andPage:5 order:nil hotsale:nil complectionBlock:^(NSArray *datalist) {
+    [HYGoodsHandle requestGoodsListItem_type:@"001" pageNo:1 andPage:5 order:nil hotsale:nil complectionBlock:^(NSArray *datalist) {
    
         [_goodsList addObjectsFromArray:datalist];
         [self.tableView reloadData];
@@ -139,6 +140,13 @@
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
         cell.datalist = self.goodsList;
+        cell.collectionSelect = ^(NSString *productID) {
+            
+            HYGoodsDetailInfoViewController *detailVC = [[HYGoodsDetailInfoViewController alloc] init];
+            detailVC.navigationController.navigationBar.hidden = YES;
+            detailVC.goodsID = productID;
+            [self.navigationController pushViewController:detailVC animated:YES];
+        };
         return cell;
     }
     
@@ -167,7 +175,7 @@
     else if (indexPath.row == 1){
         
         //订单
-        return 90 * WIDTH_MULTIPLE;
+        return 130 * WIDTH_MULTIPLE;
     }
     else if (indexPath.row == 2){
         

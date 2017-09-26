@@ -14,7 +14,7 @@ pod 'IQKeyboardManager', '~> 4.0.8'
 pod 'MJRefresh', '~> 3.1.12'
 pod 'SDCycleScrollView', '~> 1.65'
 pod 'MBProgressHUD', '~> 1.0.0'
-pod 'WeChat', '~> 1.0.1'
+pod 'WechatOpenSDK'
 pod 'FMDB', '~> 2.6.2'
 
 end

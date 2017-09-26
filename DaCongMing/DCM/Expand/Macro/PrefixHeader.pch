@@ -31,7 +31,8 @@
 #import "HYButton.h"
 #import "HYUserModel.h"
 #import "HYUserHandle.h"
-#import "HYRequestGoodsList.h"
+#import "HYGoodsHandle.h"
 #import "HYGoodsItemModel.h"
+#import "HYCreateOrder.h"
 
 #endif /* PrefixHeader_pch */

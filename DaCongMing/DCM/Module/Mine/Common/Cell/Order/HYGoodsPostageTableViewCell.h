@@ -10,4 +10,7 @@
 
 @interface HYGoodsPostageTableViewCell : UITableViewCell
 
+/** orderMode */
+@property (nonatomic,strong) HYCreateOrder *orderModel;
+
 @end

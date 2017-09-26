@@ -32,12 +32,29 @@
 		3E27547F1F70FBED0010053E /* HYNoGoodsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E27547E1F70FBED0010053E /* HYNoGoodsTableViewCell.m */; };
 		3E2754841F7101540010053E /* HYGoodsItemCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2754831F7101540010053E /* HYGoodsItemCollectionViewCell.m */; };
 		3E2754881F710DCF0010053E /* HYGoodsItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2754871F710DCF0010053E /* HYGoodsItemModel.m */; };
-		3E27548B1F7111800010053E /* HYRequestGoodsList.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E27548A1F7111800010053E /* HYRequestGoodsList.m */; };
 		3E2754911F7200CD0010053E /* HYGoodsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2754901F7200CD0010053E /* HYGoodsListViewController.m */; };
 		3E27549B1F72166E0010053E /* HYGoodsDetailInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E27549A1F72166E0010053E /* HYGoodsDetailInfoViewController.m */; };
 		3E27549E1F72185F0010053E /* HYGoodsDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E27549D1F72185F0010053E /* HYGoodsDetailModel.m */; };
 		3E2754A11F721AC00010053E /* HYGoodsItemProp.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2754A01F721AC00010053E /* HYGoodsItemProp.m */; };
 		3E2754A41F721BE60010053E /* HYGoodsItemImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2754A31F721BE60010053E /* HYGoodsItemImage.m */; };
+		3E4D78771F78DD9300BC9C2B /* HYGoodsHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4D78761F78DD9300BC9C2B /* HYGoodsHandle.m */; };
+		3E4D787A1F78E51300BC9C2B /* HYCreateOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4D78791F78E51300BC9C2B /* HYCreateOrder.m */; };
+		3E4D787D1F79005800BC9C2B /* HYCreateOrderDatalist.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4D787C1F79005800BC9C2B /* HYCreateOrderDatalist.m */; };
+		3E4D78811F79038B00BC9C2B /* HYPayHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4D78801F79038B00BC9C2B /* HYPayHandle.m */; };
+		3E4D78841F7905C000BC9C2B /* HYWeChatPayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4D78831F7905C000BC9C2B /* HYWeChatPayModel.m */; };
+		3E4D788A1F79088F00BC9C2B /* HYAlipayManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4D78891F79088F00BC9C2B /* HYAlipayManager.m */; };
+		3E4D788C1F790B7800BC9C2B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E4D788B1F790B7800BC9C2B /* SystemConfiguration.framework */; };
+		3E4D788E1F790BC800BC9C2B /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E4D788D1F790BC700BC9C2B /* CoreMotion.framework */; };
+		3E4D78901F790C6400BC9C2B /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E4D788F1F790C6400BC9C2B /* CoreTelephony.framework */; };
+		3E4D78921F790C7400BC9C2B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E4D78911F790C7400BC9C2B /* QuartzCore.framework */; };
+		3E4D78941F790C7C00BC9C2B /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E4D78931F790C7C00BC9C2B /* CoreText.framework */; };
+		3E4D78961F790C8300BC9C2B /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E4D78951F790C8300BC9C2B /* CFNetwork.framework */; };
+		3E4D78991F790D9000BC9C2B /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E4D78971F790D7900BC9C2B /* AlipaySDK.framework */; };
+		3E4D789C1F7911CC00BC9C2B /* HYWeChatPayManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4D789B1F7911CC00BC9C2B /* HYWeChatPayManager.m */; };
+		3E4D78A21F79F26200BC9C2B /* HYPayResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4D78A11F79F26200BC9C2B /* HYPayResultViewController.m */; };
+		3E4D78A61F79F82A00BC9C2B /* HYPayResultTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4D78A51F79F82A00BC9C2B /* HYPayResultTableViewCell.m */; };
+		3E4D78A91F79F94200BC9C2B /* HYReceiverInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4D78A81F79F94200BC9C2B /* HYReceiverInfoTableViewCell.m */; };
+		3E4D78AC1F7A2C0700BC9C2B /* HYMyOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4D78AB1F7A2C0700BC9C2B /* HYMyOrderViewController.m */; };
 		3E56201E1F6B6A800063AA5B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E56201D1F6B6A800063AA5B /* main.m */; };
 		3E5620211F6B6A800063AA5B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E5620201F6B6A800063AA5B /* AppDelegate.m */; };
 		3E5620291F6B6A800063AA5B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E5620281F6B6A800063AA5B /* Assets.xcassets */; };
@@ -145,8 +162,6 @@
 		3E2754831F7101540010053E /* HYGoodsItemCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYGoodsItemCollectionViewCell.m; sourceTree = "<group>"; };
 		3E2754861F710DCF0010053E /* HYGoodsItemModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYGoodsItemModel.h; sourceTree = "<group>"; };
 		3E2754871F710DCF0010053E /* HYGoodsItemModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYGoodsItemModel.m; sourceTree = "<group>"; };
-		3E2754891F7111800010053E /* HYRequestGoodsList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYRequestGoodsList.h; sourceTree = "<group>"; };
-		3E27548A1F7111800010053E /* HYRequestGoodsList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYRequestGoodsList.m; sourceTree = "<group>"; };
 		3E27548F1F7200CD0010053E /* HYGoodsListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYGoodsListViewController.h; sourceTree = "<group>"; };
 		3E2754901F7200CD0010053E /* HYGoodsListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYGoodsListViewController.m; sourceTree = "<group>"; };
 		3E2754991F72166E0010053E /* HYGoodsDetailInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYGoodsDetailInfoViewController.h; sourceTree = "<group>"; };
@@ -157,6 +172,36 @@
 		3E2754A01F721AC00010053E /* HYGoodsItemProp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYGoodsItemProp.m; sourceTree = "<group>"; };
 		3E2754A21F721BE60010053E /* HYGoodsItemImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYGoodsItemImage.h; sourceTree = "<group>"; };
 		3E2754A31F721BE60010053E /* HYGoodsItemImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYGoodsItemImage.m; sourceTree = "<group>"; };
+		3E4D78751F78DD9300BC9C2B /* HYGoodsHandle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYGoodsHandle.h; sourceTree = "<group>"; };
+		3E4D78761F78DD9300BC9C2B /* HYGoodsHandle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYGoodsHandle.m; sourceTree = "<group>"; };
+		3E4D78781F78E51300BC9C2B /* HYCreateOrder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYCreateOrder.h; sourceTree = "<group>"; };
+		3E4D78791F78E51300BC9C2B /* HYCreateOrder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYCreateOrder.m; sourceTree = "<group>"; };
+		3E4D787B1F79005800BC9C2B /* HYCreateOrderDatalist.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYCreateOrderDatalist.h; sourceTree = "<group>"; };
+		3E4D787C1F79005800BC9C2B /* HYCreateOrderDatalist.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYCreateOrderDatalist.m; sourceTree = "<group>"; };
+		3E4D787F1F79038B00BC9C2B /* HYPayHandle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYPayHandle.h; sourceTree = "<group>"; };
+		3E4D78801F79038B00BC9C2B /* HYPayHandle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYPayHandle.m; sourceTree = "<group>"; };
+		3E4D78821F7905C000BC9C2B /* HYWeChatPayModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYWeChatPayModel.h; sourceTree = "<group>"; };
+		3E4D78831F7905C000BC9C2B /* HYWeChatPayModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYWeChatPayModel.m; sourceTree = "<group>"; };
+		3E4D78881F79088F00BC9C2B /* HYAlipayManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYAlipayManager.h; sourceTree = "<group>"; };
+		3E4D78891F79088F00BC9C2B /* HYAlipayManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYAlipayManager.m; sourceTree = "<group>"; };
+		3E4D788B1F790B7800BC9C2B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		3E4D788D1F790BC700BC9C2B /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		3E4D788F1F790C6400BC9C2B /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		3E4D78911F790C7400BC9C2B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		3E4D78931F790C7C00BC9C2B /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		3E4D78951F790C8300BC9C2B /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		3E4D78971F790D7900BC9C2B /* AlipaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlipaySDK.framework; sourceTree = "<group>"; };
+		3E4D78981F790D7E00BC9C2B /* AlipaySDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AlipaySDK.bundle; sourceTree = "<group>"; };
+		3E4D789A1F7911CC00BC9C2B /* HYWeChatPayManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYWeChatPayManager.h; sourceTree = "<group>"; };
+		3E4D789B1F7911CC00BC9C2B /* HYWeChatPayManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYWeChatPayManager.m; sourceTree = "<group>"; };
+		3E4D78A01F79F26200BC9C2B /* HYPayResultViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYPayResultViewController.h; sourceTree = "<group>"; };
+		3E4D78A11F79F26200BC9C2B /* HYPayResultViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYPayResultViewController.m; sourceTree = "<group>"; };
+		3E4D78A41F79F82A00BC9C2B /* HYPayResultTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYPayResultTableViewCell.h; sourceTree = "<group>"; };
+		3E4D78A51F79F82A00BC9C2B /* HYPayResultTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYPayResultTableViewCell.m; sourceTree = "<group>"; };
+		3E4D78A71F79F94200BC9C2B /* HYReceiverInfoTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYReceiverInfoTableViewCell.h; sourceTree = "<group>"; };
+		3E4D78A81F79F94200BC9C2B /* HYReceiverInfoTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYReceiverInfoTableViewCell.m; sourceTree = "<group>"; };
+		3E4D78AA1F7A2C0700BC9C2B /* HYMyOrderViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYMyOrderViewController.h; sourceTree = "<group>"; };
+		3E4D78AB1F7A2C0700BC9C2B /* HYMyOrderViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYMyOrderViewController.m; sourceTree = "<group>"; };
 		3E5620191F6B6A800063AA5B /* DaCongMing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DaCongMing.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E56201D1F6B6A800063AA5B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3E56201F1F6B6A800063AA5B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ../AppDelegate.h; sourceTree = "<group>"; };
@@ -271,6 +316,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E4D78991F790D9000BC9C2B /* AlipaySDK.framework in Frameworks */,
+				3E4D78961F790C8300BC9C2B /* CFNetwork.framework in Frameworks */,
+				3E4D78941F790C7C00BC9C2B /* CoreText.framework in Frameworks */,
+				3E4D78921F790C7400BC9C2B /* QuartzCore.framework in Frameworks */,
+				3E4D78901F790C6400BC9C2B /* CoreTelephony.framework in Frameworks */,
+				3E4D788E1F790BC800BC9C2B /* CoreMotion.framework in Frameworks */,
+				3E4D788C1F790B7800BC9C2B /* SystemConfiguration.framework in Frameworks */,
 				3EEDC95C1F724521007171FA /* libsqlite3.0.tbd in Frameworks */,
 				3EEDC95A1F724511007171FA /* libz.1.1.3.tbd in Frameworks */,
 				3EEDC9581F7244DC007171FA /* libc++.tbd in Frameworks */,
@@ -323,6 +375,7 @@
 		3E2754801F7100F60010053E /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				3E4D787E1F79037200BC9C2B /* Handle */,
 				3EA0BC0D1F7364EE00F78FDD /* View */,
 				3E2754981F7216590010053E /* VC */,
 				3E2754851F710DBA0010053E /* Model */,
@@ -335,6 +388,7 @@
 		3E2754811F7101140010053E /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				3E4D78A31F79F81500BC9C2B /* PayResult */,
 				3EA0BC201F750E2C00F78FDD /* Order */,
 				3EA0BC031F725CC700F78FDD /* Products */,
 				3E2754821F7101540010053E /* HYGoodsItemCollectionViewCell.h */,
@@ -354,8 +408,12 @@
 				3E2754A01F721AC00010053E /* HYGoodsItemProp.m */,
 				3E2754A21F721BE60010053E /* HYGoodsItemImage.h */,
 				3E2754A31F721BE60010053E /* HYGoodsItemImage.m */,
-				3E2754891F7111800010053E /* HYRequestGoodsList.h */,
-				3E27548A1F7111800010053E /* HYRequestGoodsList.m */,
+				3E4D78781F78E51300BC9C2B /* HYCreateOrder.h */,
+				3E4D78791F78E51300BC9C2B /* HYCreateOrder.m */,
+				3E4D787B1F79005800BC9C2B /* HYCreateOrderDatalist.h */,
+				3E4D787C1F79005800BC9C2B /* HYCreateOrderDatalist.m */,
+				3E4D78821F7905C000BC9C2B /* HYWeChatPayModel.h */,
+				3E4D78831F7905C000BC9C2B /* HYWeChatPayModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -367,8 +425,36 @@
 				3E27549A1F72166E0010053E /* HYGoodsDetailInfoViewController.m */,
 				3EA0BC1D1F750CB100F78FDD /* HYFillOrderViewController.h */,
 				3EA0BC1E1F750CB100F78FDD /* HYFillOrderViewController.m */,
+				3E4D78A01F79F26200BC9C2B /* HYPayResultViewController.h */,
+				3E4D78A11F79F26200BC9C2B /* HYPayResultViewController.m */,
 			);
 			path = VC;
+			sourceTree = "<group>";
+		};
+		3E4D787E1F79037200BC9C2B /* Handle */ = {
+			isa = PBXGroup;
+			children = (
+				3E4D78751F78DD9300BC9C2B /* HYGoodsHandle.h */,
+				3E4D78761F78DD9300BC9C2B /* HYGoodsHandle.m */,
+				3E4D787F1F79038B00BC9C2B /* HYPayHandle.h */,
+				3E4D78801F79038B00BC9C2B /* HYPayHandle.m */,
+				3E4D78881F79088F00BC9C2B /* HYAlipayManager.h */,
+				3E4D78891F79088F00BC9C2B /* HYAlipayManager.m */,
+				3E4D789A1F7911CC00BC9C2B /* HYWeChatPayManager.h */,
+				3E4D789B1F7911CC00BC9C2B /* HYWeChatPayManager.m */,
+			);
+			path = Handle;
+			sourceTree = "<group>";
+		};
+		3E4D78A31F79F81500BC9C2B /* PayResult */ = {
+			isa = PBXGroup;
+			children = (
+				3E4D78A41F79F82A00BC9C2B /* HYPayResultTableViewCell.h */,
+				3E4D78A51F79F82A00BC9C2B /* HYPayResultTableViewCell.m */,
+				3E4D78A71F79F94200BC9C2B /* HYReceiverInfoTableViewCell.h */,
+				3E4D78A81F79F94200BC9C2B /* HYReceiverInfoTableViewCell.m */,
+			);
+			path = PayResult;
 			sourceTree = "<group>";
 		};
 		3E5620101F6B6A800063AA5B = {
@@ -538,6 +624,8 @@
 			children = (
 				3E5620951F6B72F30063AA5B /* HYMineViewController.h */,
 				3E5620961F6B72F30063AA5B /* HYMineViewController.m */,
+				3E4D78AA1F7A2C0700BC9C2B /* HYMyOrderViewController.h */,
+				3E4D78AB1F7A2C0700BC9C2B /* HYMyOrderViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -639,6 +727,8 @@
 		3E5620481F6B6D080063AA5B /* Vender */ = {
 			isa = PBXGroup;
 			children = (
+				3E4D78981F790D7E00BC9C2B /* AlipaySDK.bundle */,
+				3E4D78971F790D7900BC9C2B /* AlipaySDK.framework */,
 			);
 			path = Vender;
 			sourceTree = "<group>";
@@ -810,6 +900,12 @@
 		A26883657B03753D71FBDDF9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3E4D78951F790C8300BC9C2B /* CFNetwork.framework */,
+				3E4D78931F790C7C00BC9C2B /* CoreText.framework */,
+				3E4D78911F790C7400BC9C2B /* QuartzCore.framework */,
+				3E4D788F1F790C6400BC9C2B /* CoreTelephony.framework */,
+				3E4D788D1F790BC700BC9C2B /* CoreMotion.framework */,
+				3E4D788B1F790B7800BC9C2B /* SystemConfiguration.framework */,
 				3EEDC95B1F724521007171FA /* libsqlite3.0.tbd */,
 				3EEDC9591F724511007171FA /* libz.1.1.3.tbd */,
 				3EEDC9571F7244DC007171FA /* libc++.tbd */,
@@ -958,6 +1054,7 @@
 				3E5620781F6B6DAC0063AA5B /* MBProgressHUD+HYExtension.m in Sources */,
 				3E5620971F6B72F30063AA5B /* HYMineViewController.m in Sources */,
 				3E56204E1F6B6D5C0063AA5B /* HYBaseViewController.m in Sources */,
+				3E4D789C1F7911CC00BC9C2B /* HYWeChatPayManager.m in Sources */,
 				3E2754741F70D3600010053E /* HYUserModel.m in Sources */,
 				3E27545E1F6FBF850010053E /* HYCompleteView.m in Sources */,
 				3E5620841F6B6DAC0063AA5B /* HYPhotoBrowseView.m in Sources */,
@@ -977,11 +1074,13 @@
 				3EA0BC2C1F750EDD00F78FDD /* HYGoodsPayTableViewCell.m in Sources */,
 				3E5620BA1F6BBDFE0063AA5B /* HYHomeBannerCell.m in Sources */,
 				3EA0BC161F73A4D900F78FDD /* HYBuyCountEditView.m in Sources */,
+				3E4D78841F7905C000BC9C2B /* HYWeChatPayModel.m in Sources */,
 				3E27546B1F70B2970010053E /* HYOrderTableViewCell.m in Sources */,
 				3E2754451F6F71DE0010053E /* HYTypeRecommendCell.m in Sources */,
 				3E27549B1F72166E0010053E /* HYGoodsDetailInfoViewController.m in Sources */,
 				3E56209A1F6B7BB10063AA5B /* HYNavTitleView.m in Sources */,
 				3E5620B71F6BBDE40063AA5B /* HYHomeCollectionCell.m in Sources */,
+				3E4D78771F78DD9300BC9C2B /* HYGoodsHandle.m in Sources */,
 				3EA0BC131F739EF700F78FDD /* HYGoodSpecificationSelectView.m in Sources */,
 				3E5620211F6B6A800063AA5B /* AppDelegate.m in Sources */,
 				3EA0BC091F725D2600F78FDD /* HYProductsSpecificationCell.m in Sources */,
@@ -989,9 +1088,12 @@
 				3E2754511F6F96E00010053E /* HYSortTableViewCell.m in Sources */,
 				3E56201E1F6B6A800063AA5B /* main.m in Sources */,
 				3EA0BC061F725CDB00F78FDD /* HYProductsInfoTableViewCell.m in Sources */,
+				3E4D78A91F79F94200BC9C2B /* HYReceiverInfoTableViewCell.m in Sources */,
+				3E4D78811F79038B00BC9C2B /* HYPayHandle.m in Sources */,
 				3E27544B1F6F734B0010053E /* HYTypeRecommendItemModel.m in Sources */,
 				3E2754361F6F56580010053E /* HYGoodHealthModel.m in Sources */,
-				3E27548B1F7111800010053E /* HYRequestGoodsList.m in Sources */,
+				3E4D78AC1F7A2C0700BC9C2B /* HYMyOrderViewController.m in Sources */,
+				3E4D787D1F79005800BC9C2B /* HYCreateOrderDatalist.m in Sources */,
 				3E2754911F7200CD0010053E /* HYGoodsListViewController.m in Sources */,
 				3E5620821F6B6DAC0063AA5B /* HYLocationManager.m in Sources */,
 				3E27546E1F70B2BC0010053E /* HYMineInfoTableViewCell.m in Sources */,
@@ -1012,16 +1114,20 @@
 				3E2754A11F721AC00010053E /* HYGoodsItemProp.m in Sources */,
 				3E56209E1F6B9EEF0063AA5B /* HYHomePageModel.m in Sources */,
 				3E5620941F6B72E90063AA5B /* HYShoppingCartViewController.m in Sources */,
+				3E4D788A1F79088F00BC9C2B /* HYAlipayManager.m in Sources */,
 				3E5620A41F6BA16D0063AA5B /* HYHomeViewModel.m in Sources */,
+				3E4D78A21F79F26200BC9C2B /* HYPayResultViewController.m in Sources */,
 				3E5620511F6B6D720063AA5B /* HYBaseNavController.m in Sources */,
 				3E934DDC1F6BD4CE00F3ADE4 /* HYHomeCollectionViewCell.m in Sources */,
 				3E27544E1F6F952B0010053E /* HYSortModel.m in Sources */,
+				3E4D78A61F79F82A00BC9C2B /* HYPayResultTableViewCell.m in Sources */,
 				3EA0BC1C1F74E3AD00F78FDD /* HYShareView.m in Sources */,
 				3E2754611F6FD6610010053E /* HYSetPasswordViewController.m in Sources */,
 				3E56208B1F6B72750063AA5B /* HYTabBarController.m in Sources */,
 				3E2754A41F721BE60010053E /* HYGoodsItemImage.m in Sources */,
 				3E2754581F6F9D520010053E /* HYLoginView.m in Sources */,
 				3E56204B1F6B6D440063AA5B /* HYBaseModel.m in Sources */,
+				3E4D787A1F78E51300BC9C2B /* HYCreateOrder.m in Sources */,
 				3E5620831F6B6DAC0063AA5B /* HYPhoneInfo.m in Sources */,
 				3EA0BC261F750EA700F78FDD /* HYGoodsPostageTableViewCell.m in Sources */,
 				3E5620861F6B6DAC0063AA5B /* TitleRoll.m in Sources */,
@@ -1134,6 +1240,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = N258QY3YD6;
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/DaCongMing/DCM/Vender",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "${SRCROOT}/DaCongMing/DCM/Expand/Macro/PrefixHeader.pch";
 				INFOPLIST_FILE = DaCongMing/Info.plist;
@@ -1155,6 +1265,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = N258QY3YD6;
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/DaCongMing/DCM/Vender",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "${SRCROOT}/DaCongMing/DCM/Expand/Macro/PrefixHeader.pch";
 				INFOPLIST_FILE = DaCongMing/Info.plist;

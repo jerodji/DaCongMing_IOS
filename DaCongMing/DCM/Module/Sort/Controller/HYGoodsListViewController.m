@@ -79,7 +79,7 @@
 - (void)requestGoodsDefaultList{
     
     [_datalist removeAllObjects];
-    [HYRequestGoodsList requestGoodsListItem_type:_type pageNo:1 andPage:5 order:nil hotsale:@"ture" complectionBlock:^(NSArray *datalist) {
+    [HYGoodsHandle requestGoodsListItem_type:_type pageNo:1 andPage:5 order:nil hotsale:@"ture" complectionBlock:^(NSArray *datalist) {
        
         [self.datalist addObjectsFromArray:datalist];
         [_collectionView reloadData];
@@ -89,7 +89,7 @@
 - (void)requestGoodsPriceList{
     
     [_datalist removeAllObjects];
-    [HYRequestGoodsList requestGoodsListItem_type:_type pageNo:1 andPage:5 order:@"Ascending" hotsale:@"ture" complectionBlock:^(NSArray *datalist) {
+    [HYGoodsHandle requestGoodsListItem_type:_type pageNo:1 andPage:5 order:@"Ascending" hotsale:@"ture" complectionBlock:^(NSArray *datalist) {
         
         [self.datalist addObjectsFromArray:datalist];
         [_collectionView reloadData];

@@ -10,4 +10,7 @@
 
 @interface HYReceiveAddressTableViewCell : UITableViewCell
 
+/** orderMode */
+@property (nonatomic,strong) HYCreateOrder *orderModel;
+
 @end

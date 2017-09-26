@@ -10,4 +10,11 @@
 
 @interface HYFillOrderViewController : HYBaseViewController
 
+/** model */
+@property (nonatomic,strong) HYGoodsDetailModel *goodsDetailModel;
+/** 规格 */
+@property (nonatomic,strong) NSString *specifical;
+/** 数量 */
+@property (nonatomic,assign) NSInteger buyCount;
+
 @end
