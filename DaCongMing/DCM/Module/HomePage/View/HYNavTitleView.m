@@ -93,13 +93,6 @@
         _searchView.layer.cornerRadius = 6;
         _searchView.backgroundColor = KAPP_WHITE_COLOR;
         
-        
-        
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithActionBlock:^(id  _Nonnull sender) {
-            
-            NSLog(@"tap the search view");
-        }];
-        [_searchView addGestureRecognizer:tap];
         _searchView.userInteractionEnabled = YES;
     }
     return _searchView;

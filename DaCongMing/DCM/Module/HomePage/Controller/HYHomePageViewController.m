@@ -8,6 +8,7 @@
 
 #import "HYHomePageViewController.h"
 #import "HYGoodsDetailInfoViewController.h"
+#import "HYHomeSearchViewController.h"
 
 #import "HYNavTitleView.h"
 #import "HYHomePageView.h"
@@ -301,6 +302,14 @@
     if (!_navTitleView) {
         
         _navTitleView = [[HYNavTitleView alloc] initWithFrame:CGRectMake(0, 0, KSCREEN_WIDTH, 44)];
+        _navTitleView.userInteractionEnabled = YES;
+        
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithActionBlock:^(id  _Nonnull sender) {
+           
+            HYHomeSearchViewController *homeSearchVC = [HYHomeSearchViewController new];
+            [self.navigationController pushViewController:homeSearchVC animated:YES];
+        }];
+        [_navTitleView addGestureRecognizer:tap];
         _navTitleView.backgroundColor = KAPP_NAV_COLOR;
     }
     

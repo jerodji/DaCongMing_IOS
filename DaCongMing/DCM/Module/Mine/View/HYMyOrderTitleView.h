@@ -18,6 +18,10 @@
 
 /** 记录上一次点击的index */
 @property (nonatomic,assign) NSInteger previousSelectIndex;
+
+/** line */
+@property (nonatomic,strong) UIView *line;
+
 /** delegate */
 @property (nonatomic,weak) id<MyOrderTitleChangedDelegate>delegate;
 

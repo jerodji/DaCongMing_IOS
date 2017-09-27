@@ -15,4 +15,9 @@
  */
 + (void)requestOrderDataWithState:(NSInteger)order_state pageNo:(NSInteger )pageNo andPage:(NSInteger )pageSize complectionBlock:(void(^)(NSArray *datalist))complection;
 
+/**
+ *  请求优惠券
+ */
++ (void)requestDiscountCouponComplectionBlock:(void(^)(NSArray *datalist))complection noDataBlock:(void(^)())noDiscountCoupon;
+
 @end

@@ -62,4 +62,7 @@
 //获取订单数据
 #define API_MyAllOrder          @"HAILIN_SERVER/getSellerOrderList.do"
 
+//获取优惠券
+#define API_MyDiscountConpon         @"HAILIN_SERVER/showUserCoupon.do"
+
 #endif /* WebApi_h */

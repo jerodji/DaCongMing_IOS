@@ -34,5 +34,7 @@
 #import "HYGoodsHandle.h"
 #import "HYGoodsItemModel.h"
 #import "HYCreateOrder.h"
+#import "HYCustomAlert.h"
+#import "HYTabBarController.h"
 
 #endif /* PrefixHeader_pch */

@@ -19,13 +19,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DaCongMing/DCM/Module/HomePage/View/HYHomePageView.m"
-            timestampString = "527764091.052003"
+            filePath = "DaCongMing/DCM/Module/Mine/Handle/HYRequestOrderHandle.m"
+            timestampString = "528202318.686228"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "117"
-            endingLineNumber = "117"
-            landmarkName = "-tableView:heightForRowAtIndexPath:"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
+            landmarkName = "+requestDiscountCouponComplectionBlock:noDataBlock:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -35,30 +35,62 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DaCongMing/DCM/Module/HomePage/View/HYHomePageView.m"
-            timestampString = "527764091.052403"
+            filePath = "DaCongMing/DCM/Module/HomePage/View/HYHotSearchView.m"
+            timestampString = "528202318.68658"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
+            landmarkName = "-setupSubviews"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DaCongMing/DCM/Module/HomePage/View/HYHotSearchView.m"
+            timestampString = "528202318.687172"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "77"
             endingLineNumber = "77"
-            landmarkName = "-tableView:cellForRowAtIndexPath:"
+            landmarkName = "-setupSubviews"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "DaCongMing/DCM/Module/Mine/Common/VC/HYFillOrderViewController.m"
-            timestampString = "528113645.525487"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "117"
-            endingLineNumber = "117"
-            landmarkName = "-confirmBtnAction"
-            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[HYHotSearchView setupSubviews]"
+                  moduleName = "DaCongMing"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/huyong/Desktop/DaCongMing/DaCongMing/DaCongMing/DCM/Module/HomePage/View/HYHotSearchView.m"
+                  timestampString = "528201263.329605"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "72"
+                  endingLineNumber = "72"
+                  offsetFromSymbolStart = "1864">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__32-[HYHotSearchView setupSubviews]_block_invoke.105"
+                  moduleName = "DaCongMing"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/huyong/Desktop/DaCongMing/DaCongMing/DaCongMing/DCM/Module/HomePage/View/HYHotSearchView.m"
+                  timestampString = "528201263.331911"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "74"
+                  endingLineNumber = "74"
+                  offsetFromSymbolStart = "72">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

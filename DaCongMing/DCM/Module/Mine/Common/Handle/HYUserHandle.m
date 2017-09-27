@@ -136,4 +136,10 @@
     return NO;
 }
 
++ (void)jumpToHomePageVC{
+    
+    HYTabBarController *tabBar = [[HYTabBarController alloc] init];
+    [UIApplication sharedApplication].keyWindow.rootViewController = tabBar;
+}
+
 @end

@@ -37,4 +37,32 @@
     }];
 }
 
++ (void)requestDiscountCouponComplectionBlock:(void (^)(NSArray *))complection noDataBlock:(void (^)())noDiscountCoupon{
+    
+    NSMutableDictionary *requestParam = [NSMutableDictionary dictionary];
+    [requestParam setValue:[HYUserModel sharedInstance].token forKey:@"token"];
+    [[HTTPManager shareHTTPManager] postDataFromUrl:API_MyDiscountConpon withParameter:requestParam isShowHUD:YES success:^(id returnData) {
+        
+        if (returnData) {
+            
+            NSInteger code =[[returnData objectForKey:@"successed"] integerValue];
+            if (code == 000) {
+                
+                NSArray *array = [returnData objectForKey:@"dataInfo"][@"userCoupons"];
+                if (array.count) {
+                    
+                    complection(array);
+                }
+                
+                noDiscountCoupon();
+            }
+            else{
+                
+                noDiscountCoupon();
+                [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"获取订单信息出错!"];
+            }
+        }
+    }];
+}
+
 @end

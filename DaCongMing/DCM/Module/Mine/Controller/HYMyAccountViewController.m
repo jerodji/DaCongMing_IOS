@@ -17,6 +17,8 @@
 @property (nonatomic,strong) NSMutableArray *datalist;
 /** dataSourceArray */
 @property (nonatomic,strong) NSMutableArray *dataSourceArray;
+/** alert */
+@property (nonatomic,strong) HYCustomAlert *customAlert;
 
 @end
 
@@ -30,6 +32,13 @@
     [self setupData];
     [self.view addSubview:self.tableView];
     
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    
+    [super viewWillDisappear:animated];
+    [_customAlert removeFromSuperview];
+    _customAlert = nil;
 }
 
 - (void)setupData{
@@ -79,7 +88,14 @@
 #pragma mark - tableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    
+    if (indexPath.section == 4) {
+        
+        [KEYWINDOW  addSubview:self.customAlert];
+        [_customAlert mas_makeConstraints:^(MASConstraintMaker *make) {
+           
+            make.left.right.top.bottom.equalTo(self.view);
+        }];
+    }
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
@@ -117,6 +133,19 @@
         _tableView.backgroundColor = KCOLOR(@"f4f4f4");
     }
     return _tableView;
+}
+
+- (HYCustomAlert *)customAlert{
+    
+    if (!_customAlert) {
+        
+        _customAlert = [[HYCustomAlert alloc] initWithFrame:CGRectZero WithTitle:@"温馨提示" content:@"是否退出登录" confirmBlock:^{
+            
+            [[HYUserModel sharedInstance] clearData];
+            [HYUserHandle jumpToHomePageVC];
+        }];
+    }
+    return _customAlert;
 }
 
 - (NSMutableArray *)datalist{

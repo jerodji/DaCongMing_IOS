@@ -10,10 +10,11 @@
 
 @interface HYMyOrderTitleView()
 
-/** line */
-@property (nonatomic,strong) UIView *line;
+
 /** 存放btn */
 @property (nonatomic,strong) NSMutableArray *btnArray;
+/** array */
+@property (nonatomic,copy) NSArray *titleArray;
 
 @end
 
@@ -24,6 +25,7 @@
     if (self = [super initWithFrame:frame]) {
         
         [self createButtonWithArray:titleArray];
+        self.titleArray = titleArray;
         [self addSubview:self.line];
     }
     return self;
@@ -51,7 +53,7 @@
 
 - (void)layoutSubviews{
     
-    CGFloat width = KSCREEN_WIDTH / 5;
+    CGFloat width = KSCREEN_WIDTH / self.titleArray.count;
     [_line mas_makeConstraints:^(MASConstraintMaker *make) {
        
         make.left.equalTo(self).offset(2);
@@ -93,7 +95,7 @@
     }
     _previousSelectIndex = button.tag - 100;
     
-    CGFloat width = KSCREEN_WIDTH / 5;
+    CGFloat width = KSCREEN_WIDTH / self.titleArray.count;
     [UIView animateWithDuration:0.2 animations:^{
        
         _line.frame = CGRectMake(_previousSelectIndex * width + 2,  38, width - 4, 2);

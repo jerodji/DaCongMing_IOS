@@ -37,4 +37,10 @@
  */
 + (BOOL)jumpToLoginViewControllerFromVC:(UIViewController *)fromVC;
 
+/*!
+ @method
+ @brief 跳回首页
+ */
++ (void)jumpToHomePageVC;
+
 @end

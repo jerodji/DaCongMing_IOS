@@ -118,7 +118,6 @@
     
     self.collectionSelect(model.item_id);
     
-    
 }
 
 #pragma mark - lazyload
