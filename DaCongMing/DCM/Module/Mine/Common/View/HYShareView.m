@@ -117,7 +117,7 @@
     
     [_line mas_makeConstraints:^(MASConstraintMaker *make) {
        
-        make.left.right.equalTo(self);
+        make.left.right.equalTo(_bgView);
         make.top.equalTo(_cancelBtn);
         make.height.equalTo(@1);
     }];

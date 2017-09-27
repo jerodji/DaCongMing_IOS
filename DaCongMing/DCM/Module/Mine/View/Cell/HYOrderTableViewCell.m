@@ -88,7 +88,7 @@
     [_lookAllOrderBtn mas_makeConstraints:^(MASConstraintMaker *make) {
        
         make.top.height.equalTo(_orderLabel);
-        make.right.equalTo(self).offset(-10);
+        make.right.equalTo(self);
         make.width.equalTo(@(160));
     }];
 }
@@ -101,7 +101,7 @@
 
 - (void)myOrderAction{
     
-    
+    self.myAllOrder();
 }
 
 #pragma mark - lazyload
@@ -142,7 +142,7 @@
         UIImage *image = _lookAllOrderBtn.imageView.image;
         [_lookAllOrderBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -image.size.width - 6, 0, image.size.width + 6)];
         CGFloat strWidth = [@"查看全部订单" widthForFont:KFitFont(14)];
-        [_lookAllOrderBtn setImageEdgeInsets:UIEdgeInsetsMake(0, _lookAllOrderBtn.titleLabel.bounds.size.width + 6, 0, -_lookAllOrderBtn.titleLabel.bounds.size.width - 6)];
+        [_lookAllOrderBtn setImageEdgeInsets:UIEdgeInsetsMake(0, strWidth + 6, 0, -strWidth - 6)];
         
         
         [_lookAllOrderBtn addTarget:self action:@selector(myOrderAction) forControlEvents:UIControlEventTouchUpInside];

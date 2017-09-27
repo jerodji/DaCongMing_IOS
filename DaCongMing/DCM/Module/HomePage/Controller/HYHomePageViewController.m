@@ -44,16 +44,21 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-
-    [self setupUI];
-    
 }
+
 
 - (void)viewWillAppear:(BOOL)animated{
     
     [super viewWillAppear:animated];
     [self requestNetwork];
+    [self setupUI];
+}
 
+- (void)viewWillDisappear:(BOOL)animated{
+    
+    [super viewWillDisappear:animated];
+    [_navTitleView removeFromSuperview];
+    _navTitleView = nil;
 }
 
 - (void)setupUI{
@@ -139,6 +144,13 @@
         }
         cell.model = _model;
         [self.cellHeightDict setValue:[NSNumber numberWithFloat:cell.cellHeight] forKey:[NSString stringWithFormat:@"%ld",(long)indexPath.row]];
+        cell.collectionSelect = ^(NSString *productID) {
+            
+            HYGoodsDetailInfoViewController *detailVC = [[HYGoodsDetailInfoViewController alloc] init];
+            detailVC.navigationController.navigationBar.hidden = YES;
+            detailVC.goodsID = productID;
+            [self.navigationController pushViewController:detailVC animated:YES];
+        };
         return cell;
     }
     else if (indexPath.row == 2){
@@ -152,6 +164,13 @@
         }
         cell.goodHealthModel = _model.goodHealth;
         [self.cellHeightDict setValue:[NSNumber numberWithFloat:cell.cellHeight] forKey:[NSString stringWithFormat:@"%ld",(long)indexPath.row]];
+        cell.collectionSelect = ^(NSString *productID) {
+            
+            HYGoodsDetailInfoViewController *detailVC = [[HYGoodsDetailInfoViewController alloc] init];
+            detailVC.navigationController.navigationBar.hidden = YES;
+            detailVC.goodsID = productID;
+            [self.navigationController pushViewController:detailVC animated:YES];
+        };
         return cell;
     }
     else if (indexPath.row == 3){
@@ -232,7 +251,7 @@
         
         NSNumber *num = [_cellHeightDict objectForKey:@"0"];
         if (isnan(num.floatValue) || num.floatValue == 0) {
-            return 150;
+            return 150 * WIDTH_MULTIPLE;
         }
         return num.floatValue;
     }

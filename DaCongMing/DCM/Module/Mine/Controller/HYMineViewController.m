@@ -16,8 +16,14 @@
 #import "HYHomeDoodsCell.h"
 
 #import "HYLoginViewController.h"
+#import "HYMyOrderViewController.h"
+#import "HYMyAccountViewController.h"
+#import "HYMyDisCouponViewController.h"
+#import "HYMyAddressViewController.h"
+#import "HYMyQRCodeViewController.h"
+#import "HYFeedbackViewController.h"
 
-@interface HYMineViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface HYMineViewController ()<UITableViewDelegate,UITableViewDataSource,HYMineInfoBtnActionDelegate>
 
 /** tableView */
 @property (nonatomic,strong) UITableView *tableView;
@@ -38,7 +44,6 @@
     [super viewDidLoad];
     
     [self initUI];
-    
     [self requestNetwork];
 }
 
@@ -51,6 +56,12 @@
 
     _headerView.user = [HYUserModel sharedInstance];
     [_tableView reloadData];
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    
+    [super viewWillDisappear:animated];
+    self.navigationController.navigationBar.hidden = NO;
 }
 
 - (void)initUI{
@@ -78,7 +89,7 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return 5;
+    return 4;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -102,36 +113,28 @@
             cell = [[HYOrderTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:myOrderCellID];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
+        cell.myAllOrder = ^{
+            
+            if([HYUserHandle jumpToLoginViewControllerFromVC:self])
+                return ;
+            HYMyOrderViewController *myOrderVC = [HYMyOrderViewController new];
+            [self.navigationController pushViewController:myOrderVC animated:YES];
+        };
         return cell;
     }
     else if (indexPath.row == 2){
         
-        //订单
+        //我的账户
         static NSString *myInfoCellID = @"myInfoCellID";
         HYMineInfoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:myInfoCellID];
         if (!cell) {
             cell = [[HYMineInfoTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:myInfoCellID];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
+        cell.delegate = self;
         return cell;
     }
     else if (indexPath.row == 3){
-        
-        //退出登录
-        static NSString *logoutCell = @"logoutCell";
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:logoutCell];
-        if (!cell) {
-            cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:logoutCell];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        }
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, 150, 20)];
-        label.text = @"退出登录";
-        label.font = KFitFont(14);
-        label.textColor = KCOLOR(@"272727");
-        [cell addSubview:label];
-        return cell;
-    }
-    else if (indexPath.row == 4){
         //猜你喜欢
         static NSString *goodsCellID = @"goodsCellID";
         HYHomeDoodsCell *cell = [tableView dequeueReusableCellWithIdentifier:goodsCellID];
@@ -183,11 +186,6 @@
         return 170 * WIDTH_MULTIPLE;
     }
     else if (indexPath.row == 3){
-    
-        //退出登录
-        return 50 * WIDTH_MULTIPLE;
-    }
-    else if (indexPath.row == 4){
         
         //猜你喜欢
         CGFloat height = ceil(_goodsList.count / 2.0) * 350 * WIDTH_MULTIPLE;
@@ -196,12 +194,74 @@
     return 100;
 }
 
+#pragma mark - CellDelegate
+- (void)jumpToMineInfoDetailVCWithTag:(NSInteger)tag{
+    
+     //[@"我的账户",@"优惠券",@"我的地址",@"我的二维码",@"意见反馈",@"联系客服"];
+    switch (tag) {
+        case 0:
+        {
+            if([HYUserHandle jumpToLoginViewControllerFromVC:self])
+                return ;
+            HYMyAccountViewController *myAccountVC = [HYMyAccountViewController new];
+            [self.navigationController pushViewController:myAccountVC animated:YES];
+        }
+            break;
+        case 1:
+        {
+            if([HYUserHandle jumpToLoginViewControllerFromVC:self])
+                return ;
+            HYMyDisCouponViewController *discountCouponVC = [HYMyDisCouponViewController new];
+            [self.navigationController pushViewController:discountCouponVC animated:YES];
+             
+        }
+            break;
+        case 2:
+        {
+            if([HYUserHandle jumpToLoginViewControllerFromVC:self])
+                return ;
+            HYMyAddressViewController *myAddressVC = [HYMyAddressViewController new];
+            [self.navigationController pushViewController:myAddressVC animated:YES];
+        }
+            break;
+        case 3:
+        {
+            if([HYUserHandle jumpToLoginViewControllerFromVC:self])
+                return ;
+            HYMyQRCodeViewController *myQRCodeVC = [HYMyQRCodeViewController new];
+            [self.navigationController pushViewController:myQRCodeVC animated:YES];
+        }
+            break;
+        case 4:
+        {
+            if([HYUserHandle jumpToLoginViewControllerFromVC:self])
+                return ;
+            HYFeedbackViewController *feedbackVC = [HYFeedbackViewController new];
+            [self.navigationController pushViewController:feedbackVC animated:YES];
+        }
+            break;
+        case 5:
+        {
+            if([HYUserHandle jumpToLoginViewControllerFromVC:self])
+                return ;
+            NSString * str = [[NSString alloc] initWithFormat:@"tel://%@",KCustomerServicePhone];
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+            
+        }
+        
+            break;
+        default:
+            break;
+    }
+    
+}
+
 
 #pragma mark - lazyload
 - (UITableView *)tableView{
     if (!_tableView) {
         
-        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, -20, KSCREEN_WIDTH, KSCREEN_HEIGHT - 49) style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, -20, KSCREEN_WIDTH, KSCREEN_HEIGHT - 49 + 20) style:UITableViewStylePlain];
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;

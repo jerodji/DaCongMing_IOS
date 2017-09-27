@@ -7,6 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3E1021EC1F7A477B0048D556 /* HYMyOrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1021EB1F7A477B0048D556 /* HYMyOrderModel.m */; };
+		3E1021F01F7A48B20048D556 /* HYRequestOrderHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1021EF1F7A48B20048D556 /* HYRequestOrderHandle.m */; };
+		3E1021F21F7A48EB0048D556 /* HYUserHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1021F11F7A48EB0048D556 /* HYUserHandle.m */; };
+		3E1021F81F7A4C290048D556 /* HYMyOrderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1021F71F7A4C290048D556 /* HYMyOrderTableViewCell.m */; };
+		3E1021FB1F7A53BD0048D556 /* HYUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1021FA1F7A53BD0048D556 /* HYUserModel.m */; };
+		3E1021FE1F7B35E30048D556 /* HYMyAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1021FD1F7B35E30048D556 /* HYMyAccountViewController.m */; };
+		3E1022011F7B39D80048D556 /* HYMyDisCouponViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1022001F7B39D80048D556 /* HYMyDisCouponViewController.m */; };
+		3E1022041F7B39F40048D556 /* HYMyAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1022031F7B39F40048D556 /* HYMyAddressViewController.m */; };
+		3E1022071F7B3A120048D556 /* HYFeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1022061F7B3A120048D556 /* HYFeedbackViewController.m */; };
+		3E10220A1F7B3A330048D556 /* HYMyQRCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1022091F7B3A330048D556 /* HYMyQRCodeViewController.m */; };
+		3E10220D1F7B44050048D556 /* HYMyAccountTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E10220C1F7B44050048D556 /* HYMyAccountTableViewCell.m */; };
+		3E1022101F7B4D070048D556 /* HYAlertTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E10220F1F7B4D070048D556 /* HYAlertTool.m */; };
 		3E2754361F6F56580010053E /* HYGoodHealthModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2754351F6F56580010053E /* HYGoodHealthModel.m */; };
 		3E2754391F6F56EE0010053E /* HYItemListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2754381F6F56EE0010053E /* HYItemListModel.m */; };
 		3E27543C1F6F61E40010053E /* HYHomeTagsCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E27543B1F6F61E40010053E /* HYHomeTagsCollectionViewCell.m */; };
@@ -27,8 +39,6 @@
 		3E27546B1F70B2970010053E /* HYOrderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E27546A1F70B2970010053E /* HYOrderTableViewCell.m */; };
 		3E27546E1F70B2BC0010053E /* HYMineInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E27546D1F70B2BC0010053E /* HYMineInfoTableViewCell.m */; };
 		3E2754711F70C06C0010053E /* HYButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2754701F70C06C0010053E /* HYButton.m */; };
-		3E2754741F70D3600010053E /* HYUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2754731F70D3600010053E /* HYUserModel.m */; };
-		3E27547A1F70EDF10010053E /* HYUserHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2754791F70EDF10010053E /* HYUserHandle.m */; };
 		3E27547F1F70FBED0010053E /* HYNoGoodsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E27547E1F70FBED0010053E /* HYNoGoodsTableViewCell.m */; };
 		3E2754841F7101540010053E /* HYGoodsItemCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2754831F7101540010053E /* HYGoodsItemCollectionViewCell.m */; };
 		3E2754881F710DCF0010053E /* HYGoodsItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2754871F710DCF0010053E /* HYGoodsItemModel.m */; };
@@ -55,6 +65,8 @@
 		3E4D78A61F79F82A00BC9C2B /* HYPayResultTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4D78A51F79F82A00BC9C2B /* HYPayResultTableViewCell.m */; };
 		3E4D78A91F79F94200BC9C2B /* HYReceiverInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4D78A81F79F94200BC9C2B /* HYReceiverInfoTableViewCell.m */; };
 		3E4D78AC1F7A2C0700BC9C2B /* HYMyOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4D78AB1F7A2C0700BC9C2B /* HYMyOrderViewController.m */; };
+		3E4D78AF1F7A327E00BC9C2B /* HYMyOrderChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4D78AE1F7A327E00BC9C2B /* HYMyOrderChildViewController.m */; };
+		3E4D78B21F7A33DC00BC9C2B /* HYMyOrderTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4D78B11F7A33DC00BC9C2B /* HYMyOrderTitleView.m */; };
 		3E56201E1F6B6A800063AA5B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E56201D1F6B6A800063AA5B /* main.m */; };
 		3E5620211F6B6A800063AA5B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E5620201F6B6A800063AA5B /* AppDelegate.m */; };
 		3E5620291F6B6A800063AA5B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E5620281F6B6A800063AA5B /* Assets.xcassets */; };
@@ -112,6 +124,29 @@
 
 /* Begin PBXFileReference section */
 		36367516A039862097AF5595 /* Pods-DaCongMing.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DaCongMing.release.xcconfig"; path = "Pods/Target Support Files/Pods-DaCongMing/Pods-DaCongMing.release.xcconfig"; sourceTree = "<group>"; };
+		3E1021EA1F7A477B0048D556 /* HYMyOrderModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYMyOrderModel.h; sourceTree = "<group>"; };
+		3E1021EB1F7A477B0048D556 /* HYMyOrderModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYMyOrderModel.m; sourceTree = "<group>"; };
+		3E1021EE1F7A48B20048D556 /* HYRequestOrderHandle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYRequestOrderHandle.h; sourceTree = "<group>"; };
+		3E1021EF1F7A48B20048D556 /* HYRequestOrderHandle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYRequestOrderHandle.m; sourceTree = "<group>"; };
+		3E1021F11F7A48EB0048D556 /* HYUserHandle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYUserHandle.m; sourceTree = "<group>"; };
+		3E1021F61F7A4C290048D556 /* HYMyOrderTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYMyOrderTableViewCell.h; sourceTree = "<group>"; };
+		3E1021F71F7A4C290048D556 /* HYMyOrderTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYMyOrderTableViewCell.m; sourceTree = "<group>"; };
+		3E1021F91F7A53BD0048D556 /* HYUserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYUserModel.h; sourceTree = "<group>"; };
+		3E1021FA1F7A53BD0048D556 /* HYUserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYUserModel.m; sourceTree = "<group>"; };
+		3E1021FC1F7B35E30048D556 /* HYMyAccountViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYMyAccountViewController.h; sourceTree = "<group>"; };
+		3E1021FD1F7B35E30048D556 /* HYMyAccountViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYMyAccountViewController.m; sourceTree = "<group>"; };
+		3E1021FF1F7B39D80048D556 /* HYMyDisCouponViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYMyDisCouponViewController.h; sourceTree = "<group>"; };
+		3E1022001F7B39D80048D556 /* HYMyDisCouponViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYMyDisCouponViewController.m; sourceTree = "<group>"; };
+		3E1022021F7B39F40048D556 /* HYMyAddressViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYMyAddressViewController.h; sourceTree = "<group>"; };
+		3E1022031F7B39F40048D556 /* HYMyAddressViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYMyAddressViewController.m; sourceTree = "<group>"; };
+		3E1022051F7B3A120048D556 /* HYFeedbackViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYFeedbackViewController.h; sourceTree = "<group>"; };
+		3E1022061F7B3A120048D556 /* HYFeedbackViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYFeedbackViewController.m; sourceTree = "<group>"; };
+		3E1022081F7B3A330048D556 /* HYMyQRCodeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYMyQRCodeViewController.h; sourceTree = "<group>"; };
+		3E1022091F7B3A330048D556 /* HYMyQRCodeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYMyQRCodeViewController.m; sourceTree = "<group>"; };
+		3E10220B1F7B44050048D556 /* HYMyAccountTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYMyAccountTableViewCell.h; sourceTree = "<group>"; };
+		3E10220C1F7B44050048D556 /* HYMyAccountTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYMyAccountTableViewCell.m; sourceTree = "<group>"; };
+		3E10220E1F7B4D070048D556 /* HYAlertTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYAlertTool.h; sourceTree = "<group>"; };
+		3E10220F1F7B4D070048D556 /* HYAlertTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYAlertTool.m; sourceTree = "<group>"; };
 		3E2754341F6F56580010053E /* HYGoodHealthModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYGoodHealthModel.h; sourceTree = "<group>"; };
 		3E2754351F6F56580010053E /* HYGoodHealthModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYGoodHealthModel.m; sourceTree = "<group>"; };
 		3E2754371F6F56EE0010053E /* HYItemListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYItemListModel.h; sourceTree = "<group>"; };
@@ -152,10 +187,7 @@
 		3E27546D1F70B2BC0010053E /* HYMineInfoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYMineInfoTableViewCell.m; sourceTree = "<group>"; };
 		3E27546F1F70C06C0010053E /* HYButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYButton.h; sourceTree = "<group>"; };
 		3E2754701F70C06C0010053E /* HYButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYButton.m; sourceTree = "<group>"; };
-		3E2754721F70D3600010053E /* HYUserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYUserModel.h; sourceTree = "<group>"; };
-		3E2754731F70D3600010053E /* HYUserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYUserModel.m; sourceTree = "<group>"; };
 		3E2754781F70EDF10010053E /* HYUserHandle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYUserHandle.h; sourceTree = "<group>"; };
-		3E2754791F70EDF10010053E /* HYUserHandle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYUserHandle.m; sourceTree = "<group>"; };
 		3E27547D1F70FBED0010053E /* HYNoGoodsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYNoGoodsTableViewCell.h; sourceTree = "<group>"; };
 		3E27547E1F70FBED0010053E /* HYNoGoodsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYNoGoodsTableViewCell.m; sourceTree = "<group>"; };
 		3E2754821F7101540010053E /* HYGoodsItemCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYGoodsItemCollectionViewCell.h; sourceTree = "<group>"; };
@@ -202,6 +234,10 @@
 		3E4D78A81F79F94200BC9C2B /* HYReceiverInfoTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYReceiverInfoTableViewCell.m; sourceTree = "<group>"; };
 		3E4D78AA1F7A2C0700BC9C2B /* HYMyOrderViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYMyOrderViewController.h; sourceTree = "<group>"; };
 		3E4D78AB1F7A2C0700BC9C2B /* HYMyOrderViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYMyOrderViewController.m; sourceTree = "<group>"; };
+		3E4D78AD1F7A327E00BC9C2B /* HYMyOrderChildViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYMyOrderChildViewController.h; sourceTree = "<group>"; };
+		3E4D78AE1F7A327E00BC9C2B /* HYMyOrderChildViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYMyOrderChildViewController.m; sourceTree = "<group>"; };
+		3E4D78B01F7A33DC00BC9C2B /* HYMyOrderTitleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYMyOrderTitleView.h; sourceTree = "<group>"; };
+		3E4D78B11F7A33DC00BC9C2B /* HYMyOrderTitleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYMyOrderTitleView.m; sourceTree = "<group>"; };
 		3E5620191F6B6A800063AA5B /* DaCongMing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DaCongMing.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E56201D1F6B6A800063AA5B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3E56201F1F6B6A800063AA5B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ../AppDelegate.h; sourceTree = "<group>"; };
@@ -333,6 +369,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3E1021ED1F7A489A0048D556 /* Handle */ = {
+			isa = PBXGroup;
+			children = (
+				3E1021EE1F7A48B20048D556 /* HYRequestOrderHandle.h */,
+				3E1021EF1F7A48B20048D556 /* HYRequestOrderHandle.m */,
+			);
+			path = Handle;
+			sourceTree = "<group>";
+		};
 		3E2754521F6F9BB40010053E /* LoginRegister */ = {
 			isa = PBXGroup;
 			children = (
@@ -359,6 +404,8 @@
 				3E27546A1F70B2970010053E /* HYOrderTableViewCell.m */,
 				3E27546C1F70B2BC0010053E /* HYMineInfoTableViewCell.h */,
 				3E27546D1F70B2BC0010053E /* HYMineInfoTableViewCell.m */,
+				3E10220B1F7B44050048D556 /* HYMyAccountTableViewCell.h */,
+				3E10220C1F7B44050048D556 /* HYMyAccountTableViewCell.m */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -434,6 +481,8 @@
 		3E4D787E1F79037200BC9C2B /* Handle */ = {
 			isa = PBXGroup;
 			children = (
+				3E2754781F70EDF10010053E /* HYUserHandle.h */,
+				3E1021F11F7A48EB0048D556 /* HYUserHandle.m */,
 				3E4D78751F78DD9300BC9C2B /* HYGoodsHandle.h */,
 				3E4D78761F78DD9300BC9C2B /* HYGoodsHandle.m */,
 				3E4D787F1F79038B00BC9C2B /* HYPayHandle.h */,
@@ -455,6 +504,15 @@
 				3E4D78A81F79F94200BC9C2B /* HYReceiverInfoTableViewCell.m */,
 			);
 			path = PayResult;
+			sourceTree = "<group>";
+		};
+		3E4D78B31F7A45E300BC9C2B /* myOrder */ = {
+			isa = PBXGroup;
+			children = (
+				3E1021F61F7A4C290048D556 /* HYMyOrderTableViewCell.h */,
+				3E1021F71F7A4C290048D556 /* HYMyOrderTableViewCell.m */,
+			);
+			path = myOrder;
 			sourceTree = "<group>";
 		};
 		3E5620101F6B6A800063AA5B = {
@@ -611,6 +669,7 @@
 		3E56203C1F6B6D080063AA5B /* Mine */ = {
 			isa = PBXGroup;
 			children = (
+				3E1021ED1F7A489A0048D556 /* Handle */,
 				3E2754521F6F9BB40010053E /* LoginRegister */,
 				3E56203D1F6B6D080063AA5B /* Controller */,
 				3E56203E1F6B6D080063AA5B /* Model */,
@@ -626,6 +685,18 @@
 				3E5620961F6B72F30063AA5B /* HYMineViewController.m */,
 				3E4D78AA1F7A2C0700BC9C2B /* HYMyOrderViewController.h */,
 				3E4D78AB1F7A2C0700BC9C2B /* HYMyOrderViewController.m */,
+				3E4D78AD1F7A327E00BC9C2B /* HYMyOrderChildViewController.h */,
+				3E4D78AE1F7A327E00BC9C2B /* HYMyOrderChildViewController.m */,
+				3E1021FC1F7B35E30048D556 /* HYMyAccountViewController.h */,
+				3E1021FD1F7B35E30048D556 /* HYMyAccountViewController.m */,
+				3E1021FF1F7B39D80048D556 /* HYMyDisCouponViewController.h */,
+				3E1022001F7B39D80048D556 /* HYMyDisCouponViewController.m */,
+				3E1022021F7B39F40048D556 /* HYMyAddressViewController.h */,
+				3E1022031F7B39F40048D556 /* HYMyAddressViewController.m */,
+				3E1022081F7B3A330048D556 /* HYMyQRCodeViewController.h */,
+				3E1022091F7B3A330048D556 /* HYMyQRCodeViewController.m */,
+				3E1022051F7B3A120048D556 /* HYFeedbackViewController.h */,
+				3E1022061F7B3A120048D556 /* HYFeedbackViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -633,10 +704,10 @@
 		3E56203E1F6B6D080063AA5B /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				3E2754721F70D3600010053E /* HYUserModel.h */,
-				3E2754731F70D3600010053E /* HYUserModel.m */,
-				3E2754781F70EDF10010053E /* HYUserHandle.h */,
-				3E2754791F70EDF10010053E /* HYUserHandle.m */,
+				3E1021F91F7A53BD0048D556 /* HYUserModel.h */,
+				3E1021FA1F7A53BD0048D556 /* HYUserModel.m */,
+				3E1021EA1F7A477B0048D556 /* HYMyOrderModel.h */,
+				3E1021EB1F7A477B0048D556 /* HYMyOrderModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -644,9 +715,12 @@
 		3E56203F1F6B6D080063AA5B /* View */ = {
 			isa = PBXGroup;
 			children = (
+				3E4D78B31F7A45E300BC9C2B /* myOrder */,
 				3E2754651F70B23C0010053E /* Cell */,
 				3E2754621F70AA4A0010053E /* HYMineHeaderView.h */,
 				3E2754631F70AA4A0010053E /* HYMineHeaderView.m */,
+				3E4D78B01F7A33DC00BC9C2B /* HYMyOrderTitleView.h */,
+				3E4D78B11F7A33DC00BC9C2B /* HYMyOrderTitleView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -796,6 +870,8 @@
 				3E5620771F6B6DAC0063AA5B /* TitleRoll.m */,
 				3E27546F1F70C06C0010053E /* HYButton.h */,
 				3E2754701F70C06C0010053E /* HYButton.m */,
+				3E10220E1F7B4D070048D556 /* HYAlertTool.h */,
+				3E10220F1F7B4D070048D556 /* HYAlertTool.m */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -1044,7 +1120,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3E5620B41F6BBDD00063AA5B /* HYHomeImgScrollCell.m in Sources */,
-				3E27547A1F70EDF10010053E /* HYUserHandle.m in Sources */,
 				3E2754881F710DCF0010053E /* HYGoodsItemModel.m in Sources */,
 				3E2754391F6F56EE0010053E /* HYItemListModel.m in Sources */,
 				3E934DDF1F6BD78100F3ADE4 /* HYReCommendTday.m in Sources */,
@@ -1053,26 +1128,30 @@
 				3E5620B11F6BBDC00063AA5B /* HYHomeTitleScrollCell.m in Sources */,
 				3E5620781F6B6DAC0063AA5B /* MBProgressHUD+HYExtension.m in Sources */,
 				3E5620971F6B72F30063AA5B /* HYMineViewController.m in Sources */,
+				3E1021F01F7A48B20048D556 /* HYRequestOrderHandle.m in Sources */,
 				3E56204E1F6B6D5C0063AA5B /* HYBaseViewController.m in Sources */,
 				3E4D789C1F7911CC00BC9C2B /* HYWeChatPayManager.m in Sources */,
-				3E2754741F70D3600010053E /* HYUserModel.m in Sources */,
 				3E27545E1F6FBF850010053E /* HYCompleteView.m in Sources */,
 				3E5620841F6B6DAC0063AA5B /* HYPhotoBrowseView.m in Sources */,
+				3E1022101F7B4D070048D556 /* HYAlertTool.m in Sources */,
 				3E5620A81F6BBD550063AA5B /* HYHomeImgCell.m in Sources */,
 				3EA0BC231F750E5600F78FDD /* HYReceiveAddressTableViewCell.m in Sources */,
 				3E5620A11F6BA0D60063AA5B /* HYHomePageView.m in Sources */,
 				3E27549E1F72185F0010053E /* HYGoodsDetailModel.m in Sources */,
 				3E5620811F6B6DAC0063AA5B /* HYImagePickerManager.m in Sources */,
 				3E2754481F6F727C0010053E /* HYTypeRecommendCollectionViewCell.m in Sources */,
+				3E1022041F7B39F40048D556 /* HYMyAddressViewController.m in Sources */,
 				3E56207B1F6B6DAC0063AA5B /* Const.m in Sources */,
 				3E27543F1F6F64630010053E /* HYTagsItemModel.m in Sources */,
 				3E2754551F6F9C6B0010053E /* HYLoginViewController.m in Sources */,
+				3E1021EC1F7A477B0048D556 /* HYMyOrderModel.m in Sources */,
 				3E2754641F70AA4A0010053E /* HYMineHeaderView.m in Sources */,
 				3E5620911F6B72D90063AA5B /* HYSortViewController.m in Sources */,
 				3E56208E1F6B728E0063AA5B /* HYHomePageViewController.m in Sources */,
 				3EA0BC021F725CA100F78FDD /* HYProductsImageCell.m in Sources */,
 				3EA0BC2C1F750EDD00F78FDD /* HYGoodsPayTableViewCell.m in Sources */,
 				3E5620BA1F6BBDFE0063AA5B /* HYHomeBannerCell.m in Sources */,
+				3E1021F81F7A4C290048D556 /* HYMyOrderTableViewCell.m in Sources */,
 				3EA0BC161F73A4D900F78FDD /* HYBuyCountEditView.m in Sources */,
 				3E4D78841F7905C000BC9C2B /* HYWeChatPayModel.m in Sources */,
 				3E27546B1F70B2970010053E /* HYOrderTableViewCell.m in Sources */,
@@ -1092,10 +1171,14 @@
 				3E4D78811F79038B00BC9C2B /* HYPayHandle.m in Sources */,
 				3E27544B1F6F734B0010053E /* HYTypeRecommendItemModel.m in Sources */,
 				3E2754361F6F56580010053E /* HYGoodHealthModel.m in Sources */,
+				3E1022011F7B39D80048D556 /* HYMyDisCouponViewController.m in Sources */,
+				3E1021F21F7A48EB0048D556 /* HYUserHandle.m in Sources */,
 				3E4D78AC1F7A2C0700BC9C2B /* HYMyOrderViewController.m in Sources */,
 				3E4D787D1F79005800BC9C2B /* HYCreateOrderDatalist.m in Sources */,
 				3E2754911F7200CD0010053E /* HYGoodsListViewController.m in Sources */,
 				3E5620821F6B6DAC0063AA5B /* HYLocationManager.m in Sources */,
+				3E4D78B21F7A33DC00BC9C2B /* HYMyOrderTitleView.m in Sources */,
+				3E1021FE1F7B35E30048D556 /* HYMyAccountViewController.m in Sources */,
 				3E27546E1F70B2BC0010053E /* HYMineInfoTableViewCell.m in Sources */,
 				3EA0BC291F750EC300F78FDD /* HYDiscountTableViewCell.m in Sources */,
 				3E5620791F6B6DAC0063AA5B /* UIColor+HexString.m in Sources */,
@@ -1108,12 +1191,16 @@
 				3E56207F1F6B6DAC0063AA5B /* DESECB.m in Sources */,
 				3EA0BC0C1F725D5B00F78FDD /* HYProductsImageDetailCell.m in Sources */,
 				3E5620801F6B6DAC0063AA5B /* GTMBase64.m in Sources */,
+				3E10220A1F7B3A330048D556 /* HYMyQRCodeViewController.m in Sources */,
 				3E27543C1F6F61E40010053E /* HYHomeTagsCollectionViewCell.m in Sources */,
 				3EA0BC1F1F750CB100F78FDD /* HYFillOrderViewController.m in Sources */,
 				3E27547F1F70FBED0010053E /* HYNoGoodsTableViewCell.m in Sources */,
 				3E2754A11F721AC00010053E /* HYGoodsItemProp.m in Sources */,
+				3E10220D1F7B44050048D556 /* HYMyAccountTableViewCell.m in Sources */,
+				3E4D78AF1F7A327E00BC9C2B /* HYMyOrderChildViewController.m in Sources */,
 				3E56209E1F6B9EEF0063AA5B /* HYHomePageModel.m in Sources */,
 				3E5620941F6B72E90063AA5B /* HYShoppingCartViewController.m in Sources */,
+				3E1022071F7B3A120048D556 /* HYFeedbackViewController.m in Sources */,
 				3E4D788A1F79088F00BC9C2B /* HYAlipayManager.m in Sources */,
 				3E5620A41F6BA16D0063AA5B /* HYHomeViewModel.m in Sources */,
 				3E4D78A21F79F26200BC9C2B /* HYPayResultViewController.m in Sources */,
@@ -1126,6 +1213,7 @@
 				3E56208B1F6B72750063AA5B /* HYTabBarController.m in Sources */,
 				3E2754A41F721BE60010053E /* HYGoodsItemImage.m in Sources */,
 				3E2754581F6F9D520010053E /* HYLoginView.m in Sources */,
+				3E1021FB1F7A53BD0048D556 /* HYUserModel.m in Sources */,
 				3E56204B1F6B6D440063AA5B /* HYBaseModel.m in Sources */,
 				3E4D787A1F78E51300BC9C2B /* HYCreateOrder.m in Sources */,
 				3E5620831F6B6DAC0063AA5B /* HYPhoneInfo.m in Sources */,

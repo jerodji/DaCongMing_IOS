@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void(^myAllOrderBlock)(void);
+
 @interface HYOrderTableViewCell : UITableViewCell
+
+/** myAllOrderBlock */
+@property (nonatomic,copy) myAllOrderBlock myAllOrder;
 
 @end

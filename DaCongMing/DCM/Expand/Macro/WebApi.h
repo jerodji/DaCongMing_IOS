@@ -57,6 +57,9 @@
 #define API_Alipay              @"HAILIN_PAY/getAliPayOrder.do"
 
 //微信支付
-#define API_WeChatPay              @"HAILIN_PAY/getWechatPayOrder.do"
+#define API_WeChatPay           @"HAILIN_PAY/getWechatPayOrder.do"
+
+//获取订单数据
+#define API_MyAllOrder          @"HAILIN_SERVER/getSellerOrderList.do"
 
 #endif /* WebApi_h */

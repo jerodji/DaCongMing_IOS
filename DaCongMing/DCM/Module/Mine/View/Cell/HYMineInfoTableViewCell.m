@@ -29,7 +29,7 @@
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         
         _titleArray = @[@"我的账户",@"优惠券",@"我的地址",@"我的二维码",@"意见反馈",@"联系客服"];
-        _imgArray = @[@"mine_myAccount",@"mine_discountCoupon",@"mine_myAddress",@"mine_qrCode",@"mine_feedback",@"mine_myAddress"];
+        _imgArray = @[@"mine_myAccount",@"mine_discountCoupon",@"mine_myAddress",@"mine_qrCode",@"mine_feedback",@"mine_phoneCall"];
          
         [self setupSubviews];
     }
@@ -49,8 +49,18 @@
         button.frame = CGRectMake((i % 4) * itemWidth, (i / 4) * (itemHeight + itemMargin) + 20 * WIDTH_MULTIPLE, itemWidth, itemHeight);
         button.titleLabel.font = KFitFont(14);
         [button setTitleColor:KCOLOR(@"272727") forState:UIControlStateNormal];
+        [button addTarget:self action:@selector(infoBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+        button.tag = 200 + i;
         [self addSubview:button];
         
+    }
+}
+
+- (void)infoBtnAction:(UIButton *)sender{
+    
+    if (_delegate && [_delegate respondsToSelector:@selector(jumpToMineInfoDetailVCWithTag:)]) {
+        
+        [_delegate jumpToMineInfoDetailVCWithTag:sender.tag - 200];
     }
 }
 

@@ -81,6 +81,18 @@
     return cell;
 }
 
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    NSDictionary *dict = _model.reCommendTday[indexPath.item];
+    HYGoodsItemModel *model = [HYGoodsItemModel modelWithDictionary:dict];
+    
+    DLog(@"current itemID is %@",model.item_id);
+    
+    
+    self.collectionSelect(model.item_id);
+    
+}
+
 
 #pragma mark - lazyload
 - (UILabel *)titleLabel{
@@ -120,7 +132,7 @@
         
         CGFloat itemWidth = (KSCREEN_WIDTH - 20) / 3;
          layout.itemSize = CGSizeMake(itemWidth, (itemWidth * 1.2 + 50) * WIDTH_MULTIPLE);
-        layout.minimumLineSpacing = 0;
+        layout.minimumLineSpacing = 5;
         layout.minimumInteritemSpacing = 5;
 
         _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, self.subTitleLabel.bottom + 10, KSCREEN_WIDTH, (itemWidth * 1.2 * 1.2 + 50) * WIDTH_MULTIPLE) collectionViewLayout:layout];

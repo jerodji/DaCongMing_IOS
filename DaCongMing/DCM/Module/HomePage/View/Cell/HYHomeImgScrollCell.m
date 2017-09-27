@@ -103,6 +103,19 @@
     return cell;
 }
 
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    NSDictionary *dict = _goodHealthModel.itemList[indexPath.item];
+    HYGoodsItemModel *model = [HYGoodsItemModel modelWithDictionary:dict];
+    
+    DLog(@"current itemID is %@",model.item_id);
+    
+    
+    self.collectionSelect(model.item_id);
+    
+}
+
+
 #pragma mark - lazyload
 - (UIImageView *)imgView{
     
@@ -127,7 +140,7 @@
         [layout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
         CGFloat itemWidth = (KSCREEN_WIDTH - 20) / 3;
         layout.itemSize = CGSizeMake(itemWidth, (itemWidth * 1.2 + 50) * WIDTH_MULTIPLE);
-        layout.minimumLineSpacing = 0;
+        layout.minimumLineSpacing = 5;
         layout.minimumInteritemSpacing = 5;
         
         

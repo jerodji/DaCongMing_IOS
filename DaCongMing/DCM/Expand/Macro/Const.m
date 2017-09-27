@@ -16,5 +16,6 @@ NSString * const KUserPassword = @"userLoginPassword";
 
 NSString * const KWeChatLoginNotification = @"KWeChatLoginNotification";
 
+NSString * const KCustomerServicePhone = @"13027104773";
 
 @end
