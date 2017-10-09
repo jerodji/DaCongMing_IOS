@@ -23,7 +23,7 @@
 #import "HYMyQRCodeViewController.h"
 #import "HYFeedbackViewController.h"
 
-@interface HYMineViewController ()<UITableViewDelegate,UITableViewDataSource,HYMineInfoBtnActionDelegate>
+@interface HYMineViewController ()<UITableViewDelegate,UITableViewDataSource,HYMineInfoBtnActionDelegate,HYMyOrderActionDelegate>
 
 /** tableView */
 @property (nonatomic,strong) UITableView *tableView;
@@ -119,7 +119,10 @@
                 return ;
             HYMyOrderViewController *myOrderVC = [HYMyOrderViewController new];
             [self.navigationController pushViewController:myOrderVC animated:YES];
+            myOrderVC.selectTag = 0;
+
         };
+        cell.delegate = self;
         return cell;
     }
     else if (indexPath.row == 2){
@@ -195,6 +198,58 @@
 }
 
 #pragma mark - CellDelegate
+//订单Cell
+- (void)jumpToMyOrderDetailVCWithTag:(NSInteger)tag{
+    
+//    @"待付款",@"待发货",@"待收货",@"已收货",@"售后服务"
+    switch (tag) {
+        case 0:{
+            if([HYUserHandle jumpToLoginViewControllerFromVC:self])
+                return ;
+            HYMyOrderViewController *myOrderVC = [HYMyOrderViewController new];
+            [self.navigationController pushViewController:myOrderVC animated:YES];
+            myOrderVC.selectTag = 1;
+        }
+            break;
+        case 1:
+        {
+            if([HYUserHandle jumpToLoginViewControllerFromVC:self])
+                return ;
+            HYMyOrderViewController *myOrderVC = [HYMyOrderViewController new];
+            [self.navigationController pushViewController:myOrderVC animated:YES];
+            myOrderVC.selectTag = 2;
+
+        }
+            break;
+        case 2:
+        {
+            if([HYUserHandle jumpToLoginViewControllerFromVC:self])
+                return ;
+            HYMyOrderViewController *myOrderVC = [HYMyOrderViewController new];
+            [self.navigationController pushViewController:myOrderVC animated:YES];
+            myOrderVC.selectTag = 3;
+
+        }
+            break;
+        case 3:
+        {
+            if([HYUserHandle jumpToLoginViewControllerFromVC:self])
+                return ;
+            HYMyOrderViewController *myOrderVC = [HYMyOrderViewController new];
+            [self.navigationController pushViewController:myOrderVC animated:YES];
+            myOrderVC.selectTag = 4;
+
+        }
+            break;
+        case 4:
+            
+            break;
+        default:
+            break;
+    }
+}
+
+//我的账户
 - (void)jumpToMineInfoDetailVCWithTag:(NSInteger)tag{
     
      //[@"我的账户",@"优惠券",@"我的地址",@"我的二维码",@"意见反馈",@"联系客服"];

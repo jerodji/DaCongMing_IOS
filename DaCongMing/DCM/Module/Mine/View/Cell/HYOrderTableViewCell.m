@@ -64,6 +64,7 @@
         button.titleLabel.font = KFitFont(14);
         [button setTitleColor:KCOLOR(@"272727") forState:UIControlStateNormal];
         [self addSubview:button];
+        button.tag = 300 + i;
         [button addTarget:self action:@selector(orderBtnAction:) forControlEvents:UIControlEventTouchUpInside];
     }
 }
@@ -97,6 +98,10 @@
 #pragma mark - action
 - (void)orderBtnAction:(UIButton *)button{
 
+    if (_delegate && [_delegate respondsToSelector:@selector(jumpToMyOrderDetailVCWithTag:)]) {
+        
+        [_delegate jumpToMyOrderDetailVCWithTag:button.tag - 300];
+    }
 }
 
 - (void)myOrderAction{

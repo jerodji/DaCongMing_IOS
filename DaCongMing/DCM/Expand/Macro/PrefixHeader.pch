@@ -25,6 +25,7 @@
 #import <WXApi.h>
 
 #import "HTTPManager.h"
+#import "HYPlistTools.h"
 #import "Const.h"
 #import "Macro.h"
 #import "WebApi.h"
@@ -36,5 +37,6 @@
 #import "HYCreateOrder.h"
 #import "HYCustomAlert.h"
 #import "HYTabBarController.h"
+#import "SAMTextView.h"
 
 #endif /* PrefixHeader_pch */

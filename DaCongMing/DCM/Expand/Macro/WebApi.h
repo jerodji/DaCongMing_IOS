@@ -65,4 +65,22 @@
 //获取优惠券
 #define API_MyDiscountConpon         @"HAILIN_SERVER/showUserCoupon.do"
 
+//获取收货地址
+#define API_MyReceiverAddress         @"HAILIN_SERVER/getAddresses.do"
+
+//关键字搜索
+#define API_KeywordsSearch          @"HAILIN_SERVER/searchItem.do"
+
+//收货地址城市数据
+#define API_CityData                @"HAILIN_SERVER/getArea.do"
+
+//添加收货地址
+#define API_AddReceiveAddress       @"HAILIN_SERVER/addAddress.do"
+
+//删除收货地址
+#define API_deleteReceiveAddress       @"HAILIN_SERVER/removeAddress.do"
+
+//编辑收货地址
+#define API_deleteReceiveAddress       @"HAILIN_SERVER/removeAddress.do"
+
 #endif /* WebApi_h */

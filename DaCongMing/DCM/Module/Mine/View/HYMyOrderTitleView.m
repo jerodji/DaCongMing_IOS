@@ -54,13 +54,13 @@
 - (void)layoutSubviews{
     
     CGFloat width = KSCREEN_WIDTH / self.titleArray.count;
-    [_line mas_makeConstraints:^(MASConstraintMaker *make) {
-       
-        make.left.equalTo(self).offset(2);
-        make.width.equalTo(@(width - 4));
-        make.height.equalTo(@2);
-        make.bottom.equalTo(self);
-    }];
+//    [_line mas_makeConstraints:^(MASConstraintMaker *make) {
+//
+//        make.left.equalTo(self).offset(2);
+//        make.width.equalTo(@(width - 4));
+//        make.height.equalTo(@2);
+//        make.bottom.equalTo(self);
+//    }];
 }
 
 - (void)setPreviousSelectIndex:(NSInteger)previousSelectIndex{
@@ -98,7 +98,13 @@
     CGFloat width = KSCREEN_WIDTH / self.titleArray.count;
     [UIView animateWithDuration:0.2 animations:^{
        
-        _line.frame = CGRectMake(_previousSelectIndex * width + 2,  38, width - 4, 2);
+        [_line mas_updateConstraints:^(MASConstraintMaker *make) {
+            
+            make.left.equalTo(self).offset(_previousSelectIndex * width + 2);
+            make.width.equalTo(@(width - 4));
+            make.height.equalTo(@2);
+            make.bottom.equalTo(self);
+        }];
     }];
     
     if (_delegate && [_delegate respondsToSelector:@selector(titleChanged:)]) {

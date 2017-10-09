@@ -162,6 +162,27 @@
     }
 }
 
+#pragma mark - action
+- (void)toPayAction{
+    
+    
+}
+
+- (void)buyAgainAction{
+    
+    
+}
+
+- (void)confirmAction{
+    
+    
+}
+
+- (void)deleteOrderAction{
+    
+    
+}
+
 #pragma mark - lazyload
 - (UIImageView *)iconImgView{
     
@@ -254,7 +275,7 @@
         _toPayBtn.layer.borderColor = KAPP_272727_COLOR.CGColor;
         _toPayBtn.layer.borderWidth = 1;
         _toPayBtn.clipsToBounds = YES;
-        [_toPayBtn addTarget:self action:@selector(buyAgainAction) forControlEvents:UIControlEventTouchUpInside];
+        [_toPayBtn addTarget:self action:@selector(toPayAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return _toPayBtn;
 }
@@ -272,7 +293,7 @@
         _deleteOrderBtn.layer.borderColor = KAPP_272727_COLOR.CGColor;
         _deleteOrderBtn.layer.borderWidth = 1;
         _deleteOrderBtn.clipsToBounds = YES;
-        [_deleteOrderBtn addTarget:self action:@selector(buyAgainAction) forControlEvents:UIControlEventTouchUpInside];
+        [_deleteOrderBtn addTarget:self action:@selector(deleteOrderAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return _deleteOrderBtn;
 }
@@ -290,7 +311,7 @@
         _confirmGoodsBtn.layer.borderColor = KAPP_272727_COLOR.CGColor;
         _confirmGoodsBtn.layer.borderWidth = 1;
         _confirmGoodsBtn.clipsToBounds = YES;
-        [_confirmGoodsBtn addTarget:self action:@selector(buyAgainAction) forControlEvents:UIControlEventTouchUpInside];
+        [_confirmGoodsBtn addTarget:self action:@selector(confirmAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return _confirmGoodsBtn;
 }

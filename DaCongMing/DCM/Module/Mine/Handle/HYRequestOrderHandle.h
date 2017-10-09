@@ -20,4 +20,24 @@
  */
 + (void)requestDiscountCouponComplectionBlock:(void(^)(NSArray *datalist))complection noDataBlock:(void(^)())noDiscountCoupon;
 
+/**
+ *  收货地址
+ */
++ (void)requestReceivedAddressComplectionBlock:(void(^)(NSArray *datalist))complection noDataBlock:(void(^)())noAddressBlock;
+
+/**
+ *  添加收货地址
+ */
++ (void)addReceivedAddress:(NSDictionary *)addressDict ComplectionBlock:(void(^)(BOOL isSuccess))complection;
+
+/**
+ *  修改默认地址
+ */
++ (void)setDefaultReceivedAddress:(NSString *)newAddress_id oldAddressID:(NSString *)oldAddressID ComplectionBlock:(void(^)(BOOL isSuccess))complection;
+
+/**
+ *  删除收货地址
+ */
++ (void)deleteReceivedAddress:(NSString *)addressID ComplectionBlock:(void(^)(BOOL isSuccess))complection;
+
 @end

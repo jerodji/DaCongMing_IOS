@@ -37,6 +37,19 @@ static NSString *cellIdentifier = @"collectionCellIdentifer";
     [self.childViewControllers makeObjectsPerformSelector:@selector(removeFromParentViewController)];
     [self.view addSubview:self.titleView];
     [self.view addSubview:self.collectionView];
+    
+}
+
+- (void)setSelectTag:(NSInteger)selectTag{
+    
+    _selectTag = selectTag;
+    
+    [self setupSubviews];
+    if (self.childViewControllers) {
+        
+//        [self titleChanged:selectTag];
+        _titleView.previousSelectIndex = selectTag;
+    }
 }
 
 #pragma mark - collectionViewDataSource
@@ -52,7 +65,6 @@ static NSString *cellIdentifier = @"collectionCellIdentifer";
     [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     //添加控制器
     HYMyOrderChildViewController *vc = self.childViewControllers[indexPath.item];
-    vc.tag = indexPath.item;
     //设置控制器的View
     [vc.view setFrame:CGRectMake(0, 0, collectionView.width, collectionView.height)];
     [cell.contentView addSubview:vc.view];
@@ -68,6 +80,9 @@ static NSString *cellIdentifier = @"collectionCellIdentifer";
         
         [self.collectionView setContentOffset:CGPointMake(index * KSCREEN_WIDTH, 0)];
     }];
+    HYMyOrderChildViewController *vc = self.childViewControllers[index];
+    vc.tag = index;
+    
 }
 
 

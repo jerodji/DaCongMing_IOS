@@ -53,13 +53,70 @@
                     
                     complection(array);
                 }
+                else{
+                   
+                    noDiscountCoupon();
+                }
                 
-                noDiscountCoupon();
             }
             else{
                 
                 noDiscountCoupon();
                 [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"获取订单信息出错!"];
+            }
+        }
+    }];
+}
+
++ (void)requestReceivedAddressComplectionBlock:(void (^)(NSArray *))complection noDataBlock:(void (^)())noAddressBlock{
+    
+    NSMutableDictionary *requestParam = [NSMutableDictionary dictionary];
+    [requestParam setValue:[HYUserModel sharedInstance].token forKey:@"token"];
+    [[HTTPManager shareHTTPManager] postDataFromUrl:API_MyReceiverAddress withParameter:requestParam isShowHUD:YES success:^(id returnData) {
+        
+        if (returnData) {
+            
+            NSInteger code =[[returnData objectForKey:@"successed"] integerValue];
+            if (code == 000) {
+                
+                NSArray *array = [returnData objectForKey:@"dataInfo"][@"dataList"];
+                if (array.count) {
+                    
+                    complection(array);
+                }
+                else{
+                    
+                    noAddressBlock();
+                }
+                
+                
+            }
+            else{
+                
+                noAddressBlock();
+                [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"获取用户收货地址出错"];
+            }
+        }
+    }];
+}
+
++ (void)addReceivedAddress:(NSDictionary *)addressDict ComplectionBlock:(void (^)(BOOL))complection{
+    
+    NSMutableDictionary *requestParam = [NSMutableDictionary dictionary];
+    [requestParam setValue:[HYUserModel sharedInstance].token forKey:@"token"];
+    [requestParam setValuesForKeysWithDictionary:addressDict];
+    
+    [[HTTPManager shareHTTPManager] postDataFromUrl:API_AddReceiveAddress withParameter:requestParam isShowHUD:YES success:^(id returnData) {
+        
+        if (returnData) {
+            
+            NSInteger code =[[returnData objectForKey:@"successed"] integerValue];
+            if (code == 000) {
+                
+                complection(YES);
+            }
+            else{
+                complection(NO);
             }
         }
     }];

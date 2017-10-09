@@ -10,4 +10,7 @@
 
 @interface HYMyOrderViewController : HYBaseViewController
 
+/** selectTag */
+@property (nonatomic,assign) NSInteger selectTag;
+
 @end

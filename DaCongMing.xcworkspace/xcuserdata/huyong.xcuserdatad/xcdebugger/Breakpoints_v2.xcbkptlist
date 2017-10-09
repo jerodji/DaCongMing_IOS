@@ -19,13 +19,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DaCongMing/DCM/Module/Mine/Handle/HYRequestOrderHandle.m"
-            timestampString = "528202318.686228"
+            filePath = "DaCongMing/DCM/Module/Mine/Controller/HYMyAddressViewController.m"
+            timestampString = "529221966.123245"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "46"
-            endingLineNumber = "46"
-            landmarkName = "+requestDiscountCouponComplectionBlock:noDataBlock:"
+            startingLineNumber = "140"
+            endingLineNumber = "140"
+            landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -35,13 +35,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DaCongMing/DCM/Module/HomePage/View/HYHotSearchView.m"
-            timestampString = "528202318.68658"
+            filePath = "DaCongMing/DCM/Module/Mine/View/AreaView.m"
+            timestampString = "529221966.123563"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "67"
-            endingLineNumber = "67"
-            landmarkName = "-setupSubviews"
+            startingLineNumber = "139"
+            endingLineNumber = "139"
+            landmarkName = "-setProvinceArray:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -51,46 +51,14 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DaCongMing/DCM/Module/HomePage/View/HYHotSearchView.m"
-            timestampString = "528202318.687172"
+            filePath = "DaCongMing/DCM/Expand/Network/HTTPManager.m"
+            timestampString = "529221966.123789"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "77"
-            endingLineNumber = "77"
-            landmarkName = "-setupSubviews"
+            startingLineNumber = "93"
+            endingLineNumber = "93"
+            landmarkName = "-postDataFromUrl:withParameter:isShowHUD:success:"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[HYHotSearchView setupSubviews]"
-                  moduleName = "DaCongMing"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/huyong/Desktop/DaCongMing/DaCongMing/DaCongMing/DCM/Module/HomePage/View/HYHotSearchView.m"
-                  timestampString = "528201263.329605"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "72"
-                  endingLineNumber = "72"
-                  offsetFromSymbolStart = "1864">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__32-[HYHotSearchView setupSubviews]_block_invoke.105"
-                  moduleName = "DaCongMing"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/huyong/Desktop/DaCongMing/DaCongMing/DaCongMing/DCM/Module/HomePage/View/HYHotSearchView.m"
-                  timestampString = "528201263.331911"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "74"
-                  endingLineNumber = "74"
-                  offsetFromSymbolStart = "72">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
