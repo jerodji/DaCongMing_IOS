@@ -54,7 +54,6 @@
     [self requestNetwork];
     [self setupMasonryLayout];
     
-    [self bottomBtnAction];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -173,6 +172,21 @@
         
         [weakSelf setupSubviews];
         weakSelf.selectSpeciView.goodsModel = weakSelf.detailModel;
+        weakSelf.selectSpeciView.isAddToCarts = NO;
+        //规格
+        [UIView animateWithDuration:0.2 animations:^{
+            
+            [weakSelf.selectSpeciView mas_updateConstraints:^(MASConstraintMaker *make) {
+                make.left.top.right.bottom.equalTo(weakSelf.view);
+            }];
+        }];
+    };
+    
+    self.bottomView.addToCartsAction = ^{
+        
+        [weakSelf setupSubviews];
+        weakSelf.selectSpeciView.goodsModel = weakSelf.detailModel;
+        weakSelf.selectSpeciView.isAddToCarts = YES;
         //规格
         [UIView animateWithDuration:0.2 animations:^{
             
@@ -188,17 +202,35 @@
     
     if (![HYUserModel sharedInstance].token) {
         
-        [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"请登录!!!"];
+        [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"请先登录!"];
         [HYUserHandle jumpToLoginViewControllerFromVC:self];
+        
+        return;
     }
     
     if (item) {
+        
+        if (_selectSpeciView.isAddToCarts) {
+            
+            [HYGoodsHandle addToShoppingCartsItemID:item.item_id count:count andUnit:item.unit ComplectionBlock:^(BOOL isSuccess) {
+               
+                if (isSuccess) {
+                    
+                    DLog(@"添加购物车成功");
+                }
+                
+                [_selectSpeciView removeFromSuperview];
+            }];
+        }
+        else{
+        
+            HYFillOrderViewController *fillOrderVC = [[HYFillOrderViewController alloc] init];
+            fillOrderVC.buyCount = count;
+            fillOrderVC.goodsDetailModel = _detailModel;
+            fillOrderVC.specifical = item.unit;
+            [self.navigationController pushViewController:fillOrderVC animated:YES];
+        }
        
-        HYFillOrderViewController *fillOrderVC = [[HYFillOrderViewController alloc] init];
-        fillOrderVC.buyCount = count;
-        fillOrderVC.goodsDetailModel = _detailModel;
-        fillOrderVC.specifical = item.unit;
-        [self.navigationController pushViewController:fillOrderVC animated:YES];
     }
     else{
         [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"请选择商品规格"];
@@ -379,7 +411,7 @@
     if (!_bottomView) {
         
         _bottomView = [[HYGoodsDetailBottomView alloc] init];
-        
+        [self bottomBtnAction];
     }
     return _bottomView;
 }

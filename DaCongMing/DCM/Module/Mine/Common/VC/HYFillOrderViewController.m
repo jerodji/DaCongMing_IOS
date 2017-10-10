@@ -21,6 +21,7 @@
 #import "HYWeChatPayManager.h"
 
 #import "HYPayResultViewController.h"
+#import "HYMyAddressViewController.h"
 
 @interface HYFillOrderViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -117,12 +118,14 @@
                 HYPayResultViewController *payResultVC = [HYPayResultViewController new];
                 payResultVC.title = @"支付成功";
                 payResultVC.isPaySuccess = YES;
+                payResultVC.addressMap = _orderModel.addressMap;
                 [self.navigationController pushViewController:payResultVC animated:YES];
             } failed:^{
                 
                 HYPayResultViewController *payResultVC = [HYPayResultViewController new];
                 payResultVC.title = @"支付失败";
                 payResultVC.isPaySuccess = NO;
+                payResultVC.addressMap = _orderModel.addressMap;
                 [self.navigationController pushViewController:payResultVC animated:YES];
             }];
         }];
@@ -133,7 +136,29 @@
             
             [HYWeChatPayManager wechatPayWith:weChatPayModel];
             
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(weChatPaySuccess:) name:KWeChatPaySuccessNotification object:nil];
         }];
+    }
+}
+
+//微信支付通知
+- (void)weChatPaySuccess:(NSNotification *)notification{
+    
+    if ([notification.object isEqualToString:@"YES"]) {
+        
+        HYPayResultViewController *payResultVC = [HYPayResultViewController new];
+        payResultVC.title = @"支付成功";
+        payResultVC.isPaySuccess = YES;
+        payResultVC.addressMap = _orderModel.addressMap;
+        [self.navigationController pushViewController:payResultVC animated:YES];
+    }
+    else{
+        
+        HYPayResultViewController *payResultVC = [HYPayResultViewController new];
+        payResultVC.title = @"支付失败";
+        payResultVC.isPaySuccess = NO;
+        payResultVC.addressMap = _orderModel.addressMap;
+        [self.navigationController pushViewController:payResultVC animated:YES];
     }
 }
 
@@ -152,7 +177,7 @@
     
     if (indexPath.row == 0) {
         
-        //图片
+        //收货地址
         static NSString *receiveAddressCell = @"receiveAddressCell";
         HYReceiveAddressTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:receiveAddressCell];
         if (!cell) {
@@ -211,7 +236,32 @@
 #pragma mark - tableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    
+    if (indexPath.row == 0) {
+        
+        //收货地址
+        HYMyAddressViewController *myAddressVC = [HYMyAddressViewController new];
+        myAddressVC.isJump = YES;
+        [self.navigationController pushViewController:myAddressVC animated:YES];
+        
+        myAddressVC.selectAddBlock = ^(HYMyAddressModel *addressModel) {
+          
+            [HYGoodsHandle changeOrderReceiveAddressOrderID:_createOrderDatalist.sorder_id addressModel:addressModel ComplectionBlock:^(BOOL isSuccess) {
+               
+                if (isSuccess) {
+                    
+                    HYAddressMap *addressMap = [HYAddressMap new];
+                    addressMap.province = addressModel.province;
+                    addressMap.city = addressModel.city;
+                    addressMap.area = addressModel.area;
+                    addressMap.receiver = addressModel.receiver;
+                    addressMap.address = addressModel.address;
+                    addressMap.phoneNum = addressModel.phoneNum;
+                    _orderModel.addressMap = addressMap;
+                    [_tableView reloadData];
+                }
+            }];
+        };
+    }
 }
 
 

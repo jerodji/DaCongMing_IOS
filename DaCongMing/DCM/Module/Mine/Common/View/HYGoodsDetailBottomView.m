@@ -89,12 +89,18 @@
 #pragma mark - action
 - (void)cartsBtnAction{
     
-    self.shoppingCartsAction();
+    if (self.shoppingCartsAction) {
+        
+        self.shoppingCartsAction();
+    }
 }
 
 - (void)brandShopBtnAction{
     
-    self.brandShopAction();
+    if (self.brandShopAction) {
+        
+        self.brandShopAction();
+    }
 }
 
 - (void)collectBtnAction{
@@ -104,12 +110,18 @@
 
 - (void)addToCartsBtnAction{
     
-    self.addToCartsAction();
+    if (self.addToCartsAction) {
+        
+        self.addToCartsAction();
+    }
 }
 
 - (void)buyNowBtnAction{
     
-    self.buyNowAction();
+    if (self.buyNowAction) {
+        
+        self.buyNowAction();
+    }
 }
 
 #pragma mark - lazyload

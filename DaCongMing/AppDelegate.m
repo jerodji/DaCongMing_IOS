@@ -112,12 +112,14 @@
         PayResp *response = (PayResp*)resp;
         
         switch(response.errCode){
-            caseWXSuccess:
+            case WXSuccess:
                 //服务器端查询支付通知或查询API返回的结果再提示成功
                 DLog(@"支付成功");
+                [[NSNotificationCenter defaultCenter] postNotificationName:KWeChatPaySuccessNotification object:@"YES"];
                 break;
             default:
                 DLog(@"支付失败，retcode=%d",resp.errCode);
+                [[NSNotificationCenter defaultCenter] postNotificationName:KWeChatPaySuccessNotification object:@"NO"];
                 break;
         }
     }

@@ -131,6 +131,15 @@
     }
 }
 
+- (void)setAddressMap:(HYAddressMap *)addressMap{
+    
+    _addressMap = addressMap;
+    
+    _receiverLabel.text = [NSString stringWithFormat:@"收货人:%@",addressMap.receiver];
+    _phoneNumLabel.text = [NSString stringWithFormat:@"手机号:%@",addressMap.phoneNum];
+    _addressLabel.text = [NSString stringWithFormat:@"收货地址:%@%@%@%@",addressMap.province,addressMap.city,addressMap.area,addressMap.address];
+}
+
 #pragma mark - lazyload
 - (UILabel *)receiverLabel{
     

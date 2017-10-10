@@ -28,4 +28,7 @@
 /** delegate */
 @property (nonatomic,weak) id<HYGoodsSpecificationSelectDelegate> delegate;
 
+/** 购物车还是下单 */
+@property (nonatomic,assign) BOOL isAddToCarts;
+
 @end

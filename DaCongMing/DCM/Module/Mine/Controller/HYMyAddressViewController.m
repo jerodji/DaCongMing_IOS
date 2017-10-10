@@ -25,6 +25,9 @@
 /** noAddressView */
 @property (nonatomic,strong) HYNoAddressView *noAddressView;
 
+/** 默认地址 */
+@property (nonatomic,strong) HYMyAddressModel *defaultModel;
+
 
 @end
 
@@ -46,7 +49,14 @@
 
 - (void)setupSubviews{
     
-    self.title = @"我的地址";
+    if (self.isJump) {
+        
+        self.title = @"选择地址";
+    }
+    else{
+        
+        self.title = @"我的地址";
+    }
     self.view.backgroundColor = KCOLOR(@"f4f4f4");
     [self.view addSubview:self.addNewAddress];
 }
@@ -85,6 +95,10 @@
         for (NSDictionary *dict in datalist) {
             
             HYMyAddressModel *model = [HYMyAddressModel modelWithDictionary:dict];
+            if ([model.isdefault integerValue] == 1) {
+                
+                self.defaultModel = model;
+            }
             [_datalist addObject:model];
         }
         
@@ -110,7 +124,19 @@
 
 - (void)setDefaultAddressWithIndexPath:(NSIndexPath *)indexPath{
     
-    
+    HYMyAddressModel *addressModel = _datalist[indexPath.section];
+    [HYRequestOrderHandle setDefaultReceivedAddress:addressModel.address_id oldAddressID:self.defaultModel.address_id ComplectionBlock:^(BOOL isSuccess) {
+       
+        if (isSuccess) {
+            
+            self.defaultModel = addressModel;
+            [self requestData];
+        }
+        else{
+            
+            [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"删除收货地址失败"];
+        }
+    }];
 }
 
 - (void)editAddressWithIndexPath:(NSIndexPath *)indexPath{
@@ -120,7 +146,18 @@
 
 - (void)deleteAddressWithIndexPath:(NSIndexPath *)indexPath{
     
-    
+    HYMyAddressModel *addressModel = _datalist[indexPath.section];
+    [HYRequestOrderHandle deleteReceivedAddress:addressModel.address_id ComplectionBlock:^(BOOL isSuccess) {
+       
+        if (isSuccess) {
+            
+            [self requestData];
+        }
+        else{
+            
+            [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"删除收货地址失败"];
+        }
+    }];
 }
 
 - (void)addressBtnAcitonWithFlag:(NSInteger)flag indexPath:(NSIndexPath *)indexPath{
@@ -170,7 +207,12 @@
 #pragma mark - tableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    
+    HYMyAddressModel *addressModel = self.datalist[indexPath.section];
+    if (_isJump) {
+        
+        self.selectAddBlock(addressModel);
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 

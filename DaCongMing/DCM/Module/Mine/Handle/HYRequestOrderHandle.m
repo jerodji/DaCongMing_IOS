@@ -122,4 +122,49 @@
     }];
 }
 
++ (void)setDefaultReceivedAddress:(NSString *)newAddress_id oldAddressID:(NSString *)oldAddressID ComplectionBlock:(void (^)(BOOL))complection{
+    
+    NSMutableDictionary *requestParam = [NSMutableDictionary dictionary];
+    [requestParam setValue:[HYUserModel sharedInstance].token forKey:@"token"];
+    [requestParam setValue:newAddress_id forKey:@"old_dfaddress_id"];
+    [requestParam setValue:oldAddressID forKey:@"new_dfaddress_id"];
+
+    [[HTTPManager shareHTTPManager] postDataFromUrl:API_setDefaultReceiveAddress withParameter:requestParam isShowHUD:YES success:^(id returnData) {
+        
+        if (returnData) {
+            
+            NSInteger code =[[returnData objectForKey:@"successed"] integerValue];
+            if (code == 000) {
+                
+                complection(YES);
+            }
+            else{
+                complection(NO);
+            }
+        }
+    }];
+}
+
++ (void)deleteReceivedAddress:(NSString *)addressID ComplectionBlock:(void (^)(BOOL))complection{
+    
+    NSMutableDictionary *requestParam = [NSMutableDictionary dictionary];
+    [requestParam setValue:[HYUserModel sharedInstance].token forKey:@"token"];
+    [requestParam setValue:addressID forKey:@"address_id"];
+    
+    [[HTTPManager shareHTTPManager] postDataFromUrl:API_deleteReceiveAddress withParameter:requestParam isShowHUD:YES success:^(id returnData) {
+        
+        if (returnData) {
+            
+            NSInteger code =[[returnData objectForKey:@"successed"] integerValue];
+            if (code == 000) {
+                
+                complection(YES);
+            }
+            else{
+                complection(NO);
+            }
+        }
+    }];
+}
+
 @end

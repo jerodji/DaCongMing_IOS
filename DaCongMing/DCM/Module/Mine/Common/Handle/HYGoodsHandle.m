@@ -109,4 +109,58 @@
     }];
 }
 
++ (void)changeOrderReceiveAddressOrderID:(NSString *)orderID addressModel:(HYMyAddressModel *)addressModel ComplectionBlock:(void (^)(BOOL))complection{
+    
+    NSMutableDictionary *requestParam = [NSMutableDictionary dictionary];
+    [requestParam setValue:[HYUserModel sharedInstance].token forKey:@"token"];
+    [requestParam setValue:orderID forKey:@"sorder_ids"];
+//    [requestParam setValue:addressModel.province forKey:@"province_name"];
+//    [requestParam setValue:addressModel.city forKey:@"city_name"];
+//    [requestParam setValue:addressModel.area forKey:@"area_name"];
+//    [requestParam setValue:addressModel.address forKey:@"address"];
+//    [requestParam setValue:addressModel.receiver forKey:@"receiver"];
+    [requestParam setValue:addressModel.address_id forKey:@"address_id"];
+
+    
+    [[HTTPManager shareHTTPManager] postDataFromUrl:API_ChangeOrderReceiveAddress withParameter:requestParam isShowHUD:YES success:^(id returnData) {
+        
+        if (returnData) {
+            
+            NSInteger code =[[returnData objectForKey:@"successed"] integerValue];
+            if (code == 000) {
+                
+                complection(YES);
+            }
+            else{
+                complection(NO);
+            }
+        }
+    }];
+}
+
++ (void)addToShoppingCartsItemID:(NSString *)itemID count:(NSInteger)count andUnit:(NSString *)unit ComplectionBlock:(void (^)(BOOL))complection{
+    
+    NSMutableDictionary *requestParam = [NSMutableDictionary dictionary];
+    [requestParam setValue:[HYUserModel sharedInstance].token forKey:@"token"];
+    [requestParam setValue:itemID forKey:@"item_id"];
+    [requestParam setValue:unit forKey:@"unit"];
+    [requestParam setValue:[NSNumber numberWithInteger:count] forKey:@"qty"];
+    
+    [[HTTPManager shareHTTPManager] postDataFromUrl:API_AddToShoppingCarts withParameter:requestParam isShowHUD:YES success:^(id returnData) {
+        
+        if (returnData) {
+            
+            NSInteger code =[[returnData objectForKey:@"successed"] integerValue];
+            if (code == 000) {
+                
+                complection(YES);
+            }
+            else{
+                complection(NO);
+            }
+        }
+    }];
+}
+
+
 @end

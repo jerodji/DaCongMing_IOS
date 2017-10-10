@@ -19,6 +19,9 @@ extern NSString *const KUserPassword;
 /** 微信登录通知 */
 extern NSString *const KWeChatLoginNotification;
 
+/** 微信支付成功通知 */
+extern NSString *const KWeChatPaySuccessNotification;
+
 /** 客服电话 */
 extern NSString *const KCustomerServicePhone;
 

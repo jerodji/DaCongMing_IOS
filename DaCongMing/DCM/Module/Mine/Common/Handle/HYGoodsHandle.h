@@ -9,6 +9,7 @@
 #import "HYBaseModel.h"
 #import "HYGoodsDetailModel.h"
 #import "HYCreateOrder.h"
+#import "HYMyAddressModel.h"
 
 @interface HYGoodsHandle : HYBaseModel
 
@@ -27,5 +28,14 @@
  */
 + (void)createOrderWithGuid:(NSString *)guid itemID:(NSString *)itemID count:(NSInteger)count sellerID:(NSString *)sellerID andUnit:(NSString *)unit complectionBlock:(void(^)(HYCreateOrder *order))complection;
 
+/**
+ *  修改订单收货地址
+ */
++ (void)changeOrderReceiveAddressOrderID:(NSString *)orderID addressModel:(HYMyAddressModel *)addressModel ComplectionBlock:(void(^)(BOOL isSuccess))complection;
+
+/**
+ *  添加到购物车
+ */
++ (void)addToShoppingCartsItemID:(NSString *)itemID count:(NSInteger)count andUnit:(NSString *)unit ComplectionBlock:(void(^)(BOOL isSuccess))complection;
 
 @end

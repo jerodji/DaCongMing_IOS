@@ -57,7 +57,11 @@
     return self;
 }
 
-
+- (void)dealloc{
+    
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:KWeChatLoginNotification];
+}
 
 - (void)setupSubViews{
     

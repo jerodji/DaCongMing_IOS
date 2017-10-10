@@ -45,13 +45,13 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
+    [self requestNetwork];
 }
 
 
 - (void)viewWillAppear:(BOOL)animated{
     
     [super viewWillAppear:animated];
-    [self requestNetwork];
     [self setupUI];
 }
 

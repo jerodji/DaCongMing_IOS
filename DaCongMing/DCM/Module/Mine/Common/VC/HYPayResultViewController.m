@@ -7,7 +7,7 @@
 //
 
 #import "HYPayResultViewController.h"
-#import "HYTabBarController.h"
+#import "HYMyOrderViewController.h"
 
 #import "HYGoodsDetailInfoViewController.h"
 #import "HYPayResultTableViewCell.h"
@@ -92,13 +92,21 @@
             
         }
         cell.isPaySuccess = self.isPaySuccess;
+        cell.addressMap = self.addressMap;
         cell.returnHome = ^{
           
             HYTabBarController *tabBar = [[HYTabBarController alloc] init];
-            [UIApplication  sharedApplication].keyWindow.rootViewController = tabBar;
+            [UIApplication sharedApplication].keyWindow.rootViewController = tabBar;
         };
         cell.lookOrderInfo = ^{
             
+            HYMyOrderViewController *myOrderVC = [HYMyOrderViewController new];
+            [self.navigationController pushViewController:myOrderVC animated:YES];
+            myOrderVC.selectTag = 0;
+        };
+        cell.payAgain = ^{
+          
+            [self.navigationController popViewControllerAnimated:YES];
         };
         return cell;
     }

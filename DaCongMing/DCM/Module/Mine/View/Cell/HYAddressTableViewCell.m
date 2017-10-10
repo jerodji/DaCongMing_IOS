@@ -132,6 +132,10 @@
         
         _setDefaultBtn.selected = YES;
     }
+    else{
+        
+        _setDefaultBtn.selected = NO;
+    }
 }
 
 #pragma mark - action
@@ -153,7 +157,10 @@
 
 - (void)deleteBtnAction{
     
-    
+    if (_delegate && [_delegate respondsToSelector:@selector(addressBtnAcitonWithFlag:indexPath:)]) {
+        
+        [_delegate addressBtnAcitonWithFlag:2 indexPath:_indexPath];
+    }
 }
 
 #pragma mark - lazyload
