@@ -31,6 +31,11 @@
 + (void)setPasswordWithPhone:(NSString *)phone password:(NSString *)password complectionBlock:(void(^)(BOOL isSuccess))complection;
 
 /*!
+     用户反馈
+ */
++ (void)userFeedBackWithText:(NSString *)text complectionBlock:(void(^)(BOOL isSuccess))complection;
+
+/*!
  @method
  @brief 跳转到登录VC
  @param fromVC  当前的VC

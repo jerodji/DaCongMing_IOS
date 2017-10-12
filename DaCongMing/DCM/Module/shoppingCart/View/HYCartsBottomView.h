@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void(^checkAllActionBlock)(BOOL isCheckAll);
+
 @interface HYCartsBottomView : UIView
+
+/** 是否全选 */
+@property (nonatomic,copy) checkAllActionBlock checkAllBlock;
+
+/** 价格 */
+@property (nonatomic,copy) NSString *amount;
 
 @end

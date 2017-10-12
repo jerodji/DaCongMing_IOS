@@ -17,4 +17,17 @@
  */
 + (void)showMyShoppingCartsWithComplectionBlock:(void(^)(HYCartsModel *cartsModel))complection;
 
+
+/*!
+ @method
+ @brief 计算购物车价格
+ */
++ (void)calculateCartsAmountWithGuid:(NSString *)guid ComplectionBlock:(void(^)(NSString *amount))complection;
+
+/*!
+ @method
+ @brief 批量修改购物车
+ */
++ (void)bulkEditingCartsAmountWithGuid:(NSString *)editJson ComplectionBlock:(void(^)(BOOL isSuccess))complection;
+
 @end

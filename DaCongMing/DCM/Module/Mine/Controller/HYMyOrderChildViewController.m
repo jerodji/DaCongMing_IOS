@@ -70,12 +70,12 @@
 #pragma mark - TableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     
-    return 1;
+   return self.datalist.count;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return self.datalist.count;
+    return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -88,7 +88,7 @@
         
     }
     
-    NSDictionary *dict = self.datalist[indexPath.row];
+    NSDictionary *dict = self.datalist[indexPath.section];
     HYMyOrderModel *model = [HYMyOrderModel modelWithDictionary:dict];
     cell.model = model;
     return cell;
@@ -101,12 +101,21 @@
 }
 
 
-
-
-
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    return 170 * WIDTH_MULTIPLE;
+    return 230 * WIDTH_MULTIPLE;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, KSCREEN_WIDTH, 10 * WIDTH_MULTIPLE)];
+    view.backgroundColor = KCOLOR(@"f4f4f4");
+    return view;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    
+    return 10 * WIDTH_MULTIPLE;
 }
 
 
@@ -118,7 +127,7 @@
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        
+        _tableView.backgroundColor = KCOLOR(@"f6f6f6");
     }
     return _tableView;
 }

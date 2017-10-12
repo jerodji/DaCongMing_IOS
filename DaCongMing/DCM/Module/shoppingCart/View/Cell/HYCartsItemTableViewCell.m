@@ -7,6 +7,8 @@
 //
 
 #import "HYCartsItemTableViewCell.h"
+#import "HYBuyCountEditView.h"
+#import "HYCartsHandle.h"
 
 @interface HYCartsItemTableViewCell()
 
@@ -24,6 +26,8 @@
 @property (nonatomic,strong) UILabel *PriceLabel;
 /** line */
 @property (nonatomic,strong) UIView *bottomLine;
+/** 编辑数量 */
+@property (nonatomic,strong) HYBuyCountEditView *CountEditView;
 
 @end
 
@@ -39,6 +43,7 @@
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         
         [self setupSubviews];
+        [self editCountChanged];
     }
     return self;
 }
@@ -52,6 +57,7 @@
     [self addSubview:self.unitLabel];
     [self addSubview:self.PriceLabel];
     [self addSubview:self.bottomLine];
+    [self addSubview:self.CountEditView];
 }
 
 - (void)layoutSubviews{
@@ -66,7 +72,6 @@
     [_itemImgView mas_makeConstraints:^(MASConstraintMaker *make) {
        
         make.top.equalTo(self).offset(5 * WIDTH_MULTIPLE);
-        make.bottom.equalTo(self).offset(-5 * WIDTH_MULTIPLE);
         make.size.mas_equalTo(CGSizeMake(70 * WIDTH_MULTIPLE, 70 * WIDTH_MULTIPLE));
         make.left.equalTo(_checkBtn.mas_right).offset(8 * WIDTH_MULTIPLE);
     }];
@@ -109,6 +114,12 @@
         make.left.right.bottom.equalTo(self);
         make.height.mas_equalTo(1);
     }];
+    
+    [_CountEditView mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.size.mas_equalTo(CGSizeMake(100 * WIDTH_MULTIPLE, 30 * WIDTH_MULTIPLE));
+        make.right.bottom.equalTo(self).offset(-10 * WIDTH_MULTIPLE);
+    }];
 }
 
 #pragma mark - setter
@@ -122,12 +133,46 @@
     _unitLabel.text = items.unit;
     _PriceLabel.text = [NSString stringWithFormat:@"￥%@",items.price];
     _checkBtn.selected = items.isSelect;
+    
+    _CountEditView.count = [items.qty integerValue];
+    
 }
 
 #pragma mark - action
 - (void)checkBtnAction:(UIButton *)button{
     
+    DLog(@"button.select is %d",button.selected);
     button.selected = !button.selected;
+    DLog(@"button.select is %d",button.selected);
+    _items.isSelect = button.selected;
+    if (self.cartItemChanged) {
+        
+        self.cartItemChanged(_items, self.indexPath);
+    }
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:KShoppingCartsChanged object:_items.guid];
+}
+
+- (void)editCountChanged{
+    
+    __weak typeof (self)weakSelf = self;
+    self.CountEditView.countCallback = ^(NSInteger count) {
+        
+        NSString *editJson = [NSString stringWithFormat:@"[{\"guid\":\"%@\",\"newNum\":%ld}]",weakSelf.items.guid,count];
+        [HYCartsHandle bulkEditingCartsAmountWithGuid:editJson ComplectionBlock:^(BOOL isSuccess) {
+            
+            if (isSuccess) {
+                
+                //购物车数量变化成功，刷新tableView
+                [[NSNotificationCenter defaultCenter] postNotificationName:KShoppingCartsCountChanged object:nil];
+            }
+            else{
+                
+                weakSelf.CountEditView.count = [weakSelf.items.qty integerValue];
+            }
+        }];
+        
+    };
 }
 
 #pragma mark - lazyload
@@ -219,6 +264,16 @@
         _bottomLine.backgroundColor = KAPP_SEPERATOR_COLOR;
     }
     return _bottomLine;
+}
+
+- (HYBuyCountEditView *)CountEditView{
+    
+    if (!_CountEditView) {
+        
+        _CountEditView = [HYBuyCountEditView new];
+        
+    }
+    return _CountEditView;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

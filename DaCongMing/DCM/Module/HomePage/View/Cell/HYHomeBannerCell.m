@@ -57,6 +57,13 @@
     _bannerView.imageURLStringsGroup = _bannerArray;
 }
 
+- (void)setBannerArray:(NSMutableArray *)bannerArray{
+    
+    _bannerArray = bannerArray;
+    _bannerView.imageURLStringsGroup = _bannerArray;
+
+}
+
 
 #pragma mark - lazyload
 - (SDCycleScrollView *)bannerView{
@@ -64,7 +71,7 @@
     if (!_bannerView) {
         
         //轮播图
-        _bannerView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectZero delegate:self placeholderImage:[UIImage imageNamed:@"banner.jpg"]];
+        _bannerView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectZero delegate:self placeholderImage:[UIImage imageNamed:@"shopPlaceholder"]];
         _bannerView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
         _bannerView.pageControlStyle = SDCycleScrollViewPageContolStyleClassic;
         _bannerView.autoScrollTimeInterval = 2;
@@ -73,6 +80,8 @@
         _bannerView.autoScroll = YES;
         _bannerView.infiniteLoop = YES;
         _bannerView.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+        _bannerView.contentMode = UIViewContentModeScaleAspectFill;
+        _bannerView.clipsToBounds = YES;
     }
     return _bannerView;
 }

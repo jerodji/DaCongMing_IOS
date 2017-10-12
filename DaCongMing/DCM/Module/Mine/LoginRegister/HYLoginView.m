@@ -205,14 +205,14 @@
     }
     else{
         
-//        if (sender.text.length >= 6) {
-//            _loginBtn.userInteractionEnabled = YES;
-//            _loginBtn.backgroundColor = KCOLOR(@"53d76f");
-//        }
-//        else{
-//            _loginBtn.userInteractionEnabled = NO;
-//            _loginBtn.backgroundColor = KCOLOR(@"c2c2c2");
-//        }
+        if (sender.text.length >= 6) {
+            _loginBtn.userInteractionEnabled = YES;
+            _loginBtn.backgroundColor = KCOLOR(@"53d76f");
+        }
+        else{
+            _loginBtn.userInteractionEnabled = NO;
+            _loginBtn.backgroundColor = KCOLOR(@"c2c2c2");
+        }
     }
 }
 
@@ -228,7 +228,7 @@
 //            }
 //        }];
         
-        [HYUserHandle userLoginWithPhone:@"17600901997" password:@"888" complectionBlock:^(BOOL isLoginSuccess) {
+        [HYUserHandle userLoginWithPhone:@"13027104773" password:@"123456" complectionBlock:^(BOOL isLoginSuccess) {
             
             if (isLoginSuccess) {
                 

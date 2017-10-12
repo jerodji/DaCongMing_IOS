@@ -16,7 +16,7 @@
 //接口总域名
 #define API_DomainStr           @"http://www.laopdr.cn"
 
-//#define API_DomainStr           @"http://www.huakr.com"
+//#define API_DomainStr           @""
 
 //首页接口
 #define API_HomePage            @"HAILIN_SERVER/showMenu.do"
@@ -25,6 +25,7 @@
 #define API_Sort                @"HAILIN_SERVER/showType.do"
 
 /********************************用户相关*********************************/
+#pragma mark - 用户相关
 //登录
 #define API_Login               @"HAILIN_SERVER/userlogin.do"
 
@@ -43,7 +44,11 @@
 //用户分享
 #define API_UserShare             @"HAILIN_SERVER/userShare.do"
 
+//用户反馈
+#define API_UserFeedback             @"HAILIN_SERVER/userfeedback.do"
+
 /********************************订单相关*********************************/
+#pragma mark - 订单相关
 //购物车
 #define API_ShoppingCart        @"HAILIN_SERVER/showCart.do"
 
@@ -75,6 +80,7 @@
 #define API_KeywordsSearch          @"HAILIN_SERVER/searchItem.do"
 
 /***************************************收货地址**********************************/
+#pragma mark - 收货地址
 //获取收货地址
 #define API_MyReceiverAddress         @"HAILIN_SERVER/getAddresses.do"
 
@@ -93,17 +99,43 @@
 //编辑收货地址
 #define API_editReceiveAddress       @"HAILIN_SERVER/updateAddress.do"
 
-/***************************************购物车**********************************/
+#pragma mark - 购物车
 //查看购物车
 #define API_ShowShppingCarts      @"HAILIN_SERVER/showCart.do"
 
 //添加到购物车
 #define API_AddToShoppingCarts      @"HAILIN_SERVER/putCart.do"
 
+//添加到收藏
+#define API_AddToCollectGoods      @"HAILIN_SERVER/addItemFavorite.do"
+
+//移除收藏
+#define API_RemoveCollectGoods      @"HAILIN_SERVER/removeItemFavorite.do"
+
+//获取收藏
+#define API_GetCollectGoods      @"HAILIN_SERVER/getItemFavorite.do"
+
 //移除购物车
 #define API_RemoveShoppingCarts     @"HAILIN_SERVER/removeCartItem.do"
 
 //批量修改购物车
-#define API_EditShoppingCarts     @"HAILIN_SERVER/editCart.do"
+#define API_BulkEditShoppingCarts     @"HAILIN_SERVER/editCart.do"
+
+//计算购物车价格
+#define API_CalculateCartsAmount       @"HAILIN_SERVER/getCartAmount.do"
+
+/***************************************店铺**********************************/
+#pragma mark - 店铺
+//店铺主页
+#define API_ShopHomePage       @"HAILIN_SERVER/showStore.do"
+
+//收藏店铺
+#define API_CollectShop       @"HAILIN_SERVER/addSellerFavorite.do"
+
+//取消收藏店铺
+#define API_CancelCollectShop       @"HAILIN_SERVER/removeSellerFavorite.do"
+
+//获取收藏店铺
+#define API_GetCollectShop       @"HAILIN_SERVER/getSellerFavorite.do"
 
 #endif /* WebApi_h */

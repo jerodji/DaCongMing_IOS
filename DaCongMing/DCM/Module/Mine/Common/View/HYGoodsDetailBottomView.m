@@ -10,16 +10,6 @@
 
 @interface HYGoodsDetailBottomView()
 
-/** shoppingCarts */
-@property (nonatomic,strong) HYButton *cartsBtn;
-/** brandStoreBtn */
-@property (nonatomic,strong) HYButton *brandStoreBtn;
-/** collectionBtn */
-@property (nonatomic,strong) HYButton *collectionBtn;
-/** 加入购物车 */
-@property (nonatomic,strong) UIButton *addToCartsBtn;
-/** 立即购买 */
-@property (nonatomic,strong) UIButton *buyBtn;
 
 @end
 
@@ -105,7 +95,10 @@
 
 - (void)collectBtnAction{
     
-    self.collectAction();
+    if (self.collectAction) {
+        
+        self.collectAction();
+    }
 }
 
 - (void)addToCartsBtnAction{
@@ -159,6 +152,7 @@
         _collectionBtn = [HYButton buttonWithType:UIButtonTypeCustom];
         [_collectionBtn setTitle:@"收藏" forState:UIControlStateNormal];
         [_collectionBtn setImage:[UIImage imageNamed:@"product_collect"] forState:UIControlStateNormal];
+        [_collectionBtn setImage:[UIImage imageNamed:@"product_collect_hl"] forState:UIControlStateSelected];
         [_collectionBtn setTitleColor:KAPP_b7b7b7_COLOR forState:UIControlStateNormal];
         _collectionBtn.titleLabel.font = KFont(11);
         [_collectionBtn addTarget:self action:@selector(collectBtnAction) forControlEvents:UIControlEventTouchUpInside];

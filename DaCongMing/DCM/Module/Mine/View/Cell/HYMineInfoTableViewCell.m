@@ -46,7 +46,7 @@
         HYButton *button = [HYButton buttonWithType:UIButtonTypeCustom];
         [button setTitle:_titleArray[i] forState:UIControlStateNormal];
         [button setImage:[UIImage imageNamed:_imgArray[i]] forState:UIControlStateNormal];
-        button.frame = CGRectMake((i % 4) * itemWidth, (i / 4) * (itemHeight + itemMargin) + 20 * WIDTH_MULTIPLE, itemWidth, itemHeight);
+        button.frame = CGRectMake((i % 4) * itemWidth, (i / 4) * (itemHeight + itemMargin) + 18 * WIDTH_MULTIPLE, itemWidth, itemHeight);
         button.titleLabel.font = KFitFont(14);
         [button setTitleColor:KCOLOR(@"272727") forState:UIControlStateNormal];
         [button addTarget:self action:@selector(infoBtnAction:) forControlEvents:UIControlEventTouchUpInside];

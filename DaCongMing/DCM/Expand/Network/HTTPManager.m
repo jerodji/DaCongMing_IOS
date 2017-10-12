@@ -86,15 +86,16 @@
             
             [MBProgressHUD hidePregressHUD:KEYWINDOW];
         }
+        [MBProgressHUD hidePregressHUD:KEYWINDOW];
         successBlock(responseObject);
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
-        if (isShowHUD) {
             
             [MBProgressHUD hidePregressHUD:KEYWINDOW];
-        }
-        [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"请求失败，请检查网络"];
+
+            [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"请求失败，请检查网络"];
+        successBlock(nil);
     }];
 }
 

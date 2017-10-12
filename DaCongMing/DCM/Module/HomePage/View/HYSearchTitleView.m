@@ -70,7 +70,7 @@
        
         make.left.equalTo(_searchIconImgView.mas_right).offset(5);
         make.top.bottom.equalTo(_searchView);
-        make.right.equalTo(_searchView.mas_right).offset(-20);
+        make.right.equalTo(_searchView.mas_right).offset(-5);
     }];
 }
 
@@ -114,9 +114,9 @@
         _textField.delegate = self;
         
         _textField.backgroundColor = [UIColor whiteColor];
-        _textField.attributedPlaceholder = [[NSAttributedString alloc]initWithString:@"大家都在搜索好东西" attributes:@{NSForegroundColorAttributeName: KAPP_b7b7b7_COLOR ,NSFontAttributeName : [UIFont systemFontOfSize:16]}];
+        _textField.attributedPlaceholder = [[NSAttributedString alloc]initWithString:@"搜索你想要的产品" attributes:@{NSForegroundColorAttributeName: KAPP_b7b7b7_COLOR ,NSFontAttributeName : KFitFont(14)}];
         _textField.clearButtonMode = UITextFieldViewModeAlways;
-        _textField.font = [UIFont systemFontOfSize:18];
+        _textField.font = KFitFont(14);
         _textField.keyboardType = UIKeyboardTypeDefault;
        
     }

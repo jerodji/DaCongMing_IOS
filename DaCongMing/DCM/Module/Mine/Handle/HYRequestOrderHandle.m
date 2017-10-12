@@ -133,7 +133,7 @@
         
         if (returnData) {
             
-            NSInteger code =[[returnData objectForKey:@"successed"] integerValue];
+            NSInteger code = [[returnData objectForKey:@"successed"] integerValue];
             if (code == 000) {
                 
                 complection(YES);

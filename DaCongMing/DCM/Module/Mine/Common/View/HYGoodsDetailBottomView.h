@@ -28,4 +28,15 @@ typedef void(^buyNowBlock)();
 /** 立即购买 */
 @property (nonatomic,copy) buyNowBlock buyNowAction;
 
+/** shoppingCarts */
+@property (nonatomic,strong) HYButton *cartsBtn;
+/** brandStoreBtn */
+@property (nonatomic,strong) HYButton *brandStoreBtn;
+/** collectionBtn */
+@property (nonatomic,strong) HYButton *collectionBtn;
+/** 加入购物车 */
+@property (nonatomic,strong) UIButton *addToCartsBtn;
+/** 立即购买 */
+@property (nonatomic,strong) UIButton *buyBtn;
+
 @end

@@ -38,4 +38,24 @@
  */
 + (void)addToShoppingCartsItemID:(NSString *)itemID count:(NSInteger)count andUnit:(NSString *)unit ComplectionBlock:(void(^)(BOOL isSuccess))complection;
 
+/**
+ *  添加收藏
+ */
++ (void)addToCollectionGoodsWithItemID:(NSString *)itemID ComplectionBlock:(void(^)(BOOL isSuccess))complection;
+
+/**
+ *  店铺首页
+ */
++ (void)getBrandsShopWithSellerID:(NSString *)sellerID ComplectionBlock:(void(^)(NSDictionary *dict))complection;
+
+/**
+ *  收藏店铺
+ */
++ (void)collectShopWithSellerID:(NSString *)sellerID ComplectionBlock:(void(^)(BOOL isSuccess))complection;
+
+/**
+ *  取消收藏店铺
+ */
++ (void)cancelCollectShopWithSellerIDs:(NSString *)sellerIDs ComplectionBlock:(void(^)(BOOL isSuccess))complection;
+
 @end

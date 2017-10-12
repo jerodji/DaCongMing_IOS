@@ -18,6 +18,10 @@ NSString * const KWeChatLoginNotification = @"KWeChatLoginNotification";
 
 NSString * const KWeChatPaySuccessNotification = @"KWeChatPaySuccessNotification";
 
-NSString * const KCustomerServicePhone = @"13027104773";
+NSString * const KCustomerServicePhone = @"12312312310";
+
+NSString * const KShoppingCartsChanged = @"KShoppingCartsChanged";
+
+NSString * const KShoppingCartsCountChanged = @"KShoppingCartsCountChanged";
 
 @end

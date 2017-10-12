@@ -17,6 +17,7 @@
 #import "HYGoodsDetailBottomView.h"
 #import "HYGoodSpecificationSelectView.h"
 #import "HYFillOrderViewController.h"
+#import "HYBrandShopViewController.h"
 #import "HYShareView.h"
 
 @interface HYGoodsDetailInfoViewController () <UITableViewDelegate,UITableViewDataSource,HYGoodsSpecificationSelectDelegate>
@@ -168,6 +169,7 @@
 - (void)bottomBtnAction{
     
     __weak typeof (self)weakSelf = self;
+    
     self.bottomView.buyNowAction = ^{
         
         [weakSelf setupSubviews];
@@ -176,7 +178,7 @@
         //规格
         [UIView animateWithDuration:0.2 animations:^{
             
-            [weakSelf.selectSpeciView mas_updateConstraints:^(MASConstraintMaker *make) {
+            [weakSelf.selectSpeciView mas_remakeConstraints:^(MASConstraintMaker *make) {
                 make.left.top.right.bottom.equalTo(weakSelf.view);
             }];
         }];
@@ -190,23 +192,63 @@
         //规格
         [UIView animateWithDuration:0.2 animations:^{
             
-            [weakSelf.selectSpeciView mas_updateConstraints:^(MASConstraintMaker *make) {
+            [weakSelf.selectSpeciView mas_remakeConstraints:^(MASConstraintMaker *make) {
                 make.left.top.right.bottom.equalTo(weakSelf.view);
             }];
         }];
+    };
+    
+    //收藏
+    self.bottomView.collectAction = ^{
+        
+        if([HYUserHandle jumpToLoginViewControllerFromVC:weakSelf])
+            return ;
+        [HYGoodsHandle addToCollectionGoodsWithItemID:weakSelf.goodsID ComplectionBlock:^(BOOL isSuccess) {
+            
+            if (isSuccess) {
+                
+                [UIView animateWithDuration:0.4 animations:^{
+                    
+                    weakSelf.bottomView.collectionBtn.transform = CGAffineTransformScale(weakSelf.bottomView.collectionBtn.transform, 1.4, 1.4);
+                    weakSelf.bottomView.collectionBtn.selected = YES;
+
+
+                } completion:^(BOOL finished) {
+                    
+                   weakSelf.bottomView.collectionBtn.transform = CGAffineTransformScale(weakSelf.bottomView.collectionBtn.transform, 1 / 1.4, 1 / 1.4);
+                }];
+                [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"添加收藏成功"];
+            }
+            else{
+                weakSelf.bottomView.collectionBtn.selected = NO;
+                [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"添加收藏失败"];
+            }
+        }];
+    };
+    
+    self.bottomView.shoppingCartsAction = ^{
+        
+        if([HYUserHandle jumpToLoginViewControllerFromVC:weakSelf])
+            return ;
+        HYTabBarController *tabBarVC = [HYTabBarController new];
+        tabBarVC.selectedIndex = 2;
+        [UIApplication sharedApplication].keyWindow.rootViewController = tabBarVC;
+    };
+    
+    //品牌店铺
+    self.bottomView.brandShopAction = ^{
+        
+        HYBrandShopViewController *brandShopVC = [HYBrandShopViewController new];
+        brandShopVC.sellerID = weakSelf.detailModel.item_of_seller;
+        [weakSelf.navigationController pushViewController:brandShopVC animated:YES];
     };
 }
 
 #pragma mark - HYGoodsSpecSelectDelegate
 - (void)confirmGoodsSpeciSelectWithModel:(HYGoodsItemProp *)item buyCount:(NSInteger)count{
     
-    if (![HYUserModel sharedInstance].token) {
-        
-        [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"请先登录!"];
-        [HYUserHandle jumpToLoginViewControllerFromVC:self];
-        
-        return;
-    }
+    if([HYUserHandle jumpToLoginViewControllerFromVC:self])
+        return ;
     
     if (item) {
         
@@ -217,6 +259,7 @@
                 if (isSuccess) {
                     
                     DLog(@"添加购物车成功");
+                    [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"添加购物车成功"];
                 }
                 
                 [_selectSpeciView removeFromSuperview];
@@ -325,12 +368,12 @@
         
         [self setupSubviews];
         _selectSpeciView.goodsModel = _detailModel;
-        [_selectSpeciView mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.left.top.right.bottom.equalTo(self.view);
-        }];
         //规格
         [UIView animateWithDuration:0.2 animations:^{
            
+            [_selectSpeciView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.left.top.right.bottom.equalTo(self.view);
+            }];
             [self setupMasonryLayout];
             [self.view layoutIfNeeded];
         }];

@@ -50,7 +50,7 @@
     [_redView mas_makeConstraints:^(MASConstraintMaker *make) {
        
         make.left.right.bottom.equalTo(self);
-        make.top.equalTo(self).offset(10);
+        make.top.equalTo(self);
     }];
     
     [_iconImgView mas_makeConstraints:^(MASConstraintMaker *make) {

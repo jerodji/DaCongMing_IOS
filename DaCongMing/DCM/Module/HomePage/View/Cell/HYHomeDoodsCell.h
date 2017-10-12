@@ -18,4 +18,7 @@ typedef void(^collectionSelectBlock)(NSString *productID);
 /** 点击collectionBlock */
 @property (nonatomic,copy) collectionSelectBlock collectionSelect;
 
+/** title */
+@property (nonatomic,strong) NSString *title;
+
 @end

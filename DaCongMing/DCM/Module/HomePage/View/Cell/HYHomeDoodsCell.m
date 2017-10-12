@@ -34,8 +34,6 @@
     
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         
-        [self addSubview:self.line];
-        [self addSubview:self.guessLikeLabel];
         [self addSubview:self.collectionView];
     }
     return self;
@@ -62,23 +60,30 @@
         make.height.equalTo(@40);
     }];
     
-//    [_collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-//       
-//        make.left.right.equalTo(self);
-//        make.top.equalTo(_guessLikeLabel.mas_bottom).offset(10);
-//        
-//        CGFloat height = ceil(_datalist.count / 2.0) * 350 * WIDTH_MULTIPLE;
-//        make.height.equalTo(@(height));
-//    }];
-    
-    [_collectionView mas_updateConstraints:^(MASConstraintMaker *make) {
+    [_collectionView mas_remakeConstraints:^(MASConstraintMaker *make) {
        
         make.left.right.equalTo(self);
-        make.top.equalTo(_guessLikeLabel.mas_bottom).offset(10);
-        
         CGFloat height = ceil(_datalist.count / 2.0) * 350 * WIDTH_MULTIPLE;
         make.height.equalTo(@(height));
+        if (_guessLikeLabel) {
+            
+            make.top.equalTo(_guessLikeLabel.mas_bottom).offset(5 * WIDTH_MULTIPLE);
+        }
+        else{
+            
+            make.top.equalTo(self).offset(10 * WIDTH_MULTIPLE);
+        }
+        
     }];
+}
+
+#pragma mark - setter
+- (void)setTitle:(NSString *)title{
+    
+    _title = title;
+    [self addSubview:self.line];
+    [self addSubview:self.guessLikeLabel];
+    self.guessLikeLabel.text = title;
 }
 
 #pragma mark - collectionViewDataSource
@@ -97,15 +102,10 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
     HYGoodsItemCollectionViewCell *cell = (HYGoodsItemCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"collectionCell" forIndexPath:indexPath];
-    
+//    cell.backgroundColor = KAPP_NAV_COLOR;
     NSDictionary *dict = _datalist[indexPath.item];
     cell.goodsModel = [HYGoodsItemModel modelWithDictionary:dict];
     return cell;
-}
-
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-
-    return CGSizeMake((KSCREEN_WIDTH - 10) / 2, 340 * WIDTH_MULTIPLE);
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -150,7 +150,7 @@
         
         //1.初始化layout
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-//        layout.itemSize = CGSizeMake((KSCREEN_WIDTH - 10) / 2, 340 * WIDTH_MULTIPLE);
+        layout.itemSize = CGSizeMake((KSCREEN_WIDTH - 10) / 2, 340 * WIDTH_MULTIPLE);
         layout.scrollDirection = UICollectionViewScrollDirectionVertical;
         
         _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];

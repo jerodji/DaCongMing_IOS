@@ -12,7 +12,7 @@
 
 + (void)requestHomePageData:(void (^)(HYHomePageModel *))complemtion{
 
-    [[HTTPManager shareHTTPManager] postDataFromUrl:API_HomePage withParameter:nil isShowHUD:YES success:^(id returnData) {
+    [[HTTPManager shareHTTPManager] postDataFromUrl:API_HomePage withParameter:nil isShowHUD:NO success:^(id returnData) {
        
         if (returnData) {
             
@@ -21,6 +21,10 @@
                 NSDictionary *dict = [returnData objectForKey:@"dataInfo"];
                 HYHomePageModel *model = [HYHomePageModel modelWithDictionary:dict];
                 complemtion(model);
+            }
+            else{
+                
+                complemtion(nil);
             }
         }
         

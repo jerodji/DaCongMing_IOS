@@ -101,9 +101,11 @@
     
     _sellerNameLabel.text = cartsSeller.seller_name;
     [self.itemModelArray removeAllObjects];
+    _sellerCheackAllBtn.selected = cartsSeller.isSelect;
     for (NSDictionary *dict in _cartsSeller.cartItems) {
         
         HYCartItems *items = [HYCartItems modelWithDictionary:dict];
+        items.isSelect = _sellerCheackAllBtn.selected;
         [self.itemModelArray addObject:items];
     }
     
@@ -130,6 +132,10 @@
         items.isSelect = button.isSelected;
         [self.itemModelArray replaceObjectAtIndex:i withObject:items];
     }
+    if (self.shoppingCartsChangedBlock) {
+        
+        self.shoppingCartsChangedBlock(_cartsSeller, self.indexPath);
+    }
     
     [_tableView reloadData];
 }
@@ -154,9 +160,9 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
     }
-    
     HYCartItems *items = self.itemModelArray[indexPath.row];
     cell.items = items;
+    cell.indexPath = indexPath;
     return cell;
 }
 

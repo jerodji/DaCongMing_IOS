@@ -122,11 +122,37 @@
     }];
 }
 
++ (void)userFeedBackWithText:(NSString *)text complectionBlock:(void (^)(BOOL))complection{
+    
+    NSMutableDictionary *param = [NSMutableDictionary dictionary];
+    [param setValue:[HYUserModel sharedInstance].token forKey:@"token"];
+    [param setValue:text forKey:@"feedbackMsg"];
+    
+    
+    [[HTTPManager shareHTTPManager] postDataFromUrl:API_UserFeedback withParameter:param isShowHUD:YES success:^(id returnData) {
+        
+        if (returnData) {
+            
+            NSInteger code =[[returnData objectForKey:@"successed"] integerValue];
+            if (code == 000) {
+                
+                complection(YES);
+            }
+            else{
+                
+                complection(NO);
+                [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"反馈出错"];
+            }
+        }
+        
+    }];
+}
+
 + (BOOL)jumpToLoginViewControllerFromVC:(UIViewController *)fromVC{
     
     if (![HYUserModel sharedInstance].token) {
         
-//        [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"请先登录"];
+        [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"请登录后操作"];
         HYLoginViewController *loginVC = [[HYLoginViewController alloc] init];
         [fromVC presentViewController:loginVC animated:YES completion:nil];
         

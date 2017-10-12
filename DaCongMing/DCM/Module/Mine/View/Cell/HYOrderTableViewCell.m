@@ -54,13 +54,13 @@
     [self addSubview:self.lookAllOrderBtn];
     
     CGFloat itemWidth = KSCREEN_WIDTH  / 5;
-    CGFloat itemHeight = 45 * WIDTH_MULTIPLE;
+    CGFloat itemHeight = 50 * WIDTH_MULTIPLE;
     for (NSInteger i = 0; i < _titleArray.count; i++) {
         
         HYButton *button = [HYButton buttonWithType:UIButtonTypeCustom];
         [button setTitle:_titleArray[i] forState:UIControlStateNormal];
         [button setImage:[UIImage imageNamed:_imgArray[i]] forState:UIControlStateNormal];
-        button.frame = CGRectMake(i * itemWidth,  70 * WIDTH_MULTIPLE, itemWidth, itemHeight);
+        button.frame = CGRectMake(i * itemWidth,  50 * WIDTH_MULTIPLE, itemWidth, itemHeight);
         button.titleLabel.font = KFitFont(14);
         [button setTitleColor:KCOLOR(@"272727") forState:UIControlStateNormal];
         [self addSubview:button];
@@ -74,7 +74,8 @@
     
     [_orderLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.left.top.right.equalTo(self).offset(10 * WIDTH_MULTIPLE);
+        make.left.right.equalTo(self).offset(10 * WIDTH_MULTIPLE);
+        make.top.equalTo(self);
         make.height.equalTo(@(40 * WIDTH_MULTIPLE));
         
     }];
@@ -145,9 +146,9 @@
         _lookAllOrderBtn.titleLabel.font = KFitFont(14);
         
         UIImage *image = _lookAllOrderBtn.imageView.image;
-        [_lookAllOrderBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -image.size.width - 6, 0, image.size.width + 6)];
+        [_lookAllOrderBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -image.size.width - 2, 0, image.size.width + 2)];
         CGFloat strWidth = [@"查看全部订单" widthForFont:KFitFont(14)];
-        [_lookAllOrderBtn setImageEdgeInsets:UIEdgeInsetsMake(0, strWidth + 6, 0, -strWidth - 6)];
+        [_lookAllOrderBtn setImageEdgeInsets:UIEdgeInsetsMake(0, strWidth + 2, 0, -strWidth - 2)];
         
         
         [_lookAllOrderBtn addTarget:self action:@selector(myOrderAction) forControlEvents:UIControlEventTouchUpInside];

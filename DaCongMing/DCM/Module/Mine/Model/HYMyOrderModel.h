@@ -32,8 +32,6 @@
 @property (nonatomic,copy) NSString *receiver;
 /** phoneNum */
 @property (nonatomic,copy) NSString *phoneNum;
-/** orderDtls */
-@property (nonatomic,copy) NSString *orderDtls;
 /** address */
 @property (nonatomic,copy) NSString *create_time;
 /** close_time */
@@ -44,6 +42,8 @@
 @property (nonatomic,copy) NSString *ispassentry;
 /** deliverytime */
 @property (nonatomic,copy) NSString *deliverytime;
+/** orderDtls */
+@property (nonatomic, copy) NSArray *orderDtls;
 
 @end
 

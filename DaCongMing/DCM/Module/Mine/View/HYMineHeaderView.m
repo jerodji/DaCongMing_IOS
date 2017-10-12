@@ -103,6 +103,16 @@
     }];
 }
 
+#pragma mark - action
+- (void)labelTapAcion:(UITapGestureRecognizer *)tapGes{
+    
+    NSInteger tapLableIndex = tapGes.view.tag;
+    if (_delegate && [_delegate respondsToSelector:@selector(headerBtnTapIndex:)]) {
+        
+        [_delegate headerBtnTapIndex:tapLableIndex - 200];
+    }
+}
+
 #pragma mark - lazyload
 - (UIImageView *)bgImageView{
     
@@ -138,7 +148,7 @@
         _nickNameLabel = [[UILabel alloc] init];
         _nickNameLabel.font = KFitFont(14);
         _nickNameLabel.textColor = KAPP_WHITE_COLOR;
-        _nickNameLabel.text = @"愿你出走半生，归来仍是少年";
+        _nickNameLabel.text = @"未登录，点我登录";
         _nickNameLabel.textAlignment = NSTextAlignmentCenter;
     }
     return _nickNameLabel;
@@ -154,6 +164,10 @@
         _collectGoodsLabel.text = @"0\n收藏的商品";
         _collectGoodsLabel.numberOfLines = 0;
         _collectGoodsLabel.textAlignment = NSTextAlignmentCenter;
+        _collectGoodsLabel.tag = 200;
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(labelTapAcion:)];
+        _collectGoodsLabel.userInteractionEnabled = YES;
+        [_collectGoodsLabel addGestureRecognizer:tap];
     }
     return _collectGoodsLabel;
 }
@@ -168,6 +182,10 @@
         _collectStoreLabel.text = @"0\n收藏的店铺";
         _collectStoreLabel.numberOfLines = 0;
         _collectStoreLabel.textAlignment = NSTextAlignmentCenter;
+        _collectStoreLabel.tag = 201;
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(labelTapAcion:)];
+        _collectStoreLabel.userInteractionEnabled = YES;
+        [_collectStoreLabel addGestureRecognizer:tap];
     }
     return _collectStoreLabel;
 }
@@ -182,6 +200,10 @@
         _recentViewLabel.text = @"0\n最近浏览";
         _recentViewLabel.numberOfLines = 0;
         _recentViewLabel.textAlignment = NSTextAlignmentCenter;
+        _recentViewLabel.tag = 202;
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(labelTapAcion:)];
+        _recentViewLabel.userInteractionEnabled = YES;
+        [_recentViewLabel addGestureRecognizer:tap];
     }
     return _recentViewLabel;
 }

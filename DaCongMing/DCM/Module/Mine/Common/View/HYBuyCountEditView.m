@@ -27,6 +27,9 @@
     if (self = [super initWithFrame:frame]) {
         
         [self setupSubviews];
+        
+        self.layer.borderWidth = 1;
+        self.layer.borderColor = KCOLOR(@"f6f6f6").CGColor;
     }
     return self;
 }
@@ -58,6 +61,18 @@
         make.left.equalTo(_minusBtn.mas_right);
         make.right.equalTo(_addBtn.mas_left);
     }];
+}
+
+- (void)setCount:(NSInteger)count{
+    
+    _count = count;
+    if (!self.count) {
+        _numberTextField.text = [NSString stringWithFormat:@"1"];
+    }
+    else{
+        _numberTextField.text = [NSString stringWithFormat:@"%ld",self.count];
+        
+    }
 }
 
 #pragma mark - action
@@ -118,11 +133,18 @@
         
     }
     
+    if ([numberText integerValue] > 1000) {
+        
+        numberText = @"1000";
+    }
+    
+    sender.text = numberText;
+    
     if (self.countCallback) {
         
         self.countCallback([numberText integerValue]);
     }
-    _numberTextField.text = numberText;
+    
 }
 
 #pragma mark - lazyload
@@ -134,6 +156,7 @@
         _minusBtn.backgroundColor = KAPP_WHITE_COLOR;
         [_minusBtn setImage:[UIImage imageNamed:@"number_minus"] forState:UIControlStateNormal];
         [_minusBtn addTarget:self action:@selector(minusAction) forControlEvents:UIControlEventTouchUpInside];
+       
     }
     return _minusBtn;
 }
@@ -144,12 +167,21 @@
         
         _numberTextField = [[UITextField alloc] initWithFrame:CGRectZero];
         _numberTextField.delegate = self;
-        _numberTextField.text = @"1";
         _numberTextField.font = KFitFont(16);
         _numberTextField.textColor = KCOLOR(@"272727");
         _numberTextField.textAlignment = NSTextAlignmentCenter;
         _numberTextField.keyboardType = UIKeyboardTypePhonePad;
         [_numberTextField addTarget:self action:@selector(numberEditChanged:) forControlEvents:UIControlEventEditingChanged];
+        _numberTextField.layer.borderColor = KCOLOR(@"f6f6f6").CGColor;
+        _numberTextField.layer.borderWidth = 0.9;
+        
+        if (!self.count) {
+            _numberTextField.text = [NSString stringWithFormat:@"1"];
+        }
+        else{
+            _numberTextField.text = [NSString stringWithFormat:@"%ld",self.count];
+
+        }
     }
     return _numberTextField;
 }
@@ -162,6 +194,7 @@
         _addBtn.backgroundColor = KAPP_WHITE_COLOR;
         [_addBtn setImage:[UIImage imageNamed:@"number_add"] forState:UIControlStateNormal];
         [_addBtn addTarget:self action:@selector(addAction) forControlEvents:UIControlEventTouchUpInside];
+        
     }
     return _addBtn;
 }

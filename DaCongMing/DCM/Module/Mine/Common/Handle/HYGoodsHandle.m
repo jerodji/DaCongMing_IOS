@@ -19,7 +19,7 @@
     [param setValue:order forKey:@"order"];
     [param setValue:hotSale forKey:@"hotsale"];
     
-    [[HTTPManager shareHTTPManager] postDataFromUrl:API_GoodsList withParameter:param isShowHUD:NO success:^(id returnData) {
+    [[HTTPManager shareHTTPManager] postDataFromUrl:API_GoodsList withParameter:param isShowHUD:YES success:^(id returnData) {
         
         if (returnData) {
             
@@ -162,5 +162,109 @@
     }];
 }
 
++ (void)addToCollectionGoodsWithItemID:(NSString *)itemID ComplectionBlock:(void (^)(BOOL))complection{
+    
+    NSMutableDictionary *requestParam = [NSMutableDictionary dictionary];
+    [requestParam setValue:[HYUserModel sharedInstance].token forKey:@"token"];
+    [requestParam setValue:itemID forKey:@"item_id"];
+    
+    [[HTTPManager shareHTTPManager] postDataFromUrl:API_AddToCollectGoods withParameter:requestParam isShowHUD:YES success:^(id returnData) {
+        
+        if (returnData) {
+            
+            NSInteger code =[[returnData objectForKey:@"successed"] integerValue];
+            if (code == 000) {
+                
+                complection(YES);
+            }
+            else{
+                complection(NO);
+            }
+        }
+        else{
+            
+            complection(NO);
+        }
+    }];
+}
+
++ (void)getBrandsShopWithSellerID:(NSString *)sellerID ComplectionBlock:(void (^)(NSDictionary *))complection{
+    
+    NSMutableDictionary *requestParam = [NSMutableDictionary dictionary];
+    [requestParam setValue:[HYUserModel sharedInstance].token forKey:@"token"];
+    [requestParam setValue:sellerID forKey:@"seller_id"];
+    
+    [[HTTPManager shareHTTPManager] postDataFromUrl:API_ShopHomePage withParameter:requestParam isShowHUD:YES success:^(id returnData) {
+        
+        if (returnData) {
+            
+            NSInteger code = [[returnData objectForKey:@"successed"] integerValue];
+            if (code == 000) {
+                
+                NSDictionary *dict = [returnData objectForKey:@"dataInfo"];
+                complection(dict);
+            }
+            else{
+                complection(nil);
+            }
+        }
+        else{
+            
+            complection(nil);
+        }
+    }];
+}
+
++ (void)collectShopWithSellerID:(NSString *)sellerID ComplectionBlock:(void (^)(BOOL))complection{
+    
+    NSMutableDictionary *requestParam = [NSMutableDictionary dictionary];
+    [requestParam setValue:[HYUserModel sharedInstance].token forKey:@"token"];
+    [requestParam setValue:sellerID forKey:@"seller_id"];
+    
+    [[HTTPManager shareHTTPManager] postDataFromUrl:API_CollectShop withParameter:requestParam isShowHUD:YES success:^(id returnData) {
+        
+        if (returnData) {
+            
+            NSInteger code = [[returnData objectForKey:@"successed"] integerValue];
+            if (code == 000) {
+                
+                complection(YES);
+            }
+            else{
+                complection(NO);
+            }
+        }
+        else{
+            
+            complection(NO);
+        }
+    }];
+}
+
++ (void)cancelCollectShopWithSellerIDs:(NSString *)sellerIDs ComplectionBlock:(void (^)(BOOL))complection{
+    
+    NSMutableDictionary *requestParam = [NSMutableDictionary dictionary];
+    [requestParam setValue:[HYUserModel sharedInstance].token forKey:@"token"];
+    [requestParam setValue:sellerIDs forKey:@"seller_ids"];
+    
+    [[HTTPManager shareHTTPManager] postDataFromUrl:API_CancelCollectShop withParameter:requestParam isShowHUD:YES success:^(id returnData) {
+        
+        if (returnData) {
+            
+            NSInteger code = [[returnData objectForKey:@"successed"] integerValue];
+            if (code == 000) {
+                
+                complection(YES);
+            }
+            else{
+                complection(NO);
+            }
+        }
+        else{
+            
+            complection(NO);
+        }
+    }];
+}
 
 @end

@@ -25,4 +25,10 @@ extern NSString *const KWeChatPaySuccessNotification;
 /** 客服电话 */
 extern NSString *const KCustomerServicePhone;
 
+/** 购物车发生变化 */
+extern NSString * const KShoppingCartsChanged;
+
+/** 购物车数量发生变化 */
+extern NSString * const KShoppingCartsCountChanged;
+
 @end

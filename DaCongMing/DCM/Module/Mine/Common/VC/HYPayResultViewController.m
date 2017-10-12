@@ -119,6 +119,7 @@
             cell = [[HYHomeDoodsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:goodsCellID];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
+        cell.title = @"猜你喜欢";
         cell.datalist = self.goodsList;
         cell.collectionSelect = ^(NSString *productID) {
             

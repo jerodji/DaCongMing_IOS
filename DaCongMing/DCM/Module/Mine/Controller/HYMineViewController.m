@@ -23,7 +23,12 @@
 #import "HYMyQRCodeViewController.h"
 #import "HYFeedbackViewController.h"
 
-@interface HYMineViewController ()<UITableViewDelegate,UITableViewDataSource,HYMineInfoBtnActionDelegate,HYMyOrderActionDelegate>
+#import "HYMyCollectShopViewController.h"
+#import "HYMyCollectGoodsViewController.h"
+#import "HYRecentViewViewController.h"
+#import "HYInvitateFriendsViewController.h"
+
+@interface HYMineViewController ()<UITableViewDelegate,UITableViewDataSource,HYMineInfoBtnActionDelegate,HYMyOrderActionDelegate,HYMineHeaderTapDelegate>
 
 /** tableView */
 @property (nonatomic,strong) UITableView *tableView;
@@ -84,17 +89,17 @@
 #pragma mark - TableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     
-    return 1;
+    return 4;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return 4;
+    return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    if (indexPath.row == 0) {
+    if (indexPath.section == 0) {
         //邀请好友
         static NSString *inviteCellID = @"inviteCellID";
         HYInviteFriendsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:inviteCellID];
@@ -104,7 +109,7 @@
         }
         return cell;
     }
-    else if (indexPath.row == 1){
+    else if (indexPath.section == 1){
         
         //订单
         static NSString *myOrderCellID = @"myOrderCellID";
@@ -125,7 +130,7 @@
         cell.delegate = self;
         return cell;
     }
-    else if (indexPath.row == 2){
+    else if (indexPath.section == 2){
         
         //我的账户
         static NSString *myInfoCellID = @"myInfoCellID";
@@ -137,7 +142,7 @@
         cell.delegate = self;
         return cell;
     }
-    else if (indexPath.row == 3){
+    else if (indexPath.section == 3){
         //猜你喜欢
         static NSString *goodsCellID = @"goodsCellID";
         HYHomeDoodsCell *cell = [tableView dequeueReusableCellWithIdentifier:goodsCellID];
@@ -146,6 +151,7 @@
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
         cell.datalist = self.goodsList;
+        cell.title = @"猜你喜欢";
         cell.collectionSelect = ^(NSString *productID) {
             
             HYGoodsDetailInfoViewController *detailVC = [[HYGoodsDetailInfoViewController alloc] init];
@@ -167,34 +173,88 @@
 #pragma mark - tableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    
+    if (indexPath.section == 0) {
+        
+        if([HYUserHandle jumpToLoginViewControllerFromVC:self])
+            return ;
+        HYInvitateFriendsViewController *invitateFriendsVC = [HYInvitateFriendsViewController new];
+        [self.navigationController pushViewController:invitateFriendsVC animated:YES];
+    }
 }
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    if (indexPath.row == 0) {
+    if (indexPath.section == 0) {
         
         //邀请好友
-        return 50 * WIDTH_MULTIPLE;
+        return 40 * WIDTH_MULTIPLE;
     }
-    else if (indexPath.row == 1){
+    else if (indexPath.section == 1){
         
         //订单
-        return 130 * WIDTH_MULTIPLE;
+        return 110 * WIDTH_MULTIPLE;
     }
-    else if (indexPath.row == 2){
+    else if (indexPath.section == 2){
         
         //按钮
-        return 170 * WIDTH_MULTIPLE;
+        return 150 * WIDTH_MULTIPLE;
     }
-    else if (indexPath.row == 3){
+    else if (indexPath.section == 3){
         
         //猜你喜欢
         CGFloat height = ceil(_goodsList.count / 2.0) * 350 * WIDTH_MULTIPLE;
         return 40 + 10 + height;
     }
     return 100;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, KSCREEN_WIDTH, 10 * WIDTH_MULTIPLE)];
+    view.backgroundColor = KCOLOR(@"f4f4f4");
+    return view;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    
+    return 10 * WIDTH_MULTIPLE;
+}
+
+
+
+
+#pragma mark - headerBtnActionDelegate
+- (void)headerBtnTapIndex:(NSInteger)index{
+    
+    switch (index) {
+        case 0:
+        {
+            if([HYUserHandle jumpToLoginViewControllerFromVC:self])
+                return ;
+            HYMyCollectGoodsViewController *myCollectGoods = [HYMyCollectGoodsViewController new];
+            [self.navigationController pushViewController:myCollectGoods animated:YES];
+        }
+            break;
+        case 1:
+        {
+            if([HYUserHandle jumpToLoginViewControllerFromVC:self])
+                return ;
+            HYMyCollectShopViewController *myCollectShopVC = [HYMyCollectShopViewController new];
+            [self.navigationController pushViewController:myCollectShopVC animated:YES];
+        }
+            break;
+        case 2:
+        {
+            if([HYUserHandle jumpToLoginViewControllerFromVC:self])
+                return ;
+            HYRecentViewViewController *recentViewVC = [HYRecentViewViewController new];
+            [self.navigationController pushViewController:recentViewVC animated:YES];
+        }
+            break;
+        default:
+            break;
+    }
 }
 
 #pragma mark - CellDelegate
@@ -331,7 +391,7 @@
         
         _headerView = [[HYMineHeaderView alloc] initWithFrame:CGRectMake(0, 0, KSCREEN_WIDTH, 190 * WIDTH_MULTIPLE)];
         _headerView.userInteractionEnabled = YES;
-        
+        _headerView.delegate = self;
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithActionBlock:^(id  _Nonnull sender) {
            
             HYUserModel *user = [HYUserModel sharedInstance];

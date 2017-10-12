@@ -9,9 +9,17 @@
 #import <UIKit/UIKit.h>
 #import "HYCartsModel.h"
 
+typedef void(^cartItemChangedBlock)(HYCartItems *cartItems,NSIndexPath *changeIndexPath);
+
 @interface HYCartsItemTableViewCell : UITableViewCell
 
 /** 商品item */
 @property (nonatomic,strong) HYCartItems *items;
+
+/** indexPath */
+@property (nonatomic,strong) NSIndexPath *indexPath;
+
+/** 购物车发生变化 */
+@property (nonatomic,copy) cartItemChangedBlock cartItemChanged;
 
 @end

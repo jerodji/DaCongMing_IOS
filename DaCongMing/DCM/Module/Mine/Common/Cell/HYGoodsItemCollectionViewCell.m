@@ -56,8 +56,9 @@
     
     [_imgView mas_makeConstraints:^(MASConstraintMaker *make) {
        
-        make.top.left.equalTo(self).offset(6);
-        make.right.right.equalTo(self).offset(-6);
+        make.left.equalTo(self).offset(6);
+        make.right.equalTo(self).offset(-6);
+        make.top.equalTo(self);
         make.height.equalTo(@(220 * WIDTH_MULTIPLE));
     }];
     

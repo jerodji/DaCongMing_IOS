@@ -220,6 +220,7 @@
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
         cell.datalist = self.goodsList;
+        cell.title = @"猜你喜欢";
         cell.collectionSelect = ^(NSString *productID) {
           
             HYGoodsDetailInfoViewController *detailVC = [[HYGoodsDetailInfoViewController alloc] init];
@@ -279,7 +280,7 @@
     else if(indexPath.row == 4) {
         
         //banner
-        return 170;
+        return 150 * WIDTH_MULTIPLE;
     }
     else if(indexPath.row == 5) {
         

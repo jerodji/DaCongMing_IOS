@@ -45,6 +45,7 @@
 
 }
 
+
 - (void)layoutSubviews{
     
     [_topLine mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -84,6 +85,13 @@
     }];
 }
 
+- (void)setAmount:(NSString *)amount{
+    
+    _amount = amount;
+    _priceLabel.text = [NSString stringWithFormat:@"总计:%@",amount];
+}
+
+
 #pragma mark - action
 - (void)confirmAction{
     
@@ -92,7 +100,11 @@
 
 - (void)checkAllBtnAction:(UIButton *)button{
     
-    
+    button.selected = !button.selected;
+    if (self.checkAllBlock) {
+        
+        self.checkAllBlock(button.selected);
+    }
 }
 
 #pragma mark - lazyload
@@ -126,7 +138,7 @@
     if (!_priceLabel) {
         
         _priceLabel = [UILabel new];
-        _priceLabel.text = @"总计:";
+        _priceLabel.text = @"总计:0.00";
         _priceLabel.textColor = KAPP_PRICE_COLOR;
         _priceLabel.font = KFitFont(16);
         _priceLabel.textAlignment = NSTextAlignmentRight;
