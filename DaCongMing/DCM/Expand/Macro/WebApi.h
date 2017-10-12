@@ -115,6 +115,9 @@
 //获取收藏
 #define API_GetCollectGoods      @"HAILIN_SERVER/getItemFavorite.do"
 
+//获取收藏店铺
+#define API_GetCollectShop      @"HAILIN_SERVER/addSellerFavorite.do"
+
 //移除购物车
 #define API_RemoveShoppingCarts     @"HAILIN_SERVER/removeCartItem.do"
 

@@ -54,6 +54,7 @@
     [super viewWillAppear:animated];
     [self requestShoppingCartsData];
     [self cartsAmountClaculate];
+    [self payShoppiingCarts];
 }
 
 - (void)setupData{
@@ -115,6 +116,8 @@
                 make.left.right.bottom.equalTo(self.view);
                 make.height.mas_equalTo(60 * WIDTH_MULTIPLE);
             }];
+            
+            _bottomView.checkAllBtn.selected = NO;
         }
         
         [_tableView reloadData];
@@ -205,6 +208,15 @@
     }
     
     [_tableView reloadData];
+}
+
+//购物车结算
+- (void)payShoppiingCarts{
+    
+    self.bottomView.payAction = ^(CGFloat amount) {
+      
+        
+    };
 }
 
 #pragma mark - Notification

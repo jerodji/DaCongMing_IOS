@@ -12,8 +12,6 @@
 
 /** line */
 @property (nonatomic,strong) UIView *topLine;
-/** checkAllBtn */
-@property (nonatomic,strong) HYButton *checkAllBtn;
 /** 结算 */
 @property (nonatomic,strong) UIButton *confirmBtn;
 /** Price */
@@ -95,12 +93,18 @@
 #pragma mark - action
 - (void)confirmAction{
     
-    
+    self.payAction([self.amount floatValue]);
 }
 
 - (void)checkAllBtnAction:(UIButton *)button{
     
     button.selected = !button.selected;
+    
+    if (!button.selected) {
+        
+        self.amount = @"0.00";
+    }
+    
     if (self.checkAllBlock) {
         
         self.checkAllBlock(button.selected);

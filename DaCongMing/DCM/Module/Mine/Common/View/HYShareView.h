@@ -10,4 +10,9 @@
 
 @interface HYShareView : UIView
 
+/** 分享的 */
+@property (nonatomic,strong) NSDictionary *shareDict;
+
+- (void)showShareView;
+
 @end

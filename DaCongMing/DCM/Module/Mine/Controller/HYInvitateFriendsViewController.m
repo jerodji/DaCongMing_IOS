@@ -8,6 +8,7 @@
 
 #import "HYInvitateFriendsViewController.h"
 #import "HYShareView.h"
+#import "HYMineNetRequest.h"
 
 @interface HYInvitateFriendsViewController ()
 
@@ -15,6 +16,8 @@
 @property (nonatomic,strong) UIImageView *bgImageView;
 /** shareBtn */
 @property (nonatomic,strong) UIButton *shareBtn;
+/** share */
+@property (nonatomic,strong) HYShareView *shareView;
 
 @end
 
@@ -24,6 +27,7 @@
     [super viewDidLoad];
     
     [self setupSubviews];
+    [self requestNetWork];
 }
 
 - (void)setupSubviews{
@@ -49,10 +53,27 @@
     }];
 }
 
+- (void)requestNetWork{
+    
+    [HYMineNetRequest getMyShareWithComplectionBlock:^(NSDictionary *shareDict) {
+        
+        if (shareDict) {
+            
+            NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+            [dict setObject:@"大聪明" forKey:@"shareTitle"];
+            [dict setObject:shareDict[@"url"] forKey:@"shareUrl"];
+            [dict setObject:@"老铁，没毛病，双击666" forKey:@"shareDesc"];
+            
+            self.shareView.shareDict = dict;
+        }
+    }];
+}
+
 #pragma mark - action
 - (void)inviteAction{
     
-    
+    [KEYWINDOW addSubview:self.shareView];
+    [self.shareView showShareView];
 }
 
 #pragma mark - lazyLoad
@@ -77,6 +98,15 @@
         [_shareBtn addTarget:self action:@selector(inviteAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return _shareBtn;
+}
+
+- (HYShareView *)shareView{
+    
+    if (!_shareView) {
+        
+        _shareView = [[HYShareView alloc] initWithFrame:CGRectMake(0, 0, KSCREEN_WIDTH, KSCREEN_HEIGHT)];
+    }
+    return _shareView;
 }
 
 - (void)didReceiveMemoryWarning {

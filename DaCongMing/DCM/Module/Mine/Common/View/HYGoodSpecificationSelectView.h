@@ -31,4 +31,6 @@
 /** 购物车还是下单 */
 @property (nonatomic,assign) BOOL isAddToCarts;
 
+- (void)showGoodsSpecificationView;
+
 @end

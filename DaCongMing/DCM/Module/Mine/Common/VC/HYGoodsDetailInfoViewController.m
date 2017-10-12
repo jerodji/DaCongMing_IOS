@@ -78,8 +78,6 @@
     [self.view addSubview:self.backBtn];
     [self.view addSubview:self.shareBtn];
     [self.view addSubview:self.bottomView];
-    [self.view addSubview:self.selectSpeciView];
-    [self.view addSubview:self.shareView];
 }
 
 - (void)requestNetwork{
@@ -122,27 +120,12 @@
         make.width.height.equalTo(@40);
     }];
     
-  
-    
     [_bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
        
         make.left.right.bottom.equalTo(self.view);
         make.height.equalTo(@(60));
     }];
     
-    [_selectSpeciView mas_makeConstraints:^(MASConstraintMaker *make) {
-        
-        make.left.right.equalTo(self.view);
-        make.top.equalTo(self.view.mas_bottom);
-        make.height.equalTo(self.view);
-    }];
-    
-    [_shareView mas_makeConstraints:^(MASConstraintMaker *make) {
-       
-        make.left.right.equalTo(self.view);
-        make.bottom.equalTo(self.view.mas_top);
-        make.height.equalTo(self.view);
-    }];
 }
 
 #pragma mark - action
@@ -153,17 +136,10 @@
 
 - (void)shareAction{
     
-    [self setupSubviews];
-    [_shareView mas_updateConstraints:^(MASConstraintMaker *make) {
-        
-        make.left.top.right.bottom.equalTo(self.view);
-    }];
     
-    [UIView animateWithDuration:0.2 animations:^{
-        
-        [self setupMasonryLayout];
-        [self.view layoutIfNeeded];
-    }];
+    [self.view addSubview:self.shareView];
+    [self.shareView showShareView];
+    
 }
 
 - (void)bottomBtnAction{
@@ -172,30 +148,20 @@
     
     self.bottomView.buyNowAction = ^{
         
-        [weakSelf setupSubviews];
+        [weakSelf.view addSubview:weakSelf.selectSpeciView];
         weakSelf.selectSpeciView.goodsModel = weakSelf.detailModel;
         weakSelf.selectSpeciView.isAddToCarts = NO;
-        //规格
-        [UIView animateWithDuration:0.2 animations:^{
-            
-            [weakSelf.selectSpeciView mas_remakeConstraints:^(MASConstraintMaker *make) {
-                make.left.top.right.bottom.equalTo(weakSelf.view);
-            }];
-        }];
+        [weakSelf.selectSpeciView showGoodsSpecificationView];
     };
     
     self.bottomView.addToCartsAction = ^{
         
-        [weakSelf setupSubviews];
+        [weakSelf.view addSubview:weakSelf.selectSpeciView];
         weakSelf.selectSpeciView.goodsModel = weakSelf.detailModel;
         weakSelf.selectSpeciView.isAddToCarts = YES;
         //规格
-        [UIView animateWithDuration:0.2 animations:^{
-            
-            [weakSelf.selectSpeciView mas_remakeConstraints:^(MASConstraintMaker *make) {
-                make.left.top.right.bottom.equalTo(weakSelf.view);
-            }];
-        }];
+        [weakSelf.selectSpeciView showGoodsSpecificationView];
+
     };
     
     //收藏
@@ -365,18 +331,11 @@
         
     }
     else if (indexPath.row == 2){
-        
-        [self setupSubviews];
-        _selectSpeciView.goodsModel = _detailModel;
-        //规格
-        [UIView animateWithDuration:0.2 animations:^{
-           
-            [_selectSpeciView mas_remakeConstraints:^(MASConstraintMaker *make) {
-                make.left.top.right.bottom.equalTo(self.view);
-            }];
-            [self setupMasonryLayout];
-            [self.view layoutIfNeeded];
-        }];
+        //选规格
+        [self.view addSubview:self.selectSpeciView];
+        self.selectSpeciView.goodsModel = self.detailModel;
+        self.selectSpeciView.isAddToCarts = NO;
+        [self.selectSpeciView showGoodsSpecificationView];
     }
     else if (indexPath.row == 3){
         
@@ -463,7 +422,7 @@
     
     if (!_selectSpeciView) {
         
-        _selectSpeciView = [HYGoodSpecificationSelectView new];
+        _selectSpeciView = [[HYGoodSpecificationSelectView alloc] initWithFrame:CGRectMake(0, 0, KSCREEN_WIDTH, KSCREEN_HEIGHT)];
         _selectSpeciView.delegate = self;
         
     }
@@ -474,7 +433,7 @@
     
     if (!_shareView) {
         
-        _shareView = [HYShareView new];
+        _shareView = [[HYShareView alloc] initWithFrame:CGRectMake(0, 0, KSCREEN_WIDTH, KSCREEN_HEIGHT)];
     }
     return _shareView;
 }

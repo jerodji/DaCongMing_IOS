@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HYMyCollectShopModel.h"
 
 @interface HYMyCollectionShopCell : UITableViewCell
+
+/** 收藏店铺model */
+@property (nonatomic,strong) HYMyCollectShopModel *collectShopModel;
 
 @end

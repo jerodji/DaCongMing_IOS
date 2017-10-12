@@ -12,6 +12,8 @@
 
 @interface HYGoodSpecificationSelectView()
 
+/** 半透明背景 */
+@property (nonatomic,strong) UIView *blackBgView;
 /** 白色背景 */
 @property (nonatomic,strong) UIView *bgView;
 /** icon */
@@ -57,15 +59,13 @@
         
         [self setupSubviews];
         
-        self.backgroundColor = [UIColor colorWithWhite:0 alpha:0.6];
-        
         self.userInteractionEnabled = YES;
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithActionBlock:^(id  _Nonnull sender) {
        
             CGPoint tapPoint = [sender locationInView:self];
-            if(tapPoint.y < KSCREEN_HEIGHT * 0.5){
+            if(tapPoint.y < KSCREEN_HEIGHT * 0.6){
                 
-                [self removeFromSuperview];
+                [self hideGoodsSpecificationView];
             }
             
         }];
@@ -76,32 +76,39 @@
 
 - (void)setupSubviews{
     
+    [self addSubview:self.blackBgView];
     [self addSubview:self.bgView];
-    [self addSubview:self.iconImgView];
-    [self addSubview:self.priceLabel];
-    [self addSubview:self.inventoryLabel];
-    [self addSubview:self.selectSepcLabel];
-    [self addSubview:self.speciLabel];
-    [self addSubview:self.line];
-    [self addSubview:self.buyCountLabel];
-    [self addSubview:self.buyCountView];
-    [self addSubview:self.closeBtn];
-    [self addSubview:self.confirmBtn];
+    [self.bgView addSubview:self.iconImgView];
+    [self.bgView addSubview:self.priceLabel];
+    [self.bgView addSubview:self.inventoryLabel];
+    [self.bgView addSubview:self.selectSepcLabel];
+    [self.bgView addSubview:self.speciLabel];
+    [self.bgView addSubview:self.line];
+    [self.bgView addSubview:self.buyCountLabel];
+    [self.bgView addSubview:self.buyCountView];
+    [self.bgView addSubview:self.closeBtn];
+    [self.bgView addSubview:self.confirmBtn];
+    
+    [self buyCountChanged];
+}
+
+- (void)buyCountChanged{
     
     __weak typeof (self)weakSelf = self;
     self.buyCountView.countCallback = ^(NSInteger count) {
         
         weakSelf.buyCountNum = count;
-         weakSelf.selectSepcLabel.text = [NSString stringWithFormat:@"%@  x  %ld",weakSelf.previousItemModel.unit,(long)weakSelf.buyCountNum];
+        weakSelf.selectSepcLabel.text = [NSString stringWithFormat:@"%@  x  %ld",weakSelf.previousItemModel.unit,(long)weakSelf.buyCountNum];
     };
 }
 
 - (void)layoutSubviews{
     
-    [_bgView mas_makeConstraints:^(MASConstraintMaker *make) {
-       
-        make.left.right.bottom.equalTo(self);
-        make.height.equalTo(@(0.5 * KSCREEN_HEIGHT));
+    [self setupSubviews];
+
+    [_blackBgView mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.left.right.top.bottom.equalTo(self);
     }];
     
     [_iconImgView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -247,7 +254,7 @@
             }
             
             _endY = button.bottom + 10;
-            [self addSubview:button];
+            [self.bgView addSubview:button];
         }
     }
     
@@ -282,15 +289,43 @@
     _previousItemModel = item;
 }
 
+#pragma mark - publicMethod
+- (void)showGoodsSpecificationView{
+    
+    [self setupSubviews];
+    [UIView animateWithDuration:0.25 animations:^{
+        
+        _blackBgView.alpha = 0.6;
+        _bgView.frame = CGRectMake(0, 0.5 * KSCREEN_HEIGHT, KSCREEN_WIDTH, 0.5 * KSCREEN_HEIGHT);
+    }];
+}
+
+- (void)hideGoodsSpecificationView{
+    
+    [self.bgView removeFromSuperview];
+    self.bgView = nil;
+    [self removeFromSuperview];
+}
+
 #pragma mark - lazyload
+- (UIView *)blackBgView{
+    
+    if (!_blackBgView) {
+        
+        _blackBgView = [UIView new];
+        _blackBgView.backgroundColor = KAPP_BLACK_COLOR;
+        _blackBgView.alpha = 0;
+    }
+    return _blackBgView;
+}
+
 - (UIView *)bgView{
     
     if (!_bgView) {
         
-        _bgView = [UIView new];
+        _bgView = [[UIView alloc] initWithFrame:CGRectMake(0, KSCREEN_HEIGHT, KSCREEN_WIDTH, KSCREEN_HEIGHT * 0.5)];
         _bgView.backgroundColor = KAPP_WHITE_COLOR;
         _bgView.tag = 100;
-        _bgView.userInteractionEnabled = NO;
     }
     return _bgView;
 }

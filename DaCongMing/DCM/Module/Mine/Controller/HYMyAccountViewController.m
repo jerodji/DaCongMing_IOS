@@ -90,11 +90,8 @@
     
     if (indexPath.section == 4) {
         
-        [KEYWINDOW  addSubview:self.customAlert];
-        [_customAlert mas_makeConstraints:^(MASConstraintMaker *make) {
-           
-            make.left.right.top.bottom.equalTo(self.view);
-        }];
+        [KEYWINDOW addSubview:self.customAlert];
+        [self.customAlert showCustomAlert];
     }
 }
 
@@ -139,7 +136,7 @@
     
     if (!_customAlert) {
         
-        _customAlert = [[HYCustomAlert alloc] initWithFrame:CGRectZero WithTitle:@"温馨提示" content:@"是否退出登录" confirmBlock:^{
+        _customAlert = [[HYCustomAlert alloc] initWithFrame:CGRectMake(0, 0, KSCREEN_WIDTH, KSCREEN_HEIGHT) WithTitle:@"温馨提示" content:@"是否退出登录" confirmBlock:^{
             
             [[HYUserModel sharedInstance] clearData];
             [HYUserHandle jumpToHomePageVC];

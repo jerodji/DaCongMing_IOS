@@ -7,6 +7,7 @@
 //
 
 #import "HYMyQRCodeViewController.h"
+#import "HYShareView.h"
 
 @interface HYMyQRCodeViewController ()
 
@@ -14,6 +15,8 @@
 @property (nonatomic,strong) UIImageView *bgImageView;
 /** 二维码 */
 @property (nonatomic,strong) UIImageView *QRImageView;
+/** share */
+@property (nonatomic,strong) HYShareView *shareView;
 
 @end
 
@@ -31,6 +34,9 @@
     self.view.backgroundColor = KAPP_WHITE_COLOR;
     [self.view addSubview:self.bgImageView];
     [self.view addSubview:self.QRImageView];
+    
+    UIBarButtonItem *shareButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"分享" style:UIBarButtonItemStylePlain target:self action:@selector(shareQRCodeAction)];
+    self.navigationItem.rightBarButtonItem = shareButtonItem;
 }
 
 - (void)viewDidLayoutSubviews{
@@ -50,6 +56,13 @@
     }];
 }
 
+#pragma mark - action
+- (void)shareQRCodeAction{
+    
+    [KEYWINDOW addSubview:self.shareView];
+    [self.shareView showShareView];
+}
+
 #pragma mark - lazyLoad
 - (UIImageView *)bgImageView{
     
@@ -62,7 +75,6 @@
     return _bgImageView;
 }
 
-#pragma mark - lazyLoad
 - (UIImageView *)QRImageView{
     
     if (!_QRImageView) {
@@ -72,6 +84,15 @@
         _QRImageView.contentMode = UIViewContentModeScaleToFill;
     }
     return _QRImageView;
+}
+
+- (HYShareView *)shareView{
+    
+    if (!_shareView) {
+        
+        _shareView = [[HYShareView alloc] initWithFrame:CGRectMake(0, 0, KSCREEN_WIDTH, KSCREEN_HEIGHT)];
+    }
+    return _shareView;
 }
 
 - (void)didReceiveMemoryWarning {

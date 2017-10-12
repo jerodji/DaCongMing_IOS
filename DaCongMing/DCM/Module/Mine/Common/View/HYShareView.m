@@ -7,9 +7,12 @@
 //
 
 #import "HYShareView.h"
+#import "HYShareHandle.h"
 
 @interface HYShareView()
 
+/** 半透明背景 */
+@property (nonatomic,strong) UIView *blackBgView;
 /** 白色背景 */
 @property (nonatomic,strong) UIView *bgView;
 /** WeChat */
@@ -35,16 +38,14 @@
     if (self = [super initWithFrame:frame]) {
         
         [self setupSubviews];
-        
-        self.backgroundColor = [UIColor colorWithWhite:0 alpha:0.6];
-        
+                
         self.userInteractionEnabled = YES;
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithActionBlock:^(id  _Nonnull sender) {
             
             CGPoint tapPoint = [sender locationInView:self];
-            if(tapPoint.y < KSCREEN_HEIGHT * 0.5){
+            if(tapPoint.y < KSCREEN_HEIGHT - 200 * WIDTH_MULTIPLE){
                 
-                [self removeFromSuperview];
+                [self hideShareView];
             }
             
         }];
@@ -55,30 +56,37 @@
 
 - (void)setupSubviews{
     
+    [self addSubview:self.blackBgView];
     [self addSubview:self.bgView];
-    [self addSubview:self.weChatShareBtn];
-    [self addSubview:self.qqShareBtn];
-    [self addSubview:self.weChatLifeShareBtn];
-    [self addSubview:self.sinaWeiboShareBtn];
-    [self addSubview:self.cancelBtn];
-    [self addSubview:self.line];
+    [self.bgView addSubview:self.weChatShareBtn];
+    [self.bgView addSubview:self.qqShareBtn];
+    [self.bgView addSubview:self.weChatLifeShareBtn];
+    [self.bgView addSubview:self.sinaWeiboShareBtn];
+    [self.bgView addSubview:self.cancelBtn];
+    [self.bgView addSubview:self.line];
 }
 
 - (void)layoutSubviews{
     
-    [_bgView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [_blackBgView mas_makeConstraints:^(MASConstraintMaker *make) {
        
-        make.left.equalTo(self).offset(10 * WIDTH_MULTIPLE);
-        make.right.equalTo(self).offset(-10 * WIDTH_MULTIPLE);
-        make.bottom.equalTo(self).offset(-10 * WIDTH_MULTIPLE);
-        make.height.equalTo(@(190 * WIDTH_MULTIPLE));
+        make.left.right.top.bottom.equalTo(self);
     }];
+
+    
+//    [_bgView mas_makeConstraints:^(MASConstraintMaker *make) {
+//
+//        make.left.equalTo(self).offset(10 * WIDTH_MULTIPLE);
+//        make.right.equalTo(self).offset(-10 * WIDTH_MULTIPLE);
+//        make.bottom.equalTo(self).offset(200 * WIDTH_MULTIPLE);
+//        make.height.equalTo(@(190 * WIDTH_MULTIPLE));
+//    }];
     
     [_cancelBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.left.equalTo(_bgView);
         make.right.equalTo(_bgView);
-        make.bottom.equalTo(_bgView);
+        make.bottom.equalTo(_bgView).offset(-2 * WIDTH_MULTIPLE);;
         make.height.equalTo(@(50 * WIDTH_MULTIPLE));
     }];
     
@@ -126,20 +134,61 @@
 #pragma mark - action
 - (void)weChatShareBtnAction{
     
+    if (self.shareDict) {
+        
+        [HYShareHandle shareToWeChatWithDict:self.shareDict];
+    }
+}
+
+- (void)lifeCircleShareBtnAction{
     
+    if (self.shareDict) {
+        
+        [HYShareHandle shareToLifeCircleWithDict:self.shareDict];
+    }
 }
 
 - (void)cancelShareAction{
     
+    [self hideShareView];
+}
+
+- (void)hideShareView{
+    
+    [self.bgView removeFromSuperview];
+    self.bgView = nil;
     [self removeFromSuperview];
 }
 
+#pragma mark - PublicMethod
+- (void)showShareView{
+    
+    [self setupSubviews];
+    [UIView animateWithDuration:0.25 animations:^{
+        
+        _blackBgView.alpha = 0.6;
+        _bgView.frame = CGRectMake(10 * WIDTH_MULTIPLE, KSCREEN_HEIGHT - 200 * WIDTH_MULTIPLE, KSCREEN_WIDTH - 20 * WIDTH_MULTIPLE, 190 * WIDTH_MULTIPLE);
+    }];
+}
+
 #pragma mark - lazyload
+- (UIView *)blackBgView{
+    
+    if (!_blackBgView) {
+        
+        _blackBgView = [UIView new];
+        _blackBgView.backgroundColor = KAPP_BLACK_COLOR;
+        _blackBgView.alpha = 0;
+    }
+    return _blackBgView;
+}
+
 - (UIView *)bgView{
     
     if (!_bgView) {
         
         _bgView = [UIView new];
+        _bgView.frame = CGRectMake(10 * WIDTH_MULTIPLE, KSCREEN_HEIGHT, KSCREEN_WIDTH - 20 * WIDTH_MULTIPLE, 190 * WIDTH_MULTIPLE);
         _bgView.backgroundColor = KAPP_WHITE_COLOR;
         _bgView.layer.cornerRadius = 4 * WIDTH_MULTIPLE;
         _bgView.clipsToBounds = YES;
@@ -186,7 +235,7 @@
         [_weChatLifeShareBtn setTitleColor:KAPP_272727_COLOR forState:UIControlStateNormal];
         _weChatLifeShareBtn.titleLabel.font = KFitFont(14);
 
-        [_weChatLifeShareBtn addTarget:self action:@selector(weChatShareBtnAction) forControlEvents:UIControlEventTouchUpInside];
+        [_weChatLifeShareBtn addTarget:self action:@selector(lifeCircleShareBtnAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return _weChatLifeShareBtn;
 }

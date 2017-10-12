@@ -10,6 +10,8 @@
 
 @interface HYCustomAlert()
 
+/** 半透明背景 */
+@property (nonatomic,strong) UIView *blackBgView;
 /** 白色背景 */
 @property (nonatomic,strong) UIView *bgView;
 /** title */
@@ -20,6 +22,8 @@
 @property (nonatomic,strong) UIButton *cancelBtn;
 /** 确定 */
 @property (nonatomic,strong) UIButton *confirmBtn;
+/** horLine */
+@property (nonatomic,strong) UIView *horLine;
 /** line */
 @property (nonatomic,strong) UIView *line;
 
@@ -32,7 +36,6 @@
     
     if (self = [super initWithFrame:frame]) {
         
-        self.backgroundColor = [UIColor colorWithWhite:0 alpha:0.6];
         [self setupSubviews];
         
         _titleLabel.text = title;
@@ -46,11 +49,8 @@
             CGPoint tapPoint = [sender locationInView:self];
             if (!CGRectContainsPoint(_bgView.frame, tapPoint)) {
                 
-                [self removeFromSuperview];
-
+                [self hideCustomAlert];
             }
-
-            
         }];
         [self addGestureRecognizer:tap];
     }
@@ -59,17 +59,23 @@
 
 - (void)setupSubviews{
     
+    [self addSubview:self.blackBgView];
     [self addSubview:self.bgView];
     [self addSubview:self.titleLabel];
     [self addSubview:self.contentLabel];
     [self addSubview:self.cancelBtn];
     [self addSubview:self.confirmBtn];
     [self addSubview:self.line];
-
+    [self addSubview:self.horLine];
+    
 }
 
 - (void)layoutSubviews{
     
+    [_blackBgView mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.left.right.top.bottom.equalTo(self);
+    }];
     
     [_bgView mas_makeConstraints:^(MASConstraintMaker *make) {
        
@@ -106,13 +112,20 @@
         make.bottom.equalTo(_bgView).offset(-3);
         make.width.height.equalTo(_cancelBtn);
     }];
-
+    
     [_line mas_makeConstraints:^(MASConstraintMaker *make) {
-
+        
         make.bottom.equalTo(_bgView);
         make.width.equalTo(@1);
         make.top.equalTo(_cancelBtn);
         make.left.equalTo(self).offset(KSCREEN_WIDTH / 2);
+    }];
+
+    [_horLine mas_makeConstraints:^(MASConstraintMaker *make) {
+
+        make.left.right.equalTo(_bgView);
+        make.height.mas_equalTo(1);
+        make.top.equalTo(_cancelBtn);
     }];
 }
 
@@ -127,7 +140,33 @@
     self.actionBlock();
 }
 
+#pragma mark - public
+- (void)showCustomAlert{
+    
+    [UIView animateWithDuration:0.25 animations:^{
+        
+        _blackBgView.alpha = 0.6;
+    }];
+}
+
+- (void)hideCustomAlert{
+    
+    _blackBgView.alpha = 0;
+    [self removeFromSuperview];
+}
+
 #pragma mark - lazyload
+- (UIView *)blackBgView{
+    
+    if (!_blackBgView) {
+        
+        _blackBgView = [UIView new];
+        _blackBgView.backgroundColor = KAPP_BLACK_COLOR;
+        _blackBgView.alpha = 0;
+    }
+    return _blackBgView;
+}
+
 - (UIView *)bgView{
     
     if (!_bgView) {
@@ -197,8 +236,12 @@
 - (UIView *)line{
     
     if (!_line) {
+        
         _line = [UIView new];
         _line.backgroundColor = KAPP_SEPERATOR_COLOR;
+        
+        _horLine = [UIView new];
+        _horLine.backgroundColor = KAPP_SEPERATOR_COLOR;
     }
     return _line;
 }

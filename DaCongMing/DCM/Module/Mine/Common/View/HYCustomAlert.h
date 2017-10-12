@@ -17,4 +17,6 @@ typedef void(^confirmActionBlcok)();
 
 - (instancetype)initWithFrame:(CGRect)frame WithTitle:(NSString *)title content:(NSString *)content confirmBlock:(void(^)())confirmAction;
 
+- (void)showCustomAlert;
+
 @end

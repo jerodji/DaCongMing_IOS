@@ -22,8 +22,6 @@
     
 }
 
-
-
 #pragma mark --------navigation delegate
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
 {

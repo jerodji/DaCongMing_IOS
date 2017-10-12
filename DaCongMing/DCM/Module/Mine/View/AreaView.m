@@ -362,6 +362,7 @@ CG_INLINE CGRect CGRectMakes(CGFloat x, CGFloat y, CGFloat width, CGFloat height
 {
     self.hidden = NO;
     [UIView animateWithDuration:0.25 animations:^{
+        
         blackBaseView.alpha = 0.6;
         _areaWhiteBaseView.frame = CGRectMakes(0, 667 - 380, 375, 380);
     }];

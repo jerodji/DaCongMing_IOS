@@ -178,11 +178,7 @@
     if (indexPath.row == 2) {
         
         [KEYWINDOW addSubview:self.areaView];
-        [UIView animateWithDuration:0.2 animations:^{
-           
-            _areaView.top = 0;
-            [_areaView showAreaView];
-        }];
+        [_areaView showAreaView];
     }
 }
 
@@ -238,7 +234,7 @@
     
     if (!_areaView) {
         
-        _areaView = [[AreaView alloc] initWithFrame:CGRectMake(0, KSCREEN_HEIGHT, KSCREEN_WIDTH, KSCREEN_HEIGHT)];
+        _areaView = [[AreaView alloc] initWithFrame:CGRectMake(0, 0, KSCREEN_WIDTH, KSCREEN_HEIGHT)];
         _areaView.delegate = self;
     }
     return _areaView;

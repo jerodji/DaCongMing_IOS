@@ -34,4 +34,51 @@
     }];
 }
 
++ (void)getMyCollectShopWithPageNo:(NSInteger)PageNo ComplectionBlock:(void (^)(NSArray *))complection{
+    
+    NSMutableDictionary *requestParam = [NSMutableDictionary dictionary];
+    [requestParam setValue:[HYUserModel sharedInstance].token forKey:@"token"];
+    [requestParam setValue:[NSString stringWithFormat:@"%ld",(long)PageNo] forKey:@"pageNo"];
+    
+    [[HTTPManager shareHTTPManager] postDataFromUrl:API_GetCollectShop withParameter:requestParam isShowHUD:YES success:^(id returnData) {
+        
+        if (returnData) {
+            
+            NSInteger code = [[returnData objectForKey:@"successed"] integerValue];
+            if (code == 000) {
+                
+                NSArray *datalist = [returnData objectForKey:@"dataInfo"][@"dataList"];
+                
+                complection(datalist);
+            }
+            else{
+                complection(nil);
+            }
+        }
+    }];
+}
+
++ (void)getMyShareWithComplectionBlock:(void (^)(NSDictionary *))complection{
+    
+    NSMutableDictionary *requestParam = [NSMutableDictionary dictionary];
+    [requestParam setValue:[HYUserModel sharedInstance].token forKey:@"token"];
+    
+    [[HTTPManager shareHTTPManager] postDataFromUrl:API_UserShare withParameter:requestParam isShowHUD:YES success:^(id returnData) {
+        
+        if (returnData) {
+            
+            NSInteger code = [[returnData objectForKey:@"successed"] integerValue];
+            if (code == 000) {
+                
+                NSDictionary *dict = [returnData objectForKey:@"dataInfo"];
+                
+                complection(dict);
+            }
+            else{
+                complection(nil);
+            }
+        }
+    }];
+}
+
 @end

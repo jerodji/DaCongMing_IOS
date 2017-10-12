@@ -11,8 +11,19 @@
 @interface HYMineNetRequest : NSObject
 
 /**
- *  获取我的收藏
+ *  获取我的收藏商品
  */
 + (void)getMyCollectGoodsWithPageNo:(NSInteger )PageNo ComplectionBlock:(void(^)(NSArray *datalist))complection;
+
+/**
+ *  获取我的收藏商品
+ */
++ (void)getMyCollectShopWithPageNo:(NSInteger )PageNo ComplectionBlock:(void(^)(NSArray *datalist))complection;
+
+
+/**
+ *  我的分享
+ */
++ (void)getMyShareWithComplectionBlock:(void(^)(NSDictionary *shareDict))complection;
 
 @end

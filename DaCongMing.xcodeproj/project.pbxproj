@@ -127,6 +127,9 @@
 		3EA0BC261F750EA700F78FDD /* HYGoodsPostageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA0BC251F750EA700F78FDD /* HYGoodsPostageTableViewCell.m */; };
 		3EA0BC291F750EC300F78FDD /* HYDiscountTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA0BC281F750EC300F78FDD /* HYDiscountTableViewCell.m */; };
 		3EA0BC2C1F750EDD00F78FDD /* HYGoodsPayTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA0BC2B1F750EDD00F78FDD /* HYGoodsPayTableViewCell.m */; };
+		3ECD83311F8F5E5100DE6FFD /* HYShareHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECD83301F8F5E5100DE6FFD /* HYShareHandle.m */; };
+		3ECD83341F8F6DD300DE6FFD /* HYMyCollectShopModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECD83331F8F6DD300DE6FFD /* HYMyCollectShopModel.m */; };
+		3ECD83371F8F748800DE6FFD /* HYMyCollectShopImageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECD83361F8F748800DE6FFD /* HYMyCollectShopImageCollectionViewCell.m */; };
 		3ED218B81F8DE3540040C7E3 /* HYMyCollectGoodsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED218B71F8DE3540040C7E3 /* HYMyCollectGoodsViewController.m */; };
 		3ED218BB1F8DE3660040C7E3 /* HYMyCollectShopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED218BA1F8DE3660040C7E3 /* HYMyCollectShopViewController.m */; };
 		3ED218BE1F8DE37A0040C7E3 /* HYRecentViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED218BD1F8DE37A0040C7E3 /* HYRecentViewViewController.m */; };
@@ -404,6 +407,12 @@
 		3EA0BC281F750EC300F78FDD /* HYDiscountTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYDiscountTableViewCell.m; sourceTree = "<group>"; };
 		3EA0BC2A1F750EDD00F78FDD /* HYGoodsPayTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYGoodsPayTableViewCell.h; sourceTree = "<group>"; };
 		3EA0BC2B1F750EDD00F78FDD /* HYGoodsPayTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYGoodsPayTableViewCell.m; sourceTree = "<group>"; };
+		3ECD832F1F8F5E5100DE6FFD /* HYShareHandle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYShareHandle.h; sourceTree = "<group>"; };
+		3ECD83301F8F5E5100DE6FFD /* HYShareHandle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYShareHandle.m; sourceTree = "<group>"; };
+		3ECD83321F8F6DD300DE6FFD /* HYMyCollectShopModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYMyCollectShopModel.h; sourceTree = "<group>"; };
+		3ECD83331F8F6DD300DE6FFD /* HYMyCollectShopModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYMyCollectShopModel.m; sourceTree = "<group>"; };
+		3ECD83351F8F748800DE6FFD /* HYMyCollectShopImageCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYMyCollectShopImageCollectionViewCell.h; sourceTree = "<group>"; };
+		3ECD83361F8F748800DE6FFD /* HYMyCollectShopImageCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYMyCollectShopImageCollectionViewCell.m; sourceTree = "<group>"; };
 		3ED218B61F8DE3540040C7E3 /* HYMyCollectGoodsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYMyCollectGoodsViewController.h; sourceTree = "<group>"; };
 		3ED218B71F8DE3540040C7E3 /* HYMyCollectGoodsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYMyCollectGoodsViewController.m; sourceTree = "<group>"; };
 		3ED218B91F8DE3660040C7E3 /* HYMyCollectShopViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYMyCollectShopViewController.h; sourceTree = "<group>"; };
@@ -556,6 +565,8 @@
 				3ED218C61F8DE6960040C7E3 /* HYMyCollectionGoodsCell.m */,
 				3ED218C81F8DE6BA0040C7E3 /* HYMyCollectionShopCell.h */,
 				3ED218C91F8DE6BA0040C7E3 /* HYMyCollectionShopCell.m */,
+				3ECD83351F8F748800DE6FFD /* HYMyCollectShopImageCollectionViewCell.h */,
+				3ECD83361F8F748800DE6FFD /* HYMyCollectShopImageCollectionViewCell.m */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -659,6 +670,8 @@
 				3E4D78891F79088F00BC9C2B /* HYAlipayManager.m */,
 				3E4D789A1F7911CC00BC9C2B /* HYWeChatPayManager.h */,
 				3E4D789B1F7911CC00BC9C2B /* HYWeChatPayManager.m */,
+				3ECD832F1F8F5E5100DE6FFD /* HYShareHandle.h */,
+				3ECD83301F8F5E5100DE6FFD /* HYShareHandle.m */,
 			);
 			path = Handle;
 			sourceTree = "<group>";
@@ -903,6 +916,8 @@
 				3E33CC8F1F8B1D6F002179CD /* HYCityModel.m */,
 				3E33CC911F8B1D7A002179CD /* HYAreaModel.h */,
 				3E33CC921F8B1D7A002179CD /* HYAreaModel.m */,
+				3ECD83321F8F6DD300DE6FFD /* HYMyCollectShopModel.h */,
+				3ECD83331F8F6DD300DE6FFD /* HYMyCollectShopModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1351,10 +1366,12 @@
 				3E5620B41F6BBDD00063AA5B /* HYHomeImgScrollCell.m in Sources */,
 				3E2754881F710DCF0010053E /* HYGoodsItemModel.m in Sources */,
 				3E2754391F6F56EE0010053E /* HYItemListModel.m in Sources */,
+				3ECD83311F8F5E5100DE6FFD /* HYShareHandle.m in Sources */,
 				3E1F428E1F7CED1C00E90377 /* HYPlistTools.m in Sources */,
 				3E934DDF1F6BD78100F3ADE4 /* HYReCommendTday.m in Sources */,
 				3EFBFC5D1F7C8EAF003F92B8 /* HYNoAddressView.m in Sources */,
 				3E56207A1F6B6DAC0063AA5B /* UIView+Toast.m in Sources */,
+				3ECD83371F8F748800DE6FFD /* HYMyCollectShopImageCollectionViewCell.m in Sources */,
 				3ED218D81F8E0E900040C7E3 /* HYShopCollectCell.m in Sources */,
 				3E2754711F70C06C0010053E /* HYButton.m in Sources */,
 				3E33CC9A1F8C5AAC002179CD /* HYCartsModel.m in Sources */,
@@ -1448,6 +1465,7 @@
 				3E27543C1F6F61E40010053E /* HYHomeTagsCollectionViewCell.m in Sources */,
 				3EA0BC1F1F750CB100F78FDD /* HYFillOrderViewController.m in Sources */,
 				3E27547F1F70FBED0010053E /* HYNoGoodsTableViewCell.m in Sources */,
+				3ECD83341F8F6DD300DE6FFD /* HYMyCollectShopModel.m in Sources */,
 				3E2754A11F721AC00010053E /* HYGoodsItemProp.m in Sources */,
 				3E10220D1F7B44050048D556 /* HYMyAccountTableViewCell.m in Sources */,
 				3E1022131F7B4F160048D556 /* HYCustomAlert.m in Sources */,
