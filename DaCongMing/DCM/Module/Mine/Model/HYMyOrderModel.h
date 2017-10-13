@@ -47,24 +47,65 @@
 
 @end
 
+@interface HYMyOrderDetailsModel : HYBaseModel
+
+/** guid */
+@property (nonatomic,copy) NSString *guid;
+/** sorder_id */
+@property (nonatomic,copy) NSString *sorder_id;
+/** item_id */
+@property (nonatomic,copy) NSString *item_id;
+/** summary_qty */
+@property (nonatomic,copy) NSString *item_name;
+/** unit */
+@property (nonatomic,copy) NSString *unit;
+/** province_name */
+@property (nonatomic,copy) NSString *qty;
+/** city_name */
+@property (nonatomic,copy) NSString *price;
+/** item_title_image */
+@property (nonatomic,copy) NSString *item_title_image;
+/** address */
+@property (nonatomic,copy) NSString *seller_id;
+/** isRefQty */
+@property (nonatomic,copy) NSString *isRefQty;
+
+@end
+
 /**
  "seller_id": "001",
  "seller_name": "laohailin",
- "sorder_id": "010201709261000001629508533",
+ "sorder_id": "010201710121000001860636272",
  "summary_qty": 1,
- "summary_price": 0.02,
- "province_name": "河北省",
- "city_name": "石家庄市",
- "area_name": "长安区",
- "address": "都不买看",
- "receiver": "范冰冰",
- "phoneNum": "12345685231",
- "orderDtls": null,
- "user_id": "o-13MvzD5U5LVc",
+ "summary_price": 0.05,
+ "province_name": "北京市",
+ "city_name": "市辖区",
+ "area_name": "东城区",
+ "address": "老地方",
+ "receiver": "哈哈哈",
+ "phoneNum": "12345678901",
+ "orderDtls": [
+ {
+ "guid": "201710121000002024806468",
+ "sorder_id": "010201710121000001860636272",
+ "item_id": "item_d386811840e747ec87420496c3f34619",
+ "item_name": "蝶豆花",
+ "unit": "500g",
+ "qty": 1,
+ "price": 0.05,
+ "floor_price": 0,
+ "item_title_image": "http://116.62.118.249:80/item_image/image_8d93b45b81fc4e95a599bd854a39896c.jpg",
+ "seller_id": null,
+ "user_id": null,
+ "refingQty": 0,
+ "isRefQty": 0
+ }
+ ],
+ "user_id": "o-13MvxwjL-h-8jK4SP8BglgEYhc",
  "order_id": null,
  "note": null,
- "create_time": "2017-09-26 14:56:20.0",
- "close_time": "2017-09-26 15:11:20.0",
+ "create_time": "2017-10-12 17:11:16.0",
+ "close_time": "2017-10-12 17:26:16.0",
  "order_stat": "1",
  "ispassentry": "0",
  "receipt": null,

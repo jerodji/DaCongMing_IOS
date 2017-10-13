@@ -46,6 +46,7 @@
     [self addSubview:self.recentViewLabel];
 }
 
+#pragma mark - setter
 - (void)setUser:(HYUserModel *)user{
     
     _user = user;
@@ -55,8 +56,13 @@
         [_headerImgView sd_setImageWithURL:[NSURL URLWithString:user.userInfo.head_image_url] placeholderImage:[UIImage imageNamed:@"header_placeholder"]];
         _nickNameLabel.text = user.userInfo.name;
     }
+}
+
+- (void)setMyUserInfo:(HYMyUserInfo *)myUserInfo{
     
-    
+    _myUserInfo = myUserInfo;
+    _collectGoodsLabel.text = [NSString stringWithFormat:@"%@\n收藏的商品",myUserInfo.favItemNum];
+    _collectStoreLabel.text = [NSString stringWithFormat:@"%@\n收藏的店铺",myUserInfo.favStoreNum];
 }
 
 - (void)layoutSubviews{

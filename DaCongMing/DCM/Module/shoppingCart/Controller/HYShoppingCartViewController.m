@@ -15,6 +15,7 @@
 #import "HYCartsBottomView.h"
 #import "HYCartsHandle.h"
 #import "HYCartsModel.h"
+#import "HYMyUserInfo.h"
 
 @interface HYShoppingCartViewController () <UITableViewDelegate,UITableViewDataSource>
 
@@ -52,6 +53,7 @@
 - (void)viewWillAppear:(BOOL)animated{
     
     [super viewWillAppear:animated];
+    self.tabBarItem.badgeValue = [HYMyUserInfo sharedInstance].cartItemNum;
     [self requestShoppingCartsData];
     [self cartsAmountClaculate];
     [self payShoppiingCarts];

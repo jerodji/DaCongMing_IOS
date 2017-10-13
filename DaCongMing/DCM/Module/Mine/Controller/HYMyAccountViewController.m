@@ -8,6 +8,7 @@
 
 #import "HYMyAccountViewController.h"
 #import "HYMyAccountTableViewCell.h"
+#import "HYMyUserInfo.h"
 
 @interface HYMyAccountViewController () <UITableViewDelegate,UITableViewDataSource>
 
@@ -139,6 +140,7 @@
         _customAlert = [[HYCustomAlert alloc] initWithFrame:CGRectMake(0, 0, KSCREEN_WIDTH, KSCREEN_HEIGHT) WithTitle:@"温馨提示" content:@"是否退出登录" confirmBlock:^{
             
             [[HYUserModel sharedInstance] clearData];
+            [[HYMyUserInfo sharedInstance] clearData];
             [HYUserHandle jumpToHomePageVC];
         }];
     }

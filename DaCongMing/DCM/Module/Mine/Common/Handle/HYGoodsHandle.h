@@ -29,6 +29,11 @@
 + (void)createOrderWithGuid:(NSString *)guid itemID:(NSString *)itemID count:(NSInteger)count sellerID:(NSString *)sellerID andUnit:(NSString *)unit complectionBlock:(void(^)(HYCreateOrder *order))complection;
 
 /**
+ *  重复购买
+ */
++ (void)createOrderWithOrderID:(NSString *)orderID complectionBlock:(void(^)(HYCreateOrder *order))complection;
+
+/**
  *  修改订单收货地址
  */
 + (void)changeOrderReceiveAddressOrderID:(NSString *)orderID addressModel:(HYMyAddressModel *)addressModel ComplectionBlock:(void(^)(BOOL isSuccess))complection;

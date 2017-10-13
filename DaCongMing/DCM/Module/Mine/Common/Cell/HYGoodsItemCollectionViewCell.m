@@ -58,7 +58,7 @@
        
         make.left.equalTo(self).offset(6);
         make.right.equalTo(self).offset(-6);
-        make.top.equalTo(self);
+        make.top.equalTo(self).offset(6);
         make.height.equalTo(@(220 * WIDTH_MULTIPLE));
     }];
     

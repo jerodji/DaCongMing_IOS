@@ -11,3 +11,7 @@
 @implementation HYMyOrderModel
 
 @end
+
+@implementation HYMyOrderDetailsModel
+
+@end

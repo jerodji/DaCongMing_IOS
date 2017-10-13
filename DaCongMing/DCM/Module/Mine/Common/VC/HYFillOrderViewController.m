@@ -51,7 +51,6 @@
     self.title = @"填写订单";
     [self setupSubviews];
     [self setupMasonryLayout];
-    [self requestData];
 }
 
 - (void)setupSubviews{
@@ -97,6 +96,7 @@
     }];
 }
 
+#pragma mark - setter
 - (void)setOrderModel:(HYCreateOrder *)orderModel{
     
     _orderModel = orderModel;
@@ -104,6 +104,27 @@
     NSMutableAttributedString *attributeStr = [[NSMutableAttributedString alloc] initWithString:str];
     [attributeStr addAttributes:@{NSForegroundColorAttributeName : KAPP_PRICE_COLOR} range:NSMakeRange(6, str.length - 6)];
     _payMoneyLabel.attributedText = attributeStr;
+}
+
+- (void)setBuyCount:(NSInteger)buyCount{
+    
+    _buyCount = buyCount;
+    //从商品详情跳过来
+    [self requestData];
+}
+
+- (void)setOrderID:(NSString *)orderID{
+    
+    _orderID = orderID;
+    //从订单也跳转过来的
+    
+    [HYGoodsHandle createOrderWithOrderID:orderID complectionBlock:^(HYCreateOrder *order) {
+        
+        self.orderModel = order;
+        NSDictionary *dict = order.dataList[0];
+        self.createOrderDatalist = [HYCreateOrderDatalist modelWithDictionary:dict];
+        [_tableView reloadData];
+    }];
 }
 
 #pragma mark - action

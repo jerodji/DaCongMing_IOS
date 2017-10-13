@@ -17,4 +17,7 @@
 /** 数量 */
 @property (nonatomic,assign) NSInteger buyCount;
 
+/** 订单号（重复购买） */
+@property (nonatomic,copy) NSString *orderID;
+
 @end

@@ -36,28 +36,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DaCongMing/DCM/Module/Mine/Common/VC/HYFillOrderViewController.m"
-            timestampString = "529324345.514868"
+            timestampString = "529579450.31929"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "250"
-            endingLineNumber = "250"
+            startingLineNumber = "271"
+            endingLineNumber = "271"
             landmarkName = "-tableView:didSelectRowAtIndexPath:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "DaCongMing/DCM/Module/Mine/Handle/HYRequestOrderHandle.m"
-            timestampString = "529482395.778708"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "23"
-            endingLineNumber = "23"
-            landmarkName = "+requestOrderDataWithState:pageNo:andPage:complectionBlock:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -83,13 +67,157 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DaCongMing/DCM/Module/Mine/Controller/HYMyCollectShopViewController.m"
-            timestampString = "529495218.721005"
+            filePath = "DaCongMing/DCM/Module/Mine/Common/VC/HYFillOrderViewController.m"
+            timestampString = "529579450.319523"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "42"
-            endingLineNumber = "42"
-            landmarkName = "-requestNetwork"
+            startingLineNumber = "90"
+            endingLineNumber = "90"
+            landmarkName = "-requestData"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[HYFillOrderViewController requestData]"
+                  moduleName = "DaCongMing"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/huyong/Desktop/DaCongMing/DaCongMing/DaCongMing/DCM/Module/Mine/Common/VC/HYFillOrderViewController.m"
+                  timestampString = "529579452.512717"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "90"
+                  endingLineNumber = "90"
+                  offsetFromSymbolStart = "48">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__40-[HYFillOrderViewController requestData]_block_invoke"
+                  moduleName = "DaCongMing"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/huyong/Desktop/DaCongMing/DaCongMing/DaCongMing/DCM/Module/Mine/Common/VC/HYFillOrderViewController.m"
+                  timestampString = "529579452.514978"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "90"
+                  endingLineNumber = "90"
+                  offsetFromSymbolStart = "24">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DaCongMing/DCM/Module/Mine/Common/VC/HYFillOrderViewController.m"
+            timestampString = "529579450.319641"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "121"
+            endingLineNumber = "121"
+            landmarkName = "-setOrderID:"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[HYFillOrderViewController setOrderID:]"
+                  moduleName = "DaCongMing"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/huyong/Desktop/DaCongMing/DaCongMing/DaCongMing/DCM/Module/Mine/Common/VC/HYFillOrderViewController.m"
+                  timestampString = "529579452.521732"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "121"
+                  endingLineNumber = "121"
+                  offsetFromSymbolStart = "120">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__40-[HYFillOrderViewController setOrderID:]_block_invoke"
+                  moduleName = "DaCongMing"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/huyong/Desktop/DaCongMing/DaCongMing/DaCongMing/DCM/Module/Mine/Common/VC/HYFillOrderViewController.m"
+                  timestampString = "529579452.524218"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "121"
+                  endingLineNumber = "121"
+                  offsetFromSymbolStart = "24">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DaCongMing/DCM/Module/Mine/Controller/HYMyOrderChildViewController.m"
+            timestampString = "529579450.319761"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "150"
+            endingLineNumber = "150"
+            landmarkName = "-myOrderBtnActionWithStr:WithIndexPath:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DaCongMing/DCM/Module/Mine/Common/VC/HYGoodsDetailInfoViewController.m"
+            timestampString = "529579450.320114"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "240"
+            endingLineNumber = "240"
+            landmarkName = "-confirmGoodsSpeciSelectWithModel:buyCount:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DaCongMing/DCM/Module/Mine/Common/VC/HYFillOrderViewController.m"
+            timestampString = "529579450.320227"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "113"
+            endingLineNumber = "113"
+            landmarkName = "-setBuyCount:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DaCongMing/DCM/Module/Mine/Common/VC/HYFillOrderViewController.m"
+            timestampString = "529579450.320328"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "102"
+            endingLineNumber = "102"
+            landmarkName = "-setOrderModel:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

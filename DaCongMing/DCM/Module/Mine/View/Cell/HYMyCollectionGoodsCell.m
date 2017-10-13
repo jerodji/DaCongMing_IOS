@@ -20,6 +20,8 @@
 @property (nonatomic,strong) UILabel *unitLabel;
 /** 价格 */
 @property (nonatomic,strong) UILabel *PriceLabel;
+/** 数量 */
+@property (nonatomic,strong) UILabel *countLabel;
 
 @end
 
@@ -100,6 +102,25 @@
     _PriceLabel.text = [NSString stringWithFormat:@"￥%@",itemModel.item_min_price];
 }
 
+- (void)setOrderDetailModel:(HYMyOrderDetailsModel *)orderDetailModel{
+    
+    _orderDetailModel = orderDetailModel;
+    [_itemImgView sd_setImageWithURL:[NSURL URLWithString:orderDetailModel.item_title_image] placeholderImage:[UIImage imageNamed:@"placeholder"]];
+    _itemLabel.text = orderDetailModel.item_name;
+    _unitLabel.text = orderDetailModel.unit;
+    _PriceLabel.text = [NSString stringWithFormat:@"￥%@",orderDetailModel.price];
+    
+    [self addSubview:self.countLabel];
+    [_countLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.top.equalTo(_itemLabel);
+        make.right.equalTo(self).offset(-10 * WIDTH_MULTIPLE);
+        make.size.mas_equalTo(CGSizeMake(100, 20));
+    }];
+    _countLabel.text = [NSString stringWithFormat:@"x%@",orderDetailModel.qty];
+    
+}
+
 #pragma mark - lazyload
 - (UIView *)bgView{
     
@@ -163,6 +184,20 @@
         
     }
     return _PriceLabel;
+}
+
+- (UILabel *)countLabel{
+    
+    if (!_countLabel) {
+        
+        _countLabel = [UILabel new];
+        _countLabel.text = @"x1";
+        _countLabel.textColor = KAPP_272727_COLOR;
+        _countLabel.font = KFitFont(14);
+        _countLabel.textAlignment = NSTextAlignmentRight;
+        
+    }
+    return _countLabel;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

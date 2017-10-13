@@ -7,13 +7,24 @@
 //
 
 #import "HYBaseModel.h"
+#import "HYMyOrderModel.h"
 
 @interface HYRequestOrderHandle : HYBaseModel
+
+/**
+ *  获取所有订单
+ */
++ (void)requestAllOrderDataWithPageNo:(NSInteger)pageNo andPage:(NSInteger)pageSize ComplectionBlock:(void(^)(NSArray *datalist))complection;
 
 /**
  *  请求订单
  */
 + (void)requestOrderDataWithState:(NSInteger)order_state pageNo:(NSInteger )pageNo andPage:(NSInteger )pageSize complectionBlock:(void(^)(NSArray *datalist))complection;
+
+/**
+ *  获取订单详情
+ */
++ (void)requestOrderDetailWithOrderID:(NSString *)orderID complectionBlock:(void(^)(HYMyOrderModel *orderModel))complection;
 
 /**
  *  请求优惠券

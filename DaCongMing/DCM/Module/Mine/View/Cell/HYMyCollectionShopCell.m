@@ -7,8 +7,9 @@
 //
 
 #import "HYMyCollectionShopCell.h"
+#import "HYMyCollectShopImageCollectionViewCell.h"
 
-@interface HYMyCollectionShopCell()
+@interface HYMyCollectionShopCell()<UICollectionViewDelegate,UICollectionViewDataSource>
 
 /** 背景 */
 @property (nonatomic,strong) UIView *bgView;
@@ -24,6 +25,8 @@
 @property (nonatomic,strong) UIImageView *shopImgView;
 /** line */
 @property (nonatomic,strong) UIView *bottomLine;
+/** collectionView */
+@property (nonatomic,strong) UICollectionView *collectionView;
 
 @end
 
@@ -39,6 +42,8 @@
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         
         [self setupSubviews];
+        
+        self.backgroundColor = KAPP_TableView_BgColor;
     }
     return self;
 }
@@ -47,12 +52,12 @@
     
     [self addSubview:self.bgView];
     [self addSubview:self.shopIconImgView];
+    [self addSubview:self.shopImgView];
+    [self addSubview:self.collectBtn];
     [self addSubview:self.nameLabel];
     [self addSubview:self.selfSellerLabel];
-    [self addSubview:self.collectBtn];
-    [self addSubview:self.shopImgView];
-    [self addSubview:self.shopIconImgView];
     [self addSubview:self.bottomLine];
+    [self addSubview:self.collectionView];
     
 }
 
@@ -71,26 +76,10 @@
         make.height.mas_equalTo(35 * WIDTH_MULTIPLE);
     }];
     
-    [_nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        
-        make.left.equalTo(_shopIconImgView.mas_right).offset(10 * WIDTH_MULTIPLE);
-        make.top.equalTo(_shopIconImgView);
-        make.height.mas_equalTo(20);
-        make.right.equalTo(_collectBtn.mas_left);
-    }];
-    
-    [_selfSellerLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        
-        make.bottom.equalTo(_shopIconImgView.mas_bottom);
-        make.left.equalTo(_shopIconImgView);
-        make.height.mas_equalTo(15);
-        make.width.mas_equalTo(40);
-    }];
-    
     [_shopImgView mas_makeConstraints:^(MASConstraintMaker *make) {
-       
+        
         make.top.equalTo(_shopIconImgView);
-        make.right.equalTo(self).offset(15 * WIDTH_MULTIPLE);
+        make.right.equalTo(self).offset(-15 * WIDTH_MULTIPLE);
         make.size.mas_equalTo(CGSizeMake(20 * WIDTH_MULTIPLE, 20 * WIDTH_MULTIPLE));
     }];
     
@@ -100,11 +89,80 @@
         make.right.equalTo(_shopImgView.mas_left).offset(-15 * WIDTH_MULTIPLE);
     }];
     
+    [_nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+
+        make.left.equalTo(_shopIconImgView.mas_right).offset(10 * WIDTH_MULTIPLE);
+        make.top.equalTo(_shopIconImgView);
+        make.height.mas_equalTo(20);
+        make.width.mas_equalTo(160);
+    }];
+    
+    [_selfSellerLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.bottom.equalTo(_shopIconImgView.mas_bottom);
+        make.left.equalTo(_shopIconImgView.mas_right).offset(10 * WIDTH_MULTIPLE);
+        make.height.mas_equalTo(15);
+        make.width.mas_equalTo(40);
+    }];
+    
+    
     [_bottomLine mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.left.right.bottom.equalTo(self);
         make.height.mas_equalTo(1);
     }];
+    
+    [_collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.left.right.bottom.equalTo(self);
+        make.top.equalTo(_shopIconImgView.mas_bottom).offset(10 * WIDTH_MULTIPLE);
+    }];
+}
+
+#pragma mark - setter
+- (void)setCollectShopModel:(HYMyCollectShopModel *)collectShopModel{
+    
+    _collectShopModel = collectShopModel;
+    
+    [_shopIconImgView sd_setImageWithURL:[NSURL URLWithString:collectShopModel.storeImages] placeholderImage:[UIImage imageNamed:@"shopIconPlaceholder"]];
+    _nameLabel.text = collectShopModel.seller_name;
+    
+}
+
+#pragma mark - collectionViewDataSource
+//返回section个数
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
+    
+    return 1;
+}
+
+//每个section的item个数
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    
+    return self.collectShopModel.item_list.count;
+}
+
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
+    return UIEdgeInsetsMake(0, 5.0f, 0, 5.0f);
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    HYMyCollectShopImageCollectionViewCell *cell = (HYMyCollectShopImageCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"collectionCell" forIndexPath:indexPath];
+    NSDictionary *dict = self.collectShopModel.item_list[indexPath.item];
+    HYMyCollectShopItemList *itemList = [HYMyCollectShopItemList modelWithDictionary:dict];
+    cell.itemModel = itemList;
+    
+    return cell;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    NSDictionary *dict = self.collectShopModel.item_list[indexPath.item];
+    HYMyCollectShopItemList *itemList = [HYMyCollectShopItemList modelWithDictionary:dict];
+    
+    DLog(@"current itemID is %@",itemList);
+    
     
 }
 
@@ -126,7 +184,7 @@
         _shopIconImgView = [[UIImageView alloc] initWithFrame:CGRectZero];
         _shopIconImgView.contentMode = UIViewContentModeScaleAspectFill;
         _shopIconImgView.clipsToBounds = YES;
-        _shopIconImgView.image = [UIImage imageNamed:@"placeholder"];
+        _shopIconImgView.image = [UIImage imageNamed:@"shopIconPlaceholder"];
     }
     
     return _shopIconImgView;
@@ -162,7 +220,7 @@
 
 - (UIButton *)collectBtn{
     
-    if (_collectBtn) {
+    if (!_collectBtn) {
         
         _collectBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_collectBtn setImage:[UIImage imageNamed:@"product_collect_hl"] forState:UIControlStateNormal];
@@ -181,6 +239,32 @@
     }
     
     return _shopImgView;
+}
+
+- (UICollectionView *)collectionView{
+    
+    if (!_collectionView) {
+        
+        //1.初始化layout
+        UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+        //设置collectionView滚动方向
+        [layout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
+        CGFloat itemWidth = (KSCREEN_WIDTH - 20) / 3;
+        layout.itemSize = CGSizeMake(itemWidth, 39 * WIDTH_MULTIPLE + itemWidth);
+        layout.minimumLineSpacing = 5;
+        layout.minimumInteritemSpacing = 5;
+        
+        
+        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
+        _collectionView.backgroundColor = KAPP_WHITE_COLOR;
+        _collectionView.showsVerticalScrollIndicator = NO;
+        _collectionView.delegate = self;
+        _collectionView.dataSource = self;
+        _collectionView.showsHorizontalScrollIndicator = NO;
+        
+        [_collectionView registerClass:[HYMyCollectShopImageCollectionViewCell class] forCellWithReuseIdentifier:@"collectionCell"];
+    }
+    return _collectionView;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

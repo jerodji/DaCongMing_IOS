@@ -137,6 +137,7 @@
     
     NSDictionary *dict = _datalist[indexPath.item];
     cell.goodsModel = [HYGoodsItemModel modelWithDictionary:dict];
+    cell.backgroundColor = [UIColor redColor];
     return cell;
 }
 

@@ -71,7 +71,7 @@
 /** APP7b7b7b文字颜色 */
 #define KAPP_7b7b7b_COLOR                   [UIColor colorWithHexString:@"7b7b7b"]
 /** APPTableView背景色 */
-#define KAPP_TABLEVIEW_BGCOLOR
+#define KAPP_TableView_BgColor              [UIColor colorWithHexString:@"f4f4f4"]
 /** APP占位符颜色 */
 #define KAPP_PLACEHOLDER_COLOR
 /** APP分割线颜色 */

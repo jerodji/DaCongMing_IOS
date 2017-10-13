@@ -18,6 +18,8 @@
 @property (nonatomic,copy) NSString *seller_name;
 /** seller_pwd */
 @property (nonatomic,copy) NSString *seller_pwd;
+/** storeImages */
+@property (nonatomic,copy) NSString *storeImages;
 /** item_list */
 @property (nonatomic,copy) NSArray *item_list;
 /** isFavorite */

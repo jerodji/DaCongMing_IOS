@@ -7,8 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "HYMyUserInfo.h"
 
 @interface HYMineNetRequest : NSObject
+
+/**
+ *  获取我的购物车 收藏数量
+ */
++ (void)getMyUserInfoComplectionBlock:(void(^)(HYMyUserInfo *myUserInfo))complection;
 
 /**
  *  获取我的收藏商品

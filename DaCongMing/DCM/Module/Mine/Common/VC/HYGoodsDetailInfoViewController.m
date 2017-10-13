@@ -234,9 +234,9 @@
         else{
         
             HYFillOrderViewController *fillOrderVC = [[HYFillOrderViewController alloc] init];
-            fillOrderVC.buyCount = count;
             fillOrderVC.goodsDetailModel = _detailModel;
             fillOrderVC.specifical = item.unit;
+            fillOrderVC.buyCount = count;
             [self.navigationController pushViewController:fillOrderVC animated:YES];
         }
        

@@ -47,6 +47,9 @@
 //用户反馈
 #define API_UserFeedback             @"HAILIN_SERVER/userfeedback.do"
 
+//获取用户购物车收藏数量
+#define API_GetUserInfo             @"HAILIN_SERVER/getUserInfo.do"
+
 /********************************订单相关*********************************/
 #pragma mark - 订单相关
 //购物车
@@ -61,14 +64,23 @@
 //创建订单
 #define API_CreateOrder         @"HAILIN_SERVER/getSellerOrder.do"
 
+//重复下单
+#define API_CreateOrderWithOrderID         @"HAILIN_SERVER/rebuySellerOrder.do"
+
 //支付宝支付
 #define API_Alipay              @"HAILIN_PAY/getAliPayOrder.do"
 
 //微信支付
 #define API_WeChatPay           @"HAILIN_PAY/getWechatPayOrder.do"
 
-//获取订单数据
+//获取所有订单数据
 #define API_MyAllOrder          @"HAILIN_SERVER/getSellerOrderList.do"
+
+//获取订单详情
+#define API_MyAllOrderDetail          @"HAILIN_SERVER/getSellerOrderBySid.do"
+
+//根据状态获取订单数据
+#define API_MyOrderByState          @"HAILIN_SERVER/getSellerOrderByStat.do"
 
 //修改订单收货地址
 #define API_ChangeOrderReceiveAddress   @"HAILIN_SERVER/editSellerOrderAddress.do"
@@ -114,9 +126,6 @@
 
 //获取收藏
 #define API_GetCollectGoods      @"HAILIN_SERVER/getItemFavorite.do"
-
-//获取收藏店铺
-#define API_GetCollectShop      @"HAILIN_SERVER/addSellerFavorite.do"
 
 //移除购物车
 #define API_RemoveShoppingCarts     @"HAILIN_SERVER/removeCartItem.do"

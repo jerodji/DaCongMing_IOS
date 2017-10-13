@@ -180,19 +180,25 @@
             _confirmGoodsBtn.hidden = YES;
             _deleteOrderBtn.hidden = YES;
             _buyAgainBtn.hidden = YES;
+            _toPayBtn.hidden = NO;
             break;
         case 2:
-            _confirmGoodsBtn.hidden = YES;
-            _deleteOrderBtn.hidden = YES;
+            _confirmGoodsBtn.hidden = NO;
+            _deleteOrderBtn.hidden = NO;
+            _buyAgainBtn.hidden = YES;
             _toPayBtn.hidden = YES;
             break;
         case 3:
-            _toPayBtn.hidden = YES;
+            _confirmGoodsBtn.hidden = NO;
+            _deleteOrderBtn.hidden = YES;
             _buyAgainBtn.hidden = YES;
+            _toPayBtn.hidden = YES;
             break;
         case 8:
             _confirmGoodsBtn.hidden = YES;
-            _deleteOrderBtn.hidden = YES;
+            _deleteOrderBtn.hidden = NO;
+            _buyAgainBtn.hidden = YES;
+            _toPayBtn.hidden = YES;
             break;
         default:
             break;
@@ -241,22 +247,34 @@
 #pragma mark - action
 - (void)toPayAction{
     
-    
+    if (_delegate && [_delegate respondsToSelector:@selector(myOrderBtnActionWithStr:WithIndexPath:)]) {
+        
+        [_delegate myOrderBtnActionWithStr:@"去付款" WithIndexPath:self.indexPath];
+    }
 }
 
 - (void)buyAgainAction{
     
-    
+    if (_delegate && [_delegate respondsToSelector:@selector(myOrderBtnActionWithStr:WithIndexPath:)]) {
+        
+        [_delegate myOrderBtnActionWithStr:@"再次购买" WithIndexPath:self.indexPath];
+    }
 }
 
 - (void)confirmAction{
     
-    
+    if (_delegate && [_delegate respondsToSelector:@selector(myOrderBtnActionWithStr:WithIndexPath:)]) {
+        
+        [_delegate myOrderBtnActionWithStr:@"确认收货" WithIndexPath:self.indexPath];
+    }
 }
 
 - (void)deleteOrderAction{
     
-    
+    if (_delegate && [_delegate respondsToSelector:@selector(myOrderBtnActionWithStr:WithIndexPath:)]) {
+        
+        [_delegate myOrderBtnActionWithStr:@"删除订单" WithIndexPath:self.indexPath];
+    }
 }
 
 #pragma mark - lazyload

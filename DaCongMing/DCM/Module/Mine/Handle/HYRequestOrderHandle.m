@@ -10,6 +10,56 @@
 
 @implementation HYRequestOrderHandle
 
++ (void)requestAllOrderDataWithPageNo:(NSInteger)pageNo andPage:(NSInteger)pageSize ComplectionBlock :(void (^)(NSArray *))complection{
+    
+    NSMutableDictionary *requestParam = [NSMutableDictionary dictionary];
+    [requestParam setValue:[HYUserModel sharedInstance].token forKey:@"token"];
+    [requestParam setValue:@(pageSize) forKey:@"pageSize"];
+    [requestParam setValue:@(pageNo) forKey:@"pageNo"];
+    [[HTTPManager shareHTTPManager] postDataFromUrl:API_MyAllOrder withParameter:requestParam isShowHUD:YES success:^(id returnData) {
+        
+        if (returnData) {
+            
+            NSInteger code =[[returnData objectForKey:@"successed"] integerValue];
+            if (code == 000) {
+                
+                NSArray *array = [returnData objectForKey:@"dataInfo"][@"dataList"];
+                complection(array);
+            }
+            else{
+                
+                complection(nil);
+                [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"获取订单信息出错!"];
+            }
+        }
+    }];
+}
+
++ (void)requestOrderDetailWithOrderID:(NSString *)orderID complectionBlock:(void (^)(HYMyOrderModel *))complection{
+    
+    NSMutableDictionary *requestParam = [NSMutableDictionary dictionary];
+    [requestParam setValue:[HYUserModel sharedInstance].token forKey:@"token"];
+    [requestParam setValue:orderID forKey:@"sorder_id"];
+    [[HTTPManager shareHTTPManager] postDataFromUrl:API_MyAllOrderDetail withParameter:requestParam isShowHUD:YES success:^(id returnData) {
+        
+        if (returnData) {
+            
+            NSInteger code =[[returnData objectForKey:@"successed"] integerValue];
+            if (code == 000) {
+                
+                NSDictionary *dict = [returnData objectForKey:@"dataInfo"];
+                HYMyOrderModel *orderModel = [HYMyOrderModel modelWithDictionary:dict];
+                complection(orderModel);
+            }
+            else{
+                
+                complection(nil);
+                [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"获取订单信息出错!"];
+            }
+        }
+    }];
+}
+
 + (void)requestOrderDataWithState:(NSInteger)order_state pageNo:(NSInteger)pageNo andPage:(NSInteger)pageSize complectionBlock:(void (^)(NSArray *))complection{
     
     NSMutableDictionary *requestParam = [NSMutableDictionary dictionary];
@@ -18,7 +68,7 @@
     [requestParam setValue:@(pageSize) forKey:@"pageSize"];
     [requestParam setValue:@(pageNo) forKey:@"pageNo"];
     
-    [[HTTPManager shareHTTPManager] postDataFromUrl:API_MyAllOrder withParameter:requestParam isShowHUD:YES success:^(id returnData) {
+    [[HTTPManager shareHTTPManager] postDataFromUrl:API_MyOrderByState withParameter:requestParam isShowHUD:YES success:^(id returnData) {
         
         if (returnData) {
             

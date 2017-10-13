@@ -9,8 +9,10 @@
 #import "HYMyOrderChildViewController.h"
 #import "HYRequestOrderHandle.h"
 #import "HYMyOrderTableViewCell.h"
+#import "HYMyOrderDetailViewController.h"
+#import "HYFillOrderViewController.h"
 
-@interface HYMyOrderChildViewController () <UITableViewDelegate,UITableViewDataSource>
+@interface HYMyOrderChildViewController () <UITableViewDelegate,UITableViewDataSource,HYMyOrderBtnActionDelegate>
 
 /** tableView */
 @property (nonatomic,strong) UITableView *tableView;
@@ -60,11 +62,23 @@
 - (void)requestDataWithTag:(NSInteger)state{
     
     [self.datalist removeAllObjects];
-    [HYRequestOrderHandle requestOrderDataWithState:state pageNo:1 andPage:5 complectionBlock:^(NSArray *datalist) {
+    if (state == 0) {
         
-        [self.datalist addObjectsFromArray:datalist];
-        [self.tableView reloadData];
-    }];
+        [HYRequestOrderHandle requestAllOrderDataWithPageNo:1 andPage:5 ComplectionBlock:^(NSArray *datalist) {
+            
+            [self.datalist addObjectsFromArray:datalist];
+            [self.tableView reloadData];
+        }];
+    }
+    else{
+        
+        [HYRequestOrderHandle requestOrderDataWithState:state pageNo:1 andPage:5 complectionBlock:^(NSArray *datalist) {
+            
+            [self.datalist addObjectsFromArray:datalist];
+            [self.tableView reloadData];
+        }];
+    }
+    
 }
 
 #pragma mark - TableViewDataSource
@@ -91,12 +105,19 @@
     NSDictionary *dict = self.datalist[indexPath.section];
     HYMyOrderModel *model = [HYMyOrderModel modelWithDictionary:dict];
     cell.model = model;
+    cell.indexPath = indexPath;
+    cell.delegate = self;
     return cell;
 }
 
 #pragma mark - tableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    NSDictionary *dict = self.datalist[indexPath.section];
+    HYMyOrderModel *model = [HYMyOrderModel modelWithDictionary:dict];
+    HYMyOrderDetailViewController *orderDetailVC = [HYMyOrderDetailViewController new];
+    orderDetailVC.orderModel = model;
+    [self.navigationController pushViewController:orderDetailVC animated:YES];
     
 }
 
@@ -118,6 +139,34 @@
     return 10 * WIDTH_MULTIPLE;
 }
 
+#pragma mark - BtnDelegate
+- (void)myOrderBtnActionWithStr:(NSString *)title WithIndexPath:(NSIndexPath *)indexPath{
+    
+    if ([title isEqualToString:@"去付款"]) {
+        
+        NSDictionary *dict = self.datalist[indexPath.section];
+        HYMyOrderModel *model = [HYMyOrderModel modelWithDictionary:dict];
+        HYFillOrderViewController *fillOrderVC = [HYFillOrderViewController new];
+        fillOrderVC.orderID = model.sorder_id;
+        [self.navigationController pushViewController:fillOrderVC animated:YES];
+    }
+    else if ([title isEqualToString:@"再次购买"]){
+        
+        NSDictionary *dict = self.datalist[indexPath.section];
+        HYMyOrderModel *model = [HYMyOrderModel modelWithDictionary:dict];
+        HYFillOrderViewController *fillOrderVC = [HYFillOrderViewController new];
+        fillOrderVC.orderID = model.sorder_id;
+        [self.navigationController pushViewController:fillOrderVC animated:YES];
+    }
+    else if ([title isEqualToString:@"确认收货"]){
+        
+        
+    }
+    else if ([title isEqualToString:@"删除订单"]){
+        
+        
+    }
+}
 
 #pragma mark - lazyload
 - (UITableView *)tableView{

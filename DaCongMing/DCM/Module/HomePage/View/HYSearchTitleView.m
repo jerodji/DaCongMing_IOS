@@ -80,6 +80,25 @@
     self.cancenBlock();
 }
 
+- (void)searchTextChanged:(UITextField *)textField{
+    
+    DLog(@"%@",textField.text);
+    if (_delegate && [_delegate respondsToSelector:@selector(searchTextFieldTextChanged:)]) {
+        
+        [_delegate searchTextFieldTextChanged:textField.text];
+    }
+    
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    
+    if ([textField.text isNotBlank]) {
+        
+        return YES;
+    }
+    return YES;
+}
+
 #pragma mark - lazyload
 - (UIView *)searchView{
     
@@ -112,13 +131,14 @@
         
         _textField = [[UITextField alloc] initWithFrame:CGRectZero];
         _textField.delegate = self;
-        
         _textField.backgroundColor = [UIColor whiteColor];
         _textField.attributedPlaceholder = [[NSAttributedString alloc]initWithString:@"搜索你想要的产品" attributes:@{NSForegroundColorAttributeName: KAPP_b7b7b7_COLOR ,NSFontAttributeName : KFitFont(14)}];
         _textField.clearButtonMode = UITextFieldViewModeAlways;
         _textField.font = KFitFont(14);
         _textField.keyboardType = UIKeyboardTypeDefault;
-       
+        _textField.returnKeyType = UIReturnKeySearch;
+        _textField.tintColor = KAPP_b7b7b7_COLOR;
+        [_textField addTarget:self action:@selector(searchTextChanged:) forControlEvents:UIControlEventEditingChanged];
     }
     return _textField;
 }

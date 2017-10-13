@@ -10,6 +10,31 @@
 
 @implementation HYMineNetRequest
 
++ (void)getMyUserInfoComplectionBlock:(void (^)(HYMyUserInfo *))complection{
+    
+    NSMutableDictionary *requestParam = [NSMutableDictionary dictionary];
+    [requestParam setValue:[HYUserModel sharedInstance].token forKey:@"token"];
+    
+    [[HTTPManager shareHTTPManager] postDataFromUrl:API_GetUserInfo withParameter:requestParam isShowHUD:YES success:^(id returnData) {
+        
+        if (returnData) {
+            
+            NSInteger code = [[returnData objectForKey:@"successed"] integerValue];
+            if (code == 000) {
+                
+                NSDictionary *dict = [returnData objectForKey:@"dataInfo"];
+                
+                HYMyUserInfo *myUserInfo = [HYMyUserInfo sharedInstance];
+                [myUserInfo modelSetWithDictionary:dict];
+                complection(myUserInfo);
+            }
+            else{
+                complection(nil);
+            }
+        }
+    }];
+}
+
 + (void)getMyCollectGoodsWithPageNo:(NSInteger)PageNo ComplectionBlock:(void (^)(NSArray *))complection{
     
     NSMutableDictionary *requestParam = [NSMutableDictionary dictionary];

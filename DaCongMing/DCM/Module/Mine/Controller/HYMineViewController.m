@@ -28,6 +28,9 @@
 #import "HYRecentViewViewController.h"
 #import "HYInvitateFriendsViewController.h"
 
+#import "HYMyUserInfo.h"
+#import "HYMineNetRequest.h"
+
 @interface HYMineViewController ()<UITableViewDelegate,UITableViewDataSource,HYMineInfoBtnActionDelegate,HYMyOrderActionDelegate,HYMineHeaderTapDelegate>
 
 /** tableView */
@@ -39,6 +42,8 @@
 @property (nonatomic,strong) HYMineHeaderView *headerView;
 /** 商品列表 */
 @property (nonatomic,strong) NSMutableArray *goodsList;
+/** 购物车数量 */
+@property (nonatomic,strong) HYMyUserInfo *myUserInfo;
 
 @end
 
@@ -47,9 +52,8 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-    
-    [self initUI];
     [self requestNetwork];
+    [self initUI];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -60,6 +64,7 @@
     self.navigationController.navigationBar.hidden = YES;
 
     _headerView.user = [HYUserModel sharedInstance];
+    [self requestMyUserInfo];
     [_tableView reloadData];
 }
 
@@ -75,14 +80,28 @@
 }
 
 - (void)requestNetwork{
-    
-    _goodsList = [NSMutableArray array];
 
+    _goodsList = [NSMutableArray array];
     [HYGoodsHandle requestGoodsListItem_type:@"001" pageNo:1 andPage:5 order:nil hotsale:nil complectionBlock:^(NSArray *datalist) {
-   
+        
         [_goodsList addObjectsFromArray:datalist];
         [self.tableView reloadData];
     }];
+    
+}
+
+- (void)requestMyUserInfo{
+    
+    if ([HYUserModel sharedInstance].token) {
+        
+        //获取购物车数量，收藏数量
+        [HYMineNetRequest getMyUserInfoComplectionBlock:^(HYMyUserInfo *myUserInfo) {
+            
+            _headerView.myUserInfo = [HYMyUserInfo sharedInstance];
+            [_tableView reloadData];
+            
+        }];
+    }
 }
 
 

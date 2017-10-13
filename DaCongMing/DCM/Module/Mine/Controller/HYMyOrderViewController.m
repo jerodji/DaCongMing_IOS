@@ -119,7 +119,7 @@ static NSString *cellIdentifier = @"collectionCellIdentifer";
         flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
         flowLayout.itemSize = CGSizeMake(KSCREEN_WIDTH, KSCREEN_HEIGHT - 40);
         
-        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, _titleView.bottom, KSCREEN_WIDTH, KSCREEN_HEIGHT - 40) collectionViewLayout:flowLayout];
+        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, _titleView.bottom, KSCREEN_WIDTH, KSCREEN_HEIGHT - 45 * WIDTH_MULTIPLE) collectionViewLayout:flowLayout];
         _collectionView.dataSource = self;
         _collectionView.delegate = self;
         _collectionView.showsHorizontalScrollIndicator = NO;
@@ -135,7 +135,7 @@ static NSString *cellIdentifier = @"collectionCellIdentifer";
     if (!_titleView) {
         
         NSArray *arr = @[@"全部",@"待支付",@"待发货",@"待收货",@"已收货"];
-        _titleView = [[HYMyOrderTitleView alloc] initWithFrame:CGRectMake(0, 0, KSCREEN_WIDTH, 40) WithTitleArray:arr];
+        _titleView = [[HYMyOrderTitleView alloc] initWithFrame:CGRectMake(0, 0, KSCREEN_WIDTH, 45 * WIDTH_MULTIPLE) WithTitleArray:arr];
         _titleView.delegate = self;
         
         for (NSInteger i = 0; i < arr.count; i++) {

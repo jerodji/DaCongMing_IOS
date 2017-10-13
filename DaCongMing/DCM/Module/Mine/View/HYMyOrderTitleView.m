@@ -24,6 +24,7 @@
     
     if (self = [super initWithFrame:frame]) {
         
+        self.backgroundColor = KAPP_WHITE_COLOR;
         [self createButtonWithArray:titleArray];
         self.titleArray = titleArray;
         [self addSubview:self.line];
@@ -41,7 +42,7 @@
         [button setTitle:array[i] forState:UIControlStateNormal];
         [button setTitleColor:KAPP_272727_COLOR forState:UIControlStateNormal];
         [button setTitleColor:KAPP_THEME_COLOR  forState:UIControlStateSelected];
-        button.frame = CGRectMake(i * width, 0, width, 40);
+        button.frame = CGRectMake(i * width, 0, width, self.height);
         button.tag = 100 + i;
         button.backgroundColor = KAPP_WHITE_COLOR;
         [button addTarget:self action:@selector(titleButtonAction:) forControlEvents:UIControlEventTouchUpInside];

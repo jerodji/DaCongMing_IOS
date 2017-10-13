@@ -11,3 +11,7 @@
 @implementation HYMyCollectShopModel
 
 @end
+
+@implementation HYMyCollectShopItemList
+
+@end

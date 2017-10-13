@@ -8,10 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import "HYGoodsItemModel.h"
+#import "HYMyOrderModel.h"
+
+#warning 我的收藏 订单的商品信息公用
 
 @interface HYMyCollectionGoodsCell : UITableViewCell
 
-/** model */
+/** 收藏的商品model */
 @property (nonatomic,strong) HYGoodsItemModel *itemModel;
+
+/** 订单商品信息model */
+@property (nonatomic,strong) HYMyOrderDetailsModel *orderDetailModel;
 
 @end

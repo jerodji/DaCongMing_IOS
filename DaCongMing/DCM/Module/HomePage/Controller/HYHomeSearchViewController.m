@@ -9,8 +9,9 @@
 #import "HYHomeSearchViewController.h"
 #import "HYSearchTitleView.h"
 #import "HYHotSearchView.h"
+#import "HYSearchHandle.h"
 
-@interface HYHomeSearchViewController ()
+@interface HYHomeSearchViewController () <HYSearchTextFieldTextChangedDelegate,UITableViewDelegate,UITableViewDataSource>
 
 /** searchTitleView */
 @property (nonatomic,strong) HYSearchTitleView *searchTitleView;
@@ -18,6 +19,8 @@
 @property (nonatomic,strong) HYHotSearchView *hotSearchView;
 /** tableView */
 @property (nonatomic,strong) UITableView *tableView;
+/** 搜索结果 */
+@property (nonatomic,strong) NSArray *searchArray;
 
 @end
 
@@ -59,13 +62,65 @@
     }];
 }
 
+#pragma mark - searchDelegate
+- (void)searchTextFieldTextChanged:(NSString *)text{
+    
+    [HYSearchHandle searchProductsWithText:text complectionBlock:^(NSArray *datalist) {
+       
+        if (datalist) {
+            
+            DLog(@"%@",datalist);
+            self.searchArray = datalist;
+        }
+    }];
+}
+
+#pragma mark - TableViewDataSource
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    
+    return 1;
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    
+    return self.searchArray.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    static NSString *cellID = @"";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+    if (!cell) {
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+    }
+    return cell;
+}
+
+#pragma mark - tableViewDelegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    
+}
+
+
+
+
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    return 10;
+}
+
+
 #pragma mark - lazyload
 - (HYSearchTitleView *)searchTitleView{
     
     if (!_searchTitleView) {
         
         _searchTitleView = [[HYSearchTitleView alloc] initWithFrame:CGRectMake(0, 0, KSCREEN_WIDTH, 44)];
-        
+        _searchTitleView.delegate = self;
         __weak typeof (self)weakSelf = self;
         _searchTitleView.cancenBlock = ^{
           
@@ -82,6 +137,18 @@
         _hotSearchView = [HYHotSearchView new];
     }
     return _hotSearchView;
+}
+
+- (UITableView *)tableView{
+    if (!_tableView) {
+        
+        _tableView = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStylePlain];
+        _tableView.delegate = self;
+        _tableView.dataSource = self;
+        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        _tableView.backgroundColor = KAPP_TableView_BgColor;
+    }
+    return _tableView;
 }
 
 - (void)didReceiveMemoryWarning {

@@ -10,9 +10,18 @@
 
 typedef void(^cancelActionBlock)();
 
+@protocol HYSearchTextFieldTextChangedDelegate <NSObject>
+
+- (void)searchTextFieldTextChanged:(NSString *)text;
+
+@end
+
 @interface HYSearchTitleView : UIView
 
 /**  */
 @property (nonatomic,strong) cancelActionBlock cancenBlock;
+
+/** delegate */
+@property (nonatomic,weak) id<HYSearchTextFieldTextChangedDelegate> delegate;
 
 @end
