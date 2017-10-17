@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "HYMyUserInfo.h"
+#import "HYRefundModel.h"
 
 @interface HYMineNetRequest : NSObject
 
@@ -28,8 +29,28 @@
 
 
 /**
+ *  获取售后服务列表
+ */
++ (void)getMySellAfterWithPageNo:(NSInteger )PageNo ComplectionBlock:(void(^)(NSArray *datalist))complection;
+
+/**
+ *  删除订单
+ */
++ (void)deleteOrderWithOrderID:(NSString *)orderID ComplectionBlock:(void(^)(BOOL isSuccess))complection;
+
+/**
  *  我的分享
  */
 + (void)getMyShareWithComplectionBlock:(void(^)(NSDictionary *shareDict))complection;
+
+/**
+ *  提交申请售后
+ */
++ (void)submitApplySellAfterWithSellerID:(NSString *)sellerID orderID:(NSString *)orderID itemDetail:(NSString *)itemDetail reason:(NSString *)reason ComplectionBlock:(void(^)(BOOL isSuccess))complection;
+
+/**
+ *  获取售后详情
+ */
++ (void)getRefundDetailWithRefundID:(NSString *)refundID  ComplectionBlock:(void(^)(HYRefundModel *refundModel))complection;
 
 @end

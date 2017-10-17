@@ -10,9 +10,6 @@
 
 @interface HYOrderDetailImageCell()
 
-/** 物流图 */
-@property (nonatomic,strong) UIImageView *logisticsImgView;
-
 @end
 
 @implementation HYOrderDetailImageCell

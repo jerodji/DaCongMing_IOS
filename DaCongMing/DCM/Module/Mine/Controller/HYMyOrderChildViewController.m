@@ -37,6 +37,7 @@
 
 - (void)setTag:(NSInteger)tag{
     
+    _tag = tag;
     //未付款：1、待发货（已付款）：2、待收货：3、已收货：8
     switch (tag) {
         case 0:
@@ -142,30 +143,63 @@
 #pragma mark - BtnDelegate
 - (void)myOrderBtnActionWithStr:(NSString *)title WithIndexPath:(NSIndexPath *)indexPath{
     
+    NSDictionary *dict = self.datalist[indexPath.section];
+    HYMyOrderModel *model = [HYMyOrderModel modelWithDictionary:dict];
+    
     if ([title isEqualToString:@"去付款"]) {
         
-        NSDictionary *dict = self.datalist[indexPath.section];
-        HYMyOrderModel *model = [HYMyOrderModel modelWithDictionary:dict];
         HYFillOrderViewController *fillOrderVC = [HYFillOrderViewController new];
         fillOrderVC.orderID = model.sorder_id;
         [self.navigationController pushViewController:fillOrderVC animated:YES];
     }
     else if ([title isEqualToString:@"再次购买"]){
         
-        NSDictionary *dict = self.datalist[indexPath.section];
-        HYMyOrderModel *model = [HYMyOrderModel modelWithDictionary:dict];
         HYFillOrderViewController *fillOrderVC = [HYFillOrderViewController new];
         fillOrderVC.orderID = model.sorder_id;
         [self.navigationController pushViewController:fillOrderVC animated:YES];
     }
     else if ([title isEqualToString:@"确认收货"]){
         
-        
+        [self confirmOrderWithOrderID:model.sorder_id];
     }
     else if ([title isEqualToString:@"删除订单"]){
         
-        
+
+        [self deleteOrderWithOrderID:model.sorder_id];
     }
+}
+
+#pragma mark - action
+- (void)deleteOrderWithOrderID:(NSString *)orderID{
+    
+    HYCustomAlert *customAlert = [[HYCustomAlert alloc] initWithFrame:CGRectMake(0, 0, KSCREEN_WIDTH, KSCREEN_HEIGHT) WithTitle:@"温馨提示" content:@"确认要删除订单吗？" confirmBlock:^{
+        
+        [HYRequestOrderHandle deleteReceivedAddress:orderID ComplectionBlock:^(BOOL isSuccess) {
+           
+            if (isSuccess) {
+                
+                [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"删除订单成功"];
+                [self requestDataWithTag:_tag];
+            }
+        }];
+        
+    }];
+    [KEYWINDOW addSubview:customAlert];
+}
+
+- (void)confirmOrderWithOrderID:(NSString *)orderID{
+    
+    HYCustomAlert *customAlert = [[HYCustomAlert alloc] initWithFrame:CGRectMake(0, 0, KSCREEN_WIDTH, KSCREEN_HEIGHT) WithTitle:@"温馨提示" content:@"确认当前已经收到货物了吗？" confirmBlock:^{
+        
+        [HYRequestOrderHandle confirmReceiveProductWithOrderID:orderID ComplectionBlock:^(BOOL isSuccess) {
+           
+            if (isSuccess) {
+                
+                [self requestDataWithTag:_tag];
+            }
+        }];
+    }];
+    [KEYWINDOW addSubview:customAlert];
 }
 
 #pragma mark - lazyload

@@ -12,6 +12,7 @@
 #import "HYOrderDetailReceiverTableViewCell.h"
 #import "HYOrderDetailInfoCell.h"
 #import "HYMyCollectionGoodsCell.h"
+#import "HYSublitApplyVC.h"
 
 @interface HYMyOrderDetailViewController () <UITableViewDelegate,UITableViewDataSource>
 
@@ -96,6 +97,16 @@
         NSDictionary *dict = self.orderModel.orderDtls[indexPath.row - 3];
         HYMyOrderDetailsModel *orderDetailModel = [HYMyOrderDetailsModel modelWithDictionary:dict];
         cell.orderDetailModel = orderDetailModel;
+        
+        if (indexPath.row == self.orderModel.orderDtls.count + 2) {
+            cell.applySellAfterBtn.hidden = NO;
+            cell.applySaleAction = ^{
+                
+                HYSublitApplyVC *sublitApplySellAfterVC = [HYSublitApplyVC new];
+                sublitApplySellAfterVC.orderDetailModel = orderDetailModel;
+                [self.navigationController pushViewController:sublitApplySellAfterVC animated:YES];
+            };
+        }
         return cell;
     }
 }
@@ -122,11 +133,10 @@
         
         return 380 * WIDTH_MULTIPLE;
     }
-    else if (indexPath.row == 3){
+    else {
         
-        return 80 * WIDTH_MULTIPLE;
+        return 90 * WIDTH_MULTIPLE;
     }
-    return 10;
 }
 
 

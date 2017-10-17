@@ -105,7 +105,8 @@
     if (!_textView) {
         
         _textView = [[SAMTextView alloc] init];
-        _textView.placeholder = @"请提出您宝贵的意见....";
+        NSAttributedString *attributeStr = [[NSAttributedString alloc]initWithString:@" 请提出你的宝贵意见。。。。" attributes:@{NSForegroundColorAttributeName : KAPP_272727_COLOR,NSFontAttributeName : [UIFont systemFontOfSize:16]}];
+        _textView.attributedPlaceholder = attributeStr;
         _textView.font = KFitFont(16);
         _textView.delegate = self;
         _textView.backgroundColor = KAPP_WHITE_COLOR;

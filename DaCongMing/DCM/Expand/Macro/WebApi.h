@@ -50,6 +50,10 @@
 //获取用户购物车收藏数量
 #define API_GetUserInfo             @"HAILIN_SERVER/getUserInfo.do"
 
+//获取售后服务列表
+#define API_GetCollectShop          @"HAILIN_SERVER/getRefOrderListByStat.do"
+
+
 /********************************订单相关*********************************/
 #pragma mark - 订单相关
 //购物车
@@ -88,8 +92,20 @@
 //获取优惠券
 #define API_MyDiscountConpon         @"HAILIN_SERVER/showUserCoupon.do"
 
+//删除订单
+#define API_DeleteOrder             @"HAILIN_SERVER/deleteOrder.do"
+
+//确认收货
+#define API_ConfirmReceiveProduct             @"HAILIN_SERVER/confirmReceipt.do"
+
 //关键字搜索
 #define API_KeywordsSearch          @"HAILIN_SERVER/searchItem.do"
+
+//退款申请
+#define API_SubmitApplySellAfter             @"HAILIN_SERVER/refundforAli.do"
+
+//获取退款详情
+#define API_GetRefundDetail                 @"HAILIN_SERVER/getRefOrderDetailByRefOrderID.do"
 
 /***************************************收货地址**********************************/
 #pragma mark - 收货地址
@@ -147,7 +163,7 @@
 //取消收藏店铺
 #define API_CancelCollectShop       @"HAILIN_SERVER/removeSellerFavorite.do"
 
-//获取收藏店铺
-#define API_GetCollectShop       @"HAILIN_SERVER/getSellerFavorite.do"
+//获取我的售后
+#define API_GetMySellAfter       @"HAILIN_SERVER/getRefOrderListByStat.do"
 
 #endif /* WebApi_h */

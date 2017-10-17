@@ -26,7 +26,7 @@
 @property (nonatomic, strong) NSMutableArray *specificationUnitArray;
 
 /** delegate */
-@property (nonatomic,weak) id<HYGoodsSpecificationSelectDelegate> delegate;
+@property (nonatomic,strong) id<HYGoodsSpecificationSelectDelegate> delegate;
 
 /** 购物车还是下单 */
 @property (nonatomic,assign) BOOL isAddToCarts;

@@ -23,13 +23,16 @@
 }
 
 #pragma mark --------navigation delegate
-- (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
-{
+- (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated{
+    
+
     if (self.viewControllers.count) {
         
         viewController.hidesBottomBarWhenPushed = YES;
     }
+    
     [super pushViewController:viewController animated:animated];
+
 }
 
 - (void)didReceiveMemoryWarning {

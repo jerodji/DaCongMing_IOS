@@ -37,7 +37,7 @@
     if (self = [super initWithFrame:frame]) {
         
         [self setupSubviews];
-        
+        self.backgroundColor = [UIColor colorWithWhite:0 alpha:0.6];
         _titleLabel.text = title;
         _contentLabel.text = content;
         self.actionBlock = confirmAction;
@@ -137,6 +137,7 @@
 
 - (void)confirmBtnAction{
     
+    [self removeFromSuperview];
     self.actionBlock();
 }
 

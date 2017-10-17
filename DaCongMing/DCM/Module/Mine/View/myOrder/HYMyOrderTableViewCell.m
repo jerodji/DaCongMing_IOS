@@ -197,7 +197,7 @@
         case 8:
             _confirmGoodsBtn.hidden = YES;
             _deleteOrderBtn.hidden = NO;
-            _buyAgainBtn.hidden = YES;
+            _buyAgainBtn.hidden = NO;
             _toPayBtn.hidden = YES;
             break;
         default:

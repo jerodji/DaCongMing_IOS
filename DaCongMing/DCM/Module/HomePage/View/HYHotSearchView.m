@@ -55,6 +55,7 @@
     
         NSString *title = [_randomArray randomObject];
         [_randomArray removeObject:title];
+        [button addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
         
         CGFloat itemWidth = [title widthForFont:KFitFont(12)] + 20;
         [button setTitle:title forState:UIControlStateNormal];
@@ -115,6 +116,15 @@
         make.left.right.bottom.equalTo(self);
         make.height.equalTo(@1);
     }];
+}
+
+#pragma mark - action
+- (void)buttonAction:(UIButton *)button{
+    
+    if (_delegate && [_delegate respondsToSelector:@selector(hotSearchBtnTapWithText:)]) {
+        
+        [_delegate hotSearchBtnTapWithText:button.titleLabel.text];
+    }
 }
 
 #pragma mark - lazyload

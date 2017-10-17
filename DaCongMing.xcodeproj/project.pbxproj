@@ -148,6 +148,23 @@
 		3ED218D81F8E0E900040C7E3 /* HYShopCollectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED218D71F8E0E900040C7E3 /* HYShopCollectCell.m */; };
 		3ED218DB1F8E0EA70040C7E3 /* HYShopImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED218DA1F8E0EA70040C7E3 /* HYShopImageCell.m */; };
 		3ED218DE1F8E106A0040C7E3 /* HYBrandShopInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED218DD1F8E106A0040C7E3 /* HYBrandShopInfoModel.m */; };
+		3EDC21DB1F92FDDB0013FFBA /* HYSortTableViewCell.h in Sources */ = {isa = PBXBuildFile; fileRef = 3EDC21D91F92FD7A0013FFBA /* HYSortTableViewCell.h */; };
+		3EDC21DC1F92FDDB0013FFBA /* HYSortTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EDC21DA1F92FD7A0013FFBA /* HYSortTableViewCell.m */; };
+		3EDC21DF1F93092D0013FFBA /* HYSaleAfterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EDC21DE1F93092D0013FFBA /* HYSaleAfterViewController.m */; };
+		3EDC21E21F930A8B0013FFBA /* HYSaleAfterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EDC21E11F930A8B0013FFBA /* HYSaleAfterCell.m */; };
+		3EDC21E51F9331670013FFBA /* HYSublitApplyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EDC21E41F9331670013FFBA /* HYSublitApplyVC.m */; };
+		3EDC21E81F93345C0013FFBA /* HYAddToCartsHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EDC21E71F93345C0013FFBA /* HYAddToCartsHandle.m */; };
+		3EDC21EB1F933D6B0013FFBA /* HYFillSalesReturnCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EDC21EA1F933D6B0013FFBA /* HYFillSalesReturnCell.m */; };
+		3EDC21EE1F945EBE0013FFBA /* HYSearchNoDataCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EDC21ED1F945EBE0013FFBA /* HYSearchNoDataCollectionReusableView.m */; };
+		3EDC21F11F94694F0013FFBA /* HYMySaleAfterListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EDC21F01F94694F0013FFBA /* HYMySaleAfterListModel.m */; };
+		3EDC21F41F9491440013FFBA /* HYSellerHandleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EDC21F31F9491440013FFBA /* HYSellerHandleViewController.m */; };
+		3EDC21F71F9493560013FFBA /* HYRefundSellerHandleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EDC21F61F9493560013FFBA /* HYRefundSellerHandleCell.m */; };
+		3EDC21FA1F949F800013FFBA /* HYSendBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EDC21F91F949F800013FFBA /* HYSendBackViewController.m */; };
+		3EDC21FD1F94A30A0013FFBA /* HYSellerReceiveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EDC21FC1F94A30A0013FFBA /* HYSellerReceiveViewController.m */; };
+		3EDC22001F94A3350013FFBA /* HYWaitRefundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EDC21FF1F94A3350013FFBA /* HYWaitRefundViewController.m */; };
+		3EDC22031F94A3500013FFBA /* HYRefundSuccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EDC22021F94A3500013FFBA /* HYRefundSuccessViewController.m */; };
+		3EE1D1371F94B71900BC519E /* HYSendBackInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE1D1361F94B71900BC519E /* HYSendBackInfoCell.m */; };
+		3EE1D13A1F95979300BC519E /* HYRefundModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE1D1391F95979300BC519E /* HYRefundModel.m */; };
 		3EEDC9581F7244DC007171FA /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EEDC9571F7244DC007171FA /* libc++.tbd */; settings = {ATTRIBUTES = (Weak, ); }; };
 		3EEDC95A1F724511007171FA /* libz.1.1.3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EEDC9591F724511007171FA /* libz.1.1.3.tbd */; };
 		3EEDC95C1F724521007171FA /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EEDC95B1F724521007171FA /* libsqlite3.0.tbd */; };
@@ -428,8 +445,6 @@
 		3ECD834B1F90960700DE6FFD /* HYOrderDetailReceiverTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYOrderDetailReceiverTableViewCell.m; sourceTree = "<group>"; };
 		3ECD834D1F90BB0400DE6FFD /* HYSearchHandle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYSearchHandle.h; sourceTree = "<group>"; };
 		3ECD834E1F90BB0400DE6FFD /* HYSearchHandle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYSearchHandle.m; sourceTree = "<group>"; };
-		3ECD83531F90C23C00DE6FFD /* HYSortTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYSortTableViewCell.m; sourceTree = "<group>"; };
-		3ECD83541F90C23C00DE6FFD /* HYSortTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYSortTableViewCell.h; sourceTree = "<group>"; };
 		3ED218B61F8DE3540040C7E3 /* HYMyCollectGoodsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYMyCollectGoodsViewController.h; sourceTree = "<group>"; };
 		3ED218B71F8DE3540040C7E3 /* HYMyCollectGoodsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYMyCollectGoodsViewController.m; sourceTree = "<group>"; };
 		3ED218B91F8DE3660040C7E3 /* HYMyCollectShopViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYMyCollectShopViewController.h; sourceTree = "<group>"; };
@@ -456,6 +471,38 @@
 		3ED218DA1F8E0EA70040C7E3 /* HYShopImageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYShopImageCell.m; sourceTree = "<group>"; };
 		3ED218DC1F8E10690040C7E3 /* HYBrandShopInfoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYBrandShopInfoModel.h; sourceTree = "<group>"; };
 		3ED218DD1F8E106A0040C7E3 /* HYBrandShopInfoModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYBrandShopInfoModel.m; sourceTree = "<group>"; };
+		3EDC21D91F92FD7A0013FFBA /* HYSortTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYSortTableViewCell.h; sourceTree = "<group>"; };
+		3EDC21DA1F92FD7A0013FFBA /* HYSortTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYSortTableViewCell.m; sourceTree = "<group>"; };
+		3EDC21DD1F93092D0013FFBA /* HYSaleAfterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYSaleAfterViewController.h; sourceTree = "<group>"; };
+		3EDC21DE1F93092D0013FFBA /* HYSaleAfterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYSaleAfterViewController.m; sourceTree = "<group>"; };
+		3EDC21E01F930A8B0013FFBA /* HYSaleAfterCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYSaleAfterCell.h; sourceTree = "<group>"; };
+		3EDC21E11F930A8B0013FFBA /* HYSaleAfterCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYSaleAfterCell.m; sourceTree = "<group>"; };
+		3EDC21E31F9331670013FFBA /* HYSublitApplyVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYSublitApplyVC.h; sourceTree = "<group>"; };
+		3EDC21E41F9331670013FFBA /* HYSublitApplyVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYSublitApplyVC.m; sourceTree = "<group>"; };
+		3EDC21E61F93345C0013FFBA /* HYAddToCartsHandle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYAddToCartsHandle.h; sourceTree = "<group>"; };
+		3EDC21E71F93345C0013FFBA /* HYAddToCartsHandle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYAddToCartsHandle.m; sourceTree = "<group>"; };
+		3EDC21E91F933D6B0013FFBA /* HYFillSalesReturnCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYFillSalesReturnCell.h; sourceTree = "<group>"; };
+		3EDC21EA1F933D6B0013FFBA /* HYFillSalesReturnCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYFillSalesReturnCell.m; sourceTree = "<group>"; };
+		3EDC21EC1F945EBE0013FFBA /* HYSearchNoDataCollectionReusableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYSearchNoDataCollectionReusableView.h; sourceTree = "<group>"; };
+		3EDC21ED1F945EBE0013FFBA /* HYSearchNoDataCollectionReusableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYSearchNoDataCollectionReusableView.m; sourceTree = "<group>"; };
+		3EDC21EF1F94694F0013FFBA /* HYMySaleAfterListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYMySaleAfterListModel.h; sourceTree = "<group>"; };
+		3EDC21F01F94694F0013FFBA /* HYMySaleAfterListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYMySaleAfterListModel.m; sourceTree = "<group>"; };
+		3EDC21F21F9491440013FFBA /* HYSellerHandleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYSellerHandleViewController.h; sourceTree = "<group>"; };
+		3EDC21F31F9491440013FFBA /* HYSellerHandleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYSellerHandleViewController.m; sourceTree = "<group>"; };
+		3EDC21F51F9493560013FFBA /* HYRefundSellerHandleCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYRefundSellerHandleCell.h; sourceTree = "<group>"; };
+		3EDC21F61F9493560013FFBA /* HYRefundSellerHandleCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYRefundSellerHandleCell.m; sourceTree = "<group>"; };
+		3EDC21F81F949F800013FFBA /* HYSendBackViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYSendBackViewController.h; sourceTree = "<group>"; };
+		3EDC21F91F949F800013FFBA /* HYSendBackViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYSendBackViewController.m; sourceTree = "<group>"; };
+		3EDC21FB1F94A30A0013FFBA /* HYSellerReceiveViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYSellerReceiveViewController.h; sourceTree = "<group>"; };
+		3EDC21FC1F94A30A0013FFBA /* HYSellerReceiveViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYSellerReceiveViewController.m; sourceTree = "<group>"; };
+		3EDC21FE1F94A3350013FFBA /* HYWaitRefundViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYWaitRefundViewController.h; sourceTree = "<group>"; };
+		3EDC21FF1F94A3350013FFBA /* HYWaitRefundViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYWaitRefundViewController.m; sourceTree = "<group>"; };
+		3EDC22011F94A3500013FFBA /* HYRefundSuccessViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYRefundSuccessViewController.h; sourceTree = "<group>"; };
+		3EDC22021F94A3500013FFBA /* HYRefundSuccessViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYRefundSuccessViewController.m; sourceTree = "<group>"; };
+		3EE1D1351F94B71900BC519E /* HYSendBackInfoCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYSendBackInfoCell.h; sourceTree = "<group>"; };
+		3EE1D1361F94B71900BC519E /* HYSendBackInfoCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYSendBackInfoCell.m; sourceTree = "<group>"; };
+		3EE1D1381F95979300BC519E /* HYRefundModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYRefundModel.h; sourceTree = "<group>"; };
+		3EE1D1391F95979300BC519E /* HYRefundModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYRefundModel.m; sourceTree = "<group>"; };
 		3EEDC9571F7244DC007171FA /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		3EEDC9591F724511007171FA /* libz.1.1.3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.1.1.3.tbd; path = usr/lib/libz.1.1.3.tbd; sourceTree = SDKROOT; };
 		3EEDC95B1F724521007171FA /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
@@ -590,6 +637,8 @@
 				3ECD834B1F90960700DE6FFD /* HYOrderDetailReceiverTableViewCell.m */,
 				3ECD83441F908FEB00DE6FFD /* HYOrderDetailInfoCell.h */,
 				3ECD83451F908FEB00DE6FFD /* HYOrderDetailInfoCell.m */,
+				3EDC21E01F930A8B0013FFBA /* HYSaleAfterCell.h */,
+				3EDC21E11F930A8B0013FFBA /* HYSaleAfterCell.m */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -717,6 +766,12 @@
 			children = (
 				3E1021F61F7A4C290048D556 /* HYMyOrderTableViewCell.h */,
 				3E1021F71F7A4C290048D556 /* HYMyOrderTableViewCell.m */,
+				3EDC21E91F933D6B0013FFBA /* HYFillSalesReturnCell.h */,
+				3EDC21EA1F933D6B0013FFBA /* HYFillSalesReturnCell.m */,
+				3EDC21F51F9493560013FFBA /* HYRefundSellerHandleCell.h */,
+				3EDC21F61F9493560013FFBA /* HYRefundSellerHandleCell.m */,
+				3EE1D1351F94B71900BC519E /* HYSendBackInfoCell.h */,
+				3EE1D1361F94B71900BC519E /* HYSendBackInfoCell.m */,
 			);
 			path = myOrder;
 			sourceTree = "<group>";
@@ -875,6 +930,8 @@
 				3EFBFC531F7BAA9F003F92B8 /* HYHotSearchView.m */,
 				3E56209F1F6BA0D60063AA5B /* HYHomePageView.h */,
 				3E5620A01F6BA0D60063AA5B /* HYHomePageView.m */,
+				3EDC21EC1F945EBE0013FFBA /* HYSearchNoDataCollectionReusableView.h */,
+				3EDC21ED1F945EBE0013FFBA /* HYSearchNoDataCollectionReusableView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -902,6 +959,20 @@
 				3E4D78AE1F7A327E00BC9C2B /* HYMyOrderChildViewController.m */,
 				3ECD833B1F908B7000DE6FFD /* HYMyOrderDetailViewController.h */,
 				3ECD833C1F908B7000DE6FFD /* HYMyOrderDetailViewController.m */,
+				3EDC21E31F9331670013FFBA /* HYSublitApplyVC.h */,
+				3EDC21E41F9331670013FFBA /* HYSublitApplyVC.m */,
+				3EDC21DD1F93092D0013FFBA /* HYSaleAfterViewController.h */,
+				3EDC21DE1F93092D0013FFBA /* HYSaleAfterViewController.m */,
+				3EDC21F21F9491440013FFBA /* HYSellerHandleViewController.h */,
+				3EDC21F31F9491440013FFBA /* HYSellerHandleViewController.m */,
+				3EDC21F81F949F800013FFBA /* HYSendBackViewController.h */,
+				3EDC21F91F949F800013FFBA /* HYSendBackViewController.m */,
+				3EDC21FB1F94A30A0013FFBA /* HYSellerReceiveViewController.h */,
+				3EDC21FC1F94A30A0013FFBA /* HYSellerReceiveViewController.m */,
+				3EDC21FE1F94A3350013FFBA /* HYWaitRefundViewController.h */,
+				3EDC21FF1F94A3350013FFBA /* HYWaitRefundViewController.m */,
+				3EDC22011F94A3500013FFBA /* HYRefundSuccessViewController.h */,
+				3EDC22021F94A3500013FFBA /* HYRefundSuccessViewController.m */,
 				3E1021FC1F7B35E30048D556 /* HYMyAccountViewController.h */,
 				3E1021FD1F7B35E30048D556 /* HYMyAccountViewController.m */,
 				3E1021FF1F7B39D80048D556 /* HYMyDisCouponViewController.h */,
@@ -947,6 +1018,10 @@
 				3E33CC921F8B1D7A002179CD /* HYAreaModel.m */,
 				3ECD83321F8F6DD300DE6FFD /* HYMyCollectShopModel.h */,
 				3ECD83331F8F6DD300DE6FFD /* HYMyCollectShopModel.m */,
+				3EDC21EF1F94694F0013FFBA /* HYMySaleAfterListModel.h */,
+				3EDC21F01F94694F0013FFBA /* HYMySaleAfterListModel.m */,
+				3EE1D1381F95979300BC519E /* HYRefundModel.h */,
+				3EE1D1391F95979300BC519E /* HYRefundModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1035,6 +1110,8 @@
 			children = (
 				3E27544C1F6F952B0010053E /* HYSortModel.h */,
 				3E27544D1F6F952B0010053E /* HYSortModel.m */,
+				3EDC21E61F93345C0013FFBA /* HYAddToCartsHandle.h */,
+				3EDC21E71F93345C0013FFBA /* HYAddToCartsHandle.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1042,8 +1119,8 @@
 		3E5620471F6B6D080063AA5B /* View */ = {
 			isa = PBXGroup;
 			children = (
-				3ECD83541F90C23C00DE6FFD /* HYSortTableViewCell.h */,
-				3ECD83531F90C23C00DE6FFD /* HYSortTableViewCell.m */,
+				3EDC21D91F92FD7A0013FFBA /* HYSortTableViewCell.h */,
+				3EDC21DA1F92FD7A0013FFBA /* HYSortTableViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1392,11 +1469,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3EDC21DB1F92FDDB0013FFBA /* HYSortTableViewCell.h in Sources */,
+				3EDC21DC1F92FDDB0013FFBA /* HYSortTableViewCell.m in Sources */,
+				3EE1D13A1F95979300BC519E /* HYRefundModel.m in Sources */,
 				3E5620B41F6BBDD00063AA5B /* HYHomeImgScrollCell.m in Sources */,
 				3E2754881F710DCF0010053E /* HYGoodsItemModel.m in Sources */,
 				3E2754391F6F56EE0010053E /* HYItemListModel.m in Sources */,
 				3ECD83311F8F5E5100DE6FFD /* HYShareHandle.m in Sources */,
 				3E1F428E1F7CED1C00E90377 /* HYPlistTools.m in Sources */,
+				3EDC21E81F93345C0013FFBA /* HYAddToCartsHandle.m in Sources */,
 				3E934DDF1F6BD78100F3ADE4 /* HYReCommendTday.m in Sources */,
 				3EFBFC5D1F7C8EAF003F92B8 /* HYNoAddressView.m in Sources */,
 				3E56207A1F6B6DAC0063AA5B /* UIView+Toast.m in Sources */,
@@ -1412,6 +1493,7 @@
 				3E5620971F6B72F30063AA5B /* HYMineViewController.m in Sources */,
 				3EFBFC631F7C95F4003F92B8 /* HYAddressTableViewCell.m in Sources */,
 				3E1021F01F7A48B20048D556 /* HYRequestOrderHandle.m in Sources */,
+				3EE1D1371F94B71900BC519E /* HYSendBackInfoCell.m in Sources */,
 				3E56204E1F6B6D5C0063AA5B /* HYBaseViewController.m in Sources */,
 				3E4D789C1F7911CC00BC9C2B /* HYWeChatPayManager.m in Sources */,
 				3E27545E1F6FBF850010053E /* HYCompleteView.m in Sources */,
@@ -1433,15 +1515,20 @@
 				3E56207B1F6B6DAC0063AA5B /* Const.m in Sources */,
 				3E27543F1F6F64630010053E /* HYTagsItemModel.m in Sources */,
 				3E2754551F6F9C6B0010053E /* HYLoginViewController.m in Sources */,
+				3EDC21EB1F933D6B0013FFBA /* HYFillSalesReturnCell.m in Sources */,
 				3E33CC971F8B80DB002179CD /* HYCartsHandle.m in Sources */,
 				3E1021EC1F7A477B0048D556 /* HYMyOrderModel.m in Sources */,
 				3E2754641F70AA4A0010053E /* HYMineHeaderView.m in Sources */,
 				3E5620911F6B72D90063AA5B /* HYSortViewController.m in Sources */,
+				3EDC21E51F9331670013FFBA /* HYSublitApplyVC.m in Sources */,
 				3E56208E1F6B728E0063AA5B /* HYHomePageViewController.m in Sources */,
 				3EA0BC021F725CA100F78FDD /* HYProductsImageCell.m in Sources */,
+				3EDC21FA1F949F800013FFBA /* HYSendBackViewController.m in Sources */,
 				3EA0BC2C1F750EDD00F78FDD /* HYGoodsPayTableViewCell.m in Sources */,
 				3E33CCA01F8C6C6E002179CD /* HYCartsItemTableViewCell.m in Sources */,
 				3E5620BA1F6BBDFE0063AA5B /* HYHomeBannerCell.m in Sources */,
+				3EDC21F71F9493560013FFBA /* HYRefundSellerHandleCell.m in Sources */,
+				3EDC21DF1F93092D0013FFBA /* HYSaleAfterViewController.m in Sources */,
 				3E1021F81F7A4C290048D556 /* HYMyOrderTableViewCell.m in Sources */,
 				3ED218D01F8E01A40040C7E3 /* HYBrandShopNavView.m in Sources */,
 				3EA0BC161F73A4D900F78FDD /* HYBuyCountEditView.m in Sources */,
@@ -1457,12 +1544,14 @@
 				3EA0BC131F739EF700F78FDD /* HYGoodSpecificationSelectView.m in Sources */,
 				3E5620211F6B6A800063AA5B /* AppDelegate.m in Sources */,
 				3E33CC931F8B1D7A002179CD /* HYAreaModel.m in Sources */,
+				3EDC21E21F930A8B0013FFBA /* HYSaleAfterCell.m in Sources */,
 				3EA0BC091F725D2600F78FDD /* HYProductsSpecificationCell.m in Sources */,
 				3E33CC901F8B1D6F002179CD /* HYCityModel.m in Sources */,
 				3E2754841F7101540010053E /* HYGoodsItemCollectionViewCell.m in Sources */,
 				3ECD833D1F908B7000DE6FFD /* HYMyOrderDetailViewController.m in Sources */,
 				3E56201E1F6B6A800063AA5B /* main.m in Sources */,
 				3EA0BC061F725CDB00F78FDD /* HYProductsInfoTableViewCell.m in Sources */,
+				3EDC21F41F9491440013FFBA /* HYSellerHandleViewController.m in Sources */,
 				3E4D78A91F79F94200BC9C2B /* HYReceiverInfoTableViewCell.m in Sources */,
 				3E4D78811F79038B00BC9C2B /* HYPayHandle.m in Sources */,
 				3E27544B1F6F734B0010053E /* HYTypeRecommendItemModel.m in Sources */,
@@ -1470,11 +1559,13 @@
 				3E1022011F7B39D80048D556 /* HYMyDisCouponViewController.m in Sources */,
 				3E1021F21F7A48EB0048D556 /* HYUserHandle.m in Sources */,
 				3EFBFC571F7C8A3E003F92B8 /* HYMyDisCouponModel.m in Sources */,
+				3EDC22001F94A3350013FFBA /* HYWaitRefundViewController.m in Sources */,
 				3E4D78AC1F7A2C0700BC9C2B /* HYMyOrderViewController.m in Sources */,
 				3ED218DB1F8E0EA70040C7E3 /* HYShopImageCell.m in Sources */,
 				3EFBFC601F7C92E6003F92B8 /* HYMyAddressModel.m in Sources */,
 				3E4D787D1F79005800BC9C2B /* HYCreateOrderDatalist.m in Sources */,
 				3E33CC8D1F8B1D60002179CD /* HYProvinceModel.m in Sources */,
+				3EDC22031F94A3500013FFBA /* HYRefundSuccessViewController.m in Sources */,
 				3E2754911F7200CD0010053E /* HYGoodsListViewController.m in Sources */,
 				3E5620821F6B6DAC0063AA5B /* HYLocationManager.m in Sources */,
 				3E4D78B21F7A33DC00BC9C2B /* HYMyOrderTitleView.m in Sources */,
@@ -1501,6 +1592,7 @@
 				3E2754A11F721AC00010053E /* HYGoodsItemProp.m in Sources */,
 				3ECD83431F908FCB00DE6FFD /* HYOrderDetailImageCell.m in Sources */,
 				3E10220D1F7B44050048D556 /* HYMyAccountTableViewCell.m in Sources */,
+				3EDC21FD1F94A30A0013FFBA /* HYSellerReceiveViewController.m in Sources */,
 				3E1022131F7B4F160048D556 /* HYCustomAlert.m in Sources */,
 				3E4D78AF1F7A327E00BC9C2B /* HYMyOrderChildViewController.m in Sources */,
 				3EFBFC661F7CAF38003F92B8 /* HYAddAddressViewController.m in Sources */,
@@ -1522,6 +1614,7 @@
 				3ECD834C1F90960700DE6FFD /* HYOrderDetailReceiverTableViewCell.m in Sources */,
 				3ED218DE1F8E106A0040C7E3 /* HYBrandShopInfoModel.m in Sources */,
 				3E56208B1F6B72750063AA5B /* HYTabBarController.m in Sources */,
+				3EDC21EE1F945EBE0013FFBA /* HYSearchNoDataCollectionReusableView.m in Sources */,
 				3E2754A41F721BE60010053E /* HYGoodsItemImage.m in Sources */,
 				3EFBFC541F7BAA9F003F92B8 /* HYHotSearchView.m in Sources */,
 				3E2754581F6F9D520010053E /* HYLoginView.m in Sources */,
@@ -1536,6 +1629,7 @@
 				3E33CCA31F8CA1B2002179CD /* HYCartsBottomView.m in Sources */,
 				3ED218CA1F8DE6BA0040C7E3 /* HYMyCollectionShopCell.m in Sources */,
 				3E5620BD1F6BBE550063AA5B /* HYHomeDoodsCell.m in Sources */,
+				3EDC21F11F94694F0013FFBA /* HYMySaleAfterListModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

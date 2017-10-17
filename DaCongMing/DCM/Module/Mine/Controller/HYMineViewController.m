@@ -27,7 +27,7 @@
 #import "HYMyCollectGoodsViewController.h"
 #import "HYRecentViewViewController.h"
 #import "HYInvitateFriendsViewController.h"
-
+#import "HYSaleAfterViewController.h"
 #import "HYMyUserInfo.h"
 #import "HYMineNetRequest.h"
 
@@ -321,7 +321,13 @@
         }
             break;
         case 4:
+        {
+            if([HYUserHandle jumpToLoginViewControllerFromVC:self])
+                return ;
+            HYSaleAfterViewController *saleAfter = [HYSaleAfterViewController new];
+            [self.navigationController pushViewController:saleAfter animated:YES];
             
+        }
             break;
         default:
             break;

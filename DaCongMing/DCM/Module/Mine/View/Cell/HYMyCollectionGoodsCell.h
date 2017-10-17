@@ -12,6 +12,8 @@
 
 #warning 我的收藏 订单的商品信息公用
 
+typedef void(^applySaleAfterBlock)();
+
 @interface HYMyCollectionGoodsCell : UITableViewCell
 
 /** 收藏的商品model */
@@ -19,5 +21,11 @@
 
 /** 订单商品信息model */
 @property (nonatomic,strong) HYMyOrderDetailsModel *orderDetailModel;
+
+/** 申请售后按钮 */
+@property (nonatomic,strong) UIButton *applySellAfterBtn;
+
+/** 点击申请售后回调 */
+@property (nonatomic,strong) applySaleAfterBlock applySaleAction;
 
 @end

@@ -50,6 +50,7 @@
     [self addSubview:self.itemLabel];
     [self addSubview:self.unitLabel];
     [self addSubview:self.PriceLabel];
+    [self addSubview:self.applySellAfterBtn];
 }
 
 - (void)layoutSubviews{
@@ -90,6 +91,13 @@
         make.height.mas_equalTo(20);
         make.width.mas_equalTo(100);
     }];
+    
+    [_applySellAfterBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.right.equalTo(self).offset(-10 * WIDTH_MULTIPLE);
+        make.bottom.equalTo(_itemImgView);
+        make.size.mas_equalTo(CGSizeMake(76 * WIDTH_MULTIPLE, 26 * WIDTH_MULTIPLE));
+    }];
 }
 
 #pragma mark - setter
@@ -119,6 +127,15 @@
     }];
     _countLabel.text = [NSString stringWithFormat:@"x%@",orderDetailModel.qty];
     
+}
+
+#pragma mark - action
+- (void)applySellAfterBtnAction{
+    
+    if (self.applySaleAction) {
+        
+        self.applySaleAction();
+    }
 }
 
 #pragma mark - lazyload
@@ -198,6 +215,25 @@
         
     }
     return _countLabel;
+}
+
+- (UIButton *)applySellAfterBtn{
+    
+    if (!_applySellAfterBtn) {
+        
+        _applySellAfterBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_applySellAfterBtn setTitle:@"申请售后" forState:UIControlStateNormal];
+        _applySellAfterBtn.backgroundColor = KAPP_WHITE_COLOR;
+        [_applySellAfterBtn setTitleColor:KAPP_272727_COLOR forState:UIControlStateNormal];
+        _applySellAfterBtn.titleLabel.font = KFitFont(14);
+        _applySellAfterBtn.layer.cornerRadius = 2 * WIDTH_MULTIPLE;
+        _applySellAfterBtn.layer.borderColor = KAPP_272727_COLOR.CGColor;
+        _applySellAfterBtn.layer.borderWidth = 1;
+        _applySellAfterBtn.clipsToBounds = YES;
+        [_applySellAfterBtn addTarget:self action:@selector(applySellAfterBtnAction) forControlEvents:UIControlEventTouchUpInside];
+        _applySellAfterBtn.hidden = YES;
+    }
+    return _applySellAfterBtn;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

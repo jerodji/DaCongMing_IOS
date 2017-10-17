@@ -41,6 +41,7 @@
  */
 + (void)addReceivedAddress:(NSDictionary *)addressDict ComplectionBlock:(void(^)(BOOL isSuccess))complection;
 
+
 /**
  *  修改默认地址
  */
@@ -50,5 +51,10 @@
  *  删除收货地址
  */
 + (void)deleteReceivedAddress:(NSString *)addressID ComplectionBlock:(void(^)(BOOL isSuccess))complection;
+
+/**
+ *  确认收货
+ */
++ (void)confirmReceiveProductWithOrderID:(NSString *)ordreID ComplectionBlock:(void(^)(BOOL isSuccess))complection;
 
 @end

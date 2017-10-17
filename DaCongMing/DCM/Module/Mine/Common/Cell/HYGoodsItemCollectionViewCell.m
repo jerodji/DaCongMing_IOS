@@ -7,6 +7,7 @@
 //
 
 #import "HYGoodsItemCollectionViewCell.h"
+#import "HYAddToCartsHandle.h"
 
 @interface HYGoodsItemCollectionViewCell()
 
@@ -85,6 +86,13 @@
     }];
 }
 
+#pragma mark - action
+- (void)addToCartsAction{
+    
+    HYAddToCartsHandle *handle = [[HYAddToCartsHandle alloc] init];
+    [handle addToCartsWithProductID:self.goodsModel.item_id];
+}
+
 #pragma mark - lazyload
 - (UIImageView *)imgView{
     
@@ -135,6 +143,7 @@
         [_addToShopingCartsBtn setTitle:@"加入购物车" forState:UIControlStateNormal];
         _addToShopingCartsBtn.titleLabel.font = KFitFont(15);
         [_addToShopingCartsBtn setTitleColor:KCOLOR(@"272727") forState:UIControlStateNormal];
+        [_addToShopingCartsBtn addTarget:self action:@selector(addToCartsAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return _addToShopingCartsBtn;
 }

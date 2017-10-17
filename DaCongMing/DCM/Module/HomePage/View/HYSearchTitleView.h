@@ -14,9 +14,16 @@ typedef void(^cancelActionBlock)();
 
 - (void)searchTextFieldTextChanged:(NSString *)text;
 
+- (void)searchTextFieldStartInput;
+
+- (void)searchTextFieldResignFirstResponder;
+
 @end
 
 @interface HYSearchTitleView : UIView
+
+/** textField */
+@property (nonatomic,strong) UITextField *textField;
 
 /**  */
 @property (nonatomic,strong) cancelActionBlock cancenBlock;

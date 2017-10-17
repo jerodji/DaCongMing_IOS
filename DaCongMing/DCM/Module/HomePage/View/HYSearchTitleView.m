@@ -14,8 +14,6 @@
 @property (nonatomic,strong) UIView *searchView;
 /** searchIcon */
 @property (nonatomic,strong) UIImageView *searchIconImgView;
-/** textField */
-@property (nonatomic,strong) UITextField *textField;
 /** 取消 */
 @property (nonatomic,strong) UIButton *cancelBtn;
 
@@ -97,6 +95,22 @@
         return YES;
     }
     return YES;
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField{
+    
+    if (_delegate && [_delegate respondsToSelector:@selector(searchTextFieldResignFirstResponder)]) {
+        
+        [_delegate searchTextFieldResignFirstResponder];
+    }
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField{
+    
+    if (_delegate && [_delegate respondsToSelector:@selector(searchTextFieldStartInput)]) {
+        
+        [_delegate searchTextFieldStartInput];
+    }
 }
 
 #pragma mark - lazyload

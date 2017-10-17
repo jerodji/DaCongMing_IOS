@@ -63,6 +63,10 @@
 + (void)requestOrderDataWithState:(NSInteger)order_state pageNo:(NSInteger)pageNo andPage:(NSInteger)pageSize complectionBlock:(void (^)(NSArray *))complection{
     
     NSMutableDictionary *requestParam = [NSMutableDictionary dictionary];
+    if (order_state == 4) {
+        
+        order_state = 8;
+    }
     [requestParam setValue:@(order_state) forKey:@"order_stat"];
     [requestParam setValue:[HYUserModel sharedInstance].token forKey:@"token"];
     [requestParam setValue:@(pageSize) forKey:@"pageSize"];
@@ -212,6 +216,29 @@
             }
             else{
                 complection(NO);
+            }
+        }
+    }];
+}
+
++ (void)confirmReceiveProductWithOrderID:(NSString *)ordreID ComplectionBlock:(void (^)(BOOL))complection{
+    
+    NSMutableDictionary *requestParam = [NSMutableDictionary dictionary];
+    [requestParam setValue:[HYUserModel sharedInstance].token forKey:@"token"];
+    [requestParam setValue:ordreID forKey:@"sorder_id"];
+    
+    [[HTTPManager shareHTTPManager] postDataFromUrl:API_ConfirmReceiveProduct withParameter:requestParam isShowHUD:YES success:^(id returnData) {
+        
+        if (returnData) {
+            
+            NSInteger code = [[returnData objectForKey:@"successed"] integerValue];
+            if (code == 000) {
+                
+                complection(YES);
+            }
+            else{
+                complection(NO);
+                [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"网络出错"];
             }
         }
     }];

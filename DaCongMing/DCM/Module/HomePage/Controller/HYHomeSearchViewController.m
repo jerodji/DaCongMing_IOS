@@ -10,17 +10,22 @@
 #import "HYSearchTitleView.h"
 #import "HYHotSearchView.h"
 #import "HYSearchHandle.h"
+#import "HYGoodsItemCollectionViewCell.h"
+#import "HYSearchNoDataCollectionReusableView.h"
+#import "HYGoodsDetailInfoViewController.h"
 
-@interface HYHomeSearchViewController () <HYSearchTextFieldTextChangedDelegate,UITableViewDelegate,UITableViewDataSource>
+@interface HYHomeSearchViewController () <HYSearchTextFieldTextChangedDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,HYHotSearchBtnActionDelegate>
 
 /** searchTitleView */
 @property (nonatomic,strong) HYSearchTitleView *searchTitleView;
 /** hotSearchView */
 @property (nonatomic,strong) HYHotSearchView *hotSearchView;
-/** tableView */
-@property (nonatomic,strong) UITableView *tableView;
+/** collectionView */
+@property (nonatomic,strong) UICollectionView *collectionView;
 /** 搜索结果 */
-@property (nonatomic,strong) NSArray *searchArray;
+@property (nonatomic,strong) NSMutableArray *datalist;
+/** 是否搜到数据 */
+@property (nonatomic,assign) BOOL isNoData;
 
 @end
 
@@ -62,57 +67,144 @@
     }];
 }
 
-#pragma mark - searchDelegate
-- (void)searchTextFieldTextChanged:(NSString *)text{
+- (void)requestRecommendData{
     
-    [HYSearchHandle searchProductsWithText:text complectionBlock:^(NSArray *datalist) {
-       
-        if (datalist) {
-            
-            DLog(@"%@",datalist);
-            self.searchArray = datalist;
-        }
+    [self.datalist removeAllObjects];
+    [HYGoodsHandle requestGoodsListItem_type:@"001" pageNo:1 andPage:5 order:nil hotsale:nil complectionBlock:^(NSArray *datalist) {
+        
+        [self.datalist addObjectsFromArray:datalist];
+        [self.collectionView reloadData];
     }];
 }
 
-#pragma mark - TableViewDataSource
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+
+#pragma mark - searchDelegate
+- (void)searchTextFieldTextChanged:(NSString *)text{
+    
+    [self.datalist removeAllObjects];
+    [self.view addSubview:self.collectionView];
+    [HYSearchHandle searchProductsWithText:text complectionBlock:^(NSArray *datalist) {
+       
+        if (datalist.count) {
+            
+            [self.datalist addObjectsFromArray:datalist];
+            [_collectionView reloadData];
+            self.isNoData = NO;
+        }
+        else{
+            
+            [self requestRecommendData];
+            self.isNoData = YES;
+        }
+        
+    }];
+}
+
+- (void)searchTextFieldResignFirstResponder{
+    
+    if (!self.datalist.count) {
+       
+        [_collectionView removeFromSuperview];
+        _collectionView = nil;
+        [self.view addSubview:self.hotSearchView];
+    }
+
+}
+
+- (void)searchTextFieldStartInput{
+    
+    [_hotSearchView removeFromSuperview];
+    _hotSearchView = nil;
+    [self.view addSubview:self.collectionView];
+}
+
+#pragma mark - 点击热搜按钮delegate
+- (void)hotSearchBtnTapWithText:(NSString *)text{
+    
+    [self.searchTitleView.textField becomeFirstResponder];
+    self.searchTitleView.textField.text = text;
+    [self searchTextFieldTextChanged:text];
+}
+
+#pragma mark - collectionViewDataSource
+//返回section个数
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
     
     return 1;
 }
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+//每个section的item个数
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     
-    return self.searchArray.count;
+    return _datalist.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
-    static NSString *cellID = @"";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
-    if (!cell) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
-    }
+    HYGoodsItemCollectionViewCell *cell = (HYGoodsItemCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"collectionCell" forIndexPath:indexPath];
+    
+    NSDictionary *dict = _datalist[indexPath.item];
+    cell.goodsModel = [HYGoodsItemModel modelWithDictionary:dict];
+    //cell.backgroundColor = [UIColor redColor];
     return cell;
 }
 
-#pragma mark - tableViewDelegate
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    return CGSizeMake((KSCREEN_WIDTH - 10) / 2, 340 * WIDTH_MULTIPLE);
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    NSDictionary *dict = _datalist[indexPath.item];
+    HYGoodsItemModel *model = [HYGoodsItemModel modelWithDictionary:dict];
+    
+    DLog(@"current itemID is %@",model.item_id);
+    
+    
+    HYGoodsDetailInfoViewController *detailVC = [[HYGoodsDetailInfoViewController alloc] init];
+    detailVC.navigationController.navigationBar.hidden = YES;
+    detailVC.goodsID = model.item_id;
+    [self.navigationController pushViewController:detailVC animated:YES];
+    
+}
+
+#pragma mark - collectionHeader
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
+    
+    if (kind == UICollectionElementKindSectionHeader) {
+        
+        HYSearchNoDataCollectionReusableView *headerView = (HYSearchNoDataCollectionReusableView *)[collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HYSearchNoDataHeaderView" forIndexPath:indexPath];
+        return headerView;
+    }
+    
+    return nil;
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
+    
+    if (self.isNoData) {
+        
+        return CGSizeMake(KSCREEN_WIDTH, 115 * WIDTH_MULTIPLE);
+    }
+    
+    return CGSizeMake(0, 0);
     
     
 }
 
 
-
-
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     
-    return 10;
+    if (scrollView.contentOffset.y > 50) {
+        
+        [self.searchTitleView.textField resignFirstResponder];
+    }
+    else{
+        
+        [self.searchTitleView.textField becomeFirstResponder];
+    }
 }
-
 
 #pragma mark - lazyload
 - (HYSearchTitleView *)searchTitleView{
@@ -135,21 +227,42 @@
     if (!_hotSearchView) {
         
         _hotSearchView = [HYHotSearchView new];
+        _hotSearchView.delegate = self;
     }
     return _hotSearchView;
 }
 
-- (UITableView *)tableView{
-    if (!_tableView) {
+- (UICollectionView *)collectionView{
+    
+    if (!_collectionView) {
         
-        _tableView = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStylePlain];
-        _tableView.delegate = self;
-        _tableView.dataSource = self;
-        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        _tableView.backgroundColor = KAPP_TableView_BgColor;
+        //1.初始化layout
+        UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+        layout.scrollDirection = UICollectionViewScrollDirectionVertical;
+        
+        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, KSCREEN_WIDTH, KSCREEN_HEIGHT-64) collectionViewLayout:layout];
+        [_collectionView setCollectionViewLayout:layout];
+        _collectionView.backgroundColor = KAPP_WHITE_COLOR;
+        _collectionView.showsVerticalScrollIndicator = NO;
+        _collectionView.showsHorizontalScrollIndicator = NO;
+        _collectionView.delegate = self;
+        _collectionView.dataSource = self;
+        _collectionView.bounces = NO;
+        
+        [_collectionView registerClass:[HYGoodsItemCollectionViewCell class] forCellWithReuseIdentifier:@"collectionCell"];
+        [_collectionView registerClass:[HYSearchNoDataCollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HYSearchNoDataHeaderView"];
     }
-    return _tableView;
+    return _collectionView;
 }
+
+- (NSMutableArray *)datalist{
+    
+    if (!_datalist) {
+        _datalist = [NSMutableArray array];
+    }
+    return _datalist;
+}
+
 
 - (void)didReceiveMemoryWarning {
     
