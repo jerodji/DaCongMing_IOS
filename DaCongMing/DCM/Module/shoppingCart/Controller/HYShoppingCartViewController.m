@@ -72,6 +72,7 @@
     _goodsList = [NSMutableArray array];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(singleCartsChanged:) name:KShoppingCartsChanged object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cartsCountChanged:) name:KShoppingCartsChanged object:nil];
 }
 
 - (void)setupSubviews{
@@ -171,18 +172,25 @@
             
             HYCartsSeller *cartsSeller = weakSelf.cartsSellerArray[i];
             cartsSeller.isSelect = isCheckAll;
-            [weakSelf.cartsSellerArray replaceObjectAtIndex:i withObject:cartsSeller];
-            
-            for (NSDictionary *dict in cartsSeller.cartItems) {
+            NSMutableArray *tempArray = [NSMutableArray array];
+            for (HYCartItems *items in cartsSeller.cartItems) {
                 
-                HYCartItems *items = [HYCartItems modelWithDictionary:dict];
-                [weakSelf.guidStr appendString:items.guid];
-                [weakSelf.guidStr appendString:@","];
-                
+                items.isSelect = isCheckAll;
+                if (isCheckAll) {
+                    
+                    [weakSelf.guidStr appendString:items.guid];
+                    [weakSelf.guidStr appendString:@","];
+                }
+                [tempArray addObject:items];
             }
-        }
+            cartsSeller.cartItems = tempArray;
+            [weakSelf.cartsSellerArray replaceObjectAtIndex:i withObject:cartsSeller];
         
-        if (isCheckAll) {
+        }
+        [weakSelf.tableView reloadData];
+
+        
+        if ([weakSelf.guidStr isNotBlank]) {
             
             [HYCartsHandle calculateCartsAmountWithGuid:weakSelf.guidStr ComplectionBlock:^(NSString *amount) {
                 
@@ -195,7 +203,6 @@
             weakSelf.guidStr = [NSMutableString stringWithFormat:@""];
         }
         
-        [weakSelf.tableView reloadData];
     };
 }
 
@@ -284,7 +291,9 @@
 //修改购物车数量成功
 - (void)cartsCountChanged:(NSNotification *)notification{
     
-    [self requestShoppingCartsData];
+    DLog(@"%@",notification.object);
+    DLog(@"%@",notification.userInfo);
+    
 }
 
 #pragma mark - TableViewDataSource
@@ -503,34 +512,22 @@
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated{
     
     [super setEditing:editing animated:animated];
-    if (editing) {
+    [self.tableView setEditing:YES animated:YES];
+    self.navigationItem.rightBarButtonItem.title = editing ? @"完成" : @"编辑" ;
+    
+    for (NSInteger i = 0; i < self.cartsSellerArray.count; i++) {
         
-        [self.tableView setEditing:YES animated:YES];
-        self.navigationItem.rightBarButtonItem.title = @"完成";
-        
-        [self.cartsSellerArray removeAllObjects];
-        for (NSInteger i = 0; i < self.cartsModel.cartSellers.count; i++) {
+        HYCartsSeller *cartsSeller = self.cartsSellerArray[i];
+        cartsSeller.isEditing = editing;
+        NSMutableArray *tempArray = [NSMutableArray array];
+        for (HYCartItems *items in cartsSeller.cartItems) {
             
-            NSDictionary *dict = self.cartsModel.cartSellers[i];
-            HYCartsSeller *cartsSeller = [HYCartsSeller modelWithDictionary:dict];
-            cartsSeller.isEditing = YES;
-            [self.cartsSellerArray addObject:cartsSeller];
+            items.isEditing = editing;
+            [tempArray addObject:items];
         }
+        cartsSeller.cartItems = tempArray;
+        [self.cartsSellerArray replaceObjectAtIndex:i withObject:cartsSeller];
         [_tableView reloadData];
-    }
-    else {
-        //点击完成按钮
-        self.navigationItem.rightBarButtonItem.title = @"编辑";
-        [self.cartsSellerArray removeAllObjects];
-        for (NSInteger i = 0; i < self.cartsModel.cartSellers.count; i++) {
-            
-            NSDictionary *dict = self.cartsModel.cartSellers[i];
-            HYCartsSeller *cartsSeller = [HYCartsSeller modelWithDictionary:dict];
-            cartsSeller.isEditing = NO;
-            [self.cartsSellerArray addObject:cartsSeller];
-        }
-        [_tableView reloadData];
-
     }
 }
 

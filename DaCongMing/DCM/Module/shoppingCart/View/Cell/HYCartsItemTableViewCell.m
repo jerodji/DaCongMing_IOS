@@ -127,8 +127,10 @@
     
     _items = items;
     
-    [_itemImgView sd_setImageWithURL:[NSURL URLWithString:items.item.item_title_image] placeholderImage:[UIImage imageNamed:@"placeholder"]];
-    _itemLabel.text = items.item.item_name;
+    HYCartItem *item = [HYCartItem modelWithDictionary:items.item];
+    
+    [_itemImgView sd_setImageWithURL:[NSURL URLWithString:item.item_title_image] placeholderImage:[UIImage imageNamed:@"placeholder"]];
+    _itemLabel.text = item.item_name;
     _countLabel.text = [NSString stringWithFormat:@"x%@",items.qty];
     _unitLabel.text = items.unit;
     _PriceLabel.text = [NSString stringWithFormat:@"￥%@",items.price];
@@ -176,7 +178,7 @@
                 HYCartItems * cartItems = weakSelf.items;
                 cartItems.qty = [NSString stringWithFormat:@"%ld",count];
                 [weakSelf setItems:cartItems];
-                [[NSNotificationCenter defaultCenter] postNotificationName:KShoppingCartsCountChanged object:weakSelf.items userInfo:@{@"index" : @(weakSelf.indexPath.row)}];
+                [[NSNotificationCenter defaultCenter] postNotificationName:KShoppingCartsCountChanged object:weakSelf.items userInfo:@{@"sellerIndex" : @(weakSelf.indexPath.section - 1),@"ItemIndex" : @(weakSelf.indexPath.row)}];
             }
             else{
                 

@@ -55,7 +55,7 @@
 @property (nonatomic,copy) NSString *cart_id;
 @property (nonatomic,copy) NSString *item_id;
 @property (nonatomic,copy) NSString *seller_id;
-@property (nonatomic,strong) HYCartItem *item;
+@property (nonatomic,strong) NSDictionary *item;
 /** 购物车是否选中 */
 @property (nonatomic,assign) BOOL isSelect;
 /** 是否编辑 */
