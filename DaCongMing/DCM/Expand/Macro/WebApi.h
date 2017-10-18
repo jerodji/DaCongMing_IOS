@@ -50,8 +50,11 @@
 //获取用户购物车收藏数量
 #define API_GetUserInfo             @"HAILIN_SERVER/getUserInfo.do"
 
-//获取售后服务列表
-#define API_GetCollectShop          @"HAILIN_SERVER/getRefOrderListByStat.do"
+//获取我的收藏店铺
+#define API_GetCollectShop          @"HAILIN_SERVER/getSellerFavorite.do"
+
+//获取我的售后
+#define API_GetMySellAfter       @"HAILIN_SERVER/getRefOrderListByStat.do"
 
 
 /********************************订单相关*********************************/
@@ -121,6 +124,9 @@
 //添加收货地址
 #define API_AddReceiveAddress       @"HAILIN_SERVER/addAddress.do"
 
+//编辑收货地址
+#define API_EditReceiveAddress       @"HAILIN_SERVER/updateAddress.do"
+
 //设置默认收货地址
 #define API_setDefaultReceiveAddress       @"HAILIN_SERVER/changeDfAddress.do"
 
@@ -155,6 +161,9 @@
 //计算购物车价格
 #define API_CalculateCartsAmount       @"HAILIN_SERVER/getCartAmount.do"
 
+//购物车结算
+#define API_SettleShoppingCarts       @"HAILIN_SERVER/getSellerOrderByCart.do"
+
 /***************************************店铺**********************************/
 #pragma mark - 店铺
 //店铺主页
@@ -166,7 +175,5 @@
 //取消收藏店铺
 #define API_CancelCollectShop       @"HAILIN_SERVER/removeSellerFavorite.do"
 
-//获取我的售后
-#define API_GetMySellAfter       @"HAILIN_SERVER/getRefOrderListByStat.do"
 
 #endif /* WebApi_h */

@@ -30,4 +30,10 @@
  */
 + (void)bulkEditingCartsAmountWithGuid:(NSString *)editJson ComplectionBlock:(void(^)(BOOL isSuccess))complection;
 
+/*!
+ @method
+ @brief 购物车结算
+ */
++ (void)settleCartsWithGuid:(NSString *)guids ComplectionBlock:(void(^)(HYCreateOrder *order))complection;
+
 @end

@@ -16,6 +16,8 @@
 #import "HYBrandShopInfoModel.h"
 #import "HYGoodsDetailInfoViewController.h"
 #import "HYBrandShopBottomView.h"
+#import "HYShareView.h"
+
 
 @interface HYBrandShopViewController () <UITableViewDelegate,UITableViewDataSource,HYBrandsShopTapDelegate,HYShopCollectDelegate>
 
@@ -31,7 +33,8 @@
 @property (nonatomic,strong) HYBrandShopInfoModel *shopInfoModel;
 /** bannerArray */
 @property (nonatomic,strong) NSMutableArray *bannerArray;
-
+/** share */
+@property (nonatomic,strong) HYShareView *shareView;
 
 @end
 
@@ -52,7 +55,7 @@
 - (void)setupUI{
     
     [self.navigationController.navigationBar addSubview:self.brandsShopNavView];
-    self.navigationItem.hidesBackButton = YES;
+    self.navigationController.navigationItem.hidesBackButton = YES;
     self.view.backgroundColor = KAPP_WHITE_COLOR;
     [self.view addSubview:self.tableView];
     [self.view addSubview:self.bottomView];
@@ -69,7 +72,8 @@
     
     [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
        
-        make.top.left.right.bottom.equalTo(self.view);
+        make.top.left.right.equalTo(self.view);
+        make.bottom.equalTo(self.view).offset(-50 * WIDTH_MULTIPLE);
     }];
     
     [_bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -217,8 +221,12 @@
             [self.navigationController popViewControllerAnimated:YES];
             break;
         case 1:
+            
             break;
         case 2:
+            
+            [KEYWINDOW addSubview:self.shareView];
+            [self.shareView showShareView];
             break;
         default:
             break;
@@ -296,6 +304,21 @@
         _bottomView = [HYBrandShopBottomView new];
     }
     return _bottomView;
+}
+
+- (HYShareView *)shareView{
+    
+    if (!_shareView) {
+        
+        _shareView = [[HYShareView alloc] initWithFrame:CGRectMake(0, 0, KSCREEN_WIDTH, KSCREEN_HEIGHT)];
+        NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+        [dict setObject:@"大聪明" forKey:@"shareTitle"];
+        [dict setValue:[HYUserModel sharedInstance].userInfo.qrpath forKey:@"shareImgUrl"];
+        [dict setObject:@"老铁，没毛病，双击666\n老铁，没毛病，双击666\n老铁，没毛病，双击666" forKey:@"shareDesc"];
+        
+        _shareView.shareDict = dict;
+    }
+    return _shareView;
 }
 
 - (void)didReceiveMemoryWarning {

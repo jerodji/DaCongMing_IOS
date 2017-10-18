@@ -10,4 +10,7 @@
 
 @interface HYAddAddressViewController : HYBaseViewController
 
+/** addressModel */
+@property (nonatomic,strong) HYMyAddressModel *addressModel;
+
 @end

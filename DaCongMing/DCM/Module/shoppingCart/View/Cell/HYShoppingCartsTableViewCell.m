@@ -38,7 +38,7 @@
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         
         [self setupSubviews];
-        
+        [self addNotification];
     }
     return self;
 }
@@ -94,6 +94,20 @@
     }];
 }
 
+#pragma mark - notification
+- (void)addNotification{
+    
+    //购物车数量发生变化，通知刷新tableView
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(shoppingCartsValueChanged:) name:KShoppingCartsCountChanged object:nil];
+}
+
+- (void)shoppingCartsValueChanged:(NSNotification *)notification{
+    
+    DLog(@"%@",notification.object);
+    DLog(@"%@",notification.userInfo);
+    
+}
+
 #pragma mark - setter
 - (void)setCartsSeller:(HYCartsSeller *)cartsSeller{
     
@@ -102,9 +116,8 @@
     _sellerNameLabel.text = cartsSeller.seller_name;
     [self.itemModelArray removeAllObjects];
     _sellerCheackAllBtn.selected = cartsSeller.isSelect;
-    for (NSDictionary *dict in _cartsSeller.cartItems) {
+    for (HYCartItems *items in _cartsSeller.cartItems) {
         
-        HYCartItems *items = [HYCartItems modelWithDictionary:dict];
         items.isSelect = _sellerCheackAllBtn.selected;
         items.isEditing = cartsSeller.isEditing;
         [self.itemModelArray addObject:items];
@@ -116,7 +129,6 @@
         make.height.mas_equalTo(height);
         [_tableView reloadData];
     }];
-    
 }
 
 #pragma mark - action

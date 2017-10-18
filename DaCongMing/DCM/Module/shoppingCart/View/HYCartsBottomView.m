@@ -93,7 +93,11 @@
 #pragma mark - action
 - (void)confirmAction{
     
-    self.payAction([self.amount floatValue]);
+    if (self.payAction) {
+        
+        self.payAction();
+
+    }
 }
 
 - (void)checkAllBtnAction:(UIButton *)button{

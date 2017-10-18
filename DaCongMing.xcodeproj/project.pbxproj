@@ -56,6 +56,8 @@
 		3E33CC9D1F8C5F23002179CD /* HYShoppingCartsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E33CC9C1F8C5F23002179CD /* HYShoppingCartsTableViewCell.m */; };
 		3E33CCA01F8C6C6E002179CD /* HYCartsItemTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E33CC9F1F8C6C6E002179CD /* HYCartsItemTableViewCell.m */; };
 		3E33CCA31F8CA1B2002179CD /* HYCartsBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E33CCA21F8CA1B2002179CD /* HYCartsBottomView.m */; };
+		3E3ED06B1F96F92900C20E61 /* HYBrandShopFiltView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3ED06A1F96F92900C20E61 /* HYBrandShopFiltView.m */; };
+		3E3ED06E1F973E9800C20E61 /* HYShoppingCartsSellerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3ED06D1F973E9800C20E61 /* HYShoppingCartsSellerView.m */; };
 		3E4D78771F78DD9300BC9C2B /* HYGoodsHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4D78761F78DD9300BC9C2B /* HYGoodsHandle.m */; };
 		3E4D787A1F78E51300BC9C2B /* HYCreateOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4D78791F78E51300BC9C2B /* HYCreateOrder.m */; };
 		3E4D787D1F79005800BC9C2B /* HYCreateOrderDatalist.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4D787C1F79005800BC9C2B /* HYCreateOrderDatalist.m */; };
@@ -293,6 +295,10 @@
 		3E33CC9F1F8C6C6E002179CD /* HYCartsItemTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYCartsItemTableViewCell.m; sourceTree = "<group>"; };
 		3E33CCA11F8CA1B2002179CD /* HYCartsBottomView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYCartsBottomView.h; sourceTree = "<group>"; };
 		3E33CCA21F8CA1B2002179CD /* HYCartsBottomView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYCartsBottomView.m; sourceTree = "<group>"; };
+		3E3ED0691F96F92900C20E61 /* HYBrandShopFiltView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYBrandShopFiltView.h; sourceTree = "<group>"; };
+		3E3ED06A1F96F92900C20E61 /* HYBrandShopFiltView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYBrandShopFiltView.m; sourceTree = "<group>"; };
+		3E3ED06C1F973E9800C20E61 /* HYShoppingCartsSellerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYShoppingCartsSellerView.h; sourceTree = "<group>"; };
+		3E3ED06D1F973E9800C20E61 /* HYShoppingCartsSellerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYShoppingCartsSellerView.m; sourceTree = "<group>"; };
 		3E4D78751F78DD9300BC9C2B /* HYGoodsHandle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYGoodsHandle.h; sourceTree = "<group>"; };
 		3E4D78761F78DD9300BC9C2B /* HYGoodsHandle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYGoodsHandle.m; sourceTree = "<group>"; };
 		3E4D78781F78E51300BC9C2B /* HYCreateOrder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYCreateOrder.h; sourceTree = "<group>"; };
@@ -664,6 +670,8 @@
 			children = (
 				3E27547D1F70FBED0010053E /* HYNoGoodsTableViewCell.h */,
 				3E27547E1F70FBED0010053E /* HYNoGoodsTableViewCell.m */,
+				3E3ED06C1F973E9800C20E61 /* HYShoppingCartsSellerView.h */,
+				3E3ED06D1F973E9800C20E61 /* HYShoppingCartsSellerView.m */,
 				3E33CC9B1F8C5F23002179CD /* HYShoppingCartsTableViewCell.h */,
 				3E33CC9C1F8C5F23002179CD /* HYShoppingCartsTableViewCell.m */,
 				3E33CC9E1F8C6C6E002179CD /* HYCartsItemTableViewCell.h */,
@@ -1304,6 +1312,8 @@
 				3ED218CF1F8E01A40040C7E3 /* HYBrandShopNavView.m */,
 				3ED218D11F8E0A1E0040C7E3 /* HYBrandShopBottomView.h */,
 				3ED218D21F8E0A1E0040C7E3 /* HYBrandShopBottomView.m */,
+				3E3ED0691F96F92900C20E61 /* HYBrandShopFiltView.h */,
+				3E3ED06A1F96F92900C20E61 /* HYBrandShopFiltView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1563,11 +1573,13 @@
 				3E56209A1F6B7BB10063AA5B /* HYNavTitleView.m in Sources */,
 				3E5620B71F6BBDE40063AA5B /* HYHomeCollectionCell.m in Sources */,
 				3E4D78771F78DD9300BC9C2B /* HYGoodsHandle.m in Sources */,
+				3E3ED06B1F96F92900C20E61 /* HYBrandShopFiltView.m in Sources */,
 				3EA0BC131F739EF700F78FDD /* HYGoodSpecificationSelectView.m in Sources */,
 				3E5620211F6B6A800063AA5B /* AppDelegate.m in Sources */,
 				3E33CC931F8B1D7A002179CD /* HYAreaModel.m in Sources */,
 				3EDC21E21F930A8B0013FFBA /* HYSaleAfterCell.m in Sources */,
 				3EA0BC091F725D2600F78FDD /* HYProductsSpecificationCell.m in Sources */,
+				3E3ED06E1F973E9800C20E61 /* HYShoppingCartsSellerView.m in Sources */,
 				3E33CC901F8B1D6F002179CD /* HYCityModel.m in Sources */,
 				3E2754841F7101540010053E /* HYGoodsItemCollectionViewCell.m in Sources */,
 				3ECD833D1F908B7000DE6FFD /* HYMyOrderDetailViewController.m in Sources */,

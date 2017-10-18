@@ -15,7 +15,7 @@
 
 #import "HYCreateOrder.h"
 #import "HYCreateOrderDatalist.h"
-
+#import "HYCartsHandle.h"
 #import "HYPayHandle.h"
 #import "HYAlipayManager.h"
 #import "HYWeChatPayManager.h"
@@ -124,6 +124,28 @@
         NSDictionary *dict = order.dataList[0];
         self.createOrderDatalist = [HYCreateOrderDatalist modelWithDictionary:dict];
         [_tableView reloadData];
+    }];
+}
+
+- (void)setGuids:(NSString *)guids{
+    
+    _guids = guids;
+    //购物车结算
+    
+    [HYCartsHandle settleCartsWithGuid:guids ComplectionBlock:^(HYCreateOrder *order) {
+        
+        if (order) {
+            
+            self.orderModel = order;
+            NSDictionary *dict = order.dataList[0];
+            self.createOrderDatalist = [HYCreateOrderDatalist modelWithDictionary:dict];
+            [_tableView reloadData];
+        }
+        else{
+            
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+        
     }];
 }
 

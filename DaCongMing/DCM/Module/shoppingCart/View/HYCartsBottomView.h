@@ -10,7 +10,7 @@
 
 typedef void(^checkAllActionBlock)(BOOL isCheckAll);
 
-typedef void(^payActionBlock)(CGFloat amount);
+typedef void(^payActionBlock)();
 
 @interface HYCartsBottomView : UIView
 

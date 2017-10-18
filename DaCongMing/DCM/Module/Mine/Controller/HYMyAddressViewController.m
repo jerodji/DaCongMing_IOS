@@ -141,7 +141,10 @@
 
 - (void)editAddressWithIndexPath:(NSIndexPath *)indexPath{
     
-    
+    HYMyAddressModel *addressModel = _datalist[indexPath.section];
+    HYAddAddressViewController *addAddressVC = [HYAddAddressViewController new];
+    [self.navigationController pushViewController:addAddressVC animated:YES];
+    addAddressVC.addressModel = addressModel;
 }
 
 - (void)deleteAddressWithIndexPath:(NSIndexPath *)indexPath{
@@ -160,6 +163,7 @@
     }];
 }
 
+#pragma mark - cellDelegate
 - (void)addressBtnAcitonWithFlag:(NSInteger)flag indexPath:(NSIndexPath *)indexPath{
     
     switch (flag) {

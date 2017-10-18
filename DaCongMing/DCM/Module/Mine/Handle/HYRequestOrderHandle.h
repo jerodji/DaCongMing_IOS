@@ -41,6 +41,11 @@
  */
 + (void)addReceivedAddress:(NSDictionary *)addressDict ComplectionBlock:(void(^)(BOOL isSuccess))complection;
 
+/**
+ *  修改收货地址
+ */
++ (void)editReceivedAddress:(NSDictionary *)addressDict ComplectionBlock:(void(^)(BOOL isSuccess))complection;
+
 
 /**
  *  修改默认地址

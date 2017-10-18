@@ -176,6 +176,28 @@
     }];
 }
 
++ (void)editReceivedAddress:(NSDictionary *)addressDict ComplectionBlock:(void (^)(BOOL))complection{
+    
+    NSMutableDictionary *requestParam = [NSMutableDictionary dictionary];
+    [requestParam setValue:[HYUserModel sharedInstance].token forKey:@"token"];
+    [requestParam setValuesForKeysWithDictionary:addressDict];
+    
+    [[HTTPManager shareHTTPManager] postDataFromUrl:API_EditReceiveAddress withParameter:requestParam isShowHUD:YES success:^(id returnData) {
+        
+        if (returnData) {
+            
+            NSInteger code =[[returnData objectForKey:@"successed"] integerValue];
+            if (code == 000) {
+                
+                complection(YES);
+            }
+            else{
+                complection(NO);
+            }
+        }
+    }];
+}
+
 + (void)setDefaultReceivedAddress:(NSString *)newAddress_id oldAddressID:(NSString *)oldAddressID ComplectionBlock:(void (^)(BOOL))complection{
     
     NSMutableDictionary *requestParam = [NSMutableDictionary dictionary];

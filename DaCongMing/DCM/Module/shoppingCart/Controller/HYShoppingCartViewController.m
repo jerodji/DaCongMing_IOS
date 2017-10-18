@@ -8,16 +8,18 @@
 
 #import "HYShoppingCartViewController.h"
 #import "HYGoodsDetailInfoViewController.h"
-
+#import "HYFillOrderViewController.h"
+#import "HYShoppingCartsSellerView.h"
 #import "HYNoGoodsTableViewCell.h"
 #import "HYHomeDoodsCell.h"
 #import "HYShoppingCartsTableViewCell.h"
+#import "HYCartsItemTableViewCell.h"
 #import "HYCartsBottomView.h"
 #import "HYCartsHandle.h"
 #import "HYCartsModel.h"
 #import "HYMyUserInfo.h"
 
-@interface HYShoppingCartViewController () <UITableViewDelegate,UITableViewDataSource>
+@interface HYShoppingCartViewController () <UITableViewDelegate,UITableViewDataSource,HYSelectCartSellerDelegate>
 
 /** tableView */
 @property (nonatomic,strong) UITableView *tableView;
@@ -70,12 +72,13 @@
     _goodsList = [NSMutableArray array];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(singleCartsChanged:) name:KShoppingCartsChanged object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cartsCountChanged:) name:KShoppingCartsCountChanged object:nil];
 }
 
 - (void)setupSubviews{
     
     [self.view addSubview:self.tableView];
+    self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.navigationItem.rightBarButtonItem.title = @"编辑";
     
     [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
        
@@ -91,44 +94,29 @@
     }];
 }
 
-- (void)setupNavItem{
-    
-    
-    self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    self.navigationItem.rightBarButtonItem.title = @"编辑";
-    
-}
 
 - (void)requestShoppingCartsData{
     
     [HYCartsHandle showMyShoppingCartsWithComplectionBlock:^(HYCartsModel *cartsModel) {
        
-        if (cartsModel) {
+        if (cartsModel.cartSellers.count) {
             
-            //有数据
+            //购物车有数据
             self.cartsModel = cartsModel;
-            if (self.cartsModel.cartSellers.count) {
+            [self setupSubviews];
+            [self.view addSubview:self.bottomView];
+            [_bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
                 
-                [self setupNavItem];
-                [self.view addSubview:self.bottomView];
-                
-                [_bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
-                    
-                    make.left.right.bottom.equalTo(self.view);
-                    make.height.mas_equalTo(60 * WIDTH_MULTIPLE);
-                }];
-                _bottomView.checkAllBtn.selected = NO;
-                
-                [self.cartsSellerArray removeAllObjects];
-                for (NSInteger i = 0; i < self.cartsModel.cartSellers.count; i++) {
-                    
-                    NSDictionary *dict = self.cartsModel.cartSellers[i];
-                    HYCartsSeller *cartsSeller = [HYCartsSeller modelWithDictionary:dict];
-                    [self.cartsSellerArray addObject:cartsSeller];
-                }
-            }
-           
-
+                make.left.right.bottom.equalTo(self.view);
+                make.height.mas_equalTo(60 * WIDTH_MULTIPLE);
+            }];
+            _bottomView.checkAllBtn.selected = NO;
+            
+        }
+        else{
+            
+            [_bottomView removeFromSuperview];
+            _bottomView = nil;
         }
         
         [_tableView reloadData];
@@ -139,6 +127,30 @@
         [_goodsList addObjectsFromArray:datalist];
         [self.tableView reloadData];
     }];
+}
+
+#pragma mark - 对数据处理
+
+- (void)setCartsModel:(HYCartsModel *)cartsModel{
+    
+    _cartsModel = cartsModel;
+    [self.cartsSellerArray removeAllObjects];
+    NSMutableArray *tempArray = [NSMutableArray array];
+    //所有的商家
+    for (NSInteger i = 0; i < self.cartsModel.cartSellers.count; i++) {
+        
+        NSDictionary *dict = self.cartsModel.cartSellers[i];
+        HYCartsSeller *cartsSeller = [HYCartsSeller modelWithDictionary:dict];
+        NSMutableArray *cartItemsArray = [NSMutableArray array];
+        for (NSDictionary *itemDict in cartsSeller.cartItems) {
+                
+            HYCartItems *cartItems = [HYCartItems modelWithDictionary:itemDict];
+            [cartItemsArray addObject:cartItems];
+        }
+        cartsSeller.cartItems = cartItemsArray;
+        [tempArray addObject:cartsSeller];
+    }
+    [self.cartsSellerArray addObjectsFromArray:tempArray];
 }
 
 #pragma mark - action
@@ -224,9 +236,20 @@
 //购物车结算
 - (void)payShoppiingCarts{
     
-    self.bottomView.payAction = ^(CGFloat amount) {
-      
+    __weak typeof (self)weakSelf = self;
+    self.bottomView.payAction = ^{
         
+        if ([weakSelf.guidStr isNotBlank]) {
+            
+            HYFillOrderViewController *fillOrderVC = [HYFillOrderViewController new];
+            [weakSelf.navigationController pushViewController:fillOrderVC animated:YES];
+            fillOrderVC.guids = weakSelf.guidStr;
+            
+        }
+        else{
+            
+            [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"请选择需要结算的商品"];
+        }
     };
 }
 
@@ -267,19 +290,35 @@
 #pragma mark - TableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     
-    if (!_cartsModel.cartSellers.count) {
+    if (!_cartsSellerArray.count) {
         
         _tableCount = 3;
         return _tableCount;
     }
-    _tableCount = self.cartsModel.cartSellers.count + 2;
-    DLog(@"section count %ld",(long)_tableCount);
+    _tableCount = _cartsSellerArray.count + 2;
     return _tableCount;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return 1;
+    if (section == 0 || section == _tableCount - 1) {
+        
+        return 1;
+    }
+    else{
+        
+        if (_cartsSellerArray) {
+            
+            HYCartsSeller *cartsSeller = _cartsSellerArray[section-1];
+            return cartsSeller.cartItems.count;
+        }
+        else{
+            
+            return 1;
+        }
+    }
+    
+    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -294,7 +333,7 @@
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
         
-        if (_cartsModel.cartSellers.count) {
+        if (_cartsSellerArray.count) {
             cell.hidden = YES;
         }
         return cell;
@@ -322,23 +361,18 @@
     else{
         
         //购物车
-        static NSString *cartsCellID = @"cartsCellID";
-        HYShoppingCartsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cartsCellID];
+        static NSString *cartsItemCellID = @"cartsItemCell";
+        HYCartsItemTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cartsItemCellID];
         if (!cell) {
-            cell = [[HYShoppingCartsTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cartsCellID];
+            cell = [[HYCartsItemTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cartsItemCellID];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
         }
-        
-        HYCartsSeller *cartSeller = _cartsSellerArray[indexPath.section - 1];
-        cell.cartsSeller = cartSeller;
+        HYCartsSeller *cartsSeller = _cartsSellerArray[indexPath.section - 1];
+        cell.items = cartsSeller.cartItems[indexPath.row];
         cell.indexPath = indexPath;
-        cell.shoppingCartsChangedBlock = ^(HYCartsSeller *cartsSeller, NSIndexPath *changeIndexPath) {
-          
-            [_cartsSellerArray replaceObjectAtIndex:changeIndexPath.section - 1 withObject:cartsSeller];
-            [self shoppingCartsChanged];
-        };
-        
-        if (!_cartsModel) {
+        if (!_cartsSellerArray.count) {
+            
             cell.hidden = YES;
         }
         return cell;
@@ -357,7 +391,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    if (!_cartsModel.cartSellers.count) {
+    if (!_cartsSellerArray) {
         
         //购物车无商品
         if (indexPath.section == 0) {
@@ -389,11 +423,7 @@
         }
         else{
             
-            NSDictionary *dict = _cartsModel.cartSellers[indexPath.section - 1];
-            HYCartsSeller *cartSeller = [HYCartsSeller modelWithDictionary:dict];
-            CGFloat height = 30 * WIDTH_MULTIPLE + cartSeller.cartItems.count * 80 * WIDTH_MULTIPLE;
-            DLog(@"%ld行购物车高度%f",(long)indexPath.row,height);
-            return height;
+            return 80 * WIDTH_MULTIPLE;
         }
     }
     
@@ -402,14 +432,43 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, KSCREEN_WIDTH, 10 * WIDTH_MULTIPLE)];
-    view.backgroundColor = KCOLOR(@"f4f4f4");
-    return view;
+    HYShoppingCartsSellerView *cartSellerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"HYCartsSellerHeaderView"];
+    if (!cartSellerView) {
+        
+        cartSellerView = [[HYShoppingCartsSellerView alloc] initWithReuseIdentifier:@"HYCartsSellerHeaderView"];
+    }
+    
+    HYCartsSeller *cartSellerModel = _cartsSellerArray[section - 1];
+    cartSellerView.cartsSeller = cartSellerModel;
+    cartSellerView.delegate = self;
+    cartSellerView.index = section - 1;
+    if (!_cartsSellerArray) {
+        
+        cartSellerView.hidden = YES;
+    }
+    return cartSellerView;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     
-    return 10 * WIDTH_MULTIPLE;
+    
+    if (section == 0 || section == _tableCount - 1) {
+        
+        return 0;
+    }
+    else{
+        
+        if (_cartsSellerArray) {
+            
+            return 40 * WIDTH_MULTIPLE;
+        }
+        else{
+            
+            return 0;
+        }
+    }
+    
+    return 0;
 }
 
 #pragma mark - tableViewEditing
@@ -421,6 +480,23 @@
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     return UITableViewCellEditingStyleDelete;
+}
+
+#pragma mark - 全选每个商家delegate
+- (void)cartSellerSelect:(BOOL)isSelect WithIndexPath:(NSInteger )index{
+    
+    HYCartsSeller *cartSeller = _cartsSellerArray[index];
+    cartSeller.isSelect = isSelect;
+    NSMutableArray *tempArray = [NSMutableArray array];
+    for (HYCartItems *items in cartSeller.cartItems) {
+        
+        items.isSelect = isSelect;
+        [tempArray addObject:items];
+    }
+    cartSeller.cartItems = tempArray;
+    [_cartsSellerArray replaceObjectAtIndex:index withObject:cartSeller];
+    [_tableView reloadData];
+    
 }
 
 #pragma mark - editingMode

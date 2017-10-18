@@ -173,7 +173,10 @@
             if (isSuccess) {
                 
                 //购物车数量变化成功，刷新tableView
-                [[NSNotificationCenter defaultCenter] postNotificationName:KShoppingCartsCountChanged object:nil];
+                HYCartItems * cartItems = weakSelf.items;
+                cartItems.qty = [NSString stringWithFormat:@"%ld",count];
+                [weakSelf setItems:cartItems];
+                [[NSNotificationCenter defaultCenter] postNotificationName:KShoppingCartsCountChanged object:weakSelf.items userInfo:@{@"index" : @(weakSelf.indexPath.row)}];
             }
             else{
                 

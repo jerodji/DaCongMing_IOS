@@ -22,7 +22,7 @@
 @property (nonatomic,copy) NSString *seller_id;
 @property (nonatomic,copy) NSString *seller_name;
 @property (nonatomic,copy) NSString *cart_id;
-@property (nonatomic,copy) NSArray *cartItems;
+@property (nonatomic,copy) NSMutableArray *cartItems;
 /** 商家购物车购物车是否选中 */
 @property (nonatomic,assign) BOOL isSelect;
 /** 商家购物车购物车是否选中 */
@@ -56,7 +56,6 @@
 @property (nonatomic,copy) NSString *item_id;
 @property (nonatomic,copy) NSString *seller_id;
 @property (nonatomic,strong) HYCartItem *item;
-
 /** 购物车是否选中 */
 @property (nonatomic,assign) BOOL isSelect;
 /** 是否编辑 */

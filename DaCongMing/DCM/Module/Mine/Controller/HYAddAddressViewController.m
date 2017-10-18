@@ -51,7 +51,11 @@
 - (void)setupData{
     
     self.datalist = [NSMutableArray arrayWithObjects:@"姓名:",@"手机号码:",@"所在地区:",@"详细地址:", nil];
-    self.dataSourceArray = [NSMutableArray arrayWithObjects:@"",@"",@"",@"",nil];
+    
+    if (!self.dataSourceArray) {
+        
+        self.dataSourceArray = [NSMutableArray arrayWithObjects:@"",@"",@"",@"",nil];
+    }
     
 }
 
@@ -62,6 +66,8 @@
         
         NSArray *array = [HYPlistTools unarchivewithName:KAddressPlist];
         self.areaView.provinceArray = [array mutableCopy];
+        [KEYWINDOW addSubview:self.areaView];
+        [_areaView showAreaView];
         return;
     }
     
@@ -86,6 +92,16 @@
             }
         }
     }];
+}
+
+#pragma mark - setter
+- (void)setAddressModel:(HYMyAddressModel *)addressModel{
+    
+    _addressModel = addressModel;
+    NSString *str = [NSString stringWithFormat:@"%@-%@-%@",addressModel.province,addressModel.city,addressModel.area];
+    self.dataSourceArray = [NSMutableArray arrayWithObjects:addressModel.receiver,addressModel.phoneNum,str,addressModel.address,nil];
+    
+    [_tableView reloadData];
 }
 
 #pragma mark - action
@@ -134,13 +150,34 @@
     [dict setValue:_city forKey:@"city"];
     [dict setValue:_area forKey:@"area"];
     [dict setValue:@(0) forKey:@"isdefault"];
-    [HYRequestOrderHandle addReceivedAddress:dict ComplectionBlock:^(BOOL isSuccess) {
-       
-        if (isSuccess) {
+    
+    if (self.addressModel) {
+        
+        //编辑收货地址
+        [dict setValue:self.addressModel.isdefault forKey:@"isdefault"];
+        [dict setValue:self.addressModel.address_id forKey:@"address_id"];
+
+        [HYRequestOrderHandle editReceivedAddress:dict ComplectionBlock:^(BOOL isSuccess) {
             
-            [self.navigationController popViewControllerAnimated:YES];
-        }
-    }];
+            if (isSuccess) {
+                
+                [self.navigationController popViewControllerAnimated:YES];
+            }
+        }];
+        
+    }
+    else{
+        
+        //添加收货地址
+        [dict setValue:@(0) forKey:@"isdefault"];
+        [HYRequestOrderHandle addReceivedAddress:dict ComplectionBlock:^(BOOL isSuccess) {
+            
+            if (isSuccess) {
+                
+                [self.navigationController popViewControllerAnimated:YES];
+            }
+        }];
+    }
 }
 
 #pragma mark - TableViewDataSource
@@ -164,7 +201,7 @@
         
     }
     cell.title = _datalist[indexPath.row];
-    cell.textField.text = _dataSourceArray[indexPath.row];
+    cell.textField.text = self.dataSourceArray[indexPath.row];
     cell.indexPath = indexPath;
     cell.delegate = self;
     

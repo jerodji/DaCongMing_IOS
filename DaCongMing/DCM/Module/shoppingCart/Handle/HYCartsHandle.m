@@ -96,4 +96,36 @@
     }];
 }
 
++ (void)settleCartsWithGuid:(NSString *)guids ComplectionBlock:(void (^)(HYCreateOrder *))complection{
+    
+    
+    NSMutableDictionary *requestParam = [NSMutableDictionary dictionary];
+    [requestParam setValue:guids forKey:@"cart_guids"];
+    [requestParam setValue:[HYUserModel sharedInstance].token forKey:@"token"];
+    
+    [[HTTPManager shareHTTPManager] postDataFromUrl:API_SettleShoppingCarts withParameter:requestParam isShowHUD:YES success:^(id returnData) {
+        
+        if (returnData) {
+            
+            NSInteger code =[[returnData objectForKey:@"successed"] integerValue];
+            if (code == 000) {
+                
+                NSDictionary *dict = [returnData objectForKey:@"dataInfo"];
+                HYCreateOrder *model = [HYCreateOrder modelWithDictionary:dict];
+                complection(model);
+            }
+            else{
+                
+                complection(nil);
+                [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"订单创建出错!"];
+            }
+        }
+        else{
+            
+            complection(nil);
+            [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"订单创建出错!"];
+        }
+    }];
+}
+
 @end

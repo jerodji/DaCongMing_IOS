@@ -49,10 +49,10 @@
 - (void)layoutSubviews{
     
     [_backBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-       
-        make.top.equalTo(self).offset(6);
-        make.bottom.equalTo(self).offset(-6);
-        make.left.equalTo(self).offset(6);
+
+        make.top.equalTo(self);
+        make.bottom.equalTo(self);
+        make.left.equalTo(self);
         make.width.equalTo(@30);
     }];
     

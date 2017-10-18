@@ -82,6 +82,7 @@
     
     _title = title;
     [self addSubview:self.line];
+    self.line.hidden = YES;
     [self addSubview:self.guessLikeLabel];
     self.guessLikeLabel.text = title;
 }
