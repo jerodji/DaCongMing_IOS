@@ -11,6 +11,7 @@
 typedef void(^weChatSuccessBlock)();
 typedef void(^userLoginSuccessBlock)();
 typedef void(^loginVCCloseBlock)();
+typedef void(^forgetPasswordBlock)();
 
 @interface HYLoginView : UIView
 
@@ -28,5 +29,8 @@ typedef void(^loginVCCloseBlock)();
 
 /** close */
 @property (nonatomic,copy) loginVCCloseBlock loginCloseBlock;
+
+/** 忘记密码 */
+@property (nonatomic,copy) forgetPasswordBlock forgetPassoword;
 
 @end

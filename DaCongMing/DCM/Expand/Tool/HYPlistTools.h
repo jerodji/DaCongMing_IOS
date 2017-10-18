@@ -13,6 +13,15 @@
 /**写入plist文件*/
 + (void)saveDataWithPlistName:(NSString *)plistName dataArray:(NSArray *)dataArray;
 
+/**将自定义的对象存入plist文件*/
++ (void)archiveObject:(id)object withName:(NSString *)name;
+
+/**将自定义的对象解档*/
++ (NSArray *)unarchivewithName:(NSString *)name;
+
+/**判断某个文件是否存在*/
++ (BOOL)isFileExistWithFileName:(NSString *)fileName;
+
 /**读取数组plist文件*/
 + (NSArray *)getArrayDataWithPlistName:(NSString *)plistName;
 

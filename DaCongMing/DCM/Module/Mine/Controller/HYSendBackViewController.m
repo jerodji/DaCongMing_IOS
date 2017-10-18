@@ -12,8 +12,9 @@
 #import "HYSendBackInfoCell.h"
 #import "HYMineNetRequest.h"
 #import "HYRefundModel.h"
+#import "HYSellerReceiveViewController.h"
 
-@interface HYSendBackViewController () <UITableViewDelegate,UITableViewDataSource>
+@interface HYSendBackViewController () <UITableViewDelegate,UITableViewDataSource,HYSumbitLogisticInfoDelegate>
 
 /** tableView */
 @property (nonatomic,strong) UITableView *tableView;
@@ -91,6 +92,7 @@
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             
         }
+        cell.delegate = self;
         cell.model = self.refundModel;
         return cell;
     }
@@ -114,12 +116,28 @@
     }
     else if (indexPath.row == 1){
         
-        return 150 * WIDTH_MULTIPLE;
+        return 170 * WIDTH_MULTIPLE;
     }
     
-    return 260 * WIDTH_MULTIPLE;
+    return 270 * WIDTH_MULTIPLE;
 }
 
+#pragma mark - CellDelegate
+- (void)submitLogisticWithCompany:(NSString *)company andNumber:(NSString *)number{
+    
+    [HYMineNetRequest submitlogisticsInfoWithRefundID:self.refundID logisticsCompany:company logisticsNum:number ComplectionBlock:^(BOOL isSuccess) {
+        
+        if (isSuccess) {
+            
+            HYSellerReceiveViewController *sellerReceiveVC = [HYSellerReceiveViewController new];
+            [self.navigationController pushViewController:sellerReceiveVC animated:YES];
+        }
+        else{
+            
+            [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"物流信息上传失败"];
+        }
+    }];
+}
 
 
 #pragma mark - lazyload

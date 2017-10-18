@@ -136,6 +136,15 @@
     
     _CountEditView.count = [items.qty integerValue];
     
+    if (items.isEditing) {
+        
+        self.CountEditView.hidden = NO;
+    }
+    else{
+        
+        self.CountEditView.hidden = YES;
+    }
+    
 }
 
 #pragma mark - action

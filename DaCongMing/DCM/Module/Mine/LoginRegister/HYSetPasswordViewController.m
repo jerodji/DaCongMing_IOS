@@ -172,11 +172,12 @@
         
         _passwordTextField = [[UITextField alloc] init];
         
-        _passwordTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"请设置您的账号登录密码" attributes:@{NSForegroundColorAttributeName:KAPP_WHITE_COLOR,NSFontAttributeName : [UIFont systemFontOfSize:18]}];
+        _passwordTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"请设置您的账号登录密码" attributes:@{NSForegroundColorAttributeName:KAPP_7b7b7b_COLOR,NSFontAttributeName : KFitFont(14)}];
         _passwordTextField.delegate = self;
         _passwordTextField.secureTextEntry = YES;
         _passwordTextField.clearButtonMode = UITextFieldViewModeAlways;
-        _passwordTextField.font = [UIFont systemFontOfSize:18];
+        _passwordTextField.font = KFitFont(14);
+        _passwordTextField.textColor = KAPP_WHITE_COLOR;
          [_passwordTextField addTarget:self action:@selector(phoneNumEditChanged:) forControlEvents:UIControlEventEditingChanged];
     }
     return _passwordTextField;

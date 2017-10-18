@@ -106,6 +106,7 @@
         
         HYCartItems *items = [HYCartItems modelWithDictionary:dict];
         items.isSelect = _sellerCheackAllBtn.selected;
+        items.isEditing = cartsSeller.isEditing;
         [self.itemModelArray addObject:items];
     }
     
@@ -115,7 +116,6 @@
         make.height.mas_equalTo(height);
         [_tableView reloadData];
     }];
-    
     
 }
 

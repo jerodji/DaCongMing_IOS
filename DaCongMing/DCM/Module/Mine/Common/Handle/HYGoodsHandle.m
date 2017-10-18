@@ -33,6 +33,7 @@
             else{
                 
                 complection(nil);
+                [MBProgressHUD hidePregressHUD:KEYWINDOW];
                 [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"获取商品列表出错!"];
             }
         }

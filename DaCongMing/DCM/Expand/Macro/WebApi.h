@@ -107,6 +107,9 @@
 //获取退款详情
 #define API_GetRefundDetail                 @"HAILIN_SERVER/getRefOrderDetailByRefOrderID.do"
 
+//提交退款发货信息
+#define API_SubmitRefundLogisticsInfo       @"HAILIN_SERVER/sendItemForRefOrder.do"
+
 /***************************************收货地址**********************************/
 #pragma mark - 收货地址
 //获取收货地址

@@ -72,7 +72,7 @@
         make.top.equalTo(self).offset(10 * WIDTH_MULTIPLE);
         make.right.equalTo(self).offset(-10 * WIDTH_MULTIPLE);
         make.left.equalTo(self).offset(41 * WIDTH_MULTIPLE);
-        make.height.mas_equalTo(60 * WIDTH_MULTIPLE);
+        make.height.mas_equalTo(80 * WIDTH_MULTIPLE);
     }];
     
     [_dotImgView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -91,7 +91,8 @@
     
     [_createTextLabel mas_makeConstraints:^(MASConstraintMaker *make) {
        
-        make.left.right.height.equalTo(_createTimeLabel);
+        make.left.right.equalTo(_createTimeLabel);
+        make.top.equalTo(_createTimeLabel.mas_bottom).offset(-5 * WIDTH_MULTIPLE);
         make.bottom.equalTo(_whiteBgView);
     }];
     
@@ -175,6 +176,7 @@
         _createTextLabel.textAlignment = NSTextAlignmentLeft;
         _createTextLabel.text = @"申请已提交，商家正在处理中,通常需要1-2个工作日";
         _createTextLabel.textColor = KAPP_272727_COLOR;
+        _createTextLabel.numberOfLines = 0;
     }
     return _createTextLabel;
 }

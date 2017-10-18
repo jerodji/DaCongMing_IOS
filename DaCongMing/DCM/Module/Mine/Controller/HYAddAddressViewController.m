@@ -53,11 +53,17 @@
     self.datalist = [NSMutableArray arrayWithObjects:@"姓名:",@"手机号码:",@"所在地区:",@"详细地址:", nil];
     self.dataSourceArray = [NSMutableArray arrayWithObjects:@"",@"",@"",@"",nil];
     
-    [self requestCityData];
-    
 }
 
 - (void)requestCityData{
+    
+    //如果本地有缓存，直接去本地
+    if ([HYPlistTools isFileExistWithFileName:[NSString stringWithFormat:@"%@.plist",KAddressPlist]]) {
+        
+        NSArray *array = [HYPlistTools unarchivewithName:KAddressPlist];
+        self.areaView.provinceArray = [array mutableCopy];
+        return;
+    }
     
     [[HTTPManager shareHTTPManager] postDataFromUrl:API_CityData withParameter:nil isShowHUD:NO success:^(id returnData) {
        
@@ -71,6 +77,12 @@
                     HYProvinceModel *model = [HYProvinceModel modelWithDictionary:dict];
                     [self.areaView.provinceArray addObject:model];
                 }
+                
+                [KEYWINDOW addSubview:self.areaView];
+                [_areaView showAreaView];
+                //存入plist
+                [HYPlistTools archiveObject:self.areaView.provinceArray withName:KAddressPlist];
+                
             }
         }
     }];
@@ -177,15 +189,33 @@
     
     if (indexPath.row == 2) {
         
-        [KEYWINDOW addSubview:self.areaView];
-        [_areaView showAreaView];
+        [self requestCityData];
     }
 }
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
+//    if (indexPath.row == 3) {
+//
+//        return 90 * WIDTH_MULTIPLE;
+//    }
     return 45 * WIDTH_MULTIPLE;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    
+    UILabel *label = [UILabel new];
+    label.backgroundColor = KAPP_TableView_BgColor;
+    label.text = @"为提高配送效率，请详细填写收货地址";
+    label.textColor = KAPP_7b7b7b_COLOR;
+    label.textAlignment = NSTextAlignmentCenter;
+    return label;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    
+    return 60 * WIDTH_MULTIPLE;
 }
 
 #pragma mark - areaSelectDelegate
@@ -221,7 +251,7 @@
 - (UITableView *)tableView{
     if (!_tableView) {
         
-        _tableView = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;

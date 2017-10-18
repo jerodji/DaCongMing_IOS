@@ -9,6 +9,7 @@
 #import "HYMyAccountViewController.h"
 #import "HYMyAccountTableViewCell.h"
 #import "HYMyUserInfo.h"
+#import "HYSetUserNameVC.h"
 
 @interface HYMyAccountViewController () <UITableViewDelegate,UITableViewDataSource>
 
@@ -71,7 +72,7 @@
     }
     cell.titleLabel.text = _datalist[indexPath.section];
     cell.nickNameLabel.text = _dataSourceArray[indexPath.section];
-    [cell.headerImgView sd_setImageWithURL:[NSURL URLWithString:_dataSourceArray[indexPath.section]] placeholderImage:[UIImage imageNamed:@"placeholder"]];
+    [cell.headerImgView sd_setImageWithURL:[NSURL URLWithString:_dataSourceArray[indexPath.section]] placeholderImage:[UIImage imageNamed:@"header_placeholder"]];
     
     if (indexPath.section != 0) {
         
@@ -88,6 +89,12 @@
 
 #pragma mark - tableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if (indexPath.section == 1) {
+        
+        HYSetUserNameVC *setNameVC = [HYSetUserNameVC new];
+        [self.navigationController pushViewController:setNameVC animated:YES];
+    }
     
     if (indexPath.section == 4) {
         

@@ -165,6 +165,10 @@
 		3EDC22031F94A3500013FFBA /* HYRefundSuccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EDC22021F94A3500013FFBA /* HYRefundSuccessViewController.m */; };
 		3EE1D1371F94B71900BC519E /* HYSendBackInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE1D1361F94B71900BC519E /* HYSendBackInfoCell.m */; };
 		3EE1D13A1F95979300BC519E /* HYRefundModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE1D1391F95979300BC519E /* HYRefundModel.m */; };
+		3EE1D13D1F95B3B000BC519E /* HYDeleteCartsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE1D13C1F95B3B000BC519E /* HYDeleteCartsView.m */; };
+		3EE1D1401F95E09A00BC519E /* HYForgetPasswordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE1D13F1F95E09A00BC519E /* HYForgetPasswordVC.m */; };
+		3EE1D1431F95E20700BC519E /* HYSetUserNameVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE1D1421F95E20700BC519E /* HYSetUserNameVC.m */; };
+		3EE1D1461F95E64E00BC519E /* HYAuthPhoneView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE1D1451F95E64E00BC519E /* HYAuthPhoneView.m */; };
 		3EEDC9581F7244DC007171FA /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EEDC9571F7244DC007171FA /* libc++.tbd */; settings = {ATTRIBUTES = (Weak, ); }; };
 		3EEDC95A1F724511007171FA /* libz.1.1.3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EEDC9591F724511007171FA /* libz.1.1.3.tbd */; };
 		3EEDC95C1F724521007171FA /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EEDC95B1F724521007171FA /* libsqlite3.0.tbd */; };
@@ -503,6 +507,14 @@
 		3EE1D1361F94B71900BC519E /* HYSendBackInfoCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYSendBackInfoCell.m; sourceTree = "<group>"; };
 		3EE1D1381F95979300BC519E /* HYRefundModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYRefundModel.h; sourceTree = "<group>"; };
 		3EE1D1391F95979300BC519E /* HYRefundModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYRefundModel.m; sourceTree = "<group>"; };
+		3EE1D13B1F95B3B000BC519E /* HYDeleteCartsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYDeleteCartsView.h; sourceTree = "<group>"; };
+		3EE1D13C1F95B3B000BC519E /* HYDeleteCartsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYDeleteCartsView.m; sourceTree = "<group>"; };
+		3EE1D13E1F95E09A00BC519E /* HYForgetPasswordVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYForgetPasswordVC.h; sourceTree = "<group>"; };
+		3EE1D13F1F95E09A00BC519E /* HYForgetPasswordVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYForgetPasswordVC.m; sourceTree = "<group>"; };
+		3EE1D1411F95E20700BC519E /* HYSetUserNameVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYSetUserNameVC.h; sourceTree = "<group>"; };
+		3EE1D1421F95E20700BC519E /* HYSetUserNameVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYSetUserNameVC.m; sourceTree = "<group>"; };
+		3EE1D1441F95E64E00BC519E /* HYAuthPhoneView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYAuthPhoneView.h; sourceTree = "<group>"; };
+		3EE1D1451F95E64E00BC519E /* HYAuthPhoneView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYAuthPhoneView.m; sourceTree = "<group>"; };
 		3EEDC9571F7244DC007171FA /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		3EEDC9591F724511007171FA /* libz.1.1.3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.1.1.3.tbd; path = usr/lib/libz.1.1.3.tbd; sourceTree = SDKROOT; };
 		3EEDC95B1F724521007171FA /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
@@ -606,6 +618,10 @@
 				3E27545D1F6FBF850010053E /* HYCompleteView.m */,
 				3E27545F1F6FD6610010053E /* HYSetPasswordViewController.h */,
 				3E2754601F6FD6610010053E /* HYSetPasswordViewController.m */,
+				3EE1D13E1F95E09A00BC519E /* HYForgetPasswordVC.h */,
+				3EE1D13F1F95E09A00BC519E /* HYForgetPasswordVC.m */,
+				3EE1D1441F95E64E00BC519E /* HYAuthPhoneView.h */,
+				3EE1D1451F95E64E00BC519E /* HYAuthPhoneView.m */,
 			);
 			path = LoginRegister;
 			sourceTree = "<group>";
@@ -975,6 +991,8 @@
 				3EDC22021F94A3500013FFBA /* HYRefundSuccessViewController.m */,
 				3E1021FC1F7B35E30048D556 /* HYMyAccountViewController.h */,
 				3E1021FD1F7B35E30048D556 /* HYMyAccountViewController.m */,
+				3EE1D1411F95E20700BC519E /* HYSetUserNameVC.h */,
+				3EE1D1421F95E20700BC519E /* HYSetUserNameVC.m */,
 				3E1021FF1F7B39D80048D556 /* HYMyDisCouponViewController.h */,
 				3E1022001F7B39D80048D556 /* HYMyDisCouponViewController.m */,
 				3E1022021F7B39F40048D556 /* HYMyAddressViewController.h */,
@@ -1080,6 +1098,8 @@
 				3E27547C1F70FBC60010053E /* Cell */,
 				3E33CCA11F8CA1B2002179CD /* HYCartsBottomView.h */,
 				3E33CCA21F8CA1B2002179CD /* HYCartsBottomView.m */,
+				3EE1D13B1F95B3B000BC519E /* HYDeleteCartsView.h */,
+				3EE1D13C1F95B3B000BC519E /* HYDeleteCartsView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1496,6 +1516,7 @@
 				3EE1D1371F94B71900BC519E /* HYSendBackInfoCell.m in Sources */,
 				3E56204E1F6B6D5C0063AA5B /* HYBaseViewController.m in Sources */,
 				3E4D789C1F7911CC00BC9C2B /* HYWeChatPayManager.m in Sources */,
+				3EE1D1401F95E09A00BC519E /* HYForgetPasswordVC.m in Sources */,
 				3E27545E1F6FBF850010053E /* HYCompleteView.m in Sources */,
 				3E5620841F6B6DAC0063AA5B /* HYPhotoBrowseView.m in Sources */,
 				3E33CC9D1F8C5F23002179CD /* HYShoppingCartsTableViewCell.m in Sources */,
@@ -1530,6 +1551,7 @@
 				3EDC21F71F9493560013FFBA /* HYRefundSellerHandleCell.m in Sources */,
 				3EDC21DF1F93092D0013FFBA /* HYSaleAfterViewController.m in Sources */,
 				3E1021F81F7A4C290048D556 /* HYMyOrderTableViewCell.m in Sources */,
+				3EE1D1461F95E64E00BC519E /* HYAuthPhoneView.m in Sources */,
 				3ED218D01F8E01A40040C7E3 /* HYBrandShopNavView.m in Sources */,
 				3EA0BC161F73A4D900F78FDD /* HYBuyCountEditView.m in Sources */,
 				3E4D78841F7905C000BC9C2B /* HYWeChatPayModel.m in Sources */,
@@ -1550,6 +1572,7 @@
 				3E2754841F7101540010053E /* HYGoodsItemCollectionViewCell.m in Sources */,
 				3ECD833D1F908B7000DE6FFD /* HYMyOrderDetailViewController.m in Sources */,
 				3E56201E1F6B6A800063AA5B /* main.m in Sources */,
+				3EE1D1431F95E20700BC519E /* HYSetUserNameVC.m in Sources */,
 				3EA0BC061F725CDB00F78FDD /* HYProductsInfoTableViewCell.m in Sources */,
 				3EDC21F41F9491440013FFBA /* HYSellerHandleViewController.m in Sources */,
 				3E4D78A91F79F94200BC9C2B /* HYReceiverInfoTableViewCell.m in Sources */,
@@ -1597,6 +1620,7 @@
 				3E4D78AF1F7A327E00BC9C2B /* HYMyOrderChildViewController.m in Sources */,
 				3EFBFC661F7CAF38003F92B8 /* HYAddAddressViewController.m in Sources */,
 				3EFBFC511F7BA2CA003F92B8 /* HYSearchTitleView.m in Sources */,
+				3EE1D13D1F95B3B000BC519E /* HYDeleteCartsView.m in Sources */,
 				3E56209E1F6B9EEF0063AA5B /* HYHomePageModel.m in Sources */,
 				3EFBFC5A1F7C8C15003F92B8 /* SAMTextView.m in Sources */,
 				3E5620941F6B72E90063AA5B /* HYShoppingCartViewController.m in Sources */,

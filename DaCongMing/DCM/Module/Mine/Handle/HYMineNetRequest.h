@@ -53,4 +53,9 @@
  */
 + (void)getRefundDetailWithRefundID:(NSString *)refundID  ComplectionBlock:(void(^)(HYRefundModel *refundModel))complection;
 
+/**
+ *  提交退货物流信息
+ */
++ (void)submitlogisticsInfoWithRefundID:(NSString *)refundID logisticsCompany:(NSString *)company logisticsNum:(NSString *)number ComplectionBlock:(void(^)(BOOL isSuccess))complection;
+
 @end

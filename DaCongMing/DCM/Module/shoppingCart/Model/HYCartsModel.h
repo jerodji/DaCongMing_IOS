@@ -25,6 +25,8 @@
 @property (nonatomic,copy) NSArray *cartItems;
 /** 商家购物车购物车是否选中 */
 @property (nonatomic,assign) BOOL isSelect;
+/** 商家购物车购物车是否选中 */
+@property (nonatomic,assign) BOOL isEditing;
 
 @end
 
@@ -57,6 +59,8 @@
 
 /** 购物车是否选中 */
 @property (nonatomic,assign) BOOL isSelect;
+/** 是否编辑 */
+@property (nonatomic,assign) BOOL isEditing;
 
 @end
 

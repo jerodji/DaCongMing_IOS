@@ -17,11 +17,42 @@
     
     BOOL isWrite = [dataArray writeToFile:filePath atomically:YES];
     if (isWrite) {
-        NSLog(@"%@写入成功",plistName);
+        DLog(@"%@写入成功",plistName);
     }
     else{
-        NSLog(@"%@写入失败",plistName);
+        DLog(@"%@写入失败",plistName);
     }
+}
+
++ (void)archiveObject:(id)object withName:(NSString *)name{
+    
+    NSString *namePath = [NSString stringWithFormat:@"%@.plist",name];
+    NSString *filePath = [KCACHE_PATH stringByAppendingPathComponent:namePath];
+    BOOL isSuccess = [NSKeyedArchiver archiveRootObject:object toFile:filePath];
+    if (isSuccess) {
+        DLog(@"%@归档成功",name);
+    }
+    else{
+        DLog(@"%@归档失败",name);
+    }
+}
+
++ (NSArray *)unarchivewithName:(NSString *)name{
+    
+    NSString *namePath = [NSString stringWithFormat:@"%@.plist",name];
+    NSString *filePath = [KCACHE_PATH stringByAppendingPathComponent:namePath];
+    NSArray *array = [NSKeyedUnarchiver unarchiveObjectWithFile:filePath];
+    return array;
+}
+
++ (BOOL)isFileExistWithFileName:(NSString *)fileName{
+    
+    NSString *filePath = [KCACHE_PATH stringByAppendingPathComponent:fileName];
+    if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+        
+        return YES;
+    }
+    return NO;
 }
 
 

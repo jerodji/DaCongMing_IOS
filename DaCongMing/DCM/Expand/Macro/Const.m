@@ -24,4 +24,6 @@ NSString * const KShoppingCartsChanged = @"KShoppingCartsChanged";
 
 NSString * const KShoppingCartsCountChanged = @"KShoppingCartsCountChanged";
 
+NSString * const KAddressPlist = @"KAddressPlist";
+
 @end

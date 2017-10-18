@@ -10,6 +10,8 @@
 
 @interface HYShareHandle : NSObject
 
++ (void)shareImamgeToWeChatWithDict:(NSDictionary *)dict;
+
 + (void)shareToWeChatWithDict:(NSDictionary *)dict;
 
 + (void)shareToLifeCircleWithDict:(NSDictionary *)dict;

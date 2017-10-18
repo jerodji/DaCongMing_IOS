@@ -7,14 +7,15 @@
 //
 
 #import "HYLoginViewController.h"
+#import "HYBaseNavController.h"
 #import "HYLoginView.h"
 #import "HYCompleteInfoViewController.h"
+#import "HYForgetPasswordVC.h"
 
 @interface HYLoginViewController ()
 
 /** loginView */
 @property (nonatomic,strong) HYLoginView *loginView;
-
 /** bg */
 @property (nonatomic,strong) UIImageView *bgImgView;
 
@@ -31,18 +32,7 @@
     
     [self handelAction];
     
-    __weak typeof (self) weakSelf = self;
-    
-    _loginView.weChatBlock = ^{
-      
-        HYCompleteInfoViewController *completeInfoVC = [[HYCompleteInfoViewController alloc] init];
-        [weakSelf presentViewController:completeInfoVC animated:YES completion:nil];
-    };
-    
-    _loginView.userLoginSuccess = ^{
-      
-        [weakSelf dismissViewControllerAnimated:YES completion:nil];
-    };
+
 }
 
 - (void)handelAction{
@@ -63,6 +53,13 @@
     _loginView.loginCloseBlock = ^{
         
         [weakSelf dismissViewControllerAnimated:YES completion:nil];
+    };
+    
+    _loginView.forgetPassoword = ^{
+      
+        HYForgetPasswordVC *forgetPasswordVC = [HYForgetPasswordVC new];
+        HYBaseNavController *nav = [[HYBaseNavController alloc] initWithRootViewController:forgetPasswordVC];
+        [weakSelf presentViewController:nav animated:YES completion:nil];
     };
 }
 

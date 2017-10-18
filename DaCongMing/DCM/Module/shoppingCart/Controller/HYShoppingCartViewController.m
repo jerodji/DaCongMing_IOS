@@ -53,7 +53,12 @@
 - (void)viewWillAppear:(BOOL)animated{
     
     [super viewWillAppear:animated];
-    self.tabBarItem.badgeValue = [HYMyUserInfo sharedInstance].cartItemNum;
+    
+    if ([[HYMyUserInfo sharedInstance].cartItemNum integerValue] > 1) {
+        
+        self.tabBarItem.badgeValue = [HYMyUserInfo sharedInstance].cartItemNum;
+
+    }
     [self requestShoppingCartsData];
     [self cartsAmountClaculate];
     [self payShoppiingCarts];
@@ -102,24 +107,28 @@
             
             //有数据
             self.cartsModel = cartsModel;
-            [self setupNavItem];
-            [self.view addSubview:self.bottomView];
-            
-            [self.cartsSellerArray removeAllObjects];
-            for (NSInteger i = 0; i < self.cartsModel.cartSellers.count; i++) {
+            if (self.cartsModel.cartSellers.count) {
                 
-                NSDictionary *dict = self.cartsModel.cartSellers[i];
-                HYCartsSeller *cartsSeller = [HYCartsSeller modelWithDictionary:dict];
-                [self.cartsSellerArray addObject:cartsSeller];
+                [self setupNavItem];
+                [self.view addSubview:self.bottomView];
+                
+                [_bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
+                    
+                    make.left.right.bottom.equalTo(self.view);
+                    make.height.mas_equalTo(60 * WIDTH_MULTIPLE);
+                }];
+                _bottomView.checkAllBtn.selected = NO;
+                
+                [self.cartsSellerArray removeAllObjects];
+                for (NSInteger i = 0; i < self.cartsModel.cartSellers.count; i++) {
+                    
+                    NSDictionary *dict = self.cartsModel.cartSellers[i];
+                    HYCartsSeller *cartsSeller = [HYCartsSeller modelWithDictionary:dict];
+                    [self.cartsSellerArray addObject:cartsSeller];
+                }
             }
+           
 
-            [_bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
-                
-                make.left.right.bottom.equalTo(self.view);
-                make.height.mas_equalTo(60 * WIDTH_MULTIPLE);
-            }];
-            
-            _bottomView.checkAllBtn.selected = NO;
         }
         
         [_tableView reloadData];
@@ -258,7 +267,7 @@
 #pragma mark - TableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     
-    if (!_cartsModel) {
+    if (!_cartsModel.cartSellers.count) {
         
         _tableCount = 3;
         return _tableCount;
@@ -285,7 +294,7 @@
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
         
-        if (_cartsModel) {
+        if (_cartsModel.cartSellers.count) {
             cell.hidden = YES;
         }
         return cell;
@@ -348,7 +357,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    if (!_cartsModel) {
+    if (!_cartsModel.cartSellers.count) {
         
         //购物车无商品
         if (indexPath.section == 0) {
@@ -422,10 +431,30 @@
         
         [self.tableView setEditing:YES animated:YES];
         self.navigationItem.rightBarButtonItem.title = @"完成";
+        
+        [self.cartsSellerArray removeAllObjects];
+        for (NSInteger i = 0; i < self.cartsModel.cartSellers.count; i++) {
+            
+            NSDictionary *dict = self.cartsModel.cartSellers[i];
+            HYCartsSeller *cartsSeller = [HYCartsSeller modelWithDictionary:dict];
+            cartsSeller.isEditing = YES;
+            [self.cartsSellerArray addObject:cartsSeller];
+        }
+        [_tableView reloadData];
     }
     else {
         //点击完成按钮
         self.navigationItem.rightBarButtonItem.title = @"编辑";
+        [self.cartsSellerArray removeAllObjects];
+        for (NSInteger i = 0; i < self.cartsModel.cartSellers.count; i++) {
+            
+            NSDictionary *dict = self.cartsModel.cartSellers[i];
+            HYCartsSeller *cartsSeller = [HYCartsSeller modelWithDictionary:dict];
+            cartsSeller.isEditing = NO;
+            [self.cartsSellerArray addObject:cartsSeller];
+        }
+        [_tableView reloadData];
+
     }
 }
 

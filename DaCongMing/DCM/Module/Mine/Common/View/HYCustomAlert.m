@@ -146,7 +146,7 @@
     
     [UIView animateWithDuration:0.25 animations:^{
         
-        _blackBgView.alpha = 0.6;
+        //_blackBgView.alpha = 0.6;
     }];
 }
 

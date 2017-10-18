@@ -105,6 +105,7 @@
         {
             HYSellerReceiveViewController *sellerReceiveVC = [HYSellerReceiveViewController new];
             [self.navigationController pushViewController:sellerReceiveVC animated:YES];
+            sellerReceiveVC.refundID = model.refundOrder_id;
             break;
         }
         case 8:

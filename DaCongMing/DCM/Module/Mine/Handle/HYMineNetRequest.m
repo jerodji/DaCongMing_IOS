@@ -205,4 +205,28 @@
     }];
 }
 
++ (void)submitlogisticsInfoWithRefundID:(NSString *)refundID logisticsCompany:(NSString *)company logisticsNum:(NSString *)number ComplectionBlock:(void (^)(BOOL))complection{
+    
+    NSMutableDictionary *requestParam = [NSMutableDictionary dictionary];
+    [requestParam setValue:[HYUserModel sharedInstance].token forKey:@"token"];
+    [requestParam setValue:refundID forKey:@"refOrderhdr_id"];
+    [requestParam setValue:company forKey:@"express_id"];
+    [requestParam setValue:number forKey:@"express_no"];
+    
+    [[HTTPManager shareHTTPManager] postDataFromUrl:API_SubmitRefundLogisticsInfo withParameter:requestParam isShowHUD:YES success:^(id returnData) {
+        
+        if (returnData) {
+            
+            NSInteger code = [[returnData objectForKey:@"successed"] integerValue];
+            if (code == 000) {
+                
+                complection(YES);
+            }
+            else{
+                complection(NO);
+            }
+        }
+    }];
+}
+
 @end

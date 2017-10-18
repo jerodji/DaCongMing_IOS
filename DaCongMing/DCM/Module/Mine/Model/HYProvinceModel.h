@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface HYProvinceModel : NSObject
+@interface HYProvinceModel : NSObject <NSCoding>
 
 @property(nonatomic,copy) NSString *province;
 @property(nonatomic,copy) NSString *provinceID;

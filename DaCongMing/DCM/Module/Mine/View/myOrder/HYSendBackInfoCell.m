@@ -135,20 +135,20 @@
         make.left.equalTo(_postLabel);
         make.height.mas_equalTo(30 * WIDTH_MULTIPLE);
         make.top.equalTo(_receiverLabel.mas_bottom).offset(10 * WIDTH_MULTIPLE);
-        make.width.mas_equalTo(130 * WIDTH_MULTIPLE);
+        make.width.mas_equalTo(200 * WIDTH_MULTIPLE);
     }];
     
     [_logisticsNumerTF mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.left.height.equalTo(_logisticsCompanyTF);
         make.top.equalTo(_logisticsCompanyTF.mas_bottom).offset(5 * WIDTH_MULTIPLE);
-        make.width.mas_equalTo(130 * WIDTH_MULTIPLE);
+        make.width.mas_equalTo(200 * WIDTH_MULTIPLE);
     }];
     
     [_confirmBtn mas_makeConstraints:^(MASConstraintMaker *make) {
        
         make.left.equalTo(_logisticsCompanyTF);
-        make.top.equalTo(_logisticsNumerTF.mas_bottom).offset(8 * WIDTH_MULTIPLE);
+        make.top.equalTo(_logisticsNumerTF.mas_bottom).offset(15 * WIDTH_MULTIPLE);
         make.width.mas_equalTo(80 * WIDTH_MULTIPLE);
         make.height.mas_equalTo(30 * WIDTH_MULTIPLE);
 
@@ -158,7 +158,27 @@
 #pragma mark - action
 - (void)textChanged:(UITextField *)textField{
     
+    if ([self.logisticsCompanyTF.text isNotBlank] && [self.logisticsNumerTF.text isNotBlank]) {
+        
+        [self.confirmBtn setBackgroundColor:KAPP_THEME_COLOR];
+        [self.confirmBtn setTitleColor:KAPP_WHITE_COLOR forState:UIControlStateNormal];
+        self.confirmBtn.userInteractionEnabled = YES;
+    }
+    else{
+        
+        [self.confirmBtn setBackgroundColor:KAPP_TableView_BgColor];
+        [self.confirmBtn setTitleColor:KAPP_272727_COLOR forState:UIControlStateNormal];
+        self.confirmBtn.userInteractionEnabled = NO;
+
+    }
+}
+
+- (void)comfirmBtnAction{
     
+    if (_delegate && [_delegate respondsToSelector:@selector(submitLogisticWithCompany:andNumber:)]) {
+        
+        [_delegate submitLogisticWithCompany:self.logisticsCompanyTF.text andNumber:self.logisticsNumerTF.text];
+    }
 }
 
 #pragma mark - setter
@@ -179,8 +199,23 @@
     
     NSMutableAttributedString *receiverAttributeStr = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"收货人:%@",model.ref_receiver]];
     [receiverAttributeStr addAttributes:@{NSForegroundColorAttributeName : KAPP_TextSpecial_COLOR} range:NSMakeRange(receiverAttributeStr.length - model.ref_receiver.length, model.ref_receiver.length)];
-    _phoneLabel.attributedText = receiverAttributeStr;
+    _receiverLabel.attributedText = receiverAttributeStr;
+    
+    if ([model.order_stat integerValue] != 2) {
+        
+        self.logisticsCompanyTF.hidden = YES;
+        self.logisticsNumerTF.hidden = YES;
+        self.confirmBtn.hidden = YES;
+    }
+    else{
+        
+        self.logisticsCompanyTF.hidden = NO;
+        self.logisticsNumerTF.hidden = NO;
+        self.confirmBtn.hidden = NO;
+    }
 }
+
+
 
 #pragma mark - lazyload
 - (UIView *)verticalLine{
@@ -292,10 +327,11 @@
         _logisticsCompanyTF.clearButtonMode = UITextFieldViewModeWhileEditing;
         _logisticsCompanyTF.font = KFitFont(12);
         _logisticsCompanyTF.textAlignment = NSTextAlignmentLeft;
-        _logisticsCompanyTF.keyboardType = UIKeyboardTypePhonePad;
+        _logisticsCompanyTF.keyboardType = UIKeyboardTypeDefault;
         _logisticsCompanyTF.layer.cornerRadius = 2;
         _logisticsCompanyTF.layer.borderColor = KAPP_SEPERATOR_COLOR.CGColor;
         _logisticsCompanyTF.layer.borderWidth = 1;
+        [_logisticsCompanyTF setValue:[NSNumber numberWithInt:10] forKey:@"paddingLeft"];
         _logisticsCompanyTF.backgroundColor = KCOLOR(@"f6f6f6");
         _logisticsCompanyTF.textColor = KAPP_272727_COLOR;
         [_logisticsCompanyTF addTarget:self action:@selector(textChanged:) forControlEvents:UIControlEventEditingChanged];
@@ -318,6 +354,7 @@
         _logisticsNumerTF.layer.borderColor = KAPP_SEPERATOR_COLOR.CGColor;
         _logisticsNumerTF.layer.borderWidth = 1;
         _logisticsNumerTF.backgroundColor = KCOLOR(@"f6f6f6");
+        [_logisticsNumerTF setValue:[NSNumber numberWithInt:10] forKey:@"paddingLeft"];
         _logisticsNumerTF.textColor = KAPP_272727_COLOR;
         [_logisticsNumerTF addTarget:self action:@selector(textChanged:) forControlEvents:UIControlEventEditingChanged];
     }
@@ -336,6 +373,7 @@
         _confirmBtn.titleLabel.font = KFitFont(16);
         _confirmBtn.layer.cornerRadius = 2;
         _confirmBtn.clipsToBounds = YES;
+        [_confirmBtn addTarget:self action:@selector(comfirmBtnAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return _confirmBtn;
 }

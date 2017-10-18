@@ -297,7 +297,13 @@
     self.loginCloseBlock();
 }
 
-
+- (void)forgetBtnAction{
+    
+    if (self.forgetPassoword) {
+        
+        self.forgetPassoword();
+    }
+}
 
 
 #pragma mark - request
@@ -393,9 +399,10 @@
         _phoneTextField.delegate = self;
         
         _phoneTextField.backgroundColor = [UIColor whiteColor];
-        _phoneTextField.attributedPlaceholder = [[NSAttributedString alloc]initWithString:@"请输入手机账号" attributes:@{NSForegroundColorAttributeName:KAPP_BLACK_COLOR,NSFontAttributeName : [UIFont systemFontOfSize:18]}];
+        _phoneTextField.attributedPlaceholder = [[NSAttributedString alloc]initWithString:@"请输入手机账号" attributes:@{NSForegroundColorAttributeName:KAPP_7b7b7b_COLOR,NSFontAttributeName : KFitFont(14)}];
         _phoneTextField.clearButtonMode = UITextFieldViewModeAlways;
-        _phoneTextField.font = [UIFont systemFontOfSize:18];
+        _phoneTextField.font = KFitFont(14);
+        _phoneTextField.textColor = KAPP_272727_COLOR;
         _phoneTextField.keyboardType = UIKeyboardTypePhonePad;
         [_phoneTextField addTarget:self action:@selector(phoneNumEditChanged:) forControlEvents:UIControlEventEditingChanged];
     }
@@ -430,12 +437,13 @@
     if (!_passwordTextField) {
         
         _passwordTextField = [[UITextField alloc] init];
-        _passwordTextField.attributedPlaceholder = [[NSAttributedString alloc]initWithString:@"请输入密码" attributes:@{NSForegroundColorAttributeName:KAPP_BLACK_COLOR,NSFontAttributeName : [UIFont systemFontOfSize:18]}];
+        _passwordTextField.attributedPlaceholder = [[NSAttributedString alloc]initWithString:@"请输入密码" attributes:@{NSForegroundColorAttributeName:KAPP_7b7b7b_COLOR,NSFontAttributeName : KFitFont(14)}];
         _passwordTextField.delegate = self;
         _passwordTextField.backgroundColor = [UIColor whiteColor];
         _passwordTextField.secureTextEntry = YES;
         _passwordTextField.clearButtonMode = UITextFieldViewModeAlways;
-        _passwordTextField.font = [UIFont systemFontOfSize:18];
+        _passwordTextField.font = KFitFont(14);
+        _passwordTextField.textColor = KAPP_272727_COLOR;
         [_passwordTextField addTarget:self action:@selector(phoneNumEditChanged:) forControlEvents:UIControlEventEditingChanged];
     }
     return _passwordTextField;
@@ -463,6 +471,7 @@
         [_forgetPassBtn setTitle:@"忘记密码" forState:UIControlStateNormal];
         [_forgetPassBtn setTitleColor:KAPP_WHITE_COLOR forState:UIControlStateNormal];
         _forgetPassBtn.titleLabel.font = KFitFont(13);
+        [_forgetPassBtn addTarget:self action:@selector(forgetBtnAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return _forgetPassBtn;
 }

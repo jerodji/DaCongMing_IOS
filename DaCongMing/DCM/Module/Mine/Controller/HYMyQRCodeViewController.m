@@ -26,6 +26,7 @@
     
     [super viewDidLoad];
     [self setupSubviews];
+    
 }
 
 - (void)setupSubviews{
@@ -80,8 +81,8 @@
     if (!_QRImageView) {
         
         _QRImageView = [UIImageView new];
-        _QRImageView.image = [UIImage imageNamed:@"myQrCode"];
-        _QRImageView.contentMode = UIViewContentModeScaleToFill;
+        [_QRImageView sd_setImageWithURL:[NSURL URLWithString:[HYUserModel sharedInstance].userInfo.qrpath] placeholderImage:[UIImage imageNamed:@"myQrCode"]];
+        _QRImageView.contentMode = UIViewContentModeScaleAspectFit;
     }
     return _QRImageView;
 }
@@ -91,6 +92,12 @@
     if (!_shareView) {
         
         _shareView = [[HYShareView alloc] initWithFrame:CGRectMake(0, 0, KSCREEN_WIDTH, KSCREEN_HEIGHT)];
+        NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+        [dict setObject:@"大聪明" forKey:@"shareTitle"];
+        [dict setObject:[HYUserModel sharedInstance].userInfo.qrpath forKey:@"shareImgUrl"];
+        [dict setObject:@"老铁，没毛病，双击666\n老铁，没毛病，双击666\n老铁，没毛病，双击666" forKey:@"shareDesc"];
+        
+        _shareView.shareDict = dict;
     }
     return _shareView;
 }

@@ -31,4 +31,7 @@ extern NSString * const KShoppingCartsChanged;
 /** 购物车数量发生变化 */
 extern NSString * const KShoppingCartsCountChanged;
 
+/** 城市信息的plist */
+extern NSString * const KAddressPlist;
+
 @end
