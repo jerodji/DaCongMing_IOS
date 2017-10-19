@@ -13,11 +13,15 @@
 #warning 我的收藏 订单的商品信息公用
 
 typedef void(^applySaleAfterBlock)();
+typedef void(^itemSelectBlock)(BOOL isSelect);
 
 @interface HYMyCollectionGoodsCell : UITableViewCell
 
 /** 收藏的商品model */
 @property (nonatomic,strong) HYGoodsItemModel *itemModel;
+
+/** 点击选择按钮回调 */
+@property (nonatomic,copy) itemSelectBlock itemSelect;
 
 /** 订单商品信息model */
 @property (nonatomic,strong) HYMyOrderDetailsModel *orderDetailModel;
@@ -26,6 +30,8 @@ typedef void(^applySaleAfterBlock)();
 @property (nonatomic,strong) UIButton *applySellAfterBtn;
 
 /** 点击申请售后回调 */
-@property (nonatomic,strong) applySaleAfterBlock applySaleAction;
+@property (nonatomic,copy) applySaleAfterBlock applySaleAction;
+
+
 
 @end

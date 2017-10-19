@@ -35,6 +35,8 @@
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         
         [self addSubview:self.collectionView];
+        self.backgroundColor = KAPP_TableView_BgColor;
+        
     }
     return self;
 }
@@ -57,17 +59,17 @@
     [_guessLikeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
        
         make.top.left.right.equalTo(self);
-        make.height.equalTo(@40);
+        make.height.mas_equalTo(40 * WIDTH_MULTIPLE);
     }];
     
     [_collectionView mas_remakeConstraints:^(MASConstraintMaker *make) {
        
         make.left.right.equalTo(self);
-        CGFloat height = ceil(_datalist.count / 2.0) * 350 * WIDTH_MULTIPLE;
+        CGFloat height = ceil(_datalist.count / 2.0) * 348 * WIDTH_MULTIPLE;
         make.height.equalTo(@(height));
         if (_guessLikeLabel) {
             
-            make.top.equalTo(_guessLikeLabel.mas_bottom).offset(5 * WIDTH_MULTIPLE);
+            make.top.equalTo(_guessLikeLabel.mas_bottom);
         }
         else{
             
@@ -103,7 +105,7 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
     HYGoodsItemCollectionViewCell *cell = (HYGoodsItemCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"collectionCell" forIndexPath:indexPath];
-//    cell.backgroundColor = KAPP_NAV_COLOR;
+    cell.backgroundColor = KAPP_WHITE_COLOR;
     NSDictionary *dict = _datalist[indexPath.item];
     cell.goodsModel = [HYGoodsItemModel modelWithDictionary:dict];
     return cell;
@@ -131,6 +133,7 @@
         _guessLikeLabel.textColor = KCOLOR(@"272727");
         _guessLikeLabel.textAlignment = NSTextAlignmentCenter;
         _guessLikeLabel.text = @"猜您喜欢";
+        _guessLikeLabel.backgroundColor= KAPP_WHITE_COLOR;
     }
     return _guessLikeLabel;
 }
@@ -151,12 +154,15 @@
         
         //1.初始化layout
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-        layout.itemSize = CGSizeMake((KSCREEN_WIDTH - 10) / 2, 340 * WIDTH_MULTIPLE);
+        layout.itemSize = CGSizeMake(KSCREEN_WIDTH / 2 - 10, 340 * WIDTH_MULTIPLE);
         layout.scrollDirection = UICollectionViewScrollDirectionVertical;
+        layout.minimumInteritemSpacing = 5;
+        layout.minimumLineSpacing = 6 * WIDTH_MULTIPLE;      //纵向间距
+        layout.sectionInset = UIEdgeInsetsMake(0, 5, 0, 5);
         
         _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
         [_collectionView setCollectionViewLayout:layout];
-        _collectionView.backgroundColor = KAPP_WHITE_COLOR;
+        _collectionView.backgroundColor = self.backgroundColor;
         _collectionView.showsVerticalScrollIndicator = NO;
         _collectionView.showsHorizontalScrollIndicator = NO;
         _collectionView.delegate = self;

@@ -229,4 +229,26 @@
     }];
 }
 
++ (void)deleteMyCollectionGoodsWithItemIDs:(NSString *)itemIDs ComplectionBlock:(void (^)(BOOL))complection{
+    
+    NSMutableDictionary *requestParam = [NSMutableDictionary dictionary];
+    [requestParam setValue:[HYUserModel sharedInstance].token forKey:@"token"];
+    [requestParam setValue:itemIDs forKey:@"item_ids"];
+
+    [[HTTPManager shareHTTPManager] postDataFromUrl:API_RemoveCollectGoods withParameter:requestParam isShowHUD:YES success:^(id returnData) {
+        
+        if (returnData) {
+            
+            NSInteger code = [[returnData objectForKey:@"successed"] integerValue];
+            if (code == 000) {
+                
+                complection(YES);
+            }
+            else{
+                complection(NO);
+            }
+        }
+    }];
+}
+
 @end

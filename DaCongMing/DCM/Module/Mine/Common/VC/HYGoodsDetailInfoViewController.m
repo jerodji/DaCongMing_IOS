@@ -100,6 +100,7 @@
             }
         }
         
+        _bottomView.collectionBtn.selected = [model.isFavorite integerValue];
         [_tableView reloadData];
     }];
 }

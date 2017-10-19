@@ -80,7 +80,7 @@
             if (code == 000) {
                 
                 NSDictionary *dict = [returnData objectForKey:@"dataInfo"];
-                DLog(@"%@",dict);
+                //DLog(@"%@",dict);
                 complection(YES);
             }
             else{
@@ -124,6 +124,34 @@
             
             complection(nil);
             [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"订单创建出错!"];
+        }
+    }];
+}
+
++ (void)deleteCartsAmountWithGuids:(NSString *)guids ComplectionBlock:(void (^)(BOOL))complection{
+    
+    NSMutableDictionary *requestParam = [NSMutableDictionary dictionary];
+    [requestParam setValue:[HYUserModel sharedInstance].token forKey:@"token"];
+    [requestParam setValue:guids forKey:@"arrayGuid"];
+    [[HTTPManager shareHTTPManager] postDataFromUrl:API_DeleteShoppingCarts withParameter:requestParam isShowHUD:YES success:^(id returnData) {
+        
+        if (returnData) {
+            
+            NSInteger code = [[returnData objectForKey:@"successed"] integerValue];
+            if (code == 000) {
+                
+                //NSDictionary *dict = [returnData objectForKey:@"dataInfo"];
+                complection(YES);
+            }
+            else{
+                
+                complection(NO);
+            }
+        }
+        else{
+            
+            complection(NO);
+            
         }
     }];
 }

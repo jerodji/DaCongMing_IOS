@@ -64,7 +64,7 @@
        
         make.left.equalTo(self).offset(10 * WIDTH_MULTIPLE);
         make.top.equalTo(self).offset(10 * WIDTH_MULTIPLE);
-        make.width.mas_offset(50 * WIDTH_MULTIPLE);
+        make.width.mas_offset(90 * WIDTH_MULTIPLE);
         make.height.mas_offset(20);
     }];
     

@@ -47,5 +47,9 @@
 @property (nonatomic, copy) NSString *salesVolume;
 /** provincePrice */
 @property (nonatomic, copy) NSString *provincePrice;
+/** 是否选中 */
+@property (nonatomic,assign) BOOL isSelect;
+/** 是否编辑 */
+@property (nonatomic,assign) BOOL isEdit;
 
 @end

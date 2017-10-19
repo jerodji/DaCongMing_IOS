@@ -9,6 +9,7 @@
 #import "HYMyCollectGoodsViewController.h"
 #import "HYMineNetRequest.h"
 #import "HYMyCollectionGoodsCell.h"
+#import "HYDeleteCartsView.h"
 
 @interface HYMyCollectGoodsViewController () <UITableViewDelegate,UITableViewDataSource>
 
@@ -16,6 +17,8 @@
 @property (nonatomic,strong) NSMutableArray *datalist;
 /** tableView */
 @property (nonatomic,strong) UITableView *tableView;
+/** 删除 */
+@property (nonatomic,strong) HYDeleteCartsView *deleteCartsView;
 
 @end
 
@@ -26,6 +29,7 @@
     [super viewDidLoad];
     [self setupSubviews];
     [self requestNetWork];
+    [self deleteAction];
 }
 
 - (void)setupSubviews{
@@ -33,6 +37,13 @@
     self.title = @"我的收藏";
     self.view.backgroundColor = KCOLOR(@"f4f4f4");
     [self.view addSubview:self.tableView];
+}
+
+- (void)setupBottomView{
+    
+    self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.navigationItem.rightBarButtonItem.title = @"编辑";
+    
 }
 
 - (void)requestNetWork{
@@ -49,9 +60,32 @@
             }
             
             [_tableView reloadData];
+            [self setupBottomView];
         }
         
     }];
+}
+
+#pragma mark - action
+- (void)deleteAction{
+    
+    __weak typeof (self)weakSelf = self;
+    _deleteCartsView.deleteCheckAllBlock = ^(BOOL isCheckAll) {
+        
+        NSMutableArray *tempArray = [NSMutableArray array];
+        for (HYGoodsItemModel *item in weakSelf.datalist) {
+            
+            item.isEdit = isCheckAll;
+            [tempArray addObject:item];
+        }
+        [weakSelf.datalist removeAllObjects];
+        [weakSelf.datalist addObjectsFromArray:tempArray];
+        [weakSelf.tableView reloadData];
+    };
+    
+    _deleteCartsView.deleteBlock = ^{
+        
+    };
 }
 
 #pragma mark - TableViewDataSource
@@ -76,6 +110,11 @@
     }
     HYGoodsItemModel *model = self.datalist[indexPath.row];
     cell.itemModel = model;
+    cell.itemSelect = ^(BOOL isSelect) {
+      
+        model.isSelect = isSelect;
+    };
+    [self.datalist replaceObjectAtIndex:indexPath.row withObject:model];
     
     return cell;
 }
@@ -90,6 +129,71 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     return 90 * WIDTH_MULTIPLE;
+}
+
+#pragma mark - CellEdit
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    return YES;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    HYGoodsItemModel *model = self.datalist[indexPath.row];
+    [HYMineNetRequest deleteMyCollectionGoodsWithItemIDs:model.item_id ComplectionBlock:^(BOOL isSuccess) {
+        
+        if (isSuccess) {
+            
+            [self.datalist removeObjectAtIndex:indexPath.row];
+            [tableView deleteRowAtIndexPath:indexPath withRowAnimation:UITableViewRowAnimationFade];
+        }
+        else{
+            
+            [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"删除收藏失败"];
+        }
+    }];
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    
+    return UITableViewCellEditingStyleDelete;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    return @"删除";
+}
+
+#pragma mark - editingMode
+- (void)setEditing:(BOOL)editing animated:(BOOL)animated{
+    
+    [super setEditing:editing animated:animated];
+    self.navigationItem.rightBarButtonItem.title = editing ? @"完成" : @"编辑" ;
+    NSMutableArray *tempArray = [NSMutableArray array];
+    for (HYGoodsItemModel *item in self.datalist) {
+        
+        item.isEdit = editing;
+        [tempArray addObject:item];
+    }
+    [self.datalist removeAllObjects];
+    [self.datalist addObjectsFromArray:tempArray];
+    [_tableView reloadData];
+
+    if (editing) {
+        
+        [self.view addSubview:self.deleteCartsView];
+        [_deleteCartsView mas_makeConstraints:^(MASConstraintMaker *make) {
+            
+            make.left.right.bottom.equalTo(self.view);
+            make.height.mas_equalTo(50 * WIDTH_MULTIPLE);
+        }];
+        _deleteCartsView.hidden = NO;
+    }
+    else{
+        
+        _deleteCartsView.hidden = YES;
+    }
 }
 
 
@@ -113,6 +217,15 @@
         _tableView.backgroundColor = KCOLOR(@"f4f4f4");
     }
     return _tableView;
+}
+
+- (HYDeleteCartsView *)deleteCartsView{
+    
+    if (!_deleteCartsView) {
+        
+        _deleteCartsView = [HYDeleteCartsView new];
+    }
+    return _deleteCartsView;
 }
 
 - (void)didReceiveMemoryWarning {

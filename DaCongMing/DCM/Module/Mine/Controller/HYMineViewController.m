@@ -223,7 +223,8 @@
         
         //猜你喜欢
         CGFloat height = ceil(_goodsList.count / 2.0) * 350 * WIDTH_MULTIPLE;
-        return 40 + 10 + height;
+        return  height + 40 * WIDTH_MULTIPLE;
+        
     }
     return 100;
 }

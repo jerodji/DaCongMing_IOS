@@ -31,6 +31,7 @@
     
     if (self = [super initWithFrame:frame]) {
         
+        self.backgroundColor = KAPP_NAV_COLOR;
         [self setupSubviews];
     }
     return self;
@@ -42,7 +43,7 @@
     [self addSubview:self.searchView];
     [self addSubview:self.searchIconImgView];
     [self addSubview:self.textField];
-    [self addSubview:self.filtBtn];
+    //[self addSubview:self.filtBtn];
     [self addSubview:self.shareBtn];
 }
 
@@ -50,8 +51,8 @@
     
     [_backBtn mas_makeConstraints:^(MASConstraintMaker *make) {
 
-        make.top.equalTo(self);
-        make.bottom.equalTo(self);
+        make.top.equalTo(self).offset(6);
+        make.bottom.equalTo(self).offset(-6);
         make.left.equalTo(self);
         make.width.equalTo(@30);
     }];
@@ -64,19 +65,19 @@
         make.width.equalTo(@30);
     }];
     
-    [_filtBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-       
-        make.top.equalTo(self).offset(6);
-        make.bottom.equalTo(self).offset(-6);
-        make.right.equalTo(_shareBtn.mas_left).offset(-10);
-        make.width.equalTo(@30);
-    }];
+//    [_filtBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+//
+//        make.top.equalTo(self).offset(6);
+//        make.bottom.equalTo(self).offset(-6);
+//        make.right.equalTo(_shareBtn.mas_left).offset(-10);
+//        make.width.equalTo(@30);
+//    }];
     
     [_searchView mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.left.equalTo(_backBtn.mas_right).offset(8);
         make.top.bottom.equalTo(_backBtn);
-        make.right.equalTo(_filtBtn.mas_left).offset(-10);
+        make.right.equalTo(_shareBtn.mas_left).offset(-10);
     }];
     
     [self.searchIconImgView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -101,6 +102,41 @@
     if (_delegate && [_delegate respondsToSelector:@selector(brandsShopNavBtnTapIndex:)]) {
         
         [_delegate brandsShopNavBtnTapIndex:button.tag - 300];
+    }
+}
+
+- (void)searchTextChanged:(UITextField *)textField{
+    
+    DLog(@"%@",textField.text);
+    if (_delegate && [_delegate respondsToSelector:@selector(searchTextFieldTextChanged:)]) {
+        
+        [_delegate searchTextFieldTextChanged:textField.text];
+    }
+    
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    
+    if ([textField.text isNotBlank]) {
+        
+        return YES;
+    }
+    return YES;
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField{
+    
+    if (_delegate && [_delegate respondsToSelector:@selector(searchTextFieldResignFirstResponder)]) {
+        
+        [_delegate searchTextFieldResignFirstResponder];
+    }
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField{
+    
+    if (_delegate && [_delegate respondsToSelector:@selector(searchTextFieldStartInput)]) {
+        
+        [_delegate searchTextFieldStartInput];
     }
 }
 
@@ -155,7 +191,8 @@
         _textField.clearButtonMode = UITextFieldViewModeAlways;
         _textField.font = KFitFont(14);
         _textField.keyboardType = UIKeyboardTypeDefault;
-        
+        _textField.tintColor = KAPP_7b7b7b_COLOR;
+         [_textField addTarget:self action:@selector(searchTextChanged:) forControlEvents:UIControlEventEditingChanged];
     }
     return _textField;
 }

@@ -57,17 +57,17 @@
     
     [_imgView mas_makeConstraints:^(MASConstraintMaker *make) {
        
-        make.left.equalTo(self).offset(6);
-        make.right.equalTo(self).offset(-6);
-        make.top.equalTo(self).offset(6);
+        make.left.equalTo(self);
+        make.right.equalTo(self);
+        make.top.equalTo(self);
         make.height.equalTo(@(220 * WIDTH_MULTIPLE));
     }];
     
     [_introLabel mas_makeConstraints:^(MASConstraintMaker *make) {
        
         make.left.equalTo(self).offset(9);
-        make.top.equalTo(self.imgView.mas_bottom).offset(7);
-        make.right.equalTo(self).offset(-9);
+        make.top.equalTo(self.imgView.mas_bottom).offset(7 * WIDTH_MULTIPLE);
+        make.right.equalTo(self).offset(- 4 * WIDTH_MULTIPLE);
         make.height.equalTo(@(40 * WIDTH_MULTIPLE));
     }];
     
@@ -81,8 +81,9 @@
     [_addToShopingCartsBtn mas_makeConstraints:^(MASConstraintMaker *make) {
        
         make.left.right.equalTo(self.introLabel);
-        make.height.equalTo(@(29 * WIDTH_MULTIPLE));
-        make.top.equalTo(self.priceLabel.mas_bottom).offset(8);
+        make.top.equalTo(self.priceLabel.mas_bottom).offset(8 * WIDTH_MULTIPLE);
+        make.bottom.equalTo(self).offset(- 14 * WIDTH_MULTIPLE);
+
     }];
 }
 

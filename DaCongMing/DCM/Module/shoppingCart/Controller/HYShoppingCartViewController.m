@@ -18,8 +18,9 @@
 #import "HYCartsHandle.h"
 #import "HYCartsModel.h"
 #import "HYMyUserInfo.h"
+#import "HYDeleteCartsView.h"
 
-@interface HYShoppingCartViewController () <UITableViewDelegate,UITableViewDataSource,HYSelectCartSellerDelegate>
+@interface HYShoppingCartViewController () <UITableViewDelegate,UITableViewDataSource,HYSelectCartSellerDelegate,HYSelectCartItemDelegate>
 
 /** tableView */
 @property (nonatomic,strong) UITableView *tableView;
@@ -35,6 +36,8 @@
 @property (nonatomic,strong) NSMutableArray *cartsSellerArray;
 /** 底部结算 */
 @property (nonatomic,strong) HYCartsBottomView *bottomView;
+/** 删除 */
+@property (nonatomic,strong) HYDeleteCartsView *deleteCartsView;
 /** 结算时guid */
 @property (nonatomic,strong) NSMutableString *guidStr;
 
@@ -46,8 +49,6 @@
     [super viewDidLoad];
 
     self.title = @"购物车";
-    
-    [self setupData];
     [self setupSubviews];
 
 }
@@ -66,33 +67,35 @@
     [self payShoppiingCarts];
 }
 
-- (void)setupData{
-    
-    _datalist = [NSMutableArray array];
-    _goodsList = [NSMutableArray array];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(singleCartsChanged:) name:KShoppingCartsChanged object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cartsCountChanged:) name:KShoppingCartsChanged object:nil];
-}
-
 - (void)setupSubviews{
     
     [self.view addSubview:self.tableView];
-    self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    self.navigationItem.rightBarButtonItem.title = @"编辑";
-    
     [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
        
         make.left.top.right.equalTo(self.view);
-        if (_cartsModel) {
-            
-            make.bottom.equalTo(self.view).offset(60 * WIDTH_MULTIPLE);
-        }
-        else{
-            
-            make.bottom.equalTo(self.view);
-        }
+        make.bottom.equalTo(self.view);
     }];
+}
+
+- (void)setupBottomView{
+    
+    self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.navigationItem.rightBarButtonItem.title = @"编辑";
+    [self.view addSubview:self.bottomView];
+    [self.view addSubview:self.deleteCartsView];
+    [_bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.left.right.bottom.equalTo(self.view);
+        make.height.mas_equalTo(60 * WIDTH_MULTIPLE);
+    }];
+    _bottomView.checkAllBtn.selected = NO;
+
+    
+    [_deleteCartsView mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.left.right.bottom.top.equalTo(_bottomView);
+    }];
+    _deleteCartsView.hidden = YES;
 }
 
 
@@ -104,20 +107,26 @@
             
             //购物车有数据
             self.cartsModel = cartsModel;
-            [self setupSubviews];
-            [self.view addSubview:self.bottomView];
-            [_bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
-                
-                make.left.right.bottom.equalTo(self.view);
-                make.height.mas_equalTo(60 * WIDTH_MULTIPLE);
+            [self setupBottomView];
+            _bottomView.hidden = NO;
+            [_tableView mas_updateConstraints:^(MASConstraintMaker *make) {
+               
+                make.bottom.equalTo(self.view).offset(-60 * WIDTH_MULTIPLE);
             }];
-            _bottomView.checkAllBtn.selected = NO;
             
         }
         else{
             
-            [_bottomView removeFromSuperview];
-            _bottomView = nil;
+            _bottomView.hidden = YES;
+            _deleteCartsView.hidden = YES;
+            [_cartsSellerArray removeAllObjects];
+            _cartsSellerArray = nil;
+            
+            self.navigationItem.rightBarButtonItem = nil;
+            [_tableView mas_updateConstraints:^(MASConstraintMaker *make) {
+
+                make.bottom.equalTo(self.view);
+            }];
         }
         
         [_tableView reloadData];
@@ -131,7 +140,6 @@
 }
 
 #pragma mark - 对数据处理
-
 - (void)setCartsModel:(HYCartsModel *)cartsModel{
     
     _cartsModel = cartsModel;
@@ -154,13 +162,7 @@
     [self.cartsSellerArray addObjectsFromArray:tempArray];
 }
 
-#pragma mark - action
-- (void)editBtnAction:(UIBarButtonItem *)barButtonItem{
-    
-    
-}
-
-//计算总金额
+#pragma mark - 计算购物车总金额
 - (void)cartsAmountClaculate{
     
     __weak typeof (self) weakSelf = self;
@@ -206,24 +208,103 @@
     };
 }
 
-//商家购物车变化
-- (void)shoppingCartsChanged{
+//移除购物车
+- (void)deleteCartsCheckAllAction{
+    
+    __weak typeof (self) weakSelf = self;
+    self.deleteCartsView.deleteCheckAllBlock  = ^(BOOL isCheckAll) {
+        
+        
+        weakSelf.guidStr = [NSMutableString stringWithFormat:@""];
+        for (NSInteger i = 0; i < weakSelf.cartsSellerArray.count; i++) {
+            
+            HYCartsSeller *cartsSeller = weakSelf.cartsSellerArray[i];
+            cartsSeller.isSelect = isCheckAll;
+            NSMutableArray *tempArray = [NSMutableArray array];
+            for (HYCartItems *items in cartsSeller.cartItems) {
+                
+                items.isSelect = isCheckAll;
+                if (isCheckAll) {
+                    
+                    [weakSelf.guidStr appendString:items.guid];
+                    [weakSelf.guidStr appendString:@","];
+                }
+                [tempArray addObject:items];
+            }
+            cartsSeller.cartItems = tempArray;
+            [weakSelf.cartsSellerArray replaceObjectAtIndex:i withObject:cartsSeller];
+            
+        }
+        [weakSelf.tableView reloadData];
+    };
+    
+    self.deleteCartsView.deleteBlock = ^{
+        
+        [weakSelf deleteCartsAction];
+    };
+}
+
+- (void)deleteCartsAction{
+    
+    if ([self.guidStr isNotBlank]) {
+        
+        HYCustomAlert *customAlert = [[HYCustomAlert alloc] initWithFrame:CGRectMake(0, 0, KSCREEN_WIDTH, KSCREEN_HEIGHT) WithTitle:@"温馨提示" content:@"确定要删除所选产品吗?" confirmBlock:^{
+           
+            
+            [HYCartsHandle deleteCartsAmountWithGuids:self.guidStr ComplectionBlock:^(BOOL isSuccess) {
+                
+                if (isSuccess) {
+                    
+                    [self requestShoppingCartsData];
+                }
+                else{
+                    
+                    [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"移除购物车出现问题"];
+                }
+            }];
+        }];
+        
+        [KEYWINDOW addSubview:customAlert];
+        [customAlert showCustomAlert];
+    }
+    else{
+        
+        [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"请选择项目后删除"];
+    }
+}
+
+
+#pragma mark - 计算购物车选中的价格
+- (void)calcaluteShoppingCartsAmount{
     
     self.guidStr = [NSMutableString stringWithFormat:@""];
-    for (HYCartsSeller *seller in self.cartsSellerArray) {
+    NSMutableArray *tempArray = [NSMutableArray array];
+    //所有的商家
+    for (NSInteger i = 0; i < self.cartsSellerArray.count; i++) {
         
-        if (seller.isSelect) {
+        HYCartsSeller *cartsSeller = self.cartsSellerArray[i];
+        NSMutableArray *cartItemsArray = [NSMutableArray array];
+        for (NSInteger j = 0; j < cartsSeller.cartItems.count; j++) {
             
-            for (NSDictionary *dict in seller.cartItems) {
+            HYCartItems *cartItems = cartsSeller.cartItems[j];
+            if (cartItems.isSelect) {
                 
-                HYCartItems *items = [HYCartItems modelWithDictionary:dict];
-        
-                [self.guidStr appendString:items.guid];
+                [self.guidStr appendString:cartItems.guid];
                 [self.guidStr appendString:@","];
             }
+            else{
+                cartsSeller.isSelect = NO;
+                self.bottomView.checkAllBtn.selected = NO;
+            }
+            [cartItemsArray addObject:cartItems];
         }
-        
+        cartsSeller.cartItems = cartItemsArray;
+        [tempArray addObject:cartsSeller];
     }
+    [self.cartsSellerArray removeAllObjects];
+    [self.cartsSellerArray addObjectsFromArray:tempArray];
+    
+    [_tableView reloadData];
     
     if ([self.guidStr isNotBlank]) {
         
@@ -237,7 +318,6 @@
         self.bottomView.amount = @"0.00";
     }
     
-    [_tableView reloadData];
 }
 
 //购物车结算
@@ -260,40 +340,43 @@
     };
 }
 
-#pragma mark - Notification
-//单个购物车变化
-- (void)singleCartsChanged:(NSNotification *)notification{
+#pragma mark - 全选每个商家delegate
+- (void)cartSellerSelect:(BOOL)isSelect WithIndexPath:(NSInteger )index{
     
-    NSString *changedGuid = [NSString stringWithFormat:@"%@,",notification.object];
-    NSRange range = [self.guidStr rangeOfString:changedGuid];
-    if ([self.guidStr containsString:changedGuid]) {
+    HYCartsSeller *cartSeller = _cartsSellerArray[index];
+    cartSeller.isSelect = isSelect;
+    NSMutableArray *tempArray = [NSMutableArray array];
+    for (HYCartItems *items in cartSeller.cartItems) {
         
-        [self.guidStr deleteCharactersInRange:range];
+        items.isSelect = isSelect;
+        [tempArray addObject:items];
     }
-    else{
-        [self.guidStr appendString:changedGuid];
-    }
+    cartSeller.cartItems = tempArray;
+    [_cartsSellerArray replaceObjectAtIndex:index withObject:cartSeller];
     
-    if ([self.guidStr isNotBlank]) {
-        
-        [HYCartsHandle calculateCartsAmountWithGuid:self.guidStr ComplectionBlock:^(NSString *amount) {
-            
-            self.bottomView.amount = amount;
-        }];
-    }
-    else{
-        
-        self.bottomView.amount = @"0.00";
-    }
-    
+    [self calcaluteShoppingCartsAmount];
+    [_tableView reloadData];
 }
 
-//修改购物车数量成功
-- (void)cartsCountChanged:(NSNotification *)notification{
+#pragma mark - 点击单个项目delegate
+- (void)cartItemSelect:(BOOL)isSelect WithIndexPath:(NSIndexPath *)indexPath{
     
-    DLog(@"%@",notification.object);
-    DLog(@"%@",notification.userInfo);
+    HYCartsSeller *cartSeller = _cartsSellerArray[indexPath.section - 1];
+    NSMutableArray *tempArray = [NSMutableArray array];
+    for (NSInteger i = 0; i < cartSeller.cartItems.count; i++) {
+        
+        HYCartItems *items = cartSeller.cartItems[i];
+        if (i == indexPath.row) {
+            
+            items.isSelect = isSelect;
+        }
+        [tempArray addObject:items];
+    }
+    cartSeller.cartItems = tempArray;
+    [_cartsSellerArray replaceObjectAtIndex:indexPath.section - 1 withObject:cartSeller];
     
+    [self calcaluteShoppingCartsAmount];
+    [_tableView reloadData];
 }
 
 #pragma mark - TableViewDataSource
@@ -316,7 +399,7 @@
     }
     else{
         
-        if (_cartsSellerArray) {
+        if (_cartsSellerArray.count) {
             
             HYCartsSeller *cartsSeller = _cartsSellerArray[section-1];
             return cartsSeller.cartItems.count;
@@ -380,6 +463,7 @@
         HYCartsSeller *cartsSeller = _cartsSellerArray[indexPath.section - 1];
         cell.items = cartsSeller.cartItems[indexPath.row];
         cell.indexPath = indexPath;
+        cell.delegate = self;
         if (!_cartsSellerArray.count) {
             
             cell.hidden = YES;
@@ -415,7 +499,7 @@
             
             //猜你喜欢
             CGFloat height = ceil(_goodsList.count / 2.0) * 350 * WIDTH_MULTIPLE;
-            return 40 + 10 + height;
+            return  height + 40 * WIDTH_MULTIPLE;
         }
     }
     else{
@@ -428,7 +512,7 @@
             
             //猜你喜欢
             CGFloat height = ceil(_goodsList.count / 2.0) * 350 * WIDTH_MULTIPLE;
-            return 40 + 10 + height;
+            return  height + 40 * WIDTH_MULTIPLE;
         }
         else{
             
@@ -491,22 +575,6 @@
     return UITableViewCellEditingStyleDelete;
 }
 
-#pragma mark - 全选每个商家delegate
-- (void)cartSellerSelect:(BOOL)isSelect WithIndexPath:(NSInteger )index{
-    
-    HYCartsSeller *cartSeller = _cartsSellerArray[index];
-    cartSeller.isSelect = isSelect;
-    NSMutableArray *tempArray = [NSMutableArray array];
-    for (HYCartItems *items in cartSeller.cartItems) {
-        
-        items.isSelect = isSelect;
-        [tempArray addObject:items];
-    }
-    cartSeller.cartItems = tempArray;
-    [_cartsSellerArray replaceObjectAtIndex:index withObject:cartSeller];
-    [_tableView reloadData];
-    
-}
 
 #pragma mark - editingMode
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated{
@@ -514,6 +582,12 @@
     [super setEditing:editing animated:animated];
     [self.tableView setEditing:YES animated:YES];
     self.navigationItem.rightBarButtonItem.title = editing ? @"完成" : @"编辑" ;
+    self.bottomView.hidden = editing;
+    self.deleteCartsView.hidden = !editing;
+    if (editing) {
+        
+        [self deleteCartsCheckAllAction];
+    }
     
     for (NSInteger i = 0; i < self.cartsSellerArray.count; i++) {
         
@@ -548,9 +622,17 @@
     if (!_bottomView) {
         
         _bottomView = [HYCartsBottomView new];
-        
     }
     return _bottomView;
+}
+
+- (HYDeleteCartsView *)deleteCartsView{
+    
+    if (!_deleteCartsView) {
+        
+        _deleteCartsView = [HYDeleteCartsView new];
+    }
+    return _deleteCartsView;
 }
 
 - (NSMutableArray *)cartsSellerArray{
@@ -560,6 +642,24 @@
         _cartsSellerArray = [NSMutableArray array];
     }
     return _cartsSellerArray;
+}
+
+- (NSMutableArray *)datalist{
+    
+    if (!_datalist) {
+        
+        _datalist = [NSMutableArray array];
+    }
+    return _datalist;
+}
+
+- (NSMutableArray *)goodsList{
+    
+    if (!_goodsList) {
+        
+        _goodsList = [NSMutableArray array];
+    }
+    return _goodsList;
 }
 
 - (NSMutableString *)guidStr{

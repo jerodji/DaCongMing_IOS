@@ -27,6 +27,7 @@
     
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         
+        self.backgroundColor = KCOLOR(@"f0f7f4");
         [self addSubview:self.collectionView];
     }
     return self;
@@ -36,8 +37,8 @@
 
     [_collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
        
-        make.left.top.right.equalTo(self);
-        make.bottom.equalTo(self).offset(-10);
+        make.left.bottom.right.equalTo(self);
+        make.top.equalTo(self).offset(10 * WIDTH_MULTIPLE);
     }];
 }
 
@@ -60,18 +61,6 @@
     return _model.typeReCommend.itemSecondaryTypeList.count;
 }
 
-//设置每个item水平间距
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
-    
-    return 10;
-}
-
-- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout
-        insetForSectionAtIndex:(NSInteger)section
-{
-    return UIEdgeInsetsMake(0, 5.0f, 0, 5.0f);
-}
-
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     
@@ -91,8 +80,10 @@
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
         //设置collectionView滚动方向
         [layout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
-        layout.itemSize = CGSizeMake(90 * WIDTH_MULTIPLE, 90 * WIDTH_MULTIPLE);
-        
+        CGFloat itemWidth = (KSCREEN_WIDTH - 5 * 3) / 4;
+        layout.itemSize = CGSizeMake(itemWidth, itemWidth);
+        layout.minimumLineSpacing = 5;
+        layout.minimumInteritemSpacing = 0;
         _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
         _collectionView.backgroundColor = KAPP_WHITE_COLOR;
         _collectionView.showsVerticalScrollIndicator = NO;

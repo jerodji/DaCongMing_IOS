@@ -46,10 +46,7 @@
     //设置返回按钮的颜色为白色
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor whiteColor]};
-//    [self.navigationController.navigationBar setBackIndicatorImage:[UIImage imageNamed:@"back"]];
-//    [self.navigationController.navigationBar setBackIndicatorTransitionMaskImage:[UIImage imageNamed:@"back"]];
-    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back"] style:UIBarButtonItemStylePlain target:self action:@selector(backBtnAction)];
-    self.navigationItem.leftBarButtonItem = backItem;
+    
    
 }
 

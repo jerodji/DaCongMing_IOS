@@ -164,6 +164,9 @@
 //购物车结算
 #define API_SettleShoppingCarts       @"HAILIN_SERVER/getSellerOrderByCart.do"
 
+//移除购物车
+#define API_DeleteShoppingCarts     @"HAILIN_SERVER/removeCartItem.do"
+
 /***************************************店铺**********************************/
 #pragma mark - 店铺
 //店铺主页

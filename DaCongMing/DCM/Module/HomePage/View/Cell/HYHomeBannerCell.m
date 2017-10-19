@@ -80,7 +80,7 @@
         _bannerView.autoScroll = YES;
         _bannerView.infiniteLoop = YES;
         _bannerView.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-        _bannerView.contentMode = UIViewContentModeScaleAspectFill;
+        _bannerView.bannerImageViewContentMode = UIViewContentModeScaleAspectFill;
         _bannerView.clipsToBounds = YES;
     }
     return _bannerView;

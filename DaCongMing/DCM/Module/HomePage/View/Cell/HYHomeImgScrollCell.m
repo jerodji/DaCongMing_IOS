@@ -10,12 +10,16 @@
 #import "HYHomeCollectionViewCell.h"
 #import "HYItemListModel.h"
 
+#define itemWidth (KSCREEN_WIDTH - 20) / 3
+
 @interface HYHomeImgScrollCell() <UICollectionViewDelegate,UICollectionViewDataSource>
 
 /** img */
 @property (nonatomic,strong) UIImageView *imgView;
 /** collectionView */
 @property (nonatomic,strong) UICollectionView *collectionView;
+/** 背景 */
+@property (nonatomic,strong) UIView *bgView;
 
 @end
 
@@ -30,9 +34,11 @@
     
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         
+        self.backgroundColor = KCOLOR(@"f0f7f4");
         [self addSubview:self.imgView];
+        [self addSubview:self.bgView];
         [self addSubview:self.collectionView];
-
+        
     }
     return self;
 }
@@ -42,18 +48,23 @@
     [self.imgView mas_makeConstraints:^(MASConstraintMaker *make) {
        
         make.left.top.right.equalTo(self);
-        make.height.equalTo(@150);
+        make.height.mas_equalTo(150 * WIDTH_MULTIPLE);
     }];
     
     
-    [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-       
-        make.left.right.equalTo(self);
-        make.top.equalTo(self.imgView.mas_bottom).offset(10);
+    CGFloat itemHeight = itemWidth * 1.2 + 50 * WIDTH_MULTIPLE + 30 * WIDTH_MULTIPLE;
+    [_bgView mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        CGFloat itemWidth = (KSCREEN_WIDTH - 20) / 3;
-        CGFloat height = (itemWidth * 1.2 + 50) * WIDTH_MULTIPLE;
-        make.height.equalTo(@(height));
+        make.top.equalTo(_imgView.mas_bottom);
+        make.left.right.equalTo(self);
+        make.height.mas_equalTo(itemHeight);
+    }];
+    
+    [_collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.top.equalTo(_imgView.mas_bottom).offset(10 * WIDTH_MULTIPLE);
+        make.left.right.equalTo(self);
+        make.height.mas_equalTo(itemHeight - 30 * WIDTH_MULTIPLE);
     }];
 
 }
@@ -65,7 +76,7 @@
     [_imgView sd_setImageWithURL:[NSURL URLWithString:goodHealthModel.image_url] placeholderImage:[UIImage imageNamed:@"placeHolder"]];
     [_collectionView reloadData];
     
-    _cellHeight = _collectionView.bottom + 20;
+    _cellHeight = _bgView.bottom + 10 * WIDTH_MULTIPLE;
 }
 
 #pragma mark - collectionViewDataSource
@@ -117,6 +128,16 @@
 
 
 #pragma mark - lazyload
+-  (UIView *)bgView{
+    
+    if (!_bgView) {
+        
+        _bgView = [UIView new];
+        _bgView.backgroundColor = KAPP_WHITE_COLOR;
+    }
+    return _bgView;
+}
+
 - (UIImageView *)imgView{
     
     if (!_imgView) {
@@ -138,10 +159,9 @@
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
         //设置collectionView滚动方向
         [layout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
-        CGFloat itemWidth = (KSCREEN_WIDTH - 20) / 3;
-        layout.itemSize = CGSizeMake(itemWidth, (itemWidth * 1.2 + 50) * WIDTH_MULTIPLE);
+        layout.itemSize = CGSizeMake(itemWidth, itemWidth * 1.2 + 50 * WIDTH_MULTIPLE);
         layout.minimumLineSpacing = 5;
-        layout.minimumInteritemSpacing = 5;
+        layout.minimumInteritemSpacing = 0;
         
         
         _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];

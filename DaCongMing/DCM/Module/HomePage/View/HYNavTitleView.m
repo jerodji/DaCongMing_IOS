@@ -116,7 +116,7 @@
     if (!_searchLabel) {
         
         _searchLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-        _searchLabel.text = @"愿你出走半生，归来仍是少年";
+        _searchLabel.text = @"点击搜索你想要的产品";
         _searchLabel.textAlignment = NSTextAlignmentLeft;
         _searchLabel.textColor = KCOLOR(@"b7b7b7");
         _searchLabel.font = KFont(12);

@@ -156,12 +156,11 @@
     button.selected = !button.selected;
     DLog(@"button.select is %d",button.selected);
     _items.isSelect = button.selected;
-    if (self.cartItemChanged) {
-        
-        self.cartItemChanged(_items, self.indexPath);
-    }
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:KShoppingCartsChanged object:_items.guid];
+    if (_delegate && [_delegate respondsToSelector:@selector(cartItemSelect:WithIndexPath:)]) {
+        
+        [_delegate cartItemSelect:button.isSelected WithIndexPath:self.indexPath];
+    }
 }
 
 - (void)editCountChanged{
@@ -178,7 +177,6 @@
                 HYCartItems * cartItems = weakSelf.items;
                 cartItems.qty = [NSString stringWithFormat:@"%ld",count];
                 [weakSelf setItems:cartItems];
-                [[NSNotificationCenter defaultCenter] postNotificationName:KShoppingCartsCountChanged object:weakSelf.items userInfo:@{@"sellerIndex" : @(weakSelf.indexPath.section - 1),@"ItemIndex" : @(weakSelf.indexPath.row)}];
             }
             else{
                 

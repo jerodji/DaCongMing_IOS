@@ -51,8 +51,8 @@
     [self.datalist removeAllObjects];
     [HYRequestOrderHandle requestDiscountCouponComplectionBlock:^(NSArray *datalist) {
         
-        [_noDiscountCouponView removeFromSuperview];
-        _noDiscountCouponView = nil;
+        //[_noDiscountCouponView removeFromSuperview];
+        //_noDiscountCouponView = nil;
         
     } noDataBlock:^{
         

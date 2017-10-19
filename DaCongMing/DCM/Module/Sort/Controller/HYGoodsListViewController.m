@@ -41,6 +41,7 @@
 
 - (void)setupSubviews{
     
+    self.view.backgroundColor = KAPP_TableView_BgColor;
     [self.view addSubview:self.horizonLine];
     [self.view addSubview:self.collectionView];
 }
@@ -137,14 +138,10 @@
     
     NSDictionary *dict = _datalist[indexPath.item];
     cell.goodsModel = [HYGoodsItemModel modelWithDictionary:dict];
-    //cell.backgroundColor = [UIColor redColor];
+    cell.backgroundColor = [UIColor whiteColor];
     return cell;
 }
 
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-    
-    return CGSizeMake((KSCREEN_WIDTH - 10) / 2, 340 * WIDTH_MULTIPLE);
-}
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
@@ -188,10 +185,15 @@
         //1.初始化layout
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
         layout.scrollDirection = UICollectionViewScrollDirectionVertical;
+        layout.itemSize = CGSizeMake(KSCREEN_WIDTH / 2 - 10, 340 * WIDTH_MULTIPLE);
+        layout.scrollDirection = UICollectionViewScrollDirectionVertical;
+        layout.minimumInteritemSpacing = 5;
+        layout.minimumLineSpacing = 6 * WIDTH_MULTIPLE;      //纵向间距
+        layout.sectionInset = UIEdgeInsetsMake(0, 5, 0, 5);
         
-        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, self.horizonLine.bottom, KSCREEN_WIDTH, KSCREEN_HEIGHT - 37 - 64) collectionViewLayout:layout];
+        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, self.horizonLine.bottom + 6 * WIDTH_MULTIPLE, KSCREEN_WIDTH, KSCREEN_HEIGHT - 37 - 64 - 6 * WIDTH_MULTIPLE) collectionViewLayout:layout];
         [_collectionView setCollectionViewLayout:layout];
-        _collectionView.backgroundColor = KAPP_WHITE_COLOR;
+        _collectionView.backgroundColor = KAPP_TableView_BgColor;
         _collectionView.showsVerticalScrollIndicator = NO;
         _collectionView.showsHorizontalScrollIndicator = NO;
         _collectionView.delegate = self;

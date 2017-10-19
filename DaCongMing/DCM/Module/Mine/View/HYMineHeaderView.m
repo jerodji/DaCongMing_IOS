@@ -53,7 +53,9 @@
     
     if ([user.token isNotBlank]) {
         
-        [self.headerImgView sd_setImageWithURL:[NSURL URLWithString:user.userInfo.head_image_url] placeholderImage:[UIImage imageNamed:@"header_placeholder"]];
+        //[self.headerImgView sd_setImageWithURL:[NSURL URLWithString:user.userInfo.head_image_url] placeholderImage:[UIImage imageNamed:@"header_placeholder"]];
+        NSString *urlStr = [NSString stringWithFormat:@"http://%@",user.userInfo.head_image_url];
+        [self.headerImgView sd_setImageWithURL:[NSURL URLWithString:urlStr] placeholderImage:[UIImage imageNamed:@"header_placeholder"]];
         self.nickNameLabel.text = user.userInfo.name;
     }
 }

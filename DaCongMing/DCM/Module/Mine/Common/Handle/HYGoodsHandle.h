@@ -63,4 +63,6 @@
  */
 + (void)cancelCollectShopWithSellerIDs:(NSString *)sellerIDs ComplectionBlock:(void(^)(BOOL isSuccess))complection;
 
+
+
 @end

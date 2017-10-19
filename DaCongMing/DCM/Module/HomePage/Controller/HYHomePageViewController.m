@@ -21,6 +21,7 @@
 #import "HYHomeBannerCell.h"
 #import "HYHomeDoodsCell.h"
 #import "HYTypeRecommendCell.h"
+#import "HYBannerModel.h"
 
 @interface HYHomePageViewController () <UITableViewDelegate,UITableViewDataSource,SDCycleScrollViewDelegate>
 
@@ -34,7 +35,8 @@
 @property (nonatomic,strong) HYHomePageModel *model;
 /** 商品列表 */
 @property (nonatomic,strong) NSMutableArray *goodsList;
-
+/** bannerArray */
+@property (nonatomic,strong) NSMutableArray *bannerArray;
 /** 存放Cell的高度 */
 @property (nonatomic,strong) NSMutableDictionary *cellHeightDict;
 
@@ -60,6 +62,11 @@
     [super viewWillDisappear:animated];
     [_navTitleView removeFromSuperview];
     _navTitleView = nil;
+    
+    if (!_model) {
+        
+        [self requestNetwork];
+    }
 }
 
 - (void)setupUI{
@@ -76,7 +83,15 @@
     
     [HYHomeViewModel requestHomePageData:^(HYHomePageModel *model) {
         
-        _headerView.imageURLStringsGroup = model.banners;
+        NSMutableArray *tempArray = [NSMutableArray array];
+        [self.bannerArray removeAllObjects];
+        for (NSDictionary *bannerDict in model.banners) {
+            
+            HYBannerModel *bannerModel = [HYBannerModel modelWithDictionary:bannerDict];
+            [self.bannerArray addObject:bannerModel];
+            [tempArray addObject:bannerModel.banner_imgUrl];
+        }
+        _headerView.imageURLStringsGroup = tempArray;
         _model = model;
         [self.tableView reloadData];
     }];
@@ -275,23 +290,24 @@
     else if(indexPath.row == 3) {
         
         //tags
-        return 20 + _model.tags.count / 2 * 110 + 10;
+        return ceil(_model.tags.count / 2.0) * 110 * WIDTH_MULTIPLE + 10 * WIDTH_MULTIPLE;
     }
     else if(indexPath.row == 4) {
         
         //banner
-        return 150 * WIDTH_MULTIPLE;
+        return 170 * WIDTH_MULTIPLE;
     }
     else if(indexPath.row == 5) {
         
         //推荐
-        return 90 + 10;
+        CGFloat itemWidth = (KSCREEN_WIDTH - 5 * 3) / 4;
+        return itemWidth + 10 * WIDTH_MULTIPLE;
     }
     else if(indexPath.row == 6) {
         
         //猜你喜欢
         CGFloat height = ceil(_goodsList.count / 2.0) * 350 * WIDTH_MULTIPLE;
-        return 40 + 10 + height;
+        return  height + 40 * WIDTH_MULTIPLE;
     }
     
     return 100;
@@ -336,6 +352,15 @@
         _cellHeightDict = [NSMutableDictionary dictionary];
     }
     return _cellHeightDict;
+}
+
+- (NSMutableArray *)bannerArray{
+    
+    if (!_bannerArray) {
+        
+        _bannerArray = [NSMutableArray array];
+    }
+    return _bannerArray;
 }
 
 - (void)didReceiveMemoryWarning {

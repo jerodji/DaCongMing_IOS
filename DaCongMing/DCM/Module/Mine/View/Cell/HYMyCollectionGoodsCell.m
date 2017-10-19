@@ -22,6 +22,8 @@
 @property (nonatomic,strong) UILabel *PriceLabel;
 /** 数量 */
 @property (nonatomic,strong) UILabel *countLabel;
+/** 选择 */
+@property (nonatomic,strong) UIButton *checkBtn;
 
 @end
 
@@ -63,7 +65,8 @@
     
     [_itemImgView mas_makeConstraints:^(MASConstraintMaker *make) {
        
-        make.top.left.equalTo(_bgView).offset(5 * WIDTH_MULTIPLE);
+        make.top.equalTo(_bgView).offset(5 * WIDTH_MULTIPLE);
+        make.left.equalTo(self).offset(10 * WIDTH_MULTIPLE);
         make.bottom.equalTo(self).offset(-5 * WIDTH_MULTIPLE);
         make.width.mas_equalTo(70 * WIDTH_MULTIPLE);
     }];
@@ -101,6 +104,7 @@
 }
 
 #pragma mark - setter
+//收藏商品
 - (void)setItemModel:(HYGoodsItemModel *)itemModel{
     
     _itemModel = itemModel;
@@ -108,6 +112,38 @@
     _itemLabel.text = itemModel.item_name;
     _unitLabel.text = itemModel.item_note;
     _PriceLabel.text = [NSString stringWithFormat:@"￥%@",itemModel.item_min_price];
+    
+    if (itemModel.isEdit) {
+        
+        [self addSubview:self.checkBtn];
+        [_checkBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            
+            make.left.equalTo(self).offset(5 * WIDTH_MULTIPLE);
+            make.top.bottom.equalTo(self);
+            make.width.mas_equalTo(20 * WIDTH_MULTIPLE);
+        }];
+        
+        [_itemImgView mas_updateConstraints:^(MASConstraintMaker *make) {
+           
+            make.left.equalTo(self).offset(35 * WIDTH_MULTIPLE);
+        }];
+        
+        [self setNeedsUpdateConstraints];
+        
+    }
+    else{
+        
+        [_checkBtn removeFromSuperview];
+        _checkBtn = nil;
+        
+        [_itemImgView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            
+            make.left.equalTo(self).offset(10 * WIDTH_MULTIPLE);
+        }];
+        [self setNeedsUpdateConstraints];
+
+    }
+    
 }
 
 - (void)setOrderDetailModel:(HYMyOrderDetailsModel *)orderDetailModel{
@@ -130,11 +166,14 @@
 }
 
 #pragma mark - action
-- (void)applySellAfterBtnAction{
+- (void)checkBtnAction:(UIButton *)button{
     
-    if (self.applySaleAction) {
+    button.selected = !button.selected;
+    _itemModel.isSelect = button.selected;
+    
+    if (self.itemSelect) {
         
-        self.applySaleAction();
+        self.itemSelect(button.isSelected);
     }
 }
 
@@ -147,6 +186,18 @@
         _bgView.backgroundColor = KAPP_WHITE_COLOR;
     }
     return _bgView;
+}
+
+- (UIButton *)checkBtn{
+    
+    if (!_checkBtn) {
+        
+        _checkBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_checkBtn setImage:[UIImage imageNamed:@"selectIcon"] forState:UIControlStateNormal];
+        [_checkBtn setImage:[UIImage imageNamed:@"selectIconSelect"] forState:UIControlStateSelected];
+        [_checkBtn addTarget:self action:@selector(checkBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _checkBtn;
 }
 
 - (UIImageView *)itemImgView{

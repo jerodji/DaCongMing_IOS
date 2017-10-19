@@ -45,7 +45,7 @@
     
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
     [param setValue:goodsID forKey:@"item_id"];
-    [param setValue:token forKey:@"token"];
+    [param setValue:[HYUserModel sharedInstance].token forKey:@"token"];
     
     [[HTTPManager shareHTTPManager] postDataFromUrl:API_GoodsDetail withParameter:param isShowHUD:NO success:^(id returnData) {
         

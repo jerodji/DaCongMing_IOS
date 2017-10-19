@@ -55,7 +55,6 @@
 - (void)setupUI{
     
     [self.navigationController.navigationBar addSubview:self.brandsShopNavView];
-    self.navigationController.navigationItem.hidesBackButton = YES;
     self.view.backgroundColor = KAPP_WHITE_COLOR;
     [self.view addSubview:self.tableView];
     [self.view addSubview:self.bottomView];
@@ -100,6 +99,10 @@
                 
                 [self.bannerArray addObject:[itemDict objectForKey:@"image_url"]];
             }
+            
+            [_bottomView.allGoodsBtn setTitle:[NSString stringWithFormat:@"%@\n全部商品",self.shopInfoModel.itemCount] forState:UIControlStateNormal];
+            [_bottomView.hotSaleBtn setTitle:[NSString stringWithFormat:@"%@\n热销",self.shopInfoModel.hotsaleCount] forState:UIControlStateNormal];
+            [_bottomView.allGoodsBtn setTitle:[NSString stringWithFormat:@"%@\n上新",self.shopInfoModel.justItem] forState:UIControlStateNormal];
         }
         
         [_tableView reloadData];
@@ -231,6 +234,23 @@
         default:
             break;
     }
+}
+
+#pragma mark - searchDelegate
+- (void)searchTextFieldTextChanged:(NSString *)text{
+    
+    
+}
+
+- (void)searchTextFieldResignFirstResponder{
+    
+    
+    
+}
+
+- (void)searchTextFieldStartInput{
+    
+    
 }
 
 #pragma mark - 收藏delegate

@@ -52,7 +52,6 @@
         _imgView.clipsToBounds = YES;
         
     }
-    
     return _imgView;
 }
 

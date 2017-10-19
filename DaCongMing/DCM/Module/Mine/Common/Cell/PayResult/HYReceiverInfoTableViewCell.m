@@ -7,6 +7,7 @@
 //
 
 #import "HYReceiverInfoTableViewCell.h"
+#import "HYLabel.h"
 
 @interface HYReceiverInfoTableViewCell()
 
@@ -15,7 +16,7 @@
 /** phoneNum */
 @property (nonatomic,strong) UILabel *phoneNumLabel;
 /** addressLabel */
-@property (nonatomic,strong) UILabel *addressLabel;
+@property (nonatomic,strong) HYLabel *addressLabel;
 
 /** lookOrderBtn */
 @property (nonatomic,strong) UIButton *lookOrderBtn;
@@ -167,17 +168,17 @@
     return _phoneNumLabel;
 }
 
-- (UILabel *)addressLabel{
+- (HYLabel *)addressLabel{
     
     if (!_addressLabel) {
         
-        _addressLabel = [[UILabel alloc] init];
+        _addressLabel = [[HYLabel alloc] init];
         _addressLabel.font = KFitFont(14);
         _addressLabel.textAlignment = NSTextAlignmentLeft;
         _addressLabel.text = @"收货地址:暂无收货地址，点击添加新地址";
         _addressLabel.textColor = KAPP_272727_COLOR;
         _addressLabel.numberOfLines = 0;
-        
+        _addressLabel.verticalAlignment = VerticalAlignmentTop;
     }
     return _addressLabel;
 }

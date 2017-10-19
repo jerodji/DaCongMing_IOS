@@ -25,12 +25,38 @@
     
     if (self = [super initWithFrame:frame]) {
         
+        self.layer.borderColor = KAPP_SEPERATOR_COLOR.CGColor;
+        self.layer.borderWidth = 1;
+        
         [self addSubview:self.imgView];
         [self addSubview:self.titleLabel];
         [self addSubview:self.priceLabel];
         
     }
     return self;
+}
+
+- (void)layoutSubviews{
+    
+    [_imgView mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.left.right.top.equalTo(self);
+        make.height.mas_equalTo(self.width * 1.2);
+    }];
+    
+    [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.left.right.equalTo(self);
+        make.top.equalTo(_imgView.mas_bottom);
+        make.height.mas_equalTo(30 * WIDTH_MULTIPLE);
+    }];
+    
+    [_priceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.left.right.equalTo(self);
+        make.top.equalTo(_titleLabel.mas_bottom);
+        make.height.mas_equalTo(20 * WIDTH_MULTIPLE);
+    }];
 }
 
 - (void)setCommendTodayModel:(HYReCommendTday *)commendTodayModel{
@@ -57,7 +83,7 @@
     
     if (!_imgView) {
         
-        _imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.width, self.width * 1.2)];
+        _imgView = [UIImageView new];
         _imgView.contentMode = UIViewContentModeScaleAspectFill;
         _imgView.clipsToBounds = YES;
     }
@@ -69,8 +95,8 @@
     
     if (!_titleLabel) {
         
-        _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.imgView.bottom + 5 * WIDTH_MULTIPLE, self.width, 20 * WIDTH_MULTIPLE)];
-        _titleLabel.font = KFont(14);
+        _titleLabel = [UILabel new];
+        _titleLabel.font = KFitFont(14);
         _titleLabel.textColor = KAPP_BLACK_COLOR;
         _titleLabel.textAlignment = NSTextAlignmentCenter;
     }
@@ -82,8 +108,8 @@
     
     if (!_priceLabel) {
         
-        _priceLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.titleLabel.bottom + 5 * WIDTH_MULTIPLE, self.width, 20 * WIDTH_MULTIPLE)];
-        _priceLabel.font = KFont(14);
+        _priceLabel = [UILabel new];
+        _priceLabel.font = KFitFont(12);
         _priceLabel.textColor = KAPP_PRICE_COLOR;
         _priceLabel.textAlignment = NSTextAlignmentCenter;
     }

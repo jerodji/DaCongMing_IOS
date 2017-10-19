@@ -29,6 +29,7 @@
     
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         
+        self.backgroundColor = KCOLOR(@"f0f7f4");
         [self addSubview:self.collectionView];
     }
     return self;
@@ -36,13 +37,10 @@
 
 - (void)layoutSubviews{
     
-    [_collectionView mas_updateConstraints:^(MASConstraintMaker *make) {
+    [_collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.top.left.right.equalTo(self);
-        make.height.equalTo(@(_model.tags.count / 2 * 110 + 10));
-        
-        CGFloat height = ceil(_model.tags.count / 2.0) * 110 + 10;
-        make.height.equalTo(@(height));
+        make.bottom.equalTo(self).offset(-10 * WIDTH_MULTIPLE);
     }];
 }
 
@@ -84,8 +82,10 @@
         
         //1.初始化layout
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-        layout.itemSize = CGSizeMake((KSCREEN_WIDTH - 10) / 2, 110);
+        layout.itemSize = CGSizeMake((KSCREEN_WIDTH - 2) / 2, 110 * WIDTH_MULTIPLE);
         layout.scrollDirection = UICollectionViewScrollDirectionVertical;
+        layout.minimumLineSpacing = 1;
+        layout.minimumInteritemSpacing = 1;
         
         _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
         _collectionView.backgroundColor = KAPP_WHITE_COLOR;

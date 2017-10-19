@@ -14,12 +14,7 @@
 @property (nonatomic,strong) UIView *topLine;
 /** shopHomeBtn */
 @property (nonatomic,strong) HYButton *shopHomeBtn;
-/** allGoodsBtn */
-@property (nonatomic,strong) UIButton *allGoodsBtn;
-/** hotSaleBtn */
-@property (nonatomic,strong) UIButton *hotSaleBtn;
-/** newProductBtn */
-@property (nonatomic,strong) UIButton *recentNewBtn;
+
 
 @end
 

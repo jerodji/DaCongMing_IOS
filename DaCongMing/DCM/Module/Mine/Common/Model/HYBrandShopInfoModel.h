@@ -24,6 +24,12 @@
 @property (nonatomic,copy) NSString *isFavorite;
 /** guid */
 @property (nonatomic,copy) NSArray *storeImages;
+/** hotsaleCount */
+@property (nonatomic,copy) NSString *hotsaleCount;
+/** guid */
+@property (nonatomic,copy) NSString *itemCount;
+/** justItem */
+@property (nonatomic,copy) NSArray *justItem;
 
 @end
 

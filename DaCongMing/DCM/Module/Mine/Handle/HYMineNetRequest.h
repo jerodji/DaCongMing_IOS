@@ -27,6 +27,11 @@
  */
 + (void)getMyCollectShopWithPageNo:(NSInteger )PageNo ComplectionBlock:(void(^)(NSArray *datalist))complection;
 
+/**
+ *  删除我的收藏商品
+ */
++ (void)deleteMyCollectionGoodsWithItemIDs:(NSString *)itemIDs ComplectionBlock:(void(^)(BOOL isSuccess))complection;
+
 
 /**
  *  获取售后服务列表

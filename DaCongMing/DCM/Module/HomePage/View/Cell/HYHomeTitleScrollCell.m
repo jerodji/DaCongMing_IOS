@@ -9,6 +9,8 @@
 #import "HYHomeTitleScrollCell.h"
 #import "HYHomeCollectionViewCell.h"
 
+#define itemWidth (KSCREEN_WIDTH - 20) / 3
+
 @interface HYHomeTitleScrollCell() <UICollectionViewDelegate,UICollectionViewDataSource>
 
 /** 标题 */
@@ -17,6 +19,8 @@
 @property (nonatomic,strong) UILabel *subTitleLabel;
 /** collectionView */
 @property (nonatomic,strong) UICollectionView *collectionView;
+/** 背景 */
+@property (nonatomic,strong) UIView *bgView;
 
 @end
 
@@ -31,19 +35,59 @@
     
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         
-        [self addSubview:self.titleLabel];
-        [self addSubview:self.subTitleLabel];
-        [self addSubview:self.collectionView];
+        self.backgroundColor = KCOLOR(@"f0f7f4");
+        [self setupSubviews];
     }
     return self;
 }
 
+- (void)setupSubviews{
+    
+    [self addSubview:self.titleLabel];
+    [self addSubview:self.subTitleLabel];
+    [self addSubview:self.bgView];
+    [self addSubview:self.collectionView];
+}
+
+- (void)layoutSubviews{
+    
+    [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.top.equalTo(self).offset(10 * WIDTH_MULTIPLE);
+        make.left.right.equalTo(self);
+        make.height.mas_equalTo(35 * WIDTH_MULTIPLE);
+    }];
+    
+    [_subTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.top.equalTo(_titleLabel.mas_bottom);
+        make.left.right.equalTo(self);
+        make.height.mas_equalTo(15 * WIDTH_MULTIPLE);
+    }];
+
+    CGFloat itemHeight = itemWidth * 1.2 + 50 * WIDTH_MULTIPLE + 30 * WIDTH_MULTIPLE;
+    [_bgView mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.top.equalTo(_subTitleLabel.mas_bottom);
+        make.left.right.equalTo(self);
+        make.height.mas_equalTo(itemHeight);
+    }];
+    
+    [_collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.top.equalTo(_subTitleLabel.mas_bottom).offset(10 * WIDTH_MULTIPLE);
+        make.left.right.equalTo(self);
+        make.height.mas_equalTo(itemHeight - 30 * WIDTH_MULTIPLE);
+    }];
+}
+
+#pragma mark - setter
 - (void)setModel:(HYHomePageModel *)model{
 
     _model = model;
     [_collectionView reloadData];
     
-    _cellHeight = _collectionView.bottom + 20;
+    _cellHeight = _bgView.bottom + 10 * WIDTH_MULTIPLE;
 }
 
 #pragma mark - collectionViewDataSource
@@ -95,13 +139,24 @@
 
 
 #pragma mark - lazyload
+-  (UIView *)bgView{
+    
+    if (!_bgView) {
+        
+        _bgView = [UIView new];
+        _bgView.backgroundColor = KAPP_WHITE_COLOR;
+    }
+    return _bgView;
+}
+
 - (UILabel *)titleLabel{
     
     if (!_titleLabel) {
         
-        _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 20, KSCREEN_WIDTH, 20)];
-        _titleLabel.font = KFont(18);
+        _titleLabel = [UILabel new];
+        _titleLabel.font = KFitFont(16);
         _titleLabel.textColor = KCOLOR(@"272727");
+        _titleLabel.backgroundColor = KAPP_WHITE_COLOR;
         _titleLabel.textAlignment = NSTextAlignmentCenter;
         _titleLabel.text = @"今日限时推荐";
     }
@@ -112,9 +167,10 @@
 
     if (!_subTitleLabel) {
         
-        _subTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.titleLabel.bottom + 6, KSCREEN_WIDTH, 20)];
-        _subTitleLabel.font = KFont(12);
+        _subTitleLabel = [UILabel new];
+        _subTitleLabel.font = KFitFont(12);
         _subTitleLabel.textColor = KCOLOR(@"7b7b7b");
+        _subTitleLabel.backgroundColor = KAPP_WHITE_COLOR;
         _subTitleLabel.textAlignment = NSTextAlignmentCenter;
         _subTitleLabel.text = @"纯老挝进口，值得信赖";
     }
@@ -130,12 +186,12 @@
         //设置collectionView滚动方向
         [layout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
         
-        CGFloat itemWidth = (KSCREEN_WIDTH - 20) / 3;
-         layout.itemSize = CGSizeMake(itemWidth, (itemWidth * 1.2 + 50) * WIDTH_MULTIPLE);
+        
+        layout.itemSize = CGSizeMake(itemWidth, itemWidth * 1.2 + 50 * WIDTH_MULTIPLE);
         layout.minimumLineSpacing = 5;
-        layout.minimumInteritemSpacing = 5;
+        layout.minimumInteritemSpacing = 0;
 
-        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, self.subTitleLabel.bottom + 10, KSCREEN_WIDTH, (itemWidth * 1.2 * 1.2 + 50) * WIDTH_MULTIPLE) collectionViewLayout:layout];
+        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
         _collectionView.backgroundColor = KAPP_WHITE_COLOR;
         _collectionView.showsVerticalScrollIndicator = NO;
         _collectionView.delegate = self;

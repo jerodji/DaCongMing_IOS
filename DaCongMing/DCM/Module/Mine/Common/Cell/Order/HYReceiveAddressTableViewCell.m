@@ -102,8 +102,8 @@
     [_defaultLabel mas_makeConstraints:^(MASConstraintMaker *make) {
        
         make.left.height.equalTo(_nameLabel);
-        make.top.equalTo(_addressLabel);
         make.width.equalTo(@(40 * WIDTH_MULTIPLE));
+        make.centerY.equalTo(_addressLabel);
     }];
     
     [_arrowImgView mas_makeConstraints:^(MASConstraintMaker *make) {

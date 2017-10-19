@@ -36,4 +36,11 @@
  */
 + (void)settleCartsWithGuid:(NSString *)guids ComplectionBlock:(void(^)(HYCreateOrder *order))complection;
 
+
+/*!
+ @method
+ @brief 移除购物车
+ */
++ (void)deleteCartsAmountWithGuids:(NSString *)guids ComplectionBlock:(void(^)(BOOL isSuccess))complection;
+
 @end

@@ -34,6 +34,8 @@
     
     self.title = @"邀请好友";
     self.view.backgroundColor = KCOLOR(@"f4f4f4");
+    UIBarButtonItem *shareItem = [[UIBarButtonItem alloc] initWithTitle:@"分享" style:UIBarButtonItemStylePlain target:self action:@selector(inviteAction)];
+    self.navigationItem.rightBarButtonItem = shareItem;
     [self.view addSubview:self.bgImageView];
     [self.view addSubview:self.shareBtn];
 }
@@ -47,8 +49,8 @@
     
     [_shareBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.bottom.equalTo(self.view).offset(-60 * WIDTH_MULTIPLE);
-        make.height.mas_equalTo(55 * WIDTH_MULTIPLE);
+        make.top.equalTo(self.view).offset(180 * WIDTH_MULTIPLE);
+        make.height.mas_equalTo(70 * WIDTH_MULTIPLE);
         make.left.right.equalTo(self.view);
     }];
 }
@@ -93,7 +95,7 @@
     if (!_shareBtn) {
         
         _shareBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_shareBtn setImage:[UIImage imageNamed:@"shareBg"] forState:UIControlStateNormal];
+        _shareBtn.backgroundColor = [UIColor clearColor];
         _shareBtn.highlighted = NO;
         [_shareBtn addTarget:self action:@selector(inviteAction) forControlEvents:UIControlEventTouchUpInside];
     }

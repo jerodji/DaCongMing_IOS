@@ -9,7 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "HYCartsModel.h"
 
-typedef void(^cartItemChangedBlock)(HYCartItems *cartItems,NSIndexPath *changeIndexPath);
+@protocol HYSelectCartItemDelegate <NSObject>
+
+/**
+ *  购物车每个项目选择按钮点击
+ */
+- (void)cartItemSelect:(BOOL)isSelect WithIndexPath:(NSIndexPath *)indexPath;
+
+@end
 
 @interface HYCartsItemTableViewCell : UITableViewCell
 
@@ -19,7 +26,7 @@ typedef void(^cartItemChangedBlock)(HYCartItems *cartItems,NSIndexPath *changeIn
 /** indexPath */
 @property (nonatomic,strong) NSIndexPath *indexPath;
 
-/** 购物车发生变化 */
-@property (nonatomic,copy) cartItemChangedBlock cartItemChanged;
+/** delegate */
+@property (nonatomic,weak) id<HYSelectCartItemDelegate> delegate;
 
 @end

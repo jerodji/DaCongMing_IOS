@@ -27,6 +27,14 @@
     return self;
 }
 
+- (void)layoutSubviews{
+    
+    [_imgView mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.left.right.top.bottom.equalTo(self);
+    }];
+}
+
 - (void)setTagsItemModel:(HYTagsItemModel *)tagsItemModel{
     
     _tagsItemModel = tagsItemModel;
@@ -38,7 +46,7 @@
     
     if (!_imgView) {
         
-        _imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.width, 110)];
+        _imgView = [UIImageView new];
         _imgView.contentMode = UIViewContentModeScaleAspectFill;
         _imgView.clipsToBounds = YES;
     }

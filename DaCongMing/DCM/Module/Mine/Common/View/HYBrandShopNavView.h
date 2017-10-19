@@ -12,6 +12,12 @@
 
 - (void)brandsShopNavBtnTapIndex:(NSInteger)index;
 
+- (void)searchTextFieldTextChanged:(NSString *)text;
+
+- (void)searchTextFieldStartInput;
+
+- (void)searchTextFieldResignFirstResponder;
+
 @end
 
 @interface HYBrandShopNavView : UIView

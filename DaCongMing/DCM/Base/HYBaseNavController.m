@@ -30,12 +30,8 @@
         
         viewController.hidesBottomBarWhenPushed = YES;
         
-//        UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//        backButton.highlighted = NO;
-//        [backButton setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
-//        backButton.frame = CGRectMake(0,0,30,30);
-//        [backButton addTarget:self action:@selector(backBtnAction) forControlEvents:UIControlEventTouchUpInside];
-//        viewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+        UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back"] style:UIBarButtonItemStylePlain target:self action:@selector(backBtnAction)];
+        viewController.navigationItem.leftBarButtonItem = backItem;
     }
     
     [super pushViewController:viewController animated:animated];
@@ -43,7 +39,7 @@
 
 - (void)backBtnAction{
     
-    [self.navigationController popViewControllerAnimated:YES];
+    [self popViewControllerAnimated:YES];
 }
 
 
