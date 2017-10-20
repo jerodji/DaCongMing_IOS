@@ -53,20 +53,29 @@
     [self addSubview:self.unitLabel];
     [self addSubview:self.PriceLabel];
     [self addSubview:self.applySellAfterBtn];
+    
+    
 }
 
 - (void)layoutSubviews{
     
     [_bgView mas_makeConstraints:^(MASConstraintMaker *make) {
-       
+        
         make.top.equalTo(self).offset(10 * WIDTH_MULTIPLE);
         make.left.right.bottom.equalTo(self);
     }];
     
     [_itemImgView mas_makeConstraints:^(MASConstraintMaker *make) {
-       
+        
+        if (_itemModel.isEdit) {
+            
+            make.left.equalTo(self).offset(35 * WIDTH_MULTIPLE);
+        }
+        else{
+            
+            make.left.equalTo(self).offset(10 * WIDTH_MULTIPLE);
+        }
         make.top.equalTo(_bgView).offset(5 * WIDTH_MULTIPLE);
-        make.left.equalTo(self).offset(10 * WIDTH_MULTIPLE);
         make.bottom.equalTo(self).offset(-5 * WIDTH_MULTIPLE);
         make.width.mas_equalTo(70 * WIDTH_MULTIPLE);
     }];
@@ -112,7 +121,7 @@
     _itemLabel.text = itemModel.item_name;
     _unitLabel.text = itemModel.item_note;
     _PriceLabel.text = [NSString stringWithFormat:@"￥%@",itemModel.item_min_price];
-    
+    _checkBtn.selected = itemModel.isSelect;
     if (itemModel.isEdit) {
         
         [self addSubview:self.checkBtn];
@@ -123,13 +132,11 @@
             make.width.mas_equalTo(20 * WIDTH_MULTIPLE);
         }];
         
-        [_itemImgView mas_updateConstraints:^(MASConstraintMaker *make) {
-           
+        [_itemImgView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            
             make.left.equalTo(self).offset(35 * WIDTH_MULTIPLE);
         }];
-        
-        [self setNeedsUpdateConstraints];
-        
+         
     }
     else{
         
@@ -174,6 +181,14 @@
     if (self.itemSelect) {
         
         self.itemSelect(button.isSelected);
+    }
+}
+
+- (void)applySellAfterBtnAction{
+    
+    if (self.applySaleAction) {
+        
+        self.applySaleAction();
     }
 }
 

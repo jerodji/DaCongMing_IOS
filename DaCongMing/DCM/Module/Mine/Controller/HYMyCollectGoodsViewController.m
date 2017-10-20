@@ -10,6 +10,7 @@
 #import "HYMineNetRequest.h"
 #import "HYMyCollectionGoodsCell.h"
 #import "HYDeleteCartsView.h"
+#import "HYNoCollectImgView.h"
 
 @interface HYMyCollectGoodsViewController () <UITableViewDelegate,UITableViewDataSource>
 
@@ -19,6 +20,10 @@
 @property (nonatomic,strong) UITableView *tableView;
 /** 删除 */
 @property (nonatomic,strong) HYDeleteCartsView *deleteCartsView;
+/** deleteStr */
+@property (nonatomic,strong) NSMutableString *deleteStr;
+/** 没有数据 */
+@property (nonatomic,strong) HYNoCollectImgView *noDataView;
 
 @end
 
@@ -29,7 +34,6 @@
     [super viewDidLoad];
     [self setupSubviews];
     [self requestNetWork];
-    [self deleteAction];
 }
 
 - (void)setupSubviews{
@@ -51,7 +55,7 @@
     [self.datalist removeAllObjects];
     [HYMineNetRequest getMyCollectGoodsWithPageNo:1 ComplectionBlock:^(NSArray *datalist) {
         
-        if (datalist) {
+        if (datalist.count) {
             
             for (NSDictionary *dict in datalist) {
                 
@@ -62,6 +66,13 @@
             [_tableView reloadData];
             [self setupBottomView];
         }
+        else{
+            
+            self.navigationItem.rightBarButtonItem = nil;
+            [self.tableView removeFromSuperview];
+            self.tableView = nil;
+            [self.view addSubview:self.noDataView];
+        }
         
     }];
 }
@@ -70,12 +81,18 @@
 - (void)deleteAction{
     
     __weak typeof (self)weakSelf = self;
+    weakSelf.deleteStr = [NSMutableString stringWithFormat:@""];
     _deleteCartsView.deleteCheckAllBlock = ^(BOOL isCheckAll) {
         
         NSMutableArray *tempArray = [NSMutableArray array];
         for (HYGoodsItemModel *item in weakSelf.datalist) {
             
-            item.isEdit = isCheckAll;
+            item.isSelect = isCheckAll;
+            if (item.isSelect) {
+                
+                [weakSelf.deleteStr appendString:item.item_id];
+                [weakSelf.deleteStr appendString:@","];
+            }
             [tempArray addObject:item];
         }
         [weakSelf.datalist removeAllObjects];
@@ -85,6 +102,14 @@
     
     _deleteCartsView.deleteBlock = ^{
         
+        [HYMineNetRequest deleteMyCollectionGoodsWithItemIDs:weakSelf.deleteStr ComplectionBlock:^(BOOL isSuccess) {
+           
+            if (isSuccess) {
+                
+                [weakSelf requestNetWork];
+                [weakSelf setEditing:NO animated:YES];
+            }
+        }];
     };
 }
 
@@ -113,6 +138,17 @@
     cell.itemSelect = ^(BOOL isSelect) {
       
         model.isSelect = isSelect;
+        if ([self.deleteStr containsString:model.item_id]) {
+            
+            NSRange range = [self.deleteStr rangeOfString:[NSString stringWithFormat:@"%@,",model.item_id]];
+            [self.deleteStr deleteCharactersInRange:range];
+        }
+        else{
+            
+            [self.deleteStr appendString:model.item_id];
+            [self.deleteStr appendString:@","];
+        }
+        
     };
     [self.datalist replaceObjectAtIndex:indexPath.row withObject:model];
     
@@ -194,6 +230,8 @@
         
         _deleteCartsView.hidden = YES;
     }
+    
+    [self deleteAction];
 }
 
 
@@ -226,6 +264,24 @@
         _deleteCartsView = [HYDeleteCartsView new];
     }
     return _deleteCartsView;
+}
+
+- (NSMutableString *)deleteStr{
+    
+    if (!_deleteStr) {
+        
+        _deleteStr = [NSMutableString string];
+    }
+    return _deleteStr;
+}
+
+- (HYNoCollectImgView *)noDataView{
+    
+    if (!_noDataView) {
+        
+        _noDataView = [[HYNoCollectImgView alloc] init];
+    }
+    return _noDataView;
 }
 
 - (void)didReceiveMemoryWarning {

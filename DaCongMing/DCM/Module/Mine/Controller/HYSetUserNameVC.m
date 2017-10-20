@@ -124,7 +124,7 @@
         _confirmBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_confirmBtn setTitle:@"确定" forState:UIControlStateNormal];
         _confirmBtn.backgroundColor = KCOLOR(@"c2c2c2");
-        [_confirmBtn setTitleColor:KAPP_272727_COLOR forState:UIControlStateNormal];
+        [_confirmBtn setTitleColor:KAPP_WHITE_COLOR forState:UIControlStateNormal];
         _confirmBtn.titleLabel.font = KFitFont(16);
         _confirmBtn.layer.cornerRadius = 2;
         _confirmBtn.clipsToBounds = YES;

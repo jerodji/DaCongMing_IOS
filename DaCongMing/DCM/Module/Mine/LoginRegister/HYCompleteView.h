@@ -13,6 +13,9 @@ typedef void(^ConfirmBlock)(NSString *phone);
 
 @interface HYCompleteView : UIView
 
+/** skipBtn */
+@property (nonatomic,strong) UIButton *skipBtn;
+
 /** skipBlock */
 @property (nonatomic,copy) SkipBlock skipBlock;
 /** confirmBlock */

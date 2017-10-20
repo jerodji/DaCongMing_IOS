@@ -38,5 +38,6 @@
 #import "HYCustomAlert.h"
 #import "HYTabBarController.h"
 #import "SAMTextView.h"
+#import "HYNoCollectImgView.h"
 
 #endif /* PrefixHeader_pch */

@@ -174,6 +174,10 @@
 		3EE1D1401F95E09A00BC519E /* HYForgetPasswordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE1D13F1F95E09A00BC519E /* HYForgetPasswordVC.m */; };
 		3EE1D1431F95E20700BC519E /* HYSetUserNameVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE1D1421F95E20700BC519E /* HYSetUserNameVC.m */; };
 		3EE1D1461F95E64E00BC519E /* HYAuthPhoneView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE1D1451F95E64E00BC519E /* HYAuthPhoneView.m */; };
+		3EED10E11F99E02D00C49A4A /* HYNoCollectImgView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EED10E01F99E02D00C49A4A /* HYNoCollectImgView.m */; };
+		3EED10E41F99EA2F00C49A4A /* HYSetLoginPwdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EED10E31F99EA2F00C49A4A /* HYSetLoginPwdViewController.m */; };
+		3EED10E71F99EA8500C49A4A /* HYSendAuthCodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EED10E61F99EA8500C49A4A /* HYSendAuthCodeView.m */; };
+		3EED10EA1F99ED1000C49A4A /* HYPasswordView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EED10E81F99ED0F00C49A4A /* HYPasswordView.m */; };
 		3EEDC9581F7244DC007171FA /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EEDC9571F7244DC007171FA /* libc++.tbd */; settings = {ATTRIBUTES = (Weak, ); }; };
 		3EEDC95A1F724511007171FA /* libz.1.1.3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EEDC9591F724511007171FA /* libz.1.1.3.tbd */; };
 		3EEDC95C1F724521007171FA /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EEDC95B1F724521007171FA /* libsqlite3.0.tbd */; };
@@ -530,6 +534,14 @@
 		3EE1D1421F95E20700BC519E /* HYSetUserNameVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYSetUserNameVC.m; sourceTree = "<group>"; };
 		3EE1D1441F95E64E00BC519E /* HYAuthPhoneView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYAuthPhoneView.h; sourceTree = "<group>"; };
 		3EE1D1451F95E64E00BC519E /* HYAuthPhoneView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYAuthPhoneView.m; sourceTree = "<group>"; };
+		3EED10DF1F99E02D00C49A4A /* HYNoCollectImgView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYNoCollectImgView.h; sourceTree = "<group>"; };
+		3EED10E01F99E02D00C49A4A /* HYNoCollectImgView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYNoCollectImgView.m; sourceTree = "<group>"; };
+		3EED10E21F99EA2F00C49A4A /* HYSetLoginPwdViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYSetLoginPwdViewController.h; sourceTree = "<group>"; };
+		3EED10E31F99EA2F00C49A4A /* HYSetLoginPwdViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYSetLoginPwdViewController.m; sourceTree = "<group>"; };
+		3EED10E51F99EA8500C49A4A /* HYSendAuthCodeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYSendAuthCodeView.h; sourceTree = "<group>"; };
+		3EED10E61F99EA8500C49A4A /* HYSendAuthCodeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYSendAuthCodeView.m; sourceTree = "<group>"; };
+		3EED10E81F99ED0F00C49A4A /* HYPasswordView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYPasswordView.m; sourceTree = "<group>"; };
+		3EED10E91F99ED0F00C49A4A /* HYPasswordView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYPasswordView.h; sourceTree = "<group>"; };
 		3EEDC9571F7244DC007171FA /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		3EEDC9591F724511007171FA /* libz.1.1.3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.1.1.3.tbd; path = usr/lib/libz.1.1.3.tbd; sourceTree = SDKROOT; };
 		3EEDC95B1F724521007171FA /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
@@ -637,6 +649,10 @@
 				3EE1D13F1F95E09A00BC519E /* HYForgetPasswordVC.m */,
 				3EE1D1441F95E64E00BC519E /* HYAuthPhoneView.h */,
 				3EE1D1451F95E64E00BC519E /* HYAuthPhoneView.m */,
+				3EED10E21F99EA2F00C49A4A /* HYSetLoginPwdViewController.h */,
+				3EED10E31F99EA2F00C49A4A /* HYSetLoginPwdViewController.m */,
+				3EED10E51F99EA8500C49A4A /* HYSendAuthCodeView.h */,
+				3EED10E61F99EA8500C49A4A /* HYSendAuthCodeView.m */,
 			);
 			path = LoginRegister;
 			sourceTree = "<group>";
@@ -1078,6 +1094,8 @@
 				3EFBFC5C1F7C8EAF003F92B8 /* HYNoAddressView.m */,
 				3E5904D61F8B185100A16FEC /* AreaView.h */,
 				3E5904D51F8B185000A16FEC /* AreaView.m */,
+				3EED10DF1F99E02D00C49A4A /* HYNoCollectImgView.h */,
+				3EED10E01F99E02D00C49A4A /* HYNoCollectImgView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1246,6 +1264,8 @@
 				3E1F428D1F7CED1C00E90377 /* HYPlistTools.m */,
 				3E59F8961F9894270031D433 /* HYLabel.h */,
 				3E59F8971F9894270031D433 /* HYLabel.m */,
+				3EED10E91F99ED0F00C49A4A /* HYPasswordView.h */,
+				3EED10E81F99ED0F00C49A4A /* HYPasswordView.m */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -1526,6 +1546,7 @@
 				3EDC21E81F93345C0013FFBA /* HYAddToCartsHandle.m in Sources */,
 				3E934DDF1F6BD78100F3ADE4 /* HYReCommendTday.m in Sources */,
 				3EFBFC5D1F7C8EAF003F92B8 /* HYNoAddressView.m in Sources */,
+				3EED10EA1F99ED1000C49A4A /* HYPasswordView.m in Sources */,
 				3E56207A1F6B6DAC0063AA5B /* UIView+Toast.m in Sources */,
 				3ECD83371F8F748800DE6FFD /* HYMyCollectShopImageCollectionViewCell.m in Sources */,
 				3ED218D81F8E0E900040C7E3 /* HYShopCollectCell.m in Sources */,
@@ -1582,6 +1603,7 @@
 				3ED218D01F8E01A40040C7E3 /* HYBrandShopNavView.m in Sources */,
 				3EA0BC161F73A4D900F78FDD /* HYBuyCountEditView.m in Sources */,
 				3E4D78841F7905C000BC9C2B /* HYWeChatPayModel.m in Sources */,
+				3EED10E41F99EA2F00C49A4A /* HYSetLoginPwdViewController.m in Sources */,
 				3E27546B1F70B2970010053E /* HYOrderTableViewCell.m in Sources */,
 				3E2754451F6F71DE0010053E /* HYTypeRecommendCell.m in Sources */,
 				3ED218CD1F8E01120040C7E3 /* HYBrandShopViewController.m in Sources */,
@@ -1656,6 +1678,7 @@
 				3ED218C41F8DE6610040C7E3 /* HYMineNetRequest.m in Sources */,
 				3E1022071F7B3A120048D556 /* HYFeedbackViewController.m in Sources */,
 				3E4D788A1F79088F00BC9C2B /* HYAlipayManager.m in Sources */,
+				3EED10E11F99E02D00C49A4A /* HYNoCollectImgView.m in Sources */,
 				3E5620A41F6BA16D0063AA5B /* HYHomeViewModel.m in Sources */,
 				3E4D78A21F79F26200BC9C2B /* HYPayResultViewController.m in Sources */,
 				3E5620511F6B6D720063AA5B /* HYBaseNavController.m in Sources */,
@@ -1672,6 +1695,7 @@
 				3EFBFC541F7BAA9F003F92B8 /* HYHotSearchView.m in Sources */,
 				3E2754581F6F9D520010053E /* HYLoginView.m in Sources */,
 				3E1021FB1F7A53BD0048D556 /* HYUserModel.m in Sources */,
+				3EED10E71F99EA8500C49A4A /* HYSendAuthCodeView.m in Sources */,
 				3E56204B1F6B6D440063AA5B /* HYBaseModel.m in Sources */,
 				3E4D787A1F78E51300BC9C2B /* HYCreateOrder.m in Sources */,
 				3E5620831F6B6DAC0063AA5B /* HYPhoneInfo.m in Sources */,

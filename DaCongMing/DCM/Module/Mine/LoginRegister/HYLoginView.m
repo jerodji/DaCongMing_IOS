@@ -362,7 +362,7 @@
         
         _iconImgView = [[UIImageView alloc] initWithFrame:CGRectZero];
         _iconImgView.image = [UIImage imageNamed:@"loginIcon"];
-        _iconImgView.contentMode = UIViewContentModeScaleAspectFill;
+        _iconImgView.contentMode = UIViewContentModeScaleAspectFit;
         _iconImgView.clipsToBounds = YES;
     }
     return _iconImgView;

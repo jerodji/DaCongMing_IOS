@@ -26,17 +26,33 @@
     
     __weak typeof (self)weakSelf = self;
     _authPhoneView.authPhoneSuccess = ^{
-      
-        HYSetPasswordViewController *setPasswordVC = [HYSetPasswordViewController new];
-        [weakSelf.navigationController pushViewController:setPasswordVC animated:YES];
+        
+        if (weakSelf.isBindPhone) {
+            
+            [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"绑定手机成功"];
+            [weakSelf.navigationController popViewControllerAnimated:YES];
+        }
+        else{
+            
+            HYSetPasswordViewController *setPasswordVC = [HYSetPasswordViewController new];
+            [weakSelf.navigationController pushViewController:setPasswordVC animated:YES];
+        }
     };
     
 }
  - (void)setupSubviews{
     
-     self.title = @"手机验证";
-     UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back"] style:UIBarButtonItemStylePlain target:self action:@selector(backAction)];
-     self.navigationItem.leftBarButtonItem = backItem;
+     if (self.isBindPhone) {
+         
+         self.title = @"绑定手机";
+     }
+     else{
+         
+         self.title = @"手机验证";
+         UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back"] style:UIBarButtonItemStylePlain target:self action:@selector(backAction)];
+         self.navigationItem.leftBarButtonItem = backItem;
+     }
+     
      [self.view addSubview:self.authPhoneView];
  }
 

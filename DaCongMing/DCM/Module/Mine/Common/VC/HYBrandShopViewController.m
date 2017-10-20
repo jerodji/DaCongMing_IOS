@@ -102,7 +102,7 @@
             
             [_bottomView.allGoodsBtn setTitle:[NSString stringWithFormat:@"%@\n全部商品",self.shopInfoModel.itemCount] forState:UIControlStateNormal];
             [_bottomView.hotSaleBtn setTitle:[NSString stringWithFormat:@"%@\n热销",self.shopInfoModel.hotsaleCount] forState:UIControlStateNormal];
-            [_bottomView.allGoodsBtn setTitle:[NSString stringWithFormat:@"%@\n上新",self.shopInfoModel.justItem] forState:UIControlStateNormal];
+            [_bottomView.recentNewBtn setTitle:[NSString stringWithFormat:@"%@\n上新",self.shopInfoModel.justItem] forState:UIControlStateNormal];
         }
         
         [_tableView reloadData];

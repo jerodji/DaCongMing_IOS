@@ -129,6 +129,15 @@
     
 }
 
+#pragma mark - action
+- (void)collectBtnAction{
+    
+    if (self.cancelCollect) {
+        
+        self.cancelCollect(self.collectShopModel.seller_id);
+    }
+}
+
 #pragma mark - collectionViewDataSource
 //返回section个数
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
@@ -162,8 +171,7 @@
     HYMyCollectShopItemList *itemList = [HYMyCollectShopItemList modelWithDictionary:dict];
     
     DLog(@"current itemID is %@",itemList);
-    
-    
+    self.collectionSelect(itemList.item_id);
 }
 
 #pragma mark - lazyload
@@ -224,6 +232,7 @@
         
         _collectBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_collectBtn setImage:[UIImage imageNamed:@"product_collect_hl"] forState:UIControlStateNormal];
+        [_collectBtn addTarget:self action:@selector(collectBtnAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return _collectBtn;
 }

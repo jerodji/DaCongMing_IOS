@@ -85,6 +85,10 @@
                 
                 complection(YES);
             }
+            else if (code == 002){
+                
+                [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"该手机号已经绑定了"];
+            }
             else{
                 
                 complection(NO);

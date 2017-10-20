@@ -10,8 +10,6 @@
 
 @interface HYCompleteView() <UITextFieldDelegate>
 
-/** skipBtn */
-@property (nonatomic,strong) UIButton *skipBtn;
 /** completeInfoLabel */
 @property (nonatomic,strong) UILabel *completeInfoLabel;
 /** phoneTextField */
@@ -166,7 +164,10 @@
 
 - (void)skipAction{
 
-    self.skipBlock();
+    if (self.skipBlock) {
+        
+        self.skipBlock();
+    }
 }
 
 - (void)getAuthCodeAction{

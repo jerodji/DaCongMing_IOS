@@ -38,6 +38,13 @@
     };
 }
 
+- (void)setIsBindPhone:(BOOL)isBindPhone{
+    
+    _isBindPhone = isBindPhone;
+    [self.view addSubview:self.complecteView];
+    self.complecteView.skipBtn.hidden = isBindPhone;
+}
+
 - (UIImageView *)bgImgView{
     
     if (!_bgImgView) {
@@ -53,6 +60,7 @@
     if (!_complecteView) {
         
         _complecteView = [[HYCompleteView alloc] initWithFrame:self.view.bounds];
+        
     }
     return _complecteView;
 }
