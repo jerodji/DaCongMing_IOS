@@ -11,6 +11,6 @@
 
 @interface HYHomeViewModel : NSObject
 
-+ (void)requestHomePageData:(void(^)(HYHomePageModel *model))complemtion;
++ (void)requestHomePageData:(void(^)(HYHomePageModel *model))complemtion failureBlock:(void(^)())failure;
 
 @end

@@ -8,6 +8,7 @@
 
 #import "HYSetLoginPwdViewController.h"
 #import "HYSendAuthCodeView.h"
+#import "HYSetPasswordViewController.h"
 
 @interface HYSetLoginPwdViewController ()
 
@@ -29,6 +30,16 @@
     self.title = @"设置登录密码";
     self.view.backgroundColor = KAPP_TableView_BgColor;
     [self.view addSubview:self.sendAuthView];
+    
+    __weak typeof (self)weakSelf = self;
+    self.sendAuthView.authSuccessBlock = ^(NSString *authCode) {
+       
+        HYSetPasswordViewController *setPasswordVC = [HYSetPasswordViewController new];
+        setPasswordVC.phone = [HYUserModel sharedInstance].userInfo.phone;
+        setPasswordVC.authCode = authCode;
+        setPasswordVC.title = @"设置登录密码";
+        [weakSelf.navigationController pushViewController:setPasswordVC animated:YES];
+    };
 }
 
 - (void)viewDidLayoutSubviews{

@@ -109,4 +109,10 @@
 /** 沙盒cache目录 */
 #define KCACHE_PATH             [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) firstObject]
 
+#define KUSERDEFAULTS           [NSUserDefaults  standardUserDefaults]
+#define KAccountPhone           [[NSUserDefaults standardUserDefaults] objectForKey:@"phone"]
+#define KAccountPassword        [[NSUserDefaults standardUserDefaults] objectForKey:@"password"]
+#define KLoginType              [[NSUserDefaults standardUserDefaults] objectForKey:@"loginType"]
+
+
 #endif /* Macro_h */

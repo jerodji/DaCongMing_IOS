@@ -9,7 +9,7 @@
 #import "HYSendAuthCodeView.h"
 #import "HYPasswordView.h"
 
-@interface HYSendAuthCodeView()
+@interface HYSendAuthCodeView() <HYPasswordViewDelegate>
 
 /** 标题 */
 @property (nonatomic,strong) UILabel *titleLabel;
@@ -74,13 +74,72 @@
         make.top.equalTo(_sendAuthBtn.mas_bottom).offset(40 * WIDTH_MULTIPLE);
         make.left.equalTo(self).offset(20 * WIDTH_MULTIPLE);
         make.right.equalTo(self).offset(-20 * WIDTH_MULTIPLE);
-        make.height.mas_equalTo(40 * WIDTH_MULTIPLE);
+        make.height.mas_equalTo(46 * WIDTH_MULTIPLE);
     }];
 }
 
 #pragma mark - action
 - (void)sendAuthBtnAction{
 
+    [HYUserHandle getAuthCodeWithPhone:[HYUserModel sharedInstance].userInfo.phone complectionBlock:^(BOOL isSuccess) {
+        
+        if (isSuccess) {
+            
+            //开始倒计时
+            [self countDown];
+        }
+    }];
+}
+
+/** 倒计时的方法 */
+- (void)countDown{
+    
+    __block NSInteger time = 59;
+    //创建全局队列
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    //创建监视时间变化的对象
+    dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
+    //每秒执行
+    dispatch_source_set_timer(timer, dispatch_walltime(NULL, 0), 1.0 * NSEC_PER_SEC, 0);
+    dispatch_source_set_event_handler(timer, ^{
+        //倒计时结束，关闭
+        if (time <= 0) {
+            dispatch_source_cancel(timer);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                [self.sendAuthBtn setTitle:@"重新发送" forState:UIControlStateNormal];
+                self.sendAuthBtn.userInteractionEnabled = YES;
+            });
+        }
+        else{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                self.sendAuthBtn.userInteractionEnabled = NO;
+                [self.sendAuthBtn setTitle:[NSString stringWithFormat:@"验证码(%ld)",time] forState:UIControlStateNormal];
+                self.sendAuthBtn.backgroundColor = KAPP_b7b7b7_COLOR;
+                time--;
+            });
+        }
+        
+    });
+    dispatch_resume(timer);
+}
+
+#pragma mark - 输入验证码delegate
+- (void)passwordCompleteInput:(HYPasswordView *)passwordView{
+    
+    NSString *authCode = passwordView.passwordString;
+    DLog(@"%@",authCode);
+    [HYUserHandle verifyAuthCodeWithPhone:[HYUserModel sharedInstance].userInfo.phone authCode:authCode complectionBlock:^(BOOL isSuccess) {
+        
+        if (isSuccess) {
+            
+            if (self.authSuccessBlock) {
+                
+                self.authSuccessBlock(authCode);
+            }
+        }
+    }];
 }
 
 #pragma mark - lazyload
@@ -105,7 +164,8 @@
         _phoneLabel.font = KFitFont(18);
         _phoneLabel.textColor = KAPP_THEME_COLOR;
         _phoneLabel.textAlignment = NSTextAlignmentCenter;
-        _phoneLabel.text = @"123****4567";
+        NSString *phone = [[HYUserModel sharedInstance].userInfo.phone stringByReplacingCharactersInRange:NSMakeRange(3, 4) withString:@"****"];
+        _phoneLabel.text = phone;
     }
     return _phoneLabel;
 }
@@ -130,6 +190,7 @@
     if (!_authCodeView) {
         
         _authCodeView = [[HYPasswordView alloc] init];
+        _authCodeView.delegate = self;
     }
     return _authCodeView;
 }

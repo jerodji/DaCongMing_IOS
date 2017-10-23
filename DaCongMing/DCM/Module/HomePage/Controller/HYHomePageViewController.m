@@ -47,7 +47,7 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-    [self requestNetwork];
+    [self requestRecommendData];
 }
 
 
@@ -55,6 +55,12 @@
     
     [super viewWillAppear:animated];
     [self setupUI];
+    
+    if (!_model) {
+        
+        [self requestNetwork];
+        [self requestRecommendData];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
@@ -63,10 +69,6 @@
     [_navTitleView removeFromSuperview];
     _navTitleView = nil;
     
-    if (!_model) {
-        
-        [self requestNetwork];
-    }
 }
 
 - (void)setupUI{
@@ -77,9 +79,17 @@
 
 }
 
+#pragma mark - network
 - (void)requestNetwork{
     
-    _goodsList = [NSMutableArray array];
+    //先从缓存中取
+    if ([HYPlistTools isFileExistWithFileName:[NSString stringWithFormat:@"%@.data",KHomePageDataModel]]) {
+        
+        HYHomePageModel *model = [HYPlistTools unarchivewithName:[NSString stringWithFormat:@"%@.data",KHomePageDataModel]];
+        _model = model;
+        [self.tableView reloadData];
+        return;
+    }
     
     [HYHomeViewModel requestHomePageData:^(HYHomePageModel *model) {
         
@@ -93,13 +103,56 @@
         }
         _headerView.imageURLStringsGroup = tempArray;
         _model = model;
+        
+        //存入plist
+        [HYPlistTools archiveObject:model withName:[NSString stringWithFormat:@"%@.data",KHomePageDataModel]];
         [self.tableView reloadData];
+    } failureBlock:^{
+        
     }];
     
+    
+}
+
+- (void)requestRecommendData{
+    
+    _goodsList = [NSMutableArray array];
+
     [HYGoodsHandle requestGoodsListItem_type:@"001" pageNo:1 andPage:5 order:nil hotsale:nil complectionBlock:^(NSArray *datalist) {
         
         [_goodsList addObjectsFromArray:datalist];
         [self.tableView reloadData];
+    }];
+}
+
+- (void)updateHomeData{
+    
+    [HYHomeViewModel requestHomePageData:^(HYHomePageModel *model) {
+        
+        NSMutableArray *tempArray = [NSMutableArray array];
+        [self.bannerArray removeAllObjects];
+        for (NSDictionary *bannerDict in model.banners) {
+            
+            HYBannerModel *bannerModel = [HYBannerModel modelWithDictionary:bannerDict];
+            [self.bannerArray addObject:bannerModel];
+            [tempArray addObject:bannerModel.banner_imgUrl];
+        }
+        _headerView.imageURLStringsGroup = tempArray;
+        _model = model;
+        
+        //删掉本地的model
+        [HYPlistTools removeDataWithName:[NSString stringWithFormat:@"%@.data",KHomePageDataModel]];
+        //存入plist
+        [HYPlistTools archiveObject:model withName:[NSString stringWithFormat:@"%@.data",KHomePageDataModel]];
+        [self.tableView reloadData];
+        
+        //停止刷新
+        [_tableView.mj_header endRefreshing];
+        [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"刷新数据成功"];
+    } failureBlock:^{
+        
+        //停止刷新
+        [_tableView.mj_header endRefreshing];
     }];
 }
 
@@ -341,6 +394,7 @@
         _tableView.dataSource = self;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.tableHeaderView = self.headerView;
+        _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(updateHomeData)];
     }
     return _tableView;
 }

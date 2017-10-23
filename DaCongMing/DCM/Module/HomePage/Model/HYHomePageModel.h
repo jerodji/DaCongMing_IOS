@@ -12,7 +12,7 @@
 
 
 /** -------------------banner下面的图------------------------ */
-@interface HYDisCount : NSObject
+@interface HYDisCount : NSObject  <NSCoding>
 
 /**
  "guid": "6042eb44-7c2f-11e7-9ae8-80a589568544",
@@ -32,7 +32,7 @@
 @end
 
 /** -------------------banner下面的图------------------------ */
-@interface HYTypeReCommend : NSObject
+@interface HYTypeReCommend : NSObject <NSCoding>
 
 /**
  "guid": "41cf3467-7c32-11e7-9ae8-80a589568544",
@@ -81,7 +81,7 @@
 
 @end
 
-@interface HYHomePageModel : NSObject
+@interface HYHomePageModel : NSObject <NSCoding>
 
 /** banner */
 @property (nonatomic,copy) NSArray *banners;

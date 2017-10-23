@@ -218,24 +218,24 @@
 
 - (void)loginAction{
 
-//    if ([self checkLoginInfo]) {
+    if ([self checkLoginInfo]) {
     
-//        [HYUserHandle userLoginWithPhone:_phoneTextField.text password:_passwordTextField.text complectionBlock:^(BOOL isLoginSuccess) {
+        [HYUserHandle userLoginWithPhone:_phoneTextField.text password:_passwordTextField.text complectionBlock:^(BOOL isLoginSuccess) {
+
+            if (isLoginSuccess) {
+
+                self.userLoginSuccess();
+            }
+        }];
+    }
+        
+//        [HYUserHandle userLoginWithPhone:@"13027104773" password:@"123456" complectionBlock:^(BOOL isLoginSuccess) {
 //
 //            if (isLoginSuccess) {
 //
 //                self.userLoginSuccess();
 //            }
 //        }];
-        
-        [HYUserHandle userLoginWithPhone:@"13027104773" password:@"123456" complectionBlock:^(BOOL isLoginSuccess) {
-            
-            if (isLoginSuccess) {
-                
-                self.userLoginSuccess();
-            }
-        }];
-//    }
 }
 
 - (void)weChatAction{
@@ -248,6 +248,7 @@
         [WXApi sendReq:req];
     }
     else{
+        
         [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"please install WeChat"];
     }
     
@@ -273,7 +274,8 @@
                 if ([isNewUser isEqualToString:@"true"]) {
                     
                     //登录成功 跳转设置密码页面
-                   
+                    [KUSERDEFAULTS setValue:@"weChat" forKey:KUserLoginType];
+                    [KUSERDEFAULTS synchronize];
                     self.weChatBlock();
                 }
                 else{

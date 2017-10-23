@@ -19,7 +19,7 @@
     [param setValue:order forKey:@"order"];
     [param setValue:hotSale forKey:@"hotsale"];
     
-    [[HTTPManager shareHTTPManager] postDataFromUrl:API_GoodsList withParameter:param isShowHUD:YES success:^(id returnData) {
+    [[HTTPManager shareHTTPManager] postDataFromUrl:API_GoodsList withParameter:param isShowHUD:NO success:^(id returnData) {
         
         if (returnData) {
             
@@ -36,6 +36,10 @@
                 [MBProgressHUD hidePregressHUD:KEYWINDOW];
                 [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"获取商品列表出错!"];
             }
+        }
+        else{
+            
+            complection(nil);
         }
         
     }];

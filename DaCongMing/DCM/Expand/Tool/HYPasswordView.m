@@ -30,38 +30,51 @@
 
     [super drawRect:rect];
     
-    CGFloat width = rect.size.width;
-    CGFloat height = rect.size.height;
-    self.squareWidth = height;
-    CGFloat margin = (width - height * 6) / 5;
+    CGFloat width = rect.size.width - 40 * WIDTH_MULTIPLE;
+    self.squareWidth = width / 6;
     
-    CGFloat x = (width - self.passwordNum * self.squareWidth) / 2;
-    CGFloat y = (height - self.squareWidth) / 2;
+    CGFloat x = 20 * WIDTH_MULTIPLE;
+    CGFloat y = 0;
     //画外框
     CGContextRef context = UIGraphicsGetCurrentContext();
 //    CGContextAddRect(context, CGRectMake(x, y, self.passwordNum * self.squareWidth, self.squareWidth));
-    CGContextAddRect(context, CGRectMake(0, 0, self.width, self.height));
+    CGContextAddRect(context, CGRectMake(x, 0, self.width - 2 * x, self.height));
     CGContextSetLineWidth(context, 1);
-    CGContextSetStrokeColorWithColor(context, [UIColor redColor].CGColor);
+    CGContextSetStrokeColorWithColor(context, KAPP_7b7b7b_COLOR.CGColor);
     CGContextSetFillColorWithColor(context, [UIColor whiteColor].CGColor);
     
     //画竖线
-//    for (NSInteger i = 0; i < self.passwordNum; i ++) {
-//
-//        CGContextMoveToPoint(context, x + i * self.squareWidth, y);
-//        CGContextAddLineToPoint(context, x + i * self.squareWidth, y + self.squareWidth);
-//        CGContextClosePath(context);
-//    }
+    for (NSInteger i = 0; i < self.passwordNum; i ++) {
+
+        CGContextMoveToPoint(context, x + (i + 1) * self.squareWidth, y);
+        CGContextAddLineToPoint(context, x + (i + 1) * self.squareWidth, y + self.squareWidth);
+        CGContextClosePath(context);
+    }
     CGContextDrawPath(context, kCGPathFillStroke);
     CGContextSetFillColorWithColor(context, KAPP_7b7b7b_COLOR.CGColor);
     
+    //使用填充模式绘制文字
+    CGContextSetTextDrawingMode(context,kCGTextFill);
+    CGContextSetRGBStrokeColor(context, 123 / 255.0, 123 / 255.0, 123 / 255.0, 1);
+    CGContextSetFillColorWithColor(context, [UIColor greenColor].CGColor);
     //画小黑点
     for (NSInteger i = 0; i < self.passwordString.length; i++) {
         
         CGFloat dotX = x + i * self.squareWidth + self.squareWidth / 2;
-        CGFloat dotY = y + (self.squareWidth - self.dotRadius) / 2;
-        CGContextAddArc(context, dotX , dotY , self.dotRadius, 0, M_PI * 2, YES);
-        CGContextDrawPath(context, kCGPathFill);
+        CGFloat dotY = (self.height - self.dotRadius) / 2;
+//        CGContextAddArc(context, dotX , dotY , self.dotRadius, 0, M_PI * 2, YES);
+//        CGContextDrawPath(context, kCGPathFill);
+        
+        NSString *str = [self.passwordString substringWithRange:NSMakeRange(i, 1)];
+        CGFloat strWidth = [str widthForFont:KFitFont(24)];
+        CGFloat strHeight = [str heightForFont:KFitFont(24) width:strWidth];
+        CGFloat strX = dotX - strWidth / 2;
+        CGFloat strY = dotY - strHeight / 2;
+        //[str  drawAtPoint:CGPointMake(i * self.squareWidth, 0) withAttributes:@{NSFontAttributeName : KFitFont(24)}];
+        
+        NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
+        style.alignment = NSTextAlignmentCenter;
+        [str drawInRect:CGRectMake(i * self.squareWidth + x, strY, self.squareWidth, self.height) withAttributes:@{NSFontAttributeName : KFitFont(24),NSParagraphStyleAttributeName : style}];
     }
 
 }

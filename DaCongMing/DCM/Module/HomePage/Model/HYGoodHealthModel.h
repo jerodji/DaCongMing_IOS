@@ -31,7 +31,7 @@
 
 #import "HYBaseModel.h"
 
-@interface HYGoodHealthModel : HYBaseModel
+@interface HYGoodHealthModel : HYBaseModel <NSCoding>
 
 /** guid */
 @property (nonatomic, copy) NSString *guid;

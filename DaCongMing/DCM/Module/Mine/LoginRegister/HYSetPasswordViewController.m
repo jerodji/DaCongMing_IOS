@@ -92,16 +92,31 @@
 
 }
 
+- (void)setAuthCode:(NSString *)authCode{
+    
+    _authCode = authCode;
+    self.closeBtn.hidden = YES;
+}
+
 #pragma mark - action
 - (void)confirmAction{
 
     
-    [HYUserHandle setPasswordWithPhone:_phone password:_passwordTextField.text complectionBlock:^(BOOL isSuccess) {
+    [HYUserHandle setPasswordWithPhone:_phone password:_passwordTextField.text authCode:self.authCode complectionBlock:^(BOOL isSuccess) {
         
         if (isSuccess) {
             
-            HYTabBarController *tabBar = [[HYTabBarController alloc] init];
-            [self presentViewController:tabBar animated:YES completion:nil];
+            if (self.authCode) {
+                
+                NSArray *pushVCAry=[self.navigationController viewControllers];
+                UIViewController *popVC = [pushVCAry objectAtIndex:pushVCAry.count - 3];
+                [self.navigationController popToViewController:popVC animated:YES];
+            }
+            else{
+                
+                HYTabBarController *tabBar = [[HYTabBarController alloc] init];
+                [self presentViewController:tabBar animated:YES completion:nil];
+            }
         }
     }];
     

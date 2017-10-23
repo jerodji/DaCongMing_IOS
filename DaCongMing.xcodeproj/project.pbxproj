@@ -131,6 +131,7 @@
 		3EA0BC261F750EA700F78FDD /* HYGoodsPostageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA0BC251F750EA700F78FDD /* HYGoodsPostageTableViewCell.m */; };
 		3EA0BC291F750EC300F78FDD /* HYDiscountTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA0BC281F750EC300F78FDD /* HYDiscountTableViewCell.m */; };
 		3EA0BC2C1F750EDD00F78FDD /* HYGoodsPayTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA0BC2B1F750EDD00F78FDD /* HYGoodsPayTableViewCell.m */; };
+		3EC4EB561F9DBE82001D5DD3 /* HYGuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC4EB551F9DBE82001D5DD3 /* HYGuideViewController.m */; };
 		3ECD83311F8F5E5100DE6FFD /* HYShareHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECD83301F8F5E5100DE6FFD /* HYShareHandle.m */; };
 		3ECD83341F8F6DD300DE6FFD /* HYMyCollectShopModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECD83331F8F6DD300DE6FFD /* HYMyCollectShopModel.m */; };
 		3ECD83371F8F748800DE6FFD /* HYMyCollectShopImageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECD83361F8F748800DE6FFD /* HYMyCollectShopImageCollectionViewCell.m */; };
@@ -450,6 +451,8 @@
 		3EA0BC281F750EC300F78FDD /* HYDiscountTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYDiscountTableViewCell.m; sourceTree = "<group>"; };
 		3EA0BC2A1F750EDD00F78FDD /* HYGoodsPayTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYGoodsPayTableViewCell.h; sourceTree = "<group>"; };
 		3EA0BC2B1F750EDD00F78FDD /* HYGoodsPayTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYGoodsPayTableViewCell.m; sourceTree = "<group>"; };
+		3EC4EB541F9DBE82001D5DD3 /* HYGuideViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYGuideViewController.h; sourceTree = "<group>"; };
+		3EC4EB551F9DBE82001D5DD3 /* HYGuideViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYGuideViewController.m; sourceTree = "<group>"; };
 		3ECD832F1F8F5E5100DE6FFD /* HYShareHandle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYShareHandle.h; sourceTree = "<group>"; };
 		3ECD83301F8F5E5100DE6FFD /* HYShareHandle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYShareHandle.m; sourceTree = "<group>"; };
 		3ECD83321F8F6DD300DE6FFD /* HYMyCollectShopModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYMyCollectShopModel.h; sourceTree = "<group>"; };
@@ -1273,6 +1276,8 @@
 		3E5620871F6B72160063AA5B /* Launch */ = {
 			isa = PBXGroup;
 			children = (
+				3EC4EB541F9DBE82001D5DD3 /* HYGuideViewController.h */,
+				3EC4EB551F9DBE82001D5DD3 /* HYGuideViewController.m */,
 			);
 			path = Launch;
 			sourceTree = "<group>";
@@ -1440,7 +1445,7 @@
 				TargetAttributes = {
 					3E5620181F6B6A800063AA5B = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = N258QY3YD6;
+						DevelopmentTeam = JR7BAVX2XH;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -1613,6 +1618,7 @@
 				3E5620B71F6BBDE40063AA5B /* HYHomeCollectionCell.m in Sources */,
 				3E4D78771F78DD9300BC9C2B /* HYGoodsHandle.m in Sources */,
 				3E3ED06B1F96F92900C20E61 /* HYBrandShopFiltView.m in Sources */,
+				3EC4EB561F9DBE82001D5DD3 /* HYGuideViewController.m in Sources */,
 				3EA0BC131F739EF700F78FDD /* HYGoodSpecificationSelectView.m in Sources */,
 				3E5620211F6B6A800063AA5B /* AppDelegate.m in Sources */,
 				3E33CC931F8B1D7A002179CD /* HYAreaModel.m in Sources */,
@@ -1814,7 +1820,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = N258QY3YD6;
+				DEVELOPMENT_TEAM = JR7BAVX2XH;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1825,7 +1831,7 @@
 				INFOPLIST_FILE = DaCongMing/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.beanu.hailin;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hailin.dacongming;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
@@ -1839,7 +1845,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = N258QY3YD6;
+				DEVELOPMENT_TEAM = JR7BAVX2XH;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1850,7 +1856,7 @@
 				INFOPLIST_FILE = DaCongMing/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.beanu.hailin;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hailin.dacongming;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 			};

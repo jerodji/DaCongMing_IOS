@@ -62,7 +62,19 @@
 
 - (void)autoLogin{
     
+    if ([[KUSERDEFAULTS valueForKey:KUserLoginType] isEqualToString:@"phone"]) {
+        
+        NSString *phone = [KUSERDEFAULTS valueForKey:KUserPhone];
+        NSString *password = [KUSERDEFAULTS valueForKey:KUserPassword];
+        [HYUserHandle userLoginWithPhone:phone password:password complectionBlock:^(BOOL isLoginSuccess) {
+            
+        }];
+    }
     
+    if ([[KUSERDEFAULTS valueForKey:KUserLoginType] isEqualToString:@"weChat"]) {
+        
+        DLog(@"微信账号登录");
+    }
 }
 
 - (void)didReceiveMemoryWarning {

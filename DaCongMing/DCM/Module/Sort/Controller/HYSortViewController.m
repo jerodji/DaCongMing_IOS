@@ -49,6 +49,16 @@
 #pragma mark - networkRequest
 - (void)requestSortData{
     
+    //如果本地有缓存，直接去本地
+    if ([HYPlistTools isFileExistWithFileName:KSortListPlist]) {
+        
+        NSArray *array = [HYPlistTools unarchivewithName:KSortListPlist];
+        [_datalist removeAllObjects];
+        [_datalist addObjectsFromArray:array];
+        [_tableView reloadData];
+        return;
+    }
+    
     [[HTTPManager shareHTTPManager] postDataFromUrl:API_Sort withParameter:nil isShowHUD:YES success:^(id returnData) {
        
         if (returnData) {
@@ -66,9 +76,10 @@
                     [_tableView reloadData];
                 }
                 
+                //存入plist
+                [HYPlistTools archiveObject:_datalist withName:KSortListPlist];
             }
         }
-
     }];
 }
 

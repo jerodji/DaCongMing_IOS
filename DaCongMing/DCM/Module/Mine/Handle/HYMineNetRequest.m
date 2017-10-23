@@ -32,6 +32,10 @@
                 complection(nil);
             }
         }
+        else{
+            
+            complection(nil);
+        }
     }];
 }
 

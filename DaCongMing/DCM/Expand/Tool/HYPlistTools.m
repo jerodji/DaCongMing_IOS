@@ -26,7 +26,7 @@
 
 + (void)archiveObject:(id)object withName:(NSString *)name{
     
-    NSString *namePath = [NSString stringWithFormat:@"%@.plist",name];
+    NSString *namePath = [NSString stringWithFormat:@"%@",name];
     NSString *filePath = [KCACHE_PATH stringByAppendingPathComponent:namePath];
     BOOL isSuccess = [NSKeyedArchiver archiveRootObject:object toFile:filePath];
     if (isSuccess) {
@@ -37,9 +37,9 @@
     }
 }
 
-+ (NSArray *)unarchivewithName:(NSString *)name{
++ (id)unarchivewithName:(NSString *)name{
     
-    NSString *namePath = [NSString stringWithFormat:@"%@.plist",name];
+    NSString *namePath = [NSString stringWithFormat:@"%@",name];
     NSString *filePath = [KCACHE_PATH stringByAppendingPathComponent:namePath];
     NSArray *array = [NSKeyedUnarchiver unarchiveObjectWithFile:filePath];
     return array;
@@ -80,9 +80,9 @@
     return dict;
 }
 
-+ (void)removeDataWithPlistName:(NSString *)plistName{
++ (void)removeDataWithName:(NSString *)name{
     
-    NSString *filePath = [KCACHE_PATH stringByAppendingPathComponent:plistName];
+    NSString *filePath = [KCACHE_PATH stringByAppendingPathComponent:name];
     NSFileManager *manager = [NSFileManager defaultManager];
     [manager removeItemAtPath:filePath error:nil];
 }

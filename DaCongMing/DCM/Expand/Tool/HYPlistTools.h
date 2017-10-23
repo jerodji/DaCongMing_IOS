@@ -17,7 +17,7 @@
 + (void)archiveObject:(id)object withName:(NSString *)name;
 
 /**将自定义的对象解档*/
-+ (NSArray *)unarchivewithName:(NSString *)name;
++ (id)unarchivewithName:(NSString *)name;
 
 /**判断某个文件是否存在*/
 + (BOOL)isFileExistWithFileName:(NSString *)fileName;
@@ -32,7 +32,7 @@
 + (NSDictionary *)getDictionaryDataWithPlistName:(NSString *)plistName;
 
 /**移除plist文件*/
-+ (void)removeDataWithPlistName:(NSString *)plistName;
++ (void)removeDataWithName:(NSString *)name;
 
 /**计算某个文件夹下容量*/
 + (CGFloat )folderSizeAtPath:(NSString *)folderPath;

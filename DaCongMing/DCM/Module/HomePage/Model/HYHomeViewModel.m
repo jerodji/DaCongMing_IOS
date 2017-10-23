@@ -10,7 +10,7 @@
 
 @implementation HYHomeViewModel
 
-+ (void)requestHomePageData:(void (^)(HYHomePageModel *))complemtion{
++ (void)requestHomePageData:(void (^)(HYHomePageModel *))complemtion failureBlock:(void (^)())failure{
 
     [[HTTPManager shareHTTPManager] postDataFromUrl:API_HomePage withParameter:nil isShowHUD:NO success:^(id returnData) {
        
@@ -26,6 +26,11 @@
                 
                 complemtion(nil);
             }
+        }
+        else{
+            
+            failure();
+            [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"网络出现了问题"];
         }
         
     }];

@@ -16,6 +16,9 @@ extern NSString *const KUserPhone;
 /** 用户密码 */
 extern NSString *const KUserPassword;
 
+/** 用户登录类型 */
+extern NSString *const KUserLoginType;
+
 /** 微信登录通知 */
 extern NSString *const KWeChatLoginNotification;
 
@@ -33,5 +36,11 @@ extern NSString * const KShoppingCartsCountChanged;
 
 /** 城市信息的plist */
 extern NSString * const KAddressPlist;
+
+/** 产品分类plist */
+extern NSString * const KSortListPlist;
+
+/** 首页数据模型 */
+extern NSString * const KHomePageDataModel;
 
 @end

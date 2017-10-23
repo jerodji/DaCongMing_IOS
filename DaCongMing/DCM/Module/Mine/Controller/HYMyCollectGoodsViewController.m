@@ -253,6 +253,7 @@
         _tableView.dataSource = self;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.backgroundColor = KCOLOR(@"f4f4f4");
+        _tableView.bounces = NO;
     }
     return _tableView;
 }

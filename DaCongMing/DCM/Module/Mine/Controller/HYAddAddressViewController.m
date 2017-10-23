@@ -62,7 +62,7 @@
 - (void)requestCityData{
     
     //如果本地有缓存，直接去本地
-    if ([HYPlistTools isFileExistWithFileName:[NSString stringWithFormat:@"%@.plist",KAddressPlist]]) {
+    if ([HYPlistTools isFileExistWithFileName:KAddressPlist]) {
         
         NSArray *array = [HYPlistTools unarchivewithName:KAddressPlist];
         self.areaView.provinceArray = [array mutableCopy];

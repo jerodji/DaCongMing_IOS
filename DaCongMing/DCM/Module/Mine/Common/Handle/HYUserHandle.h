@@ -28,7 +28,7 @@
 /*!
      设置用户密码
  */
-+ (void)setPasswordWithPhone:(NSString *)phone password:(NSString *)password complectionBlock:(void(^)(BOOL isSuccess))complection;
++ (void)setPasswordWithPhone:(NSString *)phone password:(NSString *)password authCode:(NSString *)authCode complectionBlock:(void(^)(BOOL isSuccess))complection;
 
 /*!
      用户反馈

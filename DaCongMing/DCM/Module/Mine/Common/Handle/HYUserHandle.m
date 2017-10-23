@@ -29,8 +29,13 @@
                 
                 HYUserModel *user = [HYUserModel sharedInstance];
                 [user modelSetWithDictionary:dict];
-                
                 complection(YES);
+                
+                //缓存用户名和密码
+                [KUSERDEFAULTS setValue:phone forKey:KUserPhone];
+                [KUSERDEFAULTS setValue:password forKey:KUserPassword];
+                [KUSERDEFAULTS setValue:@"phone" forKey:KUserLoginType];
+                [KUSERDEFAULTS synchronize];
             }
             else{
                 
@@ -63,6 +68,9 @@
                 complection(NO);
                 [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"获取验证码失败"];
             }
+        }
+        else{
+            
         }
         
     }];
@@ -99,13 +107,14 @@
     }];
 }
 
-+ (void)setPasswordWithPhone:(NSString *)phone password:(NSString *)password complectionBlock:(void (^)(BOOL))complection{
++ (void)setPasswordWithPhone:(NSString *)phone password:(NSString *)password authCode:(NSString *)authCode complectionBlock:(void (^)(BOOL))complection{
     
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
     [param setValue:phone forKey:@"phoneNum"];
     [param setValue:[HYUserModel sharedInstance].token forKey:@"token"];
     [param setValue:password forKey:@"user_pwd"];
-    
+    [param setValue:authCode forKey:@"phoneCode"];
+
     
     [[HTTPManager shareHTTPManager] postDataFromUrl:API_SetPassword withParameter:param isShowHUD:YES success:^(id returnData) {
         
@@ -115,6 +124,8 @@
             if (code == 000) {
                 
                 complection(YES);
+                [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"设置密码成功"];
+
             }
             else{
                 

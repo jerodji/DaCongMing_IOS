@@ -14,6 +14,8 @@ NSString * const KUserPhone = @"userLoginPhone";
 
 NSString * const KUserPassword = @"userLoginPassword";
 
+NSString * const KUserLoginType = @"userLoginType";
+
 NSString * const KWeChatLoginNotification = @"KWeChatLoginNotification";
 
 NSString * const KWeChatPaySuccessNotification = @"KWeChatPaySuccessNotification";
@@ -24,6 +26,10 @@ NSString * const KShoppingCartsChanged = @"KShoppingCartsChanged";
 
 NSString * const KShoppingCartsCountChanged = @"KShoppingCartsCountChanged";
 
-NSString * const KAddressPlist = @"KAddressPlist";
+NSString * const KAddressPlist = @"KAddressPlist.plist";
+
+NSString * const KSortListPlist = @"KSortListPlist.plist";
+
+NSString * const KHomePageDataModel = @"KHomePageDataModel";
 
 @end

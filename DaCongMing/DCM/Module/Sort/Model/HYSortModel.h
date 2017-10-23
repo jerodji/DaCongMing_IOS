@@ -8,7 +8,7 @@
 
 #import "HYBaseModel.h"
 
-@interface HYSortModel : HYBaseModel
+@interface HYSortModel : HYBaseModel <NSCoding>
 
 /**
  *  "guid": null,
