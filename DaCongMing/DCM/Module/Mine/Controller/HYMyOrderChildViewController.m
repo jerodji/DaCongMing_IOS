@@ -12,7 +12,7 @@
 #import "HYMyOrderDetailViewController.h"
 #import "HYFillOrderViewController.h"
 
-@interface HYMyOrderChildViewController () <UITableViewDelegate,UITableViewDataSource,HYMyOrderBtnActionDelegate>
+@interface HYMyOrderChildViewController () <UITableViewDelegate,UITableViewDataSource,HYMyOrderBtnActionDelegate,DZNEmptyDataSetSource,DZNEmptyDataSetDelegate>
 
 /** tableView */
 @property (nonatomic,strong) UITableView *tableView;
@@ -140,6 +140,20 @@
     return 10 * WIDTH_MULTIPLE;
 }
 
+#pragma mark - 没有数据
+- (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView{
+    
+    NSString *text = @"您目前还没有订单";
+    NSDictionary *attributes = @{NSFontAttributeName : KFitFont(18),NSForegroundColorAttributeName : KAPP_7b7b7b_COLOR};
+     return [[NSAttributedString alloc] initWithString:text attributes:attributes];
+}
+
+- (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView{
+    
+    UIImage *image = [UIImage imageNamed:@"noOrder"];
+    return image;
+}
+
 #pragma mark - BtnDelegate
 - (void)myOrderBtnActionWithStr:(NSString *)title WithIndexPath:(NSIndexPath *)indexPath{
     
@@ -174,8 +188,8 @@
     
     HYCustomAlert *customAlert = [[HYCustomAlert alloc] initWithFrame:CGRectMake(0, 0, KSCREEN_WIDTH, KSCREEN_HEIGHT) WithTitle:@"温馨提示" content:@"确认要删除订单吗？" confirmBlock:^{
         
-        [HYRequestOrderHandle deleteReceivedAddress:orderID ComplectionBlock:^(BOOL isSuccess) {
-           
+        [HYRequestOrderHandle deleteOrderWithOrderID:orderID ComplectionBlock:^(BOOL isSuccess) {
+            
             if (isSuccess) {
                 
                 [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"删除订单成功"];

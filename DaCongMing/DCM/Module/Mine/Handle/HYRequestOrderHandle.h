@@ -62,4 +62,9 @@
  */
 + (void)confirmReceiveProductWithOrderID:(NSString *)ordreID ComplectionBlock:(void(^)(BOOL isSuccess))complection;
 
+/**
+ *  删除订单
+ */
++ (void)deleteOrderWithOrderID:(NSString *)orderID ComplectionBlock:(void(^)(BOOL isSuccess))complection;
+
 @end

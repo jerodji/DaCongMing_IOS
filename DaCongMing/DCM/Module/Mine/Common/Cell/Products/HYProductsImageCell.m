@@ -72,7 +72,7 @@
     if (!_bannerView) {
         
         //轮播图
-        _bannerView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectZero delegate:self placeholderImage:[UIImage imageNamed:@"banner.jpg"]];
+        _bannerView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectZero delegate:self placeholderImage:[UIImage imageNamed:@"productPlaceholder"]];
         _bannerView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
         _bannerView.pageControlStyle = SDCycleScrollViewPageContolStyleClassic;
         _bannerView.autoScrollTimeInterval = 2;

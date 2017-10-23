@@ -39,5 +39,6 @@
 #import "HYTabBarController.h"
 #import "SAMTextView.h"
 #import "HYNoCollectImgView.h"
+#import <UIScrollView+EmptyDataSet.h>
 
 #endif /* PrefixHeader_pch */
