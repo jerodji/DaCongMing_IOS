@@ -1,16 +1,16 @@
 //
-//  HYConfirmReceiveGoodsVC.h
+//  HYCommentVC.h
 //  DaCongMing
 //
-//  Created by 胡勇 on 2017/10/24.
+//  Created by 胡勇 on 2017/10/25.
 //  Copyright © 2017年 胡勇. All rights reserved.
 //
 
 #import "HYBaseViewController.h"
 
-@interface HYConfirmReceiveGoodsVC : HYBaseViewController
+@interface HYCommentVC : HYBaseViewController
 
-/** orderID */
+/** 订单号 */
 @property (nonatomic,copy) NSString *orderID;
 
 @end

@@ -11,6 +11,8 @@
 #import "HYMyOrderTableViewCell.h"
 #import "HYMyOrderDetailViewController.h"
 #import "HYFillOrderViewController.h"
+#import "HYConfirmReceiveGoodsVC.h"
+#import "HYCommentVC.h"
 
 @interface HYMyOrderChildViewController () <UITableViewDelegate,UITableViewDataSource,HYMyOrderBtnActionDelegate,DZNEmptyDataSetSource,DZNEmptyDataSetDelegate>
 
@@ -181,6 +183,12 @@
 
         [self deleteOrderWithOrderID:model.sorder_id];
     }
+    else if ([title isEqualToString:@"评论"]){
+        
+        HYCommentVC *commentVC = [HYCommentVC new];
+        commentVC.orderID = model.sorder_id;
+        [self.navigationController pushViewController:commentVC animated:YES];
+    }
 }
 
 #pragma mark - action
@@ -210,6 +218,9 @@
             if (isSuccess) {
                 
                 [self requestDataWithTag:_tag];
+                HYConfirmReceiveGoodsVC *confirmReceiveVC = [HYConfirmReceiveGoodsVC new];
+                confirmReceiveVC.orderID = orderID;
+                [self.navigationController pushViewController:confirmReceiveVC animated:YES];
             }
         }];
     }];

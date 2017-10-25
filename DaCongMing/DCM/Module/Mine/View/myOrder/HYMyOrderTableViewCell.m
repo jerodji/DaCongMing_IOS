@@ -34,6 +34,8 @@
 @property (nonatomic,strong) UIButton *toPayBtn;
 /** 确认收货 */
 @property (nonatomic,strong) UIButton *confirmGoodsBtn;
+/** 评论 */
+@property (nonatomic,strong) UIButton *commentBtn;
 /** 装图片的scrollView */
 @property (nonatomic,strong) UIScrollView *scrollView;
 
@@ -70,6 +72,7 @@
     [self addSubview:self.deleteOrderBtn];
     [self addSubview:self.topLine];
     [self addSubview:self.scrollView];
+    [self addSubview:self.commentBtn];
 }
 
 - (void)layoutSubviews{
@@ -169,6 +172,11 @@
     }];
     
     _scrollView.contentSize = CGSizeMake(self.model.orderDtls.count * 86 * WIDTH_MULTIPLE, 80 * WIDTH_MULTIPLE);
+    
+    [_commentBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.left.right.top.bottom.equalTo(_buyAgainBtn);
+    }];
 }
 
 #pragma mark - getter
@@ -193,24 +201,28 @@
             _deleteOrderBtn.hidden = YES;
             _buyAgainBtn.hidden = YES;
             _toPayBtn.hidden = NO;
+            _commentBtn.hidden = YES;
             break;
         case 2:
-            _confirmGoodsBtn.hidden = NO;
+            _confirmGoodsBtn.hidden = YES;
             _deleteOrderBtn.hidden = NO;
-            _buyAgainBtn.hidden = YES;
+            _buyAgainBtn.hidden = NO;
             _toPayBtn.hidden = YES;
+            _commentBtn.hidden = YES;
             break;
         case 3:
             _confirmGoodsBtn.hidden = NO;
             _deleteOrderBtn.hidden = YES;
             _buyAgainBtn.hidden = YES;
             _toPayBtn.hidden = YES;
+            _commentBtn.hidden = YES;
             break;
         case 8:
             _confirmGoodsBtn.hidden = YES;
             _deleteOrderBtn.hidden = NO;
-            _buyAgainBtn.hidden = NO;
+            _buyAgainBtn.hidden = YES;
             _toPayBtn.hidden = YES;
+            _commentBtn.hidden = NO;
             break;
         default:
             break;
@@ -290,6 +302,14 @@
     if (_delegate && [_delegate respondsToSelector:@selector(myOrderBtnActionWithStr:WithIndexPath:)]) {
         
         [_delegate myOrderBtnActionWithStr:@"删除订单" WithIndexPath:self.indexPath];
+    }
+}
+
+- (void)commentBtnAction{
+    
+    if (_delegate && [_delegate respondsToSelector:@selector(myOrderBtnActionWithStr:WithIndexPath:)]) {
+        
+        [_delegate myOrderBtnActionWithStr:@"评论" WithIndexPath:self.indexPath];
     }
 }
 
@@ -444,6 +464,24 @@
         [_confirmGoodsBtn addTarget:self action:@selector(confirmAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return _confirmGoodsBtn;
+}
+
+- (UIButton *)commentBtn{
+    
+    if (!_commentBtn) {
+        
+        _commentBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_commentBtn setTitle:@"去评论" forState:UIControlStateNormal];
+        _commentBtn.backgroundColor = KAPP_WHITE_COLOR;
+        [_commentBtn setTitleColor:KAPP_272727_COLOR forState:UIControlStateNormal];
+        _commentBtn.titleLabel.font = KFitFont(14);
+        _commentBtn.layer.cornerRadius = 2 * WIDTH_MULTIPLE;
+        _commentBtn.layer.borderColor = KAPP_272727_COLOR.CGColor;
+        _commentBtn.layer.borderWidth = 1;
+        _commentBtn.clipsToBounds = YES;
+        [_commentBtn addTarget:self action:@selector(commentBtnAction) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _commentBtn;
 }
 
 - (UIScrollView *)scrollView{

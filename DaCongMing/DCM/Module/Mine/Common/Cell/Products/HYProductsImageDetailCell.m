@@ -30,7 +30,7 @@
     
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         
-        [self addSubview:self.promiseLabel];
+        //[self addSubview:self.promiseLabel];
         [self addSubview:self.pullLabel];
         
     }
@@ -46,7 +46,7 @@
 
 - (void)setupSubviews{
     
-    self.previousImgHeight = 80 * WIDTH_MULTIPLE;
+    self.previousImgHeight = 50 * WIDTH_MULTIPLE;
     
     for (NSInteger i = 0; i < _imageArray.count; i++) {
         
@@ -89,19 +89,19 @@
 - (void)layoutSubviews{
     
     
-    [_promiseLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        
-        make.left.equalTo(self).offset(10 * WIDTH_MULTIPLE);
-        make.right.equalTo(self);
-        make.top.equalTo(self).offset(15);
-        make.height.equalTo(@(20 * WIDTH_MULTIPLE));
-    }];
+//    [_promiseLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//
+//        make.left.equalTo(self).offset(10 * WIDTH_MULTIPLE);
+//        make.right.equalTo(self);
+//        make.top.equalTo(self).offset(15);
+//        make.height.equalTo(@(20 * WIDTH_MULTIPLE));
+//    }];
     
     [_pullLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.top.equalTo(_promiseLabel.mas_bottom).offset(20 * WIDTH_MULTIPLE);
+        make.top.equalTo(self);
         make.left.right.equalTo(self);
-        make.height.equalTo(@(20));
+        make.height.equalTo(@(50 * WIDTH_MULTIPLE));
     }];
 }
 
@@ -126,8 +126,9 @@
         _pullLabel = [[UILabel alloc] init];
         _pullLabel.font = KFitFont(12);
         _pullLabel.textAlignment = NSTextAlignmentCenter;
-        _pullLabel.text = @"上拉查看详情";
-        _pullLabel.textColor = KCOLOR(@"7b7b7b");
+        _pullLabel.backgroundColor = KCOLOR(@"f6f6f6");
+        _pullLabel.text = @"————  继续拖动，查看产品详情  ————";
+        _pullLabel.textColor = KAPP_b7b7b7_COLOR;
     }
     return _pullLabel;
 }

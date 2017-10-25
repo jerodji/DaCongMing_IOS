@@ -58,7 +58,7 @@
             NSInteger code =[[returnData objectForKey:@"successed"] integerValue];
             if (code == 000) {
                 
-                NSDictionary *dict = [returnData objectForKey:@"dataInfo"];
+                NSDictionary *dict = [returnData objectForKey:@"dataInfo"][@"itemInfo"];
                 HYGoodsDetailModel *model = [HYGoodsDetailModel modelWithDictionary:dict];
                 complection(model);
             }

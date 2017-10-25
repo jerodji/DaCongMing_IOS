@@ -63,4 +63,9 @@
  */
 + (void)submitlogisticsInfoWithRefundID:(NSString *)refundID logisticsCompany:(NSString *)company logisticsNum:(NSString *)number ComplectionBlock:(void(^)(BOOL isSuccess))complection;
 
+/**
+ *  评价
+ */
++ (void)commentWithOrderID:(NSString *)orderID jsonText:(NSString *)jsonText ComplectionBlock:(void(^)(BOOL isSuccess))complection;
+
 @end

@@ -86,6 +86,14 @@
     if ([HYPlistTools isFileExistWithFileName:[NSString stringWithFormat:@"%@.data",KHomePageDataModel]]) {
         
         HYHomePageModel *model = [HYPlistTools unarchivewithName:[NSString stringWithFormat:@"%@.data",KHomePageDataModel]];
+        NSMutableArray *tempArray = [NSMutableArray array];
+        for (NSDictionary *bannerDict in model.banners) {
+            
+            HYBannerModel *bannerModel = [HYBannerModel modelWithDictionary:bannerDict];
+            [self.bannerArray addObject:bannerModel];
+            [tempArray addObject:bannerModel.banner_imgUrl];
+        }
+        _headerView.imageURLStringsGroup = tempArray;
         _model = model;
         [self.tableView reloadData];
         return;

@@ -113,6 +113,9 @@
 //提交退款发货信息
 #define API_SubmitRefundLogisticsInfo       @"HAILIN_SERVER/sendItemForRefOrder.do"
 
+//评价订单
+#define API_CommentOrder                    @"HAILIN_SERVER/orderEvaluate.do"
+
 /***************************************收货地址**********************************/
 #pragma mark - 收货地址
 //获取收货地址

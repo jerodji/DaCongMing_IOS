@@ -255,4 +255,28 @@
     }];
 }
 
++ (void)commentWithOrderID:(NSString *)orderID jsonText:(NSString *)jsonText ComplectionBlock:(void (^)(BOOL))complection{
+    
+    NSMutableDictionary *requestParam = [NSMutableDictionary dictionary];
+    [requestParam setValue:[HYUserModel sharedInstance].token forKey:@"token"];
+    [requestParam setValue:orderID forKey:@"sorder_id"];
+    [requestParam setValue:jsonText forKey:@"evaluateJSON"];
+
+    
+    [[HTTPManager shareHTTPManager] postDataFromUrl:API_CommentOrder withParameter:requestParam isShowHUD:YES success:^(id returnData) {
+        
+        if (returnData) {
+            
+            NSInteger code = [[returnData objectForKey:@"successed"] integerValue];
+            if (code == 000) {
+                
+                complection(YES);
+            }
+            else{
+                complection(NO);
+            }
+        }
+    }];
+}
+
 @end
