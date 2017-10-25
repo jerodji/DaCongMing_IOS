@@ -1,0 +1,28 @@
+dependencies: \
+  /Users/huyong/Desktop/DaCongMing/DaCongMing/DaCongMing/DCM/Module/Mine/View/HYNoCollectImgView.h \
+  /Users/huyong/Desktop/DaCongMing/DaCongMing/DaCongMing/DCM/Expand/Tool/SAMTextView.h \
+  /Users/huyong/Desktop/DaCongMing/DaCongMing/DaCongMing/DCM/Module/TabBar/HYTabBarController.h \
+  /Users/huyong/Desktop/DaCongMing/DaCongMing/DaCongMing/DCM/Module/Mine/Common/View/HYCustomAlert.h \
+  /Users/huyong/Desktop/DaCongMing/DaCongMing/DaCongMing/DCM/Module/Mine/Common/Model/HYGoodsItemModel.h \
+  /Users/huyong/Desktop/DaCongMing/DaCongMing/DaCongMing/DCM/Module/Mine/Model/HYMyAddressModel.h \
+  /Users/huyong/Desktop/DaCongMing/DaCongMing/DaCongMing/DCM/Module/Mine/Common/Model/HYCreateOrder.h \
+  /Users/huyong/Desktop/DaCongMing/DaCongMing/DaCongMing/DCM/Module/Mine/Common/Model/HYGoodsDetailModel.h \
+  /Users/huyong/Desktop/DaCongMing/DaCongMing/DaCongMing/DCM/Module/Mine/Common/Handle/HYGoodsHandle.h \
+  /Users/huyong/Desktop/DaCongMing/DaCongMing/DaCongMing/DCM/Module/Mine/Common/Handle/HYUserHandle.h \
+  /Users/huyong/Desktop/DaCongMing/DaCongMing/DaCongMing/DCM/Base/HYBaseModel.h \
+  /Users/huyong/Desktop/DaCongMing/DaCongMing/DaCongMing/DCM/Module/Mine/Model/HYUserModel.h \
+  /Users/huyong/Desktop/DaCongMing/DaCongMing/DaCongMing/DCM/Expand/Tool/HYButton.h \
+  /Users/huyong/Desktop/DaCongMing/DaCongMing/DaCongMing/DCM/Expand/Macro/WebApi.h \
+  /Users/huyong/Desktop/DaCongMing/DaCongMing/DaCongMing/DCM/Expand/Macro/Macro.h \
+  /Users/huyong/Desktop/DaCongMing/DaCongMing/DaCongMing/DCM/Expand/Macro/Const.h \
+  /Users/huyong/Desktop/DaCongMing/DaCongMing/DaCongMing/DCM/Expand/Tool/HYPlistTools.h \
+  /Users/huyong/Desktop/DaCongMing/DaCongMing/DaCongMing/DCM/Expand/Network/HTTPManager.h \
+  /Users/huyong/Desktop/DaCongMing/DaCongMing/DaCongMing/DCM/Expand/Category/MBProgressHUD+HYExtension.h \
+  /Users/huyong/Desktop/DaCongMing/DaCongMing/DaCongMing/DCM/Expand/Macro/PrefixHeader.pch \
+  /Users/huyong/Desktop/DaCongMing/DaCongMing/DaCongMing/AppDelegate.m \
+  /Users/huyong/Desktop/DaCongMing/DaCongMing/DaCongMing/AppDelegate.h \
+  /Users/huyong/Desktop/DaCongMing/DaCongMing/DaCongMing/DCM/Module/Mine/LoginRegister/HYLoginViewController.h \
+  /Users/huyong/Desktop/DaCongMing/DaCongMing/DaCongMing/DCM/Base/HYBaseViewController.h \
+  /Users/huyong/Desktop/DaCongMing/DaCongMing/DaCongMing/DCM/Module/Launch/HYGuideViewController.h \
+  /Users/huyong/Desktop/DaCongMing/DaCongMing/DaCongMing/DCM/Vender/AlipaySDK.framework/Headers/AlipaySDK.h \
+  /Users/huyong/Desktop/DaCongMing/DaCongMing/DaCongMing/DCM/Vender/AlipaySDK.framework/Headers/APayAuthInfo.h
