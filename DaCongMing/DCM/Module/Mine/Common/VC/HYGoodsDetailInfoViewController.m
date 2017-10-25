@@ -42,6 +42,10 @@
 @property (nonatomic,strong) HYGoodSpecificationSelectView *selectSpeciView;
 /** shareView */
 @property (nonatomic,strong) HYShareView *shareView;
+/** 顶部导航 */
+@property (nonatomic,strong) UIView *barView;
+/** titleLabel */
+@property (nonatomic,strong) UILabel *titleLabel;
 
 @end
 
@@ -74,9 +78,11 @@
 - (void)setupSubviews{
     
     self.view.backgroundColor = KAPP_WHITE_COLOR;
+    [self.view addSubview:self.barView];
     [self.view addSubview:self.tableView];
-    [self.view addSubview:self.backBtn];
-    [self.view addSubview:self.shareBtn];
+    [self.barView addSubview:self.backBtn];
+    [self.barView addSubview:self.shareBtn];
+    [self.view bringSubviewToFront:self.barView];
     [self.view addSubview:self.bottomView];
 }
 
@@ -110,14 +116,14 @@
     [_backBtn mas_makeConstraints:^(MASConstraintMaker *make) {
        
         make.left.equalTo(self.view).offset(10 * WIDTH_MULTIPLE);
-        make.top.equalTo(self.view).offset(30 * WIDTH_MULTIPLE);
+        make.top.equalTo(self.view).offset(20 * WIDTH_MULTIPLE);
         make.width.height.equalTo(@40);
     }];
     
     [_shareBtn mas_makeConstraints:^(MASConstraintMaker *make) {
        
         make.right.equalTo(self.view).offset(-10 * WIDTH_MULTIPLE);
-        make.top.equalTo(self.view).offset(30 * WIDTH_MULTIPLE);
+        make.top.equalTo(self.view).offset(20 * WIDTH_MULTIPLE);
         make.width.height.equalTo(@40);
     }];
     
@@ -373,6 +379,28 @@
 }
 
 
+#pragma mark - scrollViewDelegate
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    
+    CGFloat offsetY = scrollView.contentOffset.y;
+    if (offsetY > 200) {
+        
+        UIColor *color = KAPP_NAV_COLOR;
+        _barView.backgroundColor = [color colorWithAlphaComponent:offsetY / 500];
+        [_shareBtn setImage:[UIImage imageNamed:@"product_share_white"] forState:UIControlStateNormal];
+        [_backBtn setImage:[UIImage imageNamed:@"product_back_white"] forState:UIControlStateNormal];
+        _titleLabel.alpha = offsetY / 500;
+    }
+    else{
+        
+        UIColor *color = KAPP_NAV_COLOR;
+        _barView.backgroundColor = [color colorWithAlphaComponent:0];
+        [_shareBtn setImage:[UIImage imageNamed:@"product_share"] forState:UIControlStateNormal];
+        [_backBtn setImage:[UIImage imageNamed:@"product_back"] forState:UIControlStateNormal];
+        _titleLabel.alpha = 0;
+    }
+}
+
 #pragma mark - lazyload
 - (UIButton *)backBtn{
     
@@ -455,6 +483,25 @@
         _imageDetailArray = [NSMutableArray array];
     }
     return _imageDetailArray;
+}
+
+- (UIView *)barView{
+    
+    if (!_barView) {
+        
+        _barView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, KSCREEN_WIDTH, 64)];
+        UIColor *color = KAPP_NAV_COLOR;
+        _barView.backgroundColor = [color colorWithAlphaComponent:0];
+        
+        _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, 20, KSCREEN_WIDTH - 100, 44)];
+        _titleLabel.text = @"商品详情";
+        _titleLabel.font = KFitFont(16);
+        _titleLabel.textAlignment = NSTextAlignmentCenter;
+        _titleLabel.textColor = [UIColor whiteColor];
+        _titleLabel.alpha = 0;
+        [_barView addSubview:_titleLabel];
+    }
+    return _barView;
 }
 
 - (void)didReceiveMemoryWarning {

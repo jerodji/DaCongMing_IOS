@@ -132,6 +132,7 @@
         [_tableView reloadData];
     }];
     
+    [_goodsList removeAllObjects];
     [HYGoodsHandle requestGoodsListItem_type:@"001" pageNo:1 andPage:5 order:nil hotsale:nil complectionBlock:^(NSArray *datalist) {
         
         [_goodsList addObjectsFromArray:datalist];

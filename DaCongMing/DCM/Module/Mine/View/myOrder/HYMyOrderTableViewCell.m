@@ -8,7 +8,7 @@
 
 #import "HYMyOrderTableViewCell.h"
 
-@interface HYMyOrderTableViewCell()
+@interface HYMyOrderTableViewCell() <UIScrollViewDelegate>
 
 /** icon */
 @property (nonatomic,strong) UIImageView *iconImgView;
@@ -34,6 +34,8 @@
 @property (nonatomic,strong) UIButton *toPayBtn;
 /** 确认收货 */
 @property (nonatomic,strong) UIButton *confirmGoodsBtn;
+/** 装图片的scrollView */
+@property (nonatomic,strong) UIScrollView *scrollView;
 
 @end
 
@@ -67,7 +69,7 @@
     [self addSubview:self.confirmGoodsBtn];
     [self addSubview:self.deleteOrderBtn];
     [self addSubview:self.topLine];
-
+    [self addSubview:self.scrollView];
 }
 
 - (void)layoutSubviews{
@@ -157,6 +159,16 @@
         make.right.equalTo(_confirmGoodsBtn.mas_left).offset(-14 * WIDTH_MULTIPLE);
         make.top.bottom.width.equalTo(_confirmGoodsBtn);
     }];
+    
+    [_scrollView mas_remakeConstraints:^(MASConstraintMaker *make) {
+       
+        make.top.equalTo(_topLine).offset(10 * WIDTH_MULTIPLE);
+        make.height.mas_equalTo(80 * WIDTH_MULTIPLE);
+        make.right.equalTo(self);
+        make.left.equalTo(self);
+    }];
+    
+    _scrollView.contentSize = CGSizeMake(self.model.orderDtls.count * 86 * WIDTH_MULTIPLE, 80 * WIDTH_MULTIPLE);
 }
 
 #pragma mark - getter
@@ -208,7 +220,7 @@
 - (void)createOrderImageWithArray:(NSArray *)array{
     
     UIImageView *tempImageView = nil;
-    for (UIView *subView in self.subviews) {
+    for (UIView *subView in self.scrollView.subviews) {
         
         if (subView.tag >= 900 && [subView isKindOfClass:[UIImageView class]]) {
             
@@ -218,27 +230,31 @@
     
     for (NSInteger i = 0; i < array.count; i++) {
 
-        
+        [self layoutIfNeeded];
         UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectZero];
         NSDictionary *dict = array[i];
         [imgView sd_setImageWithURL:[NSURL URLWithString:dict[@"item_title_image"]] placeholderImage:[UIImage imageNamed:@"order_placeholder"]];
-        [self addSubview:imgView];
+        [self.scrollView addSubview:imgView];
         
-        [imgView mas_makeConstraints:^(MASConstraintMaker *make) {
-           
-            make.top.equalTo(_topLine).offset(10 * WIDTH_MULTIPLE);
-            make.size.mas_equalTo(CGSizeMake(66 * WIDTH_MULTIPLE, 80 * WIDTH_MULTIPLE));
-            
-            if (tempImageView) {
-                
-                make.left.equalTo(tempImageView.mas_right).offset(18 * WIDTH_MULTIPLE);
-            }
-            else{
-                make.left.equalTo(_iconImgView);
-            }
-        }];
+        imgView.frame = CGRectMake(18 * WIDTH_MULTIPLE + i * 84 * WIDTH_MULTIPLE, 0, 66 * WIDTH_MULTIPLE, 80 * WIDTH_MULTIPLE);
+        
+//        [imgView mas_makeConstraints:^(MASConstraintMaker *make) {
+//
+//            //make.top.equalTo(_topLine).offset(10 * WIDTH_MULTIPLE);
+//            make.top.equalTo(_scrollView);
+//            make.size.mas_equalTo(CGSizeMake(66 * WIDTH_MULTIPLE, 80 * WIDTH_MULTIPLE));
+//
+//            if (tempImageView) {
+//
+//                make.left.equalTo(tempImageView.mas_right).offset(18 * WIDTH_MULTIPLE);
+//            }
+//            else{
+//                make.left.equalTo(_iconImgView);
+//            }
+//        }];
         tempImageView = imgView;
         imgView.tag = 900 + i;
+        
     }
     
     tempImageView = nil;
@@ -428,6 +444,18 @@
         [_confirmGoodsBtn addTarget:self action:@selector(confirmAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return _confirmGoodsBtn;
+}
+
+- (UIScrollView *)scrollView{
+    
+    if (!_scrollView) {
+        
+        _scrollView = [UIScrollView new];
+        _scrollView.scrollEnabled = YES;
+        _scrollView.delegate = self;
+        _scrollView.showsHorizontalScrollIndicator = NO;
+    }
+    return _scrollView;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

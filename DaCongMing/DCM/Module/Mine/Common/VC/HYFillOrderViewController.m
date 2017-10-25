@@ -78,10 +78,10 @@
     
     [_payMoneyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
        
-        make.left.equalTo(self.view).offset(10 * WIDTH_MULTIPLE);
+        make.left.equalTo(self.view);
         make.height.equalTo(@(60));
         make.bottom.equalTo(self.view);
-        make.right.equalTo(_confirmBtn.mas_left);
+        make.right.equalTo(self.view);
     }];
 }
 
@@ -100,9 +100,9 @@
 - (void)setOrderModel:(HYCreateOrder *)orderModel{
     
     _orderModel = orderModel;
-    NSString *str = [NSString stringWithFormat:@"您需要支付: %@ ",_orderModel.summary_price]; 
+    NSString *str = [NSString stringWithFormat:@"    您需要支付: %@ ",_orderModel.summary_price];
     NSMutableAttributedString *attributeStr = [[NSMutableAttributedString alloc] initWithString:str];
-    [attributeStr addAttributes:@{NSForegroundColorAttributeName : KAPP_PRICE_COLOR} range:NSMakeRange(6, str.length - 6)];
+    [attributeStr addAttributes:@{NSForegroundColorAttributeName : KAPP_PRICE_COLOR} range:NSMakeRange(10, str.length - 10)];
     _payMoneyLabel.attributedText = attributeStr;
 }
 

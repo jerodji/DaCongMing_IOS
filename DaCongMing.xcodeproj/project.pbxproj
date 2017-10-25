@@ -132,6 +132,7 @@
 		3EA0BC291F750EC300F78FDD /* HYDiscountTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA0BC281F750EC300F78FDD /* HYDiscountTableViewCell.m */; };
 		3EA0BC2C1F750EDD00F78FDD /* HYGoodsPayTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA0BC2B1F750EDD00F78FDD /* HYGoodsPayTableViewCell.m */; };
 		3EC4EB561F9DBE82001D5DD3 /* HYGuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC4EB551F9DBE82001D5DD3 /* HYGuideViewController.m */; };
+		3EC4EB591F9F3B3B001D5DD3 /* HYConfirmReceiveGoodsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC4EB581F9F3B38001D5DD3 /* HYConfirmReceiveGoodsVC.m */; };
 		3ECD83311F8F5E5100DE6FFD /* HYShareHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECD83301F8F5E5100DE6FFD /* HYShareHandle.m */; };
 		3ECD83341F8F6DD300DE6FFD /* HYMyCollectShopModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECD83331F8F6DD300DE6FFD /* HYMyCollectShopModel.m */; };
 		3ECD83371F8F748800DE6FFD /* HYMyCollectShopImageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECD83361F8F748800DE6FFD /* HYMyCollectShopImageCollectionViewCell.m */; };
@@ -453,6 +454,8 @@
 		3EA0BC2B1F750EDD00F78FDD /* HYGoodsPayTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYGoodsPayTableViewCell.m; sourceTree = "<group>"; };
 		3EC4EB541F9DBE82001D5DD3 /* HYGuideViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYGuideViewController.h; sourceTree = "<group>"; };
 		3EC4EB551F9DBE82001D5DD3 /* HYGuideViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYGuideViewController.m; sourceTree = "<group>"; };
+		3EC4EB571F9F3B38001D5DD3 /* HYConfirmReceiveGoodsVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYConfirmReceiveGoodsVC.h; sourceTree = "<group>"; };
+		3EC4EB581F9F3B38001D5DD3 /* HYConfirmReceiveGoodsVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYConfirmReceiveGoodsVC.m; sourceTree = "<group>"; };
 		3ECD832F1F8F5E5100DE6FFD /* HYShareHandle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYShareHandle.h; sourceTree = "<group>"; };
 		3ECD83301F8F5E5100DE6FFD /* HYShareHandle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYShareHandle.m; sourceTree = "<group>"; };
 		3ECD83321F8F6DD300DE6FFD /* HYMyCollectShopModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYMyCollectShopModel.h; sourceTree = "<group>"; };
@@ -1049,6 +1052,8 @@
 				3ED218BD1F8DE37A0040C7E3 /* HYRecentViewViewController.m */,
 				3ED218BF1F8DE3970040C7E3 /* HYInvitateFriendsViewController.h */,
 				3ED218C01F8DE3970040C7E3 /* HYInvitateFriendsViewController.m */,
+				3EC4EB571F9F3B38001D5DD3 /* HYConfirmReceiveGoodsVC.h */,
+				3EC4EB581F9F3B38001D5DD3 /* HYConfirmReceiveGoodsVC.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1646,6 +1651,7 @@
 				3E4D787D1F79005800BC9C2B /* HYCreateOrderDatalist.m in Sources */,
 				3E33CC8D1F8B1D60002179CD /* HYProvinceModel.m in Sources */,
 				3EDC22031F94A3500013FFBA /* HYRefundSuccessViewController.m in Sources */,
+				3EC4EB591F9F3B3B001D5DD3 /* HYConfirmReceiveGoodsVC.m in Sources */,
 				3E2754911F7200CD0010053E /* HYGoodsListViewController.m in Sources */,
 				3E5620821F6B6DAC0063AA5B /* HYLocationManager.m in Sources */,
 				3E4D78B21F7A33DC00BC9C2B /* HYMyOrderTitleView.m in Sources */,

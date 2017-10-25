@@ -54,7 +54,7 @@
         static NSString *orderDetailImageCellID = @"orderDetailImageCellID";
         HYOrderDetailImageCell *cell = [tableView dequeueReusableCellWithIdentifier:orderDetailImageCellID];
         if (!cell) {
-            cell = [[HYOrderDetailImageCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:orderDetailImageCellID];
+            cell = [[HYOrderDetailImageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:orderDetailImageCellID];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             
         }
@@ -107,6 +107,10 @@
                 [self.navigationController pushViewController:sublitApplySellAfterVC animated:YES];
             };
         }
+        else{
+            cell.applySellAfterBtn.hidden = YES;
+
+        }
         return cell;
     }
 }
@@ -144,7 +148,7 @@
 - (UITableView *)tableView{
     if (!_tableView) {
         
-        _tableView = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, KSCREEN_WIDTH, KSCREEN_HEIGHT - 64) style:UITableViewStylePlain];
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;

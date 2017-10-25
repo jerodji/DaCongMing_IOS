@@ -116,12 +116,12 @@
 #pragma mark - TableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     
-    return 1;
+    return self.datalist.count;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return self.datalist.count;
+    return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -133,7 +133,7 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
     }
-    HYGoodsItemModel *model = self.datalist[indexPath.row];
+    HYGoodsItemModel *model = self.datalist[indexPath.section];
     cell.itemModel = model;
     cell.itemSelect = ^(BOOL isSelect) {
       
@@ -150,7 +150,7 @@
         }
         
     };
-    [self.datalist replaceObjectAtIndex:indexPath.row withObject:model];
+    [self.datalist replaceObjectAtIndex:indexPath.section withObject:model];
     
     return cell;
 }
@@ -167,6 +167,18 @@
     return 90 * WIDTH_MULTIPLE;
 }
 
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, KSCREEN_WIDTH, 10 * WIDTH_MULTIPLE)];
+    view.backgroundColor = KCOLOR(@"f4f4f4");
+    return view;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    
+    return 10 * WIDTH_MULTIPLE;
+}
+
 #pragma mark - CellEdit
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
     
@@ -175,13 +187,21 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    HYGoodsItemModel *model = self.datalist[indexPath.row];
+    HYGoodsItemModel *model = self.datalist[indexPath.section];
     [HYMineNetRequest deleteMyCollectionGoodsWithItemIDs:model.item_id ComplectionBlock:^(BOOL isSuccess) {
         
         if (isSuccess) {
             
-            [self.datalist removeObjectAtIndex:indexPath.row];
-            [tableView deleteRowAtIndexPath:indexPath withRowAnimation:UITableViewRowAnimationFade];
+            [self.datalist removeObjectAtIndex:indexPath.section];
+            [tableView deleteSection:indexPath.section withRowAnimation:UITableViewRowAnimationFade];
+            
+            if (!self.datalist.count) {
+                
+                self.navigationItem.rightBarButtonItem = nil;
+                [self.tableView removeFromSuperview];
+                self.tableView = nil;
+                [self.view addSubview:self.noDataView];
+            }
         }
         else{
             
@@ -199,6 +219,11 @@
 - (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     return @"删除";
+}
+
+- (BOOL)tableView:(UITableView *)tableView shouldIndentWhileEditingRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    return NO;
 }
 
 #pragma mark - editingMode

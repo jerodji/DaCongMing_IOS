@@ -225,6 +225,8 @@
         _tableView.dataSource = self;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.backgroundColor = KCOLOR(@"f6f6f6");
+        _tableView.emptyDataSetSource = self;
+        _tableView.delegate = self;
     }
     return _tableView;
 }

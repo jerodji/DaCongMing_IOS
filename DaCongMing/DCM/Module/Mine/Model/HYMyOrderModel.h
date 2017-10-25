@@ -44,6 +44,10 @@
 @property (nonatomic,copy) NSString *deliverytime;
 /** orderDtls */
 @property (nonatomic, copy) NSArray *orderDtls;
+/** 物流信息 */
+@property (nonatomic,copy) NSString *express_msg;
+/** 物流公司 */
+@property (nonatomic,copy) NSString *express_name;
 
 @end
 

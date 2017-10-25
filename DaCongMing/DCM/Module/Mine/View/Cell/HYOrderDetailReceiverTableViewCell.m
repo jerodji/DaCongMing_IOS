@@ -46,6 +46,8 @@
     [self addSubview:self.arrowImgView];
     [self addSubview:self.line];
     
+    self.arrowImgView.hidden = YES;
+    
 }
 
 - (void)layoutSubviews{
@@ -82,7 +84,16 @@
 - (void)setOrderModel:(HYMyOrderModel *)orderModel{
     
     _orderModel = orderModel;
-    _receiverInfoLabel.text = [NSString stringWithFormat:@"【%@】%@%@%@%@",orderModel.province_name,orderModel.province_name,orderModel.city_name,orderModel.area_name,orderModel.address];
+    
+    if ([orderModel.express_msg isNotBlank]) {
+        
+        _receiverInfoLabel.text = orderModel.express_msg;
+    }
+    else{
+        
+        _receiverInfoLabel.text = @"暂无物流信息!";
+    }
+    //_receiverInfoLabel.text = [NSString stringWithFormat:@"【%@】%@%@%@%@",orderModel.province_name,orderModel.province_name,orderModel.city_name,orderModel.area_name,orderModel.address];
 }
 
 #pragma mark - lazyload

@@ -61,7 +61,14 @@
     
     [_bgView mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.top.equalTo(self).offset(10 * WIDTH_MULTIPLE);
+        if (self.itemModel) {
+            
+            make.top.equalTo(self);
+        }
+        else{
+            
+            make.top.equalTo(self).offset(10 * WIDTH_MULTIPLE);
+        }
         make.left.right.bottom.equalTo(self);
     }];
     
@@ -150,6 +157,11 @@
         [self setNeedsUpdateConstraints];
 
     }
+    
+    [_bgView mas_remakeConstraints:^(MASConstraintMaker *make) {
+       
+        make.top.equalTo(self);
+    }];
     
 }
 
