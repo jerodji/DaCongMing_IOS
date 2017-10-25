@@ -16,8 +16,6 @@
 @property (nonatomic,strong) UIView *searchView;
 /** searchIcon */
 @property (nonatomic,strong) UIImageView *searchIconImgView;
-/** textField */
-@property (nonatomic,strong) UITextField *textField;
 /** filt */
 @property (nonatomic,strong) UIButton *filtBtn;
 /** shareBtn */

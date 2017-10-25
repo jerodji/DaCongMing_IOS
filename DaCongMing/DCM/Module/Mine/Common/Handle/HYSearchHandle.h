@@ -16,4 +16,9 @@
  */
 + (void)searchProductsWithText:(NSString *)text complectionBlock:(void(^)(NSArray *datalist))complection;
 
+/**
+ *  搜索产品
+ */
++ (void)searchProductsInShop:(NSString *)sellerID WithText:(NSString *)text complectionBlock:(void(^)(NSArray *datalist))complection;
+
 @end

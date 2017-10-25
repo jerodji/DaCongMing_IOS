@@ -10,6 +10,7 @@
 #import "HYGoodsDetailModel.h"
 #import "HYCreateOrder.h"
 #import "HYMyAddressModel.h"
+#import "HYCommentModel.h"
 
 @interface HYGoodsHandle : HYBaseModel
 
@@ -21,7 +22,7 @@
 /**
  *  请求商品详情
  */
-+ (void)requestProductsDetailWithGoodsID:(NSString *)goodsID andToken:(NSString *)token complectionBlock:(void(^)(HYGoodsDetailModel *model))complection;
++ (void)requestProductsDetailWithGoodsID:(NSString *)goodsID andToken:(NSString *)token complectionBlock:(void(^)(HYGoodsDetailModel *model,HYCommentModel *commentModel))complection;
 
 /**
  *  创建订单

@@ -45,7 +45,7 @@
     }];
 }
 
-+ (void)requestProductsDetailWithGoodsID:(NSString *)goodsID andToken:(NSString *)token complectionBlock:(void (^)(HYGoodsDetailModel *))complection{
++ (void)requestProductsDetailWithGoodsID:(NSString *)goodsID andToken:(NSString *)token complectionBlock:(void (^)(HYGoodsDetailModel *, HYCommentModel *))complection{
     
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
     [param setValue:goodsID forKey:@"item_id"];
@@ -60,11 +60,13 @@
                 
                 NSDictionary *dict = [returnData objectForKey:@"dataInfo"][@"itemInfo"];
                 HYGoodsDetailModel *model = [HYGoodsDetailModel modelWithDictionary:dict];
-                complection(model);
+                NSDictionary *commentDict = [returnData objectForKey:@"dataInfo"][@"hotEvaluate"];
+                HYCommentModel *commentModel = [HYCommentModel modelWithDictionary:commentDict];
+                complection(model,commentModel);
             }
             else{
                 
-                complection(nil);
+                complection(nil,nil);
                 [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"获取商品详情出错!"];
             }
         }

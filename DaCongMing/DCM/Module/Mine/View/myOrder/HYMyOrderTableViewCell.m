@@ -220,9 +220,9 @@
         case 8:
             _confirmGoodsBtn.hidden = YES;
             _deleteOrderBtn.hidden = NO;
-            _buyAgainBtn.hidden = YES;
+            _buyAgainBtn.hidden = ![model.isevaluate integerValue];
             _toPayBtn.hidden = YES;
-            _commentBtn.hidden = NO;
+            _commentBtn.hidden = [model.isevaluate integerValue];
             break;
         default:
             break;

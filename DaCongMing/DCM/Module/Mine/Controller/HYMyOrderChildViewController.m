@@ -37,6 +37,13 @@
     [self.view addSubview:self.tableView];
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    
+    [super viewWillAppear:animated];
+    [self requestDataWithTag:_tag];
+
+}
+
 - (void)setTag:(NSInteger)tag{
     
     _tag = tag;

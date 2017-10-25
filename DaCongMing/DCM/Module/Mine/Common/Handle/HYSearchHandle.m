@@ -38,4 +38,32 @@
     }];
 }
 
++ (void)searchProductsInShop:(NSString *)sellerID WithText:(NSString *)text complectionBlock:(void (^)(NSArray *))complection{
+    
+    NSMutableDictionary *requestParam = [NSMutableDictionary dictionary];
+    [requestParam setValue:text forKey:@"keyWord"];
+    [requestParam setValue:@(1) forKey:@"pageNo"];
+    [requestParam setValue:sellerID forKey:@"seller_id"];
+    
+    [[HTTPManager shareHTTPManager] postDataFromUrl:API_KeywordsSearch withParameter:requestParam isShowHUD:YES success:^(id returnData) {
+        
+        if (returnData) {
+            
+            NSInteger code = [[returnData objectForKey:@"successed"] integerValue];
+            if (code == 000) {
+                
+                NSArray *array = [returnData objectForKey:@"dataInfo"][@"dataList"];
+                complection(array);
+            }
+            else{
+                complection(nil);
+            }
+        }
+        else{
+            
+            complection(nil);
+        }
+    }];
+}
+
 @end

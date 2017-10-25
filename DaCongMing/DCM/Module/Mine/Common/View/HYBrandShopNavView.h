@@ -24,5 +24,7 @@
 
 /** delegate */
 @property (nonatomic,weak) id<HYBrandsShopTapDelegate> delegate;
+/** textField */
+@property (nonatomic,strong) UITextField *textField;
 
 @end

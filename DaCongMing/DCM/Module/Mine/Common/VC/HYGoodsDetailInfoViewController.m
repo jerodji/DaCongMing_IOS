@@ -32,6 +32,8 @@
 @property (nonatomic,strong) UIButton *shareBtn;
 /** 商品详情model */
 @property (nonatomic,strong) HYGoodsDetailModel *detailModel;
+/** 评论model */
+@property (nonatomic,strong) HYCommentModel *commentModel;
 /** 图片 */
 @property (nonatomic,strong) NSMutableArray *imageArray;
 /** 图片详情 */
@@ -88,9 +90,10 @@
 
 - (void)requestNetwork{
     
-    [HYGoodsHandle requestProductsDetailWithGoodsID:_goodsID andToken:nil complectionBlock:^(HYGoodsDetailModel *model) {
+    [HYGoodsHandle requestProductsDetailWithGoodsID:_goodsID andToken:nil complectionBlock:^(HYGoodsDetailModel *model, HYCommentModel *commentModel) {
        
         self.detailModel = model;
+        self.commentModel = commentModel;
         for (NSDictionary *dict in model.item_images) {
             
             HYGoodsItemImage *imageModel = [HYGoodsItemImage modelWithDictionary:dict];

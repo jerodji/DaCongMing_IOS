@@ -21,7 +21,7 @@
 
 - (void)addToCartsWithProductID:(NSString *)productID{
     
-    [HYGoodsHandle requestProductsDetailWithGoodsID:productID andToken:nil complectionBlock:^(HYGoodsDetailModel *model) {
+    [HYGoodsHandle requestProductsDetailWithGoodsID:productID andToken:nil complectionBlock:^(HYGoodsDetailModel *model, HYCommentModel *commentModel) {
         
         [KEYWINDOW addSubview:self.selectSpeciView];
         self.selectSpeciView.goodsModel = model;
