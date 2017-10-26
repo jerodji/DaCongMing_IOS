@@ -177,6 +177,9 @@
             [[HYUserModel sharedInstance] clearData];
             [[HYMyUserInfo sharedInstance] clearData];
             [HYUserHandle jumpToHomePageVC];
+            [HYUserHandle userLogoutWithcomplectionBlock:^(BOOL isSuccess) {
+                
+            }];
         }];
     }
     return _customAlert;

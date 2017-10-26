@@ -38,7 +38,7 @@
 - (void)setTagsItemModel:(HYTagsItemModel *)tagsItemModel{
     
     _tagsItemModel = tagsItemModel;
-    [_imgView sd_setImageWithURL:[NSURL URLWithString:tagsItemModel.image_url] placeholderImage:[UIImage imageNamed:@"placeHolder"]];
+    [_imgView sd_setImageWithURL:[NSURL URLWithString:[tagsItemModel.image_url stringByURLDecode]] placeholderImage:[UIImage imageNamed:@"banner"]];
 }
 
 #pragma mark - lazyload

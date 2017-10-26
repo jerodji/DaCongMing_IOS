@@ -20,6 +20,7 @@
 		3E10220D1F7B44050048D556 /* HYMyAccountTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E10220C1F7B44050048D556 /* HYMyAccountTableViewCell.m */; };
 		3E1022101F7B4D070048D556 /* HYAlertTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E10220F1F7B4D070048D556 /* HYAlertTool.m */; };
 		3E1022131F7B4F160048D556 /* HYCustomAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1022121F7B4F160048D556 /* HYCustomAlert.m */; };
+		3E19C9A41FA1D4B900EDCB4C /* HYWebViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E19C9A31FA1D4B900EDCB4C /* HYWebViewVC.m */; };
 		3E1F428E1F7CED1C00E90377 /* HYPlistTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1F428D1F7CED1C00E90377 /* HYPlistTools.m */; };
 		3E2754361F6F56580010053E /* HYGoodHealthModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2754351F6F56580010053E /* HYGoodHealthModel.m */; };
 		3E2754391F6F56EE0010053E /* HYItemListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2754381F6F56EE0010053E /* HYItemListModel.m */; };
@@ -188,6 +189,10 @@
 		3EEFBF211FA040FC007BE12C /* HYCommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EEFBF201FA040FC007BE12C /* HYCommentTableViewCell.m */; };
 		3EEFBF241FA06A20007BE12C /* StarRatingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EEFBF221FA06A20007BE12C /* StarRatingView.m */; };
 		3EEFBF271FA09371007BE12C /* HYCommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EEFBF261FA09371007BE12C /* HYCommentModel.m */; };
+		3EEFBF2D1FA1832F007BE12C /* HYCommentTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EEFBF2C1FA1832F007BE12C /* HYCommentTextCell.m */; };
+		3EEFBF301FA1860D007BE12C /* HYCommentLookMoreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EEFBF2F1FA1860D007BE12C /* HYCommentLookMoreCell.m */; };
+		3EEFBF331FA18A40007BE12C /* HYCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EEFBF321FA18A40007BE12C /* HYCommentCell.m */; };
+		3EEFBF361FA1BB9E007BE12C /* HYAllCommentsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EEFBF351FA1BB9E007BE12C /* HYAllCommentsVC.m */; };
 		3EFBFC4B1F7B9A10003F92B8 /* HYNoDiscountCouponView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EFBFC4A1F7B9A10003F92B8 /* HYNoDiscountCouponView.m */; };
 		3EFBFC4E1F7BA0D5003F92B8 /* HYHomeSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EFBFC4D1F7BA0D5003F92B8 /* HYHomeSearchViewController.m */; };
 		3EFBFC511F7BA2CA003F92B8 /* HYSearchTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EFBFC501F7BA2CA003F92B8 /* HYSearchTitleView.m */; };
@@ -229,6 +234,8 @@
 		3E10220F1F7B4D070048D556 /* HYAlertTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYAlertTool.m; sourceTree = "<group>"; };
 		3E1022111F7B4F160048D556 /* HYCustomAlert.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYCustomAlert.h; sourceTree = "<group>"; };
 		3E1022121F7B4F160048D556 /* HYCustomAlert.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYCustomAlert.m; sourceTree = "<group>"; };
+		3E19C9A21FA1D4B900EDCB4C /* HYWebViewVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYWebViewVC.h; sourceTree = "<group>"; };
+		3E19C9A31FA1D4B900EDCB4C /* HYWebViewVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYWebViewVC.m; sourceTree = "<group>"; };
 		3E1F428C1F7CED1C00E90377 /* HYPlistTools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYPlistTools.h; sourceTree = "<group>"; };
 		3E1F428D1F7CED1C00E90377 /* HYPlistTools.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYPlistTools.m; sourceTree = "<group>"; };
 		3E1F42931F7CF17400E90377 /* NSArray+HYBUnicodeReadable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSArray+HYBUnicodeReadable.h"; sourceTree = "<group>"; };
@@ -566,6 +573,14 @@
 		3EEFBF231FA06A20007BE12C /* StarRatingView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StarRatingView.h; sourceTree = "<group>"; };
 		3EEFBF251FA09371007BE12C /* HYCommentModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYCommentModel.h; sourceTree = "<group>"; };
 		3EEFBF261FA09371007BE12C /* HYCommentModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYCommentModel.m; sourceTree = "<group>"; };
+		3EEFBF2B1FA1832F007BE12C /* HYCommentTextCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYCommentTextCell.h; sourceTree = "<group>"; };
+		3EEFBF2C1FA1832F007BE12C /* HYCommentTextCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYCommentTextCell.m; sourceTree = "<group>"; };
+		3EEFBF2E1FA1860D007BE12C /* HYCommentLookMoreCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYCommentLookMoreCell.h; sourceTree = "<group>"; };
+		3EEFBF2F1FA1860D007BE12C /* HYCommentLookMoreCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYCommentLookMoreCell.m; sourceTree = "<group>"; };
+		3EEFBF311FA18A40007BE12C /* HYCommentCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYCommentCell.h; sourceTree = "<group>"; };
+		3EEFBF321FA18A40007BE12C /* HYCommentCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYCommentCell.m; sourceTree = "<group>"; };
+		3EEFBF341FA1BB9E007BE12C /* HYAllCommentsVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYAllCommentsVC.h; sourceTree = "<group>"; };
+		3EEFBF351FA1BB9E007BE12C /* HYAllCommentsVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYAllCommentsVC.m; sourceTree = "<group>"; };
 		3EFBFC491F7B9A10003F92B8 /* HYNoDiscountCouponView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYNoDiscountCouponView.h; sourceTree = "<group>"; };
 		3EFBFC4A1F7B9A10003F92B8 /* HYNoDiscountCouponView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYNoDiscountCouponView.m; sourceTree = "<group>"; };
 		3EFBFC4C1F7BA0D5003F92B8 /* HYHomeSearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYHomeSearchViewController.h; sourceTree = "<group>"; };
@@ -782,6 +797,8 @@
 			children = (
 				3E2754991F72166E0010053E /* HYGoodsDetailInfoViewController.h */,
 				3E27549A1F72166E0010053E /* HYGoodsDetailInfoViewController.m */,
+				3EEFBF341FA1BB9E007BE12C /* HYAllCommentsVC.h */,
+				3EEFBF351FA1BB9E007BE12C /* HYAllCommentsVC.m */,
 				3ED218CB1F8E01120040C7E3 /* HYBrandShopViewController.h */,
 				3ED218CC1F8E01120040C7E3 /* HYBrandShopViewController.m */,
 				3EA0BC1D1F750CB100F78FDD /* HYFillOrderViewController.h */,
@@ -1075,6 +1092,8 @@
 				3EC4EB581F9F3B38001D5DD3 /* HYConfirmReceiveGoodsVC.m */,
 				3EEFBF1C1FA0349E007BE12C /* HYCommentVC.h */,
 				3EEFBF1D1FA0349E007BE12C /* HYCommentVC.m */,
+				3E19C9A21FA1D4B900EDCB4C /* HYWebViewVC.h */,
+				3E19C9A31FA1D4B900EDCB4C /* HYWebViewVC.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1357,6 +1376,12 @@
 				3EA0BC051F725CDB00F78FDD /* HYProductsInfoTableViewCell.m */,
 				3EA0BC071F725D2600F78FDD /* HYProductsSpecificationCell.h */,
 				3EA0BC081F725D2600F78FDD /* HYProductsSpecificationCell.m */,
+				3EEFBF2B1FA1832F007BE12C /* HYCommentTextCell.h */,
+				3EEFBF2C1FA1832F007BE12C /* HYCommentTextCell.m */,
+				3EEFBF311FA18A40007BE12C /* HYCommentCell.h */,
+				3EEFBF321FA18A40007BE12C /* HYCommentCell.m */,
+				3EEFBF2E1FA1860D007BE12C /* HYCommentLookMoreCell.h */,
+				3EEFBF2F1FA1860D007BE12C /* HYCommentLookMoreCell.m */,
 				3EA0BC0A1F725D5B00F78FDD /* HYProductsImageDetailCell.h */,
 				3EA0BC0B1F725D5B00F78FDD /* HYProductsImageDetailCell.m */,
 			);
@@ -1601,6 +1626,7 @@
 				3E56204E1F6B6D5C0063AA5B /* HYBaseViewController.m in Sources */,
 				3E4D789C1F7911CC00BC9C2B /* HYWeChatPayManager.m in Sources */,
 				3EE1D1401F95E09A00BC519E /* HYForgetPasswordVC.m in Sources */,
+				3EEFBF331FA18A40007BE12C /* HYCommentCell.m in Sources */,
 				3E27545E1F6FBF850010053E /* HYCompleteView.m in Sources */,
 				3E5620841F6B6DAC0063AA5B /* HYPhotoBrowseView.m in Sources */,
 				3E33CC9D1F8C5F23002179CD /* HYShoppingCartsTableViewCell.m in Sources */,
@@ -1619,6 +1645,7 @@
 				3E1022041F7B39F40048D556 /* HYMyAddressViewController.m in Sources */,
 				3E56207B1F6B6DAC0063AA5B /* Const.m in Sources */,
 				3E27543F1F6F64630010053E /* HYTagsItemModel.m in Sources */,
+				3EEFBF2D1FA1832F007BE12C /* HYCommentTextCell.m in Sources */,
 				3E2754551F6F9C6B0010053E /* HYLoginViewController.m in Sources */,
 				3EDC21EB1F933D6B0013FFBA /* HYFillSalesReturnCell.m in Sources */,
 				3E33CC971F8B80DB002179CD /* HYCartsHandle.m in Sources */,
@@ -1713,6 +1740,7 @@
 				3EFBFC661F7CAF38003F92B8 /* HYAddAddressViewController.m in Sources */,
 				3EFBFC511F7BA2CA003F92B8 /* HYSearchTitleView.m in Sources */,
 				3EE1D13D1F95B3B000BC519E /* HYDeleteCartsView.m in Sources */,
+				3EEFBF361FA1BB9E007BE12C /* HYAllCommentsVC.m in Sources */,
 				3E56209E1F6B9EEF0063AA5B /* HYHomePageModel.m in Sources */,
 				3EFBFC5A1F7C8C15003F92B8 /* SAMTextView.m in Sources */,
 				3E5620941F6B72E90063AA5B /* HYShoppingCartViewController.m in Sources */,
@@ -1741,7 +1769,9 @@
 				3E56204B1F6B6D440063AA5B /* HYBaseModel.m in Sources */,
 				3E4D787A1F78E51300BC9C2B /* HYCreateOrder.m in Sources */,
 				3E5620831F6B6DAC0063AA5B /* HYPhoneInfo.m in Sources */,
+				3E19C9A41FA1D4B900EDCB4C /* HYWebViewVC.m in Sources */,
 				3ED218B81F8DE3540040C7E3 /* HYMyCollectGoodsViewController.m in Sources */,
+				3EEFBF301FA1860D007BE12C /* HYCommentLookMoreCell.m in Sources */,
 				3EA0BC261F750EA700F78FDD /* HYGoodsPostageTableViewCell.m in Sources */,
 				3E5904D71F8B185100A16FEC /* AreaView.m in Sources */,
 				3E3ED0711F98552F00C20E61 /* HYBannerModel.m in Sources */,
@@ -1869,6 +1899,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hailin.dacongming;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
@@ -1894,6 +1925,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hailin.dacongming;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;

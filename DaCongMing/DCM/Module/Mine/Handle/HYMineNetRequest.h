@@ -68,4 +68,9 @@
  */
 + (void)commentWithOrderID:(NSString *)orderID jsonText:(NSString *)jsonText ComplectionBlock:(void(^)(BOOL isSuccess))complection;
 
+/**
+ *  获取物流信息URL
+ */
++ (void)getlogisticsUrlWithOrderID:(NSString *)orderID  ComplectionBlock:(void(^)(NSString *url))complection;
+
 @end

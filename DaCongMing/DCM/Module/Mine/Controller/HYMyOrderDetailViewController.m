@@ -13,6 +13,8 @@
 #import "HYOrderDetailInfoCell.h"
 #import "HYMyCollectionGoodsCell.h"
 #import "HYSublitApplyVC.h"
+#import "HYWebViewVC.h"
+#import "HYMineNetRequest.h"
 
 @interface HYMyOrderDetailViewController () <UITableViewDelegate,UITableViewDataSource>
 
@@ -118,7 +120,24 @@
 #pragma mark - tableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    if(indexPath.row == 1){
+        
+        [HYMineNetRequest getlogisticsUrlWithOrderID:self.orderModel.sorder_id ComplectionBlock:^(NSString *url) {
+           
+            if (url) {
+                
+                HYWebViewVC *webViewVC = [HYWebViewVC new];
+                webViewVC.url = url;
+                [self.navigationController pushViewController:webViewVC animated:YES];
+            }
+            else{
+                
+                [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"获取物流信息失败"];
+            }
+        }];
     
+        
+    }
 }
 
 

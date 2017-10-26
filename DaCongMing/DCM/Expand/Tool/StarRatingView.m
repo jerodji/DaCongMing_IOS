@@ -37,7 +37,7 @@
         
         _starImgArray = [NSMutableArray array];
         [self createBackgroundStarRate];
-        
+
         [self addSubview:self.foregroundView];
         [self createSelectStarRate];
         
@@ -45,6 +45,15 @@
     }
     
     return self;
+}
+
+#pragma mark - setter
+- (void)setScore:(CGFloat)score{
+    
+    _score = score;
+    self.userInteractionEnabled = NO;
+    
+    self.currentScore = score;
 }
 
 #pragma mark - Getter
@@ -79,12 +88,12 @@
         if ((int)self.currentScore == self.currentScore ) {
             
             CGFloat width = self.currentScore * (starWidth + starMargin);
-            self.foregroundView.frame = CGRectMake(0, 0, width, 40 * WIDTH_MULTIPLE);
+            self.foregroundView.frame = CGRectMake(0, 0, width, self.height);
         }
         else{
             
             CGFloat width = floor(self.currentScore) * (starWidth + starMargin) + starWidth * (self.currentScore - floor(self.currentScore)) + starMargin ;
-            self.foregroundView.frame = CGRectMake(0, 0, width, 40 * WIDTH_MULTIPLE);
+            self.foregroundView.frame = CGRectMake(0, 0, width, self.height);
 
         }
     }];
@@ -93,11 +102,13 @@
 //创建灰色的star背景
 - (void)createBackgroundStarRate{
     
+    [self layoutIfNeeded];
+    
     for (NSInteger i = 0; i < self.starCount; i++) {
         
         CGFloat starX = i * (starWidth + starMargin);
         //创建starImage
-        UIImageView *starImgView = [[UIImageView alloc] initWithFrame:CGRectMake(starX, (40 * WIDTH_MULTIPLE - starWidth) / 2 , starWidth, starWidth)];
+        UIImageView *starImgView = [[UIImageView alloc] initWithFrame:CGRectMake(starX, (self.height - starWidth) / 2 , starWidth, starWidth)];
         starImgView.image = [UIImage imageNamed:@"star_gray"];
         starImgView.contentMode = UIViewContentModeScaleAspectFit;
         [self addSubview:starImgView];
@@ -108,11 +119,13 @@
 //创建选中的starView
 - (void)createSelectStarRate{
     
+    [self layoutIfNeeded];
+
     for (NSInteger i = 0; i < self.starCount; i++) {
         
         CGFloat starX = i * (starWidth + starMargin);
         //创建starImage
-        UIImageView *starImgView = [[UIImageView alloc] initWithFrame:CGRectMake(starX, (40 * WIDTH_MULTIPLE - starWidth) / 2 , starWidth, starWidth)];
+        UIImageView *starImgView = [[UIImageView alloc] initWithFrame:CGRectMake(starX, (self.height - starWidth) / 2 , starWidth, starWidth)];
         starImgView.image = [UIImage imageNamed:@"star_red"];
         starImgView.contentMode = UIViewContentModeScaleAspectFit;
         [self.foregroundView addSubview:starImgView];

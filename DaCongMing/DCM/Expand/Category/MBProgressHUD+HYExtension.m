@@ -44,7 +44,17 @@
     [HUD showAnimated:YES];
     [HUD hideAnimated:YES afterDelay:1.5];
     
+}
+
++ (void)showPregressHUDWithLoadingText:(NSString *)text{
     
+    MBProgressHUD *HUD = [MBProgressHUD showHUDAddedTo:KEYWINDOW animated:YES];
+    [KEYWINDOW addSubview:HUD];
+    
+    HUD.bezelView.color = [UIColor blackColor];            //设置菊花背景颜色
+    HUD.contentColor = [UIColor whiteColor];               //设置内容颜色
+    HUD.label.text = text;
+    [HUD showAnimated:YES];
 }
 
 @end

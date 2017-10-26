@@ -112,11 +112,14 @@
         
     }
     
-    NSDictionary *dict = self.datalist[indexPath.section];
-    HYMyOrderModel *model = [HYMyOrderModel modelWithDictionary:dict];
-    cell.model = model;
-    cell.indexPath = indexPath;
-    cell.delegate = self;
+    if (self.datalist.count) {
+        
+        NSDictionary *dict = self.datalist[indexPath.section];
+        HYMyOrderModel *model = [HYMyOrderModel modelWithDictionary:dict];
+        cell.model = model;
+        cell.indexPath = indexPath;
+        cell.delegate = self;
+    }
     return cell;
 }
 

@@ -26,4 +26,9 @@
  */
 + (void)showPregressHUD:(UIView *)view withText:(NSString *)text;
 
+/**
+ *    MBProgressHUD加载
+ */
++ (void)showPregressHUDWithLoadingText:(NSString *)text;
+
 @end

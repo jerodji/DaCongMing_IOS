@@ -35,6 +35,9 @@ typedef NS_ENUM(NSInteger , RateStyle){
 
 @property (nonatomic,weak) id<HYStarRatingDelegate>delegate;
 
+/** 分数 */
+@property (nonatomic,assign) CGFloat score;
+
 /**
  *  用评分样式初始化
  */

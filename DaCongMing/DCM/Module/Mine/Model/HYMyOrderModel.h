@@ -48,6 +48,8 @@
 @property (nonatomic,copy) NSString *express_msg;
 /** 物流公司 */
 @property (nonatomic,copy) NSString *express_name;
+/** 物流H5 */
+@property (nonatomic,copy) NSString *express_url;
 /** 2为已评价，0为未评价 */
 @property (nonatomic,copy) NSString *isevaluate;
 

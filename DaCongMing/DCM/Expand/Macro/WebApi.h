@@ -11,6 +11,7 @@
 #define WebApi_h
 
 #define WXAppID                 @"wxedc46e1ed9be6e2c"
+#define TencentBuglyID          @"fee8e3dbb9"
 
 /** ------------------------------网络接口------------------------------- */
 //接口总域名
@@ -28,6 +29,9 @@
 #pragma mark - 用户相关
 //登录
 #define API_Login               @"HAILIN_SERVER/userlogin.do"
+
+//退出登录
+#define API_Logout               @"HAILIN_SERVER/userLoginOut.do"
 
 //微信登录
 #define API_WeChatLogin         @"HAILIN_SERVER/wechatLogin.do"
@@ -67,6 +71,9 @@
 
 //商品详情
 #define API_GoodsDetail         @"HAILIN_SERVER/loaditemDetail.do"
+
+//所有的评论详情
+#define API_AllComments        @"HAILIN_SERVER/loadItemEvaluate.do"
 
 //创建订单
 #define API_CreateOrder         @"HAILIN_SERVER/getSellerOrder.do"
@@ -116,6 +123,8 @@
 //评价订单
 #define API_CommentOrder                    @"HAILIN_SERVER/orderEvaluate.do"
 
+//物流详情
+#define API_GetLogisticUrl                    @"HAILIN_SERVER/getOrderExpressInfo.do"
 /***************************************收货地址**********************************/
 #pragma mark - 收货地址
 //获取收货地址

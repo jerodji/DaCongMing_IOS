@@ -51,7 +51,8 @@
     for (NSDictionary *dict in model.brands) {
         
         HYBrands *brands = [HYBrands modelWithDictionary:dict];
-        [_bannerArray addObject:brands.image_url];
+        NSString *url = [brands.image_url stringByURLDecode];
+        [_bannerArray addObject:url];
     }
     
     _bannerView.imageURLStringsGroup = _bannerArray;
@@ -71,7 +72,7 @@
     if (!_bannerView) {
         
         //轮播图
-        _bannerView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectZero delegate:self placeholderImage:[UIImage imageNamed:@"shopPlaceholder"]];
+        _bannerView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectZero delegate:self placeholderImage:[UIImage imageNamed:@"banner"]];
         _bannerView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
         _bannerView.pageControlStyle = SDCycleScrollViewPageContolStyleClassic;
         _bannerView.autoScrollTimeInterval = 2;

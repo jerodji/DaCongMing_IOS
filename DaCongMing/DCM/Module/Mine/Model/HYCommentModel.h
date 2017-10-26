@@ -10,6 +10,8 @@
 
 @interface HYCommentModel : HYBaseModel
 
+/** 图像 */
+@property (nonatomic,strong) NSString *head_image_url;
 /** create_time */
 @property (nonatomic,copy) NSString *create_time;
 /** evaluate_level */
@@ -22,6 +24,10 @@
 @property (nonatomic,copy) NSString *sorder_id;
 /** item_id */
 @property (nonatomic,copy) NSString *item_id;
+/** cell高度 */
+@property (nonatomic,assign) CGFloat cellHeight;
+/** evaluateCount */
+@property (nonatomic,copy) NSString *evaluateCount;
 
 @end
 

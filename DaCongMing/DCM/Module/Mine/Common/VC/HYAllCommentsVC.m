@@ -1,35 +1,50 @@
 //
-//  HYRecentViewViewController.m
+//  HYAllCommentsVC.m
 //  DaCongMing
 //
-//  Created by 胡勇 on 2017/10/11.
+//  Created by 胡勇 on 2017/10/26.
 //  Copyright © 2017年 胡勇. All rights reserved.
 //
 
-#import "HYRecentViewViewController.h"
+#import "HYAllCommentsVC.h"
+#import "HYCommentCell.h"
 
-@interface HYRecentViewViewController ()<UITableViewDataSource,UITableViewDelegate,DZNEmptyDataSetSource>
+@interface HYAllCommentsVC ()<UITableViewDelegate,UITableViewDataSource>
 
 /** tableView */
 @property (nonatomic,strong) UITableView *tableView;
-/** 数据源 */
 @property (nonatomic,strong) NSMutableArray *datalist;
 
 @end
 
-@implementation HYRecentViewViewController
+@implementation HYAllCommentsVC
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
     
+    [super viewDidLoad];
     [self setupSubviews];
+    [self requestNetwork];
 }
 
 - (void)setupSubviews{
     
-    self.title = @"最近浏览";
-    self.view.backgroundColor = KCOLOR(@"f4f4f4");
+    self.title = @"所有评论";
     [self.view addSubview:self.tableView];
+}
+
+- (void)requestNetwork{
+    
+    [self.datalist removeAllObjects];
+    [HYGoodsHandle requestProductsCommentsWithProductID:self.productID pageNo:1 complectionBlock:^(NSArray *datalist) {
+        
+        for (NSDictionary *dict in datalist) {
+            
+            HYCommentModel *commentModel = [HYCommentModel modelWithDictionary:dict];
+            [self.datalist addObject:commentModel];
+        }
+       
+        [_tableView reloadData];
+    }];
 }
 
 #pragma mark - TableViewDataSource
@@ -45,22 +60,16 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    static NSString *cellID = @"";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+    static NSString *commentCellID = @"commentCellID";
+    HYCommentCell *cell = [tableView dequeueReusableCellWithIdentifier:commentCellID];
     if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+        cell = [[HYCommentCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:commentCellID];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
     }
-    return cell;
-}
-
-#pragma mark - emptyTable
-- (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView{
     
-    NSString *text = @"目前还没有浏览记录";
-    NSDictionary *attributes = @{NSFontAttributeName : KFitFont(18),NSForegroundColorAttributeName : KAPP_7b7b7b_COLOR};
-    return [[NSAttributedString alloc] initWithString:text attributes:attributes];
+    cell.commentModel = self.datalist[indexPath.row];
+    return cell;
 }
 
 #pragma mark - tableViewDelegate
@@ -72,8 +81,11 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    return 10;
+    HYCommentModel *commentModel = self.datalist[indexPath.row];
+    return commentModel.cellHeight;
 }
+
+
 
 #pragma mark - lazyload
 - (UITableView *)tableView{
@@ -83,7 +95,7 @@
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        _tableView.emptyDataSetSource = self;
+        
     }
     return _tableView;
 }
@@ -98,7 +110,6 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 

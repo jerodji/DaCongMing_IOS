@@ -314,7 +314,7 @@
     
     if (!_starRatingView) {
         
-        _starRatingView = [[StarRatingView alloc] initWithFrame:CGRectZero rateStyle:RateStyleOptional];
+        _starRatingView = [[StarRatingView alloc] initWithFrame:CGRectMake(0, 0, 20, 40 * WIDTH_MULTIPLE) rateStyle:RateStyleOptional];
         _starRatingView.delegate = self;
     }
     return _starRatingView;

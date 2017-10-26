@@ -22,6 +22,7 @@
 #import "HYHomeDoodsCell.h"
 #import "HYTypeRecommendCell.h"
 #import "HYBannerModel.h"
+#import "HYOrderDetailImageCell.h"
 
 @interface HYHomePageViewController () <UITableViewDelegate,UITableViewDataSource,SDCycleScrollViewDelegate>
 
@@ -191,7 +192,7 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return 7;
+    return 8;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -276,6 +277,18 @@
         return cell;
     }
     else if (indexPath.row == 5){
+        //类型推荐图片
+        static NSString *typeRecommendImageID = @"typeRecommendImageID";
+        HYOrderDetailImageCell *cell = [tableView dequeueReusableCellWithIdentifier:typeRecommendImageID];
+        if (!cell) {
+            cell = [[HYOrderDetailImageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:typeRecommendImageID];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
+        }
+        [cell.logisticsImgView sd_setImageWithURL:[NSURL URLWithString:_model.typeReCommend.image_url] placeholderImage:[UIImage imageNamed:@"banner.jpg"]];
+        return cell;
+    }
+    else if (indexPath.row == 6){
         //类型推荐
         static NSString *typeRecommendID = @"typeRecommendID";
         HYTypeRecommendCell *cell = [tableView dequeueReusableCellWithIdentifier:typeRecommendID];
@@ -287,7 +300,7 @@
         cell.model = _model;
         return cell;
     }
-    else if (indexPath.row == 6){
+    else if (indexPath.row == 7){
         //猜你喜欢
         static NSString *goodsCellID = @"goodsCellID";
         HYHomeDoodsCell *cell = [tableView dequeueReusableCellWithIdentifier:goodsCellID];
@@ -361,10 +374,15 @@
     else if(indexPath.row == 5) {
         
         //推荐
+        return 170 * WIDTH_MULTIPLE;
+    }
+    else if(indexPath.row == 6) {
+        
+        //推荐
         CGFloat itemWidth = (KSCREEN_WIDTH - 5 * 3) / 4;
         return itemWidth + 10 * WIDTH_MULTIPLE;
     }
-    else if(indexPath.row == 6) {
+    else if(indexPath.row == 7) {
         
         //猜你喜欢
         CGFloat height = ceil(_goodsList.count / 2.0) * 350 * WIDTH_MULTIPLE;

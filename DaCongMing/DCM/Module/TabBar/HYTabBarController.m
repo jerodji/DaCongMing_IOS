@@ -31,7 +31,12 @@
     
     
     [self setupChildVC];
+}
+
++ (void)initialize{
+    
     [self autoLogin];
+
 }
 
 - (void)setupChildVC{
@@ -60,7 +65,7 @@
     self.viewControllers = navArray;
 }
 
-- (void)autoLogin{
++ (void)autoLogin{
     
     if ([[KUSERDEFAULTS valueForKey:KUserLoginType] isEqualToString:@"phone"]) {
         

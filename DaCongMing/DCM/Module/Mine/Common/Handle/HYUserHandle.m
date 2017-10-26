@@ -177,6 +177,29 @@
     return NO;
 }
 
++ (void)userLogoutWithcomplectionBlock:(void (^)(BOOL))complection{
+    
+    NSMutableDictionary *param = [NSMutableDictionary dictionary];
+    [param setValue:[HYUserModel sharedInstance].token forKey:@"token"];
+    
+    [[HTTPManager shareHTTPManager] postDataFromUrl:API_Logout withParameter:param isShowHUD:YES success:^(id returnData) {
+        
+        if (returnData) {
+            
+            NSInteger code =[[returnData objectForKey:@"successed"] integerValue];
+            if (code == 000) {
+                
+                complection(YES);
+            }
+            else{
+                
+                complection(NO);
+            }
+        }
+        
+    }];
+}
+
 + (void)jumpToHomePageVC{
     
     HYTabBarController *tabBar = [[HYTabBarController alloc] init];

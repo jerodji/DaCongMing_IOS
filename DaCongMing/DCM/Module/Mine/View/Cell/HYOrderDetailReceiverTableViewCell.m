@@ -46,7 +46,7 @@
     [self addSubview:self.arrowImgView];
     [self addSubview:self.line];
     
-    self.arrowImgView.hidden = YES;
+    //self.arrowImgView.hidden = YES;
     
 }
 
@@ -91,7 +91,7 @@
     }
     else{
         
-        _receiverInfoLabel.text = @"暂无物流信息!";
+        _receiverInfoLabel.text = @"等待卖家发货!";
     }
     //_receiverInfoLabel.text = [NSString stringWithFormat:@"【%@】%@%@%@%@",orderModel.province_name,orderModel.province_name,orderModel.city_name,orderModel.area_name,orderModel.address];
 }

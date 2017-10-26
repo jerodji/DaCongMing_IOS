@@ -300,4 +300,33 @@
     }];
 }
 
++ (void)requestProductsCommentsWithProductID:(NSString *)productID pageNo:(NSInteger)pageNo complectionBlock:(void (^)(NSArray *))complection{
+    
+    NSMutableDictionary *requestParam = [NSMutableDictionary dictionary];
+    [requestParam setValue:[HYUserModel sharedInstance].token forKey:@"token"];
+    [requestParam setValue:productID forKey:@"item_id"];
+    [requestParam setValue:@(pageNo) forKey:@"pageNo"];
+
+    
+    [[HTTPManager shareHTTPManager] postDataFromUrl:API_AllComments withParameter:requestParam isShowHUD:YES success:^(id returnData) {
+        
+        if (returnData) {
+            
+            NSInteger code = [[returnData objectForKey:@"successed"] integerValue];
+            if (code == 000) {
+                
+                NSArray *array = [returnData objectForKey:@"dataInfo"][@"dataList"];
+                complection(array);
+            }
+            else{
+                complection(nil);
+            }
+        }
+        else{
+            
+            complection(nil);
+        }
+    }];
+}
+
 @end

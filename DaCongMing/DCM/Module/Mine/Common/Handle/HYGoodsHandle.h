@@ -65,5 +65,9 @@
 + (void)cancelCollectShopWithSellerIDs:(NSString *)sellerIDs ComplectionBlock:(void(^)(BOOL isSuccess))complection;
 
 
+/**
+ *  请求商品详情评价
+ */
++ (void)requestProductsCommentsWithProductID:(NSString *)productID pageNo:(NSInteger) pageNo complectionBlock:(void(^)(NSArray *datalist))complection;
 
 @end

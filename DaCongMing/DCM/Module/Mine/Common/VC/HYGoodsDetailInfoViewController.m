@@ -12,6 +12,9 @@
 #import "HYProductsInfoTableViewCell.h"
 #import "HYProductsSpecificationCell.h"
 #import "HYProductsImageDetailCell.h"
+#import "HYCommentTextCell.h"
+#import "HYCommentCell.h"
+#import "HYCommentLookMoreCell.h"
 
 #import "HYGoodsItemImage.h"
 #import "HYGoodsDetailBottomView.h"
@@ -19,6 +22,7 @@
 #import "HYFillOrderViewController.h"
 #import "HYBrandShopViewController.h"
 #import "HYShareView.h"
+#import "HYAllCommentsVC.h"
 
 @interface HYGoodsDetailInfoViewController () <UITableViewDelegate,UITableViewDataSource,HYGoodsSpecificationSelectDelegate>
 
@@ -268,7 +272,7 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return 4;
+    return 7;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -311,6 +315,47 @@
         return cell;
     }
     else if (indexPath.row == 3){
+        //晒单评价
+        static NSString *commentTextCellID = @"commentTextCellID";
+        HYCommentTextCell *cell = [tableView dequeueReusableCellWithIdentifier:commentTextCellID];
+        if (!cell) {
+            cell = [[HYCommentTextCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:commentTextCellID];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        }
+        cell.count = _commentModel.evaluateCount;
+        if (!_commentModel) {
+            cell.hidden = YES;
+        }
+        return cell;
+    }
+    else if (indexPath.row == 4){
+        //评价内容
+        static NSString *commentCellID = @"commentCellID";
+        HYCommentCell *cell = [tableView dequeueReusableCellWithIdentifier:commentCellID];
+        if (!cell) {
+            cell = [[HYCommentCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:commentCellID];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        }
+        cell.commentModel = _commentModel;
+        if (!_commentModel) {
+            cell.hidden = YES;
+        }
+        return cell;
+    }
+    else if (indexPath.row == 5){
+        //查看更多
+        static NSString *commentLookMoreCellID = @"commentLookMoreCellID";
+        HYCommentLookMoreCell *cell = [tableView dequeueReusableCellWithIdentifier:commentLookMoreCellID];
+        if (!cell) {
+            cell = [[HYCommentLookMoreCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:commentLookMoreCellID];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        }
+        if (!_commentModel) {
+            cell.hidden = YES;
+        }
+        return cell;
+    }
+    else if (indexPath.row == 6){
         
         static NSString *imageDetailCellID = @"imageDetailCellID";
         HYProductsImageDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:imageDetailCellID];
@@ -321,14 +366,7 @@
         cell.imageArray = _imageDetailArray;
         return cell;
     }
-    
-    static NSString *cellID = @"";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
-    if (!cell) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    }
-    return cell;
+    return nil;
 }
 
 #pragma mark - tableViewDelegate
@@ -347,8 +385,11 @@
         self.selectSpeciView.isAddToCarts = NO;
         [self.selectSpeciView showGoodsSpecificationView];
     }
-    else if (indexPath.row == 3){
+    else if (indexPath.row == 5){
         
+        HYAllCommentsVC *allCommentsVC = [HYAllCommentsVC new];
+        allCommentsVC.productID = self.goodsID;
+        [self.navigationController pushViewController:allCommentsVC animated:YES];
     }
 }
 
@@ -367,17 +408,44 @@
         
         return 50 * WIDTH_MULTIPLE;
     }
-    else if (indexPath.row == 3){
+    else if (indexPath.row == 6){
         
         HYProductsImageDetailCell *productsDetailCell = [[HYProductsImageDetailCell alloc] init];
         productsDetailCell.imageArray = _imageDetailArray;
         
         if (productsDetailCell.height == 0) {
             
-            return 3000;
+            return 4000;
         }
         return productsDetailCell.height;
     }
+    
+    if (_commentModel) {
+        //有评价
+        if (indexPath.row == 3) {
+            
+            return 48 * WIDTH_MULTIPLE;
+        }
+        
+        if (indexPath.row == 4){
+            
+            
+            return _commentModel.cellHeight;
+        }
+        
+        if (indexPath.row == 5){
+            
+            return 40 * WIDTH_MULTIPLE;
+        }
+    }
+    else{
+        
+        if (indexPath.row == 3 || indexPath.row == 4 || indexPath.row == 5) {
+            
+            return 0;
+        }
+    }
+    
     return 10;
 }
 

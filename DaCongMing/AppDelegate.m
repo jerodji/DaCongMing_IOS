@@ -35,6 +35,7 @@
 #import "HYLoginViewController.h"
 #import "HYGuideViewController.h"
 #import <AlipaySDK/AlipaySDK.h>
+#import <Bugly/Bugly.h>
 
 @interface AppDelegate ()<WXApiDelegate>
 
@@ -68,6 +69,8 @@
         HYTabBarController *tabBar = [[HYTabBarController alloc] init];
         self.window.rootViewController = tabBar;
     }
+    
+    [Bugly startWithAppId:TencentBuglyID];
     
 //    HYLoginViewController *loginVC = [[HYLoginViewController alloc] init];
 //    self.window.rootViewController = loginVC;

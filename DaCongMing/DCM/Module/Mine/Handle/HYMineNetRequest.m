@@ -279,4 +279,31 @@
     }];
 }
 
++ (void)getlogisticsUrlWithOrderID:(NSString *)orderID ComplectionBlock:(void (^)(NSString *))complection{
+    
+    NSMutableDictionary *requestParam = [NSMutableDictionary dictionary];
+    [requestParam setValue:[HYUserModel sharedInstance].token forKey:@"token"];
+    [requestParam setValue:orderID forKey:@"sorder_id"];
+    
+    [[HTTPManager shareHTTPManager] postDataFromUrl:API_GetLogisticUrl withParameter:requestParam isShowHUD:YES success:^(id returnData) {
+        
+        if (returnData) {
+            
+            NSInteger code = [[returnData objectForKey:@"successed"] integerValue];
+            if (code == 000) {
+                
+                NSString *url = [returnData objectForKey:@"dataInfo"][@"express_url"];
+                complection(url);
+            }
+            else{
+                complection(nil);
+            }
+        }
+        else{
+            
+            complection(nil);
+        }
+    }];
+}
+
 @end

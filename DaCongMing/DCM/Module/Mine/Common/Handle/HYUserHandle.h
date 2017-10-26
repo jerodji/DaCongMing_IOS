@@ -43,6 +43,11 @@
 + (BOOL)jumpToLoginViewControllerFromVC:(UIViewController *)fromVC;
 
 /*!
+     退出登录
+ */
++ (void)userLogoutWithcomplectionBlock:(void(^)(BOOL isSuccess))complection;
+
+/*!
  @method
  @brief 跳回首页
  */
