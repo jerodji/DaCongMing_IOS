@@ -149,7 +149,7 @@
     }
     else if (indexPath.row == 1){
         
-        return 45 * WIDTH_MULTIPLE;
+        return 60 * WIDTH_MULTIPLE;
 
     }
     else if (indexPath.row == 2){

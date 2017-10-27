@@ -169,7 +169,7 @@
     self.CountEditView.countCallback = ^(NSInteger count) {
         
         NSString *editJson = [NSString stringWithFormat:@"[{\"guid\":\"%@\",\"newNum\":%ld}]",weakSelf.items.guid,count];
-        [HYCartsHandle bulkEditingCartsAmountWithGuid:editJson ComplectionBlock:^(BOOL isSuccess) {
+        [HYCartsHandle bulkEditingCartsAmountWithGuid:editJson ComplectionBlock:^(BOOL isSuccess,NSString *cartsCount) {
             
             if (isSuccess) {
                 
@@ -177,6 +177,9 @@
                 HYCartItems * cartItems = weakSelf.items;
                 cartItems.qty = [NSString stringWithFormat:@"%ld",count];
                 [weakSelf setItems:cartItems];
+                
+                //发出通知
+                [[NSNotificationCenter defaultCenter] postNotificationName:KAddShoppingCartsSuccess object:cartsCount];
             }
             else{
                 

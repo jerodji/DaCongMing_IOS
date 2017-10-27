@@ -15,7 +15,7 @@
     WXMediaMessage *message = [WXMediaMessage message];
     
     
-    message.title = @"测试把图片分享到微信好友";
+    message.title = @"我的二维码";
     [message setThumbImage:[UIImage imageNamed:@"iconPlaceholder"]];
     WXImageObject *imageObject = [[WXImageObject alloc] init];
     imageObject.imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:dict[@"shareImgUrl"]]];
@@ -39,19 +39,17 @@
     if ([dict objectForKey:@"shareUrl"]) {
         
         WXWebpageObject *object = [[WXWebpageObject alloc] init];
-        UIImage *image = [UIImage imageNamed:@"iconPlaceholder"];
-        NSData *imgData = UIImageJPEGRepresentation(image, 0.8);
-        UIImage *shareImg = [UIImage imageWithData:imgData];
-        [message setThumbImage:shareImg];
+        UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:dict[@"imageUrl"]]]];
+        [message setThumbImage:image];
         object.webpageUrl = [dict objectForKey:@"shareUrl"];
         message.mediaObject = object;
 
     }
     
-    if ([dict objectForKey:@"shareImgUrl"]) {
+    if ([dict objectForKey:@"shareImg"]) {
         
         WXImageObject *imageObject = [[WXImageObject alloc] init];
-        imageObject.imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:dict[@"shareImgUrl"]]];
+        imageObject.imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:dict[@"imageUrl"]]];
         message.mediaObject = imageObject;
         rep.bText = NO;
     }
@@ -72,10 +70,8 @@
     if ([dict objectForKey:@"shareUrl"]) {
         
         WXWebpageObject *object = [[WXWebpageObject alloc] init];
-        UIImage *image = [UIImage imageNamed:@"iconPlaceholder"];
-        NSData *imgData = UIImageJPEGRepresentation(image, 0.8);
-        UIImage *shareImg = [UIImage imageWithData:imgData];
-        [message setThumbImage:shareImg];
+        UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:dict[@"imageUrl"]]]];
+        [message setThumbImage:image];
         object.webpageUrl = [dict objectForKey:@"shareUrl"];
         message.mediaObject = object;
         

@@ -67,19 +67,26 @@
 
 + (void)autoLogin{
     
-    if ([[KUSERDEFAULTS valueForKey:KUserLoginType] isEqualToString:@"phone"]) {
-        
-        NSString *phone = [KUSERDEFAULTS valueForKey:KUserPhone];
-        NSString *password = [KUSERDEFAULTS valueForKey:KUserPassword];
-        [HYUserHandle userLoginWithPhone:phone password:password complectionBlock:^(BOOL isLoginSuccess) {
-            
-        }];
-    }
+//    if ([[KUSERDEFAULTS valueForKey:KUserLoginType] isEqualToString:@"phone"]) {
+//
+//        NSString *phone = [KUSERDEFAULTS valueForKey:KUserPhone];
+//        NSString *password = [KUSERDEFAULTS valueForKey:KUserPassword];
+//        [HYUserHandle userLoginWithPhone:phone password:password complectionBlock:^(BOOL isLoginSuccess) {
+//
+//        }];
+//    }
     
     if ([[KUSERDEFAULTS valueForKey:KUserLoginType] isEqualToString:@"weChat"]) {
         
         DLog(@"微信账号登录");
     }
+    
+    
+    HYUserModel *userModel = [HYPlistTools unarchivewithName:KUserModelData];
+     HYUserModel *shareModel = [HYUserModel sharedInstance];
+    shareModel.token = userModel.token;
+    shareModel.userInfo = userModel.userInfo;
+    DLog(@"user:---%@",shareModel);
 }
 
 - (void)didReceiveMemoryWarning {

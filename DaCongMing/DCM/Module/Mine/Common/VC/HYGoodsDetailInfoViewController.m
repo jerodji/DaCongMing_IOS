@@ -23,6 +23,7 @@
 #import "HYBrandShopViewController.h"
 #import "HYShareView.h"
 #import "HYAllCommentsVC.h"
+#import "HYMineNetRequest.h"
 
 @interface HYGoodsDetailInfoViewController () <UITableViewDelegate,UITableViewDataSource,HYGoodsSpecificationSelectDelegate>
 
@@ -183,27 +184,58 @@
         
         if([HYUserHandle jumpToLoginViewControllerFromVC:weakSelf])
             return ;
-        [HYGoodsHandle addToCollectionGoodsWithItemID:weakSelf.goodsID ComplectionBlock:^(BOOL isSuccess) {
+        
+        if ([weakSelf.detailModel.isFavorite integerValue] == 0) {
             
-            if (isSuccess) {
+            [HYGoodsHandle addToCollectionGoodsWithItemID:weakSelf.goodsID ComplectionBlock:^(BOOL isSuccess) {
                 
-                [UIView animateWithDuration:0.4 animations:^{
+                if (isSuccess) {
                     
-                    weakSelf.bottomView.collectionBtn.transform = CGAffineTransformScale(weakSelf.bottomView.collectionBtn.transform, 1.4, 1.4);
+                    [UIView animateWithDuration:0.4 animations:^{
+                        
+                        weakSelf.bottomView.collectionBtn.transform = CGAffineTransformScale(weakSelf.bottomView.collectionBtn.transform, 1.4, 1.4);
+                        weakSelf.bottomView.collectionBtn.selected = YES;
+                        weakSelf.detailModel.isFavorite = @"1";
+                        
+                    } completion:^(BOOL finished) {
+                        
+                        weakSelf.bottomView.collectionBtn.transform = CGAffineTransformScale(weakSelf.bottomView.collectionBtn.transform, 1 / 1.4, 1 / 1.4);
+                    }];
+                    [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"添加收藏成功"];
+                }
+                else{
+                    weakSelf.bottomView.collectionBtn.selected = NO;
+                    [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"添加收藏失败"];
+                }
+            }];
+        }
+        else{
+            
+            [HYMineNetRequest deleteMyCollectionGoodsWithItemIDs:weakSelf.goodsID ComplectionBlock:^(BOOL isSuccess) {
+                
+                if (isSuccess) {
+                    
+                    [UIView animateWithDuration:0.4 animations:^{
+                        
+                        weakSelf.bottomView.collectionBtn.transform = CGAffineTransformScale(weakSelf.bottomView.collectionBtn.transform, 1.4, 1.4);
+                        weakSelf.bottomView.collectionBtn.selected = NO;
+                        weakSelf.detailModel.isFavorite = @"0";
+
+                        
+                    } completion:^(BOOL finished) {
+                        
+                        weakSelf.bottomView.collectionBtn.transform = CGAffineTransformScale(weakSelf.bottomView.collectionBtn.transform, 1 / 1.4, 1 / 1.4);
+                    }];
+                    [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"取消收藏成功"];
+                }
+                else{
                     weakSelf.bottomView.collectionBtn.selected = YES;
-
-
-                } completion:^(BOOL finished) {
-                    
-                   weakSelf.bottomView.collectionBtn.transform = CGAffineTransformScale(weakSelf.bottomView.collectionBtn.transform, 1 / 1.4, 1 / 1.4);
-                }];
-                [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"添加收藏成功"];
-            }
-            else{
-                weakSelf.bottomView.collectionBtn.selected = NO;
-                [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"添加收藏失败"];
-            }
-        }];
+                    [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"取消收藏失败"];
+                }
+            }];
+        }
+        
+        
     };
     
     self.bottomView.shoppingCartsAction = ^{
@@ -234,15 +266,19 @@
         
         if (_selectSpeciView.isAddToCarts) {
             
-            [HYGoodsHandle addToShoppingCartsItemID:item.item_id count:count andUnit:item.unit ComplectionBlock:^(BOOL isSuccess) {
-               
+            [HYGoodsHandle addToShoppingCartsItemID:item.item_id count:count andUnit:item.unit ComplectionBlock:^(BOOL isSuccess,NSString *cartsCount) {
+                
                 if (isSuccess) {
                     
                     DLog(@"添加购物车成功");
                     [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"添加购物车成功"];
+                    
+                    //发出通知，刷新购物车列表
+                    [[NSNotificationCenter defaultCenter] postNotificationName:KAddShoppingCartsSuccess object:cartsCount];
                 }
                 
                 [_selectSpeciView removeFromSuperview];
+                _selectSpeciView = nil;
             }];
         }
         else{

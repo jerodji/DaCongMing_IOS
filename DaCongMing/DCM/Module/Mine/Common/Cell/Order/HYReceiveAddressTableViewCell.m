@@ -25,6 +25,11 @@
 /** bottomLine */
 @property (nonatomic,strong) UIView *bottomLine;
 
+/** 无收货地址 */
+@property (nonatomic,strong) UIImageView *noAddressImgView;
+/** 默认 */
+@property (nonatomic,strong) UILabel *tipsLabel;
+
 @end
 
 @implementation HYReceiveAddressTableViewCell
@@ -53,6 +58,8 @@
     [self addSubview:self.arrowImgView];
     [self addSubview:self.bottomLine];
 
+    [self addSubview:self.noAddressImgView];
+    [self addSubview:self.tipsLabel];
 }
 
 #pragma mark - setter
@@ -60,10 +67,29 @@
     
     _orderModel = orderModel;
     
-    _nameLabel.text = orderModel.addressMap.receiver;
-    _phoneLabel.text = orderModel.addressMap.phoneNum;
-    _addressLabel.text = [NSString stringWithFormat:@"%@%@%@%@",orderModel.addressMap.province,orderModel.addressMap.city,orderModel.addressMap.area,orderModel.addressMap.address];
-    [_addressLabel sizeToFit];
+    if ([orderModel.addressMap.receiver isNotBlank]) {
+        //有收货地址
+        _nameLabel.text = orderModel.addressMap.receiver;
+        _phoneLabel.text = orderModel.addressMap.phoneNum;
+        _addressLabel.text = [NSString stringWithFormat:@"%@%@%@%@",orderModel.addressMap.province,orderModel.addressMap.city,orderModel.addressMap.area,orderModel.addressMap.address];
+        [_addressLabel sizeToFit];
+        
+        self.noAddressImgView.hidden = YES;
+        self.tipsLabel.hidden = YES;
+        _phoneLabel.hidden = NO;
+        _nameLabel.hidden = NO;
+        _addressLabel.hidden = NO;
+        _defaultLabel.hidden = NO;
+    }
+    else{
+        //没有收货地址
+        _phoneLabel.hidden = YES;
+        _nameLabel.hidden = YES;
+        _addressLabel.hidden = YES;
+        _defaultLabel.hidden = YES;
+        self.noAddressImgView.hidden = NO;
+        self.tipsLabel.hidden = NO;
+    }
 
 }
 
@@ -81,7 +107,7 @@
         make.left.equalTo(self).offset(10 * WIDTH_MULTIPLE);
         make.top.equalTo(_stripImgView).offset(20 * WIDTH_MULTIPLE);
         make.height.equalTo(@20);
-        make.width.equalTo(@(65 * WIDTH_MULTIPLE));
+        make.width.equalTo(@(80 * WIDTH_MULTIPLE));
     }];
     
     [_phoneLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -121,6 +147,21 @@
     }];
     
     [_addressLabel layoutIfNeeded];
+    
+    [_noAddressImgView mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.left.equalTo(self).offset(40 * WIDTH_MULTIPLE);
+        make.centerY.equalTo(self).offset(8 * WIDTH_MULTIPLE);;
+        make.size.mas_equalTo(CGSizeMake(30 * WIDTH_MULTIPLE, 30 * WIDTH_MULTIPLE));
+    }];
+    
+    [_tipsLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.centerY.equalTo(self).offset(8 * WIDTH_MULTIPLE);
+        make.left.equalTo(_noAddressImgView.mas_right).offset(20 * WIDTH_MULTIPLE);
+        make.right.equalTo(_arrowImgView.mas_left).offset(-20 * WIDTH_MULTIPLE);
+        make.height.mas_equalTo(30 * WIDTH_MULTIPLE);
+    }];
 
 }
 
@@ -201,6 +242,29 @@
         _arrowImgView.contentMode = UIViewContentModeScaleAspectFit;
     }
     return _arrowImgView;
+}
+
+- (UIImageView *)noAddressImgView{
+    
+    if (!_noAddressImgView) {
+        
+        _noAddressImgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"order_mark"]];
+        _noAddressImgView.contentMode = UIViewContentModeScaleAspectFit;
+    }
+    return _noAddressImgView;
+}
+
+- (UILabel *)tipsLabel{
+    
+    if (!_tipsLabel) {
+        
+        _tipsLabel = [[UILabel alloc] init];
+        _tipsLabel.font = KFitFont(14);
+        _tipsLabel.textAlignment = NSTextAlignmentLeft;
+        _tipsLabel.text = @"暂无收货地址，点击添加收货地址";
+        _tipsLabel.textColor = KAPP_b7b7b7_COLOR;
+    }
+    return _tipsLabel;
 }
 
 - (UIView *)bottomLine{

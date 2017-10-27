@@ -100,10 +100,20 @@
     
     if (indexPath.section == 2) {
         
-        HYForgetPasswordVC *bindPhoneVC = [HYForgetPasswordVC new];
-        bindPhoneVC.title = @"绑定手机";
-        [self.navigationController pushViewController:bindPhoneVC animated:YES];
-        bindPhoneVC.isBindPhone = YES;
+        if (![[HYUserModel sharedInstance].userInfo.phone isNotBlank]) {
+            
+            HYForgetPasswordVC *bindPhoneVC = [HYForgetPasswordVC new];
+            bindPhoneVC.title = @"绑定手机";
+            [self.navigationController pushViewController:bindPhoneVC animated:YES];
+            bindPhoneVC.isBindPhone = YES;
+        }
+        else{
+            
+            
+            [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"你已经绑定过手机了"];
+        }
+        
+        
     }
     
     if (indexPath.section == 3) {

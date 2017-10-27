@@ -28,7 +28,7 @@
  @method
  @brief 批量修改购物车
  */
-+ (void)bulkEditingCartsAmountWithGuid:(NSString *)editJson ComplectionBlock:(void(^)(BOOL isSuccess))complection;
++ (void)bulkEditingCartsAmountWithGuid:(NSString *)editJson ComplectionBlock:(void(^)(BOOL isSuccess,NSString *cartsCount))complection;
 
 /*!
  @method
@@ -41,6 +41,6 @@
  @method
  @brief 移除购物车
  */
-+ (void)deleteCartsAmountWithGuids:(NSString *)guids ComplectionBlock:(void(^)(BOOL isSuccess))complection;
++ (void)deleteCartsAmountWithGuids:(NSString *)guids ComplectionBlock:(void(^)(BOOL isSuccess,NSString *cartsCount))complection;
 
 @end

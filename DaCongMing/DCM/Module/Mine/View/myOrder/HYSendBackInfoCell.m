@@ -300,6 +300,13 @@
         _phoneLabel.textAlignment = NSTextAlignmentLeft;
         _phoneLabel.text = @"电话:";
         _phoneLabel.textColor = KAPP_272727_COLOR;
+        _phoneLabel.userInteractionEnabled = YES;
+        UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc] initWithActionBlock:^(id  _Nonnull sender) {
+            
+            NSString * str = [[NSString alloc] initWithFormat:@"tel://%@",_model.ref_phone];
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+        }];
+        [_phoneLabel addGestureRecognizer:tapGes];
     }
     return _phoneLabel;
 }

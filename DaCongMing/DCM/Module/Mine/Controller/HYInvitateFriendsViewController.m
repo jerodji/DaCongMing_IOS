@@ -64,7 +64,8 @@
             NSMutableDictionary *dict = [NSMutableDictionary dictionary];
             [dict setObject:@"大聪明" forKey:@"shareTitle"];
             [dict setObject:shareDict[@"url"] forKey:@"shareUrl"];
-            [dict setObject:@"老铁，没毛病，双击666\n老铁，没毛病，双击666\n老铁，没毛病，双击666" forKey:@"shareDesc"];
+            [dict setObject:shareDict[@"title_image_url"] forKey:@"imageUrl"];
+            [dict setObject:shareDict[@"share_msg"] forKey:@"shareDesc"];
             
             self.shareView.shareDict = dict;
         }

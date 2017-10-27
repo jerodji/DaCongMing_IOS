@@ -120,6 +120,12 @@
     }];
 }
 
+#pragma mark - action
+- (void)phoneCallBtnAction{
+    
+    NSString * str = [[NSString alloc] initWithFormat:@"tel://%@",KCustomerServicePhone];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+}
 
 #pragma mark - lazyload
 - (UIView *)verticalLine{
@@ -203,6 +209,7 @@
         [_phoneCallBtn setTitleColor:KAPP_TextSpecial_COLOR forState:UIControlStateNormal];
         _phoneCallBtn.titleLabel.font = KFitFont(13);
         _phoneCallBtn.backgroundColor = KAPP_TableView_BgColor;
+        [_phoneCallBtn addTarget:self action:@selector(phoneCallBtnAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return _phoneCallBtn;
 }

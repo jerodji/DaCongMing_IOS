@@ -42,7 +42,7 @@
 /**
  *  添加到购物车
  */
-+ (void)addToShoppingCartsItemID:(NSString *)itemID count:(NSInteger)count andUnit:(NSString *)unit ComplectionBlock:(void(^)(BOOL isSuccess))complection;
++ (void)addToShoppingCartsItemID:(NSString *)itemID count:(NSInteger)count andUnit:(NSString *)unit ComplectionBlock:(void(^)(BOOL isSuccess,NSString *cartsCount))complection;
 
 /**
  *  添加收藏

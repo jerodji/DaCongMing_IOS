@@ -67,7 +67,7 @@
     }];
 }
 
-+ (void)bulkEditingCartsAmountWithGuid:(NSString *)editJson ComplectionBlock:(void (^)(BOOL))complection{
++ (void)bulkEditingCartsAmountWithGuid:(NSString *)editJson ComplectionBlock:(void (^)(BOOL,NSString*))complection{
     
     NSMutableDictionary *requestParam = [NSMutableDictionary dictionary];
     [requestParam setValue:[HYUserModel sharedInstance].token forKey:@"token"];
@@ -79,18 +79,18 @@
             NSInteger code = [[returnData objectForKey:@"successed"] integerValue];
             if (code == 000) {
                 
-                NSDictionary *dict = [returnData objectForKey:@"dataInfo"];
-                //DLog(@"%@",dict);
-                complection(YES);
+                NSString *count = [NSString stringWithFormat:@"%@",[[returnData objectForKey:@"dataInfo"] objectForKey:@"cartItemCount"]];
+                complection(YES,count);
             }
             else{
                 
-                complection(NO);
+                complection(NO,@"0");
+
             }
         }
         else{
             
-            complection(NO);
+            complection(NO,@"0");
 
         }
     }];
@@ -128,7 +128,7 @@
     }];
 }
 
-+ (void)deleteCartsAmountWithGuids:(NSString *)guids ComplectionBlock:(void (^)(BOOL))complection{
++ (void)deleteCartsAmountWithGuids:(NSString *)guids ComplectionBlock:(void (^)(BOOL,NSString *))complection{
     
     NSMutableDictionary *requestParam = [NSMutableDictionary dictionary];
     [requestParam setValue:[HYUserModel sharedInstance].token forKey:@"token"];
@@ -140,17 +140,18 @@
             NSInteger code = [[returnData objectForKey:@"successed"] integerValue];
             if (code == 000) {
                 
-                //NSDictionary *dict = [returnData objectForKey:@"dataInfo"];
-                complection(YES);
+                NSString *count = [NSString stringWithFormat:@"%@",[[returnData objectForKey:@"dataInfo"] objectForKey:@"cartItemCount"]];
+                complection(YES,count);
             }
             else{
                 
-                complection(NO);
+                complection(NO,@"0");
+
             }
         }
         else{
             
-            complection(NO);
+            complection(NO,@"0");
             
         }
     }];

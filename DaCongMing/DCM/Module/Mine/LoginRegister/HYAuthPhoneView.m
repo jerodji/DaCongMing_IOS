@@ -12,14 +12,10 @@
 
 /** 白色背景 */
 @property (nonatomic,strong) UIView *whiteBgView;
-/** phoneTextField */
-@property (nonatomic,strong) UITextField *phoneTextField;
 /** 验证码 */
 @property (nonatomic,strong) UIButton *getAuthCodeBtn;
 /** 线 */
 @property (nonatomic,strong) UIView *line1;
-/** authCodeTextField */
-@property (nonatomic,strong) UITextField *authCodeTextField;
 /** 确定 */
 @property (nonatomic,strong) UIButton *confirmBtn;
 /** phone */
@@ -157,6 +153,7 @@
             
             if (self.authPhoneSuccess) {
                 
+                [HYUserModel sharedInstance].userInfo.phone = _phoneTextField.text;
                 self.authPhoneSuccess();
             }
             

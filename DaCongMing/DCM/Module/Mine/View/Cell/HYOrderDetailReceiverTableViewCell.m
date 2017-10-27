@@ -54,8 +54,9 @@
     
     [_logisticsCarImgView mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.left.top.equalTo(self).offset(10 * WIDTH_MULTIPLE);
-        make.size.mas_equalTo(CGSizeMake(30, 30));
+        make.left.equalTo(self).offset(5 * WIDTH_MULTIPLE);
+        make.top.equalTo(self).offset(15 * WIDTH_MULTIPLE);
+        make.size.mas_equalTo(CGSizeMake(30 * WIDTH_MULTIPLE, 30 * WIDTH_MULTIPLE));
     }];
     
     [_arrowImgView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -69,7 +70,7 @@
     [_receiverInfoLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.left.equalTo(_logisticsCarImgView.mas_right).offset(10 * WIDTH_MULTIPLE);
-        make.right.equalTo(_arrowImgView.mas_left).offset(30 * WIDTH_MULTIPLE);
+        make.right.equalTo(_arrowImgView.mas_left).offset(-5 * WIDTH_MULTIPLE);
         make.top.bottom.equalTo(self);
     }];
     

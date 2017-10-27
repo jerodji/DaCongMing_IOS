@@ -313,6 +313,8 @@
     }
 }
 
+
+
 #pragma mark - lazyload
 - (UIImageView *)iconImgView{
     
@@ -492,6 +494,7 @@
         _scrollView.scrollEnabled = YES;
         _scrollView.delegate = self;
         _scrollView.showsHorizontalScrollIndicator = NO;
+        _scrollView.userInteractionEnabled = NO;
     }
     return _scrollView;
 }

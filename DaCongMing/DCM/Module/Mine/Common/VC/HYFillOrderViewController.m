@@ -58,6 +58,21 @@
     [self.view addSubview:self.tableView];
     [self.view addSubview:self.payMoneyLabel];
     [self.view addSubview:self.confirmBtn];
+    
+    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back"] style:UIBarButtonItemStylePlain target:self action:@selector(backBtnAction)];
+    self.navigationItem.leftBarButtonItem = backItem;
+}
+
+- (void)backBtnAction{
+    
+    HYCustomAlert *alert = [[HYCustomAlert alloc] initWithFrame:CGRectMake(0, 0, KSCREEN_WIDTH, KSCREEN_HEIGHT) WithTitle:@"温馨提示" content:@"订单已经生成，确认返回吗？" confirmBlock:^{
+        
+       
+        [self.navigationController popViewControllerAnimated:YES];
+    }];
+    
+    [KEYWINDOW addSubview:alert];
+    [alert showCustomAlert];
 }
 
 - (void)setupMasonryLayout{
@@ -152,6 +167,12 @@
 #pragma mark - action
 - (void)confirmBtnAction{
     
+    if (![self.orderModel.addressMap.receiver isNotBlank]) {
+        
+        [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"请填写收货地址"];
+        return;
+    }
+    
     if (self.payMode == 0) {
         
         [HYPayHandle alipayWithOrderID:self.createOrderDatalist.sorder_id coupon_guid:nil complectionBlock:^(NSString *sign) {
@@ -208,17 +229,17 @@
 #pragma mark - TableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     
-    return 1;
+    return 4;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return 4;
+    return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    if (indexPath.row == 0) {
+    if (indexPath.section == 0) {
         
         //收货地址
         static NSString *receiveAddressCell = @"receiveAddressCell";
@@ -230,7 +251,7 @@
         cell.orderModel = _orderModel;
         return cell;
     }
-    else if (indexPath.row == 1){
+    else if (indexPath.section == 1){
         
         static NSString *goodsPostageCell = @"goodsPostageCell";
         HYGoodsPostageTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:goodsPostageCell];
@@ -241,7 +262,7 @@
         cell.orderModel = _orderModel;
         return cell;
     }
-    else if (indexPath.row == 2){
+    else if (indexPath.section == 2){
         
         static NSString *discountCell = @"discountCell";
         HYDiscountTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:discountCell];
@@ -251,7 +272,7 @@
         }
         return cell;
     }
-    else if (indexPath.row == 3){
+    else if (indexPath.section == 3){
         
         static NSString *goodsPayCell = @"goodsPayCell";
         HYGoodsPayTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:goodsPayCell];
@@ -279,7 +300,7 @@
 #pragma mark - tableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    if (indexPath.row == 0) {
+    if (indexPath.section == 0) {
         
         //收货地址
         HYMyAddressViewController *myAddressVC = [HYMyAddressViewController new];
@@ -311,27 +332,39 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    if (indexPath.row == 0) {
+    if (indexPath.section == 0) {
         
         //收货地址
         return 100;
     }
-    else if (indexPath.row == 1){
+    else if (indexPath.section == 1){
         
         //商品邮费
-        return 140 * WIDTH_MULTIPLE;
+        return 130 * WIDTH_MULTIPLE;
     }
-    else if (indexPath.row == 2){
+    else if (indexPath.section == 2){
         
         //优惠券
         return 50 * WIDTH_MULTIPLE;
     }
-    else if (indexPath.row == 3){
+    else if (indexPath.section == 3){
         
         //商品合计
         return 145 * WIDTH_MULTIPLE;
     }
     return 100;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, KSCREEN_WIDTH, 10 * WIDTH_MULTIPLE)];
+    view.backgroundColor = KCOLOR(@"f4f4f4");
+    return view;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    
+    return 10 * WIDTH_MULTIPLE;
 }
 
 

@@ -36,6 +36,9 @@
                 [KUSERDEFAULTS setValue:password forKey:KUserPassword];
                 [KUSERDEFAULTS setValue:@"phone" forKey:KUserLoginType];
                 [KUSERDEFAULTS synchronize];
+                
+                [HYPlistTools archiveObject:user withName:KUserModelData];
+
             }
             else{
                 
@@ -97,6 +100,11 @@
                 
                 [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"该手机号已经绑定了"];
             }
+            else if (code == 006){
+                
+                [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"该手机号未注册"];
+
+            }
             else{
                 
                 complection(NO);
@@ -121,6 +129,7 @@
         if (returnData) {
             
             NSInteger code =[[returnData objectForKey:@"successed"] integerValue];
+            NSString *errorMsg = [returnData objectForKey:@"dataInfo"][@"error_msg"];
             if (code == 000) {
                 
                 complection(YES);
@@ -130,7 +139,7 @@
             else{
                 
                 complection(NO);
-                [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"设置密码出现错误"];
+                [MBProgressHUD showPregressHUD:KEYWINDOW withText:errorMsg];
             }
         }
         

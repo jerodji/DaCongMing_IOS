@@ -271,12 +271,16 @@
                 HYUserModel *user = [HYUserModel sharedInstance];
                 [user modelSetWithDictionary:dict];
                 
+                [KUSERDEFAULTS setValue:@"weChat" forKey:KUserLoginType];
+                [KUSERDEFAULTS synchronize];
+                [HYPlistTools archiveObject:user withName:KUserModelData];
+                
                 if ([isNewUser isEqualToString:@"true"]) {
                     
                     //登录成功 跳转设置密码页面
-                    [KUSERDEFAULTS setValue:@"weChat" forKey:KUserLoginType];
-                    [KUSERDEFAULTS synchronize];
-                    self.weChatBlock();
+//                    self.weChatBlock();
+                    self.userLoginSuccess();
+
                 }
                 else{
                     //老用户，直接跳回首页

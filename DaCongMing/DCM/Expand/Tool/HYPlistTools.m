@@ -41,8 +41,8 @@
     
     NSString *namePath = [NSString stringWithFormat:@"%@",name];
     NSString *filePath = [KCACHE_PATH stringByAppendingPathComponent:namePath];
-    NSArray *array = [NSKeyedUnarchiver unarchiveObjectWithFile:filePath];
-    return array;
+    id data = [NSKeyedUnarchiver unarchiveObjectWithFile:filePath];
+    return data;
 }
 
 + (BOOL)isFileExistWithFileName:(NSString *)fileName{

@@ -14,6 +14,8 @@
 @property (nonatomic,strong) UILabel *goodsCountLabel;
 /** 邮费总计 */
 @property (nonatomic,strong) UILabel *postageLabel;
+/** 背景 */
+@property (nonatomic,strong) UIView *bgView;
 /** 邮费价格 */
 @property (nonatomic,strong) UILabel *postagePriceLabel;
 /** 99包邮 */
@@ -45,10 +47,13 @@
     
     [self addSubview:self.goodsCountLabel];
     [self addSubview:self.postageLabel];
+    [self addSubview:self.bgView];
     [self addSubview:self.postagePriceLabel];
 //    [self addSubview:self.freePostageBtn];
     [self addSubview:self.lookInfoBtn];
     [self addSubview:self.bottomLine];
+    
+    self.lookInfoBtn.hidden = YES;
 }
 
 #pragma mark - setter
@@ -70,7 +75,7 @@
     for (NSInteger i = 0; i < orderModel.item_imageList.count; i++) {
         
         UIImageView *imgView = [[UIImageView alloc] init];
-        imgView.frame = CGRectMake(20 * WIDTH_MULTIPLE + i * 70 * WIDTH_MULTIPLE, _goodsCountLabel.bottom + 10 * WIDTH_MULTIPLE, 50 * WIDTH_MULTIPLE, 50 * WIDTH_MULTIPLE);
+        imgView.frame = CGRectMake(20 * WIDTH_MULTIPLE + i * 70 * WIDTH_MULTIPLE, _bgView.top + 10 * WIDTH_MULTIPLE, 50 * WIDTH_MULTIPLE, 50 * WIDTH_MULTIPLE);
         [imgView sd_setImageWithURL:[NSURL URLWithString:orderModel.item_imageList[i]] placeholderImage:[UIImage imageNamed:@"placeholder"]];
         imgView.contentMode = UIViewContentModeScaleAspectFill;
         imgView.clipsToBounds = YES;
@@ -84,16 +89,23 @@
     [_goodsCountLabel mas_makeConstraints:^(MASConstraintMaker *make) {
        
         make.left.equalTo(self).offset(10 * WIDTH_MULTIPLE);
-        make.top.equalTo(self).offset(10 * WIDTH_MULTIPLE);
-        make.height.equalTo(@20);
+        make.top.equalTo(self);
+        make.height.mas_equalTo(25 * WIDTH_MULTIPLE);
         make.right.equalTo(self);
+    }];
+    
+    [_bgView mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.left.right.equalTo(self);
+        make.top.equalTo(_goodsCountLabel.mas_bottom).offset(5 * WIDTH_MULTIPLE);
+        make.bottom.equalTo(self).offset(-30 * WIDTH_MULTIPLE);
     }];
     
     [_postageLabel mas_makeConstraints:^(MASConstraintMaker *make) {
        
         make.left.equalTo(_goodsCountLabel);
-        make.bottom.equalTo(self).offset(-10 * WIDTH_MULTIPLE);
-        make.height.equalTo(@20);
+        make.bottom.equalTo(self);
+        make.height.mas_equalTo(30 * WIDTH_MULTIPLE);
         make.width.equalTo(@(150));
     }];
     
@@ -101,7 +113,7 @@
     [_postagePriceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
        
         make.right.equalTo(self).offset(-10 * WIDTH_MULTIPLE);
-        make.bottom.equalTo(self).offset(-14 * WIDTH_MULTIPLE);
+        make.bottom.equalTo(self);
         make.top.equalTo(_postageLabel);
         make.width.equalTo(@(priceLabelWidth + 20));
     }];
@@ -122,9 +134,9 @@
     [_lookInfoBtn mas_makeConstraints:^(MASConstraintMaker *make) {
        
         make.right.equalTo(self).offset(-10 * WIDTH_MULTIPLE);
-        make.centerY.equalTo(self);
-        make.height.equalTo(@(40));
-        make.width.equalTo(@(50));
+        make.centerY.equalTo(_bgView);
+        make.height.mas_equalTo(20 * WIDTH_MULTIPLE);
+        make.width.mas_equalTo(40 * WIDTH_MULTIPLE);
     }];
 }
 
@@ -140,6 +152,16 @@
         _goodsCountLabel.textColor = KAPP_7b7b7b_COLOR;
     }
     return _goodsCountLabel;
+}
+
+- (UIView *)bgView{
+    
+    if (!_bgView) {
+        
+        _bgView = [UIView new];
+        _bgView.backgroundColor = KCOLOR(@"f1f5f3");
+    }
+    return _bgView;
 }
 
 - (UILabel *)postageLabel{
@@ -191,8 +213,8 @@
         [_lookInfoBtn setTitleColor:KAPP_7b7b7b_COLOR forState:UIControlStateNormal];
         _lookInfoBtn.titleLabel.font = KFitFont(12);
         UIImage *image = _lookInfoBtn.imageView.image;
-        [_lookInfoBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -image.size.width - 10, 0, image.size.width + 10)];
-        [_lookInfoBtn setImageEdgeInsets:UIEdgeInsetsMake(0, _lookInfoBtn.titleLabel.bounds.size.width + 17, 0, -_lookInfoBtn.titleLabel.bounds.size.width - 17)];
+        [_lookInfoBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -image.size.width - 15, 0, image.size.width + 15)];
+        [_lookInfoBtn setImageEdgeInsets:UIEdgeInsetsMake(0, _lookInfoBtn.titleLabel.bounds.size.width + 5, 0, -_lookInfoBtn.titleLabel.bounds.size.width - 5)];
         _lookInfoBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
     }
     return _lookInfoBtn;

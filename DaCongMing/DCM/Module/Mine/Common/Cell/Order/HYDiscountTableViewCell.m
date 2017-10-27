@@ -125,7 +125,7 @@
         _discountCoponCountLabel.font = KFitFont(15);
         _discountCoponCountLabel.textAlignment = NSTextAlignmentRight;
         _discountCoponCountLabel.text = @"0张";
-        _discountCoponCountLabel.textColor = KAPP_484848_COLOR;
+        _discountCoponCountLabel.textColor = KAPP_b7b7b7_COLOR;
     }
     return _discountCoponCountLabel;
 }

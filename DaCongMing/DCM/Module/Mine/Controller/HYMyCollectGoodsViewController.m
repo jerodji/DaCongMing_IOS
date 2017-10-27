@@ -11,6 +11,7 @@
 #import "HYMyCollectionGoodsCell.h"
 #import "HYDeleteCartsView.h"
 #import "HYNoCollectImgView.h"
+#import "HYGoodsDetailInfoViewController.h"
 
 @interface HYMyCollectGoodsViewController () <UITableViewDelegate,UITableViewDataSource>
 
@@ -158,7 +159,11 @@
 #pragma mark - tableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    
+    HYGoodsItemModel *model = self.datalist[indexPath.section];
+
+    HYGoodsDetailInfoViewController *detailVC = [HYGoodsDetailInfoViewController new];
+    detailVC.goodsID = model.item_id;
+    [self.navigationController pushViewController:detailVC animated:YES];
 }
 
 

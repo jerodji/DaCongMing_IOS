@@ -95,7 +95,7 @@
         NSMutableDictionary *dict = [NSMutableDictionary dictionary];
         [dict setObject:@"大聪明" forKey:@"shareTitle"];
         [dict setObject:[HYUserModel sharedInstance].userInfo.qrpath forKey:@"shareImgUrl"];
-        [dict setObject:@"老铁，没毛病，双击666\n老铁，没毛病，双击666\n老铁，没毛病，双击666" forKey:@"shareDesc"];
+        [dict setObject:@"我的二维码" forKey:@"shareDesc"];
         
         _shareView.shareDict = dict;
     }

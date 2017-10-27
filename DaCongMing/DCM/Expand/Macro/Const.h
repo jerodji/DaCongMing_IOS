@@ -2,13 +2,16 @@
 //  Const.h
 //  xtd
 //
-//  Created by leimo on 2017/8/10.
-//  Copyright © 2017年 sj. All rights reserved.
+//  Created by huyong on 2017/10/10
+//  Copyright © 2017年 huyong All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
 @interface Const : NSObject
+
+/** 用户信息模型 */
+extern NSString * const KUserModelData;
 
 /** 用户手机号 */
 extern NSString *const KUserPhone;
@@ -42,5 +45,8 @@ extern NSString * const KSortListPlist;
 
 /** 首页数据模型 */
 extern NSString * const KHomePageDataModel;
+
+/** 添加购物车成功 */
+extern NSString * const KAddShoppingCartsSuccess;
 
 @end

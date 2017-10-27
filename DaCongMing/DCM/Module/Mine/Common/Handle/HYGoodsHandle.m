@@ -171,7 +171,7 @@
     }];
 }
 
-+ (void)addToShoppingCartsItemID:(NSString *)itemID count:(NSInteger)count andUnit:(NSString *)unit ComplectionBlock:(void (^)(BOOL))complection{
++ (void)addToShoppingCartsItemID:(NSString *)itemID count:(NSInteger)count andUnit:(NSString *)unit ComplectionBlock:(void (^)(BOOL,NSString*))complection{
     
     NSMutableDictionary *requestParam = [NSMutableDictionary dictionary];
     [requestParam setValue:[HYUserModel sharedInstance].token forKey:@"token"];
@@ -183,13 +183,14 @@
         
         if (returnData) {
             
-            NSInteger code =[[returnData objectForKey:@"successed"] integerValue];
+            NSInteger code = [[returnData objectForKey:@"successed"] integerValue];
             if (code == 000) {
                 
-                complection(YES);
+                NSString *count = [NSString stringWithFormat:@"%@",[[returnData objectForKey:@"dataInfo"] objectForKey:@"cartItemCount"]];
+                complection(YES,count);
             }
             else{
-                complection(NO);
+                complection(NO,@"0");
             }
         }
     }];

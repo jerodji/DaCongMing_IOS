@@ -87,7 +87,17 @@
     }];
 }
 
-- (void)requestGoodsPriceList{
+- (void)requestGoodsPriceDescList{
+    
+    [_datalist removeAllObjects];
+    [HYGoodsHandle requestGoodsListItem_type:_type pageNo:1 andPage:5 order:@"descending" hotsale:@"ture" complectionBlock:^(NSArray *datalist) {
+        
+        [self.datalist addObjectsFromArray:datalist];
+        [_collectionView reloadData];
+    }];
+}
+
+- (void)requestGoodsPriceAscList{
     
     [_datalist removeAllObjects];
     [HYGoodsHandle requestGoodsListItem_type:_type pageNo:1 andPage:5 order:@"Ascending" hotsale:@"ture" complectionBlock:^(NSArray *datalist) {
@@ -97,26 +107,44 @@
     }];
 }
 
+
+
 #pragma mark - action
 - (void)topButtonAction:(UIButton *)button{
-
-    _previousSelectBtn.selected = NO;
-    button.selected = YES;
-    _previousSelectBtn = button;
     
-    [UIView animateWithDuration:0.2 animations:^{
+    if (button.tag == 11) {
         
-        self.horizonLine.frame = CGRectMake(button.left, button.bottom, button.width, 2);
-    }];
-    
-    if (button.tag == 10) {
-    
-        [self requestGoodsDefaultList];
+        button.selected = !button.selected;
+        [UIView animateWithDuration:0.2 animations:^{
+            
+            self.horizonLine.frame = CGRectMake(button.left, button.bottom, button.width, 2);
+        }];
+        
+        if (button.selected) {
+            
+            [self requestGoodsPriceAscList];
+        }
+        else{
+            
+            [self requestGoodsPriceDescList];
+        }
+        
     }
     else{
-    
-        [self requestGoodsPriceList];
+        
+        _previousSelectBtn.selected = NO;
+        button.selected = YES;
+        _previousSelectBtn = button;
+        
+        [UIView animateWithDuration:0.2 animations:^{
+            
+            self.horizonLine.frame = CGRectMake(button.left, button.bottom, button.width, 2);
+        }];
+        
+        [self requestGoodsDefaultList];
     }
+
+   
 }
 
 #pragma mark - collectionViewDataSource

@@ -49,7 +49,7 @@
     _goodsModel = goodsModel;
     
     [_imgView sd_setImageWithURL:[NSURL URLWithString:goodsModel.item_title_image] placeholderImage:[UIImage imageNamed:@"goodsPlaceholder"]];
-    _introLabel.text = goodsModel.item_note;
+    _introLabel.text = goodsModel.item_name;
     _priceLabel.text = goodsModel.item_min_price;
 }
 

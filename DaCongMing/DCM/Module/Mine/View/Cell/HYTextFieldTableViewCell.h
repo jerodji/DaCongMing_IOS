@@ -30,4 +30,7 @@
 
 @property (nonatomic,strong) NSIndexPath *indexPath;
 
+/** arrow */
+@property (nonatomic,strong) UIImageView *arrowImgView;
+
 @end

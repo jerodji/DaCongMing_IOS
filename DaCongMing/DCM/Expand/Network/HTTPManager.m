@@ -87,7 +87,18 @@
             [MBProgressHUD hidePregressHUD:KEYWINDOW];
         }
         [MBProgressHUD hidePregressHUD:KEYWINDOW];
-        successBlock(responseObject);
+        
+        NSInteger code = [[responseObject objectForKey:@"successed"] integerValue];
+        
+        if (code == -111) {
+            //token过期了,跳转登录页面
+            [[HYUserModel sharedInstance] clearData];
+            [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"用户登录过期，请重新登录"];
+        }
+        else{
+          
+            successBlock(responseObject);
+        }
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
@@ -100,5 +111,6 @@
         successBlock(nil);
     }];
 }
+
 
 @end

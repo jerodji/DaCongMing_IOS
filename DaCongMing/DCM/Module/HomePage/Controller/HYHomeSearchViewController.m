@@ -48,7 +48,13 @@
     [self.navigationController.navigationBar addSubview:self.searchTitleView];
     self.navigationItem.hidesBackButton = YES;
     self.view.backgroundColor = KAPP_WHITE_COLOR;
-    [self.view addSubview:self.hotSearchView];
+    
+    if (!self.datalist.count) {
+        
+        [_collectionView removeFromSuperview];
+        _collectionView = nil;
+        [self.view addSubview:self.hotSearchView];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated{

@@ -56,15 +56,18 @@
 - (void)viewWillAppear:(BOOL)animated{
     
     [super viewWillAppear:animated];
-    
-    if ([[HYMyUserInfo sharedInstance].cartItemNum integerValue] > 1) {
-        
-        self.tabBarItem.badgeValue = [HYMyUserInfo sharedInstance].cartItemNum;
 
-    }
     [self requestShoppingCartsData];
     [self cartsAmountClaculate];
     [self payShoppiingCarts];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshData:) name:KAddShoppingCartsSuccess object:nil];
+    
+    NSString  *cartsCount = [HYMyUserInfo sharedInstance].cartItemNum;
+    if ([cartsCount integerValue] > 0) {
+        
+        self.tabBarItem.badgeValue = cartsCount;
+    }
 }
 
 - (void)setupSubviews{
@@ -98,6 +101,19 @@
     _deleteCartsView.hidden = YES;
 }
 
+
+
+#pragma mark - networkRequest
+- (void)refreshData:(NSNotification *)notificaton{
+    
+    [self requestShoppingCartsData];
+    
+    NSString  *cartsCount = notificaton.object;
+    if ([cartsCount integerValue] > 0) {
+        
+        self.tabBarItem.badgeValue = cartsCount;
+    }
+}
 
 - (void)requestShoppingCartsData{
     
@@ -252,11 +268,16 @@
         HYCustomAlert *customAlert = [[HYCustomAlert alloc] initWithFrame:CGRectMake(0, 0, KSCREEN_WIDTH, KSCREEN_HEIGHT) WithTitle:@"温馨提示" content:@"确定要删除所选产品吗?" confirmBlock:^{
            
             
-            [HYCartsHandle deleteCartsAmountWithGuids:self.guidStr ComplectionBlock:^(BOOL isSuccess) {
+            [HYCartsHandle deleteCartsAmountWithGuids:self.guidStr ComplectionBlock:^(BOOL isSuccess,NSString *cartsCount) {
                 
                 if (isSuccess) {
                     
                     [self requestShoppingCartsData];
+                    if ([cartsCount integerValue] > 0) {
+                        
+                        self.tabBarItem.badgeValue = cartsCount;
+                    }
+                    
                 }
                 else{
                     

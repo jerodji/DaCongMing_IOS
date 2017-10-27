@@ -29,12 +29,15 @@
         
         if (weakSelf.isBindPhone) {
             
+            
             [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"绑定手机成功"];
             [weakSelf.navigationController popViewControllerAnimated:YES];
         }
         else{
             
             HYSetPasswordViewController *setPasswordVC = [HYSetPasswordViewController new];
+            setPasswordVC.phone = weakSelf.authPhoneView.phoneTextField.text;
+            setPasswordVC.authCode = weakSelf.authPhoneView.authCodeTextField.text;
             [weakSelf.navigationController pushViewController:setPasswordVC animated:YES];
         }
     };

@@ -32,6 +32,10 @@
                 [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"获取订单信息出错!"];
             }
         }
+        else{
+            
+            [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"获取订单信息出错!"];
+        }
     }];
 }
 
@@ -88,6 +92,10 @@
                 [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"获取订单信息出错!"];
             }
         }
+        else{
+            
+            [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"获取订单信息出错!"];
+        }
     }];
 }
 
@@ -116,7 +124,7 @@
             else{
                 
                 noDiscountCoupon();
-                [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"获取订单信息出错!"];
+                [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"获取优惠券信息出错!"];
             }
         }
     }];

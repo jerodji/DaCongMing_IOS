@@ -45,12 +45,15 @@
         
         if (_selectSpeciView.isAddToCarts) {
             
-            [HYGoodsHandle addToShoppingCartsItemID:item.item_id count:count andUnit:item.unit ComplectionBlock:^(BOOL isSuccess) {
+            [HYGoodsHandle addToShoppingCartsItemID:item.item_id count:count andUnit:item.unit ComplectionBlock:^(BOOL isSuccess,NSString *cartsCount) {
                 
                 if (isSuccess) {
                     
                     DLog(@"添加购物车成功");
                     [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"添加购物车成功"];
+                    
+                    //发出通知，刷新购物车列表
+                    [[NSNotificationCenter defaultCenter] postNotificationName:KAddShoppingCartsSuccess object:cartsCount];
                 }
                 
                 [_selectSpeciView removeFromSuperview];

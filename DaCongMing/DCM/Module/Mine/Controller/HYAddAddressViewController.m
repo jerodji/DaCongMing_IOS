@@ -98,6 +98,7 @@
 - (void)setAddressModel:(HYMyAddressModel *)addressModel{
     
     _addressModel = addressModel;
+    
     NSString *str = [NSString stringWithFormat:@"%@-%@-%@",addressModel.province,addressModel.city,addressModel.area];
     self.dataSourceArray = [NSMutableArray arrayWithObjects:addressModel.receiver,addressModel.phoneNum,str,addressModel.address,nil];
     
@@ -201,9 +202,9 @@
         
     }
     cell.title = _datalist[indexPath.row];
-    cell.textField.text = self.dataSourceArray[indexPath.row];
     cell.indexPath = indexPath;
     cell.delegate = self;
+    cell.textField.text = _dataSourceArray[indexPath.row];
     
     if (indexPath.row == 1) {
         
@@ -214,6 +215,10 @@
         cell.textField.userInteractionEnabled = NO;
     }
     
+    if (indexPath.row != 2) {
+        
+        cell.arrowImgView.hidden = YES;
+    }
     
     return cell;
 }
@@ -237,7 +242,7 @@
 //
 //        return 90 * WIDTH_MULTIPLE;
 //    }
-    return 45 * WIDTH_MULTIPLE;
+    return 50 * WIDTH_MULTIPLE;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
@@ -258,12 +263,23 @@
 #pragma mark - areaSelectDelegate
 - (void)getSelectAddressProvince:(NSString *)province city:(NSString *)city area:(NSString *)area{
     
-    self.province = province;
-    self.city = city;
-    self.area = area;
-    NSString *str = [NSString stringWithFormat:@"%@-%@-%@",province,city,area];
-    [self.dataSourceArray replaceObjectAtIndex:2 withObject:str];
-    [_tableView reloadData];
+    if ([province isNotBlank] && [city isNotBlank] && [area isNotBlank]) {
+        
+        self.province = province;
+        self.city = city;
+        self.area = area;
+        NSString *str = [NSString stringWithFormat:@"%@-%@-%@",province,city,area];
+        [self.dataSourceArray replaceObjectAtIndex:2 withObject:str];
+        [_tableView reloadData];
+    }
+    else{
+        
+        NSString *str = [NSString stringWithFormat:@""];
+        [self.dataSourceArray replaceObjectAtIndex:2 withObject:str];
+        [_tableView reloadData];
+    }
+    
+    
 }
 
 #pragma mark - textFieldInputDelegate

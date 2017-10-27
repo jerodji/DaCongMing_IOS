@@ -9,7 +9,7 @@
 
 #import "HYBaseModel.h"
 
-@interface HYUserInfo : NSObject
+@interface HYUserInfo : NSObject <NSCoding>
 
 /** id */
 @property (nonatomic, copy) NSString *id;
@@ -32,7 +32,7 @@
 
 @end
 
-@interface HYUserModel : HYBaseModel
+@interface HYUserModel : HYBaseModel <NSCoding>
 
 /** token */
 @property (nonatomic,copy) NSString *token;
@@ -42,9 +42,13 @@
 
 + (instancetype)sharedInstance;
 
+
+
 /**
  *  清除所有的数据
  */
 - (void)clearData;
+
+
 
 @end

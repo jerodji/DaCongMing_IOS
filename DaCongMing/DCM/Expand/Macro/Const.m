@@ -10,6 +10,8 @@
 
 @implementation Const
 
+NSString * const KUserModelData = @"userModelData";
+
 NSString * const KUserPhone = @"userLoginPhone";
 
 NSString * const KUserPassword = @"userLoginPassword";
@@ -20,7 +22,7 @@ NSString * const KWeChatLoginNotification = @"KWeChatLoginNotification";
 
 NSString * const KWeChatPaySuccessNotification = @"KWeChatPaySuccessNotification";
 
-NSString * const KCustomerServicePhone = @"12312312310";
+NSString * const KCustomerServicePhone = @"021-57618370";
 
 NSString * const KShoppingCartsChanged = @"KShoppingCartsChanged";
 
@@ -31,5 +33,7 @@ NSString * const KAddressPlist = @"KAddressPlist.plist";
 NSString * const KSortListPlist = @"KSortListPlist.plist";
 
 NSString * const KHomePageDataModel = @"KHomePageDataModel";
+
+NSString * const KAddShoppingCartsSuccess = @"addShoppingCartsSuccess";
 
 @end

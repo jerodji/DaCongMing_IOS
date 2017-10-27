@@ -10,4 +10,6 @@
 
 @interface HYBaseViewController : UIViewController
 
+- (void)backBtnAction;
+
 @end

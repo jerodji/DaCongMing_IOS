@@ -38,6 +38,8 @@
     [super viewDidLoad];
     [self setupSubviews];
     [self setMasonryLayout];
+    
+    self.title = @"设置登录密码";
 }
 
 - (void)setupSubviews{
@@ -49,6 +51,7 @@
     [self.view addSubview:self.line];
     [self.view addSubview:self.confirmBtn];
 
+    self.closeBtn.hidden = YES;
 }
 
 
@@ -108,7 +111,7 @@
             
             if (self.authCode) {
                 
-                NSArray *pushVCAry=[self.navigationController viewControllers];
+                NSArray *pushVCAry = [self.navigationController viewControllers];
                 UIViewController *popVC = [pushVCAry objectAtIndex:pushVCAry.count - 3];
                 [self.navigationController popToViewController:popVC animated:YES];
             }
