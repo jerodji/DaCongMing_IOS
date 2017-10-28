@@ -36,6 +36,7 @@
 #import "HYGuideViewController.h"
 #import <AlipaySDK/AlipaySDK.h>
 #import <Bugly/Bugly.h>
+#import "QYSDK.h"
 
 @interface AppDelegate ()<WXApiDelegate>
 
@@ -71,6 +72,7 @@
     }
     
     [Bugly startWithAppId:TencentBuglyID];
+    [[QYSDK sharedSDK] registerAppId:QIYUAPPID appName:@"大聪明"];
     
 //    HYLoginViewController *loginVC = [[HYLoginViewController alloc] init];
 //    self.window.rootViewController = loginVC;

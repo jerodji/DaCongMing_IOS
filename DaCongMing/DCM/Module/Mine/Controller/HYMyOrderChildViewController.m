@@ -199,6 +199,79 @@
         commentVC.orderID = model.sorder_id;
         [self.navigationController pushViewController:commentVC animated:YES];
     }
+    else if ([title isEqualToString:@"联系客服"]){
+        
+        [self contactServiceWithModel:model];
+    }
+}
+
+- (void)contactServiceWithModel:(HYMyOrderModel *)orderModel{
+    
+    QYSource *source = [[QYSource alloc] init];
+    source.title =  @"联系客服";
+    source.urlString = @"https://8.163.com/";
+    QYSessionViewController *sessionViewController = [[QYSDK sharedSDK] sessionViewController];
+    
+    sessionViewController.sessionTitle = @"联系客服";
+    QYUserInfo *userInfo = [[QYUserInfo alloc] init];
+    userInfo.userId = [HYUserModel sharedInstance].userInfo.id;
+    NSMutableArray *array = [NSMutableArray new];
+    NSMutableDictionary *dictRealName = [NSMutableDictionary new];
+    [dictRealName setObject:@"real_name" forKey:@"key"];
+    [dictRealName setObject:[HYUserModel sharedInstance].userInfo.name forKey:@"value"];
+    [array addObject:dictRealName];
+    
+    NSMutableDictionary *dictMobilePhone = [NSMutableDictionary new];
+    [dictMobilePhone setObject:@"mobile_phone" forKey:@"key"];
+    [dictMobilePhone setObject:@"mobile_phone" forKey:@"key"];
+
+    [dictMobilePhone setValue:[HYUserModel sharedInstance].userInfo.phone forKey:@"value"];
+    [dictMobilePhone setObject:@(NO) forKey:@"hidden"];
+    [array addObject:dictMobilePhone];
+    
+    NSMutableDictionary *orderDict = [NSMutableDictionary new];
+    [orderDict setObject:@"orderID" forKey:@"key"];
+    [orderDict setObject:@"订单号" forKey:@"label"];
+    [orderDict setValue:orderModel.sorder_id forKey:@"value"];
+    [array addObject:orderDict];
+    
+    NSMutableDictionary *userDict = [NSMutableDictionary new];
+    [userDict setObject:@"userInfo" forKey:@"key"];
+    [userDict setObject:@"用户ID" forKey:@"label"];
+    [userDict setValue:[HYUserModel sharedInstance].userInfo.id forKey:@"value"];
+    [array addObject:userDict];
+    
+//    NSMutableDictionary *dictEmail = [NSMutableDictionary new];
+//    [dictEmail setObject:@"email" forKey:@"key"];
+//    [dictEmail setObject:@"bianchen@163.com" forKey:@"value"];
+//    [array addObject:dictEmail];
+    
+//    NSMutableDictionary *dictAuthentication = [NSMutableDictionary new];
+//    [dictAuthentication setObject:@"0" forKey:@"index"];
+//    [dictAuthentication setObject:@"authentication" forKey:@"key"];
+//    [dictAuthentication setObject:@"实名认证" forKey:@"label"];
+//    [dictAuthentication setObject:@"已认证" forKey:@"value"];
+//    [array addObject:dictAuthentication];
+    
+//    NSMutableDictionary *dictBankcard = [NSMutableDictionary new];
+//    [dictBankcard setObject:@"1" forKey:@"index"];
+//    [dictBankcard setObject:@"bankcard" forKey:@"key"];
+//    [dictBankcard setObject:@"绑定银行卡" forKey:@"label"];
+//    [dictBankcard setObject:@"622202******01116068" forKey:@"value"];
+//    [array addObject:dictBankcard];
+    
+    NSData *data = [NSJSONSerialization dataWithJSONObject:array
+                                                   options:0
+                                                     error:nil];
+    if (data)
+    {
+        userInfo.data = [[NSString alloc] initWithData:data
+                                              encoding:NSUTF8StringEncoding];
+    }
+    
+    [[QYSDK sharedSDK] setUserInfo:userInfo];
+    sessionViewController.source = source;
+    [self.navigationController pushViewController:sessionViewController animated:YES];
 }
 
 #pragma mark - action

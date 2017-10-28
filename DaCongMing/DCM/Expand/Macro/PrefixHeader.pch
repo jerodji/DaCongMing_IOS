@@ -40,5 +40,6 @@
 #import "SAMTextView.h"
 #import "HYNoCollectImgView.h"
 #import <UIScrollView+EmptyDataSet.h>
+#import "QYSDK.h"
 
 #endif /* PrefixHeader_pch */

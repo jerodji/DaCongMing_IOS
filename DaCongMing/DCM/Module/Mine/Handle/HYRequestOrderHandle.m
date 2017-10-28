@@ -16,7 +16,7 @@
     [requestParam setValue:[HYUserModel sharedInstance].token forKey:@"token"];
     [requestParam setValue:@(pageSize) forKey:@"pageSize"];
     [requestParam setValue:@(pageNo) forKey:@"pageNo"];
-    [[HTTPManager shareHTTPManager] postDataFromUrl:API_MyAllOrder withParameter:requestParam isShowHUD:YES success:^(id returnData) {
+    [[HTTPManager shareHTTPManager] postDataFromUrl:API_MyAllOrder withParameter:requestParam isShowHUD:NO success:^(id returnData) {
         
         if (returnData) {
             
@@ -94,7 +94,9 @@
         }
         else{
             
-            [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"获取订单信息出错!"];
+            complection(nil);
+            [MBProgressHUD hidePregressHUD:KEYWINDOW];
+            //[MBProgressHUD showPregressHUD:KEYWINDOW withText:@"获取订单信息出错!"];
         }
     }];
 }

@@ -183,7 +183,12 @@
         make.height.equalTo(@(50));
     }];
     
-    
+    [_closeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.top.equalTo(_bgView).offset(8 * WIDTH_MULTIPLE);
+        make.right.equalTo(_bgView).offset(-10 * WIDTH_MULTIPLE);
+        make.size.mas_equalTo(CGSizeMake(30 * WIDTH_MULTIPLE, 30 * WIDTH_MULTIPLE));
+    }];
 }
 
 - (void)setGoodsModel:(HYGoodsDetailModel *)goodsModel{
@@ -269,6 +274,11 @@
         
         [_delegate confirmGoodsSpeciSelectWithModel:_previousItemModel buyCount:_buyCountNum];
     }
+}
+
+- (void)closeBtnAction{
+    
+    [self hideGoodsSpecificationView];
 }
 
 - (void)specificationBtnAction:(UIButton *)button{
@@ -429,6 +439,17 @@
        
     }
     return _buyCountView;
+}
+
+- (UIButton *)closeBtn{
+    
+    if (!_closeBtn) {
+        
+        _closeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_closeBtn setImage:[UIImage imageNamed:@"closeGray"] forState:UIControlStateNormal];
+        [_closeBtn addTarget:self action:@selector(closeBtnAction) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _closeBtn;
 }
 
 - (UIButton *)confirmBtn{

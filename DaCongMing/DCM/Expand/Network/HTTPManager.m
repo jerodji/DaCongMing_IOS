@@ -107,8 +107,8 @@
             [MBProgressHUD hidePregressHUD:KEYWINDOW];
         }
         [MBProgressHUD hidePregressHUD:KEYWINDOW];
-        [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"请求失败，请检查网络"];
         successBlock(nil);
+        [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"请求失败，请检查网络"];
     }];
 }
 

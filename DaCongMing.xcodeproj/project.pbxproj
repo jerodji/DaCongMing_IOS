@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3E0FDECA1FA4421800F52DC0 /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E0FDEC91FA4421800F52DC0 /* libstdc++.6.0.9.tbd */; };
+		3E0FDECB1FA442BF00F52DC0 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E0FDEAD1FA4416D00F52DC0 /* libcrypto.a */; };
+		3E0FDECC1FA442BF00F52DC0 /* libevent.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E0FDEAE1FA4416D00F52DC0 /* libevent.a */; };
+		3E0FDECD1FA442BF00F52DC0 /* libQYSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E0FDEAF1FA4416D00F52DC0 /* libQYSDK.a */; };
+		3E0FDECF1FA4451700F52DC0 /* QYResource.bundle in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E0FDEB01FA4416D00F52DC0 /* QYResource.bundle */; };
+		3E0FDED01FA446CD00F52DC0 /* QYResource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3E0FDEB01FA4416D00F52DC0 /* QYResource.bundle */; };
 		3E1021EC1F7A477B0048D556 /* HYMyOrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1021EB1F7A477B0048D556 /* HYMyOrderModel.m */; };
 		3E1021F01F7A48B20048D556 /* HYRequestOrderHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1021EF1F7A48B20048D556 /* HYRequestOrderHandle.m */; };
 		3E1021F21F7A48EB0048D556 /* HYUserHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1021F11F7A48EB0048D556 /* HYUserHandle.m */; };
@@ -21,6 +27,12 @@
 		3E1022101F7B4D070048D556 /* HYAlertTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E10220F1F7B4D070048D556 /* HYAlertTool.m */; };
 		3E1022131F7B4F160048D556 /* HYCustomAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1022121F7B4F160048D556 /* HYCustomAlert.m */; };
 		3E19C9A41FA1D4B900EDCB4C /* HYWebViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E19C9A31FA1D4B900EDCB4C /* HYWebViewVC.m */; };
+		3E19C9BF1FA430FA00EDCB4C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E19C9BE1FA430F900EDCB4C /* UIKit.framework */; };
+		3E19C9C11FA4310900EDCB4C /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E19C9C01FA4310900EDCB4C /* MobileCoreServices.framework */; };
+		3E19C9C31FA4311A00EDCB4C /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E19C9C21FA4311A00EDCB4C /* AVFoundation.framework */; };
+		3E19C9C51FA4312B00EDCB4C /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E19C9C41FA4312B00EDCB4C /* CoreMedia.framework */; };
+		3E19C9C71FA4313600EDCB4C /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E19C9C61FA4313600EDCB4C /* AudioToolbox.framework */; };
+		3E19C9C91FA4315500EDCB4C /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E19C9C81FA4315500EDCB4C /* libxml2.tbd */; };
 		3E1F428E1F7CED1C00E90377 /* HYPlistTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1F428D1F7CED1C00E90377 /* HYPlistTools.m */; };
 		3E2754361F6F56580010053E /* HYGoodHealthModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2754351F6F56580010053E /* HYGoodHealthModel.m */; };
 		3E2754391F6F56EE0010053E /* HYItemListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2754381F6F56EE0010053E /* HYItemListModel.m */; };
@@ -209,6 +221,47 @@
 
 /* Begin PBXFileReference section */
 		36367516A039862097AF5595 /* Pods-DaCongMing.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DaCongMing.release.xcconfig"; path = "Pods/Target Support Files/Pods-DaCongMing/Pods-DaCongMing.release.xcconfig"; sourceTree = "<group>"; };
+		3E0FDE9B1FA4416D00F52DC0 /* QYPOPConversationManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QYPOPConversationManager.h; sourceTree = "<group>"; };
+		3E0FDE9C1FA4416D00F52DC0 /* QYPOPCustomUIConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QYPOPCustomUIConfig.h; sourceTree = "<group>"; };
+		3E0FDE9D1FA4416D00F52DC0 /* QYPOPMessageInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QYPOPMessageInfo.h; sourceTree = "<group>"; };
+		3E0FDE9E1FA4416D00F52DC0 /* QYPOPSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QYPOPSDK.h; sourceTree = "<group>"; };
+		3E0FDE9F1FA4416D00F52DC0 /* QYPOPSessionInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QYPOPSessionInfo.h; sourceTree = "<group>"; };
+		3E0FDEA01FA4416D00F52DC0 /* QYPOPSessionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QYPOPSessionViewController.h; sourceTree = "<group>"; };
+		3E0FDEA11FA4416D00F52DC0 /* QYCommodityInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QYCommodityInfo.h; sourceTree = "<group>"; };
+		3E0FDEA21FA4416D00F52DC0 /* QYConversationManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QYConversationManager.h; sourceTree = "<group>"; };
+		3E0FDEA31FA4416D00F52DC0 /* QYCustomActionConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QYCustomActionConfig.h; sourceTree = "<group>"; };
+		3E0FDEA41FA4416D00F52DC0 /* QYCustomUIConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QYCustomUIConfig.h; sourceTree = "<group>"; };
+		3E0FDEA51FA4416D00F52DC0 /* QYHeaders.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QYHeaders.h; sourceTree = "<group>"; };
+		3E0FDEA61FA4416D00F52DC0 /* QYMessageInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QYMessageInfo.h; sourceTree = "<group>"; };
+		3E0FDEA71FA4416D00F52DC0 /* QYPushMessage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QYPushMessage.h; sourceTree = "<group>"; };
+		3E0FDEA81FA4416D00F52DC0 /* QYSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QYSDK.h; sourceTree = "<group>"; };
+		3E0FDEA91FA4416D00F52DC0 /* QYSessionInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QYSessionInfo.h; sourceTree = "<group>"; };
+		3E0FDEAA1FA4416D00F52DC0 /* QYSessionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QYSessionViewController.h; sourceTree = "<group>"; };
+		3E0FDEAB1FA4416D00F52DC0 /* QYSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QYSource.h; sourceTree = "<group>"; };
+		3E0FDEAC1FA4416D00F52DC0 /* QYUserInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QYUserInfo.h; sourceTree = "<group>"; };
+		3E0FDEAD1FA4416D00F52DC0 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrypto.a; sourceTree = "<group>"; };
+		3E0FDEAE1FA4416D00F52DC0 /* libevent.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libevent.a; sourceTree = "<group>"; };
+		3E0FDEAF1FA4416D00F52DC0 /* libQYSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libQYSDK.a; sourceTree = "<group>"; };
+		3E0FDEB01FA4416D00F52DC0 /* QYResource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = QYResource.bundle; sourceTree = "<group>"; };
+		3E0FDEB71FA4417E00F52DC0 /* QYPOPConversationManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QYPOPConversationManager.h; sourceTree = "<group>"; };
+		3E0FDEB81FA4417E00F52DC0 /* QYPOPCustomUIConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QYPOPCustomUIConfig.h; sourceTree = "<group>"; };
+		3E0FDEB91FA4417E00F52DC0 /* QYPOPMessageInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QYPOPMessageInfo.h; sourceTree = "<group>"; };
+		3E0FDEBA1FA4417E00F52DC0 /* QYPOPSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QYPOPSDK.h; sourceTree = "<group>"; };
+		3E0FDEBB1FA4417E00F52DC0 /* QYPOPSessionInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QYPOPSessionInfo.h; sourceTree = "<group>"; };
+		3E0FDEBC1FA4417E00F52DC0 /* QYPOPSessionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QYPOPSessionViewController.h; sourceTree = "<group>"; };
+		3E0FDEBD1FA4417E00F52DC0 /* QYCommodityInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QYCommodityInfo.h; sourceTree = "<group>"; };
+		3E0FDEBE1FA4417E00F52DC0 /* QYConversationManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QYConversationManager.h; sourceTree = "<group>"; };
+		3E0FDEBF1FA4417E00F52DC0 /* QYCustomActionConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QYCustomActionConfig.h; sourceTree = "<group>"; };
+		3E0FDEC01FA4417E00F52DC0 /* QYCustomUIConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QYCustomUIConfig.h; sourceTree = "<group>"; };
+		3E0FDEC11FA4417E00F52DC0 /* QYHeaders.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QYHeaders.h; sourceTree = "<group>"; };
+		3E0FDEC21FA4417E00F52DC0 /* QYMessageInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QYMessageInfo.h; sourceTree = "<group>"; };
+		3E0FDEC31FA4417E00F52DC0 /* QYPushMessage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QYPushMessage.h; sourceTree = "<group>"; };
+		3E0FDEC41FA4417E00F52DC0 /* QYSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QYSDK.h; sourceTree = "<group>"; };
+		3E0FDEC51FA4417E00F52DC0 /* QYSessionInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QYSessionInfo.h; sourceTree = "<group>"; };
+		3E0FDEC61FA4417E00F52DC0 /* QYSessionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QYSessionViewController.h; sourceTree = "<group>"; };
+		3E0FDEC71FA4417E00F52DC0 /* QYSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QYSource.h; sourceTree = "<group>"; };
+		3E0FDEC81FA4417E00F52DC0 /* QYUserInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QYUserInfo.h; sourceTree = "<group>"; };
+		3E0FDEC91FA4421800F52DC0 /* libstdc++.6.0.9.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.6.0.9.tbd"; path = "usr/lib/libstdc++.6.0.9.tbd"; sourceTree = SDKROOT; };
 		3E1021EA1F7A477B0048D556 /* HYMyOrderModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYMyOrderModel.h; sourceTree = "<group>"; };
 		3E1021EB1F7A477B0048D556 /* HYMyOrderModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYMyOrderModel.m; sourceTree = "<group>"; };
 		3E1021EE1F7A48B20048D556 /* HYRequestOrderHandle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYRequestOrderHandle.h; sourceTree = "<group>"; };
@@ -236,6 +289,34 @@
 		3E1022121F7B4F160048D556 /* HYCustomAlert.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYCustomAlert.m; sourceTree = "<group>"; };
 		3E19C9A21FA1D4B900EDCB4C /* HYWebViewVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYWebViewVC.h; sourceTree = "<group>"; };
 		3E19C9A31FA1D4B900EDCB4C /* HYWebViewVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYWebViewVC.m; sourceTree = "<group>"; };
+		3E19C9A61FA430C700EDCB4C /* libevent.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libevent.a; sourceTree = "<group>"; };
+		3E19C9A71FA430D000EDCB4C /* QYResource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = QYResource.bundle; sourceTree = "<group>"; };
+		3E19C9AA1FA430D100EDCB4C /* QYPOPConversationManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QYPOPConversationManager.h; sourceTree = "<group>"; };
+		3E19C9AB1FA430D100EDCB4C /* QYPOPCustomUIConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QYPOPCustomUIConfig.h; sourceTree = "<group>"; };
+		3E19C9AC1FA430D100EDCB4C /* QYPOPMessageInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QYPOPMessageInfo.h; sourceTree = "<group>"; };
+		3E19C9AD1FA430D100EDCB4C /* QYPOPSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QYPOPSDK.h; sourceTree = "<group>"; };
+		3E19C9AE1FA430D100EDCB4C /* QYPOPSessionInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QYPOPSessionInfo.h; sourceTree = "<group>"; };
+		3E19C9AF1FA430D100EDCB4C /* QYPOPSessionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QYPOPSessionViewController.h; sourceTree = "<group>"; };
+		3E19C9B01FA430D100EDCB4C /* QYCommodityInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QYCommodityInfo.h; sourceTree = "<group>"; };
+		3E19C9B11FA430D100EDCB4C /* QYConversationManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QYConversationManager.h; sourceTree = "<group>"; };
+		3E19C9B21FA430D100EDCB4C /* QYCustomActionConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QYCustomActionConfig.h; sourceTree = "<group>"; };
+		3E19C9B31FA430D100EDCB4C /* QYCustomUIConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QYCustomUIConfig.h; sourceTree = "<group>"; };
+		3E19C9B41FA430D100EDCB4C /* QYHeaders.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QYHeaders.h; sourceTree = "<group>"; };
+		3E19C9B51FA430D100EDCB4C /* QYMessageInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QYMessageInfo.h; sourceTree = "<group>"; };
+		3E19C9B61FA430D100EDCB4C /* QYPushMessage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QYPushMessage.h; sourceTree = "<group>"; };
+		3E19C9B71FA430D100EDCB4C /* QYSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QYSDK.h; sourceTree = "<group>"; };
+		3E19C9B81FA430D100EDCB4C /* QYSessionInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QYSessionInfo.h; sourceTree = "<group>"; };
+		3E19C9B91FA430D100EDCB4C /* QYSessionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QYSessionViewController.h; sourceTree = "<group>"; };
+		3E19C9BA1FA430D100EDCB4C /* QYSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QYSource.h; sourceTree = "<group>"; };
+		3E19C9BB1FA430D100EDCB4C /* QYUserInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QYUserInfo.h; sourceTree = "<group>"; };
+		3E19C9BC1FA430D700EDCB4C /* libQYSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libQYSDK.a; sourceTree = "<group>"; };
+		3E19C9BD1FA430DA00EDCB4C /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrypto.a; sourceTree = "<group>"; };
+		3E19C9BE1FA430F900EDCB4C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		3E19C9C01FA4310900EDCB4C /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		3E19C9C21FA4311A00EDCB4C /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		3E19C9C41FA4312B00EDCB4C /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		3E19C9C61FA4313600EDCB4C /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		3E19C9C81FA4315500EDCB4C /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
 		3E1F428C1F7CED1C00E90377 /* HYPlistTools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYPlistTools.h; sourceTree = "<group>"; };
 		3E1F428D1F7CED1C00E90377 /* HYPlistTools.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYPlistTools.m; sourceTree = "<group>"; };
 		3E1F42931F7CF17400E90377 /* NSArray+HYBUnicodeReadable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSArray+HYBUnicodeReadable.h"; sourceTree = "<group>"; };
@@ -612,14 +693,25 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E0FDECF1FA4451700F52DC0 /* QYResource.bundle in Frameworks */,
+				3E0FDECB1FA442BF00F52DC0 /* libcrypto.a in Frameworks */,
+				3E0FDECC1FA442BF00F52DC0 /* libevent.a in Frameworks */,
+				3E0FDECD1FA442BF00F52DC0 /* libQYSDK.a in Frameworks */,
+				3E0FDECA1FA4421800F52DC0 /* libstdc++.6.0.9.tbd in Frameworks */,
+				3E19C9C91FA4315500EDCB4C /* libxml2.tbd in Frameworks */,
+				3EEDC95C1F724521007171FA /* libsqlite3.0.tbd in Frameworks */,
+				3E19C9C71FA4313600EDCB4C /* AudioToolbox.framework in Frameworks */,
+				3E19C9C51FA4312B00EDCB4C /* CoreMedia.framework in Frameworks */,
+				3E4D78901F790C6400BC9C2B /* CoreTelephony.framework in Frameworks */,
+				3E19C9C31FA4311A00EDCB4C /* AVFoundation.framework in Frameworks */,
+				3E19C9C11FA4310900EDCB4C /* MobileCoreServices.framework in Frameworks */,
+				3E19C9BF1FA430FA00EDCB4C /* UIKit.framework in Frameworks */,
 				3E4D78991F790D9000BC9C2B /* AlipaySDK.framework in Frameworks */,
 				3E4D78961F790C8300BC9C2B /* CFNetwork.framework in Frameworks */,
 				3E4D78941F790C7C00BC9C2B /* CoreText.framework in Frameworks */,
 				3E4D78921F790C7400BC9C2B /* QuartzCore.framework in Frameworks */,
-				3E4D78901F790C6400BC9C2B /* CoreTelephony.framework in Frameworks */,
 				3E4D788E1F790BC800BC9C2B /* CoreMotion.framework in Frameworks */,
 				3E4D788C1F790B7800BC9C2B /* SystemConfiguration.framework in Frameworks */,
-				3EEDC95C1F724521007171FA /* libsqlite3.0.tbd in Frameworks */,
 				3EEDC95A1F724511007171FA /* libz.1.1.3.tbd in Frameworks */,
 				3EEDC9581F7244DC007171FA /* libc++.tbd in Frameworks */,
 				D546439B3E56BFB3EA93ABFD /* libPods-DaCongMing.a in Frameworks */,
@@ -629,6 +721,86 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3E0FDE981FA4416D00F52DC0 /* QIYU */ = {
+			isa = PBXGroup;
+			children = (
+				3E0FDE991FA4416D00F52DC0 /* ExportHeaders */,
+				3E0FDEAD1FA4416D00F52DC0 /* libcrypto.a */,
+				3E0FDEAE1FA4416D00F52DC0 /* libevent.a */,
+				3E0FDEAF1FA4416D00F52DC0 /* libQYSDK.a */,
+				3E0FDEB01FA4416D00F52DC0 /* QYResource.bundle */,
+			);
+			name = QIYU;
+			path = DaCongMing/DCM/Vender/QIYU;
+			sourceTree = "<group>";
+		};
+		3E0FDE991FA4416D00F52DC0 /* ExportHeaders */ = {
+			isa = PBXGroup;
+			children = (
+				3E0FDE9A1FA4416D00F52DC0 /* POP */,
+				3E0FDEA11FA4416D00F52DC0 /* QYCommodityInfo.h */,
+				3E0FDEA21FA4416D00F52DC0 /* QYConversationManager.h */,
+				3E0FDEA31FA4416D00F52DC0 /* QYCustomActionConfig.h */,
+				3E0FDEA41FA4416D00F52DC0 /* QYCustomUIConfig.h */,
+				3E0FDEA51FA4416D00F52DC0 /* QYHeaders.h */,
+				3E0FDEA61FA4416D00F52DC0 /* QYMessageInfo.h */,
+				3E0FDEA71FA4416D00F52DC0 /* QYPushMessage.h */,
+				3E0FDEA81FA4416D00F52DC0 /* QYSDK.h */,
+				3E0FDEA91FA4416D00F52DC0 /* QYSessionInfo.h */,
+				3E0FDEAA1FA4416D00F52DC0 /* QYSessionViewController.h */,
+				3E0FDEAB1FA4416D00F52DC0 /* QYSource.h */,
+				3E0FDEAC1FA4416D00F52DC0 /* QYUserInfo.h */,
+			);
+			path = ExportHeaders;
+			sourceTree = "<group>";
+		};
+		3E0FDE9A1FA4416D00F52DC0 /* POP */ = {
+			isa = PBXGroup;
+			children = (
+				3E0FDE9B1FA4416D00F52DC0 /* QYPOPConversationManager.h */,
+				3E0FDE9C1FA4416D00F52DC0 /* QYPOPCustomUIConfig.h */,
+				3E0FDE9D1FA4416D00F52DC0 /* QYPOPMessageInfo.h */,
+				3E0FDE9E1FA4416D00F52DC0 /* QYPOPSDK.h */,
+				3E0FDE9F1FA4416D00F52DC0 /* QYPOPSessionInfo.h */,
+				3E0FDEA01FA4416D00F52DC0 /* QYPOPSessionViewController.h */,
+			);
+			path = POP;
+			sourceTree = "<group>";
+		};
+		3E0FDEB51FA4417E00F52DC0 /* ExportHeaders */ = {
+			isa = PBXGroup;
+			children = (
+				3E0FDEB61FA4417E00F52DC0 /* POP */,
+				3E0FDEBD1FA4417E00F52DC0 /* QYCommodityInfo.h */,
+				3E0FDEBE1FA4417E00F52DC0 /* QYConversationManager.h */,
+				3E0FDEBF1FA4417E00F52DC0 /* QYCustomActionConfig.h */,
+				3E0FDEC01FA4417E00F52DC0 /* QYCustomUIConfig.h */,
+				3E0FDEC11FA4417E00F52DC0 /* QYHeaders.h */,
+				3E0FDEC21FA4417E00F52DC0 /* QYMessageInfo.h */,
+				3E0FDEC31FA4417E00F52DC0 /* QYPushMessage.h */,
+				3E0FDEC41FA4417E00F52DC0 /* QYSDK.h */,
+				3E0FDEC51FA4417E00F52DC0 /* QYSessionInfo.h */,
+				3E0FDEC61FA4417E00F52DC0 /* QYSessionViewController.h */,
+				3E0FDEC71FA4417E00F52DC0 /* QYSource.h */,
+				3E0FDEC81FA4417E00F52DC0 /* QYUserInfo.h */,
+			);
+			name = ExportHeaders;
+			path = DaCongMing/DCM/Vender/QIYU/ExportHeaders;
+			sourceTree = "<group>";
+		};
+		3E0FDEB61FA4417E00F52DC0 /* POP */ = {
+			isa = PBXGroup;
+			children = (
+				3E0FDEB71FA4417E00F52DC0 /* QYPOPConversationManager.h */,
+				3E0FDEB81FA4417E00F52DC0 /* QYPOPCustomUIConfig.h */,
+				3E0FDEB91FA4417E00F52DC0 /* QYPOPMessageInfo.h */,
+				3E0FDEBA1FA4417E00F52DC0 /* QYPOPSDK.h */,
+				3E0FDEBB1FA4417E00F52DC0 /* QYPOPSessionInfo.h */,
+				3E0FDEBC1FA4417E00F52DC0 /* QYPOPSessionViewController.h */,
+			);
+			path = POP;
+			sourceTree = "<group>";
+		};
 		3E1021ED1F7A489A0048D556 /* Handle */ = {
 			isa = PBXGroup;
 			children = (
@@ -638,6 +810,51 @@
 				3ED218C31F8DE6610040C7E3 /* HYMineNetRequest.m */,
 			);
 			path = Handle;
+			sourceTree = "<group>";
+		};
+		3E19C9A51FA430BC00EDCB4C /* QIYU */ = {
+			isa = PBXGroup;
+			children = (
+				3E19C9A81FA430D100EDCB4C /* ExportHeaders */,
+				3E19C9BD1FA430DA00EDCB4C /* libcrypto.a */,
+				3E19C9A61FA430C700EDCB4C /* libevent.a */,
+				3E19C9BC1FA430D700EDCB4C /* libQYSDK.a */,
+				3E19C9A71FA430D000EDCB4C /* QYResource.bundle */,
+			);
+			path = QIYU;
+			sourceTree = "<group>";
+		};
+		3E19C9A81FA430D100EDCB4C /* ExportHeaders */ = {
+			isa = PBXGroup;
+			children = (
+				3E19C9A91FA430D100EDCB4C /* POP */,
+				3E19C9B01FA430D100EDCB4C /* QYCommodityInfo.h */,
+				3E19C9B11FA430D100EDCB4C /* QYConversationManager.h */,
+				3E19C9B21FA430D100EDCB4C /* QYCustomActionConfig.h */,
+				3E19C9B31FA430D100EDCB4C /* QYCustomUIConfig.h */,
+				3E19C9B41FA430D100EDCB4C /* QYHeaders.h */,
+				3E19C9B51FA430D100EDCB4C /* QYMessageInfo.h */,
+				3E19C9B61FA430D100EDCB4C /* QYPushMessage.h */,
+				3E19C9B71FA430D100EDCB4C /* QYSDK.h */,
+				3E19C9B81FA430D100EDCB4C /* QYSessionInfo.h */,
+				3E19C9B91FA430D100EDCB4C /* QYSessionViewController.h */,
+				3E19C9BA1FA430D100EDCB4C /* QYSource.h */,
+				3E19C9BB1FA430D100EDCB4C /* QYUserInfo.h */,
+			);
+			path = ExportHeaders;
+			sourceTree = "<group>";
+		};
+		3E19C9A91FA430D100EDCB4C /* POP */ = {
+			isa = PBXGroup;
+			children = (
+				3E19C9AA1FA430D100EDCB4C /* QYPOPConversationManager.h */,
+				3E19C9AB1FA430D100EDCB4C /* QYPOPCustomUIConfig.h */,
+				3E19C9AC1FA430D100EDCB4C /* QYPOPMessageInfo.h */,
+				3E19C9AD1FA430D100EDCB4C /* QYPOPSDK.h */,
+				3E19C9AE1FA430D100EDCB4C /* QYPOPSessionInfo.h */,
+				3E19C9AF1FA430D100EDCB4C /* QYPOPSessionViewController.h */,
+			);
+			path = POP;
 			sourceTree = "<group>";
 		};
 		3E1F42871F7CE59D00E90377 /* Source */ = {
@@ -1235,6 +1452,7 @@
 		3E5620481F6B6D080063AA5B /* Vender */ = {
 			isa = PBXGroup;
 			children = (
+				3E19C9A51FA430BC00EDCB4C /* QIYU */,
 				3E1F42921F7CF17400E90377 /* HYBUnicodeReadable */,
 				3E1F42991F7CF17500E90377 /* ShowChinese */,
 				3E4D78981F790D7E00BC9C2B /* AlipaySDK.bundle */,
@@ -1451,6 +1669,15 @@
 		A26883657B03753D71FBDDF9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3E0FDEC91FA4421800F52DC0 /* libstdc++.6.0.9.tbd */,
+				3E0FDEB51FA4417E00F52DC0 /* ExportHeaders */,
+				3E0FDE981FA4416D00F52DC0 /* QIYU */,
+				3E19C9C81FA4315500EDCB4C /* libxml2.tbd */,
+				3E19C9C61FA4313600EDCB4C /* AudioToolbox.framework */,
+				3E19C9C41FA4312B00EDCB4C /* CoreMedia.framework */,
+				3E19C9C21FA4311A00EDCB4C /* AVFoundation.framework */,
+				3E19C9C01FA4310900EDCB4C /* MobileCoreServices.framework */,
+				3E19C9BE1FA430F900EDCB4C /* UIKit.framework */,
 				3E4D78951F790C8300BC9C2B /* CFNetwork.framework */,
 				3E4D78931F790C7C00BC9C2B /* CoreText.framework */,
 				3E4D78911F790C7400BC9C2B /* QuartzCore.framework */,
@@ -1528,6 +1755,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E0FDED01FA446CD00F52DC0 /* QYResource.bundle in Resources */,
 				3E5620291F6B6A800063AA5B /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1897,10 +2125,15 @@
 				INFOPLIST_FILE = DaCongMing/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/DaCongMing/DCM/Vender/QIYU",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.hailin.dacongming;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
 			name = Debug;
 		};
@@ -1923,10 +2156,15 @@
 				INFOPLIST_FILE = DaCongMing/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/DaCongMing/DCM/Vender/QIYU",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.hailin.dacongming;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
 			name = Release;
 		};

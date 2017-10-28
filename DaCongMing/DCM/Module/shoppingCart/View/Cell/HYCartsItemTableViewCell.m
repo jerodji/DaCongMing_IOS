@@ -179,7 +179,7 @@
                 [weakSelf setItems:cartItems];
                 
                 //发出通知
-                [[NSNotificationCenter defaultCenter] postNotificationName:KAddShoppingCartsSuccess object:cartsCount];
+                //[[NSNotificationCenter defaultCenter] postNotificationName:KAddShoppingCartsSuccess object:cartsCount];
             }
             else{
                 
