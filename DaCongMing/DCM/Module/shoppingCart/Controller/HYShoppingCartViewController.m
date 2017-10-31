@@ -70,6 +70,11 @@
     }
 }
 
+- (void)dealloc{
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self forKeyPath:KAddShoppingCartsSuccess];
+}
+
 - (void)setupSubviews{
     
     [self.view addSubview:self.tableView];

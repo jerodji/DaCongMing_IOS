@@ -40,6 +40,11 @@
     [MBProgressHUD showPregressHUDWithLoadingText:@"正在加载中！"];
 }
 
+- (void)dealloc{
+    
+    [self.webView removeObserver:self forKeyPath:@"estimatedProgress"];
+}
+
 #pragma mark ********监听加载进度********
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context{
     

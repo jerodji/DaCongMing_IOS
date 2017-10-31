@@ -36,6 +36,15 @@
 - (void)setupSubviews{
     
     [self.view addSubview:self.tableView];
+    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back"] style:UIBarButtonItemStylePlain target:self action:@selector(backBtnAction)];
+    self.navigationItem.leftBarButtonItem = backItem;
+}
+
+- (void)backBtnAction{
+    
+    NSArray *pushVCAry = [self.navigationController viewControllers];
+    UIViewController *popVC = [pushVCAry objectAtIndex:pushVCAry.count - 3];
+    [self.navigationController popToViewController:popVC animated:YES];
 }
 
 - (void)requestNetwork{

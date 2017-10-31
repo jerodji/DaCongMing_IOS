@@ -249,6 +249,38 @@
     }];
 }
 
++ (void)getBrandsShopAllProduct:(NSString *)sellerID pageNo:(NSInteger)pageNo isNewItem:(BOOL)isNewItem isHotSale:(BOOL)isHotSale ComplectionBlock:(void (^)(NSArray *))complection {
+    
+    NSMutableDictionary *requestParam = [NSMutableDictionary dictionary];
+    [requestParam setValue:[HYUserModel sharedInstance].token forKey:@"token"];
+    [requestParam setValue:sellerID forKey:@"seller_id"];
+    [requestParam setValue:@(pageNo) forKey:@"pageNo"];
+    NSString *isNewItemStr = isNewItem ? @"true" : nil;
+    NSString *isHotSaleStr = isHotSale ? @"true" : nil;
+    [requestParam setValue:isNewItemStr forKey:@"isNewItem"];
+    [requestParam setValue:isHotSaleStr forKey:@"hotsale"];
+    
+    [[HTTPManager shareHTTPManager] postDataFromUrl:API_ShopProductsList withParameter:requestParam isShowHUD:YES success:^(id returnData) {
+        
+        if (returnData) {
+            
+            NSInteger code = [[returnData objectForKey:@"successed"] integerValue];
+            if (code == 000) {
+                
+                NSArray *array = [returnData objectForKey:@"dataInfo"][@"dataList"];
+                complection(array);
+            }
+            else{
+                complection(nil);
+            }
+        }
+        else{
+            
+            complection(nil);
+        }
+    }];
+}
+
 + (void)collectShopWithSellerID:(NSString *)sellerID ComplectionBlock:(void (^)(BOOL))complection{
     
     NSMutableDictionary *requestParam = [NSMutableDictionary dictionary];

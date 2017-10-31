@@ -80,7 +80,10 @@
 #pragma mark - action
 - (void)buttonAction:(UIButton *)button{
     
-    
+    if (_delegate && [_delegate respondsToSelector:@selector(brandsBottomBtnTapIndex:)]) {
+        
+        [_delegate brandsBottomBtnTapIndex:button.tag - 100];
+    }
 }
 
 #pragma mark - lazyload
@@ -116,6 +119,7 @@
         [_allGoodsBtn setTitle:@"0\n全部商品" forState:UIControlStateNormal];
         _allGoodsBtn.titleLabel.numberOfLines = 0;
         _allGoodsBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
+        _allGoodsBtn.tag = 100;
         [_allGoodsBtn setTitleColor:KAPP_272727_COLOR forState:UIControlStateNormal];
         [_allGoodsBtn addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
         _allGoodsBtn.titleLabel.font = KFitFont(14);
@@ -131,6 +135,7 @@
         [_hotSaleBtn setTitle:@"0\n热销" forState:UIControlStateNormal];
         _hotSaleBtn.titleLabel.numberOfLines = 0;
         _hotSaleBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
+        _hotSaleBtn.tag = 101;
         [_hotSaleBtn setTitleColor:KAPP_272727_COLOR forState:UIControlStateNormal];
         [_hotSaleBtn addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
         _hotSaleBtn.titleLabel.font = KFitFont(14);
@@ -145,6 +150,7 @@
         _recentNewBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_recentNewBtn setTitle:@"0\n上新" forState:UIControlStateNormal];
         _recentNewBtn.titleLabel.numberOfLines = 0;
+        _recentNewBtn.tag = 102;
         _recentNewBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
         [_recentNewBtn setTitleColor:KAPP_272727_COLOR forState:UIControlStateNormal];
         [_recentNewBtn addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];

@@ -28,6 +28,8 @@
 @property (nonatomic,copy) NSString *hotsaleCount;
 /** guid */
 @property (nonatomic,copy) NSString *itemCount;
+/** itemNewCount */
+@property (nonatomic,copy) NSString *itemNewCount;
 /** justItem */
 @property (nonatomic,copy) NSArray *justItem;
 

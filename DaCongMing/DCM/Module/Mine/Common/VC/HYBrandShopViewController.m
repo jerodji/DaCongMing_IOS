@@ -22,7 +22,7 @@
 #import "HYSearchHandle.h"
 
 
-@interface HYBrandShopViewController () <UITableViewDelegate,UITableViewDataSource,HYBrandsShopTapDelegate,HYShopCollectDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
+@interface HYBrandShopViewController () <UITableViewDelegate,UITableViewDataSource,HYBrandsShopTapDelegate,HYShopCollectDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,HYBrandsShopBottomActionDelegate>
 
 /** brandsShopNavView */
 @property (nonatomic,strong) HYBrandShopNavView *brandsShopNavView;
@@ -31,7 +31,7 @@
 /** tableView */
 @property (nonatomic,strong) UITableView *tableView;
 /** itemList */
-@property (nonatomic,copy) NSArray *itemList;
+@property (nonatomic,strong) NSMutableArray *itemList;
 /** infoModel */
 @property (nonatomic,strong) HYBrandShopInfoModel *shopInfoModel;
 /** bannerArray */
@@ -101,7 +101,7 @@
             
             NSDictionary *storeInfo = [dict objectForKey:@"storeInfo"];
             NSArray *itemList = [dict objectForKey:@"itemList"];
-            self.itemList = itemList;
+            [self.itemList addObjectsFromArray:itemList];
             self.shopInfoModel = [HYBrandShopInfoModel modelWithDictionary:storeInfo];
             
             for (NSDictionary *itemDict in storeInfo[@"storeImages"]) {
@@ -111,7 +111,7 @@
             
             [_bottomView.allGoodsBtn setTitle:[NSString stringWithFormat:@"%@\n全部商品",self.shopInfoModel.itemCount] forState:UIControlStateNormal];
             [_bottomView.hotSaleBtn setTitle:[NSString stringWithFormat:@"%@\n热销",self.shopInfoModel.hotsaleCount] forState:UIControlStateNormal];
-            [_bottomView.recentNewBtn setTitle:[NSString stringWithFormat:@"%@\n上新",@"0"] forState:UIControlStateNormal];
+            [_bottomView.recentNewBtn setTitle:[NSString stringWithFormat:@"%@\n上新",self.shopInfoModel.itemNewCount] forState:UIControlStateNormal];
         }
         
         [_tableView reloadData];
@@ -186,7 +186,7 @@
             cell = [[HYHomeDoodsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:goodsCellID];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
-        cell.datalist = [self.itemList copy];
+        cell.datalist = self.itemList ;
         cell.collectionSelect = ^(NSString *productID) {
             
             HYGoodsDetailInfoViewController *detailVC = [[HYGoodsDetailInfoViewController alloc] init];
@@ -404,6 +404,44 @@
     }
 }
 
+#pragma mark - bottomActionDelegate
+- (void)brandsBottomBtnTapIndex:(NSInteger)index{
+    
+    switch (index) {
+        case 0:
+            
+            break;
+        case 1:
+            
+            [self requestHotsaleData];
+            break;
+        case 2:
+            [self requestNetItemData];
+            break;
+        default:
+            break;
+    }
+}
+
+- (void)requestHotsaleData{
+    
+    
+    [HYGoodsHandle getBrandsShopAllProduct:_sellerID pageNo:1 isNewItem:NO isHotSale:YES ComplectionBlock:^(NSArray *array) {
+       
+        [self.itemList removeAllObjects];
+        [self.itemList addObjectsFromArray:array];
+    }];
+}
+
+- (void)requestNetItemData{
+    
+    [HYGoodsHandle getBrandsShopAllProduct:_sellerID pageNo:1 isNewItem:YES isHotSale:NO ComplectionBlock:^(NSArray *array) {
+        
+        [self.itemList removeAllObjects];
+        [self.itemList addObjectsFromArray:array];
+    }];
+}
+
 
 #pragma mark - lazyload
 - (HYBrandShopNavView *)brandsShopNavView{
@@ -441,6 +479,7 @@
     if (!_bottomView) {
         
         _bottomView = [HYBrandShopBottomView new];
+        _bottomView.delegate = self;
     }
     return _bottomView;
 }
@@ -494,6 +533,14 @@
         _datalist = [NSMutableArray array];
     }
     return _datalist;
+}
+
+- (NSMutableArray *)itemList{
+    
+    if (!_itemList) {
+        _itemList = [NSMutableArray array];
+    }
+    return _itemList;
 }
 
 - (void)didReceiveMemoryWarning {

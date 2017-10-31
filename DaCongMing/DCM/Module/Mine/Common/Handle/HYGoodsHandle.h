@@ -55,6 +55,11 @@
 + (void)getBrandsShopWithSellerID:(NSString *)sellerID ComplectionBlock:(void(^)(NSDictionary *dict))complection;
 
 /**
+ *  店铺所有商品
+ */
++ (void)getBrandsShopAllProduct:(NSString *)sellerID pageNo:(NSInteger)pageNo isNewItem:(BOOL)isNewItem isHotSale:(BOOL)isHotSale ComplectionBlock:(void(^)(NSArray *array))complection;
+
+/**
  *  收藏店铺
  */
 + (void)collectShopWithSellerID:(NSString *)sellerID ComplectionBlock:(void(^)(BOOL isSuccess))complection;

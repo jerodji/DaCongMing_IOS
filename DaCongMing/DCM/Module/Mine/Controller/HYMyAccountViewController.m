@@ -190,6 +190,8 @@
             [HYUserHandle userLogoutWithcomplectionBlock:^(BOOL isSuccess) {
                 
             }];
+            
+            [[QYSDK sharedSDK] logout:^(){}];
         }];
     }
     return _customAlert;

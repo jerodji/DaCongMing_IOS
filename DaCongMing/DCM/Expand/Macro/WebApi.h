@@ -185,6 +185,9 @@
 //店铺主页
 #define API_ShopHomePage       @"HAILIN_SERVER/showStore.do"
 
+//店铺商品列表
+#define API_ShopProductsList       @"HAILIN_SERVER/loaditemMsgInStore.do"
+
 //收藏店铺
 #define API_CollectShop       @"HAILIN_SERVER/addSellerFavorite.do"
 
