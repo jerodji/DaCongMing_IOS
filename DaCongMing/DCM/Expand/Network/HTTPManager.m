@@ -71,12 +71,12 @@
 
     
     manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    manager.requestSerializer.timeoutInterval = 10.0f;
+
     //采用JSON的方式来解析数据
 //    manager.responseSerializer = [AFJSONResponseSerializer serializer];
-    
     // 设置超时时间
 //    [manager.requestSerializer willChangeValueForKey:@"timeoutInterval"];
-    manager.requestSerializer.timeoutInterval = 10.0f;
 //    [manager.requestSerializer didChangeValueForKey:@"timeoutInterval"];
     
     
@@ -91,9 +91,11 @@
         NSInteger code = [[responseObject objectForKey:@"successed"] integerValue];
         
         if (code == -111) {
+            
             //token过期了,跳转登录页面
             [[HYUserModel sharedInstance] clearData];
-            [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"用户登录过期，请重新登录"];
+            
+            
         }
         else{
           
@@ -108,7 +110,6 @@
         }
         [MBProgressHUD hidePregressHUD:KEYWINDOW];
         successBlock(nil);
-        [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"请求失败，请检查网络"];
     }];
 }
 

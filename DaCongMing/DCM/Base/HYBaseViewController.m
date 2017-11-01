@@ -37,29 +37,9 @@
      @{NSForegroundColorAttributeName:KAPP_WHITE_COLOR}];
     self.navigationController.navigationBar.translucent = NO;
     
-    //修改返回按钮
-//    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back"] style:UIBarButtonItemStylePlain target:self action:@selector(backBtnAction)];
-//    self.navigationItem.backBarButtonItem = item;
-    
-    
-    
     //设置返回按钮的颜色为白色
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor whiteColor]};
-    
-   
-}
-
-#pragma mark - action
-- (void)backBtnAction{
-    
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
-- (void)didReceiveMemoryWarning {
-    
-    [super didReceiveMemoryWarning];
-    
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
@@ -68,14 +48,12 @@
     
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)didReceiveMemoryWarning {
+    
+    [super didReceiveMemoryWarning];
+    
 }
-*/
+
+
 
 @end

@@ -341,7 +341,7 @@
     return YES;
 }
 
-/**判断手机号是否有效*/
+/** 判断手机号是否有效 */
 - (BOOL)validatePhoneNum:(NSString *)phoneNum{
     
     NSString *numReg = @"^(1)\\d{10}$";
