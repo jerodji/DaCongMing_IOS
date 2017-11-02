@@ -129,7 +129,7 @@
     
     HYCartItem *item = [HYCartItem modelWithDictionary:items.item];
     
-    [_itemImgView sd_setImageWithURL:[NSURL URLWithString:item.item_title_image] placeholderImage:[UIImage imageNamed:@"placeholder"]];
+    [_itemImgView sd_setImageWithURL:[NSURL URLWithString:item.item_title_image] placeholderImage:[UIImage imageNamed:@"productPlaceholder"]];
     _itemLabel.text = item.item_name;
     _countLabel.text = [NSString stringWithFormat:@"x%@",items.qty];
     _unitLabel.text = items.unit;
@@ -210,7 +210,7 @@
         _itemImgView = [[UIImageView alloc] initWithFrame:CGRectZero];
         _itemImgView.contentMode = UIViewContentModeScaleAspectFill;
         _itemImgView.clipsToBounds = YES;
-        _itemImgView.image = [UIImage imageNamed:@"placeholder"];
+        _itemImgView.image = [UIImage imageNamed:@"productPlaceholder"];
     }
     
     return _itemImgView;

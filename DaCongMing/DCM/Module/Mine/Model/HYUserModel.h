@@ -36,7 +36,6 @@
 
 /** token */
 @property (nonatomic,copy) NSString *token;
-
 /** userinfo */
 @property (nonatomic,strong) HYUserInfo *userInfo;
 

@@ -73,7 +73,7 @@
     
     _goodHealthModel = goodHealthModel;
     
-    [_imgView sd_setImageWithURL:[NSURL URLWithString:goodHealthModel.image_url] placeholderImage:[UIImage imageNamed:@"placeHolder"]];
+    [_imgView sd_setImageWithURL:[NSURL URLWithString:goodHealthModel.image_url] placeholderImage:[UIImage imageNamed:@"productPlaceholder"]];
     [_collectionView reloadData];
     
     _cellHeight = _bgView.bottom + 10 * WIDTH_MULTIPLE;

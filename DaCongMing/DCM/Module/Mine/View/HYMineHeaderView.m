@@ -58,6 +58,12 @@
 //        [self.headerImgView sd_setImageWithURL:[NSURL URLWithString:urlStr] placeholderImage:[UIImage imageNamed:@"header_placeholder"]];
         self.nickNameLabel.text = user.userInfo.name;
     }
+    else{
+        
+        self.nickNameLabel.text = @"未登录，点我登录";
+        self.headerImgView.image = [UIImage imageNamed:@"header_placeholder"];
+
+    }
 }
 
 - (void)setMyUserInfo:(HYMyUserInfo *)myUserInfo{

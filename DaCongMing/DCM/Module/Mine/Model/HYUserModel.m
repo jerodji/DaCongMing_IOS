@@ -77,9 +77,9 @@
         NSString *propertyName = [NSString stringWithCString:property_getName(propertyValue) encoding:NSUTF8StringEncoding];
         [self setValue:nil forKey:propertyName];
     }
-    
+    free(properties);
     //清除本地缓存
-    
+    [HYPlistTools removeDataWithName:KUserModelData];
 }
 
 

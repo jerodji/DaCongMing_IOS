@@ -94,8 +94,7 @@
             
             //token过期了,跳转登录页面
             [[HYUserModel sharedInstance] clearData];
-            
-            
+            [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"请重新登录"];
         }
         else{
           

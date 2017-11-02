@@ -112,7 +112,7 @@
     
     if (!_headerImgView) {
         
-        _headerImgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"placeholder"]];
+        _headerImgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"productPlaceholder"]];
         _headerImgView.contentMode = UIViewContentModeScaleAspectFill;
         _headerImgView.clipsToBounds = YES;
         _headerImgView.layer.cornerRadius = 20 * WIDTH_MULTIPLE;

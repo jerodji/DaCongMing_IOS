@@ -39,7 +39,7 @@
 
     _typeItemModel = typeItemModel;
     
-    [_imgView sd_setImageWithURL:[NSURL URLWithString:typeItemModel.image_url] placeholderImage:[UIImage imageNamed:@"placeHolder"]];
+    [_imgView sd_setImageWithURL:[NSURL URLWithString:typeItemModel.image_url] placeholderImage:[UIImage imageNamed:@"productPlaceholder"]];
 }
 
 #pragma mark - lazyload

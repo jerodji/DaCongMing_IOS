@@ -76,7 +76,7 @@
         
         UIImageView *imgView = [[UIImageView alloc] init];
         imgView.frame = CGRectMake(20 * WIDTH_MULTIPLE + i * 70 * WIDTH_MULTIPLE, _bgView.top + 10 * WIDTH_MULTIPLE, 50 * WIDTH_MULTIPLE, 50 * WIDTH_MULTIPLE);
-        [imgView sd_setImageWithURL:[NSURL URLWithString:orderModel.item_imageList[i]] placeholderImage:[UIImage imageNamed:@"placeholder"]];
+        [imgView sd_setImageWithURL:[NSURL URLWithString:orderModel.item_imageList[i]] placeholderImage:[UIImage imageNamed:@"productPlaceholder"]];
         imgView.contentMode = UIViewContentModeScaleAspectFill;
         imgView.clipsToBounds = YES;
         imgView.tag = 1000 + i;

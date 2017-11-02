@@ -174,7 +174,7 @@
 - (void)setOrderDetailModel:(HYMyOrderDetailsModel *)orderDetailModel{
     
     _orderDetailModel = orderDetailModel;
-    [_itemImgView sd_setImageWithURL:[NSURL URLWithString:orderDetailModel.item_title_image] placeholderImage:[UIImage imageNamed:@"placeholder"]];
+    [_itemImgView sd_setImageWithURL:[NSURL URLWithString:orderDetailModel.item_title_image] placeholderImage:[UIImage imageNamed:@"productPlaceholder"]];
     _itemLabel.text = orderDetailModel.item_name;
     _unitLabel.text = orderDetailModel.unit;
     _priceLabel.text = [NSString stringWithFormat:@"￥%@",orderDetailModel.price];

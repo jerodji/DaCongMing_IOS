@@ -44,7 +44,7 @@
 - (void)setModel:(HYSortModel *)model{
     
     _model = model;
-     [_imgView sd_setImageWithURL:[NSURL URLWithString:_model.img_url] placeholderImage:[UIImage imageNamed:@"placeHolderImg"]];
+     [_imgView sd_setImageWithURL:[NSURL URLWithString:_model.img_url] placeholderImage:[UIImage imageNamed:@"productPlaceholder"]];
 }
 
 #pragma mark - lazyload
@@ -55,7 +55,7 @@
         _imgView = [[UIImageView alloc] initWithFrame:CGRectZero];
         _imgView.contentMode = UIViewContentModeScaleAspectFill;
         _imgView.clipsToBounds = YES;
-        [_imgView sd_setImageWithURL:[NSURL URLWithString:_model.img_url] placeholderImage:[UIImage imageNamed:@"placeHolderImg"]];
+        [_imgView sd_setImageWithURL:[NSURL URLWithString:_model.img_url] placeholderImage:[UIImage imageNamed:@"productPlaceholder"]];
     }
     
     return _imgView;

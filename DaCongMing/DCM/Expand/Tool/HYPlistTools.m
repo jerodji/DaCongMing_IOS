@@ -84,7 +84,14 @@
     
     NSString *filePath = [KCACHE_PATH stringByAppendingPathComponent:name];
     NSFileManager *manager = [NSFileManager defaultManager];
-    [manager removeItemAtPath:filePath error:nil];
+    NSError *error = nil;
+    if ([manager removeItemAtPath:filePath error:&error]) {
+     
+        DLog(@"clear user data success");
+    }
+    else{
+        DLog(@"%@",error.description);
+    }
 }
 
 + (CGFloat )folderSizeAtPath:(NSString *)folderPath{
