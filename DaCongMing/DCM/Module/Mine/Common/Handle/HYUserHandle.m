@@ -46,6 +46,10 @@
                 [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"用户名或密码错误"];
             }
         }
+        else{
+            
+            
+        }
         
     }];
 }

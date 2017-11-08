@@ -16,7 +16,6 @@ PODS:
     - AFNetworking/NSURLSession
   - Bugly (2.4.8)
   - DZNEmptyDataSet (1.8.1)
-  - FDFullscreenPopGesture (1.1)
   - FMDB (2.6.2):
     - FMDB/standard (= 2.6.2)
   - FMDB/standard (2.6.2)
@@ -38,7 +37,6 @@ DEPENDENCIES:
   - AFNetworking (~> 3.1.0)
   - Bugly
   - DZNEmptyDataSet (~> 1.8.1)
-  - FDFullscreenPopGesture (~> 1.1)
   - FMDB (~> 2.6.2)
   - IQKeyboardManager (~> 4.0.8)
   - Masonry (~> 1.0.2)
@@ -52,7 +50,6 @@ SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   Bugly: da3c02408c14838d498429320545a8e439392978
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
-  FDFullscreenPopGesture: a8a620179e3d9c40e8e00256dcee1c1a27c6d0f0
   FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
   IQKeyboardManager: 8eab4d8111418414619d1df8e4779ce5d0f8d7e2
   Masonry: 7c429b56da9d4ee0bbb3ed77a5ea710d6a5df39e
@@ -63,6 +60,6 @@ SPEC CHECKSUMS:
   WechatOpenSDK: 0ee07a8d492299d3e47372a33da5af26524a7576
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: 87997fc140a4e056729f0bf048700726c4faedbf
+PODFILE CHECKSUM: 66d6dad6c5ddbb5884e57c87243924d74b7b2059
 
 COCOAPODS: 1.3.1

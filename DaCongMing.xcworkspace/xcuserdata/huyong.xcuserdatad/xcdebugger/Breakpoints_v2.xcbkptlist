@@ -100,7 +100,7 @@
                   moduleName = "DaCongMing"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/huyong/Desktop/DaCongMing/DaCongMing/DaCongMing/DCM/Module/shoppingCart/View/Cell/HYShoppingCartsTableViewCell.m"
-                  timestampString = "531307939.806217"
+                  timestampString = "531729970.99921"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "126"
@@ -115,7 +115,7 @@
                   moduleName = "DaCongMing"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/huyong/Desktop/DaCongMing/DaCongMing/DaCongMing/DCM/Module/shoppingCart/View/Cell/HYShoppingCartsTableViewCell.m"
-                  timestampString = "531307939.809848"
+                  timestampString = "531729971.001754"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "128"
@@ -148,11 +148,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DaCongMing/DCM/Module/Mine/Common/Handle/HYUserHandle.m"
-            timestampString = "530854721.438231"
+            timestampString = "531729970.780575"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "133"
-            endingLineNumber = "133"
+            startingLineNumber = "137"
+            endingLineNumber = "137"
             landmarkName = "+setPasswordWithPhone:password:authCode:complectionBlock:"
             landmarkType = "7">
          </BreakpointContent>
@@ -180,7 +180,7 @@
                   moduleName = "DaCongMing"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/huyong/Desktop/DaCongMing/DaCongMing/DaCongMing/DCM/Module/Mine/LoginRegister/HYSetPasswordViewController.m"
-                  timestampString = "531307939.828888"
+                  timestampString = "531729971.015547"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "108"
@@ -195,7 +195,7 @@
                   moduleName = "DaCongMing"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/huyong/Desktop/DaCongMing/DaCongMing/DaCongMing/DCM/Module/Mine/LoginRegister/HYSetPasswordViewController.m"
-                  timestampString = "531307939.831302"
+                  timestampString = "531729971.018805"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "110"
@@ -212,11 +212,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DaCongMing/DCM/Module/Mine/Common/Handle/HYUserHandle.m"
-            timestampString = "530854721.438596"
+            timestampString = "531729970.780662"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "127"
-            endingLineNumber = "127"
+            startingLineNumber = "131"
+            endingLineNumber = "131"
             landmarkName = "+setPasswordWithPhone:password:authCode:complectionBlock:"
             landmarkType = "7">
             <Locations>
@@ -228,11 +228,11 @@
                   moduleName = "DaCongMing"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/huyong/Desktop/DaCongMing/DaCongMing/DaCongMing/DCM/Module/Mine/Common/Handle/HYUserHandle.m"
-                  timestampString = "531307939.835759"
+                  timestampString = "531729971.023335"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "127"
-                  endingLineNumber = "127"
+                  startingLineNumber = "131"
+                  endingLineNumber = "131"
                   offsetFromSymbolStart = "504">
                </Location>
                <Location
@@ -243,11 +243,11 @@
                   moduleName = "DaCongMing"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/huyong/Desktop/DaCongMing/DaCongMing/DaCongMing/DCM/Module/Mine/Common/Handle/HYUserHandle.m"
-                  timestampString = "531307939.837423"
+                  timestampString = "531729971.025656"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "129"
-                  endingLineNumber = "129"
+                  startingLineNumber = "133"
+                  endingLineNumber = "133"
                   offsetFromSymbolStart = "48">
                </Location>
             </Locations>
@@ -340,7 +340,7 @@
                   moduleName = "DaCongMing"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/huyong/Desktop/DaCongMing/DaCongMing/DaCongMing/DCM/Module/Mine/Common/Handle/HYGoodsHandle.m"
-                  timestampString = "531307939.85796"
+                  timestampString = "531729971.046005"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "263"
@@ -355,7 +355,7 @@
                   moduleName = "DaCongMing"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/huyong/Desktop/DaCongMing/DaCongMing/DaCongMing/DCM/Module/Mine/Common/Handle/HYGoodsHandle.m"
-                  timestampString = "531307939.861395"
+                  timestampString = "531729971.047588"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "265"
@@ -419,13 +419,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DaCongMing/DCM/Expand/Tool/HYPlistTools.m"
-            timestampString = "531307939.691659"
+            filePath = "DaCongMing/DCM/Module/Mine/Model/HYUserModel.m"
+            timestampString = "531308275.315217"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "90"
-            endingLineNumber = "90"
-            landmarkName = "+removeDataWithName:"
+            startingLineNumber = "80"
+            endingLineNumber = "80"
+            landmarkName = "-clearData"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -435,13 +435,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DaCongMing/DCM/Module/Mine/Model/HYUserModel.m"
-            timestampString = "531308275.315217"
+            filePath = "DaCongMing/DCM/Module/Mine/Common/Handle/HYUserHandle.m"
+            timestampString = "531729970.780878"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "80"
-            endingLineNumber = "80"
-            landmarkName = "-clearData"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
+            landmarkName = "+userLoginWithPhone:password:complectionBlock:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DaCongMing/DCM/Module/Mine/LoginRegister/HYLoginView.m"
+            timestampString = "531729975.407083"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "265"
+            endingLineNumber = "265"
+            landmarkName = "-weChatLoginCallBack:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

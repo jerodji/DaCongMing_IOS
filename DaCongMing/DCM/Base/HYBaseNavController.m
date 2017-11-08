@@ -8,7 +8,12 @@
 
 #import "HYBaseNavController.h"
 
-@interface HYBaseNavController () <UINavigationControllerDelegate>
+@interface HYBaseNavController () <UINavigationControllerDelegate,UIGestureRecognizerDelegate>
+
+@property (nonatomic,strong) UIImageView *screenshotImgView;
+@property(strong, nonatomic) UIView * coverView;
+@property(strong, nonatomic)  NSMutableArray * screenshotImgArray;
+@property(strong, nonatomic)  UIScreenEdgePanGestureRecognizer *panGestureRec;
 
 @end
 
@@ -22,7 +27,135 @@
     
 }
 
-#pragma mark --------navigation delegate
+- (void)createGesture{
+    
+    //创建边缘手势
+    _panGestureRec = [[UIScreenEdgePanGestureRecognizer alloc] initWithTarget:self action:@selector(panGestureAction:)];
+    _panGestureRec.edges = UIRectEdgeLeft;
+    [self.view addGestureRecognizer:_panGestureRec];
+    
+    //创建截图
+    _screenshotImgView = [UIImageView new];
+    _screenshotImgView.frame = CGRectMake(0, 0, KSCREEN_WIDTH, KSCREEN_HEIGHT);
+    
+    //创建截图上面的黑色半透明遮罩
+    _coverView = [UIView new];
+    _coverView.frame = _screenshotImgView.frame;
+    _coverView.backgroundColor = KAPP_BLACK_COLOR;
+    
+    _screenshotImgArray = [NSMutableArray array];
+}
+
+- (void)panGestureAction:(UIPanGestureRecognizer *)pan{
+    
+    if (!self.viewControllers.count) {
+        return;
+    }
+    
+    switch (_panGestureRec.state) {
+        case UIGestureRecognizerStateBegan:
+            //开始拖拽
+            [self beginDrag];
+            break;
+        case UIGestureRecognizerStateEnded:
+            //结束拖拽
+            [self endDrag];
+            break;
+        default:
+            //正在拖拽
+            [self draggingWithPan:pan];
+            break;
+    }
+}
+
+#pragma mark - 拖动
+- (void)beginDrag{
+    
+    //每次开始pan手势，都要添加截图和遮罩
+    [self.view.window insertSubview:_screenshotImgView atIndex:0];
+    [self.view.window insertSubview:_coverView aboveSubview:_screenshotImgView];
+    
+    //让imageView显示截图数组中的最后一张
+    _screenshotImgView.image = [_screenshotImgArray lastObject];
+    
+}
+
+- (void)draggingWithPan:(UIPanGestureRecognizer *)pan{
+    
+    //获取手指的位移
+    CGFloat offsetX = [pan translationInView:self.view].x;
+    //整个view平移
+    if (offsetX > 0) {
+        self.view.transform = CGAffineTransformMakeTranslation(offsetX, 0);
+    }
+    
+    CGFloat currentTranslateScale = offsetX / KSCREEN_WIDTH;
+    if (offsetX < KSCREEN_WIDTH) {
+        
+        _screenshotImgView.transform = CGAffineTransformMakeTranslation(offsetX - KSCREEN_WIDTH, 0);
+    }
+    
+    //根据偏移量计算透明度
+    CGFloat currentAlpha = 0.3 - currentTranslateScale * 0.3;
+    _coverView.alpha = currentAlpha;
+}
+
+- (void)endDrag{
+    
+    CGFloat translateX = self.view.transform.tx;
+    if (translateX <= KSCREEN_WIDTH / 2 - 60) {
+        
+        //弹回
+        [UIView animateWithDuration:0.3 animations:^{
+            
+            self.view.transform = CGAffineTransformIdentity;
+            //恢复imagView的位置
+            _screenshotImgView.transform = CGAffineTransformMakeTranslation(-KSCREEN_WIDTH, 0);
+        } completion:^(BOOL finished) {
+            
+            [_screenshotImgView removeFromSuperview];
+            [_coverView removeFromSuperview];
+        }];
+    }
+    else{
+        
+        //pop成功
+        [UIView animateWithDuration:0.3 animations:^{
+           
+            self.view.transform = CGAffineTransformMakeTranslation(KSCREEN_WIDTH, 0);
+            _screenshotImgView.transform = CGAffineTransformMakeTranslation(0, 0);
+            
+        } completion:^(BOOL finished) {
+            
+            self.view.transform = CGAffineTransformIdentity;
+            [_screenshotImgView removeFromSuperview];
+            [_coverView removeFromSuperview];
+            [self popViewControllerAnimated:NO];
+        }];
+    }
+}
+
+//截图
+- (void)screenShot{
+    
+    UIViewController *currentVC = self.view.window.rootViewController;
+    
+    //开启上下文
+    UIGraphicsBeginImageContextWithOptions(currentVC.view.frame.size, YES, 0.0);
+    CGRect rect = CGRectMake(0, 0, KSCREEN_WIDTH, KSCREEN_HEIGHT);
+    [currentVC.view drawViewHierarchyInRect:rect afterScreenUpdates:NO];
+    //从上下文中，取出image
+    UIImage *snapshot = UIGraphicsGetImageFromCurrentImageContext();
+    //添加截取好的图片到数组
+    if (snapshot) {
+        
+        [_screenshotImgArray addObject:snapshot];
+    }
+    //结束上下文
+    UIGraphicsEndImageContext();
+}
+
+#pragma mark - navigation delegate
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated{
     
 
@@ -32,9 +165,20 @@
         
         UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back"] style:UIBarButtonItemStylePlain target:self action:@selector(backBtnAction)];
         viewController.navigationItem.leftBarButtonItem = backItem;
+        
+        [self createGesture];
+        //截图
+        [self screenShot];
     }
     
     [super pushViewController:viewController animated:animated];
+}
+
+// Override pop
+- (UIViewController *)popViewControllerAnimated:(BOOL)animated{
+    
+    [_screenshotImgArray removeLastObject];
+    return [super popViewControllerAnimated:animated];
 }
 
 - (void)backBtnAction{

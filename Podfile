@@ -16,7 +16,6 @@ pod 'SDCycleScrollView', '~> 1.65'
 pod 'MBProgressHUD', '~> 1.0.0'
 pod 'WechatOpenSDK'
 pod 'FMDB', '~> 2.6.2'
-pod 'FDFullscreenPopGesture', '~> 1.1'
 pod 'DZNEmptyDataSet', '~> 1.8.1'
 pod 'Bugly'
 
