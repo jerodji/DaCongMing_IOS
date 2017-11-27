@@ -22,7 +22,7 @@
         
         if (returnData) {
             
-            NSInteger code =[[returnData objectForKey:@"successed"] integerValue];
+            NSInteger code =[[returnData objectForKey:@"code"] integerValue];
             if (code == 000) {
                 
                 NSString *sign = [returnData objectForKey:@"orderInfo"];
@@ -51,10 +51,10 @@
         
         if (returnData) {
             
-            NSInteger code =[[returnData objectForKey:@"successed"] integerValue];
+            NSInteger code =[[returnData objectForKey:@"code"] integerValue];
             if (code == 000) {
                 
-                NSDictionary *dict = [returnData objectForKey:@"dataInfo"][@"orderInfo"];
+                NSDictionary *dict = [returnData objectForKey:@"data"][@"orderInfo"];
                 HYWeChatPayModel *model = [HYWeChatPayModel modelWithDictionary:dict];
                 complection(model);
             }

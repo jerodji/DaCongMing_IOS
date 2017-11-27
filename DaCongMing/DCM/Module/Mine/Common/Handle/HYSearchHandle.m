@@ -21,10 +21,10 @@
         
         if (returnData) {
             
-            NSInteger code = [[returnData objectForKey:@"successed"] integerValue];
+            NSInteger code = [[returnData objectForKey:@"code"] integerValue];
             if (code == 000) {
                 
-                NSArray *array = [returnData objectForKey:@"dataInfo"][@"dataList"];
+                NSArray *array = [returnData objectForKey:@"data"][@"dataList"];
                 complection(array);
             }
             else{
@@ -49,10 +49,10 @@
         
         if (returnData) {
             
-            NSInteger code = [[returnData objectForKey:@"successed"] integerValue];
+            NSInteger code = [[returnData objectForKey:@"code"] integerValue];
             if (code == 000) {
                 
-                NSArray *array = [returnData objectForKey:@"dataInfo"][@"dataList"];
+                NSArray *array = [returnData objectForKey:@"data"][@"dataList"];
                 complection(array);
             }
             else{

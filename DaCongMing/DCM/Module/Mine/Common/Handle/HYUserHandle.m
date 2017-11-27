@@ -22,10 +22,10 @@
         
         if (returnData) {
             
-            NSInteger code =[[returnData objectForKey:@"successed"] integerValue];
+            NSInteger code =[[returnData objectForKey:@"code"] integerValue];
             if (code == 000) {
                 
-                NSDictionary *dict = [returnData objectForKey:@"dataInfo"];
+                NSDictionary *dict = [returnData objectForKey:@"data"];
                 
                 HYUserModel *user = [HYUserModel sharedInstance];
                 [user modelSetWithDictionary:dict];
@@ -65,7 +65,7 @@
         
         if (returnData) {
             
-            NSInteger code =[[returnData objectForKey:@"successed"] integerValue];
+            NSInteger code = [[returnData objectForKey:@"code"] integerValue];
             if (code == 000) {
                 
                 complection(YES);
@@ -95,7 +95,7 @@
         
         if (returnData) {
             
-            NSInteger code =[[returnData objectForKey:@"successed"] integerValue];
+            NSInteger code =[[returnData objectForKey:@"code"] integerValue];
             if (code == 000) {
                 
                 complection(YES);
@@ -132,8 +132,8 @@
         
         if (returnData) {
             
-            NSInteger code =[[returnData objectForKey:@"successed"] integerValue];
-            NSString *errorMsg = [returnData objectForKey:@"dataInfo"][@"error_msg"];
+            NSInteger code =[[returnData objectForKey:@"code"] integerValue];
+            NSString *errorMsg = [returnData objectForKey:@"data"][@"error_msg"];
             if (code == 000) {
                 
                 complection(YES);
@@ -161,7 +161,7 @@
         
         if (returnData) {
             
-            NSInteger code =[[returnData objectForKey:@"successed"] integerValue];
+            NSInteger code =[[returnData objectForKey:@"code"] integerValue];
             if (code == 000) {
                 
                 complection(YES);
@@ -199,7 +199,7 @@
         
         if (returnData) {
             
-            NSInteger code =[[returnData objectForKey:@"successed"] integerValue];
+            NSInteger code =[[returnData objectForKey:@"code"] integerValue];
             if (code == 000) {
                 
                 complection(YES);

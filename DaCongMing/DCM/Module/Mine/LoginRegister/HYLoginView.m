@@ -264,10 +264,10 @@
        
         if (returnData) {
             
-            if ([[returnData objectForKey:@"successed"] integerValue] == 000) {
+            if ([[returnData objectForKey:@"code"] integerValue] == 000) {
                 
-                NSString *isNewUser = [returnData objectForKey:@"dataInfo"][@"isNewUser"];
-                NSDictionary *dict = [returnData objectForKey:@"dataInfo"];
+                NSString *isNewUser = [returnData objectForKey:@"data"][@"isNewUser"];
+                NSDictionary *dict = [returnData objectForKey:@"data"];
                 HYUserModel *user = [HYUserModel sharedInstance];
                 [user modelSetWithDictionary:dict];
                 

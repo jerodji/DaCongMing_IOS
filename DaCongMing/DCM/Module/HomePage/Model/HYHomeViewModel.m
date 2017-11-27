@@ -16,9 +16,9 @@
        
         if (returnData) {
             
-            if ([[returnData objectForKey:@"successed"] integerValue] == 000) {
+            if ([[returnData objectForKey:@"code"] integerValue] == 000) {
                 
-                NSDictionary *dict = [returnData objectForKey:@"dataInfo"];
+                NSDictionary *dict = [returnData objectForKey:@"data"];
                 HYHomePageModel *model = [HYHomePageModel modelWithDictionary:dict];
                 complemtion(model);
             }

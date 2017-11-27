@@ -63,9 +63,9 @@
        
         if (returnData) {
             
-            if ([[returnData objectForKey:@"successed"] integerValue] == 000) {
+            if ([[returnData objectForKey:@"code"] integerValue] == 000) {
                 
-                NSArray *array = [[returnData objectForKey:@"dataInfo"] objectForKey:@"dataList"];
+                NSArray *array = [[returnData objectForKey:@"data"] objectForKey:@"dataList"];
                 
                 [_datalist removeAllObjects];
                 for (NSDictionary *dict in array) {

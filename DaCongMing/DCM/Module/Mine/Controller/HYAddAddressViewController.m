@@ -75,10 +75,10 @@
        
         if (returnData) {
             
-            NSArray *dataInfo = [returnData objectForKey:@"dataInfo"];
-            if (dataInfo) {
+            NSArray *data = [returnData objectForKey:@"data"];
+            if (data) {
                 
-                for (NSDictionary *dict in dataInfo) {
+                for (NSDictionary *dict in data) {
                     
                     HYProvinceModel *model = [HYProvinceModel modelWithDictionary:dict];
                     [self.areaView.provinceArray addObject:model];

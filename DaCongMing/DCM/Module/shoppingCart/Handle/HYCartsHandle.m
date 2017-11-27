@@ -28,10 +28,10 @@
         
         if (returnData) {
             
-            NSInteger code = [[returnData objectForKey:@"successed"] integerValue];
+            NSInteger code = [[returnData objectForKey:@"code"] integerValue];
             if (code == 000) {
                 
-                NSDictionary *dict = [returnData objectForKey:@"dataInfo"][@"dataList"];
+                NSDictionary *dict = [returnData objectForKey:@"data"][@"dataList"];
                 HYCartsModel *model = [HYCartsModel modelWithDictionary:dict];
                 complection(model);
             }
@@ -53,10 +53,10 @@
         
         if (returnData) {
             
-            NSInteger code = [[returnData objectForKey:@"successed"] integerValue];
+            NSInteger code = [[returnData objectForKey:@"code"] integerValue];
             if (code == 000) {
                 
-                NSDictionary *dict = [returnData objectForKey:@"dataInfo"];
+                NSDictionary *dict = [returnData objectForKey:@"data"];
                 complection(dict[@"totalAmount"]);
             }
             else{
@@ -76,10 +76,10 @@
         
         if (returnData) {
             
-            NSInteger code = [[returnData objectForKey:@"successed"] integerValue];
+            NSInteger code = [[returnData objectForKey:@"code"] integerValue];
             if (code == 000) {
                 
-                NSString *count = [NSString stringWithFormat:@"%@",[[returnData objectForKey:@"dataInfo"] objectForKey:@"cartItemCount"]];
+                NSString *count = [NSString stringWithFormat:@"%@",[[returnData objectForKey:@"data"] objectForKey:@"cartItemCount"]];
                 complection(YES,count);
             }
             else{
@@ -107,10 +107,10 @@
         
         if (returnData) {
             
-            NSInteger code =[[returnData objectForKey:@"successed"] integerValue];
+            NSInteger code =[[returnData objectForKey:@"code"] integerValue];
             if (code == 000) {
                 
-                NSDictionary *dict = [returnData objectForKey:@"dataInfo"];
+                NSDictionary *dict = [returnData objectForKey:@"data"];
                 HYCreateOrder *model = [HYCreateOrder modelWithDictionary:dict];
                 complection(model);
             }
@@ -137,10 +137,10 @@
         
         if (returnData) {
             
-            NSInteger code = [[returnData objectForKey:@"successed"] integerValue];
+            NSInteger code = [[returnData objectForKey:@"code"] integerValue];
             if (code == 000) {
                 
-                NSString *count = [NSString stringWithFormat:@"%@",[[returnData objectForKey:@"dataInfo"] objectForKey:@"cartItemCount"]];
+                NSString *count = [NSString stringWithFormat:@"%@",[[returnData objectForKey:@"data"] objectForKey:@"cartItemCount"]];
                 complection(YES,count);
             }
             else{

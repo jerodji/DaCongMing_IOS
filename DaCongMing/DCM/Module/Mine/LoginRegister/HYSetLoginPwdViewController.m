@@ -30,6 +30,7 @@
     self.title = @"设置登录密码";
     self.view.backgroundColor = KAPP_TableView_BgColor;
     [self.view addSubview:self.sendAuthView];
+    self.sendAuthView.phone = self.phone;
     
     __weak typeof (self)weakSelf = self;
     self.sendAuthView.authSuccessBlock = ^(NSString *authCode) {
@@ -58,6 +59,7 @@
     if (!_sendAuthView) {
         
         _sendAuthView = [[HYSendAuthCodeView alloc] initWithFrame:CGRectZero];
+        
     }
     return _sendAuthView;
 }

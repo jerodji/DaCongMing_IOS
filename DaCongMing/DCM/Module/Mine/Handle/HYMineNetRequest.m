@@ -19,10 +19,10 @@
         
         if (returnData) {
             
-            NSInteger code = [[returnData objectForKey:@"successed"] integerValue];
+            NSInteger code = [[returnData objectForKey:@"code"] integerValue];
             if (code == 000) {
                 
-                NSDictionary *dict = [returnData objectForKey:@"dataInfo"];
+                NSDictionary *dict = [returnData objectForKey:@"data"];
                 
                 HYMyUserInfo *myUserInfo = [HYMyUserInfo sharedInstance];
                 [myUserInfo modelSetWithDictionary:dict];
@@ -49,10 +49,10 @@
         
         if (returnData) {
             
-            NSInteger code = [[returnData objectForKey:@"successed"] integerValue];
+            NSInteger code = [[returnData objectForKey:@"code"] integerValue];
             if (code == 000) {
                 
-                NSArray *datalist = [returnData objectForKey:@"dataInfo"][@"dataList"];
+                NSArray *datalist = [returnData objectForKey:@"data"][@"dataList"];
 
                 complection(datalist);
             }
@@ -73,10 +73,10 @@
         
         if (returnData) {
             
-            NSInteger code = [[returnData objectForKey:@"successed"] integerValue];
+            NSInteger code = [[returnData objectForKey:@"code"] integerValue];
             if (code == 000) {
                 
-                NSArray *datalist = [returnData objectForKey:@"dataInfo"][@"dataList"];
+                NSArray *datalist = [returnData objectForKey:@"data"][@"dataList"];
                 
                 complection(datalist);
             }
@@ -97,10 +97,10 @@
         
         if (returnData) {
             
-            NSInteger code = [[returnData objectForKey:@"successed"] integerValue];
+            NSInteger code = [[returnData objectForKey:@"code"] integerValue];
             if (code == 000) {
                 
-                NSArray *datalist = [returnData objectForKey:@"dataInfo"][@"dataList"];
+                NSArray *datalist = [returnData objectForKey:@"data"][@"dataList"];
                 
                 complection(datalist);
             }
@@ -120,10 +120,10 @@
         
         if (returnData) {
             
-            NSInteger code = [[returnData objectForKey:@"successed"] integerValue];
+            NSInteger code = [[returnData objectForKey:@"code"] integerValue];
             if (code == 000) {
                 
-                NSDictionary *dict = [returnData objectForKey:@"dataInfo"];
+                NSDictionary *dict = [returnData objectForKey:@"data"];
                 
                 complection(dict);
             }
@@ -144,7 +144,7 @@
         
         if (returnData) {
             
-            NSInteger code = [[returnData objectForKey:@"successed"] integerValue];
+            NSInteger code = [[returnData objectForKey:@"code"] integerValue];
             if (code == 000) {
                 
                 complection(YES);
@@ -169,7 +169,7 @@
         
         if (returnData) {
             
-            NSInteger code = [[returnData objectForKey:@"successed"] integerValue];
+            NSInteger code = [[returnData objectForKey:@"code"] integerValue];
             if (code == 000) {
                 
                 complection(YES);
@@ -191,10 +191,10 @@
         
         if (returnData) {
             
-            NSInteger code = [[returnData objectForKey:@"successed"] integerValue];
+            NSInteger code = [[returnData objectForKey:@"code"] integerValue];
             if (code == 000) {
                 
-                NSDictionary *dict = [returnData objectForKey:@"dataInfo"][@"refOrderhdr"];
+                NSDictionary *dict = [returnData objectForKey:@"data"][@"refOrderhdr"];
                 HYRefundModel *model = [HYRefundModel modelWithDictionary:dict];
                 complection(model);
             }
@@ -221,7 +221,7 @@
         
         if (returnData) {
             
-            NSInteger code = [[returnData objectForKey:@"successed"] integerValue];
+            NSInteger code = [[returnData objectForKey:@"code"] integerValue];
             if (code == 000) {
                 
                 complection(YES);
@@ -243,7 +243,7 @@
         
         if (returnData) {
             
-            NSInteger code = [[returnData objectForKey:@"successed"] integerValue];
+            NSInteger code = [[returnData objectForKey:@"code"] integerValue];
             if (code == 000) {
                 
                 complection(YES);
@@ -267,7 +267,7 @@
         
         if (returnData) {
             
-            NSInteger code = [[returnData objectForKey:@"successed"] integerValue];
+            NSInteger code = [[returnData objectForKey:@"code"] integerValue];
             if (code == 000) {
                 
                 complection(YES);
@@ -289,10 +289,10 @@
         
         if (returnData) {
             
-            NSInteger code = [[returnData objectForKey:@"successed"] integerValue];
+            NSInteger code = [[returnData objectForKey:@"code"] integerValue];
             if (code == 000) {
                 
-                NSString *url = [returnData objectForKey:@"dataInfo"][@"express_url"];
+                NSString *url = [returnData objectForKey:@"data"][@"express_url"];
                 complection(url);
             }
             else{

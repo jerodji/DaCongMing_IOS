@@ -58,30 +58,32 @@
        __block CGFloat imageScale = 0;
        __block CGFloat imageWidth = KSCREEN_WIDTH;
        __block CGFloat imageHeight = imageWidth * imageScale;
-        [imageView sd_setImageWithURL:[NSURL URLWithString:_imageArray[i]] placeholderImage:[UIImage imageNamed:@"productPlaceholder"] options:SDWebImageRetryFailed completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
-            
-            originalImageWidth = image.size.width;
-            originalImageHeight = image.size.height;
-            imageScale = originalImageHeight / originalImageWidth;
-            imageWidth = KSCREEN_WIDTH;
-            imageHeight = imageWidth * imageScale;
-            
-            
-            imageView.frame = CGRectMake(0, _previousImgHeight, imageWidth, imageHeight);
-            //上一张图片的高度
-            _previousImgHeight = imageHeight + _previousImgHeight;
-            [self addSubview:imageView];
-            
-            imageView.userInteractionEnabled = YES;
-            imageView.tag = i;
-            //        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(photoTap:)];
-            //        [imageView addGestureRecognizer:tap];
-            //cell的高度
-            _height = imageView.frame.origin.y + imageView.height + 10 * WIDTH_MULTIPLE;
-        }];
         
-        
-        
+        if (_imageArray[i]) {
+            
+            
+            [imageView sd_setImageWithURL:[NSURL URLWithString:_imageArray[i]] placeholderImage:[UIImage imageNamed:@"productPlaceholder"] options:SDWebImageRetryFailed completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+                
+                originalImageWidth = image.size.width != 0 ? image.size.width : 1;
+                originalImageHeight = image.size.height;
+                imageScale = originalImageHeight / originalImageWidth;
+                imageWidth = KSCREEN_WIDTH;
+                imageHeight = imageWidth * imageScale;
+                
+                
+                imageView.frame = CGRectMake(0, _previousImgHeight, imageWidth, imageHeight);
+                //上一张图片的高度
+                _previousImgHeight = imageHeight + _previousImgHeight;
+                [self addSubview:imageView];
+                
+                imageView.userInteractionEnabled = YES;
+                imageView.tag = i;
+                //        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(photoTap:)];
+                //        [imageView addGestureRecognizer:tap];
+                //cell的高度
+                _height = imageView.frame.origin.y + imageView.height + 10 * WIDTH_MULTIPLE;
+            }];
+        }
         
     }
 }

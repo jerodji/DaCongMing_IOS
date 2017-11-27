@@ -20,10 +20,10 @@
         
         if (returnData) {
             
-            NSInteger code =[[returnData objectForKey:@"successed"] integerValue];
+            NSInteger code =[[returnData objectForKey:@"code"] integerValue];
             if (code == 000) {
                 
-                NSArray *array = [returnData objectForKey:@"dataInfo"][@"dataList"];
+                NSArray *array = [returnData objectForKey:@"data"][@"dataList"];
                 complection(array);
             }
             else{
@@ -48,10 +48,10 @@
         
         if (returnData) {
             
-            NSInteger code =[[returnData objectForKey:@"successed"] integerValue];
+            NSInteger code =[[returnData objectForKey:@"code"] integerValue];
             if (code == 000) {
                 
-                NSDictionary *dict = [returnData objectForKey:@"dataInfo"];
+                NSDictionary *dict = [returnData objectForKey:@"data"];
                 HYMyOrderModel *orderModel = [HYMyOrderModel modelWithDictionary:dict];
                 complection(orderModel);
             }
@@ -80,10 +80,10 @@
         
         if (returnData) {
             
-            NSInteger code =[[returnData objectForKey:@"successed"] integerValue];
+            NSInteger code =[[returnData objectForKey:@"code"] integerValue];
             if (code == 000) {
                 
-                NSArray *array = [returnData objectForKey:@"dataInfo"][@"dataList"];
+                NSArray *array = [returnData objectForKey:@"data"][@"dataList"];
                 complection(array);
             }
             else{
@@ -109,10 +109,10 @@
         
         if (returnData) {
             
-            NSInteger code =[[returnData objectForKey:@"successed"] integerValue];
+            NSInteger code =[[returnData objectForKey:@"code"] integerValue];
             if (code == 000) {
                 
-                NSArray *array = [returnData objectForKey:@"dataInfo"][@"userCoupons"];
+                NSArray *array = [returnData objectForKey:@"data"][@"userCoupons"];
                 if (array.count) {
                     
                     complection(array);
@@ -140,10 +140,10 @@
         
         if (returnData) {
             
-            NSInteger code =[[returnData objectForKey:@"successed"] integerValue];
+            NSInteger code =[[returnData objectForKey:@"code"] integerValue];
             if (code == 000) {
                 
-                NSArray *array = [returnData objectForKey:@"dataInfo"][@"dataList"];
+                NSArray *array = [returnData objectForKey:@"data"][@"dataList"];
                 if (array.count) {
                     
                     complection(array);
@@ -174,7 +174,7 @@
         
         if (returnData) {
             
-            NSInteger code =[[returnData objectForKey:@"successed"] integerValue];
+            NSInteger code =[[returnData objectForKey:@"code"] integerValue];
             if (code == 000) {
                 
                 complection(YES);
@@ -196,7 +196,7 @@
         
         if (returnData) {
             
-            NSInteger code =[[returnData objectForKey:@"successed"] integerValue];
+            NSInteger code =[[returnData objectForKey:@"code"] integerValue];
             if (code == 000) {
                 
                 complection(YES);
@@ -219,7 +219,7 @@
         
         if (returnData) {
             
-            NSInteger code = [[returnData objectForKey:@"successed"] integerValue];
+            NSInteger code = [[returnData objectForKey:@"code"] integerValue];
             if (code == 000) {
                 
                 complection(YES);
@@ -241,7 +241,7 @@
         
         if (returnData) {
             
-            NSInteger code =[[returnData objectForKey:@"successed"] integerValue];
+            NSInteger code =[[returnData objectForKey:@"code"] integerValue];
             if (code == 000) {
                 
                 complection(YES);
@@ -263,7 +263,7 @@
         
         if (returnData) {
             
-            NSInteger code = [[returnData objectForKey:@"successed"] integerValue];
+            NSInteger code = [[returnData objectForKey:@"code"] integerValue];
             if (code == 000) {
                 
                 complection(YES);
@@ -286,7 +286,7 @@
         
         if (returnData) {
             
-            NSInteger code =[[returnData objectForKey:@"successed"] integerValue];
+            NSInteger code =[[returnData objectForKey:@"code"] integerValue];
             if (code == 000) {
                 
                 complection(YES);

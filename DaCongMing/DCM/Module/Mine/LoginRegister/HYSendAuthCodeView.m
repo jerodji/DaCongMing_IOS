@@ -43,6 +43,7 @@
     [self addSubview:self.phoneLabel];
     [self addSubview:self.sendAuthBtn];
     [self addSubview:self.authCodeView];
+    
 }
 
 - (void)layoutSubviews{
@@ -78,17 +79,40 @@
     }];
 }
 
+- (void)setPhone:(NSString *)phone{
+    
+    _phone = phone;
+    NSString *phoneStr = [phone stringByReplacingCharactersInRange:NSMakeRange(3, 4) withString:@"****"];
+    _phoneLabel.text = phoneStr;
+}
+
 #pragma mark - action
 - (void)sendAuthBtnAction{
-
-    [HYUserHandle getAuthCodeWithPhone:[HYUserModel sharedInstance].userInfo.phone complectionBlock:^(BOOL isSuccess) {
+    
+    if (_phone) {
         
-        if (isSuccess) {
+        [HYUserHandle getAuthCodeWithPhone:_phone complectionBlock:^(BOOL isSuccess) {
             
-            //开始倒计时
-            [self countDown];
-        }
-    }];
+            if (isSuccess) {
+                
+                //开始倒计时
+                [self countDown];
+            }
+        }];
+    }
+    else{
+        
+        [HYUserHandle getAuthCodeWithPhone:[HYUserModel sharedInstance].userInfo.phone complectionBlock:^(BOOL isSuccess) {
+            
+            if (isSuccess) {
+                
+                //开始倒计时
+                [self countDown];
+            }
+        }];
+    }
+
+    
 }
 
 /** 倒计时的方法 */

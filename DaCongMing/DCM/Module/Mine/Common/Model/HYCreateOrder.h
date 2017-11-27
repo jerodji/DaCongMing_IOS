@@ -9,7 +9,7 @@
 #import "HYBaseModel.h"
 
 /**
- "dataInfo": {
+ "data": {
  "summary_price": 0.03,
  "summary_qty": 3,
  "addressMap": {

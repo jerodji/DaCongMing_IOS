@@ -6,9 +6,14 @@
 //  Copyright © 2017年 胡勇. All rights reserved.
 //
 
+/**
+ *  手机验证VC
+ */
+
 #import "HYForgetPasswordVC.h"
 #import "HYAuthPhoneView.h"
 #import "HYSetPasswordViewController.h"
+#import "HYSetLoginPwdViewController.h"
 
 @interface HYForgetPasswordVC ()
 
@@ -35,10 +40,9 @@
         }
         else{
             
-            HYSetPasswordViewController *setPasswordVC = [HYSetPasswordViewController new];
-            setPasswordVC.phone = weakSelf.authPhoneView.phoneTextField.text;
-            setPasswordVC.authCode = weakSelf.authPhoneView.authCodeTextField.text;
-            [weakSelf.navigationController pushViewController:setPasswordVC animated:YES];
+            HYSetLoginPwdViewController *setPwdVC = [HYSetLoginPwdViewController new];
+            setPwdVC.phone = weakSelf.authPhoneView.phoneTextField.text;
+            [weakSelf.navigationController pushViewController:setPwdVC animated:YES];
         }
     };
     
