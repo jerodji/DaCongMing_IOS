@@ -196,14 +196,21 @@
         
         if (returnData) {
             
-            NSInteger code =[[returnData objectForKey:@"code"] integerValue];
+            NSInteger code = [[returnData objectForKey:@"code"] integerValue];
             if (code == 000) {
                 
                 complection(YES);
+                [JRToast showWithText:@"修改地址成功"];
+
             }
             else{
                 complection(NO);
+                [JRToast showWithText:@"修改地址失败"];
             }
+        }
+        else{
+            
+            [JRToast showWithText:@"修改地址失败"];
         }
     }];
 }

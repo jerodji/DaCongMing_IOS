@@ -91,7 +91,7 @@
         _titleLabel = [[UILabel alloc] init];
         _titleLabel.font = KFitFont(15);
         _titleLabel.textAlignment = NSTextAlignmentLeft;
-        _titleLabel.backgroundColor = [UIColor colorWithRed:(56 / 255.0) green:(57 / 255.0) blue:(56 / 255.0) alpha:0.6];
+        _titleLabel.backgroundColor = [UIColor colorWithRed:(56 / 255.0) green:(57 / 255.0) blue:(56 / 255.0) alpha:0.5];
         _titleLabel.text = @"老挝海林";
         _titleLabel.textColor = KAPP_WHITE_COLOR;
     }

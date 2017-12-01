@@ -41,5 +41,6 @@
 #import "HYNoCollectImgView.h"
 #import <UIScrollView+EmptyDataSet.h>
 #import "QYSDK.h"
+#import "JRToast.h"
 
 #endif /* PrefixHeader_pch */

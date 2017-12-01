@@ -94,6 +94,7 @@
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
         _collectionView.bounces = NO;
+        _collectionView.scrollEnabled = NO;
         
         [_collectionView registerClass:[HYHomeTagsCollectionViewCell class] forCellWithReuseIdentifier:@"collectionCell"];
     }

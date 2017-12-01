@@ -115,7 +115,7 @@
     [_alipayLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.left.equalTo(_alipayImgView.mas_right).offset(15 * WIDTH_MULTIPLE);
-        make.width.equalTo(@120);
+        make.width.equalTo(@140);
         make.top.height.equalTo(_alipayImgView);
     }];
     
@@ -203,6 +203,13 @@
         _alipayLabel.textAlignment = NSTextAlignmentLeft;
         _alipayLabel.text = @"支付宝支付";
         _alipayLabel.textColor = KAPP_272727_COLOR;
+        _alipayLabel.userInteractionEnabled = YES;
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithActionBlock:^(id  _Nonnull sender) {
+            
+            UIButton *button = [self viewWithTag:100];
+            [self payButtonAction:button];
+        }];
+        [_alipayLabel addGestureRecognizer:tap];
     }
     return _alipayLabel;
 }
@@ -226,6 +233,13 @@
         _WeChatLabel.textAlignment = NSTextAlignmentLeft;
         _WeChatLabel.text = @"微信支付";
         _WeChatLabel.textColor = KAPP_272727_COLOR;
+        _WeChatLabel.userInteractionEnabled = YES;
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithActionBlock:^(id  _Nonnull sender) {
+            
+            UIButton *button = [self viewWithTag:101];
+            [self payButtonAction:button];
+        }];
+        [_WeChatLabel addGestureRecognizer:tap];
     }
     return _WeChatLabel;
 }

@@ -111,9 +111,17 @@
             
             if (self.authCode) {
                 
-                NSArray *pushVCAry = [self.navigationController viewControllers];
-                UIViewController *popVC = [pushVCAry objectAtIndex:pushVCAry.count - 3];
-                [self.navigationController popToViewController:popVC animated:YES];
+                if (self.navigationController.viewControllers.count < 3) {
+                    
+                    [self dismissViewControllerAnimated:YES completion:nil];
+                }
+                else{
+                    
+                    NSArray *pushVCAry = [self.navigationController viewControllers];
+                    UIViewController *popVC = [pushVCAry objectAtIndex:pushVCAry.count - 3];
+                    [self.navigationController popToViewController:popVC animated:YES];
+                }
+                
             }
             else{
                 

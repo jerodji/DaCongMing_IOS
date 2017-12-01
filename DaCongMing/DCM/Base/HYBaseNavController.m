@@ -163,8 +163,20 @@
         
         viewController.hidesBottomBarWhenPushed = YES;
         
-        UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back"] style:UIBarButtonItemStylePlain target:self action:@selector(backBtnAction)];
-        viewController.navigationItem.leftBarButtonItem = backItem;
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        UIImage *image = [UIImage imageNamed:@"back"];
+        [btn setImage:image forState:UIControlStateNormal];
+        [btn addTarget:self action:@selector(backBtnAction) forControlEvents:UIControlEventTouchUpInside];
+        //左对齐
+        btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+        //让返回按钮内容继续向左边偏移15，如果不设置的话，就会发现返回按钮离屏幕的左边的距离有点儿大，不美观
+        btn.contentEdgeInsets = UIEdgeInsetsMake(0, -20, 0, 0);
+        btn.frame = CGRectMake(0, 0, 40, 40);
+        UIView *backBtnView = [[UIView alloc] initWithFrame:btn.bounds];
+        [backBtnView addSubview:btn];
+        viewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backBtnView];
+        viewController.navigationItem.hidesBackButton = YES;
+        
         
         [self createGesture];
         //截图

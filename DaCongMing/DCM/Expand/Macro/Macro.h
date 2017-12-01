@@ -97,9 +97,9 @@
 #define KFONT18                 [UIFont systemFontOfSize:18.0f]
 #define KFONT20                 [UIFont systemFontOfSize:20.0f]
 /** 设置字体 */
-#define KFont(font)             [UIFont systemFontOfSize:font]
-/** 字体适配，如果是plus+2 */
-#define KFitFont(font)          [UIFont systemFontOfSize:((IS_IPHONE_6PLUS) ? (font + 2) : font)]
+#define KFont(font)             [UIFont systemFontOfSize:((IS_IPHONE_6PLUS) ? (font + 2) : IS_IPHONE_5 ? (font - 2) : font)]
+/** 字体适配，如果是plus+2 iphone5-2 */
+#define KFitFont(font)          [UIFont systemFontOfSize:((IS_IPHONE_6PLUS) ? (font + 2) : IS_IPHONE_5 ? (font - 2) : font)]
 
 /** ----------------------------沙盒路径---------------------------------
  --------------------------------------------------------------------*/

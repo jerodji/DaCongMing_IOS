@@ -128,12 +128,12 @@
         make.width.height.equalTo(@40);
     }];
     
-    [_shareBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-       
-        make.right.equalTo(self.view).offset(-10 * WIDTH_MULTIPLE);
-        make.top.equalTo(self.view).offset(20 * WIDTH_MULTIPLE);
-        make.width.height.equalTo(@40);
-    }];
+//    [_shareBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+//
+//        make.right.equalTo(self.view).offset(-10 * WIDTH_MULTIPLE);
+//        make.top.equalTo(self.view).offset(20 * WIDTH_MULTIPLE);
+//        make.width.height.equalTo(@40);
+//    }];
     
     [_bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
        

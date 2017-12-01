@@ -40,8 +40,9 @@
         }
         else{
             
-            HYSetLoginPwdViewController *setPwdVC = [HYSetLoginPwdViewController new];
+            HYSetPasswordViewController *setPwdVC = [HYSetPasswordViewController new];
             setPwdVC.phone = weakSelf.authPhoneView.phoneTextField.text;
+            setPwdVC.authCode = weakSelf.authPhoneView.authCodeTextField.text;
             [weakSelf.navigationController pushViewController:setPwdVC animated:YES];
         }
     };

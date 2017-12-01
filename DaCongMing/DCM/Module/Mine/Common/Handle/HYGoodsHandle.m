@@ -19,7 +19,7 @@
     [param setValue:order forKey:@"order"];
     [param setValue:hotSale forKey:@"hotsale"];
     
-    [[HTTPManager shareHTTPManager] postDataFromUrl:API_GoodsList withParameter:param isShowHUD:NO success:^(id returnData) {
+    [[HTTPManager shareHTTPManager] postDataFromUrl:API_GoodsList withParameter:param isShowHUD:YES success:^(id returnData) {
         
         if (returnData) {
             

@@ -121,6 +121,7 @@
         if ([[HYUserModel sharedInstance].userInfo.phone isNotBlank]) {
             
             HYSetLoginPwdViewController *setPwdVC = [HYSetLoginPwdViewController new];
+            setPwdVC.phone = [HYUserModel sharedInstance].userInfo.phone;
             [self.navigationController pushViewController:setPwdVC animated:YES];
         }
         else{
@@ -128,8 +129,8 @@
             [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"请先绑定手机后设置密码"];
             HYForgetPasswordVC *bindPhoneVC = [HYForgetPasswordVC new];
             bindPhoneVC.title = @"绑定手机";
-            [self.navigationController pushViewController:bindPhoneVC animated:YES];
             bindPhoneVC.isBindPhone = YES;
+            [self.navigationController pushViewController:bindPhoneVC animated:YES];
         }
         
     }

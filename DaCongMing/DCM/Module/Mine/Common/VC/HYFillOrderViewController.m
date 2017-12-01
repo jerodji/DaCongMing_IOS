@@ -102,6 +102,12 @@
 
 - (void)requestData{
     
+    if (self.orderID) {
+        
+        //从订单中跳转过来的
+        return;
+    }
+    
     [HYGoodsHandle createOrderWithGuid:nil itemID:_goodsDetailModel.item_id count:_buyCount sellerID:_goodsDetailModel.item_of_seller andUnit:_specifical complectionBlock:^(HYCreateOrder *order) {
         
         self.orderModel = order;

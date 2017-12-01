@@ -101,7 +101,9 @@
     
     NSString *str = [NSString stringWithFormat:@"%@-%@-%@",addressModel.province,addressModel.city,addressModel.area];
     self.dataSourceArray = [NSMutableArray arrayWithObjects:addressModel.receiver,addressModel.phoneNum,str,addressModel.address,nil];
-    
+    self.province = addressModel.province;
+    self.city = addressModel.city;
+    self.area = addressModel.area;
     [_tableView reloadData];
 }
 

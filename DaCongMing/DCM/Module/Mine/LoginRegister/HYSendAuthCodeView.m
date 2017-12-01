@@ -66,7 +66,7 @@
         
         make.top.equalTo(_phoneLabel.mas_bottom).offset(18 * WIDTH_MULTIPLE);
         make.centerX.equalTo(self);
-        make.width.mas_equalTo(100 * WIDTH_MULTIPLE);
+        make.width.mas_equalTo(130 * WIDTH_MULTIPLE);
         make.height.mas_equalTo(30 * WIDTH_MULTIPLE);
     }];
     
@@ -203,6 +203,7 @@
         _sendAuthBtn.backgroundColor = KAPP_THEME_COLOR;
         _sendAuthBtn.layer.cornerRadius = 15;
         _sendAuthBtn.layer.masksToBounds = YES;
+        _sendAuthBtn.titleLabel.font = KFitFont(14);
         [_sendAuthBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_sendAuthBtn addTarget:self action:@selector(sendAuthBtnAction) forControlEvents:UIControlEventTouchUpInside];
     }

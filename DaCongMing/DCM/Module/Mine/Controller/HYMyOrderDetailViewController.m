@@ -99,20 +99,14 @@
         NSDictionary *dict = self.orderModel.orderDtls[indexPath.row - 3];
         HYMyOrderDetailsModel *orderDetailModel = [HYMyOrderDetailsModel modelWithDictionary:dict];
         cell.orderDetailModel = orderDetailModel;
+        cell.applySellAfterBtn.hidden = NO;
+        cell.applySaleAction = ^{
+            
+            HYSublitApplyVC *sublitApplySellAfterVC = [HYSublitApplyVC new];
+            sublitApplySellAfterVC.orderDetailModel = orderDetailModel;
+            [self.navigationController pushViewController:sublitApplySellAfterVC animated:YES];
+        };
         
-        if (indexPath.row == self.orderModel.orderDtls.count + 2) {
-            cell.applySellAfterBtn.hidden = NO;
-            cell.applySaleAction = ^{
-                
-                HYSublitApplyVC *sublitApplySellAfterVC = [HYSublitApplyVC new];
-                sublitApplySellAfterVC.orderDetailModel = orderDetailModel;
-                [self.navigationController pushViewController:sublitApplySellAfterVC animated:YES];
-            };
-        }
-        else{
-            cell.applySellAfterBtn.hidden = YES;
-
-        }
         return cell;
     }
 }

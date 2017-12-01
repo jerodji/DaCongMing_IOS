@@ -90,7 +90,7 @@
         make.height.equalTo(@(50 * WIDTH_MULTIPLE));
     }];
     
-    CGFloat itemWidth = (KSCREEN_WIDTH - 20 * WIDTH_MULTIPLE) / 4;
+    CGFloat itemWidth = (KSCREEN_WIDTH - 20 * WIDTH_MULTIPLE) / 2;
     [_weChatShareBtn mas_makeConstraints:^(MASConstraintMaker *make) {
        
         make.top.equalTo(_bgView).offset(30);
@@ -99,7 +99,15 @@
         make.width.equalTo(@(itemWidth));
     }];
     
-    [_qqShareBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+//    [_qqShareBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+//
+//        make.top.equalTo(_bgView).offset(30);
+//        make.left.equalTo(_weChatShareBtn.mas_right);
+//        make.bottom.equalTo(_cancelBtn.mas_top).offset(-30);
+//        make.width.equalTo(@(itemWidth));
+//    }];
+    
+    [_weChatLifeShareBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.top.equalTo(_bgView).offset(30);
         make.left.equalTo(_weChatShareBtn.mas_right);
@@ -107,21 +115,13 @@
         make.width.equalTo(@(itemWidth));
     }];
     
-    [_weChatLifeShareBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        
-        make.top.equalTo(_bgView).offset(30);
-        make.left.equalTo(_qqShareBtn.mas_right);
-        make.bottom.equalTo(_cancelBtn.mas_top).offset(-30);
-        make.width.equalTo(@(itemWidth));
-    }];
-    
-    [_sinaWeiboShareBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        
-        make.top.equalTo(_bgView).offset(30);
-        make.left.equalTo(_weChatLifeShareBtn.mas_right);
-        make.bottom.equalTo(_cancelBtn.mas_top).offset(-30);
-        make.width.equalTo(@(itemWidth));
-    }];
+//    [_sinaWeiboShareBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+//
+//        make.top.equalTo(_bgView).offset(30);
+//        make.left.equalTo(_weChatLifeShareBtn.mas_right);
+//        make.bottom.equalTo(_cancelBtn.mas_top).offset(-30);
+//        make.width.equalTo(@(itemWidth));
+//    }];
     
     [_line mas_makeConstraints:^(MASConstraintMaker *make) {
        

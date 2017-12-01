@@ -68,6 +68,9 @@
         
         self.tabBarItem.badgeValue = cartsCount;
     }
+    else{
+        self.tabBarItem.badgeValue = nil;
+    }
 }
 
 
@@ -113,6 +116,9 @@
     if ([cartsCount integerValue] > 0) {
         
         self.tabBarItem.badgeValue = cartsCount;
+    }
+    else{
+        self.tabBarItem.badgeValue = nil;
     }
 }
 
@@ -277,6 +283,10 @@
                     if ([cartsCount integerValue] > 0) {
                         
                         self.tabBarItem.badgeValue = cartsCount;
+                    }
+                    else{
+                        
+                        self.tabBarItem.badgeValue = nil;
                     }
                     
                 }

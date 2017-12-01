@@ -38,7 +38,7 @@
     [_buyBtn mas_makeConstraints:^(MASConstraintMaker *make) {
        
         make.top.right.bottom.equalTo(self);
-        make.width.equalTo(@105);
+        make.width.mas_equalTo(100 * WIDTH_MULTIPLE);
     }];
     
     [_addToCartsBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -49,7 +49,7 @@
     }];
     
     
-    CGFloat itemWidth = (KSCREEN_WIDTH - 210) / 3;
+    CGFloat itemWidth = (KSCREEN_WIDTH - 200 * WIDTH_MULTIPLE) / 3;
     
     [_cartsBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         
@@ -134,6 +134,8 @@
 - (HYButton *)brandStoreBtn{
     
     if (!_brandStoreBtn) {
+        
+        
         
         _brandStoreBtn = [HYButton buttonWithType:UIButtonTypeCustom];
         [_brandStoreBtn setTitle:@"品牌店铺" forState:UIControlStateNormal];

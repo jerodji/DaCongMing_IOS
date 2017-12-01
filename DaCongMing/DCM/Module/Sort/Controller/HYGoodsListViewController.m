@@ -11,7 +11,7 @@
 #import "HYGoodsItemCollectionViewCell.h"
 #import "HYGoodsDetailInfoViewController.h"
 
-@interface HYGoodsListViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
+@interface HYGoodsListViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,DZNEmptyDataSetSource>
 
 /**记录最后一次点击的按钮*/
 @property (nonatomic,strong) UIButton *previousSelectBtn;
@@ -186,6 +186,20 @@
     
 }
 
+#pragma mark - 没有数据
+- (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView{
+    
+    NSString *text = @"目前没有产品";
+    NSDictionary *attributes = @{NSFontAttributeName : KFitFont(18),NSForegroundColorAttributeName : KAPP_7b7b7b_COLOR};
+    return [[NSAttributedString alloc] initWithString:text attributes:attributes];
+}
+
+- (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView{
+    
+    UIImage *image = [UIImage imageNamed:@"noOrder"];
+    return image;
+}
+
 #pragma mark - lazyload
 - (UIView *)horizonLine{
     
@@ -229,6 +243,7 @@
         _collectionView.bounces = NO;
         
         [_collectionView registerClass:[HYGoodsItemCollectionViewCell class] forCellWithReuseIdentifier:@"collectionCell"];
+        _collectionView.emptyDataSetSource = self;
     }
     return _collectionView;
 }

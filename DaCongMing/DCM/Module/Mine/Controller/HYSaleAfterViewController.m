@@ -16,7 +16,7 @@
 #import "HYWaitRefundViewController.h"
 #import "HYRefundSuccessViewController.h"
 
-@interface HYSaleAfterViewController ()<UITableViewDataSource,UITableViewDelegate>
+@interface HYSaleAfterViewController ()<UITableViewDataSource,UITableViewDelegate,DZNEmptyDataSetSource>
 
 /** tableView */
 @property (nonatomic,strong) UITableView *tableView;
@@ -129,7 +129,19 @@
     return 160 * WIDTH_MULTIPLE;
 }
 
+#pragma mark - 没有数据
+- (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView{
+    
+    NSString *text = @"您目前还没有售后";
+    NSDictionary *attributes = @{NSFontAttributeName : KFitFont(18),NSForegroundColorAttributeName : KAPP_7b7b7b_COLOR};
+    return [[NSAttributedString alloc] initWithString:text attributes:attributes];
+}
 
+- (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView{
+    
+    UIImage *image = [UIImage imageNamed:@"noOrder"];
+    return image;
+}
 
 #pragma mark - lazyload
 - (UITableView *)tableView{
@@ -140,6 +152,7 @@
         _tableView.dataSource = self;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.backgroundColor = KAPP_TableView_BgColor;
+        _tableView.emptyDataSetSource = self;
     }
     return _tableView;
 }
