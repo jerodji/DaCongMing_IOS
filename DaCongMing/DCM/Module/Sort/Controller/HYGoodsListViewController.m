@@ -15,15 +15,14 @@
 
 /**记录最后一次点击的按钮*/
 @property (nonatomic,strong) UIButton *previousSelectBtn;
-
 /** hor */
 @property (nonatomic,strong) UIView *horizonLine;
-
 /** collectionView */
 @property (nonatomic,strong) UICollectionView *collectionView;
-
 /** datalist */
 @property (nonatomic,strong) NSMutableArray *datalist;
+/** 请求的页数 */
+@property (nonatomic,assign) NSInteger pageCount;
 
 @end
 
@@ -33,6 +32,7 @@
     
     [super viewDidLoad];
     
+    self.pageCount = 1;
     [self setupTopButtons];
     [self setupSubviews];
     [self requestGoodsDefaultList];
@@ -82,8 +82,13 @@
     [_datalist removeAllObjects];
     [HYGoodsHandle requestGoodsListItem_type:_type pageNo:1 andPage:5 order:nil hotsale:@"ture" complectionBlock:^(NSArray *datalist) {
        
-        [self.datalist addObjectsFromArray:datalist];
-        [_collectionView reloadData];
+        if (datalist) {
+            
+            [self.datalist addObjectsFromArray:datalist];
+            [_collectionView reloadData];
+            [JRToast showWithText:@"刷新成功"];
+        }
+        [_collectionView.mj_header endRefreshing];
     }];
 }
 
@@ -107,6 +112,23 @@
     }];
 }
 
+- (void)requestGoodsDataMore{
+    
+    self.pageCount += 1;
+    [HYGoodsHandle requestGoodsListItem_type:_type pageNo:self.pageCount andPage:5 order:nil hotsale:@"ture" complectionBlock:^(NSArray *datalist) {
+        
+        if (datalist.count) {
+            
+            [self.datalist addObjectsFromArray:datalist];
+            [_collectionView reloadData];
+            [_collectionView.mj_footer endRefreshing];
+        }
+        else{
+            [_collectionView.mj_footer endRefreshingWithNoMoreData];
+        }
+        
+    }];
+}
 
 
 #pragma mark - action
@@ -233,17 +255,22 @@
         layout.minimumLineSpacing = 6 * WIDTH_MULTIPLE;      //纵向间距
         layout.sectionInset = UIEdgeInsetsMake(0, 5, 0, 5);
         
-        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, self.horizonLine.bottom + 6 * WIDTH_MULTIPLE, KSCREEN_WIDTH, KSCREEN_HEIGHT - 37 - 64 - 6 * WIDTH_MULTIPLE) collectionViewLayout:layout];
+        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, self.horizonLine.bottom + 6 * WIDTH_MULTIPLE, KSCREEN_WIDTH, KSCREEN_HEIGHT - 40 - 64) collectionViewLayout:layout];
         [_collectionView setCollectionViewLayout:layout];
         _collectionView.backgroundColor = KAPP_TableView_BgColor;
         _collectionView.showsVerticalScrollIndicator = NO;
         _collectionView.showsHorizontalScrollIndicator = NO;
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
-        _collectionView.bounces = NO;
+        _collectionView.bounces = YES;
         
         [_collectionView registerClass:[HYGoodsItemCollectionViewCell class] forCellWithReuseIdentifier:@"collectionCell"];
         _collectionView.emptyDataSetSource = self;
+        _collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(requestGoodsDefaultList)];
+        
+        MJRefreshBackNormalFooter *footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(requestGoodsDataMore)];
+        
+        _collectionView.mj_footer = footer;
     }
     return _collectionView;
 }

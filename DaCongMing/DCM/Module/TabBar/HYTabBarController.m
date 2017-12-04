@@ -89,6 +89,34 @@
     DLog(@"user:---%@",shareModel);
 }
 
+- (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item{
+    
+    NSInteger index = [tabBar.items indexOfObject:item];
+    [self animationWithIndex:index];
+    DLog(@"%ld",index);
+}
+
+// 动画
+- (void)animationWithIndex:(NSInteger) index {
+    
+    NSMutableArray * tabbarbuttonArray = [NSMutableArray array];
+    for (UIView *tabBarButton in self.tabBar.subviews) {
+        if ([tabBarButton isKindOfClass:NSClassFromString(@"UITabBarButton")]) {
+            [tabbarbuttonArray addObject:tabBarButton];
+        }
+    }
+    CABasicAnimation *pulse = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
+    pulse.timingFunction= [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    pulse.duration = 0.1;
+    pulse.repeatCount = 1;
+    pulse.autoreverses= YES;
+    pulse.fromValue= [NSNumber numberWithFloat:0.8];
+    pulse.toValue= [NSNumber numberWithFloat:1.2];
+    [[tabbarbuttonArray[index] layer] addAnimation:pulse forKey:@"tabBarItemAnimation"];
+    
+}
+
+
 - (void)didReceiveMemoryWarning {
     
     [super didReceiveMemoryWarning];

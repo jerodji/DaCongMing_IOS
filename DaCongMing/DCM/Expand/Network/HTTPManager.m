@@ -108,6 +108,7 @@
             [MBProgressHUD hidePregressHUD:KEYWINDOW];
         }
         [MBProgressHUD hidePregressHUD:KEYWINDOW];
+        [JRToast showWithText:@"服务器开小差了.."];
         successBlock(nil);
     }];
 }
