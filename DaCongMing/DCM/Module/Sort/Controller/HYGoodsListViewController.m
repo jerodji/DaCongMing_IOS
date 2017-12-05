@@ -11,6 +11,8 @@
 #import "HYGoodsItemCollectionViewCell.h"
 #import "HYGoodsDetailInfoViewController.h"
 
+
+
 @interface HYGoodsListViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,DZNEmptyDataSetSource>
 
 /**记录最后一次点击的按钮*/
@@ -23,6 +25,8 @@
 @property (nonatomic,strong) NSMutableArray *datalist;
 /** 请求的页数 */
 @property (nonatomic,assign) NSInteger pageCount;
+/** 当前请求的类型 */
+@property (nonatomic,assign) HYGoodsListType requestType;
 
 @end
 
@@ -33,6 +37,8 @@
     [super viewDidLoad];
     
     self.pageCount = 1;
+    self.requestType = HYGoodsListTypeDefault;
+    
     [self setupTopButtons];
     [self setupSubviews];
     [self requestGoodsDefaultList];
@@ -80,39 +86,70 @@
 - (void)requestGoodsDefaultList{
     
     [_datalist removeAllObjects];
+    self.pageCount = 1;
     [HYGoodsHandle requestGoodsListItem_type:_type pageNo:1 andPage:5 order:nil hotsale:@"ture" complectionBlock:^(NSArray *datalist) {
        
         if (datalist) {
             
             [self.datalist addObjectsFromArray:datalist];
             [_collectionView reloadData];
-            [JRToast showWithText:@"刷新成功"];
+            
         }
         [_collectionView.mj_header endRefreshing];
+        [_collectionView.mj_footer endRefreshing];
+
     }];
 }
 
 - (void)requestGoodsPriceDescList{
     
     [_datalist removeAllObjects];
+    self.pageCount = 1;
     [HYGoodsHandle requestGoodsListItem_type:_type pageNo:1 andPage:5 order:@"descending" hotsale:@"ture" complectionBlock:^(NSArray *datalist) {
         
         [self.datalist addObjectsFromArray:datalist];
         [_collectionView reloadData];
+        [_collectionView.mj_header endRefreshing];
+        [_collectionView.mj_footer endRefreshing];
+        
     }];
 }
 
 - (void)requestGoodsPriceAscList{
     
     [_datalist removeAllObjects];
+    self.pageCount = 1;
     [HYGoodsHandle requestGoodsListItem_type:_type pageNo:1 andPage:5 order:@"Ascending" hotsale:@"ture" complectionBlock:^(NSArray *datalist) {
         
         [self.datalist addObjectsFromArray:datalist];
         [_collectionView reloadData];
+        [_collectionView.mj_header endRefreshing];
+        [_collectionView.mj_footer endRefreshing];
     }];
 }
 
-- (void)requestGoodsDataMore{
+#pragma mark - refresh & reloadDataMore
+- (void)refreshData{
+    
+    switch (self.requestType) {
+        case HYGoodsListTypeDefault:
+            
+            [self requestGoodsDefaultList];
+            break;
+        case HYGoodsListTypeAesc:
+            
+            [self requestGoodsPriceAscList];
+            break;
+        case HYGoodsListTypeDesc:
+            
+            [self requestGoodsPriceDescList];
+            break;
+        default:
+            break;
+    }
+}
+
+- (void)reloadDataMore{
     
     self.pageCount += 1;
     [HYGoodsHandle requestGoodsListItem_type:_type pageNo:self.pageCount andPage:5 order:nil hotsale:@"ture" complectionBlock:^(NSArray *datalist) {
@@ -144,16 +181,18 @@
         
         if (button.selected) {
             
+            self.requestType = HYGoodsListTypeAesc;
             [self requestGoodsPriceAscList];
         }
         else{
-            
+            self.requestType = HYGoodsListTypeDesc;
             [self requestGoodsPriceDescList];
         }
         
     }
     else{
         
+        self.requestType = HYGoodsListTypeDefault;
         _previousSelectBtn.selected = NO;
         button.selected = YES;
         _previousSelectBtn = button;
@@ -266,9 +305,9 @@
         
         [_collectionView registerClass:[HYGoodsItemCollectionViewCell class] forCellWithReuseIdentifier:@"collectionCell"];
         _collectionView.emptyDataSetSource = self;
-        _collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(requestGoodsDefaultList)];
+        _collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshData)];
         
-        MJRefreshBackNormalFooter *footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(requestGoodsDataMore)];
+        MJRefreshBackNormalFooter *footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(reloadDataMore)];
         
         _collectionView.mj_footer = footer;
     }

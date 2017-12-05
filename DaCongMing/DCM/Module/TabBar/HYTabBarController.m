@@ -59,6 +59,9 @@
         [vc.tabBarItem setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor lightGrayColor]} forState:UIControlStateNormal];
         [vc.tabBarItem setTitleTextAttributes:@{NSForegroundColorAttributeName : KAPP_THEME_COLOR} forState:UIControlStateSelected];
         nav.navigationBar.tintColor = KAPP_THEME_COLOR;
+        
+        //将文字上移
+        [vc.tabBarItem setTitlePositionAdjustment:UIOffsetMake(0, -4)];
         [navArray addObject:nav];
     }
     

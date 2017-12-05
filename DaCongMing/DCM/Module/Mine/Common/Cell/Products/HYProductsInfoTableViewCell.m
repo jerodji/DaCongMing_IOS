@@ -48,7 +48,7 @@
         
         make.top.equalTo(_priceLabel.mas_bottom).offset(9 * WIDTH_MULTIPLE);
         make.left.equalTo(self).offset(10 * WIDTH_MULTIPLE);
-        make.right.equalTo(self).offset(10 * WIDTH_MULTIPLE);
+        make.right.equalTo(self).offset(-10 * WIDTH_MULTIPLE);
         make.height.equalTo(@(20));
     }];
 }
@@ -89,6 +89,7 @@
         _noteLabel.textAlignment = NSTextAlignmentLeft;
         _noteLabel.textColor = KCOLOR(@"7b7b7b");
         _noteLabel.text = @"老挝海林";
+        _noteLabel.numberOfLines = 0;
     }
     return _noteLabel;
 }

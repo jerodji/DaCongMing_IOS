@@ -8,6 +8,12 @@
 
 #import "HYBaseViewController.h"
 
+typedef NS_ENUM(NSUInteger, HYGoodsListType) {
+    HYGoodsListTypeDefault = 0,
+    HYGoodsListTypeDesc,
+    HYGoodsListTypeAesc
+};
+
 @interface HYGoodsListViewController : HYBaseViewController
 
 /** type */
