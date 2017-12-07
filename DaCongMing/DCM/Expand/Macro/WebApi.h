@@ -126,6 +126,9 @@
 
 //物流详情
 #define API_GetLogisticUrl                    @"HAILIN_SERVER/getOrderExpressInfo.do"
+
+//最近浏览
+#define API_RecentView                    @"HAILIN_SERVER/loadBrowseRecords.do"
 /***************************************收货地址**********************************/
 #pragma mark - 收货地址
 //获取收货地址

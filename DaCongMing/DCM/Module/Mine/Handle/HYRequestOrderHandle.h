@@ -67,6 +67,9 @@
  */
 + (void)deleteOrderWithOrderID:(NSString *)orderID ComplectionBlock:(void(^)(BOOL isSuccess))complection;
 
-
+/**
+ *  获取最近的浏览记录
+ */
++ (void)requestRecentViewWithpageNo:(NSInteger )pageNo complectionBlock:(void(^)(NSArray *datalist))complection;
 
 @end

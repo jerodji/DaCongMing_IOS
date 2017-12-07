@@ -305,4 +305,32 @@
     }];
 }
 
++ (void)requestRecentViewWithpageNo:(NSInteger)pageNo complectionBlock:(void (^)(NSArray *))complection{
+    
+    NSMutableDictionary *requestParam = [NSMutableDictionary dictionary];
+    [requestParam setValue:[HYUserModel sharedInstance].token forKey:@"token"];
+    [requestParam setValue:@(pageNo) forKey:@"pageNo"];
+    
+    [[HTTPManager shareHTTPManager] postDataFromUrl:API_RecentView withParameter:requestParam isShowHUD:YES success:^(id returnData) {
+        
+        if (returnData) {
+            
+            NSInteger code =[[returnData objectForKey:@"code"] integerValue];
+            if (code == 000) {
+                
+                NSArray *datalist = [returnData objectForKey:@"data"][@"list"];
+                complection(datalist);
+            }
+            else{
+                complection(nil);
+                [JRToast showWithText:[returnData objectForKey:@"message"]];
+            }
+        }
+        else{
+            
+            [JRToast showWithText:@"获取最近浏览出错"];
+        }
+    }];
+}
+
 @end

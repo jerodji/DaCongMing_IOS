@@ -100,7 +100,7 @@
         make.top.equalTo(_itemLabel.mas_bottom).offset(2 * WIDTH_MULTIPLE);
         make.left.equalTo(_itemLabel);
         make.height.mas_equalTo(20);
-        make.width.mas_equalTo(250);
+        make.right.equalTo(self).offset(-10 * WIDTH_MULTIPLE);
     }];
     
     [_PriceLabel mas_makeConstraints:^(MASConstraintMaker *make) {

@@ -7,6 +7,10 @@
 //
 
 #import "HYRecentViewViewController.h"
+#import "HYRequestOrderHandle.h"
+#import "HYGoodsItemModel.h"
+#import "HYMyCollectionGoodsCell.h"
+#import "HYGoodsDetailInfoViewController.h"
 
 @interface HYRecentViewViewController ()<UITableViewDataSource,UITableViewDelegate,DZNEmptyDataSetSource>
 
@@ -21,8 +25,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    [self requestData];
     [self setupSubviews];
+    
 }
 
 - (void)setupSubviews{
@@ -32,26 +37,46 @@
     [self.view addSubview:self.tableView];
 }
 
-#pragma mark - TableViewDataSource
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+- (void)requestData{
     
-    return 1;
+    [self.datalist removeAllObjects];
+    [HYRequestOrderHandle requestRecentViewWithpageNo:1 complectionBlock:^(NSArray *datalist) {
+       
+        if (datalist) {
+            
+            [datalist enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+               
+                HYGoodsItemModel *model = [HYGoodsItemModel modelWithDictionary:obj];
+                [self.datalist addObject:model];
+                
+            }];
+            [_tableView reloadData];
+        }
+    }];
 }
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+#pragma mark - TableViewDataSource
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     
     return self.datalist.count;
 }
 
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    
+    return 1;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    static NSString *cellID = @"";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+    static NSString *myCollectionGoodsCellID = @"myCollectionGoodsCellID";
+    HYMyCollectionGoodsCell *cell = [tableView dequeueReusableCellWithIdentifier:myCollectionGoodsCellID];
     if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+        cell = [[HYMyCollectionGoodsCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:myCollectionGoodsCellID];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
     }
+    HYGoodsItemModel *model = self.datalist[indexPath.section];
+    cell.itemModel = model;
     return cell;
 }
 
@@ -66,13 +91,28 @@
 #pragma mark - tableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    
+    HYGoodsItemModel *model = self.datalist[indexPath.section];
+    HYGoodsDetailInfoViewController *detailVC = [HYGoodsDetailInfoViewController new];
+    detailVC.goodsID = model.item_id;
+    [self.navigationController pushViewController:detailVC animated:YES];
 }
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    return 10;
+    return 90 * WIDTH_MULTIPLE;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, KSCREEN_WIDTH, 10 * WIDTH_MULTIPLE)];
+    view.backgroundColor = KCOLOR(@"f4f4f4");
+    return view;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    
+    return 10 * WIDTH_MULTIPLE;
 }
 
 #pragma mark - lazyload
