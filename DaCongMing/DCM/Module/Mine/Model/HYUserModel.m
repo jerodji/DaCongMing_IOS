@@ -80,6 +80,9 @@
     free(properties);
     //清除本地缓存
     [HYPlistTools removeDataWithName:KUserModelData];
+    [KUSERDEFAULTS removeObjectForKey:KUserPhone];
+    [KUSERDEFAULTS removeObjectForKey:KUserPassword];
+    [KUSERDEFAULTS removeObjectForKey:KUserLoginType];
 }
 
 

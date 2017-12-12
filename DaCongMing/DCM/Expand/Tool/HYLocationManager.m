@@ -8,14 +8,25 @@
 
 #import "HYLocationManager.h"
 
+@interface HYLocationManager ()
 
-static HYLocationManager *locationMgr = nil;
+/** 维度 */
+@property (nonatomic,copy) NSString *lat;
+/** 经度 */
+@property (nonatomic,copy) NSString *lon;
+/** 城市 */
+@property (nonatomic,copy) NSString *city;
+/** 街道 */
+@property (nonatomic,copy) NSString *street;
+
+@end
 
 @implementation HYLocationManager
 
 + (HYLocationManager *)sharedManager
 {
     static dispatch_once_t onceToken;
+    static HYLocationManager *locationMgr;
     dispatch_once(&onceToken, ^{
         
         locationMgr = [[HYLocationManager alloc] init];
@@ -24,8 +35,8 @@ static HYLocationManager *locationMgr = nil;
     return locationMgr;
 }
 
-- (instancetype)init
-{
+- (instancetype)init{
+    
     _locationManager = [[CLLocationManager alloc] init];
     
     [_locationManager setDesiredAccuracy:kCLLocationAccuracyBest];
@@ -39,17 +50,14 @@ static HYLocationManager *locationMgr = nil;
     _locationManager.distanceFilter = kCLDistanceFilterNone;
 
     
-    if([_locationManager locationServicesEnabled])
-    {
-        CLAuthorizationStatus status = [CLLocationManager authorizationStatus];
+    if([_locationManager locationServicesEnabled]){
         
+        CLAuthorizationStatus status = [CLLocationManager authorizationStatus];
         if (status == kCLAuthorizationStatusNotDetermined) {
             
             [_locationManager requestWhenInUseAuthorization];
-            
-            
-        }
         
+        }
     }
     
     return self;
@@ -77,17 +85,15 @@ static HYLocationManager *locationMgr = nil;
     }
 }
 
--(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations
-{
+-(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations{
+    
     CLLocation *coordinate = [locations lastObject];
     
     _lat = [NSString stringWithFormat:@"%@",@(coordinate.coordinate.latitude)];
     
     _lon = [NSString stringWithFormat:@"%@",@(coordinate.coordinate.longitude)];
     
-    
     CLGeocoder* geoCoder = [[CLGeocoder alloc] init];
-    __weak typeof (self) weakSelf = self;
     //根据经纬度反编译地址信息
     [geoCoder reverseGeocodeLocation:coordinate completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
        
@@ -115,10 +121,9 @@ static HYLocationManager *locationMgr = nil;
             // 全称
             NSString *specificLocation = placemark.name;
             
-            weakSelf.city = city;
-            weakSelf.street = street;
-            
-            weakSelf.detailLoactionInfoBlock(city, street, specificLocation);
+            self.city = city;
+            self.street = street;
+            self.detailLoactionInfoBlock(city, street, specificLocation);
         }
     }];
     

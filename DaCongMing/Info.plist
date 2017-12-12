@@ -40,6 +40,16 @@
 				<string>com.beanu.hailin</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>dcm</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.daconging.hailin</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1.1.5</string>
@@ -67,6 +77,7 @@
 		<string>mqzoneopensdkapiV2</string>
 		<string>mqqwpa</string>
 		<string>mqzone</string>
+		<string>com.daconging.hailin</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>

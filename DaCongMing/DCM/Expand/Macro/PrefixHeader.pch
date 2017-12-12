@@ -37,10 +37,12 @@
 #import "HYCreateOrder.h"
 #import "HYCustomAlert.h"
 #import "HYTabBarController.h"
+#import "HYBaseTableViewController.h"
 #import "SAMTextView.h"
 #import "HYNoCollectImgView.h"
 #import <UIScrollView+EmptyDataSet.h>
 #import "QYSDK.h"
 #import "JRToast.h"
+#import "HYAlertManager.h"
 
 #endif /* PrefixHeader_pch */

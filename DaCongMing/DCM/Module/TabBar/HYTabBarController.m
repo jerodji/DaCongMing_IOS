@@ -8,13 +8,14 @@
 
 #import "HYTabBarController.h"
 #import "HYBaseNavController.h"
-
 #import "HYHomePageViewController.h"
 #import "HYSortViewController.h"
 #import "HYShoppingCartViewController.h"
 #import "HYMineViewController.h"
 
-@interface HYTabBarController ()
+#import "HYAlertManager.h"
+
+@interface HYTabBarController () <UIAlertViewDelegate>
 
 @end
 
@@ -28,16 +29,16 @@
     backView.backgroundColor = KAPP_NAV_COLOR;
     [self.tabBar insertSubview:backView atIndex:0];
     self.tabBar.opaque = YES;
-    
-    
+
     [self setupChildVC];
+    [self checkVersion];
 }
 
 + (void)initialize{
     
     [self autoLogin];
-
 }
+
 
 - (void)setupChildVC{
     
@@ -70,14 +71,18 @@
 
 + (void)autoLogin{
     
-//    if ([[KUSERDEFAULTS valueForKey:KUserLoginType] isEqualToString:@"phone"]) {
-//
-//        NSString *phone = [KUSERDEFAULTS valueForKey:KUserPhone];
-//        NSString *password = [KUSERDEFAULTS valueForKey:KUserPassword];
-//        [HYUserHandle userLoginWithPhone:phone password:password complectionBlock:^(BOOL isLoginSuccess) {
-//
-//        }];
-//    }
+    if ([[KUSERDEFAULTS valueForKey:KUserLoginType] isEqualToString:@"phone"]) {
+
+        NSString *phone = [KUSERDEFAULTS valueForKey:KUserPhone];
+        NSString *password = [KUSERDEFAULTS valueForKey:KUserPassword];
+        [HYUserHandle userLoginWithPhone:phone password:password complectionBlock:^(BOOL isLoginSuccess) {
+            
+            if (isLoginSuccess) {
+                
+                DLog(@"自动登录成功");
+            }
+        }];
+    }
     
     if ([[KUSERDEFAULTS valueForKey:KUserLoginType] isEqualToString:@"weChat"]) {
         
@@ -90,6 +95,7 @@
     shareModel.token = userModel.token;
     shareModel.userInfo = userModel.userInfo;
     DLog(@"user:---%@",shareModel);
+    
 }
 
 - (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item{
@@ -118,6 +124,49 @@
     [[tabbarbuttonArray[index] layer] addAnimation:pulse forKey:@"tabBarItemAnimation"];
     
 }
+
+#pragma mark - 检查版本更新
+- (void)checkVersion{
+    
+    NSDictionary *infoDic = [[NSBundle mainBundle] infoDictionary];
+    NSString *appCurrentVer = [infoDic objectForKey:@"CFBundleShortVersionString"];
+    
+    NSString *urlString = [NSString stringWithFormat:@"http://itunes.apple.com/cn/lookup?id=%@",APPID];
+    
+    //1.创建请求管理者
+    AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] init];
+    manager.requestSerializer.timeoutInterval = 20;
+    //4.设置请求的类型
+    manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
+    [manager GET:urlString parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        if (responseObject) {
+            
+            NSArray *array = [responseObject objectForKey:@"results"];
+            NSString *appStoreVersion = [[array lastObject] objectForKey:@"version"];
+            NSLog(@"AppStore版本:%@",appStoreVersion);
+            if ([appStoreVersion compare:appCurrentVer options:NSNumericSearch] == NSOrderedDescending) {
+                
+                //App Store版本大于当前版本，提示更新
+               
+                [HYAlertManager alertControllerAboveIn:self withMessage:@"大聪明有新版本了，是否更新" leftTitle:@"否" leftActionEvent:nil rightTitle:@"是" rightActionEvent:^{
+                    
+                    NSString *urlCode = [@"大聪明" stringByURLEncode];
+                    NSString *str = [NSString stringWithFormat:
+                                     @"https://itunes.apple.com/cn/app/%@/id1301986941?mt=8",urlCode];
+                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+                }];
+                
+            }
+        }
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+    }];
+    
+}
+
+
 
 
 - (void)didReceiveMemoryWarning {

@@ -61,7 +61,7 @@
 /** 黑色 */
 #define KAPP_BLACK_COLOR                   [UIColor blackColor]
 
-#define KAPP_PRICE_COLOR                   [UIColor colorWithHexString:@"d0021b"]
+#define KAPP_PRICE_COLOR                   [UIColor colorWithHexString:@"fb622d"]
 /** APPb7b7b7文字颜色 */
 #define KAPP_b7b7b7_COLOR                   [UIColor colorWithHexString:@"b7b7b7"]
 /** APP272727文字颜色 */
@@ -100,6 +100,8 @@
 #define KFont(font)             [UIFont systemFontOfSize:((IS_IPHONE_6PLUS) ? (font + 2) : IS_IPHONE_5 ? (font - 2) : font)]
 /** 字体适配，如果是plus+2 iphone5-2 */
 #define KFitFont(font)          [UIFont systemFontOfSize:((IS_IPHONE_6PLUS) ? (font + 2) : IS_IPHONE_5 ? (font - 2) : font)]
+/** 字体适配，如果是plus+2 */
+#define KFitBoldFont(font)          [UIFont boldSystemFontOfSize:((IS_IPHONE_6PLUS) ? (font + 2) : IS_IPHONE_5 ? (font - 2) : font)]
 
 /** ----------------------------沙盒路径---------------------------------
  --------------------------------------------------------------------*/
