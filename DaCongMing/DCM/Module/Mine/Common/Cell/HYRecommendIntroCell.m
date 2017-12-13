@@ -73,8 +73,8 @@
     
     [_introLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
+        make.top.equalTo(_inviterLabel.mas_bottom).offset(15 * WIDTH_MULTIPLE);
         make.left.equalTo(self).offset(15 * WIDTH_MULTIPLE);
-        make.right.equalTo(self);
         make.height.mas_equalTo(20 * WIDTH_MULTIPLE);
         make.width.mas_equalTo(40 * WIDTH_MULTIPLE);
     }];
@@ -82,7 +82,7 @@
     [_introTextLabel mas_makeConstraints:^(MASConstraintMaker *make) {
        
         make.left.equalTo(_introLabel.mas_right);
-        make.right.equalTo(_introLabel);
+        make.top.equalTo(_introLabel);
         make.right.equalTo(self).offset(-20 * WIDTH_MULTIPLE);
         make.height.mas_equalTo(50);
     }];

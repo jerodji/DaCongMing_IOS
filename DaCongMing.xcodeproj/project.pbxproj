@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		041FEFEA1FE0D7D30064210F /* HYPayBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 041FEFE91FE0D7D30064210F /* HYPayBottomView.m */; };
+		048208191FE102AC00961BCB /* HYParterPayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 048208181FE102AC00961BCB /* HYParterPayModel.m */; };
+		0482081F1FE11A1700961BCB /* HYSystemMessageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0482081E1FE11A1700961BCB /* HYSystemMessageVC.m */; };
+		048208221FE11A6C00961BCB /* HYSystemMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 048208211FE11A6C00961BCB /* HYSystemMessageCell.m */; };
+		048208251FE12B7B00961BCB /* HYParterPayResultVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 048208241FE12B7B00961BCB /* HYParterPayResultVC.m */; };
 		049D7AF71FDFE018000A0A7B /* HYAlertManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 049D7AF61FDFE018000A0A7B /* HYAlertManager.m */; };
 		049D7AFA1FDFECF8000A0A7B /* HYInviteParterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 049D7AF91FDFECF8000A0A7B /* HYInviteParterView.m */; };
 		049D7B031FDFEE3E000A0A7B /* HYBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 049D7B011FDFEE3D000A0A7B /* HYBaseTableViewController.m */; };
@@ -227,6 +232,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		041FEFE81FE0D7D30064210F /* HYPayBottomView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYPayBottomView.h; sourceTree = "<group>"; };
+		041FEFE91FE0D7D30064210F /* HYPayBottomView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYPayBottomView.m; sourceTree = "<group>"; };
+		048208171FE102AC00961BCB /* HYParterPayModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYParterPayModel.h; sourceTree = "<group>"; };
+		048208181FE102AC00961BCB /* HYParterPayModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYParterPayModel.m; sourceTree = "<group>"; };
+		0482081D1FE11A1700961BCB /* HYSystemMessageVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYSystemMessageVC.h; sourceTree = "<group>"; };
+		0482081E1FE11A1700961BCB /* HYSystemMessageVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYSystemMessageVC.m; sourceTree = "<group>"; };
+		048208201FE11A6C00961BCB /* HYSystemMessageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYSystemMessageCell.h; sourceTree = "<group>"; };
+		048208211FE11A6C00961BCB /* HYSystemMessageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYSystemMessageCell.m; sourceTree = "<group>"; };
+		048208231FE12B7B00961BCB /* HYParterPayResultVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYParterPayResultVC.h; sourceTree = "<group>"; };
+		048208241FE12B7B00961BCB /* HYParterPayResultVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYParterPayResultVC.m; sourceTree = "<group>"; };
 		049D7AF51FDFE018000A0A7B /* HYAlertManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYAlertManager.h; sourceTree = "<group>"; };
 		049D7AF61FDFE018000A0A7B /* HYAlertManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYAlertManager.m; sourceTree = "<group>"; };
 		049D7AF81FDFECF8000A0A7B /* HYInviteParterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYInviteParterView.h; sourceTree = "<group>"; };
@@ -963,6 +978,8 @@
 				3EDC21E11F930A8B0013FFBA /* HYSaleAfterCell.m */,
 				3EC4EB5D1FA02BE1001D5DD3 /* HYConfirmSuccessCell.h */,
 				3EC4EB5E1FA02BE1001D5DD3 /* HYConfirmSuccessCell.m */,
+				048208201FE11A6C00961BCB /* HYSystemMessageCell.h */,
+				048208211FE11A6C00961BCB /* HYSystemMessageCell.m */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1033,6 +1050,8 @@
 				3E4D78831F7905C000BC9C2B /* HYWeChatPayModel.m */,
 				3ED218DC1F8E10690040C7E3 /* HYBrandShopInfoModel.h */,
 				3ED218DD1F8E106A0040C7E3 /* HYBrandShopInfoModel.m */,
+				048208171FE102AC00961BCB /* HYParterPayModel.h */,
+				048208181FE102AC00961BCB /* HYParterPayModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1052,6 +1071,8 @@
 				3E4D78A11F79F26200BC9C2B /* HYPayResultViewController.m */,
 				049D7B041FDFEEB2000A0A7B /* HYPayParterCostViewController.h */,
 				049D7B051FDFEEB2000A0A7B /* HYPayParterCostViewController.m */,
+				048208231FE12B7B00961BCB /* HYParterPayResultVC.h */,
+				048208241FE12B7B00961BCB /* HYParterPayResultVC.m */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -1329,6 +1350,8 @@
 				3E1022091F7B3A330048D556 /* HYMyQRCodeViewController.m */,
 				3E1022051F7B3A120048D556 /* HYFeedbackViewController.h */,
 				3E1022061F7B3A120048D556 /* HYFeedbackViewController.m */,
+				0482081D1FE11A1700961BCB /* HYSystemMessageVC.h */,
+				0482081E1FE11A1700961BCB /* HYSystemMessageVC.m */,
 				3ED218B61F8DE3540040C7E3 /* HYMyCollectGoodsViewController.h */,
 				3ED218B71F8DE3540040C7E3 /* HYMyCollectGoodsViewController.m */,
 				3ED218B91F8DE3660040C7E3 /* HYMyCollectShopViewController.h */,
@@ -1661,6 +1684,8 @@
 				3E3ED06A1F96F92900C20E61 /* HYBrandShopFiltView.m */,
 				3E59F8931F9884CC0031D433 /* HYGoodsCollectionView.h */,
 				3E59F8941F9884CC0031D433 /* HYGoodsCollectionView.m */,
+				041FEFE81FE0D7D30064210F /* HYPayBottomView.h */,
+				041FEFE91FE0D7D30064210F /* HYPayBottomView.m */,
 				049D7AF81FDFECF8000A0A7B /* HYInviteParterView.h */,
 				049D7AF91FDFECF8000A0A7B /* HYInviteParterView.m */,
 			);
@@ -1875,10 +1900,12 @@
 				3EED10EA1F99ED1000C49A4A /* HYPasswordView.m in Sources */,
 				3E56207A1F6B6DAC0063AA5B /* UIView+Toast.m in Sources */,
 				3ECD83371F8F748800DE6FFD /* HYMyCollectShopImageCollectionViewCell.m in Sources */,
+				048208221FE11A6C00961BCB /* HYSystemMessageCell.m in Sources */,
 				3ED218D81F8E0E900040C7E3 /* HYShopCollectCell.m in Sources */,
 				3E2754711F70C06C0010053E /* HYButton.m in Sources */,
 				3E33CC9A1F8C5AAC002179CD /* HYCartsModel.m in Sources */,
 				3E59F8981F9894270031D433 /* HYLabel.m in Sources */,
+				048208191FE102AC00961BCB /* HYParterPayModel.m in Sources */,
 				3EC4EB5F1FA02BE1001D5DD3 /* HYConfirmSuccessCell.m in Sources */,
 				3ED218BE1F8DE37A0040C7E3 /* HYRecentViewViewController.m in Sources */,
 				3E5620B11F6BBDC00063AA5B /* HYHomeTitleScrollCell.m in Sources */,
@@ -1908,6 +1935,7 @@
 				3E2754481F6F727C0010053E /* HYTypeRecommendCollectionViewCell.m in Sources */,
 				3ECD83461F908FEB00DE6FFD /* HYOrderDetailInfoCell.m in Sources */,
 				3EFBFC4E1F7BA0D5003F92B8 /* HYHomeSearchViewController.m in Sources */,
+				0482081F1FE11A1700961BCB /* HYSystemMessageVC.m in Sources */,
 				3E1022041F7B39F40048D556 /* HYMyAddressViewController.m in Sources */,
 				3E56207B1F6B6DAC0063AA5B /* Const.m in Sources */,
 				3E27543F1F6F64630010053E /* HYTagsItemModel.m in Sources */,
@@ -1916,6 +1944,7 @@
 				3EDC21EB1F933D6B0013FFBA /* HYFillSalesReturnCell.m in Sources */,
 				3E33CC971F8B80DB002179CD /* HYCartsHandle.m in Sources */,
 				049D7B0F1FDFF0C3000A0A7B /* HYRecommendIntroCell.m in Sources */,
+				041FEFEA1FE0D7D30064210F /* HYPayBottomView.m in Sources */,
 				3E1021EC1F7A477B0048D556 /* HYMyOrderModel.m in Sources */,
 				3E2754641F70AA4A0010053E /* HYMineHeaderView.m in Sources */,
 				3E5620911F6B72D90063AA5B /* HYSortViewController.m in Sources */,
@@ -1964,6 +1993,7 @@
 				3EEFBF1E1FA0349E007BE12C /* HYCommentVC.m in Sources */,
 				3E4D78811F79038B00BC9C2B /* HYPayHandle.m in Sources */,
 				3E27544B1F6F734B0010053E /* HYTypeRecommendItemModel.m in Sources */,
+				048208251FE12B7B00961BCB /* HYParterPayResultVC.m in Sources */,
 				3E2754361F6F56580010053E /* HYGoodHealthModel.m in Sources */,
 				3E1022011F7B39D80048D556 /* HYMyDisCouponViewController.m in Sources */,
 				3E1021F21F7A48EB0048D556 /* HYUserHandle.m in Sources */,

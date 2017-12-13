@@ -104,7 +104,6 @@
         _imgView.clipsToBounds = YES;
         _imgView.image = [UIImage imageNamed:@"header_placeholder"];
     }
-    
     return _imgView;
 }
 

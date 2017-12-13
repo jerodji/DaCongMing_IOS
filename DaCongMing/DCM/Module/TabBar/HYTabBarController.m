@@ -12,8 +12,9 @@
 #import "HYSortViewController.h"
 #import "HYShoppingCartViewController.h"
 #import "HYMineViewController.h"
-
+#import "HYPayParterCostViewController.h"
 #import "HYAlertManager.h"
+#import "HYInviteParterView.h"
 
 @interface HYTabBarController () <UIAlertViewDelegate>
 
@@ -32,6 +33,10 @@
 
     [self setupChildVC];
     [self checkVersion];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self showInviteView];
+    });
 }
 
 + (void)initialize{
@@ -98,6 +103,7 @@
     
 }
 
+#pragma mark - tabBar动画
 - (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item{
     
     NSInteger index = [tabBar.items indexOfObject:item];
@@ -119,8 +125,8 @@
     pulse.duration = 0.1;
     pulse.repeatCount = 1;
     pulse.autoreverses= YES;
-    pulse.fromValue= [NSNumber numberWithFloat:0.8];
-    pulse.toValue= [NSNumber numberWithFloat:1.2];
+    pulse.fromValue= [NSNumber numberWithFloat:0.9];
+    pulse.toValue= [NSNumber numberWithFloat:1.1];
     [[tabbarbuttonArray[index] layer] addAnimation:pulse forKey:@"tabBarItemAnimation"];
     
 }
@@ -148,7 +154,6 @@
             if ([appStoreVersion compare:appCurrentVer options:NSNumericSearch] == NSOrderedDescending) {
                 
                 //App Store版本大于当前版本，提示更新
-               
                 [HYAlertManager alertControllerAboveIn:self withMessage:@"大聪明有新版本了，是否更新" leftTitle:@"否" leftActionEvent:nil rightTitle:@"是" rightActionEvent:^{
                     
                     NSString *urlCode = [@"大聪明" stringByURLEncode];
@@ -166,7 +171,19 @@
     
 }
 
-
+- (void)showInviteView{
+    
+    HYInviteParterView *inviteView = [[HYInviteParterView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    [self.view addSubview:inviteView];
+    [inviteView showInviteView];
+    
+    inviteView.payBlock = ^{
+      
+        HYPayParterCostViewController *payVC = [HYPayParterCostViewController new];
+        HYBaseNavController *nav = [[HYBaseNavController alloc] initWithRootViewController:payVC];
+        [self presentViewController:nav animated:YES completion:nil];
+    };
+}
 
 
 - (void)didReceiveMemoryWarning {

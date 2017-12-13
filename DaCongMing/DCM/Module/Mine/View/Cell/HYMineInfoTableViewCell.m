@@ -28,8 +28,8 @@
     
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         
-        _titleArray = @[@"我的账户",@"优惠券",@"我的地址",@"我的二维码",@"意见反馈",@"联系客服"];
-        _imgArray = @[@"mine_myAccount",@"mine_discountCoupon",@"mine_myAddress",@"mine_qrCode",@"mine_feedback",@"mine_phoneCall"];
+        _titleArray = @[@"我的账户",@"优惠券",@"我的地址",@"我的二维码",@"意见反馈",@"联系客服",@"系统消息"];
+        _imgArray = @[@"mine_myAccount",@"mine_discountCoupon",@"mine_myAddress",@"mine_qrCode",@"mine_feedback",@"mine_phoneCall",@"mine_message",];
          
         [self setupSubviews];
     }

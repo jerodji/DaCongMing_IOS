@@ -22,6 +22,7 @@
 #import "HYMyAddressViewController.h"
 #import "HYMyQRCodeViewController.h"
 #import "HYFeedbackViewController.h"
+#import "HYSystemMessageVC.h"
 
 #import "HYMyCollectShopViewController.h"
 #import "HYMyCollectGoodsViewController.h"
@@ -348,16 +349,16 @@
     
      //[@"我的账户",@"优惠券",@"我的地址",@"我的二维码",@"意见反馈",@"联系客服"];
     switch (tag) {
-        case 0:
-        {
+        case 0:{
+            
             if([HYUserHandle jumpToLoginViewControllerFromVC:self])
                 return ;
             HYMyAccountViewController *myAccountVC = [HYMyAccountViewController new];
             [self.navigationController pushViewController:myAccountVC animated:YES];
         }
             break;
-        case 1:
-        {
+        case 1:{
+            
             if([HYUserHandle jumpToLoginViewControllerFromVC:self])
                 return ;
             HYMyDisCouponViewController *discountCouponVC = [HYMyDisCouponViewController new];
@@ -365,39 +366,43 @@
              
         }
             break;
-        case 2:
-        {
+        case 2:{
+            
             if([HYUserHandle jumpToLoginViewControllerFromVC:self])
                 return ;
             HYMyAddressViewController *myAddressVC = [HYMyAddressViewController new];
             [self.navigationController pushViewController:myAddressVC animated:YES];
         }
             break;
-        case 3:
-        {
+        case 3:{
+            
             if([HYUserHandle jumpToLoginViewControllerFromVC:self])
                 return ;
             HYMyQRCodeViewController *myQRCodeVC = [HYMyQRCodeViewController new];
             [self.navigationController pushViewController:myQRCodeVC animated:YES];
         }
             break;
-        case 4:
-        {
+        case 4:{
+            
             if([HYUserHandle jumpToLoginViewControllerFromVC:self])
                 return ;
             HYFeedbackViewController *feedbackVC = [HYFeedbackViewController new];
             [self.navigationController pushViewController:feedbackVC animated:YES];
         }
             break;
-        case 5:
-        {
+        case 5:{
+            
             if([HYUserHandle jumpToLoginViewControllerFromVC:self])
                 return ;
             NSString * str = [[NSString alloc] initWithFormat:@"tel://%@",KCustomerServicePhone];
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
             
         }
-        
+        case 6:{
+            
+            HYSystemMessageVC *systemMessageVC = [HYSystemMessageVC new];
+            [self.navigationController pushViewController:systemMessageVC animated:YES];
+        }
             break;
         default:
             break;

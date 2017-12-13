@@ -109,9 +109,7 @@
         
         make.left.equalTo(_headerImgView);
         make.top.equalTo(_headerImgView.mas_bottom).offset(15 * WIDTH_MULTIPLE);
-        if (!_commentModel) {
-            make.height.mas_equalTo(40 * WIDTH_MULTIPLE);
-        }
+        make.height.mas_equalTo(40 * WIDTH_MULTIPLE);
         make.right.equalTo(self).offset(-10 *WIDTH_MULTIPLE);
     }];
     
