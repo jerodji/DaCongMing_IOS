@@ -34,7 +34,7 @@
     [self setupChildVC];
     [self checkVersion];
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self showInviteView];
     });
 }
@@ -89,17 +89,23 @@
         }];
     }
     
-    if ([[KUSERDEFAULTS valueForKey:KUserLoginType] isEqualToString:@"weChat"]) {
-        
-        DLog(@"微信账号登录");
-    }
-    
-    
     HYUserModel *userModel = [HYPlistTools unarchivewithName:KUserModelData];
-     HYUserModel *shareModel = [HYUserModel sharedInstance];
+    HYUserModel *shareModel = [HYUserModel sharedInstance];
     shareModel.token = userModel.token;
     shareModel.userInfo = userModel.userInfo;
     DLog(@"user:---%@",shareModel);
+    if ([[KUSERDEFAULTS valueForKey:KUserLoginType] isEqualToString:@"weChat"]) {
+        
+        [HYUserHandle getMyUserInfoComplectionBlock:^(HYUserModel *userModel) {
+           
+            if (userModel) {
+                DLog(@"微信用户刷新数据成功");
+            }
+        }];
+    }
+    
+    
+   
     
 }
 
@@ -173,16 +179,20 @@
 
 - (void)showInviteView{
     
-    HYInviteParterView *inviteView = [[HYInviteParterView alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    [self.view addSubview:inviteView];
-    [inviteView showInviteView];
+    if ([[HYUserModel sharedInstance].userInfo.userRemind.type isNotBlank]) {
+        
+        HYInviteParterView *inviteView = [[HYInviteParterView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+        [self.view addSubview:inviteView];
+        [inviteView showInviteView];
+        
+        inviteView.payBlock = ^{
+            
+            HYPayParterCostViewController *payVC = [HYPayParterCostViewController new];
+            HYBaseNavController *nav = [[HYBaseNavController alloc] initWithRootViewController:payVC];
+            [self presentViewController:nav animated:YES completion:nil];
+        };
+    }
     
-    inviteView.payBlock = ^{
-      
-        HYPayParterCostViewController *payVC = [HYPayParterCostViewController new];
-        HYBaseNavController *nav = [[HYBaseNavController alloc] initWithRootViewController:payVC];
-        [self presentViewController:nav animated:YES completion:nil];
-    };
 }
 
 

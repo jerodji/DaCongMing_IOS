@@ -7,6 +7,7 @@
 //
 
 #import "HYRecommendIntroCell.h"
+#import "HYLabel.h"
 
 @interface HYRecommendIntroCell()
 
@@ -19,7 +20,7 @@
 /** 介绍 */
 @property (nonatomic,strong) UILabel *introLabel;
 /** 介绍文本 */
-@property (nonatomic,strong) UILabel *introTextLabel;
+@property (nonatomic,strong) HYLabel *introTextLabel;
 /** 加盟费 */
 @property (nonatomic,strong) UILabel *payMoneyLabel;
 
@@ -32,6 +33,7 @@
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         
         [self setupSubviews];
+        [self setupData];
     }
     return self;
 }
@@ -44,6 +46,17 @@
     [self addSubview:self.introLabel];
     [self addSubview:self.introTextLabel];
     [self addSubview:self.payMoneyLabel];
+}
+
+- (void)setupData{
+    
+    _recommendLabel.text = [NSString stringWithFormat:@"你已经被推荐为:%@",[HYUserModel sharedInstance].userInfo.userRemind.recomMsg];
+    _inviterLabel.text = [NSString stringWithFormat:@"邀请人:%@",[HYUserModel sharedInstance].userInfo.userRemind.recomer_name];
+    _introTextLabel.text = [HYUserModel sharedInstance].userInfo.userRemind.msg;
+    NSMutableAttributedString *attributeStr = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"加盟费:%@",[HYUserModel sharedInstance].userInfo.userRemind.price]];
+    [attributeStr addAttributes:@{NSFontAttributeName : KFitFont(13),NSForegroundColorAttributeName : KAPP_272727_COLOR} range:NSMakeRange(0, attributeStr.length)];
+    [attributeStr addAttributes:@{NSForegroundColorAttributeName : KAPP_PRICE_COLOR} range:NSMakeRange(4, attributeStr.length - 4)];
+     _payMoneyLabel.attributedText = attributeStr;
 }
 
 - (void)layoutSubviews{
@@ -71,11 +84,12 @@
         make.height.mas_equalTo(20 * WIDTH_MULTIPLE);
     }];
     
+    CGFloat height = [@"" heightForFont:KFitFont(13) width:30];
     [_introLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.top.equalTo(_inviterLabel.mas_bottom).offset(15 * WIDTH_MULTIPLE);
         make.left.equalTo(self).offset(15 * WIDTH_MULTIPLE);
-        make.height.mas_equalTo(20 * WIDTH_MULTIPLE);
+        make.height.mas_equalTo(height);
         make.width.mas_equalTo(40 * WIDTH_MULTIPLE);
     }];
     
@@ -148,15 +162,16 @@
     return _introLabel;
 }
 
-- (UILabel *)introTextLabel{
+- (HYLabel *)introTextLabel{
     
     if (!_introTextLabel) {
         
-        _introTextLabel = [[UILabel alloc] init];
+        _introTextLabel = [[HYLabel alloc] init];
         _introTextLabel.font = KFitFont(13);
         _introTextLabel.textColor = KAPP_b7b7b7_COLOR;
         _introTextLabel.text = @"发的发生温热地方的发生如风达方式范德萨发的防守打法都是仿发生的发生佛挡杀佛的范德萨发";
         _introTextLabel.textAlignment = NSTextAlignmentLeft;
+        _introTextLabel.verticalAlignment = VerticalAlignmentTop;
         _introTextLabel.numberOfLines = 0;
     }
     return _introTextLabel;

@@ -175,7 +175,7 @@
     if (!_bottomView) {
         
         _bottomView = [[HYPayBottomView alloc] initWithFrame:CGRectMake(0, KSCREEN_HEIGHT - 50 * WIDTH_MULTIPLE, KSCREEN_WIDTH, 50 * WIDTH_MULTIPLE)];
-        
+        _bottomView.payAmount = [HYUserModel sharedInstance].userInfo.userRemind.price;
         __weak typeof (self)weakSelf = self;
         _bottomView.payBlock = ^{
           

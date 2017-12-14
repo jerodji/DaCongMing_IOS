@@ -134,7 +134,7 @@
     }];
 }
 
-- (void)updateHomeData{
+- (void)removeDataWithName{
     
     [HYHomeViewModel requestHomePageData:^(HYHomePageModel *model) {
         

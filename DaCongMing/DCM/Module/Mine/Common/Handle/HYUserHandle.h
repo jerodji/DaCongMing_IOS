@@ -15,6 +15,11 @@
  */
 + (void)userLoginWithPhone:(NSString *)phone password:(NSString *)password complectionBlock:(void(^)(BOOL isLoginSuccess))complection;
 
+/**
+ *  获取我的购物车 收藏数量
+ */
++ (void)getMyUserInfoComplectionBlock:(void(^)(HYUserModel *userModel))complection;
+
 /*!
      获取验证码
  */
