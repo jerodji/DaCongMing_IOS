@@ -84,7 +84,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DaCongMing/DCM/Module/Mine/Controller/HYAddAddressViewController.m"
-            timestampString = "533541847.533739"
+            timestampString = "534912940.236294"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "149"
@@ -100,7 +100,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DaCongMing/DCM/Module/Mine/Controller/HYAddAddressViewController.m"
-            timestampString = "533541847.534194"
+            timestampString = "534912940.236367"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "157"
@@ -116,7 +116,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DaCongMing/DCM/Module/Mine/Common/VC/HYFillOrderViewController.m"
-            timestampString = "534827499.271519"
+            timestampString = "534912940.236419"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "142"
@@ -132,7 +132,7 @@
                   moduleName = "DaCongMing"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/huyong%201/Desktop/DaCongMing/DaCongMing/DaCongMing/DCM/Module/Mine/Common/VC/HYFillOrderViewController.m"
-                  timestampString = "534852056.164072"
+                  timestampString = "534912945.193468"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "142"
@@ -147,7 +147,7 @@
                   moduleName = "DaCongMing"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/huyong%201/Desktop/DaCongMing/DaCongMing/DaCongMing/DCM/Module/Mine/Common/VC/HYFillOrderViewController.m"
-                  timestampString = "534852056.166033"
+                  timestampString = "534912945.19537"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "142"
@@ -170,22 +170,6 @@
             startingLineNumber = "53"
             endingLineNumber = "53"
             landmarkName = "-setupSubviews"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "DaCongMing/DCM/Module/Sort/Controller/HYGoodsListViewController.m"
-            timestampString = "534159756.191816"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "157"
-            endingLineNumber = "157"
-            landmarkName = "-reloadDataMore"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
