@@ -10,4 +10,7 @@
 
 @interface HYRecommendIntroCell : UITableViewCell
 
+/** 支付金额 */
+@property (nonatomic,copy) NSString *payAmount;
+
 @end

@@ -80,6 +80,9 @@
 //创建订单
 #define API_CreateOrder         @"HAILIN_SERVER/getSellerOrder.do"
 
+//创建用户推荐订单
+#define API_CreateParterRecommendOrder         @"HAILIN_SERVER/getAgentSellerOrder.do"
+
 //重复下单
 #define API_CreateOrderWithOrderID         @"HAILIN_SERVER/rebuySellerOrder.do"
 

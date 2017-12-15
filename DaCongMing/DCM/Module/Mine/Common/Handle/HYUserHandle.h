@@ -7,6 +7,7 @@
 //
 
 #import "HYBaseModel.h"
+#import "HYCreateOrder.h"
 
 @interface HYUserHandle : HYBaseModel
 
@@ -39,6 +40,10 @@
      用户反馈
  */
 + (void)userFeedBackWithText:(NSString *)text complectionBlock:(void(^)(BOOL isSuccess))complection;
+
+
+/** 获取推荐合伙人支付订单 */
++ (void)getParterRecommendPayOrderComplectionBlock:(void(^)(HYCreateOrder *order))complection;
 
 /*!
  @method

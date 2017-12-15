@@ -20,7 +20,7 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-    self.title = @"推荐失败";
+    self.view.backgroundColor = KAPP_TableView_BgColor;
     [self.view addSubview:self.iconImageView];
     [self.view addSubview:self.tipsLabel];
     
@@ -49,6 +49,23 @@
         make.top.equalTo(_iconImageView.mas_bottom).offset(28 * WIDTH_MULTIPLE);
         make.height.mas_equalTo(30 * WIDTH_MULTIPLE);
     }];
+}
+
+- (void)setIsSuccess:(BOOL)isSuccess{
+    
+    _isSuccess = isSuccess;
+    if (isSuccess) {
+        
+        self.title = @"推荐成功";
+        self.iconImageView.image = [UIImage imageNamed:@"recommend_success"];
+        self.tipsLabel.text = @"推荐成功";
+    }
+    else{
+        
+        self.iconImageView.image = [UIImage imageNamed:@"recommend_fail"];
+        self.title = @"推荐失败";
+        self.tipsLabel.text = @"推荐失败";
+    }
 }
 
 #pragma mark - lazyload

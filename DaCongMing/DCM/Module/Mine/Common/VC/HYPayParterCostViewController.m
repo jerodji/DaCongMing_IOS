@@ -13,6 +13,11 @@
 #import "HYPayBottomView.h"
 #import "HYParterPayModel.h"
 #import "HYParterPayResultVC.h"
+#import "HYCreateOrder.h"
+#import "HYCreateOrderDatalist.h"
+#import "HYPayHandle.h"
+#import "HYAlipayManager.h"
+#import "HYWeChatPayManager.h"
 
 @interface HYPayParterCostViewController ()
 
@@ -21,6 +26,10 @@
 /** 上一个选择的btn */
 @property (nonatomic,strong) UIButton *previousBtn;
 @property (nonatomic,strong) HYParterPayModel *model;
+@property (nonatomic,strong) HYCreateOrder *orderModel;
+@property (nonatomic,strong) HYCreateOrderDatalist *createOrderDatalist;
+/** 支付金额 */
+@property (nonatomic,strong) NSString *payAmount;
 
 @end
 
@@ -30,8 +39,10 @@
     
     [super viewDidLoad];
     self.title = @"支付";
+    [self requestData];
     [KEYWINDOW addSubview:self.bottomView];
     _model = [HYParterPayModel new];
+    [self requestData];
     
     NSArray *viewControllers = self.navigationController.viewControllers;
     if (viewControllers.count <= 1) {
@@ -49,6 +60,19 @@
     _bottomView = nil;
 }
 
+- (void)requestData{
+    
+    [HYUserHandle getParterRecommendPayOrderComplectionBlock:^(HYCreateOrder *order) {
+        
+        self.orderModel = order;
+        NSDictionary *dict = order.dataList[0];
+        self.createOrderDatalist = [HYCreateOrderDatalist modelWithDictionary:dict];
+        self.payAmount = self.orderModel.summary_price;
+        self.bottomView.payAmount = self.payAmount;
+        [self.tableView reloadRow:0 inSection:1 withRowAnimation:UITableViewRowAnimationMiddle];
+    }];
+}
+
 #pragma mark - action
 - (void)payButtonAction:(UIButton *)sender{
     
@@ -63,6 +87,25 @@
 - (void)cancelAction{
     
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - 微信支付通知
+- (void)weChatPaySuccess:(NSNotification *)notification{
+    
+    if ([notification.object isEqualToString:@"YES"]) {
+        
+        HYParterPayResultVC *resultVC = [HYParterPayResultVC new];
+        [self.navigationController pushViewController:resultVC animated:YES];
+        resultVC.isSuccess = YES;
+
+    }
+    else{
+        
+        HYParterPayResultVC *resultVC = [HYParterPayResultVC new];
+        [self.navigationController pushViewController:resultVC animated:YES];
+        resultVC.isSuccess = NO;
+
+    }
 }
 
 #pragma mark - Table view data source
@@ -115,6 +158,7 @@
             cell = [[HYRecommendIntroCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:recommendIntroCellID];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
+        cell.payAmount = self.payAmount;
         return cell;
     }
     else if (indexPath.section == 2){
@@ -175,11 +219,43 @@
     if (!_bottomView) {
         
         _bottomView = [[HYPayBottomView alloc] initWithFrame:CGRectMake(0, KSCREEN_HEIGHT - 50 * WIDTH_MULTIPLE, KSCREEN_WIDTH, 50 * WIDTH_MULTIPLE)];
-        _bottomView.payAmount = [HYUserModel sharedInstance].userInfo.userRemind.price;
         __weak typeof (self)weakSelf = self;
+        _bottomView.payAmount = weakSelf.payAmount;
         _bottomView.payBlock = ^{
+            
+            if (weakSelf.orderModel) {
+                
+                if (self.model.payMode == 0) {
+                    
+                    [HYPayHandle alipayWithOrderID:weakSelf.createOrderDatalist.sorder_id coupon_guid:nil complectionBlock:^(NSString *sign) {
+                        
+                        [HYAlipayManager alipayWithOrderString:sign success:^{
+                            
+                            HYParterPayResultVC *resultVC = [HYParterPayResultVC new];
+                            [weakSelf.navigationController pushViewController:resultVC animated:YES];
+                            resultVC.isSuccess = YES;
+
+                        } failed:^{
+                            
+                            HYParterPayResultVC *resultVC = [HYParterPayResultVC new];
+                            [weakSelf.navigationController pushViewController:resultVC animated:YES];
+                            resultVC.isSuccess = NO;
+
+                        }];
+                    }];
+                }
+                else{
+                    
+                    [HYPayHandle weChatPayWithOrder:weakSelf.createOrderDatalist.sorder_id coupon_guid:nil complectionBlock:^(HYWeChatPayModel *weChatPayModel) {
+                        
+                        [HYWeChatPayManager wechatPayWith:weChatPayModel];
+                        
+                        [[NSNotificationCenter defaultCenter] addObserver:weakSelf selector:@selector(weChatPaySuccess:) name:KWeChatPaySuccessNotification object:nil];
+                    }];
+                }
+            }
           
-            [weakSelf.navigationController pushViewController:[HYParterPayResultVC new] animated:YES];
+            
         };
     }
     return _bottomView;

@@ -71,7 +71,7 @@
 - (void)setPayAmount:(NSString *)payAmount{
     
     _payAmount = payAmount;
-    NSMutableAttributedString *attributeStr = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"待支付:%@",[HYUserModel sharedInstance].userInfo.userRemind.price]];
+    NSMutableAttributedString *attributeStr = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"待支付:￥%@",payAmount]];
     [attributeStr addAttributes:@{NSFontAttributeName : KFitFont(13),NSForegroundColorAttributeName : KAPP_272727_COLOR} range:NSMakeRange(0, attributeStr.length)];
     [attributeStr addAttributes:@{NSForegroundColorAttributeName : KAPP_PRICE_COLOR} range:NSMakeRange(4, attributeStr.length - 4)];
     _payMoneyLabel.attributedText = attributeStr;

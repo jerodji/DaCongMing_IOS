@@ -53,10 +53,65 @@
     _recommendLabel.text = [NSString stringWithFormat:@"你已经被推荐为:%@",[HYUserModel sharedInstance].userInfo.userRemind.recomMsg];
     _inviterLabel.text = [NSString stringWithFormat:@"邀请人:%@",[HYUserModel sharedInstance].userInfo.userRemind.recomer_name];
     _introTextLabel.text = [HYUserModel sharedInstance].userInfo.userRemind.msg;
-    NSMutableAttributedString *attributeStr = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"加盟费:%@",[HYUserModel sharedInstance].userInfo.userRemind.price]];
-    [attributeStr addAttributes:@{NSFontAttributeName : KFitFont(13),NSForegroundColorAttributeName : KAPP_272727_COLOR} range:NSMakeRange(0, attributeStr.length)];
-    [attributeStr addAttributes:@{NSForegroundColorAttributeName : KAPP_PRICE_COLOR} range:NSMakeRange(4, attributeStr.length - 4)];
-     _payMoneyLabel.attributedText = attributeStr;
+    
+    [self countDown];
+   
+}
+
+- (void)countDown{
+    
+    CGFloat deadlineTime = [[HYUserModel sharedInstance].userInfo.userRemind.close_time floatValue];
+    CGFloat currentTimeStamp = [[NSDate dateWithTimeIntervalSinceNow:0] timeIntervalSince1970];
+    __block CGFloat timeDiffer = deadlineTime - currentTimeStamp;
+    dispatch_queue_t queue = dispatch_queue_create("com.jack.queue", DISPATCH_QUEUE_CONCURRENT);
+    dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
+    dispatch_source_set_timer(timer, DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC, 0 * NSEC_PER_SEC);
+    dispatch_source_set_event_handler(timer, ^{
+        //倒计时结束，关闭
+        if (timeDiffer <= 0) {
+            dispatch_source_cancel(timer);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                self.payTimeLabel.text = [NSString stringWithFormat:@"剩余支付时间:%@",[self formatTimeDiffer:timeDiffer]];
+            });
+        }
+        else{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                self.payTimeLabel.text = [NSString stringWithFormat:@"剩余支付时间:%@",[self formatTimeDiffer:timeDiffer]];
+                timeDiffer--;
+            });
+        }
+        
+        
+    });
+    dispatch_resume(timer);
+}
+
+- (NSString *)formatTimeDiffer:(CGFloat)timerDiffer{
+    
+    NSString *result = @"";
+    if (timerDiffer > 60 * 60 * 24) {
+        
+        NSInteger days = timerDiffer / (60 * 60 * 24);
+        NSInteger hours = (int)timerDiffer % (60 * 60 * 24) / 3600;
+        result = [NSString stringWithFormat:@"%ld天%ld小时",(long)days,(long)hours];
+    }
+    else if (timerDiffer > 60 * 60) {
+        
+        NSInteger hours = (int)timerDiffer / (60 * 60);
+        result = [NSString stringWithFormat:@"%ld小时",(long)hours];
+    }
+    else if (timerDiffer > 60){
+        
+        NSInteger minutes = (int)timerDiffer / 60;
+        result = [NSString stringWithFormat:@"%ld小时",(long)minutes];
+    }
+    else if (timerDiffer <= 0){
+        
+        result = @"时间到了";
+    }
+    return result;
 }
 
 - (void)layoutSubviews{
@@ -107,6 +162,16 @@
         make.height.mas_equalTo(20 * WIDTH_MULTIPLE);
         make.left.equalTo(self);
     }];
+}
+
+#pragma mark - setter
+- (void)setPayAmount:(NSString *)payAmount{
+    
+    _payAmount = payAmount;
+    NSMutableAttributedString *attributeStr = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"加盟费:￥%@",self.payAmount]];
+    [attributeStr addAttributes:@{NSFontAttributeName : KFitFont(13),NSForegroundColorAttributeName : KAPP_272727_COLOR} range:NSMakeRange(0, attributeStr.length)];
+    [attributeStr addAttributes:@{NSForegroundColorAttributeName : KAPP_PRICE_COLOR} range:NSMakeRange(4, attributeStr.length - 4)];
+    _payMoneyLabel.attributedText = attributeStr;
 }
 
 #pragma mark - lazyload

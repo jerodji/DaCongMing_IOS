@@ -132,7 +132,7 @@
                   moduleName = "DaCongMing"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/huyong%201/Desktop/DaCongMing/DaCongMing/DaCongMing/DCM/Module/Mine/Common/VC/HYFillOrderViewController.m"
-                  timestampString = "534933197.089706"
+                  timestampString = "535018091.725571"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "142"
@@ -147,7 +147,7 @@
                   moduleName = "DaCongMing"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/huyong%201/Desktop/DaCongMing/DaCongMing/DaCongMing/DCM/Module/Mine/Common/VC/HYFillOrderViewController.m"
-                  timestampString = "534933197.091661"
+                  timestampString = "535018091.72767"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "142"
@@ -211,40 +211,8 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DaCongMing/DCM/Module/Mine/Common/Cell/HYRecommendIntroCell.m"
-            timestampString = "534933822.775992"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "53"
-            endingLineNumber = "53"
-            landmarkName = "-setupData"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "DaCongMing/DCM/Module/TabBar/HYTabBarController.m"
-            timestampString = "534933822.776283"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "182"
-            endingLineNumber = "182"
-            landmarkName = "-showInviteView"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "DaCongMing/DCM/Module/Mine/Common/Handle/HYUserHandle.m"
-            timestampString = "534933822.77634"
+            timestampString = "535001572.467961"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "74"
@@ -259,61 +227,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DaCongMing/DCM/Module/TabBar/HYTabBarController.m"
-            timestampString = "534933822.776383"
+            filePath = "DaCongMing/DCM/Module/Mine/Common/VC/HYParterPayResultVC.m"
+            timestampString = "535018091.495316"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "99"
-            endingLineNumber = "99"
-            landmarkName = "+autoLogin"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "+[HYTabBarController autoLogin]"
-                  moduleName = "DaCongMing"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/huyong%201/Desktop/DaCongMing/DaCongMing/DaCongMing/DCM/Module/TabBar/HYTabBarController.m"
-                  timestampString = "534933197.117122"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "101"
-                  endingLineNumber = "101"
-                  offsetFromSymbolStart = "936">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__31+[HYTabBarController autoLogin]_block_invoke_2"
-                  moduleName = "DaCongMing"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/huyong%201/Desktop/DaCongMing/DaCongMing/DaCongMing/DCM/Module/TabBar/HYTabBarController.m"
-                  timestampString = "534933197.119064"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "103"
-                  endingLineNumber = "103"
-                  offsetFromSymbolStart = "48">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "DaCongMing/DCM/Module/Mine/Common/Handle/HYUserHandle.m"
-            timestampString = "534933822.776429"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "64"
-            endingLineNumber = "64"
-            landmarkName = "+getMyUserInfoComplectionBlock:"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
+            landmarkName = "-setIsSuccess:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -323,13 +243,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DaCongMing/DCM/Module/TabBar/HYTabBarController.m"
-            timestampString = "534933822.776469"
+            filePath = "DaCongMing/DCM/Module/Mine/Common/VC/HYPayParterCostViewController.m"
+            timestampString = "535018091.49539"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "97"
-            endingLineNumber = "97"
-            landmarkName = "+autoLogin"
+            startingLineNumber = "95"
+            endingLineNumber = "95"
+            landmarkName = "-weChatPaySuccess:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DaCongMing/DCM/Module/Mine/Common/Cell/HYRecommendIntroCell.m"
+            timestampString = "535018132.280756"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
+            landmarkName = "-countDown"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

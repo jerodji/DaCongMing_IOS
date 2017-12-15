@@ -87,6 +87,35 @@
     }];
 }
 
++ (void)getParterRecommendPayOrderComplectionBlock:(void (^)(HYCreateOrder *))complection{
+    
+    NSMutableDictionary *requestParam = [NSMutableDictionary dictionary];
+    [requestParam setValue:[HYUserModel sharedInstance].token forKey:@"token"];
+    
+    [[HTTPManager shareHTTPManager] postDataFromUrl:API_CreateParterRecommendOrder withParameter:requestParam isShowHUD:YES success:^(id returnData) {
+        
+        if (returnData) {
+            
+            NSInteger code = [[returnData objectForKey:@"code"] integerValue];
+            if (code == 000) {
+                
+                NSDictionary *dict = [returnData objectForKey:@"data"];
+                HYCreateOrder *model = [HYCreateOrder modelWithDictionary:dict];
+                complection(model);
+            }
+            else{
+                complection(nil);
+                [JRToast showWithText:@"获取订单出现了问题"];
+            }
+        }
+        else{
+            
+            [JRToast showWithText:@"服务器游走去了"];
+            complection(nil);
+        }
+    }];
+}
+
 + (void)getAuthCodeWithPhone:(NSString *)phone complectionBlock:(void (^)(BOOL))complection{
     
     NSMutableDictionary *param = [NSMutableDictionary dictionary];

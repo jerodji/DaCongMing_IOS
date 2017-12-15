@@ -19,7 +19,7 @@
 @property (nonatomic, copy) NSString *recomMsg;
 @property (nonatomic, copy) NSString *recomer_name;
 @property (nonatomic, copy) NSString *recomer_phone;
-@property (nonatomic, copy) NSString *stat;
+@property (nonatomic, copy) NSString *close_time;
 
 @end
 
