@@ -43,7 +43,6 @@
     titleImgView.image = [UIImage imageNamed:@"sort_title"];
     titleImgView.contentMode = UIViewContentModeScaleAspectFit;
     self.navigationItem.titleView = titleImgView;
-    
 }
 
 #pragma mark - networkRequest
@@ -78,6 +77,33 @@
                 
                 //存入plist
                 [HYPlistTools archiveObject:_datalist withName:KSortListPlist];
+            }
+        }
+    }];
+}
+
+- (void)refreshDataAction{
+    
+    [[HTTPManager shareHTTPManager] postDataFromUrl:API_Sort withParameter:nil isShowHUD:YES success:^(id returnData) {
+        
+        if (returnData) {
+            
+            if ([[returnData objectForKey:@"code"] integerValue] == 000) {
+                
+                NSArray *array = [[returnData objectForKey:@"data"] objectForKey:@"dataList"];
+                
+                [_datalist removeAllObjects];
+                for (NSDictionary *dict in array) {
+                    
+                    HYSortModel *model = [HYSortModel modelWithDictionary:dict];
+                    [_datalist addObject:model];
+                    
+                    [_tableView reloadData];
+                }
+                
+                //存入plist
+                [HYPlistTools archiveObject:_datalist withName:KSortListPlist];
+                [_tableView.mj_header endRefreshing];
             }
         }
     }];
@@ -134,7 +160,7 @@
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        
+        _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshDataAction)];
     }
     return _tableView;
 }

@@ -9,6 +9,7 @@
 #import "HYSystemMessageVC.h"
 #import "HYSystemMessageCell.h"
 #import "HYPayParterCostViewController.h"
+#import "HYMineNetRequest.h"
 
 @interface HYSystemMessageVC ()
 
@@ -20,7 +21,19 @@
     
     [super viewDidLoad];
     self.title = @"系统消息";
+    [self requestData];
+}
+
+- (void)requestData{
     
+    [HYMineNetRequest getSystemInfoWithPageNo:1 ComplectionBlock:^(NSArray *datalist) {
+       
+        if (datalist) {
+            
+            [self.datalist addObjectsFromArray:datalist];
+            [self.tableView reloadData];
+        }
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -37,7 +50,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
-    return 2;
+    return self.datalist.count;
 }
 
 

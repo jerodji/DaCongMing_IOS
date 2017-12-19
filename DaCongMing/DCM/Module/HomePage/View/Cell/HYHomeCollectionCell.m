@@ -39,8 +39,8 @@
     
     [_collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.top.left.right.equalTo(self);
-        make.bottom.equalTo(self).offset(-10 * WIDTH_MULTIPLE);
+        make.left.bottom.right.equalTo(self);
+        make.top.equalTo(self).offset(10 * WIDTH_MULTIPLE);
     }];
 }
 
@@ -84,8 +84,8 @@
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
         layout.itemSize = CGSizeMake((KSCREEN_WIDTH - 2) / 2, 110 * WIDTH_MULTIPLE);
         layout.scrollDirection = UICollectionViewScrollDirectionVertical;
-        layout.minimumLineSpacing = 1;
-        layout.minimumInteritemSpacing = 1;
+        layout.minimumLineSpacing = 2;
+        layout.minimumInteritemSpacing = 2;
         
         _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
         _collectionView.backgroundColor = KAPP_WHITE_COLOR;

@@ -62,6 +62,8 @@
 //获取我的售后
 #define API_GetMySellAfter       @"HAILIN_SERVER/getRefOrderListByStat.do"
 
+//获取系统消息
+#define API_SystemMessage       @"HAILIN_SERVER/getUserRemind.do"
 
 /********************************订单相关*********************************/
 #pragma mark - 订单相关

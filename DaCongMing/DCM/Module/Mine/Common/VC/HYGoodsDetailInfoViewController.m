@@ -510,7 +510,8 @@
     }
     else if (indexPath.row == 1){
         
-        return 70 * WIDTH_MULTIPLE;
+        CGFloat strHeight = [_detailModel.item_note heightForFont:KFitFont(13) width:KSCREEN_WIDTH - 20 * WIDTH_MULTIPLE];
+        return 40 * WIDTH_MULTIPLE + strHeight + 5;
     }
     else if (indexPath.row == 2){
         

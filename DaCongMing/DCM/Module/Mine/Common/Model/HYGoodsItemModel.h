@@ -47,6 +47,8 @@
 @property (nonatomic, copy) NSString *salesVolume;
 /** provincePrice */
 @property (nonatomic, copy) NSString *provincePrice;
+/** cellHeight */
+@property (nonatomic,assign) CGFloat cellHeight;
 /** 是否选中 */
 @property (nonatomic,assign) BOOL isSelect;
 /** 是否编辑 */

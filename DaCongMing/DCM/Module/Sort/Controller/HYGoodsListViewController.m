@@ -54,16 +54,14 @@
 
 - (void)setupTopButtons{
     
-    NSArray *normalImgArr = @[@"default_arrow_right",@"price_arrow_down"];
-    NSArray *selectImgArr = @[@"default_arrow_down", @"price_arrow_up"];
-    NSArray *titleArr     = @[@"默认",@"价格"];
-    CGFloat width = self.view.width / 2;
-    for (NSInteger i = 0; i < normalImgArr.count ; i++) {
+    NSArray *titleArr = @[@"默认",@"销量",@"价格"];
+    CGFloat width = self.view.width / titleArr.count;
+    for (NSInteger i = 0; i < titleArr.count ; i++) {
         
         UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(i*width, 0, width, 35)];
         button.backgroundColor = [UIColor whiteColor];
-        [button setImage:[UIImage imageNamed:normalImgArr[i]] forState:UIControlStateNormal];
-        [button setImage:[UIImage imageNamed:selectImgArr[i]] forState:UIControlStateSelected];
+        [button setImage:[UIImage imageNamed:@"default_arrow_down"] forState:UIControlStateNormal];
+        [button setImage:[UIImage imageNamed:@"default_arrow_up"] forState:UIControlStateSelected];
         [button setTitle:titleArr[i] forState:UIControlStateNormal];
         [button setTitleColor:KCOLOR(@"7b7b7b") forState:UIControlStateNormal];
         [button setTitleColor:KCOLOR(@"272727") forState:UIControlStateSelected];
@@ -91,7 +89,12 @@
        
         if (datalist) {
             
-            [self.datalist addObjectsFromArray:datalist];
+            [datalist enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                
+                HYGoodsItemModel *model = [HYGoodsItemModel modelWithDictionary:obj];
+                model.cellHeight = 333 * WIDTH_MULTIPLE;
+                [self.datalist addObject:model];
+            }];
             [_collectionView reloadData];
             
         }
@@ -107,7 +110,12 @@
     self.pageCount = 1;
     [HYGoodsHandle requestGoodsListItem_type:_type pageNo:1 andPage:5 order:@"descending" hotsale:@"ture" complectionBlock:^(NSArray *datalist) {
         
-        [self.datalist addObjectsFromArray:datalist];
+        [datalist enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+           
+            HYGoodsItemModel *model = [HYGoodsItemModel modelWithDictionary:obj];
+            [self.datalist addObject:model];
+        }];
+        
         [_collectionView reloadData];
         [_collectionView.mj_header endRefreshing];
         [_collectionView.mj_footer endRefreshing];
@@ -121,7 +129,11 @@
     self.pageCount = 1;
     [HYGoodsHandle requestGoodsListItem_type:_type pageNo:1 andPage:5 order:@"Ascending" hotsale:@"ture" complectionBlock:^(NSArray *datalist) {
         
-        [self.datalist addObjectsFromArray:datalist];
+        [datalist enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            
+            HYGoodsItemModel *model = [HYGoodsItemModel modelWithDictionary:obj];
+            [self.datalist addObject:model];
+        }];
         [_collectionView reloadData];
         [_collectionView.mj_header endRefreshing];
         [_collectionView.mj_footer endRefreshing];
@@ -171,40 +183,16 @@
 #pragma mark - action
 - (void)topButtonAction:(UIButton *)button{
     
-    if (button.tag == 11) {
+    _previousSelectBtn.selected = NO;
+    button.selected = YES;
+    _previousSelectBtn = button;
+    [UIView animateWithDuration:0.2 animations:^{
         
-        button.selected = !button.selected;
-        [UIView animateWithDuration:0.2 animations:^{
-            
-            self.horizonLine.frame = CGRectMake(button.left, button.bottom, button.width, 2);
-        }];
-        
-        if (button.selected) {
-            
-            self.requestType = HYGoodsListTypeAesc;
-            [self requestGoodsPriceAscList];
-        }
-        else{
-            self.requestType = HYGoodsListTypeDesc;
-            [self requestGoodsPriceDescList];
-        }
-        
-    }
-    else{
-        
-        self.requestType = HYGoodsListTypeDefault;
-        _previousSelectBtn.selected = NO;
-        button.selected = YES;
-        _previousSelectBtn = button;
-        
-        [UIView animateWithDuration:0.2 animations:^{
-            
-            self.horizonLine.frame = CGRectMake(button.left, button.bottom, button.width, 2);
-        }];
-        
-        [self requestGoodsDefaultList];
-    }
-
+        self.horizonLine.frame = CGRectMake(button.left, button.bottom, button.width, 2);
+    }];
+    
+    self.requestType = button.tag - 10;
+    [self refreshData];
    
 }
 
@@ -224,9 +212,9 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
     HYGoodsItemCollectionViewCell *cell = (HYGoodsItemCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"collectionCell" forIndexPath:indexPath];
-    
-    NSDictionary *dict = _datalist[indexPath.item];
-    cell.goodsModel = [HYGoodsItemModel modelWithDictionary:dict];
+
+    HYGoodsItemModel *itemModel = self.datalist[indexPath.item];
+    cell.goodsModel = itemModel;
     cell.backgroundColor = [UIColor whiteColor];
     return cell;
 }
@@ -234,17 +222,19 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
-    NSDictionary *dict = _datalist[indexPath.item];
-    HYGoodsItemModel *model = [HYGoodsItemModel modelWithDictionary:dict];
-    
-    DLog(@"current itemID is %@",model.item_id);
+    HYGoodsItemModel *itemModel = self.datalist[indexPath.item];
 
-    
     HYGoodsDetailInfoViewController *detailVC = [[HYGoodsDetailInfoViewController alloc] init];
     detailVC.navigationController.navigationBar.hidden = YES;
-    detailVC.goodsID = model.item_id;
+    detailVC.goodsID = itemModel.item_id;
     [self.navigationController pushViewController:detailVC animated:YES];
     
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    HYGoodsItemModel *itemModel = self.datalist[indexPath.item];
+    return CGSizeMake(KSCREEN_WIDTH / 2 - 10, itemModel.cellHeight);
 }
 
 #pragma mark - 没有数据
@@ -266,7 +256,7 @@
     
     if (!_horizonLine) {
         
-        _horizonLine = [[UIView alloc] initWithFrame:CGRectMake(0, 35, self.view.width / 2, 2)];
+        _horizonLine = [[UIView alloc] initWithFrame:CGRectMake(0, 35, self.view.width / 3, 2)];
         _horizonLine.backgroundColor = KCOLOR(@"383938");
     }
     return _horizonLine;
@@ -288,11 +278,12 @@
         //1.初始化layout
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
         layout.scrollDirection = UICollectionViewScrollDirectionVertical;
-        layout.itemSize = CGSizeMake(KSCREEN_WIDTH / 2 - 10, 340 * WIDTH_MULTIPLE);
+//        layout.itemSize = CGSizeMake(KSCREEN_WIDTH / 2 - 10, 346 * WIDTH_MULTIPLE);
         layout.scrollDirection = UICollectionViewScrollDirectionVertical;
         layout.minimumInteritemSpacing = 5;
         layout.minimumLineSpacing = 6 * WIDTH_MULTIPLE;      //纵向间距
         layout.sectionInset = UIEdgeInsetsMake(0, 5, 0, 5);
+        
         
         _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, self.horizonLine.bottom + 6 * WIDTH_MULTIPLE, KSCREEN_WIDTH, KSCREEN_HEIGHT - 40 - 64) collectionViewLayout:layout];
         [_collectionView setCollectionViewLayout:layout];

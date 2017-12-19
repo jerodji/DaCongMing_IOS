@@ -38,18 +38,18 @@
     
     [_priceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.top.equalTo(self).offset(12 * WIDTH_MULTIPLE);
+        make.top.equalTo(self).offset(10 * WIDTH_MULTIPLE);
         make.left.equalTo(self).offset(10 * WIDTH_MULTIPLE);
         make.right.equalTo(self).offset(10 * WIDTH_MULTIPLE);
-        make.height.equalTo(@(20));
+        make.height.equalTo(@(20 * WIDTH_MULTIPLE));
     }];
     
     [_noteLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.top.equalTo(_priceLabel.mas_bottom).offset(9 * WIDTH_MULTIPLE);
+        make.top.equalTo(_priceLabel.mas_bottom).offset(5 * WIDTH_MULTIPLE);
         make.left.equalTo(self).offset(10 * WIDTH_MULTIPLE);
         make.right.equalTo(self).offset(-10 * WIDTH_MULTIPLE);
-        make.height.equalTo(@(20));
+        make.bottom.equalTo(self).offset(-5 * WIDTH_MULTIPLE);
     }];
 }
 
