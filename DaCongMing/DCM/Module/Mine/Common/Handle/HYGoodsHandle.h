@@ -57,7 +57,7 @@
 /**
  *  店铺所有商品
  */
-+ (void)getBrandsShopAllProduct:(NSString *)sellerID pageNo:(NSInteger)pageNo isNewItem:(BOOL)isNewItem isHotSale:(BOOL)isHotSale ComplectionBlock:(void(^)(NSArray *array))complection;
++ (void)getBrandsShopProductWithSeller:(NSString *)sellerID Type:(NSInteger)type pageNo:(NSInteger)pageNO ComplectionBlock:(void (^)(NSArray *datalist))complection;
 
 /**
  *  收藏店铺

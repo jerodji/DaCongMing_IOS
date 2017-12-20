@@ -61,14 +61,22 @@
     return _model.typeReCommend.itemSecondaryTypeList.count;
 }
 
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
     HYTypeRecommendCollectionViewCell *cell = (HYTypeRecommendCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"collectionCell" forIndexPath:indexPath];
     
     NSDictionary *dict = _model.typeReCommend.itemSecondaryTypeList[indexPath.item];
     cell.typeItemModel = [HYTypeRecommendItemModel modelWithDictionary:dict];
     return cell;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    HYTypeRecommendCollectionViewCell *cell = (HYTypeRecommendCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
+    if (self.selectItemBlock) {
+        
+        self.selectItemBlock(cell.typeItemModel.item_id);
+    }
 }
 
 #pragma mark - lazyload

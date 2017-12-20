@@ -9,6 +9,8 @@
 
 #import "HYBrandShopViewController.h"
 #import "HYBrandShopNavView.h"
+#import "HYBrandShopHeaderView.h"
+
 #import "HYShopCollectCell.h"
 #import "HYShopImageCell.h"
 #import "HYHomeBannerCell.h"
@@ -20,22 +22,23 @@
 #import "HYBrandShopBottomView.h"
 #import "HYShareView.h"
 #import "HYSearchHandle.h"
+#import "HYBrandShopImageCell.h"
 
 
-@interface HYBrandShopViewController () <UITableViewDelegate,UITableViewDataSource,HYBrandsShopTapDelegate,HYShopCollectDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,HYBrandsShopBottomActionDelegate>
+@interface HYBrandShopViewController () <UITableViewDelegate,UITableViewDataSource,HYBrandsShopTapDelegate,HYShopCollectDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
 /** brandsShopNavView */
 @property (nonatomic,strong) HYBrandShopNavView *brandsShopNavView;
-/** 底部 */
-@property (nonatomic,strong) HYBrandShopBottomView *bottomView;
+/** header */
+@property (nonatomic,strong) HYBrandShopHeaderView *headerView;
 /** tableView */
 @property (nonatomic,strong) UITableView *tableView;
+/** cell信息 */
+@property (nonatomic,strong) NSMutableArray *cellInfoArray;
 /** itemList */
 @property (nonatomic,strong) NSMutableArray *itemList;
 /** infoModel */
 @property (nonatomic,strong) HYBrandShopInfoModel *shopInfoModel;
-/** bannerArray */
-@property (nonatomic,strong) NSMutableArray *bannerArray;
 /** share */
 @property (nonatomic,strong) HYShareView *shareView;
 /** collectionView */
@@ -66,7 +69,6 @@
     [self.navigationController.navigationBar addSubview:self.brandsShopNavView];
     self.view.backgroundColor = KAPP_WHITE_COLOR;
     [self.view addSubview:self.tableView];
-    [self.view addSubview:self.bottomView];
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
@@ -80,38 +82,22 @@
     
     [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
        
-        make.top.left.right.equalTo(self.view);
-        make.bottom.equalTo(self.view).offset(-50 * WIDTH_MULTIPLE);
-    }];
-    
-    [_bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
-       
-        make.left.bottom.right.equalTo(self.view);
-        make.height.mas_equalTo(50 * WIDTH_MULTIPLE);
+        make.top.left.right.bottom.equalTo(self.view);
     }];
 }
 
 #pragma mark - network
 - (void)requestNetwork{
     
-    [self.bannerArray removeAllObjects];
+    [self.itemList removeAllObjects];
     [HYGoodsHandle getBrandsShopWithSellerID:self.sellerID ComplectionBlock:^(NSDictionary *dict) {
        
-        if (dict) {
+        if (dict){
             
-            NSDictionary *storeInfo = [dict objectForKey:@"storeInfo"];
+            self.shopInfoModel = [HYBrandShopInfoModel modelWithDictionary:dict];
             NSArray *itemList = [dict objectForKey:@"itemList"];
             [self.itemList addObjectsFromArray:itemList];
-            self.shopInfoModel = [HYBrandShopInfoModel modelWithDictionary:storeInfo];
-            
-            for (NSDictionary *itemDict in storeInfo[@"storeImages"]) {
-                
-                [self.bannerArray addObject:[itemDict objectForKey:@"image_url"]];
-            }
-            
-            [_bottomView.allGoodsBtn setTitle:[NSString stringWithFormat:@"%@\n全部商品",self.shopInfoModel.itemCount] forState:UIControlStateNormal];
-            [_bottomView.hotSaleBtn setTitle:[NSString stringWithFormat:@"%@\n热销",self.shopInfoModel.hotsaleCount] forState:UIControlStateNormal];
-            [_bottomView.recentNewBtn setTitle:[NSString stringWithFormat:@"%@\n上新",self.shopInfoModel.itemNewCount] forState:UIControlStateNormal];
+            self.headerView.storeInfo = self.shopInfoModel.storeInfo;
         }
         
         [_tableView reloadData];
@@ -128,56 +114,53 @@
     }];
 }
 
+- (void)requestDataWithType:(NSInteger)type{
+    
+    [self.itemList removeAllObjects];
+    [HYGoodsHandle getBrandsShopProductWithSeller:self.sellerID Type:type pageNo:1 ComplectionBlock:^(NSArray *datalist) {
+       
+        [self.itemList addObjectsFromArray:datalist];
+        [self.tableView reloadData];
+    }];
+}
+
 #pragma mark - TableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     
-    return 1;
+    return 2;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return 4;
+    if (section == 0) {
+        return self.shopInfoModel.storeInfo.storeAdvertisingMaps.count;
+    }
+    return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    if (indexPath.row == 0) {
+    if (indexPath.section == 0) {
         
-        static NSString *shopCollectCellID = @"shopCollectCellID";
-        HYShopCollectCell *cell = [tableView dequeueReusableCellWithIdentifier:shopCollectCellID];
+        static NSString *brandShopImageCell = @"brandShopImageCell";
+        HYBrandShopImageCell *cell = [tableView dequeueReusableCellWithIdentifier:brandShopImageCell];
         if (!cell) {
-            cell = [[HYShopCollectCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:shopCollectCellID];
+            cell = [[HYBrandShopImageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:brandShopImageCell];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            
         }
-        cell.infoModel = self.shopInfoModel;
-        cell.delegate = self;
-        return cell;
-    }
-    else if (indexPath.row == 1){
-        //banner
-        static NSString *bannerID = @"HYBannerCell";
-        HYHomeBannerCell *cell = [tableView dequeueReusableCellWithIdentifier:bannerID];
-        if (!cell) {
-            cell = [[HYHomeBannerCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:bannerID];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            
-        }
-        cell.bannerArray = self.bannerArray;
-        return cell;
-    }
-    else if (indexPath.row == 2){
+        HYBrandShopRecommendModel *model = [HYBrandShopRecommendModel modelWithDictionary:self.shopInfoModel.storeInfo.storeAdvertisingMaps[indexPath.row]];
+        cell.model = model;
         
-        static NSString *shopImageCellID = @"shopImageCellID";
-        HYShopImageCell *cell = [tableView dequeueReusableCellWithIdentifier:shopImageCellID];
-        if (!cell) {
-            cell = [[HYShopImageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:shopImageCellID];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        if (self.topItem != HYBrandShopTopItemHome) {
             
+            cell.hidden = YES;
+        }
+        else{
+            cell.hidden = NO;
         }
         return cell;
     }
-    else if(indexPath.row == 3){
+    else if(indexPath.section == 1){
         
         //猜你喜欢
         static NSString *goodsCellID = @"goodsCellID";
@@ -209,24 +192,29 @@
 #pragma mark - tableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    
+    if (indexPath.section == 0) {
+        
+        HYBrandShopImageCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        HYGoodsDetailInfoViewController *detailVC = [[HYGoodsDetailInfoViewController alloc] init];
+        detailVC.navigationController.navigationBar.hidden = YES;
+        detailVC.goodsID = cell.model.item_id;
+        [self.navigationController pushViewController:detailVC animated:YES];
+        
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    if (indexPath.row == 0) {
+    if (indexPath.section == 0) {
         
-        return 60 * WIDTH_MULTIPLE;
+        if (self.topItem != HYBrandShopTopItemHome) {
+            
+            return 0;
+        }
+        return 180 * WIDTH_MULTIPLE;
     }
-    else if (indexPath.row == 1){
-        
-        return 150 * WIDTH_MULTIPLE;
-    }
-    else if (indexPath.row == 2){
-        
-        return 70 * WIDTH_MULTIPLE;
-    }
-    else if (indexPath.row == 3){
+    
+    if (indexPath.section == 1){
         
         //猜你喜欢
         CGFloat height = ceil(self.itemList.count / 2.0) * 350 * WIDTH_MULTIPLE;
@@ -351,96 +339,8 @@
     }
     
     return CGSizeMake(0, 0);
-    
-    
 }
 
-
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    
-    if (scrollView == _collectionView) {
-        
-        if (scrollView.contentOffset.y > 300 || scrollView.contentOffset.y == 0) {
-            
-            [self.brandsShopNavView.textField resignFirstResponder];
-        }
-        else{
-            
-            [self.brandsShopNavView.textField becomeFirstResponder];
-        }
-    }
-    
-}
-
-#pragma mark - 收藏delegate
-- (void)shopCollectClick:(BOOL)isCollect{
-    
-    if([HYUserHandle jumpToLoginViewControllerFromVC:self])
-        return ;
-    
-    if (isCollect) {
-        
-        [HYGoodsHandle cancelCollectShopWithSellerIDs:self.sellerID ComplectionBlock:^(BOOL isSuccess) {
-            
-            if (isSuccess) {
-                
-                [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"取消收藏成功"];
-                [self requestNetwork];
-            }
-        }];
-    }
-    else{
-        
-        [HYGoodsHandle collectShopWithSellerID:self.sellerID ComplectionBlock:^(BOOL isSuccess) {
-           
-            if (isSuccess) {
-                
-                [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"收藏店铺成功"];
-                
-                [self requestNetwork];
-            }
-        }];
-        
-    }
-}
-
-#pragma mark - bottomActionDelegate
-- (void)brandsBottomBtnTapIndex:(NSInteger)index{
-    
-    switch (index) {
-        case 0:
-            
-            break;
-        case 1:
-            
-            [self requestHotsaleData];
-            break;
-        case 2:
-            [self requestNetItemData];
-            break;
-        default:
-            break;
-    }
-}
-
-- (void)requestHotsaleData{
-    
-    
-    [HYGoodsHandle getBrandsShopAllProduct:_sellerID pageNo:1 isNewItem:NO isHotSale:YES ComplectionBlock:^(NSArray *array) {
-       
-        [self.itemList removeAllObjects];
-        [self.itemList addObjectsFromArray:array];
-    }];
-}
-
-- (void)requestNetItemData{
-    
-    [HYGoodsHandle getBrandsShopAllProduct:_sellerID pageNo:1 isNewItem:YES isHotSale:NO ComplectionBlock:^(NSArray *array) {
-        
-        [self.itemList removeAllObjects];
-        [self.itemList addObjectsFromArray:array];
-    }];
-}
 
 
 #pragma mark - lazyload
@@ -462,26 +362,29 @@
         _tableView.dataSource = self;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.backgroundColor = KCOLOR(@"f6f6f6");
+        _tableView.tableHeaderView = self.headerView;
     }
     return _tableView;
 }
 
-- (NSMutableArray *)bannerArray{
-    
-    if (!_bannerArray) {
-        _bannerArray = [NSMutableArray array];
-    }
-    return _bannerArray;
-}
 
-- (HYBrandShopBottomView *)bottomView{
+- (HYBrandShopHeaderView *)headerView{
     
-    if (!_bottomView) {
+    if (!_headerView) {
         
-        _bottomView = [HYBrandShopBottomView new];
-        _bottomView.delegate = self;
+        _headerView = [[HYBrandShopHeaderView alloc] initWithFrame:CGRectMake(0, 0, KSCREEN_WIDTH, 160 * WIDTH_MULTIPLE)];
+        __weak typeof (self)weakSelf = self;
+        _headerView.topBtnSelectBlock = ^(NSInteger tag) {
+            weakSelf.topItem = tag;
+            if (tag == 0) {
+                
+                [weakSelf requestNetwork];
+                return;
+            }
+            [weakSelf requestDataWithType:tag];
+        };
     }
-    return _bottomView;
+    return _headerView;
 }
 
 - (HYShareView *)shareView{
@@ -491,7 +394,7 @@
         _shareView = [[HYShareView alloc] initWithFrame:CGRectMake(0, 0, KSCREEN_WIDTH, KSCREEN_HEIGHT)];
         NSMutableDictionary *dict = [NSMutableDictionary dictionary];
         [dict setObject:@"大聪明" forKey:@"shareTitle"];
-        [dict setValue:[HYUserModel sharedInstance].userInfo.qrpath forKey:@"shareImgUrl"];
+        [dict setValue:[HYUserModel sharedInstance].userInfo.head_image_url forKey:@"shareImgUrl"];
         [dict setObject:@"老铁，没毛病，双击666\n老铁，没毛病，双击666\n老铁，没毛病，双击666" forKey:@"shareDesc"];
         
         _shareView.shareDict = dict;
@@ -533,6 +436,14 @@
         _datalist = [NSMutableArray array];
     }
     return _datalist;
+}
+
+- (NSMutableArray *)cellInfoArray{
+    
+    if (!_cellInfoArray) {
+        _cellInfoArray = [NSMutableArray array];
+    }
+    return _cellInfoArray;
 }
 
 - (NSMutableArray *)itemList{

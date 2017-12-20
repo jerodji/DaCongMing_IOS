@@ -8,38 +8,38 @@
 
 #import <Foundation/Foundation.h>
 
-@interface HYBrandShopInfoModel : NSObject
+@interface HYBrandShopRecommendModel : NSObject
 
-/** guid */
-@property (nonatomic,copy) NSString *guid;
-/** guid */
 @property (nonatomic,copy) NSString *seller_id;
-/** guid */
-@property (nonatomic,copy) NSString *seller_name;
-/** guid */
-@property (nonatomic,copy) NSString *seller_pwd;
-/** guid */
-@property (nonatomic,copy) NSString *item_list;
-/** guid */
-@property (nonatomic,copy) NSString *isFavorite;
-/** guid */
-@property (nonatomic,copy) NSArray *storeImages;
-/** hotsaleCount */
-@property (nonatomic,copy) NSString *hotsaleCount;
-/** guid */
-@property (nonatomic,copy) NSString *itemCount;
-/** itemNewCount */
-@property (nonatomic,copy) NSString *itemNewCount;
-/** justItem */
-@property (nonatomic,copy) NSArray *justItem;
+@property (nonatomic,copy) NSString *id;
+@property (nonatomic,copy) NSString *img_url;
+@property (nonatomic,copy) NSString *item_id;
+
 
 @end
 
-/**
- *  "guid": "sdfsadfas",
- "seller_id": "001",
- "seller_name": "laohailin",
- "seller_pwd": "gogo1212",
- "item_list": null,
- "isFavorite": "0"
- */
+@interface HYBrandShopStoreInfo : NSObject
+
+@property (nonatomic,copy) NSString *seller_id;
+@property (nonatomic,copy) NSString *seller_name;
+@property (nonatomic,copy) NSString *seller_pwd;
+@property (nonatomic,copy) NSString *isFavorite;
+@property (nonatomic,copy) NSArray *storeImages;
+@property (nonatomic,copy) NSString *hotsaleCount;
+@property (nonatomic,copy) NSString *itemCount;
+@property (nonatomic,copy) NSString *itemNewCount;
+@property (nonatomic,copy) NSString *wall_img;
+@property (nonatomic,copy) NSString *store_logo;
+@property (nonatomic,copy) NSArray *storeAdvertisingMaps;
+
+@end
+
+@interface HYBrandShopInfoModel : NSObject
+
+/** Item列表 */
+@property (nonatomic,copy) NSArray *itemList;
+/** 店铺信息 */
+@property (nonatomic,strong) HYBrandShopStoreInfo *storeInfo;
+
+@end
+

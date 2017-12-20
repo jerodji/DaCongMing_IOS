@@ -69,7 +69,7 @@
         make.height.equalTo(@(height));
         if (_guessLikeLabel) {
             
-            make.top.equalTo(_guessLikeLabel.mas_bottom);
+            make.top.equalTo(_guessLikeLabel.mas_bottom).offset(5 * WIDTH_MULTIPLE);
         }
         else{
             

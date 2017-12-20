@@ -24,6 +24,10 @@
 #import "HYBannerModel.h"
 #import "HYOrderDetailImageCell.h"
 
+#import "HYGoodsListViewController.h"
+#import "HYBrandShopViewController.h"
+
+
 @interface HYHomePageViewController () <UITableViewDelegate,UITableViewDataSource,SDCycleScrollViewDelegate>
 
 /** 导航栏 */
@@ -180,23 +184,29 @@
     }];
 }
 
-#pragma mark - lazyload
-- (SDCycleScrollView *)headerView{
+
+#pragma mark - bannerTapDelegate
+- (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index{
     
-    if (!_headerView) {
-        
-        //轮播图
-        _headerView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, self.view.width, 180) delegate:self placeholderImage:[UIImage imageNamed:@"banner.jpg"]];
-        _headerView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
-        _headerView.pageControlStyle = SDCycleScrollViewPageContolStyleClassic;
-        _headerView.autoScrollTimeInterval = 2;
-        _headerView.pageDotColor = KAPP_THEME_COLOR;
-        _headerView.imageURLStringsGroup = _model.banners;
-        _headerView.autoScroll = YES;
-        _headerView.infiniteLoop = YES;
-        _headerView.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+    HYBannerModel *bannerModel = self.bannerArray[index];
+    switch ([bannerModel.transition integerValue]) {
+        case 0:{
+            
+            HYBrandShopViewController *shopVC = [HYBrandShopViewController new];
+            shopVC.sellerID = bannerModel.seller_id;
+            [self.navigationController pushViewController:shopVC animated:YES];
+        }
+            break;
+        case 1:{
+            
+            HYGoodsListViewController *goodListVC = [HYGoodsListViewController new];
+            goodListVC.type = bannerModel.item_type;
+            [self.navigationController pushViewController:goodListVC animated:YES];
+        }
+            break;
+        default:
+            break;
     }
-    return _headerView;
 }
 
 #pragma mark - TableViewDataSource
@@ -245,7 +255,12 @@
 
         }
         cell.model = _model;
-        
+        cell.selectItemBlock = ^(NSString *itemType) {
+            
+            HYGoodsListViewController *goodListVC = [HYGoodsListViewController new];
+            goodListVC.type = itemType;
+            [self.navigationController pushViewController:goodListVC animated:YES];
+        };
         return cell;
     }
     else if ([cellName isEqualToString:@"HYOrderDetailImageCell"]){
@@ -270,6 +285,13 @@
 
         }
         cell.model = _model;
+        cell.selectItemBlock = ^(NSString *itemID) {
+            
+            HYGoodsDetailInfoViewController *detailVC = [[HYGoodsDetailInfoViewController alloc] init];
+            detailVC.navigationController.navigationBar.hidden = YES;
+            detailVC.goodsID = itemID;
+            [self.navigationController pushViewController:detailVC animated:YES];
+        };
         return cell;
     }
     else if ([cellName isEqualToString:@"HYHomeDoodsCell"]){
@@ -374,6 +396,25 @@
         _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(updateHomeData)];
     }
     return _tableView;
+}
+
+- (SDCycleScrollView *)headerView{
+    
+    if (!_headerView) {
+        
+        //轮播图
+        _headerView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, self.view.width, 180) delegate:self placeholderImage:[UIImage imageNamed:@"banner.jpg"]];
+        _headerView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
+        _headerView.pageControlStyle = SDCycleScrollViewPageContolStyleClassic;
+        _headerView.autoScrollTimeInterval = 3;
+        _headerView.pageDotColor = KAPP_WHITE_COLOR;
+        _headerView.currentPageDotColor = KAPP_THEME_COLOR;
+        _headerView.imageURLStringsGroup = _model.banners;
+        _headerView.autoScroll = YES;
+        _headerView.infiniteLoop = YES;
+        _headerView.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+    }
+    return _headerView;
 }
 
 - (NSMutableDictionary *)cellHeightDict{

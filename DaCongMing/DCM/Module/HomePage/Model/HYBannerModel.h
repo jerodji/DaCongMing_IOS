@@ -18,7 +18,12 @@
 @property (nonatomic,copy) NSString *banner_imgUrl;
 /** file_name */
 @property (nonatomic,copy) NSString *file_name;
-
+/** 类别 */
+@property (nonatomic,copy) NSString *item_type;
+/** transition  0商家首页  1商品列表 */
+@property (nonatomic,copy) NSString *transition;
+/** 商家ID */
+@property (nonatomic,copy) NSString *seller_id;
 
 @end
 

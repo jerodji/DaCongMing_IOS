@@ -98,7 +98,8 @@
     self.buyCountView.countCallback = ^(NSInteger count) {
         
         weakSelf.buyCountNum = count;
-        weakSelf.selectSepcLabel.text = [NSString stringWithFormat:@"%@  x  %ld",weakSelf.previousItemModel.unit,(long)weakSelf.buyCountNum];
+        NSString *unit = weakSelf.previousItemModel.unit == nil ? @"规格" : weakSelf.previousItemModel.unit;
+        weakSelf.selectSepcLabel.text = [NSString stringWithFormat:@"%@  x  %ld",unit,(long)weakSelf.buyCountNum];
     };
 }
 
@@ -251,7 +252,7 @@
             button.frame = CGRectMake(w, h, itemWidth, 30);
             w = w + itemWidth + 20;
             //如果button的位置超过屏幕边缘就换行
-            if (w > KSCREEN_WIDTH - 40) {
+            if (w > KSCREEN_WIDTH - 20) {
                 w = 26 * WIDTH_MULTIPLE;
                 h = h + button.height + 20;
                 //重设button的frame
@@ -306,7 +307,7 @@
     [UIView animateWithDuration:0.25 animations:^{
         
         _blackBgView.alpha = 0.6;
-        _bgView.frame = CGRectMake(0, 0.5 * KSCREEN_HEIGHT, KSCREEN_WIDTH, 0.5 * KSCREEN_HEIGHT);
+        _bgView.frame = CGRectMake(0, 0.4 * KSCREEN_HEIGHT, KSCREEN_WIDTH, 0.6 * KSCREEN_HEIGHT);
     }];
 }
 
@@ -333,7 +334,7 @@
     
     if (!_bgView) {
         
-        _bgView = [[UIView alloc] initWithFrame:CGRectMake(0, KSCREEN_HEIGHT, KSCREEN_WIDTH, KSCREEN_HEIGHT * 0.5)];
+        _bgView = [[UIView alloc] initWithFrame:CGRectMake(0, KSCREEN_HEIGHT, KSCREEN_WIDTH, KSCREEN_HEIGHT * 0.6)];
         _bgView.backgroundColor = KAPP_WHITE_COLOR;
         _bgView.tag = 100;
     }

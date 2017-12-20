@@ -32,7 +32,12 @@
     self.tabBar.opaque = YES;
 
     [self setupChildVC];
-    [self checkVersion];
+    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        
+        [self checkVersion];
+    });
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self showInviteView];
@@ -179,19 +184,26 @@
 
 - (void)showInviteView{
     
-    if ([[HYUserModel sharedInstance].userInfo.userRemind.type isNotBlank]) {
+    //判断是不是第一次使用
+    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"isFirstAlertInvite"]){
         
-        HYInviteParterView *inviteView = [[HYInviteParterView alloc] initWithFrame:[UIScreen mainScreen].bounds];
-        [self.view addSubview:inviteView];
-        [inviteView showInviteView];
-        
-        inviteView.payBlock = ^{
+        if ([[HYUserModel sharedInstance].userInfo.userRemind.type isNotBlank]) {
             
-            HYPayParterCostViewController *payVC = [HYPayParterCostViewController new];
-            HYBaseNavController *nav = [[HYBaseNavController alloc] initWithRootViewController:payVC];
-            [self presentViewController:nav animated:YES completion:nil];
-        };
+            HYInviteParterView *inviteView = [[HYInviteParterView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+            [self.view addSubview:inviteView];
+            [inviteView showInviteView];
+            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"isFirstAlertInvite"];
+            
+            inviteView.payBlock = ^{
+                
+                HYPayParterCostViewController *payVC = [HYPayParterCostViewController new];
+                HYBaseNavController *nav = [[HYBaseNavController alloc] initWithRootViewController:payVC];
+                [self presentViewController:nav animated:YES completion:nil];
+            };
+        }
     }
+    
+    
     
 }
 

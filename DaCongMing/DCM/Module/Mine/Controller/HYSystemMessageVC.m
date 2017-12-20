@@ -10,6 +10,7 @@
 #import "HYSystemMessageCell.h"
 #import "HYPayParterCostViewController.h"
 #import "HYMineNetRequest.h"
+#import "HYSystemMessageModel.h"
 
 @interface HYSystemMessageVC ()
 
@@ -30,7 +31,13 @@
        
         if (datalist) {
             
-            [self.datalist addObjectsFromArray:datalist];
+            [datalist enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                
+                HYSystemMessageModel *model = [HYSystemMessageModel modelWithDictionary:obj];
+                [self.datalist addObject:model];
+                
+            }];
+            
             [self.tableView reloadData];
         }
     }];
@@ -63,6 +70,7 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
     }
+    cell.model = self.datalist[indexPath.row];
     return cell;
 }
 

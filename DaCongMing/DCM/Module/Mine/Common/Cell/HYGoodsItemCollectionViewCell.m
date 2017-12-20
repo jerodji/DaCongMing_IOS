@@ -49,8 +49,14 @@
     _goodsModel = goodsModel;
     
     [_imgView sd_setImageWithURL:[NSURL URLWithString:goodsModel.item_title_image] placeholderImage:[UIImage imageNamed:@"goodsPlaceholder"]];
-    _introLabel.text = goodsModel.item_name;
+    _introLabel.text = goodsModel.publicity;
     _priceLabel.text = [NSString stringWithFormat:@"￥%@",goodsModel.item_min_price];
+    
+    NSString *title = [NSString stringWithFormat:@"%@ %@",goodsModel.origin,goodsModel.item_name];
+    NSMutableAttributedString *attributeStr = [[NSMutableAttributedString alloc] initWithString:title attributes:@{NSFontAttributeName : KFitFont(14),NSForegroundColorAttributeName : KAPP_272727_COLOR}];
+    [attributeStr addAttributes:@{NSBackgroundColorAttributeName : [UIColor blackColor],NSForegroundColorAttributeName : KAPP_WHITE_COLOR} range:NSMakeRange(0, goodsModel.origin.length)];
+    _titleLabel.attributedText = attributeStr;
+
 }
 
 - (void)layoutSubviews{

@@ -50,6 +50,8 @@
     self.view.backgroundColor = KAPP_TableView_BgColor;
     [self.view addSubview:self.horizonLine];
     [self.view addSubview:self.collectionView];
+    
+    self.title = self.title != nil ? self.title : @"商品列表";
 }
 
 - (void)setupTopButtons{
@@ -114,9 +116,9 @@
            
             HYGoodsItemModel *model = [HYGoodsItemModel modelWithDictionary:obj];
             [self.datalist addObject:model];
+            [_collectionView reloadData];
         }];
         
-        [_collectionView reloadData];
         [_collectionView.mj_header endRefreshing];
         [_collectionView.mj_footer endRefreshing];
         
@@ -133,8 +135,8 @@
             
             HYGoodsItemModel *model = [HYGoodsItemModel modelWithDictionary:obj];
             [self.datalist addObject:model];
+            [_collectionView reloadData];
         }];
-        [_collectionView reloadData];
         [_collectionView.mj_header endRefreshing];
         [_collectionView.mj_footer endRefreshing];
     }];
@@ -186,6 +188,7 @@
     _previousSelectBtn.selected = NO;
     button.selected = YES;
     _previousSelectBtn = button;
+    
     [UIView animateWithDuration:0.2 animations:^{
         
         self.horizonLine.frame = CGRectMake(button.left, button.bottom, button.width, 2);
@@ -206,7 +209,7 @@
 //每个section的item个数
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     
-    return _datalist.count;
+    return self.datalist.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -234,7 +237,7 @@
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
     
     HYGoodsItemModel *itemModel = self.datalist[indexPath.item];
-    return CGSizeMake(KSCREEN_WIDTH / 2 - 10, itemModel.cellHeight);
+    return CGSizeMake(KSCREEN_WIDTH / 2 - 10, itemModel.cellHeight ? itemModel.cellHeight : 330 * WIDTH_MULTIPLE);
 }
 
 #pragma mark - 没有数据

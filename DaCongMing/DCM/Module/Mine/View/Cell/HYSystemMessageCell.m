@@ -93,6 +93,15 @@
     }];
 }
 
+#pragma mark - setter
+- (void)setModel:(HYSystemMessageModel *)model{
+    
+    _model = model;
+//    _titleLabel.text = model.title;
+    _detailLabel.text = [NSString stringWithFormat:@"用户%@邀请你加入大聪明",model.recomer_name];
+    
+}
+
 #pragma mark - lazyload
 - (UIView *)whiteBgView{
     

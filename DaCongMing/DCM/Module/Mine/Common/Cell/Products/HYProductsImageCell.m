@@ -75,8 +75,9 @@
         _bannerView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectZero delegate:self placeholderImage:[UIImage imageNamed:@"productPlaceholder"]];
         _bannerView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
         _bannerView.pageControlStyle = SDCycleScrollViewPageContolStyleClassic;
-        _bannerView.autoScrollTimeInterval = 2;
-        _bannerView.pageDotColor = KAPP_THEME_COLOR;
+        _bannerView.autoScrollTimeInterval = 3;
+        _bannerView.pageDotColor = KAPP_WHITE_COLOR;
+        _bannerView.currentPageDotColor = KAPP_THEME_COLOR;
         _bannerView.autoScroll = YES;
         _bannerView.infiniteLoop = YES;
         _bannerView.scrollDirection = UICollectionViewScrollDirectionHorizontal;

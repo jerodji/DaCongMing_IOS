@@ -75,6 +75,15 @@
     return cell;
 }
 
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    HYHomeTagsCollectionViewCell *cell = (HYHomeTagsCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
+    if (self.selectItemBlock) {
+        
+        self.selectItemBlock(cell.tagsItemModel.item_type);
+    }
+}
+
 #pragma mark - lazyload
 - (UICollectionView *)collectionView{
     
@@ -88,7 +97,7 @@
         layout.minimumInteritemSpacing = 2;
         
         _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
-        _collectionView.backgroundColor = KAPP_WHITE_COLOR;
+        _collectionView.backgroundColor = KCOLOR(@"f0f7f4");
         _collectionView.showsVerticalScrollIndicator = NO;
         _collectionView.showsHorizontalScrollIndicator = NO;
         _collectionView.delegate = self;

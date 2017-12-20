@@ -86,25 +86,12 @@
     
     _infoModel  = infoModel;
 //     [_itemImgView sd_setImageWithURL:[NSURL URLWithString:@""] placeholderImage:[UIImage imageNamed:@"iconPlaceholder"]];
-    _itemLabel.text = infoModel.seller_name;
-    
-    if ([infoModel.isFavorite integerValue] == 0) {
-        
-        _collectBtn.selected = NO;
-    }
-    else{
-        
-        _collectBtn.selected = YES;
-    }
 }
 
 #pragma mark - action
 - (void)collectBtnAction{
     
-    if (_delegate && [_delegate respondsToSelector:@selector(shopCollectClick:)]) {
-        
-        [_delegate shopCollectClick:[_infoModel.isFavorite integerValue]];
-    }
+
 }
 
 #pragma mark - lazyload
