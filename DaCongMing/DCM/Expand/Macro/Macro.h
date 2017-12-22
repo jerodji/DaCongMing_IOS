@@ -17,6 +17,16 @@
 #define DLog(...)
 #endif
 
+#define  KAdjustsScrollViewInsets_NO(vc,scrollView)\
+_Pragma("clang diagnostic push") \
+_Pragma("clang diagnostic ignored \"-Wdeprecated-declarations\"") \
+if (@available(iOS 11.0, *)) {\
+vc.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;\
+} else {\
+    vc.automaticallyAdjustsScrollViewInsets = NO;\
+}\
+_Pragma("clang diagnostic pop") \
+
 /** ----------------------------设备信息---------------------------------
  --------------------------------------------------------------------*/
 #pragma mark - 设备信息
@@ -99,7 +109,7 @@
 /** 设置字体 */
 #define KFont(font)             [UIFont systemFontOfSize:((IS_IPHONE_6PLUS) ? (font + 2) : IS_IPHONE_5 ? (font - 2) : font)]
 /** 字体适配，如果是plus+2 iphone5-2 */
-#define KFitFont(font)          [UIFont systemFontOfSize:((IS_IPHONE_6PLUS) ? (font + 2) : IS_IPHONE_5 ? (font - 2) : font)]
+#define KFitFont(font)          [UIFont systemFontOfSize:((IS_IPHONE_6PLUS) ? (font + 1) : IS_IPHONE_5 ? (font - 1) : font)]
 /** 字体适配，如果是plus+2 */
 #define KFitBoldFont(font)          [UIFont boldSystemFontOfSize:((IS_IPHONE_6PLUS) ? (font + 2) : IS_IPHONE_5 ? (font - 2) : font)]
 

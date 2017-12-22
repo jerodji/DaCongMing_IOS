@@ -45,6 +45,8 @@
 @property (nonatomic,strong) NSMutableArray *goodsList;
 /** 购物车数量 */
 @property (nonatomic,strong) HYMyUserInfo *myUserInfo;
+/** cell信息 */
+@property (nonatomic,strong) NSMutableArray *cellInfoArray;
 
 @end
 
@@ -85,14 +87,26 @@
 
 - (void)initUI{
     
+    [self setupCellData];
     [self.view addSubview:self.tableView];
+}
+
+- (void)setupCellData{
+    
+    _cellInfoArray = [NSMutableArray array];
+    //将cell放入数组(indexPath其实就是个二维数组)中，然后根据数组中来判断
+    [_cellInfoArray addObject:@[@"HYOrderTableViewCell"]];
+    [_cellInfoArray addObject:@[@"HYMineInfoTableViewCell"]];
+    [_cellInfoArray addObject:@[@"HYHomeDoodsCell"]];
+    
+    
 }
 
 - (void)requestNetwork{
 
     _goodsList = [NSMutableArray array];
-    [HYGoodsHandle requestGoodsListItem_type:@"001" pageNo:1 andPage:5 order:nil hotsale:nil complectionBlock:^(NSArray *datalist) {
-        
+    [HYGoodsHandle requestGoodsListItem_type:@"001" pageNo:1 sortType:@"0" complectionBlock:^(NSArray *datalist)  {
+    
         [_goodsList addObjectsFromArray:datalist];
         [self.tableView reloadData];
     }];
@@ -117,7 +131,7 @@
 #pragma mark - TableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     
-    return 4;
+    return self.cellInfoArray.count;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -127,17 +141,8 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    if (indexPath.section == 0) {
-        //邀请好友
-        static NSString *inviteCellID = @"inviteCellID";
-        HYInviteFriendsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:inviteCellID];
-        if (!cell) {
-            cell = [[HYInviteFriendsTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:inviteCellID];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        }
-        return cell;
-    }
-    else if (indexPath.section == 1){
+     NSString *cellName = self.cellInfoArray[indexPath.section][0];
+     if ([cellName isEqualToString:@"HYOrderTableViewCell"]){
         
         //订单
         static NSString *myOrderCellID = @"myOrderCellID";
@@ -158,7 +163,7 @@
         cell.delegate = self;
         return cell;
     }
-    else if (indexPath.section == 2){
+    else if ([cellName isEqualToString:@"HYMineInfoTableViewCell"]){
         
         //我的账户
         static NSString *myInfoCellID = @"myInfoCellID";
@@ -170,7 +175,7 @@
         cell.delegate = self;
         return cell;
     }
-    else if (indexPath.section == 3){
+    else if ([cellName isEqualToString:@"HYHomeDoodsCell"]){
         //猜你喜欢
         static NSString *goodsCellID = @"goodsCellID";
         HYHomeDoodsCell *cell = [tableView dequeueReusableCellWithIdentifier:goodsCellID];
@@ -201,37 +206,33 @@
 #pragma mark - tableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    if (indexPath.section == 0) {
-        
-        if([HYUserHandle jumpToLoginViewControllerFromVC:self])
-            return ;
-        HYInvitateFriendsViewController *invitateFriendsVC = [HYInvitateFriendsViewController new];
-        [self.navigationController pushViewController:invitateFriendsVC animated:YES];
-    }
+//    if (indexPath.section == 0) {
+//
+//        if([HYUserHandle jumpToLoginViewControllerFromVC:self])
+//            return ;
+//        HYInvitateFriendsViewController *invitateFriendsVC = [HYInvitateFriendsViewController new];
+//        [self.navigationController pushViewController:invitateFriendsVC animated:YES];
+//    }
 }
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    if (indexPath.section == 0) {
-        
-        //邀请好友
-        return 40 * WIDTH_MULTIPLE;
-    }
-    else if (indexPath.section == 1){
+    NSString *cellName = self.cellInfoArray[indexPath.section][0];
+    if ([cellName isEqualToString:@"HYOrderTableViewCell"]){
         
         //订单
         return 110 * WIDTH_MULTIPLE;
     }
-    else if (indexPath.section == 2){
+    else if ([cellName isEqualToString:@"HYMineInfoTableViewCell"]){
         
         //按钮
         return 150 * WIDTH_MULTIPLE;
     }
-    else if (indexPath.section == 3){
+    else if ([cellName isEqualToString:@"HYHomeDoodsCell"]){
         
         //猜你喜欢
-        CGFloat height = ceil(_goodsList.count / 2.0) * 350 * WIDTH_MULTIPLE;
+        CGFloat height = ceil(_goodsList.count / 2.0) * 330 * WIDTH_MULTIPLE;
         return  height + 40 * WIDTH_MULTIPLE;
         
     }
@@ -250,7 +251,23 @@
     return 10 * WIDTH_MULTIPLE;
 }
 
-
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    
+    CGFloat sectionHeaderHeight = 10 * WIDTH_MULTIPLE;
+    if (scrollView == _tableView) {
+        
+        //去掉UItableview的section的headerview黏性
+        if (scrollView.contentOffset.y <= sectionHeaderHeight && scrollView.contentOffset.y>=0) {
+            
+            scrollView.contentInset = UIEdgeInsetsMake(-scrollView.contentOffset.y, 0, 0, 0);
+            
+        }
+        else if (scrollView.contentOffset.y >= sectionHeaderHeight) {
+            
+            scrollView.contentInset = UIEdgeInsetsMake(-sectionHeaderHeight, 0, 0, 0);
+        }
+    }
+}
 
 
 #pragma mark - headerBtnActionDelegate
@@ -415,7 +432,7 @@
 - (UITableView *)tableView{
     if (!_tableView) {
         
-        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, KSCREEN_WIDTH, KSCREEN_HEIGHT - 49 + 20) style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, KSCREEN_WIDTH, KSCREEN_HEIGHT - 49) style:UITableViewStylePlain];
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -428,7 +445,7 @@
     
     if (!_headerView) {
         
-        _headerView = [[HYMineHeaderView alloc] initWithFrame:CGRectMake(0, 0, KSCREEN_WIDTH, 190 * WIDTH_MULTIPLE)];
+        _headerView = [[HYMineHeaderView alloc] initWithFrame:CGRectMake(0, 0, KSCREEN_WIDTH, 220 * WIDTH_MULTIPLE)];
         _headerView.userInteractionEnabled = YES;
         _headerView.delegate = self;
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithActionBlock:^(id  _Nonnull sender) {

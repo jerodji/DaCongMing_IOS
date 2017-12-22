@@ -146,7 +146,7 @@
     
     _goodsList = [NSMutableArray array];
 
-    [HYGoodsHandle requestGoodsListItem_type:@"001" pageNo:1 andPage:5 order:nil hotsale:nil complectionBlock:^(NSArray *datalist) {
+    [HYGoodsHandle requestGoodsListItem_type:@"001" pageNo:1 sortType:@"0" complectionBlock:^(NSArray *datalist)  {
         
         [_goodsList addObjectsFromArray:datalist];
         [self.tableView reloadData];
@@ -358,7 +358,7 @@
     else if([cellName isEqualToString:@"HYHomeDoodsCell"]) {
         
         //猜你喜欢
-        CGFloat height = ceil(_goodsList.count / 2.0) * 350 * WIDTH_MULTIPLE;
+        CGFloat height = ceil(_goodsList.count / 2.0) * 325 * WIDTH_MULTIPLE;
         return  height + 40 * WIDTH_MULTIPLE;
     }
     

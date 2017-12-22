@@ -56,8 +56,9 @@
 #pragma mark - setter
 - (void)setPrice:(NSString *)price{
     
-    _price = price;
-    _priceLabel.text = [NSString stringWithFormat:@"￥%@",price];
+    NSMutableAttributedString *priceStr = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"￥%@",price] attributes:@{NSForegroundColorAttributeName : KAPP_PRICE_COLOR, NSFontAttributeName : KFitFont(18)}];
+    [priceStr addAttributes:@{NSFontAttributeName : KFitFont(16)} range:NSMakeRange(0, 1)];
+    _priceLabel.attributedText = priceStr ;
 }
 
 - (void)setNote:(NSString *)note{

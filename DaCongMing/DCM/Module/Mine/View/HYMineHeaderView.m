@@ -68,9 +68,11 @@
 
 - (void)setMyUserInfo:(HYMyUserInfo *)myUserInfo{
     
+    NSString *recentViewNum = [myUserInfo.browseRecordsNum isNotBlank] ? myUserInfo.browseRecordsNum : @"0";
     _myUserInfo = myUserInfo;
     _collectGoodsLabel.text = [NSString stringWithFormat:@"%@\n收藏的商品",myUserInfo.favItemNum];
     _collectStoreLabel.text = [NSString stringWithFormat:@"%@\n收藏的店铺",myUserInfo.favStoreNum];
+    _recentViewLabel.text = [NSString stringWithFormat:@"%@\n最近浏览",recentViewNum];
 }
 
 - (void)layoutSubviews{
@@ -99,21 +101,20 @@
     [_collectGoodsLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.bottom.equalTo(self);
         make.width.equalTo(@(itemWidth));
-        make.top.equalTo(self.nickNameLabel.mas_bottom).offset(10 *WIDTH_MULTIPLE);
+        make.height.mas_equalTo(50 * WIDTH_MULTIPLE);
     }];
     
     [_collectStoreLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.collectGoodsLabel.mas_right);
         make.bottom.equalTo(self.collectGoodsLabel);
-        make.width.equalTo(@(itemWidth));
-        make.top.equalTo(self.nickNameLabel.mas_bottom).offset(10 *WIDTH_MULTIPLE);
+        make.size.equalTo(_collectGoodsLabel);
+        
     }];
     
     [_recentViewLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.collectStoreLabel.mas_right);
         make.bottom.equalTo(self.collectGoodsLabel);
-        make.width.equalTo(@(itemWidth));
-        make.top.equalTo(self.nickNameLabel.mas_bottom).offset(10 *WIDTH_MULTIPLE);
+        make.size.equalTo(_collectGoodsLabel);
     }];
 }
 

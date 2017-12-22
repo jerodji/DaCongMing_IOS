@@ -47,6 +47,8 @@
 @property (nonatomic, copy) NSString *salesVolume;
 /** provincePrice */
 @property (nonatomic, copy) NSString *provincePrice;
+/** 规格 */
+@property (nonatomic, copy) NSString *unit;
 /** 产地 */
 @property (nonatomic, copy) NSString *origin;
 /** 副标题 */

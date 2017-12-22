@@ -27,6 +27,10 @@
 @property (nonatomic,assign) NSInteger pageCount;
 /** 当前请求的类型 */
 @property (nonatomic,assign) HYGoodsListType requestType;
+/** 是否选择销量排序 */
+@property (nonatomic,assign) BOOL isSalesSelect;
+/** 是否选择价格排序 */
+@property (nonatomic,assign) BOOL isPriceSelect;
 
 @end
 
@@ -41,7 +45,7 @@
     
     [self setupTopButtons];
     [self setupSubviews];
-    [self requestGoodsDefaultList];
+    [self requestGoodsListWithSortType:self.requestType];
 
 }
 
@@ -56,19 +60,22 @@
 
 - (void)setupTopButtons{
     
-    NSArray *titleArr = @[@"默认",@"销量",@"价格"];
+    NSArray *titleArr = @[@"默认",@"价格",@"销量"];
     CGFloat width = self.view.width / titleArr.count;
     for (NSInteger i = 0; i < titleArr.count ; i++) {
         
         UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(i*width, 0, width, 35)];
         button.backgroundColor = [UIColor whiteColor];
         [button setImage:[UIImage imageNamed:@"default_arrow_down"] forState:UIControlStateNormal];
-        [button setImage:[UIImage imageNamed:@"default_arrow_up"] forState:UIControlStateSelected];
+//        [button setImage:[UIImage imageNamed:@"default_arrow_up"] forState:UIControlStateSelected];
         [button setTitle:titleArr[i] forState:UIControlStateNormal];
         [button setTitleColor:KCOLOR(@"7b7b7b") forState:UIControlStateNormal];
         [button setTitleColor:KCOLOR(@"272727") forState:UIControlStateSelected];
         [button addTarget:self action:@selector(topButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+//        [button setBackgroundImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
+        [button setBackgroundImage:[UIImage imageNamed:@"shadow_l"] forState:UIControlStateHighlighted];
         button.tag = i + 10;
+        button.titleLabel.font = KFitFont(14);
         
         UIImage *image = button.imageView.image;
         [button setTitleEdgeInsets:UIEdgeInsetsMake(0, -image.size.width - 6, 0, image.size.width + 6)];
@@ -80,21 +87,30 @@
             button.selected = YES;
         }
     }
+    
+    CGFloat buttonOrigin = (35 - 15 * WIDTH_MULTIPLE) / 2;
+    for (NSInteger i = 0; i < 2; i++) {
+        
+        UIView *line = [UIView new];
+        line.backgroundColor = KAPP_7b7b7b_COLOR;
+        line.frame = CGRectMake(width * i + width, buttonOrigin, 1, 15 * WIDTH_MULTIPLE);
+        [self.view addSubview:line];
+    }
 }
 
 #pragma mark - networkRequest
-- (void)requestGoodsDefaultList{
+- (void)requestGoodsListWithSortType:(HYGoodsListType)sortType{
     
     [_datalist removeAllObjects];
     self.pageCount = 1;
-    [HYGoodsHandle requestGoodsListItem_type:_type pageNo:1 andPage:5 order:nil hotsale:@"ture" complectionBlock:^(NSArray *datalist) {
+    NSString *sortTypeStr = [NSString stringWithFormat:@"%lu",(unsigned long)sortType];
+    [HYGoodsHandle requestGoodsListItem_type:_type pageNo:1 sortType:sortTypeStr complectionBlock:^(NSArray *datalist) {
        
         if (datalist) {
             
             [datalist enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 
                 HYGoodsItemModel *model = [HYGoodsItemModel modelWithDictionary:obj];
-                model.cellHeight = 333 * WIDTH_MULTIPLE;
                 [self.datalist addObject:model];
             }];
             [_collectionView reloadData];
@@ -106,71 +122,25 @@
     }];
 }
 
-- (void)requestGoodsPriceDescList{
-    
-    [_datalist removeAllObjects];
-    self.pageCount = 1;
-    [HYGoodsHandle requestGoodsListItem_type:_type pageNo:1 andPage:5 order:@"descending" hotsale:@"ture" complectionBlock:^(NSArray *datalist) {
-        
-        [datalist enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-           
-            HYGoodsItemModel *model = [HYGoodsItemModel modelWithDictionary:obj];
-            [self.datalist addObject:model];
-            [_collectionView reloadData];
-        }];
-        
-        [_collectionView.mj_header endRefreshing];
-        [_collectionView.mj_footer endRefreshing];
-        
-    }];
-}
-
-- (void)requestGoodsPriceAscList{
-    
-    [_datalist removeAllObjects];
-    self.pageCount = 1;
-    [HYGoodsHandle requestGoodsListItem_type:_type pageNo:1 andPage:5 order:@"Ascending" hotsale:@"ture" complectionBlock:^(NSArray *datalist) {
-        
-        [datalist enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            
-            HYGoodsItemModel *model = [HYGoodsItemModel modelWithDictionary:obj];
-            [self.datalist addObject:model];
-            [_collectionView reloadData];
-        }];
-        [_collectionView.mj_header endRefreshing];
-        [_collectionView.mj_footer endRefreshing];
-    }];
-}
-
 #pragma mark - refresh & reloadDataMore
 - (void)refreshData{
     
-    switch (self.requestType) {
-        case HYGoodsListTypeDefault:
-            
-            [self requestGoodsDefaultList];
-            break;
-        case HYGoodsListTypeAesc:
-            
-            [self requestGoodsPriceAscList];
-            break;
-        case HYGoodsListTypeDesc:
-            
-            [self requestGoodsPriceDescList];
-            break;
-        default:
-            break;
-    }
+    [self requestGoodsListWithSortType:self.requestType];
 }
 
 - (void)reloadDataMore{
     
     self.pageCount += 1;
-    [HYGoodsHandle requestGoodsListItem_type:_type pageNo:self.pageCount andPage:5 order:nil hotsale:@"ture" complectionBlock:^(NSArray *datalist) {
+    NSString *sortTypeStr = [NSString stringWithFormat:@"%lu",(unsigned long)self.requestType];
+    [HYGoodsHandle requestGoodsListItem_type:_type pageNo:1 sortType:sortTypeStr complectionBlock:^(NSArray *datalist)  {
         
         if (datalist.count) {
             
-            [self.datalist addObjectsFromArray:datalist];
+            [datalist enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                
+                HYGoodsItemModel *model = [HYGoodsItemModel modelWithDictionary:obj];
+                [self.datalist addObject:model];
+            }];
             [_collectionView reloadData];
             [_collectionView.mj_footer endRefreshing];
         }
@@ -185,18 +155,37 @@
 #pragma mark - action
 - (void)topButtonAction:(UIButton *)button{
     
-    _previousSelectBtn.selected = NO;
-    button.selected = YES;
-    _previousSelectBtn = button;
-    
     [UIView animateWithDuration:0.2 animations:^{
         
         self.horizonLine.frame = CGRectMake(button.left, button.bottom, button.width, 2);
     }];
     
     self.requestType = button.tag - 10;
-    [self refreshData];
+    if (button.tag == 0) {
+        
+        self.requestType = HYGoodsListTypeDefault;
+    }
    
+    if (button.tag == 11) {
+        
+        NSString *imageName = _isSalesSelect ? @"default_arrow_up" : @"default_arrow_down";
+        self.requestType = _isSalesSelect ? HYGoodsListTypeSalesVolumeAesc : HYGoodsListTypeSalesVolumeDesc;
+        [button setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
+        _isSalesSelect = !_isSalesSelect;
+    }
+    
+    if (button.tag == 12) {
+        
+        NSString *imageName = _isPriceSelect ? @"default_arrow_up" : @"default_arrow_down";
+        self.requestType = _isPriceSelect ? HYGoodsListTypePriceAesc : HYGoodsListTypePriceDesc;
+        [button setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
+        _isPriceSelect = !_isPriceSelect;
+    }
+    _previousSelectBtn.selected = NO;
+    button.selected = YES;
+    _previousSelectBtn = button;
+    
+    [self requestGoodsListWithSortType:self.requestType];
 }
 
 #pragma mark - collectionViewDataSource
@@ -237,7 +226,7 @@
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
     
     HYGoodsItemModel *itemModel = self.datalist[indexPath.item];
-    return CGSizeMake(KSCREEN_WIDTH / 2 - 10, itemModel.cellHeight ? itemModel.cellHeight : 330 * WIDTH_MULTIPLE);
+    return CGSizeMake((KSCREEN_WIDTH - 10 - 5 * WIDTH_MULTIPLE) / 2, itemModel.cellHeight ? itemModel.cellHeight : 325 * WIDTH_MULTIPLE);
 }
 
 #pragma mark - 没有数据
@@ -281,7 +270,7 @@
         //1.初始化layout
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
         layout.scrollDirection = UICollectionViewScrollDirectionVertical;
-//        layout.itemSize = CGSizeMake(KSCREEN_WIDTH / 2 - 10, 346 * WIDTH_MULTIPLE);
+//        layout.estimatedItemSize = CGSizeMake(KSCREEN_WIDTH / 2 - 10, 315 * WIDTH_MULTIPLE);
         layout.scrollDirection = UICollectionViewScrollDirectionVertical;
         layout.minimumInteritemSpacing = 5;
         layout.minimumLineSpacing = 6 * WIDTH_MULTIPLE;      //纵向间距

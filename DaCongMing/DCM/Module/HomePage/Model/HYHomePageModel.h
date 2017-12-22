@@ -81,6 +81,13 @@
 
 @end
 
+@interface HYHomeMenuTitle : NSObject
+
+@property (nonatomic,copy) NSString *sub_title;
+@property (nonatomic,copy) NSString *main_title;
+
+@end
+
 @interface HYHomePageModel : NSObject <NSCoding>
 
 /** banner */
@@ -103,7 +110,8 @@
 
 /** hotSale */
 @property (nonatomic,copy) NSDictionary *hotSale;
-
+/** 文本标题 */
+@property (nonatomic,strong) HYHomeMenuTitle *menu_module;
 /** 健康养生 */
 @property (nonatomic,strong) HYGoodHealthModel *goodHealth;
 

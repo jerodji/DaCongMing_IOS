@@ -25,7 +25,7 @@
 #import "HYBrandShopImageCell.h"
 
 
-@interface HYBrandShopViewController () <UITableViewDelegate,UITableViewDataSource,HYBrandsShopTapDelegate,HYShopCollectDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
+@interface HYBrandShopViewController () <UITableViewDelegate,UITableViewDataSource,HYBrandsShopTapDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
 /** brandsShopNavView */
 @property (nonatomic,strong) HYBrandShopNavView *brandsShopNavView;
@@ -47,6 +47,8 @@
 @property (nonatomic,strong) NSMutableArray *datalist;
 /** 是否搜到数据 */
 @property (nonatomic,assign) BOOL isNoData;
+/** 分页页面 */
+@property (nonatomic,assign) NSInteger pageNo;
 
 @end
 
@@ -56,6 +58,8 @@
     
     [super viewDidLoad];
     [self requestNetwork];
+    
+    KAdjustsScrollViewInsets_NO(self, self.tableView);
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -69,6 +73,7 @@
     [self.navigationController.navigationBar addSubview:self.brandsShopNavView];
     self.view.backgroundColor = KAPP_WHITE_COLOR;
     [self.view addSubview:self.tableView];
+    self.edgesForExtendedLayout = UIRectEdgeNone;
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
@@ -107,7 +112,7 @@
 - (void)requestRecommendData{
     
     [self.datalist removeAllObjects];
-    [HYGoodsHandle requestGoodsListItem_type:@"001" pageNo:1 andPage:5 order:nil hotsale:nil complectionBlock:^(NSArray *datalist) {
+    [HYGoodsHandle requestGoodsListItem_type:@"001" pageNo:1 sortType:@"0" complectionBlock:^(NSArray *datalist)  {
         
         [self.datalist addObjectsFromArray:datalist];
         [self.collectionView reloadData];
@@ -116,10 +121,29 @@
 
 - (void)requestDataWithType:(NSInteger)type{
     
+    _pageNo = 1;
     [self.itemList removeAllObjects];
-    [HYGoodsHandle getBrandsShopProductWithSeller:self.sellerID Type:type pageNo:1 ComplectionBlock:^(NSArray *datalist) {
+    [HYGoodsHandle getBrandsShopProductWithSeller:self.sellerID Type:type pageNo:_pageNo ComplectionBlock:^(NSArray *datalist) {
        
         [self.itemList addObjectsFromArray:datalist];
+        [self.tableView reloadData];
+        [_tableView.mj_footer endRefreshing];
+    }];
+}
+
+- (void)reloadDataMore{
+    
+    _pageNo++;
+    [HYGoodsHandle getBrandsShopProductWithSeller:self.sellerID Type:self.topItem pageNo:_pageNo ComplectionBlock:^(NSArray *datalist) {
+        
+        [self.itemList addObjectsFromArray:datalist];
+        if (datalist.count) {
+            
+            [_tableView.mj_footer endRefreshing];
+        }
+        else{
+            [_tableView.mj_footer endRefreshingWithNoMoreData];
+        }
         [self.tableView reloadData];
     }];
 }
@@ -217,8 +241,8 @@
     if (indexPath.section == 1){
         
         //猜你喜欢
-        CGFloat height = ceil(self.itemList.count / 2.0) * 350 * WIDTH_MULTIPLE;
-        return 10 + height;
+        CGFloat height = ceil(self.itemList.count / 2.0) * 330 * WIDTH_MULTIPLE;
+        return height;
     }
     return 10;
 }
@@ -363,6 +387,9 @@
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.backgroundColor = KCOLOR(@"f6f6f6");
         _tableView.tableHeaderView = self.headerView;
+        
+        _tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(reloadDataMore)];
+        _tableView.mj_footer.automaticallyHidden = YES;
     }
     return _tableView;
 }

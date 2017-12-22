@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04066E131FECE994002F4FA4 /* AdhocOptions.plist in Resources */ = {isa = PBXBuildFile; fileRef = 04066E121FECE993002F4FA4 /* AdhocOptions.plist */; };
+		04066E151FED09F7002F4FA4 /* AppStoreOptions.plist in Resources */ = {isa = PBXBuildFile; fileRef = 04066E141FED09F7002F4FA4 /* AppStoreOptions.plist */; };
 		041FEFEA1FE0D7D30064210F /* HYPayBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 041FEFE91FE0D7D30064210F /* HYPayBottomView.m */; };
 		043BFC8A1FEA66DC003BAE3A /* HYBrandShopHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 043BFC891FEA66DC003BAE3A /* HYBrandShopHeaderView.m */; };
 		043BFC8D1FEA70A1003BAE3A /* HYBrandShopImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 043BFC8C1FEA70A1003BAE3A /* HYBrandShopImageCell.m */; };
@@ -235,6 +237,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		04066E121FECE993002F4FA4 /* AdhocOptions.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AdhocOptions.plist; sourceTree = SOURCE_ROOT; };
+		04066E141FED09F7002F4FA4 /* AppStoreOptions.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AppStoreOptions.plist; sourceTree = "<group>"; };
 		041FEFE81FE0D7D30064210F /* HYPayBottomView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYPayBottomView.h; sourceTree = "<group>"; };
 		041FEFE91FE0D7D30064210F /* HYPayBottomView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYPayBottomView.m; sourceTree = "<group>"; };
 		043BFC881FEA66DC003BAE3A /* HYBrandShopHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYBrandShopHeaderView.h; sourceTree = "<group>"; };
@@ -1176,6 +1180,8 @@
 		3E56201C1F6B6A800063AA5B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				04066E141FED09F7002F4FA4 /* AppStoreOptions.plist */,
+				04066E121FECE993002F4FA4 /* AdhocOptions.plist */,
 				3E56201D1F6B6A800063AA5B /* main.m */,
 			);
 			name = "Supporting Files";
@@ -1833,7 +1839,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				3E0FDED01FA446CD00F52DC0 /* QYResource.bundle in Resources */,
+				04066E151FED09F7002F4FA4 /* AppStoreOptions.plist in Resources */,
 				3E5620291F6B6A800063AA5B /* Assets.xcassets in Resources */,
+				04066E131FECE994002F4FA4 /* AdhocOptions.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

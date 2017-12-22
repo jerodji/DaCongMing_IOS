@@ -20,6 +20,8 @@
 @property (nonatomic,strong) UILabel *selfSellerLabel;
 /** 收藏 */
 @property (nonatomic,strong) UIButton *collectBtn;
+/** 线 */
+@property (nonatomic,strong) UIView *horizonLine;
 
 @property (nonatomic,strong) UIButton *previousBtn;
 
@@ -69,6 +71,7 @@
             button.selected = YES;
         }
     }
+    [self addSubview:self.horizonLine];
     
     for (NSInteger i = 0; i < buttonTitleArray.count - 1; i++) {
         
@@ -96,13 +99,6 @@
         
     }];
     
-    [_collectBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        
-        make.right.equalTo(self).offset(-10 * WIDTH_MULTIPLE);
-        make.centerY.equalTo(self);
-        make.size.mas_offset(CGSizeMake(60 * WIDTH_MULTIPLE, 24 * WIDTH_MULTIPLE));
-    }];
-    
     [_itemLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.left.equalTo(_shopIconImgView.mas_right).offset(10 * WIDTH_MULTIPLE);
@@ -117,6 +113,13 @@
         make.left.equalTo(_itemLabel);
         make.height.mas_equalTo(15 * WIDTH_MULTIPLE);
         make.width.mas_equalTo(40);
+    }];
+    
+    [_collectBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.right.equalTo(self).offset(-10 * WIDTH_MULTIPLE);
+        make.bottom.equalTo(_selfSellerLabel);
+        make.size.mas_offset(CGSizeMake(60 * WIDTH_MULTIPLE, 24 * WIDTH_MULTIPLE));
     }];
 }
 
@@ -171,6 +174,11 @@
     self.previousBtn.selected = NO;
     button.selected = YES;
     self.previousBtn = button;
+    
+    [UIView animateWithDuration:0.2 animations:^{
+        
+        self.horizonLine.frame = CGRectMake(button.left, button.bottom, button.width, 2);
+    }];
     if (self.topBtnSelectBlock) {
         
         self.topBtnSelectBlock(button.tag - 10);
@@ -188,6 +196,16 @@
         _shopBgImgView.image = [UIImage imageNamed:@"forest"];
     }
     return _shopBgImgView;
+}
+
+- (UIView *)horizonLine{
+    
+    if (!_horizonLine) {
+        
+        _horizonLine = [[UIView alloc] initWithFrame:CGRectMake(0, self.bottom - 4, self.width / 4, 2)];
+        _horizonLine.backgroundColor = KCOLOR(@"383938");
+    }
+    return _horizonLine;
 }
 
 - (UIImageView *)shopIconImgView{

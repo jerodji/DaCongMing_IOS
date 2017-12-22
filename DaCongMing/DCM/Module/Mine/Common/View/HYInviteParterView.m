@@ -38,7 +38,7 @@
         
         make.centerX.equalTo(self);
         make.centerY.equalTo(self).offset(-KSCREEN_HEIGHT);
-        make.size.mas_equalTo(CGSizeMake(250 * WIDTH_MULTIPLE, 320 * WIDTH_MULTIPLE));
+        make.size.mas_equalTo(CGSizeMake(250 * WIDTH_MULTIPLE, 330 * WIDTH_MULTIPLE));
     }];
     
     [self addSubview:self.payBtn];
