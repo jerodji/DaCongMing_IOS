@@ -53,7 +53,7 @@
             
             [MBProgressHUD hidePregressHUD:KEYWINDOW];
         }
-        [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"请求失败，请检查网络"];
+        [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"服务器云游四方去了"];
     }];
 }
 
@@ -94,7 +94,7 @@
             
             //token过期了,跳转登录页面
             [[HYUserModel sharedInstance] clearData];
-            [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"请重新登录"];
+            [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"登录信息过期了，请重新登录"];
         }
         else{
           
@@ -108,7 +108,7 @@
             [MBProgressHUD hidePregressHUD:KEYWINDOW];
         }
         [MBProgressHUD hidePregressHUD:KEYWINDOW];
-        [JRToast showWithText:@"服务器开小差了.."];
+        [JRToast showWithText:@"服务器云游四方去了"];
         successBlock(nil);
     }];
 }

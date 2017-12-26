@@ -12,11 +12,14 @@
 
 #define WXAppID                 @"wxedc46e1ed9be6e2c"
 #define TencentBuglyID          @"fee8e3dbb9"
+#define UMengAPPKey             @"5a40aadbf29d980de8000042"
 #define QIYUAPPID               @"c8f8ca70f45342c288cb2e23e0c6b600"
+#define APPID                   @"1301986941"
+
 
 /** ------------------------------网络接口------------------------------- */
 //接口总域名
-#define API_DomainStr           @"http://www.laopdr.cn"
+#define API_DomainStr           @"https://www.laopdr.cn"
 
 //#define API_DomainStr           @""
 
@@ -61,6 +64,8 @@
 //获取我的售后
 #define API_GetMySellAfter       @"HAILIN_SERVER/getRefOrderListByStat.do"
 
+//获取系统消息
+#define API_SystemMessage       @"HAILIN_SERVER/getUserRemind.do"
 
 /********************************订单相关*********************************/
 #pragma mark - 订单相关
@@ -78,6 +83,9 @@
 
 //创建订单
 #define API_CreateOrder         @"HAILIN_SERVER/getSellerOrder.do"
+
+//创建用户推荐订单
+#define API_CreateParterRecommendOrder         @"HAILIN_SERVER/getAgentSellerOrder.do"
 
 //重复下单
 #define API_CreateOrderWithOrderID         @"HAILIN_SERVER/rebuySellerOrder.do"
@@ -126,6 +134,9 @@
 
 //物流详情
 #define API_GetLogisticUrl                    @"HAILIN_SERVER/getOrderExpressInfo.do"
+
+//最近浏览
+#define API_RecentView                    @"HAILIN_SERVER/loadBrowseRecords.do"
 /***************************************收货地址**********************************/
 #pragma mark - 收货地址
 //获取收货地址

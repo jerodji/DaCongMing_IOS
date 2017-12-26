@@ -54,6 +54,68 @@
     }];
 }
 
++ (void)getMyUserInfoComplectionBlock:(void (^)(HYUserModel *))complection{
+    
+    NSMutableDictionary *requestParam = [NSMutableDictionary dictionary];
+    [requestParam setValue:[HYUserModel sharedInstance].token forKey:@"token"];
+    
+    [[HTTPManager shareHTTPManager] postDataFromUrl:API_GetUserInfo withParameter:requestParam isShowHUD:YES success:^(id returnData) {
+        
+        if (returnData) {
+            
+            NSInteger code = [[returnData objectForKey:@"code"] integerValue];
+            if (code == 000) {
+                
+                NSDictionary *dict = [returnData objectForKey:@"data"];
+                NSMutableDictionary *userDict = [NSMutableDictionary dictionary];
+                [userDict setValue:dict forKey:@"userInfo"];
+                [userDict setValue:[HYUserModel sharedInstance].token forKey:@"token"];
+                
+                HYUserModel *model = [HYUserModel sharedInstance];
+                [model modelSetWithDictionary:userDict];
+                [HYPlistTools archiveObject:model withName:KUserModelData];
+                complection(model);
+            }
+            else{
+                complection(nil);
+            }
+        }
+        else{
+            
+            complection(nil);
+        }
+    }];
+}
+
++ (void)getParterRecommendPayOrderComplectionBlock:(void (^)(HYCreateOrder *))complection{
+    
+    NSMutableDictionary *requestParam = [NSMutableDictionary dictionary];
+    [requestParam setValue:[HYUserModel sharedInstance].token forKey:@"token"];
+    
+    [[HTTPManager shareHTTPManager] postDataFromUrl:API_CreateParterRecommendOrder withParameter:requestParam isShowHUD:YES success:^(id returnData) {
+        
+        if (returnData) {
+            
+            NSInteger code = [[returnData objectForKey:@"code"] integerValue];
+            if (code == 000) {
+                
+                NSDictionary *dict = [returnData objectForKey:@"data"];
+                HYCreateOrder *model = [HYCreateOrder modelWithDictionary:dict];
+                complection(model);
+            }
+            else{
+                complection(nil);
+                [JRToast showWithText:@"获取订单出现了问题"];
+            }
+        }
+        else{
+            
+            [JRToast showWithText:@"服务器游走去了"];
+            complection(nil);
+        }
+    }];
+}
+
 + (void)getAuthCodeWithPhone:(NSString *)phone complectionBlock:(void (^)(BOOL))complection{
     
     NSMutableDictionary *param = [NSMutableDictionary dictionary];

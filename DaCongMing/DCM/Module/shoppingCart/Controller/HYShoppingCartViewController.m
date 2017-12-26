@@ -155,7 +155,7 @@
         [_tableView reloadData];
     }];
     
-    [HYGoodsHandle requestGoodsListItem_type:@"001" pageNo:1 andPage:5 order:nil hotsale:nil complectionBlock:^(NSArray *datalist) {
+    [HYGoodsHandle requestGoodsListItem_type:@"001" pageNo:1 sortType:@"0" keyword:nil complectionBlock:^(NSArray *datalist) {
         
         [self.goodsList removeAllObjects];
         [self.goodsList addObjectsFromArray:datalist];
@@ -531,7 +531,7 @@
         else{
             
             //猜你喜欢
-            CGFloat height = ceil(_goodsList.count / 2.0) * 350 * WIDTH_MULTIPLE;
+            CGFloat height = ceil(_goodsList.count / 2.0) * 340 * WIDTH_MULTIPLE;
             return  height + 40 * WIDTH_MULTIPLE;
         }
     }

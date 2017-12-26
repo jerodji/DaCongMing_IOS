@@ -18,5 +18,7 @@ pod 'WechatOpenSDK'
 pod 'FMDB', '~> 2.6.2'
 pod 'DZNEmptyDataSet', '~> 1.8.1'
 pod 'Bugly'
+pod 'UMengAnalytics'
+pod 'FDFullscreenPopGesture', '1.1'
 
 end

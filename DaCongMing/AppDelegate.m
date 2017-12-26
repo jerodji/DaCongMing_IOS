@@ -37,6 +37,7 @@
 #import <AlipaySDK/AlipaySDK.h>
 #import <Bugly/Bugly.h>
 #import "QYSDK.h"
+#import <UMMobClick/MobClick.h>
 
 @interface AppDelegate ()<WXApiDelegate>
 
@@ -73,6 +74,8 @@
     
     [Bugly startWithAppId:TencentBuglyID];
     [[QYSDK sharedSDK] registerAppId:QIYUAPPID appName:@"大聪明"];
+    UMConfigInstance.appKey = UMengAPPKey;
+    [MobClick startWithConfigure:UMConfigInstance];
     
 //    HYLoginViewController *loginVC = [[HYLoginViewController alloc] init];
 //    self.window.rootViewController = loginVC;
@@ -144,6 +147,11 @@
                 break;
         }
     }
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
+    
+    return YES;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

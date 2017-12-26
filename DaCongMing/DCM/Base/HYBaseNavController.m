@@ -22,9 +22,10 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-    
+    self.fd_fullscreenPopGestureRecognizer.enabled = YES;
     self.delegate = self;
-    
+    _screenshotImgArray = [NSMutableArray array];
+
 }
 
 - (void)createGesture{
@@ -43,7 +44,6 @@
     _coverView.frame = _screenshotImgView.frame;
     _coverView.backgroundColor = KAPP_BLACK_COLOR;
     
-    _screenshotImgArray = [NSMutableArray array];
 }
 
 - (void)panGestureAction:(UIPanGestureRecognizer *)pan{
@@ -92,7 +92,9 @@
     CGFloat currentTranslateScale = offsetX / KSCREEN_WIDTH;
     if (offsetX < KSCREEN_WIDTH) {
         
-        _screenshotImgView.transform = CGAffineTransformMakeTranslation(offsetX - KSCREEN_WIDTH, 0);
+//        _screenshotImgView.transform = CGAffineTransformMakeTranslation((offsetX - KSCREEN_WIDTH) * 0.6, 0);
+        
+        _screenshotImgView.layer.transform = CATransform3DMakeScale(0.96 - currentTranslateScale * 0.3, 0.98 - currentTranslateScale * 0.3, 0.98 - currentTranslateScale * 0.3);
     }
     
     //根据偏移量计算透明度
@@ -110,7 +112,7 @@
             
             self.view.transform = CGAffineTransformIdentity;
             //恢复imagView的位置
-            _screenshotImgView.transform = CGAffineTransformMakeTranslation(-KSCREEN_WIDTH, 0);
+//            _screenshotImgView.transform = CGAffineTransformMakeTranslation(-KSCREEN_WIDTH, 0);
         } completion:^(BOOL finished) {
             
             [_screenshotImgView removeFromSuperview];
@@ -177,10 +179,9 @@
         viewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backBtnView];
         viewController.navigationItem.hidesBackButton = YES;
         
-        
-        [self createGesture];
-        //截图
-        [self screenShot];
+//        [self createGesture];
+//        //截图
+//        [self screenShot];
     }
     
     [super pushViewController:viewController animated:animated];

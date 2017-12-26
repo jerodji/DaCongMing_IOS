@@ -17,7 +17,7 @@
 /**
  *  请求商品列表
  */
-+ (void)requestGoodsListItem_type:(NSString *)item_type pageNo:(NSInteger )pageNo andPage:(NSInteger )pageSize order:(NSString *)order hotsale:(NSString *)hotSale complectionBlock:(void(^)(NSArray *datalist))complection;
++ (void)requestGoodsListItem_type:(NSString *)item_type pageNo:(NSInteger)pageNo sortType:(NSString *)sortType keyword:(NSString *)keyword complectionBlock:(void (^)(NSArray *datalist))complection;
 
 /**
  *  请求商品详情
@@ -57,7 +57,7 @@
 /**
  *  店铺所有商品
  */
-+ (void)getBrandsShopAllProduct:(NSString *)sellerID pageNo:(NSInteger)pageNo isNewItem:(BOOL)isNewItem isHotSale:(BOOL)isHotSale ComplectionBlock:(void(^)(NSArray *array))complection;
++ (void)getBrandsShopProductWithSeller:(NSString *)sellerID Type:(NSInteger)type pageNo:(NSInteger)pageNO ComplectionBlock:(void (^)(NSArray *datalist))complection;
 
 /**
  *  收藏店铺

@@ -27,6 +27,10 @@
 @property (nonatomic,assign) NSInteger pageCount;
 /** 当前请求的类型 */
 @property (nonatomic,assign) HYGoodsListType requestType;
+/** 是否选择销量排序 */
+@property (nonatomic,assign) BOOL isSalesSelect;
+/** 是否选择价格排序 */
+@property (nonatomic,assign) BOOL isPriceSelect;
 
 @end
 
@@ -41,7 +45,7 @@
     
     [self setupTopButtons];
     [self setupSubviews];
-    [self requestGoodsDefaultList];
+    [self requestGoodsListWithSortType:self.requestType];
 
 }
 
@@ -50,25 +54,28 @@
     self.view.backgroundColor = KAPP_TableView_BgColor;
     [self.view addSubview:self.horizonLine];
     [self.view addSubview:self.collectionView];
+    
+    self.title = self.title != nil ? self.title : @"商品列表";
 }
 
 - (void)setupTopButtons{
     
-    NSArray *normalImgArr = @[@"default_arrow_right",@"price_arrow_down"];
-    NSArray *selectImgArr = @[@"default_arrow_down", @"price_arrow_up"];
-    NSArray *titleArr     = @[@"默认",@"价格"];
-    CGFloat width = self.view.width / 2;
-    for (NSInteger i = 0; i < normalImgArr.count ; i++) {
+    NSArray *titleArr = @[@"默认",@"价格",@"销量"];
+    CGFloat width = self.view.width / titleArr.count;
+    for (NSInteger i = 0; i < titleArr.count ; i++) {
         
         UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(i*width, 0, width, 35)];
         button.backgroundColor = [UIColor whiteColor];
-        [button setImage:[UIImage imageNamed:normalImgArr[i]] forState:UIControlStateNormal];
-        [button setImage:[UIImage imageNamed:selectImgArr[i]] forState:UIControlStateSelected];
+        [button setImage:[UIImage imageNamed:@"default_arrow_down"] forState:UIControlStateNormal];
+//        [button setImage:[UIImage imageNamed:@"default_arrow_up"] forState:UIControlStateSelected];
         [button setTitle:titleArr[i] forState:UIControlStateNormal];
         [button setTitleColor:KCOLOR(@"7b7b7b") forState:UIControlStateNormal];
         [button setTitleColor:KCOLOR(@"272727") forState:UIControlStateSelected];
         [button addTarget:self action:@selector(topButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+//        [button setBackgroundImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
+        [button setBackgroundImage:[UIImage imageNamed:@"shadow_l"] forState:UIControlStateHighlighted];
         button.tag = i + 10;
+        button.titleLabel.font = KFitFont(14);
         
         UIImage *image = button.imageView.image;
         [button setTitleEdgeInsets:UIEdgeInsetsMake(0, -image.size.width - 6, 0, image.size.width + 6)];
@@ -80,18 +87,32 @@
             button.selected = YES;
         }
     }
+    
+    CGFloat buttonOrigin = (35 - 15 * WIDTH_MULTIPLE) / 2;
+    for (NSInteger i = 0; i < 2; i++) {
+        
+        UIView *line = [UIView new];
+        line.backgroundColor = KAPP_7b7b7b_COLOR;
+        line.frame = CGRectMake(width * i + width, buttonOrigin, 1, 15 * WIDTH_MULTIPLE);
+        [self.view addSubview:line];
+    }
 }
 
 #pragma mark - networkRequest
-- (void)requestGoodsDefaultList{
+- (void)requestGoodsListWithSortType:(HYGoodsListType)sortType{
     
     [_datalist removeAllObjects];
     self.pageCount = 1;
-    [HYGoodsHandle requestGoodsListItem_type:_type pageNo:1 andPage:5 order:nil hotsale:@"ture" complectionBlock:^(NSArray *datalist) {
+    NSString *sortTypeStr = [NSString stringWithFormat:@"%lu",(unsigned long)sortType];
+    [HYGoodsHandle requestGoodsListItem_type:_type pageNo:1 sortType:sortTypeStr keyword:self.keyword complectionBlock:^(NSArray *datalist) {
        
         if (datalist) {
             
-            [self.datalist addObjectsFromArray:datalist];
+            [datalist enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                
+                HYGoodsItemModel *model = [HYGoodsItemModel modelWithDictionary:obj];
+                [self.datalist addObject:model];
+            }];
             [_collectionView reloadData];
             
         }
@@ -101,62 +122,25 @@
     }];
 }
 
-- (void)requestGoodsPriceDescList{
-    
-    [_datalist removeAllObjects];
-    self.pageCount = 1;
-    [HYGoodsHandle requestGoodsListItem_type:_type pageNo:1 andPage:5 order:@"descending" hotsale:@"ture" complectionBlock:^(NSArray *datalist) {
-        
-        [self.datalist addObjectsFromArray:datalist];
-        [_collectionView reloadData];
-        [_collectionView.mj_header endRefreshing];
-        [_collectionView.mj_footer endRefreshing];
-        
-    }];
-}
-
-- (void)requestGoodsPriceAscList{
-    
-    [_datalist removeAllObjects];
-    self.pageCount = 1;
-    [HYGoodsHandle requestGoodsListItem_type:_type pageNo:1 andPage:5 order:@"Ascending" hotsale:@"ture" complectionBlock:^(NSArray *datalist) {
-        
-        [self.datalist addObjectsFromArray:datalist];
-        [_collectionView reloadData];
-        [_collectionView.mj_header endRefreshing];
-        [_collectionView.mj_footer endRefreshing];
-    }];
-}
-
 #pragma mark - refresh & reloadDataMore
 - (void)refreshData{
     
-    switch (self.requestType) {
-        case HYGoodsListTypeDefault:
-            
-            [self requestGoodsDefaultList];
-            break;
-        case HYGoodsListTypeAesc:
-            
-            [self requestGoodsPriceAscList];
-            break;
-        case HYGoodsListTypeDesc:
-            
-            [self requestGoodsPriceDescList];
-            break;
-        default:
-            break;
-    }
+    [self requestGoodsListWithSortType:self.requestType];
 }
 
 - (void)reloadDataMore{
     
     self.pageCount += 1;
-    [HYGoodsHandle requestGoodsListItem_type:_type pageNo:self.pageCount andPage:5 order:nil hotsale:@"ture" complectionBlock:^(NSArray *datalist) {
+    NSString *sortTypeStr = [NSString stringWithFormat:@"%lu",(unsigned long)self.requestType];
+    [HYGoodsHandle requestGoodsListItem_type:_type pageNo:self.pageCount sortType:sortTypeStr keyword:self.keyword complectionBlock:^(NSArray *datalist)  {
         
         if (datalist.count) {
             
-            [self.datalist addObjectsFromArray:datalist];
+            [datalist enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                
+                HYGoodsItemModel *model = [HYGoodsItemModel modelWithDictionary:obj];
+                [self.datalist addObject:model];
+            }];
             [_collectionView reloadData];
             [_collectionView.mj_footer endRefreshing];
         }
@@ -171,41 +155,37 @@
 #pragma mark - action
 - (void)topButtonAction:(UIButton *)button{
     
-    if (button.tag == 11) {
+    [UIView animateWithDuration:0.2 animations:^{
         
-        button.selected = !button.selected;
-        [UIView animateWithDuration:0.2 animations:^{
-            
-            self.horizonLine.frame = CGRectMake(button.left, button.bottom, button.width, 2);
-        }];
-        
-        if (button.selected) {
-            
-            self.requestType = HYGoodsListTypeAesc;
-            [self requestGoodsPriceAscList];
-        }
-        else{
-            self.requestType = HYGoodsListTypeDesc;
-            [self requestGoodsPriceDescList];
-        }
-        
-    }
-    else{
+        self.horizonLine.frame = CGRectMake(button.left, button.bottom, button.width, 2);
+    }];
+    
+    self.requestType = button.tag - 10;
+    if (button.tag == 0) {
         
         self.requestType = HYGoodsListTypeDefault;
-        _previousSelectBtn.selected = NO;
-        button.selected = YES;
-        _previousSelectBtn = button;
-        
-        [UIView animateWithDuration:0.2 animations:^{
-            
-            self.horizonLine.frame = CGRectMake(button.left, button.bottom, button.width, 2);
-        }];
-        
-        [self requestGoodsDefaultList];
     }
-
    
+    if (button.tag == 11) {
+        
+        NSString *imageName = _isSalesSelect ? @"default_arrow_up" : @"default_arrow_down";
+        self.requestType = _isSalesSelect ? HYGoodsListTypeSalesVolumeAesc : HYGoodsListTypeSalesVolumeDesc;
+        [button setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
+        _isSalesSelect = !_isSalesSelect;
+    }
+    
+    if (button.tag == 12) {
+        
+        NSString *imageName = _isPriceSelect ? @"default_arrow_up" : @"default_arrow_down";
+        self.requestType = _isPriceSelect ? HYGoodsListTypePriceAesc : HYGoodsListTypePriceDesc;
+        [button setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
+        _isPriceSelect = !_isPriceSelect;
+    }
+    _previousSelectBtn.selected = NO;
+    button.selected = YES;
+    _previousSelectBtn = button;
+    
+    [self requestGoodsListWithSortType:self.requestType];
 }
 
 #pragma mark - collectionViewDataSource
@@ -218,15 +198,15 @@
 //每个section的item个数
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     
-    return _datalist.count;
+    return self.datalist.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
     HYGoodsItemCollectionViewCell *cell = (HYGoodsItemCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"collectionCell" forIndexPath:indexPath];
-    
-    NSDictionary *dict = _datalist[indexPath.item];
-    cell.goodsModel = [HYGoodsItemModel modelWithDictionary:dict];
+
+    HYGoodsItemModel *itemModel = self.datalist[indexPath.item];
+    cell.goodsModel = itemModel;
     cell.backgroundColor = [UIColor whiteColor];
     return cell;
 }
@@ -234,17 +214,19 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
-    NSDictionary *dict = _datalist[indexPath.item];
-    HYGoodsItemModel *model = [HYGoodsItemModel modelWithDictionary:dict];
-    
-    DLog(@"current itemID is %@",model.item_id);
+    HYGoodsItemModel *itemModel = self.datalist[indexPath.item];
 
-    
     HYGoodsDetailInfoViewController *detailVC = [[HYGoodsDetailInfoViewController alloc] init];
     detailVC.navigationController.navigationBar.hidden = YES;
-    detailVC.goodsID = model.item_id;
+    detailVC.goodsID = itemModel.item_id;
     [self.navigationController pushViewController:detailVC animated:YES];
     
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    HYGoodsItemModel *itemModel = self.datalist[indexPath.item];
+    return CGSizeMake((KSCREEN_WIDTH - 10 - 5 * WIDTH_MULTIPLE) / 2, itemModel.cellHeight ? itemModel.cellHeight : 325 * WIDTH_MULTIPLE);
 }
 
 #pragma mark - 没有数据
@@ -266,7 +248,7 @@
     
     if (!_horizonLine) {
         
-        _horizonLine = [[UIView alloc] initWithFrame:CGRectMake(0, 35, self.view.width / 2, 2)];
+        _horizonLine = [[UIView alloc] initWithFrame:CGRectMake(0, 35, self.view.width / 3, 2)];
         _horizonLine.backgroundColor = KCOLOR(@"383938");
     }
     return _horizonLine;
@@ -288,11 +270,12 @@
         //1.初始化layout
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
         layout.scrollDirection = UICollectionViewScrollDirectionVertical;
-        layout.itemSize = CGSizeMake(KSCREEN_WIDTH / 2 - 10, 340 * WIDTH_MULTIPLE);
+//        layout.estimatedItemSize = CGSizeMake(KSCREEN_WIDTH / 2 - 10, 315 * WIDTH_MULTIPLE);
         layout.scrollDirection = UICollectionViewScrollDirectionVertical;
         layout.minimumInteritemSpacing = 5;
         layout.minimumLineSpacing = 6 * WIDTH_MULTIPLE;      //纵向间距
         layout.sectionInset = UIEdgeInsetsMake(0, 5, 0, 5);
+        
         
         _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, self.horizonLine.bottom + 6 * WIDTH_MULTIPLE, KSCREEN_WIDTH, KSCREEN_HEIGHT - 40 - 64) collectionViewLayout:layout];
         [_collectionView setCollectionViewLayout:layout];

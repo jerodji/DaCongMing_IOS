@@ -38,26 +38,27 @@
     
     [_priceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.top.equalTo(self).offset(12 * WIDTH_MULTIPLE);
+        make.top.equalTo(self).offset(10 * WIDTH_MULTIPLE);
         make.left.equalTo(self).offset(10 * WIDTH_MULTIPLE);
         make.right.equalTo(self).offset(10 * WIDTH_MULTIPLE);
-        make.height.equalTo(@(20));
+        make.height.equalTo(@(20 * WIDTH_MULTIPLE));
     }];
     
     [_noteLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.top.equalTo(_priceLabel.mas_bottom).offset(9 * WIDTH_MULTIPLE);
+        make.top.equalTo(_priceLabel.mas_bottom).offset(5 * WIDTH_MULTIPLE);
         make.left.equalTo(self).offset(10 * WIDTH_MULTIPLE);
         make.right.equalTo(self).offset(-10 * WIDTH_MULTIPLE);
-        make.height.equalTo(@(20));
+        make.bottom.equalTo(self).offset(-5 * WIDTH_MULTIPLE);
     }];
 }
 
 #pragma mark - setter
 - (void)setPrice:(NSString *)price{
     
-    _price = price;
-    _priceLabel.text = [NSString stringWithFormat:@"￥%@",price];
+    NSMutableAttributedString *priceStr = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"￥%@",price] attributes:@{NSForegroundColorAttributeName : KAPP_PRICE_COLOR, NSFontAttributeName : KFitFont(18)}];
+    [priceStr addAttributes:@{NSFontAttributeName : KFitFont(16)} range:NSMakeRange(0, 1)];
+    _priceLabel.attributedText = priceStr ;
 }
 
 - (void)setNote:(NSString *)note{

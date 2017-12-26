@@ -73,4 +73,9 @@
  */
 + (void)getlogisticsUrlWithOrderID:(NSString *)orderID  ComplectionBlock:(void(^)(NSString *url))complection;
 
+/**
+ *  获取系统消息
+ */
++ (void)getSystemInfoWithPageNo:(NSInteger)pageNo ComplectionBlock:(void(^)(NSArray *datalist))complection;
+
 @end

@@ -85,8 +85,9 @@
 - (void)setModel:(HYHomePageModel *)model{
 
     _model = model;
+    _titleLabel.text = model.menu_module.main_title;
+    _subTitleLabel.text = model.menu_module.sub_title;
     [_collectionView reloadData];
-    
     _cellHeight = _bgView.bottom + 10 * WIDTH_MULTIPLE;
 }
 

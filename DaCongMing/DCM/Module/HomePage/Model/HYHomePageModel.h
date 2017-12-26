@@ -76,8 +76,16 @@
 @property (nonatomic,copy) NSString *image_url;
 /** note */
 @property (nonatomic,copy) NSString *type_id;
+@property (nonatomic,copy) NSString *keyWord;
 /** itemSecondaryTypeList */
 @property (nonatomic,strong) NSArray *itemSecondaryTypeList;
+
+@end
+
+@interface HYHomeMenuTitle : NSObject
+
+@property (nonatomic,copy) NSString *sub_title;
+@property (nonatomic,copy) NSString *main_title;
 
 @end
 
@@ -103,7 +111,8 @@
 
 /** hotSale */
 @property (nonatomic,copy) NSDictionary *hotSale;
-
+/** 文本标题 */
+@property (nonatomic,strong) HYHomeMenuTitle *menu_module;
 /** 健康养生 */
 @property (nonatomic,strong) HYGoodHealthModel *goodHealth;
 

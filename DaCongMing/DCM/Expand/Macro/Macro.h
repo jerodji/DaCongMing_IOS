@@ -17,6 +17,16 @@
 #define DLog(...)
 #endif
 
+#define  KAdjustsScrollViewInsets_NO(vc,scrollView)\
+_Pragma("clang diagnostic push") \
+_Pragma("clang diagnostic ignored \"-Wdeprecated-declarations\"") \
+if (@available(iOS 11.0, *)) {\
+vc.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;\
+} else {\
+    vc.automaticallyAdjustsScrollViewInsets = NO;\
+}\
+_Pragma("clang diagnostic pop") \
+
 /** ----------------------------设备信息---------------------------------
  --------------------------------------------------------------------*/
 #pragma mark - 设备信息
@@ -61,7 +71,7 @@
 /** 黑色 */
 #define KAPP_BLACK_COLOR                   [UIColor blackColor]
 
-#define KAPP_PRICE_COLOR                   [UIColor colorWithHexString:@"d0021b"]
+#define KAPP_PRICE_COLOR                   [UIColor colorWithHexString:@"fb622d"]
 /** APPb7b7b7文字颜色 */
 #define KAPP_b7b7b7_COLOR                   [UIColor colorWithHexString:@"b7b7b7"]
 /** APP272727文字颜色 */
@@ -99,7 +109,9 @@
 /** 设置字体 */
 #define KFont(font)             [UIFont systemFontOfSize:((IS_IPHONE_6PLUS) ? (font + 2) : IS_IPHONE_5 ? (font - 2) : font)]
 /** 字体适配，如果是plus+2 iphone5-2 */
-#define KFitFont(font)          [UIFont systemFontOfSize:((IS_IPHONE_6PLUS) ? (font + 2) : IS_IPHONE_5 ? (font - 2) : font)]
+#define KFitFont(font)          [UIFont systemFontOfSize:((IS_IPHONE_6PLUS) ? (font + 1) : IS_IPHONE_5 ? (font - 1) : font)]
+/** 字体适配，如果是plus+2 */
+#define KFitBoldFont(font)          [UIFont boldSystemFontOfSize:((IS_IPHONE_6PLUS) ? (font + 2) : IS_IPHONE_5 ? (font - 2) : font)]
 
 /** ----------------------------沙盒路径---------------------------------
  --------------------------------------------------------------------*/

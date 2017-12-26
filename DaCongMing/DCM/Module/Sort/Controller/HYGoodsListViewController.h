@@ -10,13 +10,17 @@
 
 typedef NS_ENUM(NSUInteger, HYGoodsListType) {
     HYGoodsListTypeDefault = 0,
-    HYGoodsListTypeDesc,
-    HYGoodsListTypeAesc
+    HYGoodsListTypeSalesVolumeDesc,
+    HYGoodsListTypeSalesVolumeAesc,
+    HYGoodsListTypePriceDesc,
+    HYGoodsListTypePriceAesc
 };
 
 @interface HYGoodsListViewController : HYBaseViewController
 
 /** type */
 @property (nonatomic,copy) NSString *type;
+/** 关键字 */
+@property (nonatomic,strong) NSString *keyword;
 
 @end

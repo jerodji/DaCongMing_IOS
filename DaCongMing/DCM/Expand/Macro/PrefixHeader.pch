@@ -23,6 +23,7 @@
 #import "YYKit.h"
 #import "MJRefresh.h"
 #import <WXApi.h>
+#import <FDFullscreenPopGesture/UINavigationController+FDFullscreenPopGesture.h>
 
 #import "HTTPManager.h"
 #import "HYPlistTools.h"
@@ -37,10 +38,12 @@
 #import "HYCreateOrder.h"
 #import "HYCustomAlert.h"
 #import "HYTabBarController.h"
+#import "HYBaseTableViewController.h"
 #import "SAMTextView.h"
 #import "HYNoCollectImgView.h"
 #import <UIScrollView+EmptyDataSet.h>
 #import "QYSDK.h"
 #import "JRToast.h"
+#import "HYAlertManager.h"
 
 #endif /* PrefixHeader_pch */

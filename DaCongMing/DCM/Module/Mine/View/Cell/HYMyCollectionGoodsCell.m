@@ -100,7 +100,7 @@
         make.top.equalTo(_itemLabel.mas_bottom).offset(2 * WIDTH_MULTIPLE);
         make.left.equalTo(_itemLabel);
         make.height.mas_equalTo(20);
-        make.width.mas_equalTo(250);
+        make.right.equalTo(self).offset(-10 * WIDTH_MULTIPLE);
     }];
     
     [_PriceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -126,7 +126,7 @@
     _itemModel = itemModel;
     [_itemImgView sd_setImageWithURL:[NSURL URLWithString:itemModel.item_title_image] placeholderImage:[UIImage imageNamed:@"productPlaceholder"]];
     _itemLabel.text = itemModel.item_name;
-    _unitLabel.text = itemModel.item_note;
+    _unitLabel.text = itemModel.unit;
     _PriceLabel.text = [NSString stringWithFormat:@"￥%@",itemModel.item_min_price];
     _checkBtn.selected = itemModel.isSelect;
     if (itemModel.isEdit) {
@@ -247,7 +247,7 @@
         _itemLabel = [UILabel new];
         _itemLabel.text = @"来自老挝的天然健康产品";
         _itemLabel.textColor = KAPP_272727_COLOR;
-        _itemLabel.font = KFitFont(14);
+        _itemLabel.font = KFitFont(13);
         _itemLabel.textAlignment = NSTextAlignmentLeft;
         
     }
@@ -274,7 +274,7 @@
         _PriceLabel = [UILabel new];
         _PriceLabel.text = @"$10";
         _PriceLabel.textColor = KAPP_PRICE_COLOR;
-        _PriceLabel.font = KFitFont(14);
+        _PriceLabel.font = KFitFont(12);
         _PriceLabel.textAlignment = NSTextAlignmentLeft;
         
     }

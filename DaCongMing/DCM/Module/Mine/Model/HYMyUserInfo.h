@@ -36,6 +36,8 @@
 @property (nonatomic, copy) NSString *favItemNum;
 /** 购物车数量 */
 @property (nonatomic, copy) NSString *cartItemNum;
+/** 最近浏览 */
+@property (nonatomic, copy) NSString *browseRecordsNum;
 
 /**
  *  单例

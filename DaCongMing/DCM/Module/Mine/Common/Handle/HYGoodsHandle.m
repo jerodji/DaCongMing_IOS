@@ -10,14 +10,14 @@
 
 @implementation HYGoodsHandle
 
-+ (void)requestGoodsListItem_type:(NSString *)item_type pageNo:(NSInteger)pageNo andPage:(NSInteger)pageSize order:(NSString *)order hotsale:(NSString *)hotSale complectionBlock:(void (^)(NSArray *))complection{
++ (void)requestGoodsListItem_type:(NSString *)item_type pageNo:(NSInteger)pageNo sortType:(NSString *)sortType keyword:(NSString *)keyword complectionBlock:(void (^)(NSArray *))complection{
     
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
     [param setValue:@(pageNo) forKey:@"pageNo"];
     [param setValue:item_type forKey:@"item_type"];
-    [param setValue:@(pageSize) forKey:@"pageSize"];
-    [param setValue:order forKey:@"order"];
-    [param setValue:hotSale forKey:@"hotsale"];
+    [param setValue:sortType forKey:@"sortType"];
+    [param setValue:keyword forKey:@"keyWord"];
+
     
     [[HTTPManager shareHTTPManager] postDataFromUrl:API_GoodsList withParameter:param isShowHUD:YES success:^(id returnData) {
         
@@ -249,16 +249,14 @@
     }];
 }
 
-+ (void)getBrandsShopAllProduct:(NSString *)sellerID pageNo:(NSInteger)pageNo isNewItem:(BOOL)isNewItem isHotSale:(BOOL)isHotSale ComplectionBlock:(void (^)(NSArray *))complection {
++ (void)getBrandsShopProductWithSeller:(NSString *)sellerID Type:(NSInteger)type pageNo:(NSInteger)pageNO ComplectionBlock:(void (^)(NSArray *))complection {
     
     NSMutableDictionary *requestParam = [NSMutableDictionary dictionary];
     [requestParam setValue:[HYUserModel sharedInstance].token forKey:@"token"];
     [requestParam setValue:sellerID forKey:@"seller_id"];
-    [requestParam setValue:@(pageNo) forKey:@"pageNo"];
-    NSString *isNewItemStr = isNewItem ? @"true" : nil;
-    NSString *isHotSaleStr = isHotSale ? @"true" : nil;
-    [requestParam setValue:isNewItemStr forKey:@"isNewItem"];
-    [requestParam setValue:isHotSaleStr forKey:@"hotsale"];
+    [requestParam setValue:@(type) forKey:@"type"];
+    [requestParam setValue:@(pageNO) forKey:@"pageNo"];
+
     
     [[HTTPManager shareHTTPManager] postDataFromUrl:API_ShopProductsList withParameter:requestParam isShowHUD:YES success:^(id returnData) {
         

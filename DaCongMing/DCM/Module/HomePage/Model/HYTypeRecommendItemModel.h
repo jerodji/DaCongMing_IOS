@@ -28,5 +28,8 @@
 @property (nonatomic, copy) NSString *image_url;
 /** parent_id */
 @property (nonatomic, copy) NSString *parent_id;
+/** item_id */
+@property (nonatomic, copy) NSString *item_id;
+@property (nonatomic, copy) NSString *keyWord;
 
 @end

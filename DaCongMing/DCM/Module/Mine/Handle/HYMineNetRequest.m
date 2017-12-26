@@ -306,4 +306,31 @@
     }];
 }
 
++ (void)getSystemInfoWithPageNo:(NSInteger)pageNo ComplectionBlock:(void (^)(NSArray *))complection{
+    
+    NSMutableDictionary *requestParam = [NSMutableDictionary dictionary];
+    [requestParam setValue:[HYUserModel sharedInstance].token forKey:@"token"];
+    [requestParam setValue:@(pageNo) forKey:@"pageNo"];
+    
+    [[HTTPManager shareHTTPManager] postDataFromUrl:API_SystemMessage withParameter:requestParam isShowHUD:YES success:^(id returnData) {
+        
+        if (returnData) {
+            
+            NSInteger code = [[returnData objectForKey:@"code"] integerValue];
+            if (code == 000) {
+                
+                NSArray *list = [[returnData objectForKey:@"data"] objectForKey:@"list"];
+                complection(list);
+            }
+            else{
+                complection(nil);
+            }
+        }
+        else{
+            
+            complection(nil);
+        }
+    }];
+}
+
 @end

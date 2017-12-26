@@ -8,13 +8,15 @@
 
 #import "HYTabBarController.h"
 #import "HYBaseNavController.h"
-
 #import "HYHomePageViewController.h"
 #import "HYSortViewController.h"
 #import "HYShoppingCartViewController.h"
 #import "HYMineViewController.h"
+#import "HYPayParterCostViewController.h"
+#import "HYAlertManager.h"
+#import "HYInviteParterView.h"
 
-@interface HYTabBarController ()
+@interface HYTabBarController () <UIAlertViewDelegate>
 
 @end
 
@@ -28,16 +30,25 @@
     backView.backgroundColor = KAPP_NAV_COLOR;
     [self.tabBar insertSubview:backView atIndex:0];
     self.tabBar.opaque = YES;
-    
-    
+
     [self setupChildVC];
+    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        
+        [self checkVersion];
+    });
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self showInviteView];
+    });
 }
 
 + (void)initialize{
     
     [self autoLogin];
-
 }
+
 
 - (void)setupChildVC{
     
@@ -70,28 +81,40 @@
 
 + (void)autoLogin{
     
-//    if ([[KUSERDEFAULTS valueForKey:KUserLoginType] isEqualToString:@"phone"]) {
-//
-//        NSString *phone = [KUSERDEFAULTS valueForKey:KUserPhone];
-//        NSString *password = [KUSERDEFAULTS valueForKey:KUserPassword];
-//        [HYUserHandle userLoginWithPhone:phone password:password complectionBlock:^(BOOL isLoginSuccess) {
-//
-//        }];
-//    }
-    
-    if ([[KUSERDEFAULTS valueForKey:KUserLoginType] isEqualToString:@"weChat"]) {
-        
-        DLog(@"微信账号登录");
+    if ([[KUSERDEFAULTS valueForKey:KUserLoginType] isEqualToString:@"phone"]) {
+
+        NSString *phone = [KUSERDEFAULTS valueForKey:KUserPhone];
+        NSString *password = [KUSERDEFAULTS valueForKey:KUserPassword];
+        [HYUserHandle userLoginWithPhone:phone password:password complectionBlock:^(BOOL isLoginSuccess) {
+            
+            if (isLoginSuccess) {
+                
+                DLog(@"自动登录成功");
+            }
+        }];
     }
     
-    
     HYUserModel *userModel = [HYPlistTools unarchivewithName:KUserModelData];
-     HYUserModel *shareModel = [HYUserModel sharedInstance];
+    HYUserModel *shareModel = [HYUserModel sharedInstance];
     shareModel.token = userModel.token;
     shareModel.userInfo = userModel.userInfo;
     DLog(@"user:---%@",shareModel);
+    if ([[KUSERDEFAULTS valueForKey:KUserLoginType] isEqualToString:@"weChat"]) {
+        
+        [HYUserHandle getMyUserInfoComplectionBlock:^(HYUserModel *userModel) {
+           
+            if (userModel) {
+                DLog(@"微信用户刷新数据成功");
+            }
+        }];
+    }
+    
+    
+   
+    
 }
 
+#pragma mark - tabBar动画
 - (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item{
     
     NSInteger index = [tabBar.items indexOfObject:item];
@@ -113,9 +136,74 @@
     pulse.duration = 0.1;
     pulse.repeatCount = 1;
     pulse.autoreverses= YES;
-    pulse.fromValue= [NSNumber numberWithFloat:0.8];
-    pulse.toValue= [NSNumber numberWithFloat:1.2];
+    pulse.fromValue= [NSNumber numberWithFloat:0.9];
+    pulse.toValue= [NSNumber numberWithFloat:1.1];
     [[tabbarbuttonArray[index] layer] addAnimation:pulse forKey:@"tabBarItemAnimation"];
+    
+}
+
+#pragma mark - 检查版本更新
+- (void)checkVersion{
+    
+    NSDictionary *infoDic = [[NSBundle mainBundle] infoDictionary];
+    NSString *appCurrentVer = [infoDic objectForKey:@"CFBundleShortVersionString"];
+    
+    NSString *urlString = [NSString stringWithFormat:@"http://itunes.apple.com/cn/lookup?id=%@",APPID];
+    
+    //1.创建请求管理者
+    AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] init];
+    manager.requestSerializer.timeoutInterval = 20;
+    //4.设置请求的类型
+    manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
+    [manager GET:urlString parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        if (responseObject) {
+            
+            NSArray *array = [responseObject objectForKey:@"results"];
+            NSString *appStoreVersion = [[array lastObject] objectForKey:@"version"];
+            NSLog(@"AppStore版本:%@",appStoreVersion);
+            if ([appStoreVersion compare:appCurrentVer options:NSNumericSearch] == NSOrderedDescending) {
+                
+                //App Store版本大于当前版本，提示更新
+                [HYAlertManager alertControllerAboveIn:self withMessage:@"大聪明有新版本了，是否更新" leftTitle:@"否" leftActionEvent:nil rightTitle:@"是" rightActionEvent:^{
+                    
+                    NSString *urlCode = [@"大聪明" stringByURLEncode];
+                    NSString *str = [NSString stringWithFormat:
+                                     @"https://itunes.apple.com/cn/app/%@/id1301986941?mt=8",urlCode];
+                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+                }];
+                
+            }
+        }
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+    }];
+    
+}
+
+- (void)showInviteView{
+    
+    //判断是不是第一次使用
+    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"isFirstAlertInvite"]){
+        
+        if ([[HYUserModel sharedInstance].userInfo.userRemind.type isNotBlank]) {
+            
+            HYInviteParterView *inviteView = [[HYInviteParterView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+            [self.view addSubview:inviteView];
+            [inviteView showInviteView];
+            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"isFirstAlertInvite"];
+            
+            inviteView.payBlock = ^{
+                
+                HYPayParterCostViewController *payVC = [HYPayParterCostViewController new];
+                HYBaseNavController *nav = [[HYBaseNavController alloc] initWithRootViewController:payVC];
+                [self presentViewController:nav animated:YES completion:nil];
+            };
+        }
+    }
+    
+    
     
 }
 

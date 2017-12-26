@@ -69,7 +69,7 @@
         make.height.equalTo(@(height));
         if (_guessLikeLabel) {
             
-            make.top.equalTo(_guessLikeLabel.mas_bottom);
+            make.top.equalTo(_guessLikeLabel.mas_bottom).offset(5 * WIDTH_MULTIPLE);
         }
         else{
             
@@ -154,10 +154,10 @@
         
         //1.初始化layout
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-        layout.itemSize = CGSizeMake(KSCREEN_WIDTH / 2 - 10, 340 * WIDTH_MULTIPLE);
+        layout.itemSize = CGSizeMake((KSCREEN_WIDTH - 10 - 5 * WIDTH_MULTIPLE) / 2 , 325 * WIDTH_MULTIPLE);
         layout.scrollDirection = UICollectionViewScrollDirectionVertical;
-        layout.minimumInteritemSpacing = 5;
-        layout.minimumLineSpacing = 6 * WIDTH_MULTIPLE;      //纵向间距
+        layout.minimumInteritemSpacing = 0;
+        layout.minimumLineSpacing = 5 * WIDTH_MULTIPLE;      //纵向间距
         layout.sectionInset = UIEdgeInsetsMake(0, 5, 0, 5);
         
         _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
