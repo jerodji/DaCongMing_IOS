@@ -104,7 +104,7 @@
     [_datalist removeAllObjects];
     self.pageCount = 1;
     NSString *sortTypeStr = [NSString stringWithFormat:@"%lu",(unsigned long)sortType];
-    [HYGoodsHandle requestGoodsListItem_type:_type pageNo:1 sortType:sortTypeStr complectionBlock:^(NSArray *datalist) {
+    [HYGoodsHandle requestGoodsListItem_type:_type pageNo:1 sortType:sortTypeStr keyword:self.keyword complectionBlock:^(NSArray *datalist) {
        
         if (datalist) {
             
@@ -132,7 +132,7 @@
     
     self.pageCount += 1;
     NSString *sortTypeStr = [NSString stringWithFormat:@"%lu",(unsigned long)self.requestType];
-    [HYGoodsHandle requestGoodsListItem_type:_type pageNo:1 sortType:sortTypeStr complectionBlock:^(NSArray *datalist)  {
+    [HYGoodsHandle requestGoodsListItem_type:_type pageNo:self.pageCount sortType:sortTypeStr keyword:self.keyword complectionBlock:^(NSArray *datalist)  {
         
         if (datalist.count) {
             

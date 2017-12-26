@@ -155,7 +155,7 @@
         [_tableView reloadData];
     }];
     
-    [HYGoodsHandle requestGoodsListItem_type:@"001" pageNo:1 sortType:@"0" complectionBlock:^(NSArray *datalist) {
+    [HYGoodsHandle requestGoodsListItem_type:@"001" pageNo:1 sortType:@"0" keyword:nil complectionBlock:^(NSArray *datalist) {
         
         [self.goodsList removeAllObjects];
         [self.goodsList addObjectsFromArray:datalist];

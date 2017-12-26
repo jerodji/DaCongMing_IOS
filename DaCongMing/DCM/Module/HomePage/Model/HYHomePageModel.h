@@ -76,6 +76,7 @@
 @property (nonatomic,copy) NSString *image_url;
 /** note */
 @property (nonatomic,copy) NSString *type_id;
+@property (nonatomic,copy) NSString *keyWord;
 /** itemSecondaryTypeList */
 @property (nonatomic,strong) NSArray *itemSecondaryTypeList;
 

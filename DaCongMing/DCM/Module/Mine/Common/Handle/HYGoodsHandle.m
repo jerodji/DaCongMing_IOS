@@ -10,12 +10,14 @@
 
 @implementation HYGoodsHandle
 
-+ (void)requestGoodsListItem_type:(NSString *)item_type pageNo:(NSInteger)pageNo sortType:(NSString *)sortType complectionBlock:(void (^)(NSArray *))complection{
++ (void)requestGoodsListItem_type:(NSString *)item_type pageNo:(NSInteger)pageNo sortType:(NSString *)sortType keyword:(NSString *)keyword complectionBlock:(void (^)(NSArray *))complection{
     
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
     [param setValue:@(pageNo) forKey:@"pageNo"];
     [param setValue:item_type forKey:@"item_type"];
     [param setValue:sortType forKey:@"sortType"];
+    [param setValue:keyword forKey:@"keyWord"];
+
     
     [[HTTPManager shareHTTPManager] postDataFromUrl:API_GoodsList withParameter:param isShowHUD:YES success:^(id returnData) {
         

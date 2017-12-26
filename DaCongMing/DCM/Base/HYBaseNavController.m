@@ -22,9 +22,10 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-    
+    self.fd_fullscreenPopGestureRecognizer.enabled = YES;
     self.delegate = self;
-    
+    _screenshotImgArray = [NSMutableArray array];
+
 }
 
 - (void)createGesture{
@@ -43,7 +44,6 @@
     _coverView.frame = _screenshotImgView.frame;
     _coverView.backgroundColor = KAPP_BLACK_COLOR;
     
-    _screenshotImgArray = [NSMutableArray array];
 }
 
 - (void)panGestureAction:(UIPanGestureRecognizer *)pan{
@@ -178,9 +178,10 @@
         [backBtnView addSubview:btn];
         viewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backBtnView];
         viewController.navigationItem.hidesBackButton = YES;
-        [self createGesture];
-        //截图
-        [self screenShot];
+        
+//        [self createGesture];
+//        //截图
+//        [self screenShot];
     }
     
     [super pushViewController:viewController animated:animated];

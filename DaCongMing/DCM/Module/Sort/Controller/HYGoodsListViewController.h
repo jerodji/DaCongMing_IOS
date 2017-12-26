@@ -20,5 +20,7 @@ typedef NS_ENUM(NSUInteger, HYGoodsListType) {
 
 /** type */
 @property (nonatomic,copy) NSString *type;
+/** 关键字 */
+@property (nonatomic,strong) NSString *keyword;
 
 @end

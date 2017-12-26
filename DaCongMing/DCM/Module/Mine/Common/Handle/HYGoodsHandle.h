@@ -17,7 +17,7 @@
 /**
  *  请求商品列表
  */
-+ (void)requestGoodsListItem_type:(NSString *)item_type pageNo:(NSInteger)pageNo sortType:(NSString *)sortType complectionBlock:(void (^)(NSArray *datalist))complection;
++ (void)requestGoodsListItem_type:(NSString *)item_type pageNo:(NSInteger)pageNo sortType:(NSString *)sortType keyword:(NSString *)keyword complectionBlock:(void (^)(NSArray *datalist))complection;
 
 /**
  *  请求商品详情

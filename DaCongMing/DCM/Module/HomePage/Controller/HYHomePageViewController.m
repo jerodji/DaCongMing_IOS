@@ -146,7 +146,7 @@
     
     _goodsList = [NSMutableArray array];
 
-    [HYGoodsHandle requestGoodsListItem_type:@"001" pageNo:1 sortType:@"0" complectionBlock:^(NSArray *datalist)  {
+    [HYGoodsHandle requestGoodsListItem_type:@"001" pageNo:1 sortType:@"0" keyword:nil complectionBlock:^(NSArray *datalist)  {
         
         [_goodsList addObjectsFromArray:datalist];
         [self.tableView reloadData];
@@ -284,14 +284,16 @@
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
         }
-        cell.model = _model;
-        cell.selectItemBlock = ^(NSString *itemID) {
-            
-            HYGoodsDetailInfoViewController *detailVC = [[HYGoodsDetailInfoViewController alloc] init];
-            detailVC.navigationController.navigationBar.hidden = YES;
-            detailVC.goodsID = itemID;
-            [self.navigationController pushViewController:detailVC animated:YES];
+        cell.selectItemBlock = ^(NSString *keyword, NSString *typeID) {
+          
+            HYGoodsListViewController *goodsListVC = [[HYGoodsListViewController alloc] init];
+            goodsListVC.keyword = keyword;
+            goodsListVC.type = typeID;
+            goodsListVC.title = keyword;
+            [self.navigationController pushViewController:goodsListVC animated:YES];
         };
+        cell.model = _model;
+        
         return cell;
     }
     else if ([cellName isEqualToString:@"HYHomeDoodsCell"]){

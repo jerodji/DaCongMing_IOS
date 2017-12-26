@@ -55,6 +55,7 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
+    self.fd_prefersNavigationBarHidden = YES;
     [self requestNetwork];
     [self initUI];
 }
@@ -62,9 +63,6 @@
 - (void)viewWillAppear:(BOOL)animated{
 
     [super viewWillAppear:animated];
-    
-    self.automaticallyAdjustsScrollViewInsets = NO;
-    self.navigationController.navigationBar.hidden = YES;
     
     if (@available(iOS 11.0, *)){
         
@@ -82,7 +80,6 @@
 - (void)viewWillDisappear:(BOOL)animated{
     
     [super viewWillDisappear:animated];
-    self.navigationController.navigationBar.hidden = NO;
 }
 
 - (void)initUI{
@@ -105,7 +102,7 @@
 - (void)requestNetwork{
 
     _goodsList = [NSMutableArray array];
-    [HYGoodsHandle requestGoodsListItem_type:@"001" pageNo:1 sortType:@"0" complectionBlock:^(NSArray *datalist)  {
+    [HYGoodsHandle requestGoodsListItem_type:@"001" pageNo:1 sortType:@"0" keyword:nil complectionBlock:^(NSArray *datalist)  {
     
         [_goodsList addObjectsFromArray:datalist];
         [self.tableView reloadData];

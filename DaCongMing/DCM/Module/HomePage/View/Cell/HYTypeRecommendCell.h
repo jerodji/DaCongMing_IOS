@@ -10,13 +10,13 @@
 #import "HYHomePageModel.h"
 #import "HYTypeRecommendItemModel.h"
 
-typedef void(^SelectItemBlock)(NSString *itemID);
+typedef void(^RecommendItemSelectBlock)(NSString *keyword,NSString *typeID);
 
 @interface HYTypeRecommendCell : UITableViewCell
 
 /** model */
 @property (nonatomic,strong) HYHomePageModel *model;
 /** 点击回调 */
-@property (nonatomic,copy) SelectItemBlock selectItemBlock;
+@property (nonatomic,copy) RecommendItemSelectBlock selectItemBlock;
 
 @end

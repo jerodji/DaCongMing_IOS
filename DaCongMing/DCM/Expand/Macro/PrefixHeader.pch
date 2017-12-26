@@ -23,6 +23,7 @@
 #import "YYKit.h"
 #import "MJRefresh.h"
 #import <WXApi.h>
+#import <FDFullscreenPopGesture/UINavigationController+FDFullscreenPopGesture.h>
 
 #import "HTTPManager.h"
 #import "HYPlistTools.h"

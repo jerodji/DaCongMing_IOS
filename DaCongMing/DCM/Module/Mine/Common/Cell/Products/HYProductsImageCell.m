@@ -81,6 +81,7 @@
         _bannerView.autoScroll = YES;
         _bannerView.infiniteLoop = YES;
         _bannerView.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+        _bannerView.pageControlBottomOffset = 40;
     }
     return _bannerView;
 }
