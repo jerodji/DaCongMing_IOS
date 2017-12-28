@@ -12,6 +12,7 @@
 #import "HYSetUserNameVC.h"
 #import "HYForgetPasswordVC.h"
 #import "HYSetLoginPwdViewController.h"
+#import "UILabel+HYCopy.h"
 
 @interface HYMyAccountViewController () <UITableViewDelegate,UITableViewDataSource>
 
@@ -47,8 +48,8 @@
 
 - (void)setupData{
     
-    self.datalist = [NSMutableArray arrayWithObjects:@"图像",@"用户名",@"绑定手机",@"设置登录密码",@"退出登录", nil];
-    self.dataSourceArray = [NSMutableArray arrayWithObjects:[HYUserModel sharedInstance].userInfo.head_image_url,[HYUserModel sharedInstance].userInfo.name,@"",@"",@"",nil];
+    self.datalist = [NSMutableArray arrayWithObjects:@"图像",@"用户名",@"绑定手机",@"设置登录密码",@"我的ID",@"退出登录", nil];
+    self.dataSourceArray = [NSMutableArray arrayWithObjects:[HYUserModel sharedInstance].userInfo.head_image_url,[HYUserModel sharedInstance].userInfo.name,@"",@"",[HYUserModel sharedInstance].userInfo.id,@"",nil];
    
 }
 
@@ -75,14 +76,17 @@
     cell.titleLabel.text = _datalist[indexPath.section];
     cell.nickNameLabel.text = _dataSourceArray[indexPath.section];
     [cell.headerImgView sd_setImageWithURL:[NSURL URLWithString:_dataSourceArray[indexPath.section]] placeholderImage:[UIImage imageNamed:@"header_placeholder"]];
-    
+    cell.nickNameLabel.isCopyable = YES;
     if (indexPath.section != 0) {
         
         cell.headerImgView.hidden = YES;
     }
     
-    if (indexPath.section != 1) {
+    if (indexPath.section == 1 || indexPath.section == 4) {
         
+        cell.nickNameLabel.hidden = NO;
+    }
+    else{
         cell.nickNameLabel.hidden = YES;
     }
     
@@ -135,7 +139,7 @@
         
     }
     
-    if (indexPath.section == 4) {
+    if (indexPath.section == 5) {
         
         [KEYWINDOW addSubview:self.customAlert];
         [self.customAlert showCustomAlert];

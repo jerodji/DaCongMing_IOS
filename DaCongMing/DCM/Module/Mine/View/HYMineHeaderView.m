@@ -87,7 +87,7 @@
     [_headerImgView mas_makeConstraints:^(MASConstraintMaker *make) {
        
         make.centerX.equalTo(self);
-        make.top.equalTo(self).offset(42 * WIDTH_MULTIPLE);
+        make.top.equalTo(self).offset(KSTATUSBAR_HEIGHT + 10 * WIDTH_MULTIPLE);
         make.width.height.equalTo(@(60 * WIDTH_MULTIPLE));
     }];
     

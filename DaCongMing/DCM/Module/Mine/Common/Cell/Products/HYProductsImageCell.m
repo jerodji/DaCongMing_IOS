@@ -47,7 +47,7 @@
     [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
        
         make.left.right.bottom.equalTo(self);
-        make.height.equalTo(@(40 * WIDTH_MULTIPLE));
+        make.height.mas_equalTo(KSTATUSBAR_HEIGHT + 10 * WIDTH_MULTIPLE);
     }];
 }
 

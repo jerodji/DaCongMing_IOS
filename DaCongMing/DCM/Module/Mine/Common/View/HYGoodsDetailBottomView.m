@@ -19,6 +19,7 @@
     
     if (self = [super initWithFrame:frame]) {
         
+        self.backgroundColor = KAPP_WHITE_COLOR;
         [self setupSubviews];
     }
     return self;

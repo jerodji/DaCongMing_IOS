@@ -25,8 +25,8 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-    
-    UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, KSCREEN_WIDTH, 49)];
+    CGFloat tabBarHeight = KTABBAR_HEIGHT;
+    UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, KSCREEN_WIDTH, tabBarHeight)];
     backView.backgroundColor = KAPP_NAV_COLOR;
     [self.tabBar insertSubview:backView atIndex:0];
     self.tabBar.opaque = YES;

@@ -40,6 +40,8 @@ _Pragma("clang diagnostic pop") \
 #define IS_IPHONE_6             ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )667 ) < DBL_EPSILON )
 /** 是否为iphone6Plus */
 #define IS_IPHONE_6PLUS         ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )736 ) < DBL_EPSILON )
+/** 是否为iphoneX */
+#define IS_IPHONE_X         ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )812 ) < DBL_EPSILON )
 /** 设备的主window */
 #define KEYWINDOW               [[[UIApplication sharedApplication] delegate] window]
 
@@ -53,11 +55,13 @@ _Pragma("clang diagnostic pop") \
 /** 屏幕宽度比 */
 #define WIDTH_MULTIPLE      KSCREEN_WIDTH / 375
 /** 导航栏高度 */
-#define KNAV_HEIGHT         self.navigationController.navigationBar.frame.size.height
+#define KNAV_HEIGHT         [[UIApplication sharedApplication] statusBarFrame].size.height + 44
 /** 状态栏高度 */
 #define KSTATUSBAR_HEIGHT   [[UIApplication sharedApplication] statusBarFrame].size.height
 /** tabBar高度 */
-#define KTABBAR_HEIGHT      self.tabBarController.tabBar.frame.size.height
+#define KTABBAR_HEIGHT      [[UIApplication sharedApplication] statusBarFrame].size.height > 20 ? 83 : 49
+/** 底部安全区高度 */
+#define KSafeAreaBottom_Height  (KSCREEN_HEIGHT == 812.0 ? 34 : 0)
 
 /** ----------------------------颜色信息---------------------------------
  --------------------------------------------------------------------*/

@@ -49,6 +49,14 @@
 
 }
 
+- (void)viewSafeAreaInsetsDidChange{
+    
+    [super viewSafeAreaInsetsDidChange];
+    NSLog(@"safeAreaInsets:%@",NSStringFromUIEdgeInsets(self.view.safeAreaInsets));
+    NSLog(@"additionalSafeAreaInsets:%@",NSStringFromUIEdgeInsets(self.additionalSafeAreaInsets));
+    
+}
+
 - (void)setupSubviews{
     
     self.view.backgroundColor = KAPP_TableView_BgColor;
@@ -277,7 +285,7 @@
         layout.sectionInset = UIEdgeInsetsMake(0, 5, 0, 5);
         
         
-        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, self.horizonLine.bottom + 6 * WIDTH_MULTIPLE, KSCREEN_WIDTH, KSCREEN_HEIGHT - 40 - 64) collectionViewLayout:layout];
+        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, self.horizonLine.bottom + 6 * WIDTH_MULTIPLE, KSCREEN_WIDTH, KSCREEN_HEIGHT - 40 - KNAV_HEIGHT) collectionViewLayout:layout];
         [_collectionView setCollectionViewLayout:layout];
         _collectionView.backgroundColor = KAPP_TableView_BgColor;
         _collectionView.showsVerticalScrollIndicator = NO;

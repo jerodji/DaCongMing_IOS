@@ -24,6 +24,7 @@
 		049D7B0C1FDFF0AF000A0A7B /* HYRecommendPayItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 049D7B0B1FDFF0AF000A0A7B /* HYRecommendPayItemCell.m */; };
 		049D7B0F1FDFF0C3000A0A7B /* HYRecommendIntroCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 049D7B0E1FDFF0C3000A0A7B /* HYRecommendIntroCell.m */; };
 		049D7B121FDFF0D5000A0A7B /* HYRecommendPayModeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 049D7B111FDFF0D5000A0A7B /* HYRecommendPayModeCell.m */; };
+		04CAEEA51FF504AF001127B5 /* UILabel+HYCopy.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CAEEA41FF504AF001127B5 /* UILabel+HYCopy.m */; };
 		3E0FDECA1FA4421800F52DC0 /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E0FDEC91FA4421800F52DC0 /* libstdc++.6.0.9.tbd */; };
 		3E0FDECB1FA442BF00F52DC0 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E0FDEAD1FA4416D00F52DC0 /* libcrypto.a */; };
 		3E0FDECC1FA442BF00F52DC0 /* libevent.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E0FDEAE1FA4416D00F52DC0 /* libevent.a */; };
@@ -269,6 +270,8 @@
 		049D7B0E1FDFF0C3000A0A7B /* HYRecommendIntroCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYRecommendIntroCell.m; sourceTree = "<group>"; };
 		049D7B101FDFF0D5000A0A7B /* HYRecommendPayModeCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYRecommendPayModeCell.h; sourceTree = "<group>"; };
 		049D7B111FDFF0D5000A0A7B /* HYRecommendPayModeCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYRecommendPayModeCell.m; sourceTree = "<group>"; };
+		04CAEEA31FF504AD001127B5 /* UILabel+HYCopy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+HYCopy.h"; sourceTree = "<group>"; };
+		04CAEEA41FF504AF001127B5 /* UILabel+HYCopy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+HYCopy.m"; sourceTree = "<group>"; };
 		36367516A039862097AF5595 /* Pods-DaCongMing.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DaCongMing.release.xcconfig"; path = "Pods/Target Support Files/Pods-DaCongMing/Pods-DaCongMing.release.xcconfig"; sourceTree = "<group>"; };
 		3E0FDE9B1FA4416D00F52DC0 /* QYPOPConversationManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QYPOPConversationManager.h; sourceTree = "<group>"; };
 		3E0FDE9C1FA4416D00F52DC0 /* QYPOPCustomUIConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QYPOPCustomUIConfig.h; sourceTree = "<group>"; };
@@ -1542,6 +1545,8 @@
 				3E5620561F6B6DAC0063AA5B /* UIColor+HexString.m */,
 				3E5620571F6B6DAC0063AA5B /* UIView+Toast.h */,
 				3E5620581F6B6DAC0063AA5B /* UIView+Toast.m */,
+				04CAEEA31FF504AD001127B5 /* UILabel+HYCopy.h */,
+				04CAEEA41FF504AF001127B5 /* UILabel+HYCopy.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -1953,6 +1958,7 @@
 				3ED218D31F8E0A1E0040C7E3 /* HYBrandShopBottomView.m in Sources */,
 				3E5620A81F6BBD550063AA5B /* HYHomeImgCell.m in Sources */,
 				3EA0BC231F750E5600F78FDD /* HYReceiveAddressTableViewCell.m in Sources */,
+				04CAEEA51FF504AF001127B5 /* UILabel+HYCopy.m in Sources */,
 				3E5620A11F6BA0D60063AA5B /* HYHomePageView.m in Sources */,
 				3ED218C71F8DE6960040C7E3 /* HYMyCollectionGoodsCell.m in Sources */,
 				3E27549E1F72185F0010053E /* HYGoodsDetailModel.m in Sources */,

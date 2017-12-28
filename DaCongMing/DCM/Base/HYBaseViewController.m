@@ -18,10 +18,10 @@
     [super viewDidLoad];
     
     [self setupNav];
-    
     self.edgesForExtendedLayout = UIRectEdgeNone;
 
 }
+
 
 - (void)viewWillDisappear:(BOOL)animated{
     
