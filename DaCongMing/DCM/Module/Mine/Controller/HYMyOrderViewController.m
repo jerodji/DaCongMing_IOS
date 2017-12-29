@@ -82,7 +82,6 @@ static NSString *cellIdentifier = @"collectionCellIdentifer";
     }];
     HYMyOrderChildViewController *vc = self.childViewControllers[index];
     vc.tag = index;
-    
 }
 
 
@@ -117,9 +116,9 @@ static NSString *cellIdentifier = @"collectionCellIdentifer";
         flowLayout.minimumLineSpacing = 0;
         flowLayout.minimumInteritemSpacing = 0;
         flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-        flowLayout.itemSize = CGSizeMake(KSCREEN_WIDTH, KSCREEN_HEIGHT - 40);
+        flowLayout.itemSize = CGSizeMake(KSCREEN_WIDTH, KSCREEN_HEIGHT - 40 - KNAV_HEIGHT);
         
-        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, _titleView.bottom, KSCREEN_WIDTH, KSCREEN_HEIGHT - 45 * WIDTH_MULTIPLE) collectionViewLayout:flowLayout];
+        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, _titleView.bottom, KSCREEN_WIDTH, KSCREEN_HEIGHT - 45 * WIDTH_MULTIPLE - KNAV_HEIGHT) collectionViewLayout:flowLayout];
         _collectionView.dataSource = self;
         _collectionView.delegate = self;
         _collectionView.showsHorizontalScrollIndicator = NO;

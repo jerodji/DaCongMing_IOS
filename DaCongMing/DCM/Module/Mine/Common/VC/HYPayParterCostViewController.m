@@ -246,6 +246,12 @@
                 }
                 else{
                     
+                    if (![WXApi isWXAppInstalled]) {
+                        
+                        [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"please install WeChat"];
+                        return;
+                    }
+                    
                     [HYPayHandle weChatPayWithOrder:weakSelf.createOrderDatalist.sorder_id coupon_guid:nil complectionBlock:^(HYWeChatPayModel *weChatPayModel) {
                         
                         [HYWeChatPayManager wechatPayWith:weChatPayModel];

@@ -57,6 +57,7 @@
     
     [super viewWillAppear:animated];
 
+    self.guidStr = [NSMutableString stringWithFormat:@""];
     [self requestShoppingCartsData];
     [self cartsAmountClaculate];
     [self payShoppiingCarts];

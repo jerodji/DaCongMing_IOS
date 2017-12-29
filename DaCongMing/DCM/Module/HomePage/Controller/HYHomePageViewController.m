@@ -57,7 +57,7 @@
     [self requestRecommendData];
     
     NSLog(@"StatusBarHeight:%f",KSTATUSBAR_HEIGHT);
-    NSLog(@"TabBarHeight:%dd",KTABBAR_HEIGHT);
+    NSLog(@"TabBarHeight:%d",KTABBAR_HEIGHT);
     NSLog(@"NavHeight:%f",KNAV_HEIGHT);
     NSLog(@"%@",NSStringFromCGRect(self.view.frame));
     NSLog(@"ScreenHeight:%f",KSCREEN_HEIGHT);

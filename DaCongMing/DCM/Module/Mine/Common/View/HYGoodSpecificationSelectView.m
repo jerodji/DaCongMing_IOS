@@ -63,7 +63,7 @@
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithActionBlock:^(id  _Nonnull sender) {
        
             CGPoint tapPoint = [sender locationInView:self];
-            if(tapPoint.y < KSCREEN_HEIGHT * 0.6){
+            if(tapPoint.y < KSCREEN_HEIGHT * 0.4){
                 
                 [self hideGoodsSpecificationView];
             }
@@ -204,6 +204,7 @@
     }
     
     [self layoutIfNeeded];
+     _inventoryLabel.text = [NSString stringWithFormat:@"库存:%@",goodsModel.summary_qty];
     [self createSpecificationButtonWithArray:_specificationUnitArray];
     
     [_iconImgView sd_setImageWithURL:[NSURL URLWithString:_goodsModel.item_title_image] placeholderImage:[UIImage imageNamed:@"header_placeholder"]];

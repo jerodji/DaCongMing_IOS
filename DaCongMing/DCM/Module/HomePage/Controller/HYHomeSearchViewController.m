@@ -91,6 +91,7 @@
     [self.view addSubview:self.collectionView];
     [HYSearchHandle searchProductsWithText:text complectionBlock:^(NSArray *datalist) {
        
+        [self.datalist removeAllObjects];
         if (datalist.count) {
             
             [self.datalist addObjectsFromArray:datalist];
