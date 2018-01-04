@@ -10,6 +10,7 @@
 		04066E131FECE994002F4FA4 /* AdhocOptions.plist in Resources */ = {isa = PBXBuildFile; fileRef = 04066E121FECE993002F4FA4 /* AdhocOptions.plist */; };
 		04066E151FED09F7002F4FA4 /* AppStoreOptions.plist in Resources */ = {isa = PBXBuildFile; fileRef = 04066E141FED09F7002F4FA4 /* AppStoreOptions.plist */; };
 		041FEFEA1FE0D7D30064210F /* HYPayBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 041FEFE91FE0D7D30064210F /* HYPayBottomView.m */; };
+		04367E0A1FFCA1DD000AA51C /* HYBuyerMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04367E091FFCA1DD000AA51C /* HYBuyerMessageCell.m */; };
 		043BFC8A1FEA66DC003BAE3A /* HYBrandShopHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 043BFC891FEA66DC003BAE3A /* HYBrandShopHeaderView.m */; };
 		043BFC8D1FEA70A1003BAE3A /* HYBrandShopImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 043BFC8C1FEA70A1003BAE3A /* HYBrandShopImageCell.m */; };
 		043BFC901FEA7DC4003BAE3A /* HYSystemMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 043BFC8F1FEA7DC4003BAE3A /* HYSystemMessageModel.m */; };
@@ -242,6 +243,8 @@
 		04066E141FED09F7002F4FA4 /* AppStoreOptions.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AppStoreOptions.plist; sourceTree = "<group>"; };
 		041FEFE81FE0D7D30064210F /* HYPayBottomView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYPayBottomView.h; sourceTree = "<group>"; };
 		041FEFE91FE0D7D30064210F /* HYPayBottomView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYPayBottomView.m; sourceTree = "<group>"; };
+		04367E081FFCA1DD000AA51C /* HYBuyerMessageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYBuyerMessageCell.h; sourceTree = "<group>"; };
+		04367E091FFCA1DD000AA51C /* HYBuyerMessageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYBuyerMessageCell.m; sourceTree = "<group>"; };
 		043BFC881FEA66DC003BAE3A /* HYBrandShopHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYBrandShopHeaderView.h; sourceTree = "<group>"; };
 		043BFC891FEA66DC003BAE3A /* HYBrandShopHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYBrandShopHeaderView.m; sourceTree = "<group>"; };
 		043BFC8B1FEA70A1003BAE3A /* HYBrandShopImageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYBrandShopImageCell.h; sourceTree = "<group>"; };
@@ -1725,6 +1728,8 @@
 				3EA0BC281F750EC300F78FDD /* HYDiscountTableViewCell.m */,
 				3EA0BC2A1F750EDD00F78FDD /* HYGoodsPayTableViewCell.h */,
 				3EA0BC2B1F750EDD00F78FDD /* HYGoodsPayTableViewCell.m */,
+				04367E081FFCA1DD000AA51C /* HYBuyerMessageCell.h */,
+				04367E091FFCA1DD000AA51C /* HYBuyerMessageCell.m */,
 			);
 			path = Order;
 			sourceTree = "<group>";
@@ -1930,6 +1935,7 @@
 				3ECD83371F8F748800DE6FFD /* HYMyCollectShopImageCollectionViewCell.m in Sources */,
 				043BFC8A1FEA66DC003BAE3A /* HYBrandShopHeaderView.m in Sources */,
 				048208221FE11A6C00961BCB /* HYSystemMessageCell.m in Sources */,
+				04367E0A1FFCA1DD000AA51C /* HYBuyerMessageCell.m in Sources */,
 				3ED218D81F8E0E900040C7E3 /* HYShopCollectCell.m in Sources */,
 				3E2754711F70C06C0010053E /* HYButton.m in Sources */,
 				3E33CC9A1F8C5AAC002179CD /* HYCartsModel.m in Sources */,

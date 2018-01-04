@@ -53,7 +53,7 @@ _Pragma("clang diagnostic pop") \
 /** 屏幕高度 */
 #define KSCREEN_HEIGHT      [UIScreen mainScreen].bounds.size.height
 /** 屏幕宽度比 */
-#define WIDTH_MULTIPLE      KSCREEN_WIDTH / 375
+#define WIDTH_MULTIPLE      KSCREEN_WIDTH / 375.0
 /** 导航栏高度 */
 #define KNAV_HEIGHT         [[UIApplication sharedApplication] statusBarFrame].size.height + 44
 /** 状态栏高度 */

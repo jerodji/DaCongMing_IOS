@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "HYTagsItemModel.h"
+#import "HYBrands.h"
 
 @interface HYHomeTagsCollectionViewCell : UICollectionViewCell
 
 /** model */
-@property (nonatomic,strong) HYTagsItemModel *tagsItemModel;
+@property (nonatomic,strong) HYBrands *brandsModel;
 
 @end

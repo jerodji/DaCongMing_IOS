@@ -352,7 +352,13 @@
 #pragma mark - tableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    
+    NSString *cellName = self.cellInfoArray[indexPath.row][0];
+    if ([cellName isEqualToString:@"HYOrderDetailImageCell"]) {
+        
+        HYBrandShopViewController *shopVC = [HYBrandShopViewController new];
+        shopVC.sellerID = self.model.typeReCommend.seller_id;
+        [self.navigationController pushViewController:shopVC animated:YES];
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{

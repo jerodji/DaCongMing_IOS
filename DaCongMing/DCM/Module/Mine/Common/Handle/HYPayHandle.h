@@ -11,8 +11,8 @@
 
 @interface HYPayHandle : HYBaseModel
 
-+ (void)alipayWithOrderID:(NSString *)orderID coupon_guid:(NSString *)coupon_guid complectionBlock:(void(^)(NSString *sign))complection;
++ (void)alipayWithOrderID:(NSString *)orderID coupon_guid:(NSString *)coupon_guid buyerMessage:(NSString *)buyerMessage complectionBlock:(void(^)(NSString *sign))complection;
 
-+ (void)weChatPayWithOrder:(NSString *)orderID coupon_guid:(NSString *)coupon_guid complectionBlock:(void(^)(HYWeChatPayModel *weChatPayModel))complection;
++ (void)weChatPayWithOrder:(NSString *)orderID coupon_guid:(NSString *)coupon_guid buyerMessage:(NSString *)buyerMessage complectionBlock:(void(^)(HYWeChatPayModel *weChatPayModel))complection;
 
 @end

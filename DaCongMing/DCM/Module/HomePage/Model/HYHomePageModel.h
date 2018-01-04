@@ -77,6 +77,7 @@
 /** note */
 @property (nonatomic,copy) NSString *type_id;
 @property (nonatomic,copy) NSString *keyWord;
+@property (nonatomic,copy) NSString *seller_id;
 /** itemSecondaryTypeList */
 @property (nonatomic,strong) NSArray *itemSecondaryTypeList;
 

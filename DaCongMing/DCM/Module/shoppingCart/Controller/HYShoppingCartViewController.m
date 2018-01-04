@@ -509,11 +509,16 @@
 #pragma mark - tableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    if ([cell.reuseIdentifier isEqualToString:@"cartsItemCell"]) {
+        
+        HYCartsSeller *cartsSeller = _cartsSellerArray[indexPath.section - 1];
+        HYCartItem *item = cartsSeller.cartItems[indexPath.row];
+        HYGoodsDetailInfoViewController *detailVC = [HYGoodsDetailInfoViewController new];
+        detailVC.goodsID = item.item_id;
+        [self.navigationController pushViewController:detailVC animated:YES];
+    }
 }
-
-
-
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{

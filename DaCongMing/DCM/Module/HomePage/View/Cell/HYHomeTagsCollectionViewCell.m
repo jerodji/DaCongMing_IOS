@@ -35,10 +35,11 @@
     }];
 }
 
-- (void)setTagsItemModel:(HYTagsItemModel *)tagsItemModel{
+
+- (void)setBrandsModel:(HYBrands *)brandsModel{
     
-    _tagsItemModel = tagsItemModel;
-    [_imgView sd_setImageWithURL:[NSURL URLWithString:[tagsItemModel.image_url stringByURLDecode]] placeholderImage:[UIImage imageNamed:@"banner"]];
+    _brandsModel = brandsModel;
+    [_imgView sd_setImageWithURL:[NSURL URLWithString:[brandsModel.image_url stringByURLDecode]] placeholderImage:[UIImage imageNamed:@"banner"]];
 }
 
 #pragma mark - lazyload

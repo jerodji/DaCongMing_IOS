@@ -70,7 +70,7 @@
     if (!_bgImageView) {
         
         _bgImageView = [UIImageView new];
-        _bgImageView.image = [UIImage imageNamed:@"qrCodeBg"];
+        _bgImageView.image = [UIImage imageNamed:@"QRCodeBg"];
         _bgImageView.contentMode = UIViewContentModeScaleAspectFill;
     }
     return _bgImageView;
@@ -81,7 +81,7 @@
     if (!_QRImageView) {
         
         _QRImageView = [UIImageView new];
-        [_QRImageView sd_setImageWithURL:[NSURL URLWithString:[HYUserModel sharedInstance].userInfo.qrpath] placeholderImage:[UIImage imageNamed:@"myQrCode"]];
+        [_QRImageView sd_setImageWithURL:[NSURL URLWithString:[HYUserModel sharedInstance].userInfo.qrpath] placeholderImage:[UIImage imageNamed:@""]];
         _QRImageView.contentMode = UIViewContentModeScaleAspectFit;
     }
     return _QRImageView;

@@ -46,10 +46,10 @@
 
     }
     
-    if ([dict objectForKey:@"shareImg"]) {
+    if ([dict objectForKey:@"shareImgUrl"]) {
         
         WXImageObject *imageObject = [[WXImageObject alloc] init];
-        imageObject.imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:dict[@"imageUrl"]]];
+        imageObject.imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:dict[@"shareImgUrl"]]];
         message.mediaObject = imageObject;
         rep.bText = NO;
     }

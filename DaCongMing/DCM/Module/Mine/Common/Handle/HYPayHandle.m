@@ -10,13 +10,15 @@
 
 @implementation HYPayHandle
 
-+ (void)alipayWithOrderID:(NSString *)orderID coupon_guid:(NSString *)coupon_guid complectionBlock:(void (^)(NSString *))complection{
++ (void)alipayWithOrderID:(NSString *)orderID coupon_guid:(NSString *)coupon_guid buyerMessage:(NSString *)buyerMessage complectionBlock:(void (^)(NSString *))complection{
     
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
     [param setValue:[HYUserModel sharedInstance].token forKey:@"token"];
     [param setValue:orderID forKey:@"sorder_ids"];
     [param setValue:@"goods" forKey:@"sell_type"];
     [param setValue:coupon_guid forKey:@"coupon_guid"];
+    [param setValue:buyerMessage forKey:@"orderMessage"];
+
     
     [[HTTPManager shareHTTPManager] postDataFromUrl:API_Alipay withParameter:param isShowHUD:NO success:^(id returnData) {
         
@@ -39,13 +41,14 @@
     }];
 }
 
-+ (void)weChatPayWithOrder:(NSString *)orderID coupon_guid:(NSString *)coupon_guid complectionBlock:(void (^)(HYWeChatPayModel *))complection{
++ (void)weChatPayWithOrder:(NSString *)orderID coupon_guid:(NSString *)coupon_guid buyerMessage:(NSString *)buyerMessage complectionBlock:(void (^)(HYWeChatPayModel *))complection{
     
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
     [param setValue:[HYUserModel sharedInstance].token forKey:@"token"];
     [param setValue:orderID forKey:@"sorder_ids"];
     [param setValue:@"goods" forKey:@"sell_type"];
     [param setValue:coupon_guid forKey:@"coupon_guid"];
+    [param setValue:buyerMessage forKey:@"orderMessage"];
     
     [[HTTPManager shareHTTPManager] postDataFromUrl:API_WeChatPay withParameter:param isShowHUD:NO success:^(id returnData) {
         

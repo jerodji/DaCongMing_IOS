@@ -123,14 +123,7 @@
     
     [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
        
-        if (@available(iOS 11.0,*)) {
-            
-            make.edges.equalTo(self.view).insets(UIEdgeInsetsMake(0, 0, KSafeAreaBottom_Height, 0));
-        }
-        else{
-            
-            make.edges.equalTo(self.view);
-        }
+        make.edges.equalTo(self.view).insets(UIEdgeInsetsMake(0, 0, KSafeAreaBottom_Height - 60, 0));
     }];
     
     [_backBtn mas_makeConstraints:^(MASConstraintMaker *make) {
