@@ -59,16 +59,7 @@
     
     [HYMineNetRequest getMyShareWithComplectionBlock:^(NSDictionary *shareDict) {
         
-        if (shareDict) {
-            
-            NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-            [dict setObject:@"大聪明" forKey:@"shareTitle"];
-            [dict setObject:shareDict[@"url"] forKey:@"shareUrl"];
-            [dict setObject:shareDict[@"title_image_url"] forKey:@"imageUrl"];
-            [dict setObject:shareDict[@"share_msg"] forKey:@"shareDesc"];
-            
-            self.shareView.shareDict = dict;
-        }
+        
     }];
 }
 

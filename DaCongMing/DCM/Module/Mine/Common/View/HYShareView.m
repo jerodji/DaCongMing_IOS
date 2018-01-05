@@ -134,17 +134,27 @@
 #pragma mark - action
 - (void)weChatShareBtnAction{
     
-    if (self.shareDict) {
+    if (self.shareModel) {
         
-        [HYShareHandle shareToWeChatWithDict:self.shareDict];
+        self.shareModel.shareScene = HYShareSceneSession;
+        [HYShareHandle shareToWechatWithModel:self.shareModel];
+    }
+    else{
+        
+        [JRToast showWithText:@"系统出现问题了，请稍后操作"];
     }
 }
 
 - (void)lifeCircleShareBtnAction{
     
-    if (self.shareDict) {
+    if (self.shareModel) {
         
-        [HYShareHandle shareToLifeCircleWithDict:self.shareDict];
+        self.shareModel.shareScene = HYShareSceneTimeline;
+        [HYShareHandle shareToWechatWithModel:self.shareModel];
+    }
+    else{
+        
+        [JRToast showWithText:@"系统出现问题了，请稍后操作"];
     }
 }
 

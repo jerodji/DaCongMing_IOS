@@ -65,7 +65,7 @@
             
             NSString *urlCode = [@"聪明管理" stringByURLEncode];
             NSString *str = [NSString stringWithFormat:
-                             @"https://itunes.apple.com/cn/app/%@/id1301986941?mt=8",urlCode];
+                             @"https://itunes.apple.com/cn/app/%@/id1319732695?mt=8",urlCode];
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
         }];
     }

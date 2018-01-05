@@ -419,12 +419,7 @@
     if (!_shareView) {
         
         _shareView = [[HYShareView alloc] initWithFrame:CGRectMake(0, 0, KSCREEN_WIDTH, KSCREEN_HEIGHT)];
-        NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-        [dict setObject:@"大聪明" forKey:@"shareTitle"];
-        [dict setValue:[HYUserModel sharedInstance].userInfo.head_image_url forKey:@"shareImgUrl"];
-        [dict setObject:@"老铁，没毛病，双击666\n老铁，没毛病，双击666\n老铁，没毛病，双击666" forKey:@"shareDesc"];
         
-        _shareView.shareDict = dict;
     }
     return _shareView;
 }

@@ -10,84 +10,53 @@
 
 @implementation HYShareHandle
 
-+ (void)shareImamgeToWeChatWithDict:(NSDictionary *)dict{
++ (void)shareToWechatWithModel:(HYShareModel *)shareModel{
     
-    WXMediaMessage *message = [WXMediaMessage message];
-    
-    
-    message.title = @"我的二维码";
-    [message setThumbImage:[UIImage imageNamed:@"iconPlaceholder"]];
-    WXImageObject *imageObject = [[WXImageObject alloc] init];
-    imageObject.imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:dict[@"shareImgUrl"]]];
-    message.mediaObject = imageObject;
     SendMessageToWXReq *req = [[SendMessageToWXReq alloc] init];
-    req.bText = NO;
-    req.message = message;
-    req.scene = WXSceneSession;
+    switch (shareModel.shareType) {
+        case HYShareTypeText:{
+            req.text = shareModel.text;
+            req.bText = YES;
+        }
+            break;
+        case HYShareTypeImage:{
+            WXMediaMessage *message = [WXMediaMessage message];
+            [message setThumbImage:shareModel.thumbnailImage];
+            WXImageObject *imageObject = [WXImageObject object];
+            imageObject.imageData = UIImagePNGRepresentation(shareModel.image);
+            message.mediaObject = imageObject;
+            req.bText = NO;
+            req.message = message;
+        }
+            break;
+        case HYShareTypeWebUrl:{
+            WXMediaMessage *message = [WXMediaMessage message];
+            message.title = shareModel.shareTitle;
+            message.description = shareModel.shareDescription;
+            UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:shareModel.shareWebUrl]]];
+            [message setThumbImage:image];
+            
+            WXWebpageObject *object = [WXWebpageObject object];
+            object.webpageUrl = shareModel.shareWebUrl;
+            message.mediaObject = object;
+            req.message = message;
+        }
+            break;
+        default:
+            break;
+    }
+    
+    if (shareModel.shareScene == HYShareSceneSession) {
+        //分享到好友
+        req.scene = WXSceneSession;
+    }
+    
+    if (shareModel.shareScene == HYShareSceneTimeline) {
+        //分享到朋友圈
+        req.scene = WXSceneTimeline;
+    }
     [WXApi sendReq:req];
-    
-}
-
-+ (void)shareToWeChatWithDict:(NSDictionary *)dict{
-    
-    SendMessageToWXReq *rep = [[SendMessageToWXReq alloc] init];
-
-    WXMediaMessage *message = [WXMediaMessage message];
-    message.description = [dict objectForKey:@"shareDesc"];
-    message.title = [dict objectForKey:@"shareTitle"];
-    
-    if ([dict objectForKey:@"shareUrl"]) {
-        
-        WXWebpageObject *object = [[WXWebpageObject alloc] init];
-        UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:dict[@"imageUrl"]]]];
-        [message setThumbImage:image];
-        object.webpageUrl = [dict objectForKey:@"shareUrl"];
-        message.mediaObject = object;
-
-    }
-    
-    if ([dict objectForKey:@"shareImgUrl"]) {
-        
-        WXImageObject *imageObject = [[WXImageObject alloc] init];
-        imageObject.imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:dict[@"shareImgUrl"]]];
-        message.mediaObject = imageObject;
-        rep.bText = NO;
-    }
-    
-    rep.message = message;
-    rep.scene = WXSceneSession;
-    [WXApi sendReq:rep];
-}
-
-+ (void)shareToLifeCircleWithDict:(NSDictionary *)dict{
-    
-    SendMessageToWXReq *rep = [[SendMessageToWXReq alloc] init];
-    
-    WXMediaMessage *message = [WXMediaMessage message];
-    message.description = [dict objectForKey:@"shareDesc"];
-    message.title = [dict objectForKey:@"shareTitle"];
-    
-    if ([dict objectForKey:@"shareUrl"]) {
-        
-        WXWebpageObject *object = [[WXWebpageObject alloc] init];
-        UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:dict[@"imageUrl"]]]];
-        [message setThumbImage:image];
-        object.webpageUrl = [dict objectForKey:@"shareUrl"];
-        message.mediaObject = object;
-        
-    }
-    
-    if ([dict objectForKey:@"shareImgUrl"]) {
-        
-        WXImageObject *imageObject = [[WXImageObject alloc] init];
-        imageObject.imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:dict[@"shareImgUrl"]]];
-        message.mediaObject = imageObject;
-        rep.bText = NO;
-    }
-    
-    rep.message = message;
-    rep.scene = WXSceneTimeline;
-    [WXApi sendReq:rep];
+    DLog(@"%d",[WXApi sendReq:req]);
 }
 
 @end

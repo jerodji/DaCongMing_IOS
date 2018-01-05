@@ -14,6 +14,7 @@
 		043BFC8A1FEA66DC003BAE3A /* HYBrandShopHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 043BFC891FEA66DC003BAE3A /* HYBrandShopHeaderView.m */; };
 		043BFC8D1FEA70A1003BAE3A /* HYBrandShopImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 043BFC8C1FEA70A1003BAE3A /* HYBrandShopImageCell.m */; };
 		043BFC901FEA7DC4003BAE3A /* HYSystemMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 043BFC8F1FEA7DC4003BAE3A /* HYSystemMessageModel.m */; };
+		0441DC7E1FFE32F000944402 /* HYShareModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0441DC7D1FFE32F000944402 /* HYShareModel.m */; };
 		048208191FE102AC00961BCB /* HYParterPayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 048208181FE102AC00961BCB /* HYParterPayModel.m */; };
 		0482081F1FE11A1700961BCB /* HYSystemMessageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0482081E1FE11A1700961BCB /* HYSystemMessageVC.m */; };
 		048208221FE11A6C00961BCB /* HYSystemMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 048208211FE11A6C00961BCB /* HYSystemMessageCell.m */; };
@@ -251,6 +252,8 @@
 		043BFC8C1FEA70A1003BAE3A /* HYBrandShopImageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYBrandShopImageCell.m; sourceTree = "<group>"; };
 		043BFC8E1FEA7DC4003BAE3A /* HYSystemMessageModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYSystemMessageModel.h; sourceTree = "<group>"; };
 		043BFC8F1FEA7DC4003BAE3A /* HYSystemMessageModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYSystemMessageModel.m; sourceTree = "<group>"; };
+		0441DC7C1FFE32F000944402 /* HYShareModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYShareModel.h; sourceTree = "<group>"; };
+		0441DC7D1FFE32F000944402 /* HYShareModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYShareModel.m; sourceTree = "<group>"; };
 		048208171FE102AC00961BCB /* HYParterPayModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYParterPayModel.h; sourceTree = "<group>"; };
 		048208181FE102AC00961BCB /* HYParterPayModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYParterPayModel.m; sourceTree = "<group>"; };
 		0482081D1FE11A1700961BCB /* HYSystemMessageVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYSystemMessageVC.h; sourceTree = "<group>"; };
@@ -1118,6 +1121,8 @@
 				3E4D78891F79088F00BC9C2B /* HYAlipayManager.m */,
 				3E4D789A1F7911CC00BC9C2B /* HYWeChatPayManager.h */,
 				3E4D789B1F7911CC00BC9C2B /* HYWeChatPayManager.m */,
+				0441DC7C1FFE32F000944402 /* HYShareModel.h */,
+				0441DC7D1FFE32F000944402 /* HYShareModel.m */,
 				3ECD832F1F8F5E5100DE6FFD /* HYShareHandle.h */,
 				3ECD83301F8F5E5100DE6FFD /* HYShareHandle.m */,
 				3ECD834D1F90BB0400DE6FFD /* HYSearchHandle.h */,
@@ -2043,6 +2048,7 @@
 				3E4D787D1F79005800BC9C2B /* HYCreateOrderDatalist.m in Sources */,
 				3E33CC8D1F8B1D60002179CD /* HYProvinceModel.m in Sources */,
 				049D7AFA1FDFECF8000A0A7B /* HYInviteParterView.m in Sources */,
+				0441DC7E1FFE32F000944402 /* HYShareModel.m in Sources */,
 				3EDC22031F94A3500013FFBA /* HYRefundSuccessViewController.m in Sources */,
 				3EC4EB591F9F3B3B001D5DD3 /* HYConfirmReceiveGoodsVC.m in Sources */,
 				3E2754911F7200CD0010053E /* HYGoodsListViewController.m in Sources */,

@@ -7,13 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "HYShareModel.h"
 
 @interface HYShareHandle : NSObject
 
-+ (void)shareImamgeToWeChatWithDict:(NSDictionary *)dict;
-
-+ (void)shareToWeChatWithDict:(NSDictionary *)dict;
-
-+ (void)shareToLifeCircleWithDict:(NSDictionary *)dict;
++ (void)shareToWechatWithModel:(HYShareModel *)shareModel;
 
 @end

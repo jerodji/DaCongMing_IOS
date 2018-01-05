@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HYShareModel.h"
+
 
 @interface HYShareView : UIView
 
-/** 分享的 */
-@property (nonatomic,strong) NSDictionary *shareDict;
+@property (nonatomic,strong) HYShareModel *shareModel;
 
 - (void)showShareView;
 

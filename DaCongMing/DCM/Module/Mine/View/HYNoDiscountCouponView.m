@@ -91,7 +91,7 @@
         _textLabel.font = KFitFont(14);
         _textLabel.textAlignment = NSTextAlignmentCenter;
         _textLabel.textColor = KAPP_7b7b7b_COLOR;
-        _textLabel.text = @"你好没有任何优惠券";
+        _textLabel.text = @"你还没有任何优惠券";
     }
     return _textLabel;
 }

@@ -150,7 +150,6 @@
         _textField.clearButtonMode = UITextFieldViewModeAlways;
         _textField.font = KFitFont(14);
         _textField.keyboardType = UIKeyboardTypeDefault;
-        _textField.returnKeyType = UIReturnKeySearch;
         _textField.tintColor = KAPP_b7b7b7_COLOR;
         [_textField addTarget:self action:@selector(searchTextChanged:) forControlEvents:UIControlEventEditingChanged];
     }

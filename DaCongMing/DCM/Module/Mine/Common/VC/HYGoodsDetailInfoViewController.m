@@ -123,7 +123,7 @@
     
     [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
        
-        make.edges.equalTo(self.view).insets(UIEdgeInsetsMake(0, 0, KSafeAreaBottom_Height - 60, 0));
+        make.edges.equalTo(self.view).insets(UIEdgeInsetsMake(0, 0, -KSafeAreaBottom_Height - 60, 0));
     }];
     
     [_backBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -142,7 +142,7 @@
     
     [_bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.left.right.bottom.equalTo(self.tableView);
+        make.left.right.bottom.equalTo(self.view);
         make.height.equalTo(@(60));
     }];
 }
