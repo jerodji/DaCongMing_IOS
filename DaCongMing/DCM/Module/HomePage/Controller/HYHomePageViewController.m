@@ -56,6 +56,7 @@
     [super viewDidLoad];
     [self requestRecommendData];
     
+    
     NSLog(@"StatusBarHeight:%f",KSTATUSBAR_HEIGHT);
     NSLog(@"TabBarHeight:%d",KTABBAR_HEIGHT);
     NSLog(@"NavHeight:%f",KNAV_HEIGHT);
