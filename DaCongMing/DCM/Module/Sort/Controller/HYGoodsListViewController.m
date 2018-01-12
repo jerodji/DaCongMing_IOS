@@ -240,12 +240,14 @@
     
 }
 
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-    
-    HYGoodsItemModel *itemModel = self.datalist[indexPath.item];
-    CGFloat itemWidth = (KSCREEN_WIDTH - 15 * WIDTH_MULTIPLE) / 2.0;
-    return CGSizeMake(itemWidth, itemModel.cellHeight ? itemModel.cellHeight : 325 * WIDTH_MULTIPLE);
-}
+
+
+//- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
+//
+//    HYGoodsItemModel *itemModel = self.datalist[indexPath.item];
+//    CGFloat itemWidth = (KSCREEN_WIDTH - 15 * WIDTH_MULTIPLE) / 2.0;
+//    return CGSizeMake(itemWidth, itemModel.cellHeight ? itemModel.cellHeight : 325 * WIDTH_MULTIPLE);
+//}
 
 #pragma mark - 没有数据
 - (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView{
@@ -288,11 +290,13 @@
         //1.初始化layout
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
         layout.scrollDirection = UICollectionViewScrollDirectionVertical;
-//        layout.estimatedItemSize = CGSizeMake(KSCREEN_WIDTH / 2 - 10, 315 * WIDTH_MULTIPLE);
+//        layout.estimatedItemSize = CGSizeMake((KSCREEN_WIDTH - 15 * WIDTH_MULTIPLE) / 2, 315 * WIDTH_MULTIPLE);
+        layout.estimatedItemSize = UICollectionViewFlowLayoutAutomaticSize;
+        layout.itemSize = UICollectionViewFlowLayoutAutomaticSize;
         layout.scrollDirection = UICollectionViewScrollDirectionVertical;
-        layout.minimumInteritemSpacing = 5 * WIDTH_MULTIPLE;
-        layout.minimumLineSpacing = 5 * WIDTH_MULTIPLE;      //纵向间距
-        layout.sectionInset = UIEdgeInsetsMake(0, 5 * WIDTH_MULTIPLE, 0, 4 * WIDTH_MULTIPLE);
+        layout.minimumInteritemSpacing = 5;
+        layout.minimumLineSpacing = 10 * WIDTH_MULTIPLE;      //纵向间距
+        layout.sectionInset = UIEdgeInsetsMake(0, 5 , 0, 5);
         
         
         _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];

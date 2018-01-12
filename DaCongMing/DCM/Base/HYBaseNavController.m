@@ -28,6 +28,12 @@
 
 }
 
+- (UIStatusBarStyle)preferredStatusBarStyle{
+    
+    [super preferredStatusBarStyle];
+    return UIStatusBarStyleLightContent;
+}
+
 - (void)createGesture{
     
     //创建边缘手势

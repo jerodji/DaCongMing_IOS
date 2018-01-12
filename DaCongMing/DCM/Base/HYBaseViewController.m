@@ -45,7 +45,24 @@
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     
     [self.view endEditing:YES];
+}
+
+#pragma mark - setStatusBar
+- (UIStatusBarStyle)preferredStatusBarStyle {
     
+    [super preferredStatusBarStyle];
+    return UIStatusBarStyleLightContent;
+}
+
+
+//设置状态栏颜色
+- (void)setStatusBarBackgroundColor:(UIColor *)color {
+    
+    UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
+    if ([statusBar respondsToSelector:@selector(setBackgroundColor:)]) {
+        
+        statusBar.backgroundColor = color;
+    }
 }
 
 - (void)didReceiveMemoryWarning {

@@ -12,7 +12,6 @@
 #import "HYHomeTitleScrollCell.h"
 #import "HYHomeImgScrollCell.h"
 #import "HYHomeCollectionCell.h"
-#import "HYHomeBannerCell.h"
 #import "HYHomeDoodsCell.h"
 
 @interface HYHomePageView() <UITableViewDelegate,UITableViewDataSource,SDCycleScrollViewDelegate>

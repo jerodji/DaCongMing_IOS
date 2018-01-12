@@ -537,7 +537,7 @@
         else{
             
             //猜你喜欢
-            CGFloat height = ceil(_goodsList.count / 2.0) * 340 * WIDTH_MULTIPLE;
+            CGFloat height = ceil(_goodsList.count / 2.0) * KItemHeight;
             return  height + 40 * WIDTH_MULTIPLE;
         }
     }
@@ -550,7 +550,7 @@
         else if(indexPath.section == _tableCount - 1){
             
             //猜你喜欢
-            CGFloat height = ceil(_goodsList.count / 2.0) * 350 * WIDTH_MULTIPLE;
+            CGFloat height = ceil(_goodsList.count / 2.0) * KItemHeight;
             return  height + 40 * WIDTH_MULTIPLE;
         }
         else{

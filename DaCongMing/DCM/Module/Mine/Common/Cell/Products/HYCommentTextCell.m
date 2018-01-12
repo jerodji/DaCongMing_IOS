@@ -42,21 +42,24 @@
     [self addSubview:self.bgView];
     [self addSubview:self.countLabel];
     [self addSubview:self.bottomLine];
+    
+    [self layoutIfNeeded];
+    [_bgView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        
+        make.left.right.top.bottom.equalTo(self);
+//        if (self.size.height > 0) {
+//            
+//            make.top.equalTo(self).offset(8 * WIDTH_MULTIPLE);
+//            make.left.right.bottom.equalTo(self);
+//        }
+//        else{
+//            make.left.right.top.bottom.equalTo(self);
+//        }
+    }];
 }
 
 - (void)layoutSubviews{
     
-    [_bgView mas_makeConstraints:^(MASConstraintMaker *make) {
-        
-        if (self.size.height > 0) {
-            
-            make.top.equalTo(self).offset(8 * WIDTH_MULTIPLE);
-            make.left.right.bottom.equalTo(self);
-        }
-        else{
-            make.left.right.top.bottom.equalTo(self);
-        }
-    }];
     
     [_countLabel mas_makeConstraints:^(MASConstraintMaker *make) {
        

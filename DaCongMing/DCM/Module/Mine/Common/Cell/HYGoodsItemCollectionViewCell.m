@@ -11,6 +11,8 @@
 
 @interface HYGoodsItemCollectionViewCell()
 
+/** 白色背景 */
+@property (nonatomic,strong) UIView *whiteBgView;
 /** img */
 @property (nonatomic,strong) UIImageView *imgView;
 /** title */
@@ -23,6 +25,8 @@
 @property (nonatomic,strong) UIButton *addToShopingCartsBtn;
 
 @end
+
+#define itemWidth (KSCREEN_WIDTH - 15) / 2
 
 @implementation HYGoodsItemCollectionViewCell
 
@@ -37,11 +41,12 @@
 
 - (void)setupSubviews{
     
-    [self addSubview:self.imgView];
-    [self addSubview:self.titleLabel];
-    [self addSubview:self.introLabel];
-    [self addSubview:self.priceLabel];
-    [self addSubview:self.addToShopingCartsBtn];
+//    [self addSubview:self.whiteBgView]; 
+    [self.contentView addSubview:self.imgView];
+    [self.contentView addSubview:self.titleLabel];
+    [self.contentView addSubview:self.introLabel];
+    [self.contentView addSubview:self.priceLabel];
+    [self.contentView addSubview:self.addToShopingCartsBtn];
 }
 
 - (void)setGoodsModel:(HYGoodsItemModel *)goodsModel{
@@ -82,55 +87,71 @@
     _titleLabel.attributedText = attributeStr;
     
     
-    NSMutableAttributedString *priceStr = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"￥%@",goodsModel.item_min_price] attributes:@{NSForegroundColorAttributeName : KAPP_PRICE_COLOR, NSFontAttributeName : KFitFont(13)}];
-    [priceStr addAttributes:@{NSFontAttributeName : KFitFont(11)} range:NSMakeRange(0, 1)];
+    NSMutableAttributedString *priceStr = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"￥%@",goodsModel.item_min_price] attributes:@{NSForegroundColorAttributeName : KAPP_PRICE_COLOR, NSFontAttributeName : KPriceFont(15)}];
+    [priceStr addAttributes:@{NSFontAttributeName : KPriceFont(14)} range:NSMakeRange(0, 1)];
     _priceLabel.attributedText = priceStr ;
 
 }
 
 - (void)layoutSubviews{
     
+//    [_whiteBgView mas_makeConstraints:^(MASConstraintMaker *make) {
+//
+//        make.edges.equalTo(self);
+//    }];
+    
+    [self.contentView mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.left.top.mas_equalTo(@(0));
+        make.width.mas_equalTo(itemWidth); // 这里必须给定width的值
+        make.bottom.equalTo(_introLabel.mas_bottom).offset(10 * WIDTH_MULTIPLE);
+    }];
+    
     [_imgView mas_makeConstraints:^(MASConstraintMaker *make) {
        
-        make.left.equalTo(self);
-        make.right.equalTo(self);
-        make.top.equalTo(self);
-        make.height.mas_equalTo(240 * WIDTH_MULTIPLE);
+        make.left.top.right.equalTo(self.contentView);
+        make.height.mas_equalTo(itemWidth);
+    }];
+    
+    [_priceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.left.right.equalTo(self.contentView).offset(10 * WIDTH_MULTIPLE);
+        make.top.equalTo(self.imgView.mas_bottom).offset(5 * WIDTH_MULTIPLE);
+        make.height.mas_equalTo(20 * WIDTH_MULTIPLE);
     }];
     
     CGFloat strHeight = [@"哈哈" heightForFont:KFitFont(14) width:KSCREEN_WIDTH];
     [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
        
-        make.left.equalTo(_imgView).offset(10 * WIDTH_MULTIPLE);
-        make.top.equalTo(_imgView.mas_bottom).offset(7 * WIDTH_MULTIPLE);
-        make.right.equalTo(self).offset(- 10 * WIDTH_MULTIPLE);
+        make.left.equalTo(_priceLabel);
+        make.top.equalTo(_priceLabel.mas_bottom).offset(5 * WIDTH_MULTIPLE);
+        make.right.equalTo(self.contentView).offset(- 10 * WIDTH_MULTIPLE);
         make.height.mas_equalTo(strHeight * 2 + 5);
     }];
     
     [_introLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.left.equalTo(_titleLabel);
-        make.right.equalTo(self).offset(-40);
-        make.top.equalTo(_titleLabel.mas_bottom);
-        make.height.mas_equalTo(strHeight - 2);
-    }];
-    
-    [_priceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        
-        make.left.right.equalTo(self.introLabel);
-        make.top.equalTo(self.introLabel.mas_bottom);
-        make.height.mas_equalTo(strHeight + 2);
+        make.right.equalTo(self.contentView).offset(-40);
+        make.top.equalTo(_titleLabel.mas_bottom).offset(5 * WIDTH_MULTIPLE);
+        make.bottom.equalTo(self.contentView).offset(-10 * WIDTH_MULTIPLE);
     }];
     
     [_addToShopingCartsBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.right.equalTo(self).offset(-6 * WIDTH_MULTIPLE);
-        make.bottom.equalTo(_priceLabel.mas_bottom);
+        make.right.bottom.equalTo(self.contentView).offset(-6 * WIDTH_MULTIPLE);
         make.size.mas_equalTo(CGSizeMake(30 * WIDTH_MULTIPLE, 30 * WIDTH_MULTIPLE));
     }];
     
     [self layoutIfNeeded];
-    self.goodsModel.cellHeight = self.priceLabel.bottom + 6 * WIDTH_MULTIPLE;
+    self.goodsModel.cellHeight = self.introLabel.bottom + 10 * WIDTH_MULTIPLE;
+    self.layer.cornerRadius = 10 * WIDTH_MULTIPLE;
+    self.layer.shadowOpacity = 0.4;
+    self.layer.shadowRadius = 3.0;
+    self.layer.shadowPath = [UIBezierPath bezierPathWithRect:self.contentView.bounds].CGPath;
+    self.layer.shouldRasterize = YES;
+    self.layer.shadowOffset = CGSizeMake(1, 1);
+    self.layer.rasterizationScale = [UIScreen mainScreen].scale;    //设置抗锯齿边缘
 }
 
 #pragma mark - action
@@ -140,7 +161,29 @@
     [handle addToCartsWithProductID:self.goodsModel.item_id];
 }
 
+- (UICollectionViewLayoutAttributes*)preferredLayoutAttributesFittingAttributes:(UICollectionViewLayoutAttributes*)layoutAttributes {
+    
+    [self layoutIfNeeded];
+    CGSize size = [self.contentView systemLayoutSizeFittingSize:layoutAttributes.size];
+    CGRect cellFrame = layoutAttributes.frame;
+    cellFrame.size.height = size.height;
+    cellFrame.size.width = itemWidth;
+    layoutAttributes.frame = cellFrame;
+    return layoutAttributes;
+}
+
 #pragma mark - lazyload
+- (UIView *)whiteBgView{
+    
+    if (!_whiteBgView) {
+        
+        _whiteBgView = [UIView new];
+        _whiteBgView.backgroundColor = KAPP_WHITE_COLOR;
+        _whiteBgView.layer.cornerRadius = 10 * WIDTH_MULTIPLE;
+    }
+    return _whiteBgView;
+}
+
 - (UIImageView *)imgView{
     
     if (!_imgView) {
@@ -149,6 +192,7 @@
         _imgView.contentMode = UIViewContentModeScaleAspectFill;
         _imgView.clipsToBounds = YES;
         _imgView.image = [UIImage imageNamed:@"header_placeholder"];
+        _imgView.layer.cornerRadius = self.whiteBgView.layer.cornerRadius;
     }
     return _imgView;
 }
@@ -158,7 +202,7 @@
     if (!_priceLabel) {
         
         _priceLabel = [[UILabel alloc] init];
-        _priceLabel.font = KFitFont(14);
+        _priceLabel.font = KPriceFont(20);
         _priceLabel.textColor = KAPP_PRICE_COLOR;
         _priceLabel.text = @"￥0.01";
         _priceLabel.textAlignment = NSTextAlignmentLeft;
@@ -166,12 +210,28 @@
     return _priceLabel;
 }
 
+- (void)printAllFonts{
+    
+    NSArray *fontFamilies = [UIFont familyNames];
+    int i = 0;
+    for(NSString *fontfamilyname in fontFamilies)
+    {
+        NSLog(@"family:'%@'",fontfamilyname);
+        NSArray *fontArray = [UIFont fontNamesForFamilyName:fontfamilyname];
+        for(NSString *fontName in fontArray){
+            
+            NSLog(@"\tfont:'%@'",fontName);
+        }
+        NSLog(@"-------------%d",i++);
+    }
+}
+
 - (YYLabel *)titleLabel{
     
     if (!_titleLabel) {
         
         _titleLabel = [[YYLabel alloc] init];
-        _titleLabel.font = KFitFont(10);
+        _titleLabel.font = KFitBoldFont(10);
         _titleLabel.textColor = KCOLOR(@"272727");
         _titleLabel.text = @"纯天然野猪，野生大象，野生河马，野生哈哈";
         _titleLabel.textAlignment = NSTextAlignmentLeft;
@@ -186,7 +246,7 @@
     if (!_introLabel) {
         
         _introLabel = [[UILabel alloc] init];
-        _introLabel.font = KFitFont(9);
+        _introLabel.font = KFitFont(11);
         _introLabel.textColor = KCOLOR(@"888888");
         _introLabel.text = @"纯野生，纯天然无污染";
         _introLabel.textAlignment = NSTextAlignmentLeft;

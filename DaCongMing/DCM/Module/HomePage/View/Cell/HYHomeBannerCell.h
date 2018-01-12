@@ -2,19 +2,16 @@
 //  HYHomeBannerCell.h
 //  DaCongMing
 //
-//  Created by 胡勇 on 2017/9/15.
-//  Copyright © 2017年 胡勇. All rights reserved.
+//  Created by Jack on 2018/1/10.
+//  Copyright © 2018年 胡勇. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
-#import "HYHomePageModel.h"
+#import "HYHomeBannerModel.h"
 
-@interface HYHomeBannerCell : UITableViewCell
+@interface HYHomeBannerCell : UICollectionViewCell
 
-/** model */
-@property (nonatomic,strong) HYHomePageModel *model;
-
-/** bannerArray */
-@property (nonatomic,strong) NSMutableArray *bannerArray;
+@property (nonatomic,strong) UIImageView *imgView;
+@property (nonatomic,strong) HYHomeBannerModel *bannerModel;
 
 @end
