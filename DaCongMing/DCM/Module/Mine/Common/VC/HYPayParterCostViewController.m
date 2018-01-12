@@ -227,26 +227,32 @@
                 
                 if (self.model.payMode == 0) {
                     
-                    [HYPayHandle alipayWithOrderID:weakSelf.createOrderDatalist.sorder_id coupon_guid:nil complectionBlock:^(NSString *sign) {
+                    [HYPayHandle alipayWithOrderID:weakSelf.createOrderDatalist.sorder_id coupon_guid:nil buyerMessage:nil complectionBlock:^(NSString *sign) {
                         
                         [HYAlipayManager alipayWithOrderString:sign success:^{
                             
                             HYParterPayResultVC *resultVC = [HYParterPayResultVC new];
                             [weakSelf.navigationController pushViewController:resultVC animated:YES];
                             resultVC.isSuccess = YES;
-
+                            
                         } failed:^{
                             
                             HYParterPayResultVC *resultVC = [HYParterPayResultVC new];
                             [weakSelf.navigationController pushViewController:resultVC animated:YES];
                             resultVC.isSuccess = NO;
-
+                            
                         }];
                     }];
                 }
                 else{
                     
-                    [HYPayHandle weChatPayWithOrder:weakSelf.createOrderDatalist.sorder_id coupon_guid:nil complectionBlock:^(HYWeChatPayModel *weChatPayModel) {
+                    if (![WXApi isWXAppInstalled]) {
+                        
+                        [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"please install WeChat"];
+                        return;
+                    }
+                    
+                    [HYPayHandle weChatPayWithOrder:weakSelf.createOrderDatalist.sorder_id coupon_guid:nil buyerMessage:nil complectionBlock:^(HYWeChatPayModel *weChatPayModel) {
                         
                         [HYWeChatPayManager wechatPayWith:weChatPayModel];
                         

@@ -234,6 +234,7 @@
 		4BD2CE3D2008C3530038A611 /* HYBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BD2CE3C2008C3520038A611 /* HYBaseTableViewController.m */; };
 		4BD2CE422008C3B70038A611 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BD2CE402008C3B70038A611 /* AppDelegate.m */; };
 		4BD2CE432008C3B70038A611 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4BD2CE412008C3B70038A611 /* Info.plist */; };
+		4BD2CE4F2008CA460038A611 /* HYShareModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BD2CE4D2008CA460038A611 /* HYShareModel.m */; };
 		D546439B3E56BFB3EA93ABFD /* libPods-DaCongMing.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6270C7E5FCB624CCCCEF7D0E /* libPods-DaCongMing.a */; };
 /* End PBXBuildFile section */
 
@@ -735,6 +736,8 @@
 		4BD2CE3F2008C3B70038A611 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4BD2CE402008C3B70038A611 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		4BD2CE412008C3B70038A611 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4BD2CE4D2008CA460038A611 /* HYShareModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HYShareModel.m; path = ../../../../../../../Downloads/HYShareModel.m; sourceTree = "<group>"; };
+		4BD2CE4E2008CA460038A611 /* HYShareModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HYShareModel.h; path = ../../../../../../../Downloads/HYShareModel.h; sourceTree = "<group>"; };
 		6270C7E5FCB624CCCCEF7D0E /* libPods-DaCongMing.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DaCongMing.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4E6E69C26653812A2F54D70 /* Pods-DaCongMing.adhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DaCongMing.adhoc.xcconfig"; path = "Pods/Target Support Files/Pods-DaCongMing/Pods-DaCongMing.adhoc.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1113,6 +1116,8 @@
 				3E4D78891F79088F00BC9C2B /* HYAlipayManager.m */,
 				3E4D789A1F7911CC00BC9C2B /* HYWeChatPayManager.h */,
 				3E4D789B1F7911CC00BC9C2B /* HYWeChatPayManager.m */,
+				4BD2CE4E2008CA460038A611 /* HYShareModel.h */,
+				4BD2CE4D2008CA460038A611 /* HYShareModel.m */,
 				3ECD832F1F8F5E5100DE6FFD /* HYShareHandle.h */,
 				3ECD83301F8F5E5100DE6FFD /* HYShareHandle.m */,
 				3ECD834D1F90BB0400DE6FFD /* HYSearchHandle.h */,
@@ -2041,6 +2046,7 @@
 				3E1021FE1F7B35E30048D556 /* HYMyAccountViewController.m in Sources */,
 				3E27546E1F70B2BC0010053E /* HYMineInfoTableViewCell.m in Sources */,
 				3ECD834F1F90BB0400DE6FFD /* HYSearchHandle.m in Sources */,
+				4BD2CE4F2008CA460038A611 /* HYShareModel.m in Sources */,
 				3EFBFC691F7CB09C003F92B8 /* HYTextFieldTableViewCell.m in Sources */,
 				3EA0BC291F750EC300F78FDD /* HYDiscountTableViewCell.m in Sources */,
 				3E5620791F6B6DAC0063AA5B /* UIColor+HexString.m in Sources */,
