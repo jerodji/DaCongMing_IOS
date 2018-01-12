@@ -12,6 +12,8 @@
 #import "HYGoodsPostageTableViewCell.h"
 #import "HYDiscountTableViewCell.h"
 #import "HYGoodsPayTableViewCell.h"
+#import "HYTextFieldTableViewCell.h"
+#import "HYBuyerMessageCell.h"
 
 #import "HYCreateOrder.h"
 #import "HYCreateOrderDatalist.h"
@@ -23,7 +25,7 @@
 #import "HYPayResultViewController.h"
 #import "HYMyAddressViewController.h"
 
-@interface HYFillOrderViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface HYFillOrderViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
 
 /** tableView */
 @property (nonatomic,strong) UITableView *tableView;
@@ -36,9 +38,10 @@
 @property (nonatomic,strong) UILabel *payMoneyLabel;
 /** 确认 */
 @property (nonatomic,strong) UIButton *confirmBtn;
-
 /** payMode */
 @property (nonatomic,assign) NSInteger payMode;
+/** 买家留言 */
+@property (nonatomic,copy) NSString *buyerMessage;
 
 @end
 
@@ -85,10 +88,9 @@
     
     [_confirmBtn mas_makeConstraints:^(MASConstraintMaker *make) {
        
-        make.right.equalTo(self.view).offset(-10 * WIDTH_MULTIPLE);
-        make.width.equalTo(@(90));
-        make.height.equalTo(@(40));
-        make.bottom.equalTo(self.view).offset(-10);
+        make.right.bottom.equalTo(self.view);
+        make.width.equalTo(@(120 * WIDTH_MULTIPLE));
+        make.height.equalTo(@(60));
     }];
     
     [_payMoneyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -121,7 +123,7 @@
 - (void)setOrderModel:(HYCreateOrder *)orderModel{
     
     _orderModel = orderModel;
-    NSString *str = [NSString stringWithFormat:@"    您需要支付: %@ ",_orderModel.summary_price];
+    NSString *str = [NSString stringWithFormat:@"    您需要支付: ￥%@ ",_orderModel.summary_price];
     NSMutableAttributedString *attributeStr = [[NSMutableAttributedString alloc] initWithString:str];
     [attributeStr addAttributes:@{NSForegroundColorAttributeName : KAPP_PRICE_COLOR} range:NSMakeRange(10, str.length - 10)];
     _payMoneyLabel.attributedText = attributeStr;
@@ -181,7 +183,7 @@
     
     if (self.payMode == 0) {
         
-        [HYPayHandle alipayWithOrderID:self.createOrderDatalist.sorder_id coupon_guid:nil complectionBlock:^(NSString *sign) {
+        [HYPayHandle alipayWithOrderID:self.createOrderDatalist.sorder_id coupon_guid:nil buyerMessage:self.buyerMessage complectionBlock:^(NSString *sign) {
            
             [HYAlipayManager alipayWithOrderString:sign success:^{
                 
@@ -202,7 +204,7 @@
     }
     else{
         
-        [HYPayHandle weChatPayWithOrder:self.createOrderDatalist.sorder_id coupon_guid:nil complectionBlock:^(HYWeChatPayModel *weChatPayModel) {
+        [HYPayHandle weChatPayWithOrder:self.createOrderDatalist.sorder_id coupon_guid:nil buyerMessage:self.buyerMessage complectionBlock:^(HYWeChatPayModel *weChatPayModel) {
             
             [HYWeChatPayManager wechatPayWith:weChatPayModel];
             
@@ -232,14 +234,25 @@
     }
 }
 
+#pragma mark - textFieldDelegate
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    
+    self.buyerMessage = textField.text;
+    return YES;
+}
+
 #pragma mark - TableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     
     return 4;
 }
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
+    if (section == 2) {
+        
+        return 2;
+    }
     return 1;
 }
 
@@ -251,7 +264,7 @@
         static NSString *receiveAddressCell = @"receiveAddressCell";
         HYReceiveAddressTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:receiveAddressCell];
         if (!cell) {
-            cell = [[HYReceiveAddressTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:receiveAddressCell];
+            cell = [[HYReceiveAddressTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:receiveAddressCell];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
         cell.orderModel = _orderModel;
@@ -270,13 +283,29 @@
     }
     else if (indexPath.section == 2){
         
-        static NSString *discountCell = @"discountCell";
-        HYDiscountTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:discountCell];
-        if (!cell) {
-            cell = [[HYDiscountTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:discountCell];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        if (indexPath.row == 0) {
+            
+            static NSString *discountCell = @"discountCell";
+            HYDiscountTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:discountCell];
+            if (!cell) {
+                cell = [[HYDiscountTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:discountCell];
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            }
+            return cell;
         }
-        return cell;
+        else{
+            
+            static NSString *buyerMessageCell = @"buyerMessageCell";
+            HYBuyerMessageCell *cell = [tableView dequeueReusableCellWithIdentifier:buyerMessageCell];
+            if (!cell) {
+                cell = [[HYBuyerMessageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:buyerMessageCell];
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            }
+            cell.textField.delegate = self;
+            return cell;
+        }
+        
+        
     }
     else if (indexPath.section == 3){
         
@@ -351,7 +380,7 @@
     else if (indexPath.section == 2){
         
         //优惠券
-        return 50 * WIDTH_MULTIPLE;
+        return 40 * WIDTH_MULTIPLE;
     }
     else if (indexPath.section == 3){
         
@@ -394,7 +423,7 @@
         _payMoneyLabel = [[UILabel alloc] init];
         _payMoneyLabel.font = KFitFont(15);
         _payMoneyLabel.textAlignment = NSTextAlignmentLeft;
-        _payMoneyLabel.text = @"您需要支付:0.00";
+        _payMoneyLabel.text = @"您需要支付:￥0.00";
         _payMoneyLabel.textColor = KAPP_272727_COLOR;
         _payMoneyLabel.backgroundColor = KAPP_WHITE_COLOR;
     }
@@ -410,7 +439,7 @@
         _confirmBtn.backgroundColor = KAPP_THEME_COLOR;
         [_confirmBtn setTitleColor:KAPP_WHITE_COLOR forState:UIControlStateNormal];
         _confirmBtn.titleLabel.font = KFitFont(18);
-        _confirmBtn.layer.cornerRadius = 4;
+//        _confirmBtn.layer.cornerRadius = 4;
         _confirmBtn.clipsToBounds = YES;
         [_confirmBtn addTarget:self action:@selector(confirmBtnAction) forControlEvents:UIControlEventTouchUpInside];
     }

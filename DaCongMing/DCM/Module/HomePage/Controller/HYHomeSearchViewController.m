@@ -104,6 +104,7 @@
        
         self.searchText = text;
         [self.datalist removeAllObjects];
+        [self.collectionView.mj_footer endRefreshing];
         if (datalist.count) {
             
             [self.datalist addObjectsFromArray:datalist];
@@ -133,8 +134,6 @@
         }
         else{
             
-            [self requestRecommendData];
-            self.isNoData = YES;
             [_collectionView.mj_footer endRefreshingWithNoMoreData];
         }
         
