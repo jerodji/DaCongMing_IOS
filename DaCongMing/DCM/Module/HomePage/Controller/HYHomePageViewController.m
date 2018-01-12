@@ -55,8 +55,24 @@
     
     [super viewDidLoad];
     [self requestRecommendData];
+    
+    
+    NSLog(@"StatusBarHeight:%f",KSTATUSBAR_HEIGHT);
+    NSLog(@"TabBarHeight:%d",KTABBAR_HEIGHT);
+    NSLog(@"NavHeight:%f",KNAV_HEIGHT);
+    NSLog(@"%@",NSStringFromCGRect(self.view.frame));
+    NSLog(@"ScreenHeight:%f",KSCREEN_HEIGHT);
+    NSLog(@"DBL_EPSILON:%f",DBL_EPSILON);
+    
 }
 
+- (void)viewSafeAreaInsetsDidChange{
+    
+    [super viewSafeAreaInsetsDidChange];
+    NSLog(@"safeAreaInsets:%@",NSStringFromUIEdgeInsets(self.view.safeAreaInsets));
+    NSLog(@"additionalSafeAreaInsets:%@",NSStringFromUIEdgeInsets(self.additionalSafeAreaInsets));
+    
+}
 
 - (void)viewWillAppear:(BOOL)animated{
     
@@ -79,6 +95,14 @@
     
 }
 
+- (void)viewDidLayoutSubviews{
+    
+    [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.edges.equalTo(self.view);
+    }];
+}
+
 - (void)setupUI{
     
     [self.navigationController.navigationBar addSubview:self.navTitleView];
@@ -95,7 +119,7 @@
     [_cellInfoArray addObject:@[@"HYOrderDetailImageCell"]];
     [_cellInfoArray addObject:@[@"HYTypeRecommendCell"]];
     [_cellInfoArray addObject:@[@"HYHomeDoodsCell"]];
-
+    
     
 }
 
@@ -145,7 +169,7 @@
 - (void)requestRecommendData{
     
     _goodsList = [NSMutableArray array];
-
+    
     [HYGoodsHandle requestGoodsListItem_type:@"001" pageNo:1 sortType:@"0" keyword:nil complectionBlock:^(NSArray *datalist)  {
         
         [_goodsList addObjectsFromArray:datalist];
@@ -225,14 +249,14 @@
     NSString *cellName = self.cellInfoArray[indexPath.row][0];
     
     if ([cellName isEqualToString:@"HYHomeTitleScrollCell"]) {
-       
+        
         //今日推荐
         static NSString *titleScrollID = @"HYTitle";
         HYHomeTitleScrollCell *cell = [tableView dequeueReusableCellWithIdentifier:titleScrollID];
         if (!cell) {
             cell = [[HYHomeTitleScrollCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:titleScrollID];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-
+            
         }
         cell.model = _model;
         [self.cellHeightDict setValue:[NSNumber numberWithFloat:cell.cellHeight] forKey:cellName];
@@ -252,7 +276,7 @@
         if (!cell) {
             cell = [[HYHomeCollectionCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:collectionCellID];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-
+            
         }
         cell.model = _model;
         cell.selectItemBlock = ^(NSString *itemType) {
@@ -282,10 +306,10 @@
         if (!cell) {
             cell = [[HYTypeRecommendCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:typeRecommendID];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-
+            
         }
         cell.selectItemBlock = ^(NSString *keyword, NSString *typeID) {
-          
+            
             HYGoodsListViewController *goodsListVC = [[HYGoodsListViewController alloc] init];
             goodsListVC.keyword = keyword;
             goodsListVC.type = typeID;
@@ -307,7 +331,7 @@
         cell.datalist = self.goodsList;
         cell.title = @"猜你喜欢";
         cell.collectionSelect = ^(NSString *productID) {
-          
+            
             HYGoodsDetailInfoViewController *detailVC = [[HYGoodsDetailInfoViewController alloc] init];
             detailVC.navigationController.navigationBar.hidden = YES;
             detailVC.goodsID = productID;
@@ -329,7 +353,13 @@
 #pragma mark - tableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    
+    NSString *cellName = self.cellInfoArray[indexPath.row][0];
+    if ([cellName isEqualToString:@"HYOrderDetailImageCell"]) {
+        
+        HYBrandShopViewController *shopVC = [HYBrandShopViewController new];
+        shopVC.sellerID = self.model.typeReCommend.seller_id;
+        [self.navigationController pushViewController:shopVC animated:YES];
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -369,14 +399,14 @@
 
 #pragma mark - lazyload
 - (HYNavTitleView *)navTitleView{
-
+    
     if (!_navTitleView) {
         
         _navTitleView = [[HYNavTitleView alloc] initWithFrame:CGRectMake(0, 0, KSCREEN_WIDTH, 44)];
         _navTitleView.userInteractionEnabled = YES;
         
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithActionBlock:^(id  _Nonnull sender) {
-           
+            
             HYHomeSearchViewController *homeSearchVC = [HYHomeSearchViewController new];
             [self.navigationController pushViewController:homeSearchVC animated:YES];
         }];
@@ -390,7 +420,7 @@
 - (UITableView *)tableView{
     if (!_tableView) {
         
-        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, KSCREEN_WIDTH, KSCREEN_HEIGHT - 49 - 64) style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -443,3 +473,4 @@
 }
 
 @end
+
