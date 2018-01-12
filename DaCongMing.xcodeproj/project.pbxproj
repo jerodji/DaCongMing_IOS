@@ -2175,7 +2175,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "${SRCROOT}/DaCongMing/DCM/Expand/Macro/PrefixHeader.pch";
-				INFOPLIST_FILE = DaCongMing/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/DaCongMing/APPDelegate/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -2299,7 +2299,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "${SRCROOT}/DaCongMing/DCM/Expand/Macro/PrefixHeader.pch";
-				INFOPLIST_FILE = DaCongMing/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/DaCongMing/APPDelegate/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -2331,7 +2331,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "${SRCROOT}/DaCongMing/DCM/Expand/Macro/PrefixHeader.pch";
-				INFOPLIST_FILE = DaCongMing/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/DaCongMing/APPDelegate/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
