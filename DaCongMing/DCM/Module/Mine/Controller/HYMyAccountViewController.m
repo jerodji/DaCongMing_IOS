@@ -10,7 +10,7 @@
 #import "HYMyAccountTableViewCell.h"
 #import "HYMyUserInfo.h"
 #import "HYSetUserNameVC.h"
-#import "HYForgetPasswordVC.h"
+#import "HYForgetPasswordVC.h"	
 #import "HYSetLoginPwdViewController.h"
 #import "UILabel+HYCopy.h"
 

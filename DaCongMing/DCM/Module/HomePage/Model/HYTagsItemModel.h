@@ -17,9 +17,9 @@
  */
 
 /** id */
-@property (nonatomic, copy) NSString *id;
+@property (nonatomic, copy) NSString *guid;
 /** name */
-@property (nonatomic, copy) NSString *name;
+@property (nonatomic, copy) NSString *item_type;
 /** img */
 @property (nonatomic, copy) NSString *image_url;
 

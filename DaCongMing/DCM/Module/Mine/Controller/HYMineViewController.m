@@ -27,7 +27,6 @@
 #import "HYMyCollectShopViewController.h"
 #import "HYMyCollectGoodsViewController.h"
 #import "HYRecentViewViewController.h"
-#import "HYInvitateFriendsViewController.h"
 #import "HYSaleAfterViewController.h"
 #import "HYMyUserInfo.h"
 #import "HYMineNetRequest.h"

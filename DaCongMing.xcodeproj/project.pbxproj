@@ -174,7 +174,6 @@
 		3ED218B81F8DE3540040C7E3 /* HYMyCollectGoodsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED218B71F8DE3540040C7E3 /* HYMyCollectGoodsViewController.m */; };
 		3ED218BB1F8DE3660040C7E3 /* HYMyCollectShopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED218BA1F8DE3660040C7E3 /* HYMyCollectShopViewController.m */; };
 		3ED218BE1F8DE37A0040C7E3 /* HYRecentViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED218BD1F8DE37A0040C7E3 /* HYRecentViewViewController.m */; };
-		3ED218C11F8DE3970040C7E3 /* HYInvitateFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED218C01F8DE3970040C7E3 /* HYInvitateFriendsViewController.m */; };
 		3ED218C41F8DE6610040C7E3 /* HYMineNetRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED218C31F8DE6610040C7E3 /* HYMineNetRequest.m */; };
 		3ED218C71F8DE6960040C7E3 /* HYMyCollectionGoodsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED218C61F8DE6960040C7E3 /* HYMyCollectionGoodsCell.m */; };
 		3ED218CA1F8DE6BA0040C7E3 /* HYMyCollectionShopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED218C91F8DE6BA0040C7E3 /* HYMyCollectionShopCell.m */; };
@@ -621,8 +620,6 @@
 		3ED218BA1F8DE3660040C7E3 /* HYMyCollectShopViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYMyCollectShopViewController.m; sourceTree = "<group>"; };
 		3ED218BC1F8DE37A0040C7E3 /* HYRecentViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYRecentViewViewController.h; sourceTree = "<group>"; };
 		3ED218BD1F8DE37A0040C7E3 /* HYRecentViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYRecentViewViewController.m; sourceTree = "<group>"; };
-		3ED218BF1F8DE3970040C7E3 /* HYInvitateFriendsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYInvitateFriendsViewController.h; sourceTree = "<group>"; };
-		3ED218C01F8DE3970040C7E3 /* HYInvitateFriendsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYInvitateFriendsViewController.m; sourceTree = "<group>"; };
 		3ED218C21F8DE6610040C7E3 /* HYMineNetRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYMineNetRequest.h; sourceTree = "<group>"; };
 		3ED218C31F8DE6610040C7E3 /* HYMineNetRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYMineNetRequest.m; sourceTree = "<group>"; };
 		3ED218C51F8DE6960040C7E3 /* HYMyCollectionGoodsCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYMyCollectionGoodsCell.h; sourceTree = "<group>"; };
@@ -1369,8 +1366,6 @@
 				3ED218BA1F8DE3660040C7E3 /* HYMyCollectShopViewController.m */,
 				3ED218BC1F8DE37A0040C7E3 /* HYRecentViewViewController.h */,
 				3ED218BD1F8DE37A0040C7E3 /* HYRecentViewViewController.m */,
-				3ED218BF1F8DE3970040C7E3 /* HYInvitateFriendsViewController.h */,
-				3ED218C01F8DE3970040C7E3 /* HYInvitateFriendsViewController.m */,
 				3EC4EB571F9F3B38001D5DD3 /* HYConfirmReceiveGoodsVC.h */,
 				3EC4EB581F9F3B38001D5DD3 /* HYConfirmReceiveGoodsVC.m */,
 				3EEFBF1C1FA0349E007BE12C /* HYCommentVC.h */,
@@ -2000,7 +1995,6 @@
 				3E2754451F6F71DE0010053E /* HYTypeRecommendCell.m in Sources */,
 				3ED218CD1F8E01120040C7E3 /* HYBrandShopViewController.m in Sources */,
 				3E27549B1F72166E0010053E /* HYGoodsDetailInfoViewController.m in Sources */,
-				3ED218C11F8DE3970040C7E3 /* HYInvitateFriendsViewController.m in Sources */,
 				3E56209A1F6B7BB10063AA5B /* HYNavTitleView.m in Sources */,
 				3E5620B71F6BBDE40063AA5B /* HYHomeCollectionCell.m in Sources */,
 				3E4D78771F78DD9300BC9C2B /* HYGoodsHandle.m in Sources */,
