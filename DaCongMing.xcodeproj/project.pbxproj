@@ -29,7 +29,6 @@
 		048208251FE12B7B00961BCB /* HYParterPayResultVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 048208241FE12B7B00961BCB /* HYParterPayResultVC.m */; };
 		049D7AF71FDFE018000A0A7B /* HYAlertManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 049D7AF61FDFE018000A0A7B /* HYAlertManager.m */; };
 		049D7AFA1FDFECF8000A0A7B /* HYInviteParterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 049D7AF91FDFECF8000A0A7B /* HYInviteParterView.m */; };
-		049D7B031FDFEE3E000A0A7B /* HYBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 049D7B011FDFEE3D000A0A7B /* HYBaseTableViewController.m */; };
 		049D7B061FDFEEB2000A0A7B /* HYPayParterCostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 049D7B051FDFEEB2000A0A7B /* HYPayParterCostViewController.m */; };
 		049D7B0C1FDFF0AF000A0A7B /* HYRecommendPayItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 049D7B0B1FDFF0AF000A0A7B /* HYRecommendPayItemCell.m */; };
 		049D7B0F1FDFF0C3000A0A7B /* HYRecommendIntroCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 049D7B0E1FDFF0C3000A0A7B /* HYRecommendIntroCell.m */; };
@@ -121,7 +120,6 @@
 		3E4D78AF1F7A327E00BC9C2B /* HYMyOrderChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4D78AE1F7A327E00BC9C2B /* HYMyOrderChildViewController.m */; };
 		3E4D78B21F7A33DC00BC9C2B /* HYMyOrderTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4D78B11F7A33DC00BC9C2B /* HYMyOrderTitleView.m */; };
 		3E56201E1F6B6A800063AA5B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E56201D1F6B6A800063AA5B /* main.m */; };
-		3E5620211F6B6A800063AA5B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E5620201F6B6A800063AA5B /* AppDelegate.m */; };
 		3E5620291F6B6A800063AA5B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E5620281F6B6A800063AA5B /* Assets.xcassets */; };
 		3E56204B1F6B6D440063AA5B /* HYBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E56204A1F6B6D440063AA5B /* HYBaseModel.m */; };
 		3E56204E1F6B6D5C0063AA5B /* HYBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E56204D1F6B6D5C0063AA5B /* HYBaseViewController.m */; };
@@ -243,6 +241,9 @@
 		3EFBFC631F7C95F4003F92B8 /* HYAddressTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EFBFC621F7C95F4003F92B8 /* HYAddressTableViewCell.m */; };
 		3EFBFC661F7CAF38003F92B8 /* HYAddAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EFBFC651F7CAF38003F92B8 /* HYAddAddressViewController.m */; };
 		3EFBFC691F7CB09C003F92B8 /* HYTextFieldTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EFBFC681F7CB09C003F92B8 /* HYTextFieldTableViewCell.m */; };
+		4BD2CE482008C5490038A611 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BD2CE462008C5480038A611 /* AppDelegate.m */; };
+		4BD2CE492008C5490038A611 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4BD2CE472008C5480038A611 /* Info.plist */; };
+		4BD2CE4C2008C5680038A611 /* HYBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BD2CE4B2008C5680038A611 /* HYBaseTableViewController.m */; };
 		D546439B3E56BFB3EA93ABFD /* libPods-DaCongMing.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6270C7E5FCB624CCCCEF7D0E /* libPods-DaCongMing.a */; };
 /* End PBXBuildFile section */
 
@@ -288,8 +289,6 @@
 		049D7AF61FDFE018000A0A7B /* HYAlertManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYAlertManager.m; sourceTree = "<group>"; };
 		049D7AF81FDFECF8000A0A7B /* HYInviteParterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYInviteParterView.h; sourceTree = "<group>"; };
 		049D7AF91FDFECF8000A0A7B /* HYInviteParterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYInviteParterView.m; sourceTree = "<group>"; };
-		049D7B011FDFEE3D000A0A7B /* HYBaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HYBaseTableViewController.m; path = ../../../../../Live/live/live/Base/HYBaseTableViewController.m; sourceTree = "<group>"; };
-		049D7B021FDFEE3D000A0A7B /* HYBaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HYBaseTableViewController.h; path = ../../../../../Live/live/live/Base/HYBaseTableViewController.h; sourceTree = "<group>"; };
 		049D7B041FDFEEB2000A0A7B /* HYPayParterCostViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYPayParterCostViewController.h; sourceTree = "<group>"; };
 		049D7B051FDFEEB2000A0A7B /* HYPayParterCostViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYPayParterCostViewController.m; sourceTree = "<group>"; };
 		049D7B0A1FDFF0AF000A0A7B /* HYRecommendPayItemCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYRecommendPayItemCell.h; sourceTree = "<group>"; };
@@ -519,10 +518,7 @@
 		3E4D78B11F7A33DC00BC9C2B /* HYMyOrderTitleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYMyOrderTitleView.m; sourceTree = "<group>"; };
 		3E5620191F6B6A800063AA5B /* DaCongMing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DaCongMing.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E56201D1F6B6A800063AA5B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		3E56201F1F6B6A800063AA5B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ../AppDelegate.h; sourceTree = "<group>"; };
-		3E5620201F6B6A800063AA5B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = ../AppDelegate.m; sourceTree = "<group>"; };
 		3E5620281F6B6A800063AA5B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		3E56202D1F6B6A800063AA5B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Info.plist; sourceTree = "<group>"; };
 		3E5620491F6B6D440063AA5B /* HYBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYBaseModel.h; sourceTree = "<group>"; };
 		3E56204A1F6B6D440063AA5B /* HYBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYBaseModel.m; sourceTree = "<group>"; };
 		3E56204C1F6B6D5C0063AA5B /* HYBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYBaseViewController.h; sourceTree = "<group>"; };
@@ -763,6 +759,11 @@
 		3EFBFC671F7CB09C003F92B8 /* HYTextFieldTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HYTextFieldTableViewCell.h; sourceTree = "<group>"; };
 		3EFBFC681F7CB09C003F92B8 /* HYTextFieldTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HYTextFieldTableViewCell.m; sourceTree = "<group>"; };
 		45E8DFB54BDE032589E2D1AD /* Pods-DaCongMing.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DaCongMing.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DaCongMing/Pods-DaCongMing.debug.xcconfig"; sourceTree = "<group>"; };
+		4BD2CE452008C5480038A611 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		4BD2CE462008C5480038A611 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		4BD2CE472008C5480038A611 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4BD2CE4A2008C5680038A611 /* HYBaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYBaseTableViewController.h; sourceTree = "<group>"; };
+		4BD2CE4B2008C5680038A611 /* HYBaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYBaseTableViewController.m; sourceTree = "<group>"; };
 		6270C7E5FCB624CCCCEF7D0E /* libPods-DaCongMing.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DaCongMing.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4E6E69C26653812A2F54D70 /* Pods-DaCongMing.adhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DaCongMing.adhoc.xcconfig"; path = "Pods/Target Support Files/Pods-DaCongMing/Pods-DaCongMing.adhoc.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1227,8 +1228,8 @@
 		3E56201B1F6B6A800063AA5B /* DaCongMing */ = {
 			isa = PBXGroup;
 			children = (
+				4BD2CE442008C5480038A611 /* AppDelegate */,
 				3E5620341F6B6D080063AA5B /* DCM */,
-				3E5620331F6B6B000063AA5B /* APPDelegate */,
 				3E5620281F6B6A800063AA5B /* Assets.xcassets */,
 				3E56201C1F6B6A800063AA5B /* Supporting Files */,
 			);
@@ -1243,16 +1244,6 @@
 				3E56201D1F6B6A800063AA5B /* main.m */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		3E5620331F6B6B000063AA5B /* APPDelegate */ = {
-			isa = PBXGroup;
-			children = (
-				3E56201F1F6B6A800063AA5B /* AppDelegate.h */,
-				3E5620201F6B6A800063AA5B /* AppDelegate.m */,
-				3E56202D1F6B6A800063AA5B /* Info.plist */,
-			);
-			path = APPDelegate;
 			sourceTree = "<group>";
 		};
 		3E5620341F6B6D080063AA5B /* DCM */ = {
@@ -1275,8 +1266,8 @@
 				3E56204D1F6B6D5C0063AA5B /* HYBaseViewController.m */,
 				3E56204F1F6B6D720063AA5B /* HYBaseNavController.h */,
 				3E5620501F6B6D720063AA5B /* HYBaseNavController.m */,
-				049D7B021FDFEE3D000A0A7B /* HYBaseTableViewController.h */,
-				049D7B011FDFEE3D000A0A7B /* HYBaseTableViewController.m */,
+				4BD2CE4A2008C5680038A611 /* HYBaseTableViewController.h */,
+				4BD2CE4B2008C5680038A611 /* HYBaseTableViewController.m */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -1803,6 +1794,16 @@
 			path = BrandsShop;
 			sourceTree = "<group>";
 		};
+		4BD2CE442008C5480038A611 /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				4BD2CE452008C5480038A611 /* AppDelegate.h */,
+				4BD2CE462008C5480038A611 /* AppDelegate.m */,
+				4BD2CE472008C5480038A611 /* Info.plist */,
+			);
+			path = AppDelegate;
+			sourceTree = "<group>";
+		};
 		67F8F436E989411A9535A2B7 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -1904,6 +1905,7 @@
 			files = (
 				043AB0032004C8530032746D /* DINOT-CondBlack_0.otf in Resources */,
 				3E0FDED01FA446CD00F52DC0 /* QYResource.bundle in Resources */,
+				4BD2CE492008C5490038A611 /* Info.plist in Resources */,
 				04066E151FED09F7002F4FA4 /* AppStoreOptions.plist in Resources */,
 				3E5620291F6B6A800063AA5B /* Assets.xcassets in Resources */,
 				04066E131FECE994002F4FA4 /* AdhocOptions.plist in Resources */,
@@ -1980,6 +1982,7 @@
 				049D7B061FDFEEB2000A0A7B /* HYPayParterCostViewController.m in Sources */,
 				3E2754881F710DCF0010053E /* HYGoodsItemModel.m in Sources */,
 				3E2754391F6F56EE0010053E /* HYItemListModel.m in Sources */,
+				4BD2CE4C2008C5680038A611 /* HYBaseTableViewController.m in Sources */,
 				3ECD83311F8F5E5100DE6FFD /* HYShareHandle.m in Sources */,
 				3E1F428E1F7CED1C00E90377 /* HYPlistTools.m in Sources */,
 				3EDC21E81F93345C0013FFBA /* HYAddToCartsHandle.m in Sources */,
@@ -2069,7 +2072,6 @@
 				3E3ED06B1F96F92900C20E61 /* HYBrandShopFiltView.m in Sources */,
 				3EC4EB561F9DBE82001D5DD3 /* HYGuideViewController.m in Sources */,
 				3EA0BC131F739EF700F78FDD /* HYGoodSpecificationSelectView.m in Sources */,
-				3E5620211F6B6A800063AA5B /* AppDelegate.m in Sources */,
 				3E33CC931F8B1D7A002179CD /* HYAreaModel.m in Sources */,
 				3EDC21E21F930A8B0013FFBA /* HYSaleAfterCell.m in Sources */,
 				049D7B121FDFF0D5000A0A7B /* HYRecommendPayModeCell.m in Sources */,
@@ -2109,7 +2111,6 @@
 				3E5620821F6B6DAC0063AA5B /* HYLocationManager.m in Sources */,
 				3E4D78B21F7A33DC00BC9C2B /* HYMyOrderTitleView.m in Sources */,
 				3E1021FE1F7B35E30048D556 /* HYMyAccountViewController.m in Sources */,
-				049D7B031FDFEE3E000A0A7B /* HYBaseTableViewController.m in Sources */,
 				3E27546E1F70B2BC0010053E /* HYMineInfoTableViewCell.m in Sources */,
 				3ECD834F1F90BB0400DE6FFD /* HYSearchHandle.m in Sources */,
 				3EFBFC691F7CB09C003F92B8 /* HYTextFieldTableViewCell.m in Sources */,
@@ -2143,6 +2144,7 @@
 				3EEFBF361FA1BB9E007BE12C /* HYAllCommentsVC.m in Sources */,
 				3E56209E1F6B9EEF0063AA5B /* HYHomePageModel.m in Sources */,
 				049D7AF71FDFE018000A0A7B /* HYAlertManager.m in Sources */,
+				4BD2CE482008C5490038A611 /* AppDelegate.m in Sources */,
 				3EFBFC5A1F7C8C15003F92B8 /* SAMTextView.m in Sources */,
 				3E5620941F6B72E90063AA5B /* HYShoppingCartViewController.m in Sources */,
 				3ED218C41F8DE6610040C7E3 /* HYMineNetRequest.m in Sources */,
@@ -2247,7 +2249,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "${SRCROOT}/DaCongMing/DCM/Expand/Macro/PrefixHeader.pch";
-				INFOPLIST_FILE = DaCongMing/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/DaCongMing/AppDelegate/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -2371,7 +2373,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "${SRCROOT}/DaCongMing/DCM/Expand/Macro/PrefixHeader.pch";
-				INFOPLIST_FILE = DaCongMing/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/DaCongMing/AppDelegate/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -2403,7 +2405,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "${SRCROOT}/DaCongMing/DCM/Expand/Macro/PrefixHeader.pch";
-				INFOPLIST_FILE = DaCongMing/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/DaCongMing/AppDelegate/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
