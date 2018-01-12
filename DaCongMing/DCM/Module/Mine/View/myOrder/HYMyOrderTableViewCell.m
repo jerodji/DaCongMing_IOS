@@ -236,6 +236,8 @@
         default:
             break;
     }
+    _deleteOrderBtn.hidden = YES;
+
 }
 
 - (void)createOrderImageWithArray:(NSArray *)array{

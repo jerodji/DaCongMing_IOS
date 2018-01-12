@@ -12,10 +12,9 @@
 @interface HYBrands : HYBaseModel
 
 /**
- "guid": "8106d1fa-7c32-11e7-9ae8-80a589568544",
- "image_url": "http://116.62.118.249:80/menu_image/brands/bod_21.png",
- "seller_id": "001",
- "itemList": null
+ guid = "865d48af-7c32-11e7-9ae8-80a589568545";
+ "image_url" = "http://116.62.118.249:80/menu_image/brands/bxyq.jpg";
+ "item_type" = 001;
  */
 
 /** guid */
@@ -23,8 +22,6 @@
 /** image_url */
 @property (nonatomic,copy) NSString *image_url;
 /** seller_id */
-@property (nonatomic,copy) NSString *seller_id;
-/** image_url */
-@property (nonatomic,copy) NSString *itemList;
+@property (nonatomic,copy) NSString *item_type;
 
 @end

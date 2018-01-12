@@ -14,7 +14,7 @@
 /**
  *  搜索产品
  */
-+ (void)searchProductsWithText:(NSString *)text complectionBlock:(void(^)(NSArray *datalist))complection;
++ (void)searchProductsWithText:(NSString *)text pageNo:(NSInteger)pageNo complectionBlock:(void(^)(NSArray *datalist))complection;
 
 /**
  *  搜索产品

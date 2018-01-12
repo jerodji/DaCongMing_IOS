@@ -57,6 +57,7 @@
     
     [super viewWillAppear:animated];
 
+    self.guidStr = [NSMutableString stringWithFormat:@""];
     [self requestShoppingCartsData];
     [self cartsAmountClaculate];
     [self payShoppiingCarts];
@@ -508,11 +509,16 @@
 #pragma mark - tableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    if ([cell.reuseIdentifier isEqualToString:@"cartsItemCell"]) {
+        
+        HYCartsSeller *cartsSeller = _cartsSellerArray[indexPath.section - 1];
+        HYCartItem *item = cartsSeller.cartItems[indexPath.row];
+        HYGoodsDetailInfoViewController *detailVC = [HYGoodsDetailInfoViewController new];
+        detailVC.goodsID = item.item_id;
+        [self.navigationController pushViewController:detailVC animated:YES];
+    }
 }
-
-
-
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -531,7 +537,7 @@
         else{
             
             //猜你喜欢
-            CGFloat height = ceil(_goodsList.count / 2.0) * 340 * WIDTH_MULTIPLE;
+            CGFloat height = ceil(_goodsList.count / 2.0) * KItemHeight;
             return  height + 40 * WIDTH_MULTIPLE;
         }
     }
@@ -544,7 +550,7 @@
         else if(indexPath.section == _tableCount - 1){
             
             //猜你喜欢
-            CGFloat height = ceil(_goodsList.count / 2.0) * 350 * WIDTH_MULTIPLE;
+            CGFloat height = ceil(_goodsList.count / 2.0) * KItemHeight;
             return  height + 40 * WIDTH_MULTIPLE;
         }
         else{

@@ -165,6 +165,7 @@
     
 }
 
+//订单的model
 - (void)setOrderDetailModel:(HYMyOrderDetailsModel *)orderDetailModel{
     
     _orderDetailModel = orderDetailModel;
@@ -181,7 +182,9 @@
         make.size.mas_equalTo(CGSizeMake(100, 20));
     }];
     _countLabel.text = [NSString stringWithFormat:@"x%@",orderDetailModel.qty];
-    
+    _applySellAfterBtn.enabled = [orderDetailModel.isRefQty integerValue] > 0 ? NO : YES;
+    NSString *title = [orderDetailModel.isRefQty integerValue] > 0 ? @"已申请" : @"申请售后";
+    [_applySellAfterBtn setTitle:title forState:UIControlStateNormal];
 }
 
 #pragma mark - action

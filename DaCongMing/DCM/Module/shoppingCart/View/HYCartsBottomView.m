@@ -62,9 +62,9 @@
     
     [_confirmBtn mas_makeConstraints:^(MASConstraintMaker *make) {
        
-        make.right.bottom.equalTo(self).offset(-8 * WIDTH_MULTIPLE);
-        make.top.equalTo(self).offset(8 * WIDTH_MULTIPLE);
-        make.width.mas_equalTo(90 * WIDTH_MULTIPLE);
+        make.right.equalTo(self);
+        make.top.bottom.equalTo(self);
+        make.width.mas_equalTo(130 * WIDTH_MULTIPLE);
     }];
     
     [_priceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -72,7 +72,7 @@
         make.right.equalTo(_confirmBtn.mas_left).offset(-15 * WIDTH_MULTIPLE);
         make.top.equalTo(_confirmBtn);
         make.left.equalTo(_checkAllBtn.mas_right).offset(15 * WIDTH_MULTIPLE);
-        make.height.mas_equalTo(25 * WIDTH_MULTIPLE);
+        make.bottom.equalTo(self).offset(-20 * WIDTH_MULTIPLE);
     }];
     
     [_postLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -86,7 +86,7 @@
 - (void)setAmount:(NSString *)amount{
     
     _amount = amount;
-    _priceLabel.text = [NSString stringWithFormat:@"总计:%@",amount];
+    _priceLabel.text = [NSString stringWithFormat:@"总计:￥%@",amount];
 }
 
 
@@ -146,7 +146,7 @@
     if (!_priceLabel) {
         
         _priceLabel = [UILabel new];
-        _priceLabel.text = @"总计:0.00";
+        _priceLabel.text = @"总计:￥0.00";
         _priceLabel.textColor = KAPP_PRICE_COLOR;
         _priceLabel.font = KFitFont(16);
         _priceLabel.textAlignment = NSTextAlignmentRight;
@@ -174,8 +174,7 @@
         _confirmBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_confirmBtn setTitle:@"结算" forState:UIControlStateNormal];
         _confirmBtn.backgroundColor = KAPP_THEME_COLOR;
-        _confirmBtn.layer.cornerRadius = 3 * WIDTH_MULTIPLE;
-        _confirmBtn.layer.masksToBounds = YES;
+//        _confirmBtn.layer.cornerRadius = 3 * WIDTH_MULTIPLE;
         [_confirmBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_confirmBtn addTarget:self action:@selector(confirmAction) forControlEvents:UIControlEventTouchUpInside];
     }

@@ -8,6 +8,7 @@
 
 #import "HYMyQRCodeViewController.h"
 #import "HYShareView.h"
+#import "HYShareModel.h"
 
 @interface HYMyQRCodeViewController ()
 
@@ -62,6 +63,22 @@
     
     [KEYWINDOW addSubview:self.shareView];
     [self.shareView showShareView];
+    
+    HYShareModel *model = [[HYShareModel alloc] init];
+    model.shareType = HYShareTypeImage;
+    model.thumbnailImage = [UIImage imageNamed:@"AppIcon"];
+    model.image = [self getScreenShot];
+    self.shareView.shareModel = model;
+}
+
+//截图
+- (UIImage *)getScreenShot{
+    
+    UIGraphicsBeginImageContextWithOptions(self.view.bounds.size, self.view.opaque, 0);
+    [self.view.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *snap = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return snap;
 }
 
 #pragma mark - lazyLoad
@@ -70,7 +87,7 @@
     if (!_bgImageView) {
         
         _bgImageView = [UIImageView new];
-        _bgImageView.image = [UIImage imageNamed:@"qrCodeBg"];
+        _bgImageView.image = [UIImage imageNamed:@"QRCodeBg"];
         _bgImageView.contentMode = UIViewContentModeScaleAspectFill;
     }
     return _bgImageView;
@@ -81,7 +98,7 @@
     if (!_QRImageView) {
         
         _QRImageView = [UIImageView new];
-        [_QRImageView sd_setImageWithURL:[NSURL URLWithString:[HYUserModel sharedInstance].userInfo.qrpath] placeholderImage:[UIImage imageNamed:@"myQrCode"]];
+        [_QRImageView sd_setImageWithURL:[NSURL URLWithString:[HYUserModel sharedInstance].userInfo.qrpath] placeholderImage:[UIImage imageNamed:@""]];
         _QRImageView.contentMode = UIViewContentModeScaleAspectFit;
     }
     return _QRImageView;
@@ -92,12 +109,6 @@
     if (!_shareView) {
         
         _shareView = [[HYShareView alloc] initWithFrame:CGRectMake(0, 0, KSCREEN_WIDTH, KSCREEN_HEIGHT)];
-        NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-        [dict setObject:@"大聪明" forKey:@"shareTitle"];
-        [dict setObject:[HYUserModel sharedInstance].userInfo.qrpath forKey:@"shareImgUrl"];
-        [dict setObject:@"我的二维码" forKey:@"shareDesc"];
-        
-        _shareView.shareDict = dict;
     }
     return _shareView;
 }

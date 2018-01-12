@@ -91,7 +91,7 @@
 - (WKWebView *)webView{
     if (!_webView) {
         
-        _webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, KSCREEN_WIDTH, KSCREEN_HEIGHT - 64)];
+        _webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, KSCREEN_WIDTH, KSCREEN_HEIGHT - KNAV_HEIGHT)];
         _webView.backgroundColor = [UIColor whiteColor];
         _webView.UIDelegate = self;
         _webView.navigationDelegate = self;

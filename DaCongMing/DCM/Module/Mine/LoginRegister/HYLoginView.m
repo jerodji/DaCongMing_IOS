@@ -89,7 +89,7 @@
 
     [_closeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self).offset(13 * WIDTH_MULTIPLE);
-        make.top.equalTo(self).offset(30);
+        make.top.equalTo(self).offset(KSTATUSBAR_HEIGHT + 10 * WIDTH_MULTIPLE);
         make.width.height.equalTo(@40);
     }];
     

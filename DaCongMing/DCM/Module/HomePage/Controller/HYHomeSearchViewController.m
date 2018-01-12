@@ -26,6 +26,9 @@
 @property (nonatomic,strong) NSMutableArray *datalist;
 /** 是否搜到数据 */
 @property (nonatomic,assign) BOOL isNoData;
+/** 分页页码 */
+@property (nonatomic,assign) NSInteger pageNo;
+@property (nonatomic,copy)   NSString *searchText;
 
 @end
 
@@ -64,12 +67,18 @@
     _searchTitleView = nil;
 }
 
-- (void)viewWillLayoutSubviews{
+- (void)viewDidLayoutSubviews{
     
     [_hotSearchView mas_makeConstraints:^(MASConstraintMaker *make) {
        
         make.left.top.right.equalTo(self.view);
         make.height.equalTo(@(150 * WIDTH_MULTIPLE));
+    }];
+    
+    [_collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.left.right.bottom.equalTo(self.view);
+        make.top.equalTo(self.view).offset(6 * WIDTH_MULTIPLE);
     }];
 }
 
@@ -89,8 +98,12 @@
     
     [self.datalist removeAllObjects];
     [self.view addSubview:self.collectionView];
-    [HYSearchHandle searchProductsWithText:text complectionBlock:^(NSArray *datalist) {
+    
+    self.pageNo = 1;
+    [HYSearchHandle searchProductsWithText:text pageNo:self.pageNo complectionBlock:^(NSArray *datalist) {
        
+        self.searchText = text;
+        [self.datalist removeAllObjects];
         if (datalist.count) {
             
             [self.datalist addObjectsFromArray:datalist];
@@ -101,6 +114,28 @@
             
             [self requestRecommendData];
             self.isNoData = YES;
+        }
+        
+    }];
+}
+
+- (void)reloadDataMore{
+    
+    self.pageNo += 1;
+    [HYSearchHandle searchProductsWithText:self.searchText pageNo:self.pageNo complectionBlock:^(NSArray *datalist) {
+        
+        if (datalist.count) {
+            
+            [self.datalist addObjectsFromArray:datalist];
+            [_collectionView reloadData];
+            [_collectionView.mj_footer endRefreshing];
+            self.isNoData = NO;
+        }
+        else{
+            
+            [self requestRecommendData];
+            self.isNoData = YES;
+            [_collectionView.mj_footer endRefreshingWithNoMoreData];
         }
         
     }];
@@ -197,14 +232,14 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     
-    if (scrollView.contentOffset.y > 100) {
-        
-        [self.searchTitleView.textField resignFirstResponder];
-    }
-    else{
-        
-        [self.searchTitleView.textField becomeFirstResponder];
-    }
+//    if (scrollView.contentOffset.y > 100) {
+//
+//        [self.searchTitleView.textField resignFirstResponder];
+//    }
+//    else{
+//
+//        [self.searchTitleView.textField becomeFirstResponder];
+//    }
 }
 
 #pragma mark - lazyload
@@ -246,14 +281,15 @@
         layout.minimumLineSpacing = 6 * WIDTH_MULTIPLE;      //纵向间距
         layout.sectionInset = UIEdgeInsetsMake(0, 5, 0, 5);
         
-        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 6 * WIDTH_MULTIPLE, KSCREEN_WIDTH, KSCREEN_HEIGHT-64) collectionViewLayout:layout];
+        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
         [_collectionView setCollectionViewLayout:layout];
         _collectionView.backgroundColor = KAPP_TableView_BgColor;
         _collectionView.showsVerticalScrollIndicator = NO;
         _collectionView.showsHorizontalScrollIndicator = NO;
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
-        _collectionView.bounces = NO;
+        MJRefreshBackNormalFooter *footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(reloadDataMore)];
+        _collectionView.mj_footer = footer;
         
         [_collectionView registerClass:[HYGoodsItemCollectionViewCell class] forCellWithReuseIdentifier:@"collectionCell"];
         [_collectionView registerClass:[HYSearchNoDataCollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HYSearchNoDataHeaderView"];

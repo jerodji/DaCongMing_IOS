@@ -49,6 +49,14 @@
 
 }
 
+- (void)viewSafeAreaInsetsDidChange{
+    
+    [super viewSafeAreaInsetsDidChange];
+    NSLog(@"safeAreaInsets:%@",NSStringFromUIEdgeInsets(self.view.safeAreaInsets));
+    NSLog(@"additionalSafeAreaInsets:%@",NSStringFromUIEdgeInsets(self.additionalSafeAreaInsets));
+    
+}
+
 - (void)setupSubviews{
     
     self.view.backgroundColor = KAPP_TableView_BgColor;
@@ -98,13 +106,22 @@
     }
 }
 
+- (void)viewDidLayoutSubviews{
+    
+    [_collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.left.right.bottom.equalTo(self.view);
+        make.top.equalTo(self.view).offset(self.horizonLine.bottom + 6 * WIDTH_MULTIPLE);
+    }];
+}
+
 #pragma mark - networkRequest
 - (void)requestGoodsListWithSortType:(HYGoodsListType)sortType{
     
     [_datalist removeAllObjects];
     self.pageCount = 1;
     NSString *sortTypeStr = [NSString stringWithFormat:@"%lu",(unsigned long)sortType];
-    [HYGoodsHandle requestGoodsListItem_type:_type pageNo:1 sortType:sortTypeStr keyword:self.keyword complectionBlock:^(NSArray *datalist) {
+    [HYGoodsHandle requestGoodsListItem_type:self.type pageNo:1 sortType:sortTypeStr keyword:self.keyword complectionBlock:^(NSArray *datalist) {
        
         if (datalist) {
             
@@ -223,11 +240,14 @@
     
 }
 
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-    
-    HYGoodsItemModel *itemModel = self.datalist[indexPath.item];
-    return CGSizeMake((KSCREEN_WIDTH - 10 - 5 * WIDTH_MULTIPLE) / 2, itemModel.cellHeight ? itemModel.cellHeight : 325 * WIDTH_MULTIPLE);
-}
+
+
+//- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
+//
+//    HYGoodsItemModel *itemModel = self.datalist[indexPath.item];
+//    CGFloat itemWidth = (KSCREEN_WIDTH - 15 * WIDTH_MULTIPLE) / 2.0;
+//    return CGSizeMake(itemWidth, itemModel.cellHeight ? itemModel.cellHeight : 325 * WIDTH_MULTIPLE);
+//}
 
 #pragma mark - 没有数据
 - (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView{
@@ -270,14 +290,16 @@
         //1.初始化layout
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
         layout.scrollDirection = UICollectionViewScrollDirectionVertical;
-//        layout.estimatedItemSize = CGSizeMake(KSCREEN_WIDTH / 2 - 10, 315 * WIDTH_MULTIPLE);
+//        layout.estimatedItemSize = CGSizeMake((KSCREEN_WIDTH - 15 * WIDTH_MULTIPLE) / 2, 315 * WIDTH_MULTIPLE);
+        layout.estimatedItemSize = UICollectionViewFlowLayoutAutomaticSize;
+        layout.itemSize = UICollectionViewFlowLayoutAutomaticSize;
         layout.scrollDirection = UICollectionViewScrollDirectionVertical;
         layout.minimumInteritemSpacing = 5;
-        layout.minimumLineSpacing = 6 * WIDTH_MULTIPLE;      //纵向间距
-        layout.sectionInset = UIEdgeInsetsMake(0, 5, 0, 5);
+        layout.minimumLineSpacing = 10 * WIDTH_MULTIPLE;      //纵向间距
+        layout.sectionInset = UIEdgeInsetsMake(0, 5 , 0, 5);
         
         
-        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, self.horizonLine.bottom + 6 * WIDTH_MULTIPLE, KSCREEN_WIDTH, KSCREEN_HEIGHT - 40 - 64) collectionViewLayout:layout];
+        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
         [_collectionView setCollectionViewLayout:layout];
         _collectionView.backgroundColor = KAPP_TableView_BgColor;
         _collectionView.showsVerticalScrollIndicator = NO;
@@ -291,7 +313,6 @@
         _collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshData)];
         
         MJRefreshBackNormalFooter *footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(reloadDataMore)];
-        
         _collectionView.mj_footer = footer;
     }
     return _collectionView;

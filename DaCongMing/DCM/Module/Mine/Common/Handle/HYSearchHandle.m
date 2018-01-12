@@ -10,11 +10,11 @@
 
 @implementation HYSearchHandle
 
-+ (void)searchProductsWithText:(NSString *)text complectionBlock:(void (^)(NSArray *))complection{
++ (void)searchProductsWithText:(NSString *)text pageNo:(NSInteger)pageNo complectionBlock:(void (^)(NSArray *))complection{
     
     NSMutableDictionary *requestParam = [NSMutableDictionary dictionary];
     [requestParam setValue:text forKey:@"keyWord"];
-    [requestParam setValue:@(1) forKey:@"pageNo"];
+    [requestParam setValue:@(pageNo) forKey:@"pageNo"];
 
     
     [[HTTPManager shareHTTPManager] postDataFromUrl:API_KeywordsSearch withParameter:requestParam isShowHUD:YES success:^(id returnData) {

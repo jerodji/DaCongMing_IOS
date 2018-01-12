@@ -38,6 +38,8 @@
 @property (nonatomic, strong) NSNumber *salesVolume;
 /** 收藏  1 收藏 0 未收藏 */
 @property (nonatomic, copy) NSString *isFavorite;
+/** 商品总库存 */
+@property (nonatomic, copy) NSString *summary_qty;
 @property (nonatomic, strong) id item_min_price;
 
 @end

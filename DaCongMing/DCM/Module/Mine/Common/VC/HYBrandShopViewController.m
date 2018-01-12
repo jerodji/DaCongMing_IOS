@@ -419,12 +419,7 @@
     if (!_shareView) {
         
         _shareView = [[HYShareView alloc] initWithFrame:CGRectMake(0, 0, KSCREEN_WIDTH, KSCREEN_HEIGHT)];
-        NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-        [dict setObject:@"大聪明" forKey:@"shareTitle"];
-        [dict setValue:[HYUserModel sharedInstance].userInfo.head_image_url forKey:@"shareImgUrl"];
-        [dict setObject:@"老铁，没毛病，双击666\n老铁，没毛病，双击666\n老铁，没毛病，双击666" forKey:@"shareDesc"];
         
-        _shareView.shareDict = dict;
     }
     return _shareView;
 }
@@ -442,7 +437,7 @@
         layout.minimumLineSpacing = 6 * WIDTH_MULTIPLE;      //纵向间距
         layout.sectionInset = UIEdgeInsetsMake(0, 5, 0, 5);
         
-        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 6 * WIDTH_MULTIPLE, KSCREEN_WIDTH, KSCREEN_HEIGHT-64) collectionViewLayout:layout];
+        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 6 * WIDTH_MULTIPLE, KSCREEN_WIDTH, KSCREEN_HEIGHT - KNAV_HEIGHT) collectionViewLayout:layout];
         [_collectionView setCollectionViewLayout:layout];
         _collectionView.backgroundColor = KAPP_TableView_BgColor;
         _collectionView.showsVerticalScrollIndicator = NO;
