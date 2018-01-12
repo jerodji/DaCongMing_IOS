@@ -132,7 +132,7 @@
                   moduleName = "DaCongMing"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/huyong%201/Desktop/DaCongMing/DaCongMing/DaCongMing/DCM/Module/Mine/Common/VC/HYFillOrderViewController.m"
-                  timestampString = "537283022.531345"
+                  timestampString = "537454950.149413"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "144"
@@ -147,7 +147,7 @@
                   moduleName = "DaCongMing"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/huyong%201/Desktop/DaCongMing/DaCongMing/DaCongMing/DCM/Module/Mine/Common/VC/HYFillOrderViewController.m"
-                  timestampString = "537283022.5333101"
+                  timestampString = "537454950.151323"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "144"
@@ -379,22 +379,6 @@
             endingLineNumber = "77"
             landmarkName = "-carousel:itemTransformForOffset:baseTransform:"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "DaCongMing/DCM/Module/HomePage/Controller/HYHomePageViewController.m"
-            timestampString = "537283022.3197401"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "52"
-            endingLineNumber = "52"
-            landmarkName = "HYHomePageViewController"
-            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
