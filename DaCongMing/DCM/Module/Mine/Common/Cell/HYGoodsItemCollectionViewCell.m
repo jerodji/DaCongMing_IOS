@@ -164,6 +164,7 @@
 - (UICollectionViewLayoutAttributes*)preferredLayoutAttributesFittingAttributes:(UICollectionViewLayoutAttributes*)layoutAttributes {
     
     [self layoutIfNeeded];
+    [super preferredLayoutAttributesFittingAttributes:layoutAttributes];
     CGSize size = [self.contentView systemLayoutSizeFittingSize:layoutAttributes.size];
     CGRect cellFrame = layoutAttributes.frame;
     cellFrame.size.height = size.height;

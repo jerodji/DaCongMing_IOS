@@ -290,9 +290,9 @@
         //1.初始化layout
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
         layout.scrollDirection = UICollectionViewScrollDirectionVertical;
-//        layout.estimatedItemSize = CGSizeMake((KSCREEN_WIDTH - 15 * WIDTH_MULTIPLE) / 2, 315 * WIDTH_MULTIPLE);
-        layout.estimatedItemSize = UICollectionViewFlowLayoutAutomaticSize;
-        layout.itemSize = UICollectionViewFlowLayoutAutomaticSize;
+        layout.estimatedItemSize = CGSizeMake((KSCREEN_WIDTH - 15) / 2, KItemHeight - 10);
+//        layout.estimatedItemSize = UICollectionViewFlowLayoutAutomaticSize;
+//        layout.itemSize = UICollectionViewFlowLayoutAutomaticSize;
         layout.scrollDirection = UICollectionViewScrollDirectionVertical;
         layout.minimumInteritemSpacing = 5;
         layout.minimumLineSpacing = 10 * WIDTH_MULTIPLE;      //纵向间距
