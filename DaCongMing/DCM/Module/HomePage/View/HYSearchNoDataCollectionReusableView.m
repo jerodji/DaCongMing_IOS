@@ -112,7 +112,7 @@
         _allFindLabel.font = KFitFont(18);
         _allFindLabel.textColor = KAPP_b7b7b7_COLOR;
         _allFindLabel.textAlignment = NSTextAlignmentCenter;
-        _allFindLabel.backgroundColor = KCOLOR(@"f6f6f6");
+        _allFindLabel.backgroundColor = KAPP_WHITE_COLOR;
     }
     return _allFindLabel;
 }

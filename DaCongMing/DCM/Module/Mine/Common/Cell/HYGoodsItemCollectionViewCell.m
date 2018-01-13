@@ -125,7 +125,7 @@
        
         make.left.equalTo(_priceLabel);
         make.top.equalTo(_priceLabel.mas_bottom).offset(5 * WIDTH_MULTIPLE);
-        make.right.equalTo(self.contentView).offset(- 10 * WIDTH_MULTIPLE);
+        make.right.equalTo(self.contentView).offset(-30 * WIDTH_MULTIPLE);
         make.height.mas_equalTo(strHeight * 2 + 5);
     }];
     
@@ -145,7 +145,7 @@
     
     [self layoutIfNeeded];
     self.goodsModel.cellHeight = self.introLabel.bottom + 10 * WIDTH_MULTIPLE;
-    self.layer.cornerRadius = 10 * WIDTH_MULTIPLE;
+    self.layer.cornerRadius = 5 * WIDTH_MULTIPLE;
     self.layer.shadowOpacity = 0.4;
     self.layer.shadowRadius = 3.0;
     self.layer.shadowPath = [UIBezierPath bezierPathWithRect:self.contentView.bounds].CGPath;

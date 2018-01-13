@@ -59,7 +59,7 @@
 
 - (void)setupSubviews{
     
-    self.view.backgroundColor = KAPP_TableView_BgColor;
+    self.view.backgroundColor = KAPP_WHITE_COLOR;
     [self.view addSubview:self.horizonLine];
     [self.view addSubview:self.collectionView];
     
@@ -111,7 +111,7 @@
     [_collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
        
         make.left.right.bottom.equalTo(self.view);
-        make.top.equalTo(self.view).offset(self.horizonLine.bottom + 6 * WIDTH_MULTIPLE);
+        make.top.equalTo(self.view).offset(self.horizonLine.bottom);
     }];
 }
 
@@ -296,12 +296,12 @@
         layout.scrollDirection = UICollectionViewScrollDirectionVertical;
         layout.minimumInteritemSpacing = 5;
         layout.minimumLineSpacing = 10 * WIDTH_MULTIPLE;      //纵向间距
-        layout.sectionInset = UIEdgeInsetsMake(0, 5 , 0, 5);
+        layout.sectionInset = UIEdgeInsetsMake(10, 5 , 0, 5);
         
         
         _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
         [_collectionView setCollectionViewLayout:layout];
-        _collectionView.backgroundColor = KAPP_TableView_BgColor;
+        _collectionView.backgroundColor = KAPP_WHITE_COLOR;
         _collectionView.showsVerticalScrollIndicator = NO;
         _collectionView.showsHorizontalScrollIndicator = NO;
         _collectionView.delegate = self;

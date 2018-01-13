@@ -48,11 +48,11 @@
 }
 
 #pragma mark - setStatusBar
-- (UIStatusBarStyle)preferredStatusBarStyle {
-    
-    [super preferredStatusBarStyle];
-    return UIStatusBarStyleLightContent;
-}
+//- (UIStatusBarStyle)preferredStatusBarStyle {
+//
+//    [super preferredStatusBarStyle];
+//    return UIStatusBarStyleLightContent;
+//}
 
 
 //设置状态栏颜色

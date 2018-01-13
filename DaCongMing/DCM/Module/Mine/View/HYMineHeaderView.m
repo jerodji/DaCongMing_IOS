@@ -43,7 +43,7 @@
     [self addSubview:self.bgImageView];
     [self addSubview:self.headerImgView];
     [self addSubview:self.nickNameLabel];
-    [self addSubview:self.wingImgView];
+//    [self addSubview:self.wingImgView];
     [self addSubview:self.collectGoodsLabel];
     [self addSubview:self.collectStoreLabel];
     [self addSubview:self.recentViewLabel];
@@ -85,18 +85,18 @@
         make.left.right.top.bottom.equalTo(self);
     }];
     
-    [_nickNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        
-        make.top.equalTo(self).offset(45 * WIDTH_MULTIPLE);
-        make.left.right.equalTo(self);
-        make.height.equalTo(@20);
-    }];
-    
     [_headerImgView mas_makeConstraints:^(MASConstraintMaker *make) {
        
         make.centerX.equalTo(self);
-        make.top.equalTo(_nickNameLabel.mas_bottom).offset(8 * WIDTH_MULTIPLE);
+        make.top.equalTo(self).offset(KSTATUSBAR_HEIGHT + 30);
         make.width.height.equalTo(@(60 * WIDTH_MULTIPLE));
+    }];
+    
+    [_nickNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.top.equalTo(_headerImgView.mas_bottom).offset(20 * WIDTH_MULTIPLE);
+        make.left.right.equalTo(self);
+        make.height.equalTo(@20);
     }];
     
     [_wingImgView mas_makeConstraints:^(MASConstraintMaker *make) {
