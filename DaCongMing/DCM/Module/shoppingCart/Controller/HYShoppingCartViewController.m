@@ -527,7 +527,7 @@
         
         //购物车无商品
         if (indexPath.section == 0) {
-            　
+            
             return 240 * WIDTH_MULTIPLE;
         }
         else if(indexPath.section == 1){
