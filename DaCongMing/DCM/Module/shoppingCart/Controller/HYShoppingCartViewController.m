@@ -62,8 +62,9 @@
     [self cartsAmountClaculate];
     [self payShoppiingCarts];
     
+    //注册添加购物车成功的通知
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshData:) name:KAddShoppingCartsSuccess object:nil];
-    
+    //获取购物车的数量
     NSString  *cartsCount = [HYMyUserInfo sharedInstance].cartItemNum;
     if ([cartsCount integerValue] > 0) {
         
@@ -123,6 +124,7 @@
     }
 }
 
+//请求该用户的购物车数据 如果有的话就展示 没有就展示默认图
 - (void)requestShoppingCartsData{
     
     [HYCartsHandle showMyShoppingCartsWithComplectionBlock:^(HYCartsModel *cartsModel) {
@@ -173,6 +175,7 @@
     //所有的商家
     for (NSInteger i = 0; i < self.cartsModel.cartSellers.count; i++) {
         
+        //将所有的数据dict转化成model
         NSDictionary *dict = self.cartsModel.cartSellers[i];
         HYCartsSeller *cartsSeller = [HYCartsSeller modelWithDictionary:dict];
         NSMutableArray *cartItemsArray = [NSMutableArray array];
@@ -190,6 +193,7 @@
 #pragma mark - 计算购物车总金额
 - (void)cartsAmountClaculate{
     
+    //遍历所有选中的购物车
     __weak typeof (self) weakSelf = self;
     self.bottomView.amount = @"0.00";
     self.bottomView.checkAllBlock = ^(BOOL isCheckAll) {
@@ -219,6 +223,7 @@
         
         if ([weakSelf.guidStr isNotBlank]) {
             
+            // 计算价格由服务端计算，然后返回
             [HYCartsHandle calculateCartsAmountWithGuid:weakSelf.guidStr ComplectionBlock:^(NSString *amount) {
                 
                 weakSelf.bottomView.amount = amount;
@@ -512,6 +517,7 @@
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     if ([cell.reuseIdentifier isEqualToString:@"cartsItemCell"]) {
         
+        //调转到商品详情
         HYCartsSeller *cartsSeller = _cartsSellerArray[indexPath.section - 1];
         HYCartItem *item = cartsSeller.cartItems[indexPath.row];
         HYGoodsDetailInfoViewController *detailVC = [HYGoodsDetailInfoViewController new];
