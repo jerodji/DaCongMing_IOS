@@ -119,6 +119,10 @@
         _salesReturnCountTextField.layer.cornerRadius = 5;
         _salesReturnCountTextField.layer.borderColor = KAPP_SEPERATOR_COLOR.CGColor;
         _salesReturnCountTextField.layer.borderWidth = 1;
+        UIView *rightView = [UIView new];
+        rightView.width = 10;
+        _salesReturnCountTextField.rightView = rightView;
+        _salesReturnCountTextField.rightViewMode = UITextFieldViewModeAlways;
         [_salesReturnCountTextField setValue:[NSNumber numberWithInt:10] forKey:@"paddingRight"];
         [_salesReturnCountTextField addTarget:self action:@selector(textChanged:) forControlEvents:UIControlEventEditingChanged];
     }

@@ -42,7 +42,7 @@
     
     [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
        
-        make.edges.equalTo(self.view);
+        make.edges.equalTo(self.view).with.mas_equalTo(UIEdgeInsetsMake(0, 0, 20, 0));
     }];
 }
 

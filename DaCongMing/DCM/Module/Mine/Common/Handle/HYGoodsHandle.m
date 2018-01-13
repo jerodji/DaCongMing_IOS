@@ -116,6 +116,32 @@
     }];
 }
 
++ (void)payerWithOrderID:(NSString *)orderID complectionBlock:(void (^)(HYCreateOrder *))complection{
+    
+    NSMutableDictionary *requestParam = [NSMutableDictionary dictionary];
+    [requestParam setValue:orderID forKey:@"sorder_id"];
+    [requestParam setValue:[HYUserModel sharedInstance].token forKey:@"token"];
+    
+    [[HTTPManager shareHTTPManager] postDataFromUrl:API_CreateOrder withParameter:requestParam isShowHUD:YES success:^(id returnData) {
+        
+        if (returnData) {
+            
+            NSInteger code =[[returnData objectForKey:@"code"] integerValue];
+            if (code == 000) {
+                
+                NSDictionary *dict = [returnData objectForKey:@"data"];
+                HYCreateOrder *model = [HYCreateOrder modelWithDictionary:dict];
+                complection(model);
+            }
+            else{
+                
+                complection(nil);
+                [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"获取订单失败"];
+            }
+        }
+    }];
+}
+
 + (void)createOrderWithOrderID:(NSString *)orderID complectionBlock:(void (^)(HYCreateOrder *))complection{
     
     NSMutableDictionary *requestParam = [NSMutableDictionary dictionary];

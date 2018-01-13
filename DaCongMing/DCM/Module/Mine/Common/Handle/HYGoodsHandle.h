@@ -30,6 +30,11 @@
 + (void)createOrderWithGuid:(NSString *)guid itemID:(NSString *)itemID count:(NSInteger)count sellerID:(NSString *)sellerID andUnit:(NSString *)unit complectionBlock:(void(^)(HYCreateOrder *order))complection;
 
 /**
+ *  去付款
+ */
++ (void)payerWithOrderID:(NSString *)orderID complectionBlock:(void(^)(HYCreateOrder *order))complection;
+
+/**
  *  重复购买
  */
 + (void)createOrderWithOrderID:(NSString *)orderID complectionBlock:(void(^)(HYCreateOrder *order))complection;

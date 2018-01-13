@@ -45,7 +45,7 @@
     
     [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
        
-        make.edges.equalTo(self.view);
+        make.left.right.bottom.equalTo(self.view);
     }];
 }
 
@@ -181,12 +181,14 @@
         
         HYFillOrderViewController *fillOrderVC = [HYFillOrderViewController new];
         fillOrderVC.orderID = model.sorder_id;
+        fillOrderVC.isReBuy = NO;
         [self.navigationController pushViewController:fillOrderVC animated:YES];
     }
     else if ([title isEqualToString:@"再次购买"]){
         
         HYFillOrderViewController *fillOrderVC = [HYFillOrderViewController new];
         fillOrderVC.orderID = model.sorder_id;
+        fillOrderVC.isReBuy = YES;
         [self.navigationController pushViewController:fillOrderVC animated:YES];
     }
     else if ([title isEqualToString:@"确认收货"]){
