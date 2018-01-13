@@ -45,7 +45,7 @@
     
     [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
        
-        make.left.right.bottom.equalTo(self.view);
+        make.left.right.bottom.top.equalTo(self.view);
     }];
 }
 
