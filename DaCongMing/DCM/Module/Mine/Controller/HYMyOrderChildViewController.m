@@ -26,7 +26,6 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-    
     [self setupSubviews];
 }
 
@@ -38,17 +37,14 @@
 - (void)viewWillAppear:(BOOL)animated{
     
     [super viewWillAppear:animated];
-    [self requestDataWithTag:_tag];
+}
 
-<<<<<<< HEAD
-=======
 - (void)viewDidLayoutSubviews{
     
     [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
        
         make.left.right.bottom.top.equalTo(self.view);
     }];
->>>>>>> 1.1
 }
 
 - (void)setTag:(NSInteger)tag{
@@ -323,7 +319,7 @@
 - (UITableView *)tableView{
     if (!_tableView) {
         
-        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, KSCREEN_WIDTH, KSCREEN_HEIGHT - 40 - 64) style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;

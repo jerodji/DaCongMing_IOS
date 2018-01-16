@@ -20,5 +20,5 @@ pod 'DZNEmptyDataSet', '~> 1.8.1'
 pod 'Bugly'
 pod 'UMengAnalytics'
 pod 'FDFullscreenPopGesture', '1.1'
-
+pod 'iCarousel'
 end

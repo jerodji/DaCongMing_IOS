@@ -73,7 +73,7 @@
     HYTypeRecommendCollectionViewCell *cell = (HYTypeRecommendCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
     if (self.selectItemBlock) {
         
-        self.selectItemBlock(cell.typeItemModel.keyWord,cell.typeItemModel.parent_id);
+        self.selectItemBlock(cell.typeItemModel.keyWord,nil);
     }
 }
 

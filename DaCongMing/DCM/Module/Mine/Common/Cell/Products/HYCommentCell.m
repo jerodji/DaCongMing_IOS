@@ -54,6 +54,13 @@
     [self addSubview:self.contentLabel];
     [self addSubview:self.bottomLine];
     
+    [_contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.left.equalTo(_headerImgView);
+        make.top.equalTo(_headerImgView.mas_bottom).offset(15 * WIDTH_MULTIPLE);
+        make.height.mas_equalTo(40 * WIDTH_MULTIPLE);
+        make.right.equalTo(self).offset(-10 *WIDTH_MULTIPLE);
+    }];
 }
 
 - (void)layoutSubviews{
@@ -103,13 +110,7 @@
         make.height.mas_equalTo(1);
     }];
     
-    [_contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        
-        make.left.equalTo(_headerImgView);
-        make.top.equalTo(_headerImgView.mas_bottom).offset(15 * WIDTH_MULTIPLE);
-        make.height.mas_equalTo(40 * WIDTH_MULTIPLE);
-        make.right.equalTo(self).offset(-10 *WIDTH_MULTIPLE);
-    }];
+    
     
 }
 
@@ -124,7 +125,7 @@
     _timeLabel.text = commentModel.create_time;
     NSString *text = commentModel.evaluate_msg;
     CGFloat textHeight = [text heightForFont:KFitFont(14) width:(KSCREEN_WIDTH - 20 * WIDTH_MULTIPLE)];
-    [_contentLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+    [_contentLabel mas_updateConstraints:^(MASConstraintMaker *make) {
        
         make.height.mas_equalTo(textHeight);
     }];

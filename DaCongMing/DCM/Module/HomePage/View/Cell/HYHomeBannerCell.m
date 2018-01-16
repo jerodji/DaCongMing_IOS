@@ -2,98 +2,44 @@
 //  HYHomeBannerCell.m
 //  DaCongMing
 //
-<<<<<<< HEAD
-//  Created by 胡勇 on 2017/9/15.
-//  Copyright © 2017年 胡勇. All rights reserved.
-=======
->>>>>>> 1.1
 //
 
 #import "HYHomeBannerCell.h"
-#import "HYBrands.h"
-
-@interface HYHomeBannerCell ()<SDCycleScrollViewDelegate>
-
-/** banner */
-@property (nonatomic,strong) SDCycleScrollView *bannerView;
-
-@end
 
 @implementation HYHomeBannerCell
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    // Initialization code
-}
-
-- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
+- (instancetype)initWithFrame:(CGRect)frame{
     
-    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+    if (self = [super initWithFrame:frame]) {
         
-        _bannerArray = [NSMutableArray array];
-        [self addSubview:self.bannerView];
+        [self.contentView addSubview:self.imgView];
     }
     return self;
 }
 
 - (void)layoutSubviews{
     
-    [_bannerView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [_imgView mas_makeConstraints:^(MASConstraintMaker *make) {
        
-        make.left.top.right.equalTo(self);
-        make.bottom.equalTo(self).offset(-5);
+        make.edges.equalTo(self);
     }];
 }
 
-- (void)setModel:(HYHomePageModel *)model{
-
-    _model = model;
+- (void)setBannerModel:(HYHomeBannerModel *)bannerModel{
     
-    [_bannerArray removeAllObjects];
-    
-    for (NSDictionary *dict in model.brands) {
-        
-        HYBrands *brands = [HYBrands modelWithDictionary:dict];
-        NSString *url = [brands.image_url stringByURLDecode];
-        [_bannerArray addObject:url];
-    }
-    
-    _bannerView.imageURLStringsGroup = _bannerArray;
+    _bannerModel = bannerModel;
+    [_imgView sd_setImageWithURL:[NSURL URLWithString:bannerModel.imgUrl]];
 }
-
-- (void)setBannerArray:(NSMutableArray *)bannerArray{
-    
-    _bannerArray = bannerArray;
-    _bannerView.imageURLStringsGroup = _bannerArray;
-
-}
-
 
 #pragma mark - lazyload
-- (SDCycleScrollView *)bannerView{
+- (UIImageView *)imgView{
     
-    if (!_bannerView) {
+    if (!_imgView) {
         
-        //轮播图
-        _bannerView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectZero delegate:self placeholderImage:[UIImage imageNamed:@"banner"]];
-        _bannerView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
-        _bannerView.pageControlStyle = SDCycleScrollViewPageContolStyleClassic;
-        _bannerView.autoScrollTimeInterval = 2;
-        _bannerView.pageDotColor = KAPP_THEME_COLOR;
-        _bannerView.imageURLStringsGroup = _model.brands;
-        _bannerView.autoScroll = YES;
-        _bannerView.infiniteLoop = YES;
-        _bannerView.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-        _bannerView.bannerImageViewContentMode = UIViewContentModeScaleAspectFill;
-        _bannerView.clipsToBounds = YES;
+        _imgView = [UIImageView new];
+        _imgView.contentMode = UIViewContentModeScaleAspectFill;
     }
-    return _bannerView;
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+    return _imgView;
 }
 
 @end

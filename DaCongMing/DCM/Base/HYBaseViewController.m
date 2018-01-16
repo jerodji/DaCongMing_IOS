@@ -16,10 +16,10 @@
     [super viewDidLoad];
     
     [self setupNav];
-    
     self.edgesForExtendedLayout = UIRectEdgeNone;
 
 }
+
 
 - (void)viewWillDisappear:(BOOL)animated{
     
@@ -43,8 +43,6 @@
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     
     [self.view endEditing:YES];
-<<<<<<< HEAD
-=======
 }
 
 #pragma mark - setStatusBar
@@ -57,8 +55,12 @@
 
 //设置状态栏颜色
 - (void)setStatusBarBackgroundColor:(UIColor *)color {
->>>>>>> 1.1
     
+    UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
+    if ([statusBar respondsToSelector:@selector(setBackgroundColor:)]) {
+        
+        statusBar.backgroundColor = color;
+    }
 }
 
 - (void)didReceiveMemoryWarning {

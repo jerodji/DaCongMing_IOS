@@ -96,11 +96,7 @@
 - (void)viewDidLayoutSubviews{
     
     [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-<<<<<<< HEAD
-        
-=======
        
->>>>>>> 1.1
         make.edges.equalTo(self.view);
     }];
 }
@@ -121,11 +117,7 @@
     [_cellInfoArray addObject:@[@"HYOrderDetailImageCell"]];
     [_cellInfoArray addObject:@[@"HYTypeRecommendCell"]];
     [_cellInfoArray addObject:@[@"HYHomeDoodsCell"]];
-<<<<<<< HEAD
-    
-=======
 
->>>>>>> 1.1
     
 }
 
@@ -175,11 +167,7 @@
 - (void)requestRecommendData{
     
     _goodsList = [NSMutableArray array];
-<<<<<<< HEAD
-    
-=======
 
->>>>>>> 1.1
     [HYGoodsHandle requestGoodsListItem_type:@"001" pageNo:1 sortType:@"0" keyword:nil complectionBlock:^(NSArray *datalist)  {
         
         [_goodsList addObjectsFromArray:datalist];
@@ -225,7 +213,6 @@
     HYBannerModel *bannerModel = self.bannerArray[index];
     switch ([bannerModel.transition integerValue]) {
         case 0:{
-<<<<<<< HEAD
             
             HYBrandShopViewController *shopVC = [HYBrandShopViewController new];
             shopVC.sellerID = bannerModel.seller_id;
@@ -239,21 +226,6 @@
             [self.navigationController pushViewController:goodListVC animated:YES];
         }
             break;
-=======
-            
-            HYBrandShopViewController *shopVC = [HYBrandShopViewController new];
-            shopVC.sellerID = bannerModel.seller_id;
-            [self.navigationController pushViewController:shopVC animated:YES];
-        }
-            break;
-        case 1:{
-            
-            HYGoodsListViewController *goodListVC = [HYGoodsListViewController new];
-            goodListVC.type = bannerModel.item_type;
-            [self.navigationController pushViewController:goodListVC animated:YES];
-        }
-            break;
->>>>>>> 1.1
         default:
             break;
     }
@@ -263,33 +235,6 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     
     return 1;
-<<<<<<< HEAD
-}
-
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    
-    return self.cellInfoArray.count;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    NSString *cellName = self.cellInfoArray[indexPath.row][0];
-    
-    if ([cellName isEqualToString:@"HYHomeTitleScrollCell"]) {
-        
-        //今日推荐
-        static NSString *titleScrollID = @"HYTitle";
-        HYHomeTitleScrollCell *cell = [tableView dequeueReusableCellWithIdentifier:titleScrollID];
-        if (!cell) {
-            cell = [[HYHomeTitleScrollCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:titleScrollID];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            
-        }
-        cell.model = _model;
-        [self.cellHeightDict setValue:[NSNumber numberWithFloat:cell.cellHeight] forKey:cellName];
-        cell.collectionSelect = ^(NSString *productID) {
-            
-=======
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -385,7 +330,6 @@
         cell.title = @"猜你喜欢";
         cell.collectionSelect = ^(NSString *productID) {
           
->>>>>>> 1.1
             HYGoodsDetailInfoViewController *detailVC = [[HYGoodsDetailInfoViewController alloc] init];
             detailVC.navigationController.navigationBar.hidden = YES;
             detailVC.goodsID = productID;
@@ -393,79 +337,6 @@
         };
         return cell;
     }
-<<<<<<< HEAD
-    else if ([cellName isEqualToString:@"HYHomeCollectionCell"]){
-        //item
-        static NSString *collectionCellID = @"HYCollectionCell";
-        HYHomeCollectionCell *cell = [tableView dequeueReusableCellWithIdentifier:collectionCellID];
-        if (!cell) {
-            cell = [[HYHomeCollectionCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:collectionCellID];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            
-        }
-        cell.model = _model;
-        cell.selectItemBlock = ^(NSString *itemType) {
-            
-            HYGoodsListViewController *goodListVC = [HYGoodsListViewController new];
-            goodListVC.type = itemType;
-            [self.navigationController pushViewController:goodListVC animated:YES];
-        };
-        return cell;
-    }
-    else if ([cellName isEqualToString:@"HYOrderDetailImageCell"]){
-        //类型推荐图片
-        static NSString *typeRecommendImageID = @"typeRecommendImageID";
-        HYOrderDetailImageCell *cell = [tableView dequeueReusableCellWithIdentifier:typeRecommendImageID];
-        if (!cell) {
-            cell = [[HYOrderDetailImageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:typeRecommendImageID];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            
-        }
-        [cell.logisticsImgView sd_setImageWithURL:[NSURL URLWithString:_model.typeReCommend.image_url] placeholderImage:[UIImage imageNamed:@"banner.jpg"]];
-        return cell;
-    }
-    else if ([cellName isEqualToString:@"HYTypeRecommendCell"]){
-        //类型推荐
-        static NSString *typeRecommendID = @"typeRecommendID";
-        HYTypeRecommendCell *cell = [tableView dequeueReusableCellWithIdentifier:typeRecommendID];
-        if (!cell) {
-            cell = [[HYTypeRecommendCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:typeRecommendID];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            
-        }
-        cell.selectItemBlock = ^(NSString *keyword, NSString *typeID) {
-            
-            HYGoodsListViewController *goodsListVC = [[HYGoodsListViewController alloc] init];
-            goodsListVC.keyword = keyword;
-            goodsListVC.type = typeID;
-            goodsListVC.title = keyword;
-            [self.navigationController pushViewController:goodsListVC animated:YES];
-        };
-        cell.model = _model;
-        
-        return cell;
-    }
-    else if ([cellName isEqualToString:@"HYHomeDoodsCell"]){
-        //猜你喜欢
-        static NSString *goodsCellID = @"goodsCellID";
-        HYHomeDoodsCell *cell = [tableView dequeueReusableCellWithIdentifier:goodsCellID];
-        if (!cell) {
-            cell = [[HYHomeDoodsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:goodsCellID];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        }
-        cell.datalist = self.goodsList;
-        cell.title = @"猜你喜欢";
-        cell.collectionSelect = ^(NSString *productID) {
-            
-            HYGoodsDetailInfoViewController *detailVC = [[HYGoodsDetailInfoViewController alloc] init];
-            detailVC.navigationController.navigationBar.hidden = YES;
-            detailVC.goodsID = productID;
-            [self.navigationController pushViewController:detailVC animated:YES];
-        };
-        return cell;
-    }
-=======
->>>>>>> 1.1
     else{
         static NSString *cellID = @"";
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
@@ -494,7 +365,6 @@
     
     NSString *cellName = self.cellInfoArray[indexPath.row][0];
     if ([cellName isEqualToString:@"HYHomeTitleScrollCell"]) {
-<<<<<<< HEAD
         
         NSNumber *num = [_cellHeightDict objectForKey:cellName];
         return num.floatValue;
@@ -504,17 +374,6 @@
         //四个方块
         return ceil(_model.tags.count / 2.0) * 110 * WIDTH_MULTIPLE + 10 * WIDTH_MULTIPLE;
     }
-=======
-        
-        NSNumber *num = [_cellHeightDict objectForKey:cellName];
-        return num.floatValue;
-    }
-    else if([cellName isEqualToString:@"HYHomeCollectionCell"]) {
-        
-        //四个方块
-        return ceil(_model.tags.count / 2.0) * 110 * WIDTH_MULTIPLE + 10 * WIDTH_MULTIPLE;
-    }
->>>>>>> 1.1
     else if([cellName isEqualToString:@"HYOrderDetailImageCell"]) {
         
         //图片
@@ -529,11 +388,7 @@
     else if([cellName isEqualToString:@"HYHomeDoodsCell"]) {
         
         //猜你喜欢
-<<<<<<< HEAD
-        CGFloat height = ceil(_goodsList.count / 2.0) * 325 * WIDTH_MULTIPLE;
-=======
         CGFloat height = ceil(_goodsList.count / 2.0) * KItemHeight ;
->>>>>>> 1.1
         return  height + 40 * WIDTH_MULTIPLE;
     }
     
@@ -542,60 +397,6 @@
 
 #pragma mark - lazyload
 - (HYNavTitleView *)navTitleView{
-<<<<<<< HEAD
-    
-    if (!_navTitleView) {
-        
-        _navTitleView = [[HYNavTitleView alloc] initWithFrame:CGRectMake(0, 0, KSCREEN_WIDTH, 44)];
-        _navTitleView.userInteractionEnabled = YES;
-        
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithActionBlock:^(id  _Nonnull sender) {
-            
-            HYHomeSearchViewController *homeSearchVC = [HYHomeSearchViewController new];
-            [self.navigationController pushViewController:homeSearchVC animated:YES];
-        }];
-        [_navTitleView addGestureRecognizer:tap];
-        _navTitleView.backgroundColor = KAPP_NAV_COLOR;
-    }
-    
-    return _navTitleView;
-}
-
-- (UITableView *)tableView{
-    if (!_tableView) {
-        
-        _tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
-        _tableView.delegate = self;
-        _tableView.dataSource = self;
-        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        _tableView.tableHeaderView = self.headerView;
-        _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(updateHomeData)];
-    }
-    return _tableView;
-}
-
-- (SDCycleScrollView *)headerView{
-    
-    if (!_headerView) {
-        
-        //轮播图
-        _headerView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, self.view.width, 180) delegate:self placeholderImage:[UIImage imageNamed:@"banner.jpg"]];
-        _headerView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
-        _headerView.pageControlStyle = SDCycleScrollViewPageContolStyleClassic;
-        _headerView.autoScrollTimeInterval = 3;
-        _headerView.pageDotColor = KAPP_WHITE_COLOR;
-        _headerView.currentPageDotColor = KAPP_THEME_COLOR;
-        _headerView.imageURLStringsGroup = _model.banners;
-        _headerView.autoScroll = YES;
-        _headerView.infiniteLoop = YES;
-        _headerView.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-    }
-    return _headerView;
-}
-
-- (NSMutableDictionary *)cellHeightDict{
-    
-=======
 
     if (!_navTitleView) {
         
@@ -648,7 +449,6 @@
 
 - (NSMutableDictionary *)cellHeightDict{
     
->>>>>>> 1.1
     if (!_cellHeightDict) {
         
         _cellHeightDict = [NSMutableDictionary dictionary];
@@ -671,4 +471,3 @@
 }
 
 @end
-

@@ -54,15 +54,24 @@
     _isSuccess = isSuccess;
     if (isSuccess) {
         
-        self.title = @"推荐成功";
+        self.title = @"支付成功";
         self.iconImageView.image = [UIImage imageNamed:@"recommend_success"];
-        self.tipsLabel.text = @"推荐成功";
+        self.tipsLabel.text = @"支付成功";
+        
+        //跳转App Store下载聪明管理
+        [HYAlertManager alertControllerAboveIn:self withMessage:@"是否到APP Store下载聪明管理" leftTitle:@"否" leftActionEvent:nil rightTitle:@"是" rightActionEvent:^{
+            
+            NSString *urlCode = [@"聪明管理" stringByURLEncode];
+            NSString *str = [NSString stringWithFormat:
+                             @"https://itunes.apple.com/cn/app/%@/id1319732695?mt=8",urlCode];
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+        }];
     }
     else{
         
         self.iconImageView.image = [UIImage imageNamed:@"recommend_fail"];
-        self.title = @"推荐失败";
-        self.tipsLabel.text = @"推荐失败";
+        self.title = @"支付失败";
+        self.tipsLabel.text = @"支付失败";
     }
 }
 

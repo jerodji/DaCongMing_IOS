@@ -62,7 +62,6 @@
     
     [self setupSubviews];
     [self requestNetwork];
-    [self setupMasonryLayout];
     
 }
 
@@ -71,6 +70,7 @@
     [super viewWillAppear:animated];
     
     self.navigationController.navigationBar.hidden = YES;
+    KAdjustsScrollViewInsets_NO(self, self.tableView);
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
@@ -117,9 +117,6 @@
     }];
 }
 
-<<<<<<< HEAD
-- (void)setupMasonryLayout{
-=======
 - (void)viewDidLayoutSubviews{
     
     [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -127,28 +124,26 @@
         make.left.top.right.equalTo(self.view);
         make.bottom.equalTo(self.view).offset(- KSafeAreaBottom_Height - 60);
     }];
->>>>>>> 1.1
     
     [_backBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-       
+        
         make.left.equalTo(self.view).offset(10 * WIDTH_MULTIPLE);
-        make.top.equalTo(self.view).offset(20 * WIDTH_MULTIPLE);
+        make.top.equalTo(self.view).offset(KSTATUSBAR_HEIGHT);
         make.width.height.equalTo(@40);
     }];
     
-//    [_shareBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-//
-//        make.right.equalTo(self.view).offset(-10 * WIDTH_MULTIPLE);
-//        make.top.equalTo(self.view).offset(20 * WIDTH_MULTIPLE);
-//        make.width.height.equalTo(@40);
-//    }];
+    //    [_shareBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+    //
+    //        make.right.equalTo(self.view).offset(-10 * WIDTH_MULTIPLE);
+    //        make.top.equalTo(self.view).offset(20 * WIDTH_MULTIPLE);
+    //        make.width.height.equalTo(@40);
+    //    }];
     
     [_bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
-       
+        
         make.left.right.bottom.equalTo(self.view);
         make.height.equalTo(@(60));
     }];
-    
 }
 
 #pragma mark - action
@@ -616,7 +611,7 @@
 - (UITableView *)tableView{
     if (!_tableView) {
         
-        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, -20, KSCREEN_WIDTH, KSCREEN_HEIGHT - 40) style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -677,11 +672,11 @@
     
     if (!_barView) {
         
-        _barView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, KSCREEN_WIDTH, 64)];
+        _barView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, KSCREEN_WIDTH, KNAV_HEIGHT)];
         UIColor *color = KAPP_NAV_COLOR;
         _barView.backgroundColor = [color colorWithAlphaComponent:0];
         
-        _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, 20, KSCREEN_WIDTH - 100, 44)];
+        _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, KSTATUSBAR_HEIGHT, KSCREEN_WIDTH - 100, KNAV_HEIGHT - KSTATUSBAR_HEIGHT)];
         _titleLabel.text = @"商品详情";
         _titleLabel.font = KFitFont(16);
         _titleLabel.textAlignment = NSTextAlignmentCenter;

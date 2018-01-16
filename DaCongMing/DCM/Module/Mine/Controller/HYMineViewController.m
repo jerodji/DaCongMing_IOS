@@ -25,6 +25,7 @@
 #import "HYMyCollectShopViewController.h"
 #import "HYMyCollectGoodsViewController.h"
 #import "HYRecentViewViewController.h"
+#import "HYInvitateFriendsViewController.h"
 #import "HYSaleAfterViewController.h"
 #import "HYMyUserInfo.h"
 #import "HYMineNetRequest.h"
@@ -226,7 +227,7 @@
     else if ([cellName isEqualToString:@"HYHomeDoodsCell"]){
         
         //猜你喜欢
-        CGFloat height = ceil(_goodsList.count / 2.0) * 330 * WIDTH_MULTIPLE;
+        CGFloat height = ceil(_goodsList.count / 2.0) * KItemHeight;
         return  height + 40 * WIDTH_MULTIPLE;
         
     }

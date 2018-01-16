@@ -232,13 +232,13 @@
                             HYParterPayResultVC *resultVC = [HYParterPayResultVC new];
                             [weakSelf.navigationController pushViewController:resultVC animated:YES];
                             resultVC.isSuccess = YES;
-                            
+
                         } failed:^{
                             
                             HYParterPayResultVC *resultVC = [HYParterPayResultVC new];
                             [weakSelf.navigationController pushViewController:resultVC animated:YES];
                             resultVC.isSuccess = NO;
-                            
+
                         }];
                     }];
                 }

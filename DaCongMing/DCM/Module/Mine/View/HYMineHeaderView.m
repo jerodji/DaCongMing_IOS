@@ -14,6 +14,8 @@
 @property (nonatomic,strong) UIImageView *headerImgView;
 /** 用户昵称 */
 @property (nonatomic,strong) UILabel *nickNameLabel;
+/** 翅膀 */
+@property (nonatomic,strong) UIImageView *wingImgView;
 /** 收藏商品 */
 @property (nonatomic,strong) UILabel *collectGoodsLabel;
 /** 收藏店铺 */
@@ -39,10 +41,7 @@
     [self addSubview:self.bgImageView];
     [self addSubview:self.headerImgView];
     [self addSubview:self.nickNameLabel];
-<<<<<<< HEAD
-=======
 //    [self addSubview:self.wingImgView];
->>>>>>> 1.1
     [self addSubview:self.collectGoodsLabel];
     [self addSubview:self.collectStoreLabel];
     [self addSubview:self.recentViewLabel];
@@ -56,8 +55,6 @@
     if ([user.token isNotBlank]) {
         
         [self.headerImgView sd_setImageWithURL:[NSURL URLWithString:user.userInfo.head_image_url] placeholderImage:[UIImage imageNamed:@"header_placeholder"]];
-//        NSString *urlStr = [NSString stringWithFormat:@"http://%@",user.userInfo.head_image_url];
-//        [self.headerImgView sd_setImageWithURL:[NSURL URLWithString:urlStr] placeholderImage:[UIImage imageNamed:@"header_placeholder"]];
         self.nickNameLabel.text = user.userInfo.name;
     }
     else{
@@ -89,21 +86,11 @@
     [_headerImgView mas_makeConstraints:^(MASConstraintMaker *make) {
        
         make.centerX.equalTo(self);
-<<<<<<< HEAD
-        make.top.equalTo(self).offset(42 * WIDTH_MULTIPLE);
-=======
         make.top.equalTo(self).offset(KSTATUSBAR_HEIGHT + 30);
->>>>>>> 1.1
         make.width.height.equalTo(@(60 * WIDTH_MULTIPLE));
     }];
     
     [_nickNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-<<<<<<< HEAD
-       
-        make.top.equalTo(_headerImgView.mas_bottom).offset(10 * WIDTH_MULTIPLE);
-        make.left.right.equalTo(self);
-        make.height.equalTo(@20);
-=======
         
         make.top.equalTo(_headerImgView.mas_bottom).offset(20 * WIDTH_MULTIPLE);
         make.left.right.equalTo(self);
@@ -116,7 +103,6 @@
         make.right.equalTo(self).offset(-37 * WIDTH_MULTIPLE);
         make.bottom.equalTo(self).offset(-50 * WIDTH_MULTIPLE);
         make.top.equalTo(self).offset(KSTATUSBAR_HEIGHT);
->>>>>>> 1.1
     }];
     
     [_collectGoodsLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -161,6 +147,16 @@
     return _bgImageView;
 }
 
+- (UIImageView *)wingImgView{
+    
+    if (!_wingImgView) {
+        
+        _wingImgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"wing_golden"]];
+        _wingImgView.contentMode = UIViewContentModeScaleAspectFit;
+    }
+    return _wingImgView;
+}
+
 - (UIImageView *)headerImgView{
     
     if (!_headerImgView) {
@@ -173,7 +169,6 @@
         _headerImgView.layer.borderWidth = 1;
         _headerImgView.image = [UIImage imageNamed:@"header_placeholder"];
     }
-    
     return _headerImgView;
 }
 

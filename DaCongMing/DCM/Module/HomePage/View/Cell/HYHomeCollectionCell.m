@@ -67,8 +67,8 @@
     
     HYHomeTagsCollectionViewCell *cell = (HYHomeTagsCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"collectionCell" forIndexPath:indexPath];
     
-    NSDictionary *dict = _model.tags[indexPath.item];
-    cell.tagsItemModel = [HYTagsItemModel modelWithDictionary:dict];
+    NSDictionary *dict = _model.brands[indexPath.item];
+    cell.brandsModel = [HYBrands modelWithDictionary:dict];
     
     return cell;
 }
@@ -78,7 +78,7 @@
     HYHomeTagsCollectionViewCell *cell = (HYHomeTagsCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
     if (self.selectItemBlock) {
         
-        self.selectItemBlock(cell.tagsItemModel.item_type);
+        self.selectItemBlock(cell.brandsModel.item_type);
     }
 }
 

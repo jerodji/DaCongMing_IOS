@@ -152,14 +152,6 @@
         
         //1.初始化layout
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-<<<<<<< HEAD
-        layout.itemSize = CGSizeMake((KSCREEN_WIDTH - 10 - 5 * WIDTH_MULTIPLE) / 2 , 325 * WIDTH_MULTIPLE);
-        layout.scrollDirection = UICollectionViewScrollDirectionVertical;
-        layout.minimumInteritemSpacing = 0;
-        layout.minimumLineSpacing = 5 * WIDTH_MULTIPLE;      //纵向间距
-        layout.sectionInset = UIEdgeInsetsMake(0, 5, 0, 5);
-        
-=======
         layout.scrollDirection = UICollectionViewScrollDirectionVertical;
         layout.estimatedItemSize = CGSizeMake((KSCREEN_WIDTH - 15) / 2, KItemHeight - 10);
 //        layout.itemSize = UICollectionViewFlowLayoutAutomaticSize;
@@ -169,7 +161,6 @@
         layout.minimumLineSpacing = 10 * WIDTH_MULTIPLE;      //纵向间距
         layout.sectionInset = UIEdgeInsetsMake(10, 5 , 0, 5);
     
->>>>>>> 1.1
         _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
         [_collectionView setCollectionViewLayout:layout];
         _collectionView.backgroundColor = self.backgroundColor;
