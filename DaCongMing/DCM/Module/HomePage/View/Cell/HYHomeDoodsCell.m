@@ -2,8 +2,6 @@
 //  HYHomeDoodsCell.m
 //  DaCongMing
 //
-//  Created by 胡勇 on 2017/9/15.
-//  Copyright © 2017年 胡勇. All rights reserved.
 //
 
 #import "HYHomeDoodsCell.h"
@@ -35,7 +33,7 @@
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         
         [self addSubview:self.collectionView];
-        self.backgroundColor = KAPP_TableView_BgColor;
+        self.backgroundColor = KAPP_WHITE_COLOR;
         
     }
     return self;
@@ -59,7 +57,7 @@
     [_guessLikeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
        
         make.top.left.right.equalTo(self);
-        make.height.mas_equalTo(40 * WIDTH_MULTIPLE);
+        make.height.mas_equalTo(30 * WIDTH_MULTIPLE);
     }];
     
     [_collectionView mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -69,7 +67,7 @@
         make.height.equalTo(@(height));
         if (_guessLikeLabel) {
             
-            make.top.equalTo(_guessLikeLabel.mas_bottom).offset(5 * WIDTH_MULTIPLE);
+            make.top.equalTo(_guessLikeLabel.mas_bottom).offset(1 * WIDTH_MULTIPLE);
         }
         else{
             
@@ -133,7 +131,7 @@
         _guessLikeLabel.textColor = KCOLOR(@"272727");
         _guessLikeLabel.textAlignment = NSTextAlignmentCenter;
         _guessLikeLabel.text = @"猜您喜欢";
-        _guessLikeLabel.backgroundColor= KAPP_WHITE_COLOR;
+        _guessLikeLabel.backgroundColor= self.backgroundColor;
     }
     return _guessLikeLabel;
 }
@@ -154,12 +152,24 @@
         
         //1.初始化layout
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+<<<<<<< HEAD
         layout.itemSize = CGSizeMake((KSCREEN_WIDTH - 10 - 5 * WIDTH_MULTIPLE) / 2 , 325 * WIDTH_MULTIPLE);
         layout.scrollDirection = UICollectionViewScrollDirectionVertical;
         layout.minimumInteritemSpacing = 0;
         layout.minimumLineSpacing = 5 * WIDTH_MULTIPLE;      //纵向间距
         layout.sectionInset = UIEdgeInsetsMake(0, 5, 0, 5);
         
+=======
+        layout.scrollDirection = UICollectionViewScrollDirectionVertical;
+        layout.estimatedItemSize = CGSizeMake((KSCREEN_WIDTH - 15) / 2, KItemHeight - 10);
+//        layout.itemSize = UICollectionViewFlowLayoutAutomaticSize;
+//        layout.estimatedItemSize = UICollectionViewFlowLayoutAutomaticSize;
+        layout.scrollDirection = UICollectionViewScrollDirectionVertical;
+        layout.minimumInteritemSpacing = 5;
+        layout.minimumLineSpacing = 10 * WIDTH_MULTIPLE;      //纵向间距
+        layout.sectionInset = UIEdgeInsetsMake(10, 5 , 0, 5);
+    
+>>>>>>> 1.1
         _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
         [_collectionView setCollectionViewLayout:layout];
         _collectionView.backgroundColor = self.backgroundColor;

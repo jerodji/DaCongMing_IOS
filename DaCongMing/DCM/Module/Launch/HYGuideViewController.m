@@ -2,8 +2,6 @@
 //  HYGuideViewController.m
 //  DaCongMing
 //
-//  Created by 胡勇 on 2017/10/23.
-//  Copyright © 2017年 胡勇. All rights reserved.
 //
 
 #import "HYGuideViewController.h"
@@ -83,9 +81,9 @@
     
     [_skipBtn mas_makeConstraints:^(MASConstraintMaker *make) {
        
-        make.right.equalTo(self.view).offset(-20 * WIDTH_MULTIPLE);
-        make.bottom.equalTo(self.view).offset(-30 * WIDTH_MULTIPLE);
-        make.size.mas_equalTo(CGSizeMake(100 * WIDTH_MULTIPLE, 60 * WIDTH_MULTIPLE));
+        make.bottom.equalTo(self.view).offset(-36 * WIDTH_MULTIPLE);
+        make.centerX.equalTo(self.view);
+        make.size.mas_equalTo(CGSizeMake(160 * WIDTH_MULTIPLE, 50 * WIDTH_MULTIPLE));
     }];
     
     [_pageControl mas_makeConstraints:^(MASConstraintMaker *make) {

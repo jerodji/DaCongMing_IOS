@@ -2,8 +2,6 @@
 //  HYMyCollectionGoodsCell.m
 //  DaCongMing
 //
-//  Created by 胡勇 on 2017/10/11.
-//  Copyright © 2017年 胡勇. All rights reserved.
 //
 
 #import "HYMyCollectionGoodsCell.h"
@@ -92,7 +90,7 @@
         make.left.equalTo(_itemImgView.mas_right).offset(10 * WIDTH_MULTIPLE);
         make.top.equalTo(_itemImgView);
         make.height.mas_equalTo(20);
-        make.right.equalTo(self);
+        make.right.equalTo(self).offset(-30 * WIDTH_MULTIPLE);
     }];
     
     [_unitLabel mas_makeConstraints:^(MASConstraintMaker *make) {

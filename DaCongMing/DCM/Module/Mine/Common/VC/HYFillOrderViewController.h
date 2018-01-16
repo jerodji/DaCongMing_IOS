@@ -2,8 +2,6 @@
 //  HYFillOrderViewController.h
 //  DaCongMing
 //
-//  Created by 胡勇 on 2017/9/22.
-//  Copyright © 2017年 胡勇. All rights reserved.
 //
 
 #import "HYBaseViewController.h"
@@ -21,5 +19,7 @@
 
 /** 购物车编号(购物车结算) */
 @property (nonatomic,copy) NSString *guids;
+/** 是否重复购买 */
+@property (nonatomic,assign) BOOL isReBuy;
 
 @end

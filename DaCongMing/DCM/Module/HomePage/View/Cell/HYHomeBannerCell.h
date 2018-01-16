@@ -2,8 +2,11 @@
 //  HYHomeBannerCell.h
 //  DaCongMing
 //
+<<<<<<< HEAD
 //  Created by 胡勇 on 2017/9/15.
 //  Copyright © 2017年 胡勇. All rights reserved.
+=======
+>>>>>>> 1.1
 //
 
 #import <UIKit/UIKit.h>

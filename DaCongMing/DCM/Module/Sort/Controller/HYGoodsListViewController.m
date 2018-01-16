@@ -2,8 +2,6 @@
 //  HYGoodsListViewController.m
 //  DaCongMing
 //
-//  Created by 胡勇 on 2017/9/20.
-//  Copyright © 2017年 胡勇. All rights reserved.
 //
 
 #import "HYGoodsListViewController.h"
@@ -59,7 +57,7 @@
 
 - (void)setupSubviews{
     
-    self.view.backgroundColor = KAPP_TableView_BgColor;
+    self.view.backgroundColor = KAPP_WHITE_COLOR;
     [self.view addSubview:self.horizonLine];
     [self.view addSubview:self.collectionView];
     
@@ -111,7 +109,7 @@
     [_collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
        
         make.left.right.bottom.equalTo(self.view);
-        make.top.equalTo(self.view).offset(self.horizonLine.bottom + 6 * WIDTH_MULTIPLE);
+        make.top.equalTo(self.view).offset(self.horizonLine.bottom);
     }];
 }
 
@@ -290,18 +288,18 @@
         //1.初始化layout
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
         layout.scrollDirection = UICollectionViewScrollDirectionVertical;
-//        layout.estimatedItemSize = CGSizeMake((KSCREEN_WIDTH - 15 * WIDTH_MULTIPLE) / 2, 315 * WIDTH_MULTIPLE);
-        layout.estimatedItemSize = UICollectionViewFlowLayoutAutomaticSize;
-        layout.itemSize = UICollectionViewFlowLayoutAutomaticSize;
+        layout.estimatedItemSize = CGSizeMake((KSCREEN_WIDTH - 15) / 2, KItemHeight - 10);
+//        layout.estimatedItemSize = UICollectionViewFlowLayoutAutomaticSize;
+//        layout.itemSize = UICollectionViewFlowLayoutAutomaticSize;
         layout.scrollDirection = UICollectionViewScrollDirectionVertical;
         layout.minimumInteritemSpacing = 5;
         layout.minimumLineSpacing = 10 * WIDTH_MULTIPLE;      //纵向间距
-        layout.sectionInset = UIEdgeInsetsMake(0, 5 , 0, 5);
+        layout.sectionInset = UIEdgeInsetsMake(10, 5 , 0, 5);
         
         
         _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
         [_collectionView setCollectionViewLayout:layout];
-        _collectionView.backgroundColor = KAPP_TableView_BgColor;
+        _collectionView.backgroundColor = KAPP_WHITE_COLOR;
         _collectionView.showsVerticalScrollIndicator = NO;
         _collectionView.showsHorizontalScrollIndicator = NO;
         _collectionView.delegate = self;

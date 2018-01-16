@@ -2,8 +2,6 @@
 //  HYGoodsItemCollectionViewCell.m
 //  DaCongMing
 //
-//  Created by 胡勇 on 2017/9/19.
-//  Copyright © 2017年 胡勇. All rights reserved.
 //
 
 #import "HYGoodsItemCollectionViewCell.h"
@@ -101,9 +99,15 @@
     CGFloat strHeight = [@"哈哈" heightForFont:KFitFont(14) width:KSCREEN_WIDTH];
     [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
        
+<<<<<<< HEAD
         make.left.equalTo(_imgView).offset(10 * WIDTH_MULTIPLE);
         make.top.equalTo(_imgView.mas_bottom).offset(7 * WIDTH_MULTIPLE);
         make.right.equalTo(self).offset(- 10 * WIDTH_MULTIPLE);
+=======
+        make.left.equalTo(_priceLabel);
+        make.top.equalTo(_priceLabel.mas_bottom).offset(5 * WIDTH_MULTIPLE);
+        make.right.equalTo(self.contentView).offset(-30 * WIDTH_MULTIPLE);
+>>>>>>> 1.1
         make.height.mas_equalTo(strHeight * 2 + 5);
     }];
     
@@ -130,7 +134,18 @@
     }];
     
     [self layoutIfNeeded];
+<<<<<<< HEAD
     self.goodsModel.cellHeight = self.priceLabel.bottom + 6 * WIDTH_MULTIPLE;
+=======
+    self.goodsModel.cellHeight = self.introLabel.bottom + 10 * WIDTH_MULTIPLE;
+    self.layer.cornerRadius = 5 * WIDTH_MULTIPLE;
+    self.layer.shadowOpacity = 0.4;
+    self.layer.shadowRadius = 3.0;
+    self.layer.shadowPath = [UIBezierPath bezierPathWithRect:self.contentView.bounds].CGPath;
+    self.layer.shouldRasterize = YES;
+    self.layer.shadowOffset = CGSizeMake(1, 1);
+    self.layer.rasterizationScale = [UIScreen mainScreen].scale;    //设置抗锯齿边缘
+>>>>>>> 1.1
 }
 
 #pragma mark - action
@@ -140,6 +155,21 @@
     [handle addToCartsWithProductID:self.goodsModel.item_id];
 }
 
+<<<<<<< HEAD
+=======
+- (UICollectionViewLayoutAttributes*)preferredLayoutAttributesFittingAttributes:(UICollectionViewLayoutAttributes*)layoutAttributes {
+    
+    [self layoutIfNeeded];
+    [super preferredLayoutAttributesFittingAttributes:layoutAttributes];
+    CGSize size = [self.contentView systemLayoutSizeFittingSize:layoutAttributes.size];
+    CGRect cellFrame = layoutAttributes.frame;
+    cellFrame.size.height = size.height;
+    cellFrame.size.width = itemWidth;
+    layoutAttributes.frame = cellFrame;
+    return layoutAttributes;
+}
+
+>>>>>>> 1.1
 #pragma mark - lazyload
 - (UIImageView *)imgView{
     

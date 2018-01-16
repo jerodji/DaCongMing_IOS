@@ -2,8 +2,6 @@
 //  HYMineHeaderView.m
 //  DaCongMing
 //
-//  Created by 胡勇 on 2017/9/19.
-//  Copyright © 2017年 胡勇. All rights reserved.
 //
 
 #import "HYMineHeaderView.h"
@@ -41,6 +39,10 @@
     [self addSubview:self.bgImageView];
     [self addSubview:self.headerImgView];
     [self addSubview:self.nickNameLabel];
+<<<<<<< HEAD
+=======
+//    [self addSubview:self.wingImgView];
+>>>>>>> 1.1
     [self addSubview:self.collectGoodsLabel];
     [self addSubview:self.collectStoreLabel];
     [self addSubview:self.recentViewLabel];
@@ -87,15 +89,34 @@
     [_headerImgView mas_makeConstraints:^(MASConstraintMaker *make) {
        
         make.centerX.equalTo(self);
+<<<<<<< HEAD
         make.top.equalTo(self).offset(42 * WIDTH_MULTIPLE);
+=======
+        make.top.equalTo(self).offset(KSTATUSBAR_HEIGHT + 30);
+>>>>>>> 1.1
         make.width.height.equalTo(@(60 * WIDTH_MULTIPLE));
     }];
     
     [_nickNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+<<<<<<< HEAD
        
         make.top.equalTo(_headerImgView.mas_bottom).offset(10 * WIDTH_MULTIPLE);
         make.left.right.equalTo(self);
         make.height.equalTo(@20);
+=======
+        
+        make.top.equalTo(_headerImgView.mas_bottom).offset(20 * WIDTH_MULTIPLE);
+        make.left.right.equalTo(self);
+        make.height.equalTo(@20);
+    }];
+    
+    [_wingImgView mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.left.equalTo(self).offset(41 * WIDTH_MULTIPLE);
+        make.right.equalTo(self).offset(-37 * WIDTH_MULTIPLE);
+        make.bottom.equalTo(self).offset(-50 * WIDTH_MULTIPLE);
+        make.top.equalTo(self).offset(KSTATUSBAR_HEIGHT);
+>>>>>>> 1.1
     }];
     
     [_collectGoodsLabel mas_makeConstraints:^(MASConstraintMaker *make) {

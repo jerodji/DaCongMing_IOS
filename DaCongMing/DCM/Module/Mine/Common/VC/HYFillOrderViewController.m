@@ -2,8 +2,6 @@
 //  HYFillOrderViewController.m
 //  DaCongMing
 //
-//  Created by 胡勇 on 2017/9/22.
-//  Copyright © 2017年 胡勇. All rights reserved.
 //
 
 #import "HYFillOrderViewController.h"
@@ -139,15 +137,34 @@
 - (void)setOrderID:(NSString *)orderID{
     
     _orderID = orderID;
-    //从订单也跳转过来的
     
-    [HYGoodsHandle createOrderWithOrderID:orderID complectionBlock:^(HYCreateOrder *order) {
+}
+
+- (void)setIsReBuy:(BOOL)isReBuy{
+    
+    _isReBuy = isReBuy;
+    //从订单也跳转过来的
+    if (isReBuy) {
         
-        self.orderModel = order;
-        NSDictionary *dict = order.dataList[0];
-        self.createOrderDatalist = [HYCreateOrderDatalist modelWithDictionary:dict];
-        [_tableView reloadData];
-    }];
+        //重复购买
+        [HYGoodsHandle createOrderWithOrderID:self.orderID complectionBlock:^(HYCreateOrder *order) {
+            
+            self.orderModel = order;
+            NSDictionary *dict = order.dataList[0];
+            self.createOrderDatalist = [HYCreateOrderDatalist modelWithDictionary:dict];
+            [_tableView reloadData];
+        }];
+    }
+    else{
+        //去付款
+        [HYGoodsHandle payerWithOrderID:self.orderID complectionBlock:^(HYCreateOrder *order) {
+            
+            self.orderModel = order;
+            NSDictionary *dict = order.dataList[0];
+            self.createOrderDatalist = [HYCreateOrderDatalist modelWithDictionary:dict];
+            [_tableView reloadData];
+        }];
+    }
 }
 
 - (void)setGuids:(NSString *)guids{

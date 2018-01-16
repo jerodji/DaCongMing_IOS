@@ -2,8 +2,6 @@
 //  HYGoodsHandle.h
 //  DaCongMing
 //
-//  Created by 胡勇 on 2017/9/25.
-//  Copyright © 2017年 胡勇. All rights reserved.
 //
 
 #import "HYBaseModel.h"
@@ -28,6 +26,11 @@
  *  创建订单
  */
 + (void)createOrderWithGuid:(NSString *)guid itemID:(NSString *)itemID count:(NSInteger)count sellerID:(NSString *)sellerID andUnit:(NSString *)unit complectionBlock:(void(^)(HYCreateOrder *order))complection;
+
+/**
+ *  去付款
+ */
++ (void)payerWithOrderID:(NSString *)orderID complectionBlock:(void(^)(HYCreateOrder *order))complection;
 
 /**
  *  重复购买

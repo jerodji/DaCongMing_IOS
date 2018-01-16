@@ -2,8 +2,6 @@
 //  HYGoodsDetailInfoViewController.m
 //  DaCongMing
 //
-//  Created by 胡勇 on 2017/9/20.
-//  Copyright © 2017年 胡勇. All rights reserved.
 //
 
 #import "HYGoodsDetailInfoViewController.h"
@@ -119,7 +117,17 @@
     }];
 }
 
+<<<<<<< HEAD
 - (void)setupMasonryLayout{
+=======
+- (void)viewDidLayoutSubviews{
+    
+    [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.left.top.right.equalTo(self.view);
+        make.bottom.equalTo(self.view).offset(- KSafeAreaBottom_Height - 60);
+    }];
+>>>>>>> 1.1
     
     [_backBtn mas_makeConstraints:^(MASConstraintMaker *make) {
        

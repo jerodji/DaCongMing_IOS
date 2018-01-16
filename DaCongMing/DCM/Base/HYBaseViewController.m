@@ -2,8 +2,6 @@
 //  HYBaseViewController.m
 //  DaCongMing
 //
-//  Created by 胡勇 on 2017/9/15.
-//  Copyright © 2017年 胡勇. All rights reserved.
 //
 
 #import "HYBaseViewController.h"
@@ -45,6 +43,21 @@
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     
     [self.view endEditing:YES];
+<<<<<<< HEAD
+=======
+}
+
+#pragma mark - setStatusBar
+//- (UIStatusBarStyle)preferredStatusBarStyle {
+//
+//    [super preferredStatusBarStyle];
+//    return UIStatusBarStyleLightContent;
+//}
+
+
+//设置状态栏颜色
+- (void)setStatusBarBackgroundColor:(UIColor *)color {
+>>>>>>> 1.1
     
 }
 

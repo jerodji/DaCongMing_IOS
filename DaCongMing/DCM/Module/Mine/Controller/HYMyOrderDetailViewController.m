@@ -2,8 +2,6 @@
 //  HYMyOrderDetailViewController.m
 //  DaCongMing
 //
-//  Created by 胡勇 on 2017/10/13.
-//  Copyright © 2017年 胡勇. All rights reserved.
 //
 
 #import "HYMyOrderDetailViewController.h"
@@ -42,7 +40,7 @@
     
     [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
        
-        make.edges.equalTo(self.view);
+        make.edges.equalTo(self.view).with.mas_equalTo(UIEdgeInsetsMake(0, 0, 20, 0));
     }];
 }
 

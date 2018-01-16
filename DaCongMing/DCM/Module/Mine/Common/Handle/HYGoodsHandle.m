@@ -2,8 +2,6 @@
 //  HYGoodsHandle.m
 //  DaCongMing
 //
-//  Created by 胡勇 on 2017/9/25.
-//  Copyright © 2017年 胡勇. All rights reserved.
 //
 
 #import "HYGoodsHandle.h"
@@ -111,6 +109,32 @@
                 
                 complection(nil);
                 [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"订单创建出错!"];
+            }
+        }
+    }];
+}
+
++ (void)payerWithOrderID:(NSString *)orderID complectionBlock:(void (^)(HYCreateOrder *))complection{
+    
+    NSMutableDictionary *requestParam = [NSMutableDictionary dictionary];
+    [requestParam setValue:orderID forKey:@"sorder_id"];
+    [requestParam setValue:[HYUserModel sharedInstance].token forKey:@"token"];
+    
+    [[HTTPManager shareHTTPManager] postDataFromUrl:API_CreateOrder withParameter:requestParam isShowHUD:YES success:^(id returnData) {
+        
+        if (returnData) {
+            
+            NSInteger code =[[returnData objectForKey:@"code"] integerValue];
+            if (code == 000) {
+                
+                NSDictionary *dict = [returnData objectForKey:@"data"];
+                HYCreateOrder *model = [HYCreateOrder modelWithDictionary:dict];
+                complection(model);
+            }
+            else{
+                
+                complection(nil);
+                [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"获取订单失败"];
             }
         }
     }];

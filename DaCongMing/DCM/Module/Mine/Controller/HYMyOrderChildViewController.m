@@ -2,8 +2,6 @@
 //  HYMyOrderChildViewController.m
 //  DaCongMing
 //
-//  Created by 胡勇 on 2017/9/26.
-//  Copyright © 2017年 胡勇. All rights reserved.
 //
 
 #import "HYMyOrderChildViewController.h"
@@ -42,6 +40,15 @@
     [super viewWillAppear:animated];
     [self requestDataWithTag:_tag];
 
+<<<<<<< HEAD
+=======
+- (void)viewDidLayoutSubviews{
+    
+    [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.left.right.bottom.top.equalTo(self.view);
+    }];
+>>>>>>> 1.1
 }
 
 - (void)setTag:(NSInteger)tag{
@@ -176,12 +183,14 @@
         
         HYFillOrderViewController *fillOrderVC = [HYFillOrderViewController new];
         fillOrderVC.orderID = model.sorder_id;
+        fillOrderVC.isReBuy = NO;
         [self.navigationController pushViewController:fillOrderVC animated:YES];
     }
     else if ([title isEqualToString:@"再次购买"]){
         
         HYFillOrderViewController *fillOrderVC = [HYFillOrderViewController new];
         fillOrderVC.orderID = model.sorder_id;
+        fillOrderVC.isReBuy = YES;
         [self.navigationController pushViewController:fillOrderVC animated:YES];
     }
     else if ([title isEqualToString:@"确认收货"]){

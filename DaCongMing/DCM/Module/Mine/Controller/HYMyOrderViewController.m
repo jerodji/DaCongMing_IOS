@@ -3,8 +3,6 @@
 //  HYMyOrderViewController.m
 //  DaCongMing
 //
-//  Created by 胡勇 on 2017/9/26.
-//  Copyright © 2017年 胡勇. All rights reserved.
 //
 
 #import "HYMyOrderViewController.h"
@@ -116,7 +114,8 @@ static NSString *cellIdentifier = @"collectionCellIdentifer";
         flowLayout.minimumLineSpacing = 0;
         flowLayout.minimumInteritemSpacing = 0;
         flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-        flowLayout.itemSize = CGSizeMake(KSCREEN_WIDTH, KSCREEN_HEIGHT - 40 - KNAV_HEIGHT);
+        CGFloat itemHeight = KSCREEN_HEIGHT - KNAV_HEIGHT;
+        flowLayout.itemSize = CGSizeMake(KSCREEN_WIDTH, KSCREEN_HEIGHT - 45 * WIDTH_MULTIPLE - KNAV_HEIGHT);
         
         _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, _titleView.bottom, KSCREEN_WIDTH, KSCREEN_HEIGHT - 45 * WIDTH_MULTIPLE - KNAV_HEIGHT) collectionViewLayout:flowLayout];
         _collectionView.dataSource = self;
