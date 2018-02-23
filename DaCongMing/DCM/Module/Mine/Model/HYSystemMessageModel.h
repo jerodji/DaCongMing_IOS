@@ -25,7 +25,7 @@
 @property (nonatomic,copy) NSString * receiver_name;
 @property (nonatomic,copy) NSString * recomMsg;
 @property (nonatomic,copy) NSString * recomer_id;
-@property (nonatomic,copy) NSString * recomer_name;
+@property (nonatomic,copy) NSString * recomer_name; /* 推荐人 */
 @property (nonatomic,copy) NSString * recomer_phone;
 @property (nonatomic,copy) NSString * recomlevel;
 @property (nonatomic,copy) NSString * stat;

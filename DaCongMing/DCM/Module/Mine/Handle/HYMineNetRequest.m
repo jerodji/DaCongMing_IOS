@@ -303,7 +303,7 @@
         }
     }];
 }
-
+//获取系统消息
 + (void)getSystemInfoWithPageNo:(NSInteger)pageNo ComplectionBlock:(void (^)(NSArray *))complection{
     
     NSMutableDictionary *requestParam = [NSMutableDictionary dictionary];

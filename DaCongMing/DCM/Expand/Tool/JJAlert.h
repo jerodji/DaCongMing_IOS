@@ -8,6 +8,17 @@
 
 #import <Foundation/Foundation.h>
 
+typedef void(^SURE)(void);
+typedef void(^CANCLE)(void);
+typedef void(^ACTION)(void);
+
 @interface JJAlert : NSObject
-+ (void)showAlertWithVC:(UIViewController*)vc message:(NSString*)message cancleAction:(void(^)())_cancle sureAction:(void(^)())_sure;
+
++ (void)showAlert:(NSString*)message;
++ (void)showAlert:(NSString *)message withActionTitle:(NSString*)title action:(ACTION)_action;
+
++ (void)showAlert:(NSString*)message cancleAction:(CANCLE)_cancle sureAction:(SURE)_sure;
++ (void)showAlertTitle:(NSString*)title msg:(NSString*)message cancleAction:(CANCLE)_cancle sureAction:(SURE)_sure;
++ (void)showAlertWithVC:(UIViewController*)vc message:(NSString*)message cancleAction:(CANCLE)_cancle sureAction:(SURE)_sure;
+
 @end

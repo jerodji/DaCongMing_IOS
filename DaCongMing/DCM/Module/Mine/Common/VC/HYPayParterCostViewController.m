@@ -20,6 +20,7 @@
 #import "UniPayInfoCell.h"
 #import "FillUnipayInfoView.h"
 #import "UnibankPayinfoVC.h"
+#import "HYSystemMessageModel.h"
 
 @interface HYPayParterCostViewController ()
 
@@ -38,6 +39,8 @@
 @property (nonatomic,strong) PayModeView * payModeView;
 @property (nonatomic,strong) NSMutableArray * uniInfoArray;
 
+@property (nonatomic,strong) HYCreateOrder * RecommendIntroOrder;
+
 @end
 
 @implementation HYPayParterCostViewController
@@ -47,7 +50,6 @@
     [super viewDidLoad];
     self.title = @"支付";
 //    [self requestData];
-    
     
     _model = [HYParterPayModel new];
     [self requestData];
@@ -93,7 +95,7 @@
         }
     }];
 }
-
+//创建用户推荐订单
 - (void)requestData{
     
     [HYUserHandle getParterRecommendPayOrderComplectionBlock:^(HYCreateOrder *order) {
@@ -107,7 +109,7 @@
         NSString* level = [[[dict objectForKey:@"orderDtls"] objectAtIndex:0] objectForKey:@"unit"];
         self.unit = level;
         
-        [self.tableView reloadRow:0 inSection:1 withRowAnimation:UITableViewRowAnimationMiddle];
+        [self.tableView reloadRow:0 inSection:1 withRowAnimation:UITableViewRowAnimationNone];
     }];
 }
 
@@ -194,6 +196,8 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    HYSystemMessageModel* SystemMessageModel = [_dataSourceList objectAtIndex:_selectIndex];
+    
     if (indexPath.section == 0) {
         
         static NSString *payItemCellID = @"payItemCellID";
@@ -212,8 +216,10 @@
             cell = [[HYRecommendIntroCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:recommendIntroCellID];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
+        cell.SystemMessageModel = SystemMessageModel;
         cell.unit = self.unit;
         cell.payAmount = self.payAmount;
+//        cell.inviterLabel = 
         self.time = cell.time;
         return cell;
     }
@@ -460,11 +466,7 @@
 //                            }
 //                        }];
                     } else {
-                        [JJAlert showAlertWithVC:weakSelf message:@"请填写完整的信息" cancleAction:^{
-                            
-                        } sureAction:^{
-                            
-                        }];
+                        [JJAlert showAlert:@"请填写完整的信息"];
 
                     }
                     

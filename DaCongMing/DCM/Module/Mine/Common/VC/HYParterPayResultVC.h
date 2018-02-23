@@ -11,4 +11,6 @@
 /** 是否成功 */
 @property (nonatomic,assign) BOOL isSuccess;
 
+@property (nonatomic,copy) NSString * recomlevel;
+
 @end

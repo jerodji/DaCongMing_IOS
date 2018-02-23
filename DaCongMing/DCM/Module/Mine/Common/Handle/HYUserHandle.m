@@ -84,7 +84,7 @@
         }
     }];
 }
-
+//创建用户推荐订单
 + (void)getParterRecommendPayOrderComplectionBlock:(void (^)(HYCreateOrder *))complection{
     
     NSMutableDictionary *requestParam = [NSMutableDictionary dictionary];
@@ -94,22 +94,22 @@
         
         if (returnData) {
             
-            NSInteger code = [[returnData objectForKey:@"code"] integerValue];
-            if (code == 000) {
+            NSString* code = [returnData objectForKey:@"code"];
+            if ([code isEqualToString:@"000"]) {
                 
                 NSDictionary *dict = [returnData objectForKey:@"data"];
                 HYCreateOrder *model = [HYCreateOrder modelWithDictionary:dict];
                 complection(model);
             }
             else{
-                complection(nil);
+//                complection(nil);
                 [JRToast showWithText:@"获取订单出现了问题"];
             }
         }
         else{
             
             [JRToast showWithText:@"服务器游走去了"];
-            complection(nil);
+//            complection(nil);
         }
     }];
 }

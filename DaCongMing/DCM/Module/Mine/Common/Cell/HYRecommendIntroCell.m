@@ -5,25 +5,9 @@
 //
 
 #import "HYRecommendIntroCell.h"
-#import "HYLabel.h"
+
 
 @interface HYRecommendIntroCell()
-
-/** 推荐 */
-@property (nonatomic,strong) UILabel *recommendLabel;
-/** 剩余支付时间 */
-@property (nonatomic,strong) UILabel *payTimeLabel;
-/** 邀请人 */
-@property (nonatomic,strong) UILabel *inviterLabel;
-/** 介绍 */
-@property (nonatomic,strong) UILabel *introLabel; /* 说明 */
-/** 介绍文本 */
-@property (nonatomic,strong) HYLabel *introTextLabel; /* 说明的内容 */
-@property (nonatomic,strong) UIView * line;
-/** 加盟费 */
-@property (nonatomic,strong) UILabel *payMoneyLabel;
-
-@property (nonatomic,strong) UIImageView * levelImageView;
 
 @end
 
@@ -51,14 +35,18 @@
 //    [self addSubview:self.payMoneyLabel];
 }
 
+- (void)setSystemMessageModel:(HYSystemMessageModel *)SystemMessageModel {
+    _inviterLabel.text = [NSString stringWithFormat:@"邀请人:%@",SystemMessageModel.recomer_name];
+    _introTextLabel.text = SystemMessageModel.msg;
+    _recommendLabel.text = [NSString stringWithFormat:@"您已经被邀请成为:%@",SystemMessageModel.recomMsg];
+}
+
 - (void)setupData{
     
-    _recommendLabel.text = [NSString stringWithFormat:@"你已经被邀请成为:"];
+    _recommendLabel.text = [NSString stringWithFormat:@"您已经被邀请成为:"];
     _recommendLabel.font = [UIFont systemFontOfSize:12];
     _recommendLabel.textColor = UIColorRGB(39, 39, 39);
-//    [NSString stringWithFormat:@"你已经被邀请成为:%@",[HYUserModel sharedInstance].userInfo.userRemind.recomMsg];
-    _inviterLabel.text = [NSString stringWithFormat:@"邀请人:%@",[HYUserModel sharedInstance].userInfo.userRemind.recomer_name];
-    _introTextLabel.text = [HYUserModel sharedInstance].userInfo.userRemind.msg;
+//    _introTextLabel.text = [HYUserModel sharedInstance].userInfo.userRemind.msg;
     
     [self countDown];
    
@@ -256,7 +244,7 @@
         _inviterLabel = [[UILabel alloc] init];
         _inviterLabel.font = KFitFont(13);
         _inviterLabel.textColor = KAPP_b7b7b7_COLOR;
-        _inviterLabel.text = @"邀请人:好几款";
+        _inviterLabel.text = @"邀请人:";
         _inviterLabel.textAlignment = NSTextAlignmentLeft;
 //        _inviterLabel.backgroundColor = [UIColor redColor];
     }

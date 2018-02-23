@@ -9,6 +9,7 @@
 #import "HYPayParterCostViewController.h"
 #import "HYMineNetRequest.h"
 #import "HYSystemMessageModel.h"
+#import "HYParterPayResultVC.h"
 
 @interface HYSystemMessageVC ()
 
@@ -26,7 +27,7 @@
 - (void)requestData{
     
     [HYMineNetRequest getSystemInfoWithPageNo:1 ComplectionBlock:^(NSArray *datalist) {
-       
+        NSLog(@"获取系统消息成功");
         if (datalist) {
             
             [datalist enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -68,7 +69,8 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
     }
-    cell.model = self.datalist[indexPath.row];
+    HYSystemMessageModel* SystemMessage = self.datalist[indexPath.row];
+    cell.model = SystemMessage;
     return cell;
 }
 
@@ -78,8 +80,25 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    [self.navigationController pushViewController:[HYPayParterCostViewController new] animated:YES];
+    HYSystemMessageModel* model = self.datalist[indexPath.row];
+    if ([model.recomlevel isEqualToString:@"V4"]) {
+        
+        [JJAlert showAlertTitle:@"您已成为实习合伙人" msg:@"是否到App Store下载\"聪明管理\"" cancleAction:^{
+            
+        } sureAction:^{
+            NSString *urlCode = [@"聪明管理" stringByURLEncode];
+            NSString *str = [NSString stringWithFormat:
+                             @"https://itunes.apple.com/cn/app/%@/id1319732695?mt=8",urlCode];
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+        }];
+        
+    } else {
+        HYPayParterCostViewController* PayParterCostViewController = [HYPayParterCostViewController new];
+        PayParterCostViewController.dataSourceList = self.datalist;
+        PayParterCostViewController.selectIndex = indexPath.row;
+//        NSLog(@"选择了 %ld , %ld",(long)indexPath.row ,(long)PayParterCostViewController.selectIndex);
+        [self.navigationController pushViewController:PayParterCostViewController animated:YES];
+    }
 }
 
 /*
