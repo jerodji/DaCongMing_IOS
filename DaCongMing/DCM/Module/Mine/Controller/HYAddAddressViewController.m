@@ -286,7 +286,7 @@
 - (void)textFieldCellInput:(HYTextFieldTableViewCell *)cell{
     
     NSString *inputStr = cell.textField.text;
-    DLog(@"%@",inputStr);
+    NSLog(@"%@",inputStr);
     
     if (cell.indexPath.row == 1) {
         

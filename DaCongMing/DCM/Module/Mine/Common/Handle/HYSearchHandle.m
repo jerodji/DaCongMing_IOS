@@ -7,13 +7,13 @@
 #import "HYSearchHandle.h"
 
 @implementation HYSearchHandle
-
+//搜索
 + (void)searchProductsWithText:(NSString *)text pageNo:(NSInteger)pageNo complectionBlock:(void (^)(NSArray *))complection{
     
     NSMutableDictionary *requestParam = [NSMutableDictionary dictionary];
     [requestParam setValue:text forKey:@"keyWord"];
     [requestParam setValue:@(pageNo) forKey:@"pageNo"];
-
+    
     
     [[HTTPManager shareHTTPManager] postDataFromUrl:API_KeywordsSearch withParameter:requestParam isShowHUD:YES success:^(id returnData) {
         

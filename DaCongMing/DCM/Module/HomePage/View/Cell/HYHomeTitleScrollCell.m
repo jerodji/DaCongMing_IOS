@@ -129,7 +129,7 @@
     NSDictionary *dict = _model.reCommendTday[indexPath.item];
     HYGoodsItemModel *model = [HYGoodsItemModel modelWithDictionary:dict];
     
-    DLog(@"current itemID is %@",model.item_id);
+    NSLog(@"current itemID is %@",model.item_id);
     
     
     self.collectionSelect(model.item_id);

@@ -11,6 +11,8 @@
 #import "HYGoodsItemCollectionViewCell.h"
 #import "HYSearchNoDataCollectionReusableView.h"
 #import "HYGoodsDetailInfoViewController.h"
+#import "HYGoodsListViewController.h"
+#import "HYGoodsItemModel.h"
 
 @interface HYHomeSearchViewController () <HYSearchTextFieldTextChangedDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,HYHotSearchBtnActionDelegate>
 
@@ -26,11 +28,19 @@
 @property (nonatomic,assign) BOOL isNoData;
 /** 分页页码 */
 @property (nonatomic,assign) NSInteger pageNo;
-@property (nonatomic,copy)   NSString *searchText;
+
 
 @end
 
 @implementation HYHomeSearchViewController
+
+//- (void)loadView {
+//    [super loadView];
+//    if (NotNull(self.searchText)) {
+//        [self searchWithText:self.searchText];
+//        self.searchTitleView.textField.text = self.searchText;
+//    }
+//}
 
 - (void)viewDidLoad {
     
@@ -93,20 +103,35 @@
 
 #pragma mark - searchDelegate
 - (void)searchTextFieldTextChanged:(NSString *)text{
-    
+    [self searchWithText:text];
+}
+
+- (void)searchWithText:(NSString*)text {
     [self.datalist removeAllObjects];
     [self.view addSubview:self.collectionView];
     
     self.pageNo = 1;
     [HYSearchHandle searchProductsWithText:text pageNo:self.pageNo complectionBlock:^(NSArray *datalist) {
-       
+        
         self.searchText = text;
         [self.datalist removeAllObjects];
         [self.collectionView.mj_footer endRefreshing];
+        
         if (datalist.count) {
+            //[self.datalist addObjectsFromArray:datalist];
+            //[_collectionView reloadData];
             
-            [self.datalist addObjectsFromArray:datalist];
-            [_collectionView reloadData];
+            for (int i=0; i<datalist.count; i++) {
+                HYGoodsItemModel* model = [HYGoodsItemModel modelWithDictionary:datalist[i]];
+                [self.datalist addObject:model];
+            }
+            
+            HYGoodsListViewController* vc = [[HYGoodsListViewController alloc] init];
+            vc.IS_SEARCH = YES;
+            vc.datalist = self.datalist;
+            [vc.collectionView reloadData];
+            [self.navigationController pushViewController:vc animated:YES];
+            
             self.isNoData = NO;
         }
         else{
@@ -192,7 +217,7 @@
     NSDictionary *dict = _datalist[indexPath.item];
     HYGoodsItemModel *model = [HYGoodsItemModel modelWithDictionary:dict];
     
-    DLog(@"current itemID is %@",model.item_id);
+    NSLog(@"current itemID is %@",model.item_id);
     
     
     HYGoodsDetailInfoViewController *detailVC = [[HYGoodsDetailInfoViewController alloc] init];

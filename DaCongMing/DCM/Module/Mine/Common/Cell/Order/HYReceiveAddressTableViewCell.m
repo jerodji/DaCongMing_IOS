@@ -27,6 +27,8 @@
 @property (nonatomic,strong) UIImageView *noAddressImgView;
 /** 默认 */
 @property (nonatomic,strong) UILabel *tipsLabel;
+/* 暂不配送地区 */
+@property (nonatomic,strong) UILabel * desLabel;
 
 @end
 
@@ -53,6 +55,7 @@
     [self addSubview:self.phoneLabel];
     [self addSubview:self.defaultLabel];
     [self addSubview:self.addressLabel];
+    [self addSubview:self.desLabel];//
     [self addSubview:self.arrowImgView];
     [self addSubview:self.bottomLine];
 
@@ -120,7 +123,16 @@
         make.left.equalTo(_phoneLabel);
         make.top.equalTo(_phoneLabel.mas_bottom).offset(5 * WIDTH_MULTIPLE);
         make.right.equalTo(self).offset(-30 * WIDTH_MULTIPLE);
+        make.bottom.equalTo(_desLabel.mas_top);
+    }];
+    
+    //
+    [_desLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(_phoneLabel);
+        make.top.equalTo(_addressLabel.mas_bottom);
+        make.right.equalTo(self).offset(-30 * WIDTH_MULTIPLE);
         make.bottom.equalTo(self);
+        make.height.mas_equalTo(50);
     }];
     
     [_defaultLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -273,6 +285,18 @@
         _bottomLine.backgroundColor = KAPP_SEPERATOR_COLOR;
     }
     return _bottomLine;
+}
+
+- (UILabel *)desLabel {
+    
+    if (!_desLabel) {
+        _desLabel = [[UILabel alloc] init];
+        _desLabel.font = KFitFont(12);
+        _desLabel.textAlignment = NSTextAlignmentLeft;
+        _desLabel.text = @"西藏,新疆,内蒙古,港澳台地区暂时不配送";
+        _desLabel.textColor = KAPP_b7b7b7_COLOR;
+    }
+    return _desLabel;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

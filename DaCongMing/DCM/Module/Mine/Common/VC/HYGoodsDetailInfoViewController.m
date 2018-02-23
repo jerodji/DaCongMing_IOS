@@ -60,6 +60,12 @@
     
     [super viewDidLoad];
     
+    NSLog(@"self.params == %@",self.params);
+    if (NotNull(self.params)) {
+        self.goodsID = self.params[@"id"];
+    }
+    
+
     [self setupSubviews];
     [self requestNetwork];
     
@@ -261,15 +267,15 @@
     };
 }
 
-//联系客服
+//电话咨询
 - (void)contactServiceWithModel:(NSString *)productID{
     
     QYSource *source = [[QYSource alloc] init];
-    source.title =  @"联系客服";
+    source.title =  @"电话咨询";
     source.urlString = @"https://8.163.com/";
     QYSessionViewController *sessionViewController = [[QYSDK sharedSDK] sessionViewController];
     
-    sessionViewController.sessionTitle = @"联系客服";
+    sessionViewController.sessionTitle = @"电话咨询";
     QYUserInfo *userInfo = [[QYUserInfo alloc] init];
     userInfo.userId = [HYUserModel sharedInstance].userInfo.id;
     NSMutableArray *array = [NSMutableArray new];
@@ -345,7 +351,7 @@
                 
                 if (isSuccess) {
                     
-                    DLog(@"添加购物车成功");
+                    NSLog(@"添加购物车成功");
                     [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"添加购物车成功"];
                     
                     //发出通知，刷新购物车列表
@@ -517,8 +523,8 @@
         return 40 * WIDTH_MULTIPLE + strHeight + 5;
     }
     else if (indexPath.row == 2){
-        
-        return 50 * WIDTH_MULTIPLE;
+        return 0;
+//        return 50 * WIDTH_MULTIPLE;
     }
     else if (indexPath.row == 6){
         
@@ -527,7 +533,7 @@
         
         if (productsDetailCell.height == 0) {
             
-            return 4000;
+            return 4000;//bug
         }
         return productsDetailCell.height;
     }

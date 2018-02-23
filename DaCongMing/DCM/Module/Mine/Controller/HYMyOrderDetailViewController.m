@@ -113,6 +113,11 @@
             [self.navigationController pushViewController:sublitApplySellAfterVC animated:YES];
         };
         
+        /* 待支付 */
+        if (_purchesTag==1 | _purchesTag==0) {
+            cell.applySellAfterBtn.hidden = YES;//不显示 售后 按钮
+        }
+        
         return cell;
     }
 }

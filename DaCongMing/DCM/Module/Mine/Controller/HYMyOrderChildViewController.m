@@ -56,7 +56,7 @@
             [self requestDataWithTag:0];
             break;
         case 1:
-            [self requestDataWithTag:1];
+            [self requestDataWithTag:1]; /* 待支付 */
             break;
         case 2:
             [self requestDataWithTag:2];
@@ -133,6 +133,7 @@
     HYMyOrderModel *model = [HYMyOrderModel modelWithDictionary:dict];
     HYMyOrderDetailViewController *orderDetailVC = [HYMyOrderDetailViewController new];
     orderDetailVC.orderModel = model;
+    orderDetailVC.purchesTag = _tag;
     [self.navigationController pushViewController:orderDetailVC animated:YES];
     
 }
@@ -204,7 +205,7 @@
         commentVC.orderID = model.sorder_id;
         [self.navigationController pushViewController:commentVC animated:YES];
     }
-    else if ([title isEqualToString:@"联系客服"]){
+    else if ([title isEqualToString:@"电话咨询"]){
         
         [self contactServiceWithModel:model];
     }
@@ -213,11 +214,11 @@
 - (void)contactServiceWithModel:(HYMyOrderModel *)orderModel{
     
     QYSource *source = [[QYSource alloc] init];
-    source.title =  @"联系客服";
+    source.title =  @"电话咨询";
     source.urlString = @"https://8.163.com/";
     QYSessionViewController *sessionViewController = [[QYSDK sharedSDK] sessionViewController];
     
-    sessionViewController.sessionTitle = @"联系客服";
+    sessionViewController.sessionTitle = @"电话咨询";
     QYUserInfo *userInfo = [[QYUserInfo alloc] init];
     userInfo.userId = [HYUserModel sharedInstance].userInfo.id;
     NSMutableArray *array = [NSMutableArray new];

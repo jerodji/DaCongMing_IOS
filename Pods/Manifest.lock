@@ -15,11 +15,13 @@ PODS:
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
   - Bugly (2.4.8)
+  - DCURLRouter (0.81)
   - DZNEmptyDataSet (1.8.1)
   - FDFullscreenPopGesture (1.1)
   - FMDB (2.6.2):
     - FMDB/standard (= 2.6.2)
   - FMDB/standard (2.6.2)
+  - HMObjcSugar (0.0.6)
   - iCarousel (1.8.3)
   - IQKeyboardManager (4.0.13)
   - Masonry (1.0.2)
@@ -39,14 +41,17 @@ PODS:
 DEPENDENCIES:
   - AFNetworking (~> 3.1.0)
   - Bugly
+  - DCURLRouter (~> 0.81)
   - DZNEmptyDataSet (~> 1.8.1)
   - FDFullscreenPopGesture (= 1.1)
   - FMDB (~> 2.6.2)
+  - HMObjcSugar
   - iCarousel
   - IQKeyboardManager (~> 4.0.8)
   - Masonry (~> 1.0.2)
   - MBProgressHUD (~> 1.0.0)
   - MJRefresh (~> 3.1.12)
+  - SDCycleScrollView
   - SDCycleScrollView (~> 1.65)
   - UMengAnalytics
   - WechatOpenSDK
@@ -55,9 +60,11 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   Bugly: da3c02408c14838d498429320545a8e439392978
+  DCURLRouter: 6bb8d5c85390f5ce5a9966ad68e0e994a3e89b25
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   FDFullscreenPopGesture: a8a620179e3d9c40e8e00256dcee1c1a27c6d0f0
   FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
+  HMObjcSugar: 958eb251bbc1002a1d7f0cafa7c040183d2f2a74
   iCarousel: d782f635afac190c49bb8ee455882284cff8b85f
   IQKeyboardManager: 8eab4d8111418414619d1df8e4779ce5d0f8d7e2
   Masonry: 7c429b56da9d4ee0bbb3ed77a5ea710d6a5df39e
@@ -69,6 +76,6 @@ SPEC CHECKSUMS:
   WechatOpenSDK: 0ee07a8d492299d3e47372a33da5af26524a7576
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: fb3a6c082a861512b4df53f420619c14ec033861
+PODFILE CHECKSUM: b0cb7f184863c984f7ceba46156e6c33ab12cb5c
 
 COCOAPODS: 1.3.1

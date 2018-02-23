@@ -43,7 +43,7 @@
         make.left.right.top.bottom.equalTo(self.view);
     }];
 }
-
+//获取优惠券
 - (void)requestData{
     
     [self.datalist removeAllObjects];
@@ -114,9 +114,11 @@
     
     if (!_noDiscountCouponView) {
         _noDiscountCouponView = [HYNoDiscountCouponView new];
+        __weak typeof(self) wkself = self;
+        AppDelegate* appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+        __weak HYTabBarController* tabCtrl = (HYTabBarController*)appDelegate.window.rootViewController;
         _noDiscountCouponView.strollActin = ^{
-            
-            [HYUserHandle jumpToHomePageVC];
+            [tabCtrl setSelectedIndex:0];
         };
     }
     return _noDiscountCouponView;

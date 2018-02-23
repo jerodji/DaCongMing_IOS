@@ -54,6 +54,12 @@
     [self setupMasonryLayout];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+
+    [self requestData];//jj
+}
+
 - (void)setupSubviews{
     
     [self.view addSubview:self.tableView];
@@ -65,15 +71,13 @@
 }
 
 - (void)backBtnAction{
-    
-    HYCustomAlert *alert = [[HYCustomAlert alloc] initWithFrame:CGRectMake(0, 0, KSCREEN_WIDTH, KSCREEN_HEIGHT) WithTitle:@"温馨提示" content:@"订单已经生成，确认返回吗？" confirmBlock:^{
-        
-       
-        [self.navigationController popViewControllerAnimated:YES];
-    }];
-    
-    [KEYWINDOW addSubview:alert];
-    [alert showCustomAlert];
+
+        HYCustomAlert *alert = [[HYCustomAlert alloc] initWithFrame:CGRectMake(0, 0, KSCREEN_WIDTH, KSCREEN_HEIGHT) WithTitle:@"温馨提示" content:@"交易未完成，确认返回吗？" confirmBlock:^{
+            [self.navigationController popViewControllerAnimated:YES];
+        }];
+        [KEYWINDOW addSubview:alert];
+        [alert showCustomAlert];
+
 }
 
 - (void)setupMasonryLayout{
@@ -131,7 +135,7 @@
     
     _buyCount = buyCount;
     //从商品详情跳过来
-    [self requestData];
+//    [self requestData];
 }
 
 - (void)setOrderID:(NSString *)orderID{
@@ -209,6 +213,7 @@
                 payResultVC.isPaySuccess = YES;
                 payResultVC.addressMap = _orderModel.addressMap;
                 [self.navigationController pushViewController:payResultVC animated:YES];
+
             } failed:^{
                 
                 HYPayResultViewController *payResultVC = [HYPayResultViewController new];
@@ -216,6 +221,7 @@
                 payResultVC.isPaySuccess = NO;
                 payResultVC.addressMap = _orderModel.addressMap;
                 [self.navigationController pushViewController:payResultVC animated:YES];
+
             }];
         }];
     }
@@ -325,19 +331,28 @@
         
     }
     else if (indexPath.section == 3){
-        
-        static NSString *goodsPayCell = @"goodsPayCell";
-        HYGoodsPayTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:goodsPayCell];
-        if (!cell) {
-            cell = [[HYGoodsPayTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:goodsPayCell];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        }
-        cell.orderModel = _orderModel;
-        cell.orderPayModeBlock = ^(NSInteger mode) {
-          
-            self.payMode = mode;
-        };
-        return cell;
+//        if (indexPath.row==0) {
+//            JieyueCell* cell = [tableView dequeueReusableCellWithIdentifier:@"JieyueCell"];
+//            if (!cell) {
+//                cell = [[JieyueCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"JieyueCell"];
+//            }
+//            cell.moneyLabel.text = @"¥ 999999.99";
+//            return cell;
+//        } else {
+            //商品合计
+            static NSString *goodsPayCell = @"goodsPayCell";
+            HYGoodsPayTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:goodsPayCell];
+            if (!cell) {
+                cell = [[HYGoodsPayTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:goodsPayCell];
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            }
+            cell.orderModel = _orderModel;
+            cell.orderPayModeBlock = ^(NSInteger mode) {
+                
+                self.payMode = mode;
+            };
+            return cell;
+//        }
     }
     
     static NSString *cellID = @"";
@@ -349,7 +364,7 @@
     return cell;
 }
 
-#pragma mark - tableViewDelegate
+#pragma mark  tableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     if (indexPath.section == 0) {
@@ -357,7 +372,7 @@
         //收货地址
         HYMyAddressViewController *myAddressVC = [HYMyAddressViewController new];
         myAddressVC.isJump = YES;
-        [self.navigationController pushViewController:myAddressVC animated:YES];
+        
         
         myAddressVC.selectAddBlock = ^(HYMyAddressModel *addressModel) {
           
@@ -377,6 +392,8 @@
                 }
             }];
         };
+        
+        [self.navigationController pushViewController:myAddressVC animated:YES];
     }
 }
 
@@ -387,7 +404,7 @@
     if (indexPath.section == 0) {
         
         //收货地址
-        return 100;
+        return 150;
     }
     else if (indexPath.section == 1){
         
@@ -402,7 +419,7 @@
     else if (indexPath.section == 3){
         
         //商品合计
-        return 145 * WIDTH_MULTIPLE;
+        return 175 * WIDTH_MULTIPLE;
     }
     return 100;
 }
@@ -429,6 +446,7 @@
         _tableView.dataSource = self;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.backgroundColor = KCOLOR(@"f4f4f4");
+//        [_tableView registerNib:[UINib nibWithNibName:@"JieyueCell" bundle:nil] forCellReuseIdentifier:@"JieyueCell"];
     }
     return _tableView;
 }

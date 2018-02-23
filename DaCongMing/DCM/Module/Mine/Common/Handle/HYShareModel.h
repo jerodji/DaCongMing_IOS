@@ -35,6 +35,7 @@ typedef NS_ENUM(NSUInteger, HYShareScene) {
 @property (nonatomic, copy)  NSString *shareWebUrl;
 @property (nonatomic, copy)  NSString *shareTitle;
 @property (nonatomic, copy)  NSString *shareDescription;
+@property (nonatomic,copy) NSString * urlImg;
 
 
 @end

@@ -8,21 +8,6 @@
 
 @interface HYMineHeaderView()
 
-/** 背景 */
-@property (nonatomic,strong) UIImageView *bgImageView;
-/** header */
-@property (nonatomic,strong) UIImageView *headerImgView;
-/** 用户昵称 */
-@property (nonatomic,strong) UILabel *nickNameLabel;
-/** 翅膀 */
-@property (nonatomic,strong) UIImageView *wingImgView;
-/** 收藏商品 */
-@property (nonatomic,strong) UILabel *collectGoodsLabel;
-/** 收藏店铺 */
-@property (nonatomic,strong) UILabel *collectStoreLabel;
-/** 最近浏览 */
-@property (nonatomic,strong) UILabel *recentViewLabel;
-
 @end
 
 @implementation HYMineHeaderView
@@ -168,8 +153,15 @@
         _headerImgView.layer.borderColor = KAPP_WHITE_COLOR.CGColor;
         _headerImgView.layer.borderWidth = 1;
         _headerImgView.image = [UIImage imageNamed:@"header_placeholder"];
+        
+        UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headerIconAction)];
+        [_headerImgView addGestureRecognizer:tap];
     }
     return _headerImgView;
+}
+
+- (void)headerIconAction {
+    !_headerIconClickCB ? : _headerIconClickCB();
 }
 
 - (UILabel *)nickNameLabel{

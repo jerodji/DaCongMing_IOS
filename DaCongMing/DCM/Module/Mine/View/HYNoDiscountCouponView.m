@@ -64,8 +64,9 @@
 
 #pragma mark - action
 - (void)strollBtnAction{
-    
-    self.strollActin();
+    if (self.strollActin) {
+        self.strollActin();
+    }
 }
 
 #pragma mark - lazyload

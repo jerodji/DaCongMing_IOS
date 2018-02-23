@@ -14,4 +14,6 @@
 
 - (void)showShareView;
 
+- (void)hideShareView;
+
 @end

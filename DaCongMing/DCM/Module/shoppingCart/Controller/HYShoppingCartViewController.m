@@ -49,6 +49,8 @@
     self.title = @"购物车";
     [self setupSubviews];
 
+    //注册添加购物车成功的通知
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshData:) name:KAddShoppingCartsSuccess object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -60,17 +62,33 @@
     [self cartsAmountClaculate];
     [self payShoppiingCarts];
     
-    //注册添加购物车成功的通知
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshData:) name:KAddShoppingCartsSuccess object:nil];
+    
     //获取购物车的数量
-    NSString  *cartsCount = [HYMyUserInfo sharedInstance].cartItemNum;
-    if ([cartsCount integerValue] > 0) {
+    NSMutableDictionary *requestParam = [NSMutableDictionary dictionary];
+    [requestParam setValue:[HYUserModel sharedInstance].token forKey:@"token"];
+    [[HTTPManager shareHTTPManager] postDataFromUrl:API_GetUserInfo withParameter:requestParam isShowHUD:NO success:^(id returnData) {
         
-        self.tabBarItem.badgeValue = cartsCount;
-    }
-    else{
-        self.tabBarItem.badgeValue = nil;
-    }
+        if (returnData) {
+            
+            NSInteger code = [[returnData objectForKey:@"code"] integerValue];
+            if (code == 000) {
+                
+                NSDictionary *dict = [returnData objectForKey:@"data"];
+                
+                HYMyUserInfo *myUserInfo = [HYMyUserInfo sharedInstance];
+                [myUserInfo modelSetWithDictionary:dict];
+                
+                NSString  *cartsCount = [HYMyUserInfo sharedInstance].cartItemNum;
+                if ([cartsCount integerValue] > 0) {
+                    self.tabBarItem.badgeValue = cartsCount;
+                }else{
+                    self.tabBarItem.badgeValue = nil;
+                }
+            }
+        }
+    }];
+    
+
 }
 
 
@@ -96,7 +114,7 @@
         make.height.mas_equalTo(60 * WIDTH_MULTIPLE);
     }];
     _bottomView.checkAllBtn.selected = NO;
-
+    
     
     [_deleteCartsView mas_makeConstraints:^(MASConstraintMaker *make) {
         

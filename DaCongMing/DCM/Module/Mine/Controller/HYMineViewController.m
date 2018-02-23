@@ -452,6 +452,16 @@
             }
         }];
         [_headerView addGestureRecognizer:tap];
+        
+        __weak typeof(self) wkself = self;
+        _headerView.headerImgView.userInteractionEnabled = YES;
+        _headerView.headerIconClickCB = ^{
+            if([HYUserHandle jumpToLoginViewControllerFromVC:wkself])
+                return ;
+            HYMyAccountViewController *myAccountVC = [HYMyAccountViewController new];
+            [wkself.navigationController pushViewController:myAccountVC animated:YES];
+        };
+        
     }
     return _headerView;
 }

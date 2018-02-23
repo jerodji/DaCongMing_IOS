@@ -22,7 +22,7 @@
     self.title = @"系统消息";
     [self requestData];
 }
-
+//获取系统消息
 - (void)requestData{
     
     [HYMineNetRequest getSystemInfoWithPageNo:1 ComplectionBlock:^(NSArray *datalist) {
@@ -30,8 +30,8 @@
         if (datalist) {
             
             [datalist enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                
-                HYSystemMessageModel *model = [HYSystemMessageModel modelWithDictionary:obj];
+                NSDictionary* dic = (NSDictionary*)obj;
+                HYSystemMessageModel *model = [HYSystemMessageModel modelWithDictionary:dic];
                 [self.datalist addObject:model];
                 
             }];

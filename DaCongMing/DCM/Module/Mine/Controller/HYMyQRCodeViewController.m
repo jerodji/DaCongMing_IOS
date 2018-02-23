@@ -25,7 +25,10 @@
     
     [super viewDidLoad];
     [self setupSubviews];
-    
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
 }
 
 - (void)setupSubviews{
@@ -62,10 +65,12 @@
     [KEYWINDOW addSubview:self.shareView];
     [self.shareView showShareView];
     
+    UIImage* scren = [self getScreenShot];
+    
     HYShareModel *model = [[HYShareModel alloc] init];
     model.shareType = HYShareTypeImage;
     model.thumbnailImage = [UIImage imageNamed:@"AppIcon"];
-    model.image = [self getScreenShot];
+    model.image = scren;
     self.shareView.shareModel = model;
 }
 

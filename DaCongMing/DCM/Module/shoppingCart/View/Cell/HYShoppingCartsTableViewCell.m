@@ -101,8 +101,8 @@
 
 - (void)shoppingCartsValueChanged:(NSNotification *)notification{
     
-    DLog(@"%@",notification.object);
-    DLog(@"%@",notification.userInfo);
+    NSLog(@"%@",notification.object);
+    NSLog(@"%@",notification.userInfo);
     
 }
 
@@ -132,9 +132,9 @@
 #pragma mark - action
 - (void)sellerCheckAllBtnAction:(UIButton *)button{
     
-    DLog(@"button.select is %d",button.selected);
+    NSLog(@"button.select is %d",button.selected);
     button.selected = !button.selected;
-    DLog(@"button.select is %d",button.selected);
+    NSLog(@"button.select is %d",button.selected);
     _cartsSeller.isSelect = button.selected;
     for (NSInteger i = 0; i < self.itemModelArray.count; i++) {
         

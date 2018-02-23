@@ -78,18 +78,21 @@
 
 - (void)searchTextChanged:(UITextField *)textField{
     
-    DLog(@"%@",textField.text);
-    if (_delegate && [_delegate respondsToSelector:@selector(searchTextFieldTextChanged:)]) {
-        
-        [_delegate searchTextFieldTextChanged:textField.text];
-    }
+    NSLog(@"%@",textField.text);
+//    if (_delegate && [_delegate respondsToSelector:@selector(searchTextFieldTextChanged:)]) {
+//
+//        [_delegate searchTextFieldTextChanged:textField.text];
+//    }
     
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     
     if ([textField.text isNotBlank]) {
-        
+        if (_delegate && [_delegate respondsToSelector:@selector(searchTextFieldTextChanged:)]) {
+
+            [_delegate searchTextFieldTextChanged:textField.text];
+        }
         return YES;
     }
     return YES;
@@ -150,6 +153,7 @@
         _textField.keyboardType = UIKeyboardTypeDefault;
         _textField.tintColor = KAPP_b7b7b7_COLOR;
         [_textField addTarget:self action:@selector(searchTextChanged:) forControlEvents:UIControlEventEditingChanged];
+        _textField.returnKeyType = UIReturnKeySearch;
     }
     return _textField;
 }

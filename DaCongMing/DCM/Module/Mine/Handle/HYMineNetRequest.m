@@ -13,7 +13,7 @@
     NSMutableDictionary *requestParam = [NSMutableDictionary dictionary];
     [requestParam setValue:[HYUserModel sharedInstance].token forKey:@"token"];
     
-    [[HTTPManager shareHTTPManager] postDataFromUrl:API_GetUserInfo withParameter:requestParam isShowHUD:YES success:^(id returnData) {
+    [[HTTPManager shareHTTPManager] postDataFromUrl:API_GetUserInfo withParameter:requestParam isShowHUD:NO success:^(id returnData) {
         
         if (returnData) {
             

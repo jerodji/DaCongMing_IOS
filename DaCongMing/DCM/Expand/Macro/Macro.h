@@ -12,10 +12,16 @@
 #define Macro_h
 
 #ifdef DEBUG
-#define DLog(format, ...) NSLog(@"%s():%d " format, __func__, __LINE__, ##__VA_ARGS__)
+#define NSLog(format, ...) NSLog((@"%s " "%s(%d)\n" format "\n-----------------------------------------------------"), __PRETTY_FUNCTION__, [[[NSString stringWithUTF8String:__FILE__] lastPathComponent] UTF8String], __LINE__, ##__VA_ARGS__);
 #else
-#define DLog(...)
+#define NSLog(format, ...)
 #endif
+
+//#ifdef DEBUG
+//#define DLog(format, ...) NSLog(@"%s():%d " format, __func__, __LINE__, ##__VA_ARGS__)
+//#else
+//#define DLog(...)
+//#endif
 
 #define  KAdjustsScrollViewInsets_NO(vc,scrollView)\
 _Pragma("clang diagnostic push") \
@@ -26,6 +32,11 @@ vc.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmen
     vc.automaticallyAdjustsScrollViewInsets = NO;\
 }\
 _Pragma("clang diagnostic pop") \
+
+
+/* 商品站位图 */
+#define ProductPlaceholder  @"zhanwei"
+
 
 /** ----------------------------设备信息---------------------------------
  --------------------------------------------------------------------*/
@@ -54,17 +65,35 @@ _Pragma("clang diagnostic pop") \
 #define KSCREEN_HEIGHT      [UIScreen mainScreen].bounds.size.height
 /** 屏幕宽度比 */
 #define WIDTH_MULTIPLE      KSCREEN_WIDTH / 375.0
-/** 导航栏高度 */
-#define KNAV_HEIGHT         ([[UIApplication sharedApplication] statusBarFrame].size.height + 44)
 /** 状态栏高度 */
 #define KSTATUSBAR_HEIGHT   [[UIApplication sharedApplication] statusBarFrame].size.height
+/** 导航栏高度 */
+#define KNAV_HEIGHT         (KSTATUSBAR_HEIGHT + 44)
 /** tabBar高度 */
-#define KTABBAR_HEIGHT      [[UIApplication sharedApplication] statusBarFrame].size.height > 20 ? 83 : 49
+#define KTABBAR_HEIGHT      (KSTATUSBAR_HEIGHT > 20 ? 83 : 49)
 /** 底部安全区高度 */
 #define KSafeAreaBottom_Height  (KSCREEN_HEIGHT == 812.0 ? 34 : 0)
 
+/** ------------------------- 屏幕尺寸 ----------------------------- **/
+/**                                           尺寸       分辨率
+ *  1 判断是否为3.5-inch - (@2x) 3GS(@1x) 4S   320*480    640*960
+ *  2 判断是否为4.0-inch - (@2x) 5 5C 5S SE    320*568    640*1136
+ *  3 判断是否为4.7-inch - (@2x) 6 6S 7        375*667    750*1334
+ *  4 判断是否为5.5-inch - (@3x) 6P 7P         414*736    1242*2208
+ *  5                    (@3x)  X            375*812    1125*2436
+ */
+#define SCREEN_INCH_3_5  ((KSCREEN_HEIGHT > 470) && (KSCREEN_HEIGHT < 490))
+#define SCREEN_INCH_4_0  ((KSCREEN_HEIGHT > 558) && (KSCREEN_HEIGHT < 578))
+#define SCREEN_INCH_4_7  ((KSCREEN_HEIGHT > 657) && (KSCREEN_HEIGHT < 687))
+#define SCREEN_INCH_5_5  ((KSCREEN_HEIGHT > 726) && (KSCREEN_HEIGHT < 746))
+#define SCREEN_X KSCREEN_HEIGHT == 821.0
+
 /** ----------------------------颜色信息---------------------------------
  --------------------------------------------------------------------*/
+#define UIColorRGB(r,g,b)    [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:1]
+#define UIColorRGBA(r,g,b,a) [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:(a)]
+#define UIColorRandom UIColorRGBA(arc4random_uniform(256), arc4random_uniform(256), arc4random_uniform(256), 1);
+
 #pragma mark - APP颜色
 /** APP主题色 */
 #define KAPP_THEME_COLOR                   [UIColor colorWithHexString:@"53d76f"]
@@ -102,6 +131,10 @@ _Pragma("clang diagnostic pop") \
 /** ----------------------------字体设置---------------------------------
  --------------------------------------------------------------------*/
 #pragma mark - 字体设置
+
+#define FONT_DINOT @"DIN OT"
+#define FONT_MicrosoftYaHei  @"MicrosoftYaHei"
+
 /** 常用字体 */
 #define KFONT10                 [UIFont systemFontOfSize:10.0f]
 #define KFONT11                 [UIFont systemFontOfSize:11.0f]
@@ -134,6 +167,6 @@ _Pragma("clang diagnostic pop") \
 #define KLoginType              [[NSUserDefaults standardUserDefaults] objectForKey:@"loginType"]
 
 
-#define KItemHeight             287 * WIDTH_MULTIPLE
+#define KItemHeight             280 * WIDTH_MULTIPLE
 
 #endif /* Macro_h */

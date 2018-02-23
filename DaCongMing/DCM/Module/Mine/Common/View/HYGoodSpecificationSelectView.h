@@ -14,8 +14,13 @@
 
 @end
 
+typedef void (^SHOWBLK)();
+typedef void (^HIDDENBLK)();
 
 @interface HYGoodSpecificationSelectView : UIView
+
+@property (nonatomic, copy) SHOWBLK showCB;
+@property (nonatomic, copy) HIDDENBLK hiddenCB;
 
 /** 规格数组 */
 @property (nonatomic, strong) HYGoodsDetailModel *goodsModel;

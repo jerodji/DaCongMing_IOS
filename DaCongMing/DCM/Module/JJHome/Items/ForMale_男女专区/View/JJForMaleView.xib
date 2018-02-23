@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="JJForMaleView">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="110"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eqY-f0-jnt">
+                    <rect key="frame" x="10" y="0.0" width="192" height="110"/>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Xou-bx-ktY">
+                    <rect key="frame" x="212" y="0.0" width="192" height="110"/>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="Xou-bx-ktY" secondAttribute="bottom" id="Pzt-4Z-Lf9"/>
+                <constraint firstItem="eqY-f0-jnt" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Rza-ZJ-jap"/>
+                <constraint firstAttribute="bottom" secondItem="eqY-f0-jnt" secondAttribute="bottom" id="WNv-QF-g1L"/>
+                <constraint firstItem="Xou-bx-ktY" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="bkz-O1-09b"/>
+                <constraint firstItem="eqY-f0-jnt" firstAttribute="width" secondItem="Xou-bx-ktY" secondAttribute="width" id="eDn-Yb-GLb"/>
+                <constraint firstItem="eqY-f0-jnt" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="gUp-ji-1dS"/>
+                <constraint firstItem="Xou-bx-ktY" firstAttribute="leading" secondItem="eqY-f0-jnt" secondAttribute="trailing" constant="10" id="ggk-TD-aeI"/>
+                <constraint firstAttribute="trailing" secondItem="Xou-bx-ktY" secondAttribute="trailing" constant="10" id="pUx-R8-2Mq"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="leftImgView" destination="eqY-f0-jnt" id="stt-6w-Abr"/>
+                <outlet property="rightImgView" destination="Xou-bx-ktY" id="DtZ-KC-CYX"/>
+            </connections>
+            <point key="canvasLocation" x="-155" y="313"/>
+        </view>
+    </objects>
+</document>

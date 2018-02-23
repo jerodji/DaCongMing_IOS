@@ -4,6 +4,11 @@
 //
 //
 
+
+/**
+ * <#Description#>
+ */
+
 #import "HYBaseViewController.h"
 
 typedef NS_ENUM(NSUInteger, HYBrandShopTopItem) {

@@ -129,8 +129,8 @@
     
     if (sender == self.phoneTextField) {
         
-        if (sender.text.length >= 11) {
-            sender.text = [sender.text substringToIndex:11];
+        if (sender.text.length >= 1) {
+//            sender.text = [sender.text substringToIndex:11];
             _getAuthCodeBtn.backgroundColor = KCOLOR(@"53d76f");
         }
         else{
@@ -195,8 +195,8 @@
     }
     else if (![self validatePhoneNum:_phoneTextField.text]){
         
-        [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"请输入正确的手机号"];
-        return NO;
+//        [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"请输入正确的手机号"];
+//        return NO;
         
     }
     return YES;

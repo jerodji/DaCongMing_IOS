@@ -172,7 +172,7 @@
 - (void)setOrderDetailModel:(HYMyOrderDetailsModel *)orderDetailModel{
     
     _orderDetailModel = orderDetailModel;
-    [_itemImgView sd_setImageWithURL:[NSURL URLWithString:orderDetailModel.item_title_image] placeholderImage:[UIImage imageNamed:@"productPlaceholder"]];
+    [_itemImgView sd_setImageWithURL:[NSURL URLWithString:orderDetailModel.item_title_image] placeholderImage:[UIImage imageNamed:ProductPlaceholder]];
     _itemLabel.text = orderDetailModel.item_name;
     _unitLabel.text = orderDetailModel.unit;
     _priceLabel.text = [NSString stringWithFormat:@"￥%@",orderDetailModel.price];
@@ -183,7 +183,7 @@
 #pragma mark - 评分delegate
 - (void)starRatingWithScore:(CGFloat)score{
     
-    DLog(@"score is %f",score);
+    NSLog(@"score is %f",score);
     NSString *state = (int)score == 5 ? @"非常好" : (int)score == 4 ? @"好" :(int)score == 3 ? @"一般":(int)score == 2 ? @"差":(int)score == 4 ? @"很差":@"一般";
     self.stateLabel.text = state;
     self.score = score;
@@ -219,7 +219,7 @@
         _itemImgView = [[UIImageView alloc] initWithFrame:CGRectZero];
         _itemImgView.contentMode = UIViewContentModeScaleAspectFill;
         _itemImgView.clipsToBounds = YES;
-        _itemImgView.image = [UIImage imageNamed:@"productPlaceholder"];
+        _itemImgView.image = [UIImage imageNamed:ProductPlaceholder];
     }
     
     return _itemImgView;

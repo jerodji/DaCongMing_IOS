@@ -151,7 +151,7 @@
 - (void)passwordCompleteInput:(HYPasswordView *)passwordView{
     
     NSString *authCode = passwordView.passwordString;
-    DLog(@"%@",authCode);
+    NSLog(@"%@",authCode);
     [HYUserHandle verifyAuthCodeWithPhone:[HYUserModel sharedInstance].userInfo.phone authCode:authCode complectionBlock:^(BOOL isSuccess) {
         
         if (isSuccess) {

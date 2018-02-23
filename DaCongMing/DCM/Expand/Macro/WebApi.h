@@ -18,16 +18,22 @@
 
 
 /** ------------------------------网络接口------------------------------- */
+
+//#define API_DomainStr          @"http://test.laopdr.cn:8080"
+
 //接口总域名
 #define API_DomainStr           @"https://www.laopdr.cn"
 
-//#define API_DomainStr           @""
-
 //首页接口
+#define HomePageAPI             @"sabuy_web_mall/home/homePage"
+
 #define API_HomePage            @"HAILIN_SERVER/showMenu.do"
 
 //分类
 #define API_Sort                @"HAILIN_SERVER/showType.do"
+
+//首页文章更多接口
+#define net_getArticleList      @"HAILIN_SERVER/getArticleList.do"
 
 /********************************用户相关*********************************/
 #pragma mark - 用户相关
@@ -69,6 +75,10 @@
 
 /********************************订单相关*********************************/
 #pragma mark - 订单相关
+
+//网银线下支付订单
+#define API_createAgentBankPayOrder  @"HAILIN_SERVER/createAgentBankPayOrder.do"
+
 //购物车
 #define API_ShoppingCart        @"HAILIN_SERVER/showCart.do"
 

@@ -12,6 +12,9 @@
 @property (nonatomic,strong) UILabel *goodsTotalLabel;
 /** 商品总价格 */
 @property (nonatomic,strong) UILabel *totalPriceLabel;
+/* 已节约 ¥00.00 */
+@property (nonatomic,strong) UILabel * jieyueLabel;
+@property (nonatomic,strong) UILabel * moneyLabel;
 /** 支付宝 */
 @property (nonatomic,strong) UIImageView *alipayImgView;
 /** 支付宝 */
@@ -56,6 +59,8 @@
     
     [self addSubview:self.goodsTotalLabel];
     [self addSubview:self.totalPriceLabel];
+    [self addSubview:self.jieyueLabel];
+    [self addSubview:self.moneyLabel];
     [self addSubview:self.alipayLabel];
     [self addSubview:self.alipayImgView];
     [self addSubview:self.weChatImgView];
@@ -71,6 +76,7 @@
     
     _orderModel = orderModel;
     _totalPriceLabel.text = [NSString stringWithFormat:@"￥%@",orderModel.summary_price];
+    _moneyLabel.text = [NSString stringWithFormat:@"-￥%@",orderModel.save_amount];
 }
 
 #pragma mark - action
@@ -103,9 +109,22 @@
         make.width.equalTo(@(120));
     }];
     
+    [_jieyueLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(_goodsTotalLabel.mas_bottom);
+        make.left.equalTo(_goodsTotalLabel);
+        make.height.equalTo(@(30*WIDTH_MULTIPLE));
+        make.width.equalTo(@130);
+    }];
+    [_moneyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(_jieyueLabel);
+        make.right.equalTo(_totalPriceLabel);
+        make.height.equalTo(_jieyueLabel);
+        make.width.equalTo(@120);
+    }];
+    
     [_alipayImgView mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.top.equalTo(_goodsTotalLabel.mas_bottom).offset(6 * WIDTH_MULTIPLE);
+        make.top.equalTo(_jieyueLabel.mas_bottom).offset(6 * WIDTH_MULTIPLE);
         make.width.height.equalTo(@(32 * WIDTH_MULTIPLE));
         make.left.equalTo(@(20 * WIDTH_MULTIPLE));
     }];
@@ -180,6 +199,27 @@
         _totalPriceLabel.textColor = KAPP_272727_COLOR;
     }
     return _totalPriceLabel;
+}
+
+- (UILabel *)jieyueLabel {
+    if (!_jieyueLabel) {
+        _jieyueLabel = [[UILabel alloc] init];
+        _jieyueLabel.text = @"已为您节约:";
+        _jieyueLabel.font = KFitFont(15);
+        _jieyueLabel.textColor = KAPP_272727_COLOR;
+        _jieyueLabel.textAlignment = NSTextAlignmentLeft;
+    }
+    return _jieyueLabel;
+}
+- (UILabel *)moneyLabel {
+    if (!_moneyLabel) {
+        _moneyLabel = [[UILabel alloc] init];
+        _moneyLabel.text = @"-¥ 00.00";
+        _moneyLabel.font = KFitFont(15);
+        _moneyLabel.textColor = KAPP_272727_COLOR;
+        _moneyLabel.textAlignment = NSTextAlignmentRight;
+    }
+    return _moneyLabel;
 }
 
 - (UIImageView *)alipayImgView{

@@ -47,7 +47,7 @@
                 
                 if (isSuccess) {
                     
-                    DLog(@"添加购物车成功");
+                    NSLog(@"添加购物车成功");
                     [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"添加购物车成功"];
                     
                     //发出通知，刷新购物车列表

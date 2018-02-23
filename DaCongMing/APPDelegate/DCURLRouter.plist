@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>http</key>
+	<string>HYWebViewVC</string>
+	<key>https</key>
+	<string>HYWebViewVC</string>
+	<key>localhost</key>
+	<dict>
+		<key>localhost://www.laopdr.cn/app/itemDetail</key>
+		<string>HYGoodsDetailInfoViewController</string>
+		<key>localhost://www.laopdr.cn/app/itemTypeDetail</key>
+		<string>HYGoodsListViewController</string>
+		<key>localhost://www.laopdr.cn/app/shopDetail</key>
+		<string>HYBrandShopViewController</string>
+		<key>localhost://www.laopdr.cn/app/itemSearch</key>
+		<string>HYHomeSearchViewController</string>
+	</dict>
+</dict>
+</plist>

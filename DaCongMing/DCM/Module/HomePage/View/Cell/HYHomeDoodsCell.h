@@ -19,4 +19,9 @@ typedef void(^collectionSelectBlock)(NSString *productID);
 /** title */
 @property (nonatomic,strong) NSString *title;
 
+/** collectionView */
+@property (nonatomic,strong) UICollectionView *collectionView;
+
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier;
+
 @end

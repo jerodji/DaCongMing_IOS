@@ -31,7 +31,7 @@
         
         if ([resultDic[@"resultStatus"] isEqualToString:@"6001"]) {
 
-            [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"用户中途取消"];
+            [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"取消支付"]; /* 用户中途取消 */
         }
         
         if ([resultDic[@"resultStatus"] isEqualToString:@"6002"]) {

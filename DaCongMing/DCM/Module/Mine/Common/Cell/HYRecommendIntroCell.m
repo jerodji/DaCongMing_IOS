@@ -16,11 +16,14 @@
 /** 邀请人 */
 @property (nonatomic,strong) UILabel *inviterLabel;
 /** 介绍 */
-@property (nonatomic,strong) UILabel *introLabel;
+@property (nonatomic,strong) UILabel *introLabel; /* 说明 */
 /** 介绍文本 */
-@property (nonatomic,strong) HYLabel *introTextLabel;
+@property (nonatomic,strong) HYLabel *introTextLabel; /* 说明的内容 */
+@property (nonatomic,strong) UIView * line;
 /** 加盟费 */
 @property (nonatomic,strong) UILabel *payMoneyLabel;
+
+@property (nonatomic,strong) UIImageView * levelImageView;
 
 @end
 
@@ -39,16 +42,21 @@
 - (void)setupSubviews{
     
     [self addSubview:self.recommendLabel];
+    [self addSubview:self.levelImageView];
     [self addSubview:self.payTimeLabel];
     [self addSubview:self.inviterLabel];
     [self addSubview:self.introLabel];
     [self addSubview:self.introTextLabel];
-    [self addSubview:self.payMoneyLabel];
+    [self addSubview:self.line];
+//    [self addSubview:self.payMoneyLabel];
 }
 
 - (void)setupData{
     
-    _recommendLabel.text = [NSString stringWithFormat:@"你已经被推荐为:%@",[HYUserModel sharedInstance].userInfo.userRemind.recomMsg];
+    _recommendLabel.text = [NSString stringWithFormat:@"你已经被邀请成为:"];
+    _recommendLabel.font = [UIFont systemFontOfSize:12];
+    _recommendLabel.textColor = UIColorRGB(39, 39, 39);
+//    [NSString stringWithFormat:@"你已经被邀请成为:%@",[HYUserModel sharedInstance].userInfo.userRemind.recomMsg];
     _inviterLabel.text = [NSString stringWithFormat:@"邀请人:%@",[HYUserModel sharedInstance].userInfo.userRemind.recomer_name];
     _introTextLabel.text = [HYUserModel sharedInstance].userInfo.userRemind.msg;
     
@@ -70,12 +78,14 @@
             dispatch_source_cancel(timer);
             dispatch_async(dispatch_get_main_queue(), ^{
                 
+                self.time = [NSString stringWithFormat:@"剩余支付时间:%@",[self formatTimeDiffer:timeDiffer]];
                 self.payTimeLabel.text = [NSString stringWithFormat:@"剩余支付时间:%@",[self formatTimeDiffer:timeDiffer]];
             });
         }
         else{
             dispatch_async(dispatch_get_main_queue(), ^{
                 
+                self.time = [NSString stringWithFormat:@"剩余支付时间:%@",[self formatTimeDiffer:timeDiffer]];
                 self.payTimeLabel.text = [NSString stringWithFormat:@"剩余支付时间:%@",[self formatTimeDiffer:timeDiffer]];
                 timeDiffer--;
             });
@@ -116,31 +126,39 @@
     
     [_recommendLabel mas_makeConstraints:^(MASConstraintMaker *make) {
        
-        make.left.top.equalTo(self).offset(15 * WIDTH_MULTIPLE);
+        make.left.top.equalTo(self).offset(10 * WIDTH_MULTIPLE);
         make.right.equalTo(self);
-        make.height.mas_equalTo(25 * WIDTH_MULTIPLE);
+        make.height.mas_equalTo(25);
+    }];
+    
+    [_levelImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.mas_equalTo(188);
+        make.height.mas_equalTo(75);
+        make.top.equalTo(_recommendLabel.mas_bottom).offset(5);
+        make.centerX.equalTo(self);
     }];
     
     [_payTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.left.equalTo(self).offset(15 * WIDTH_MULTIPLE);
-        make.top.equalTo(_recommendLabel.mas_bottom).offset(15 * WIDTH_MULTIPLE);
+        make.left.equalTo(self);//.offset(15 * WIDTH_MULTIPLE);
+        //make.top.equalTo(_recommendLabel.mas_bottom).offset(15 * WIDTH_MULTIPLE);
+        make.bottom.equalTo(self).offset(-10);
         make.right.equalTo(self);
-        make.height.mas_equalTo(20 * WIDTH_MULTIPLE);
+        make.height.mas_equalTo(20);
     }];
     
     [_inviterLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.left.equalTo(self).offset(15 * WIDTH_MULTIPLE);
-        make.top.equalTo(_payTimeLabel.mas_bottom).offset(15 * WIDTH_MULTIPLE);
+        make.top.equalTo(_levelImageView.mas_bottom).offset(30 * WIDTH_MULTIPLE);
         make.right.equalTo(self);
-        make.height.mas_equalTo(20 * WIDTH_MULTIPLE);
+        make.height.mas_equalTo(15 * WIDTH_MULTIPLE);
     }];
     
     CGFloat height = [@"" heightForFont:KFitFont(13) width:30];
     [_introLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.top.equalTo(_inviterLabel.mas_bottom).offset(15 * WIDTH_MULTIPLE);
+        make.top.equalTo(_inviterLabel.mas_bottom).offset(13);
         make.left.equalTo(self).offset(15 * WIDTH_MULTIPLE);
         make.height.mas_equalTo(height);
         make.width.mas_equalTo(40 * WIDTH_MULTIPLE);
@@ -151,7 +169,14 @@
         make.left.equalTo(_introLabel.mas_right);
         make.top.equalTo(_introLabel);
         make.right.equalTo(self).offset(-20 * WIDTH_MULTIPLE);
-        make.height.mas_equalTo(50);
+        make.height.mas_equalTo(60);
+    }];
+    
+    [_line mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.mas_equalTo(self.size.width-40);
+        make.height.mas_equalTo(1);
+        make.left.equalTo(self).offset(20);
+        make.bottom.equalTo(_payTimeLabel.mas_top).offset(-10);
     }];
     
     [_payMoneyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -172,6 +197,30 @@
     _payMoneyLabel.attributedText = attributeStr;
 }
 
+/** V0没有权限 V2实习经销商 V3高级经销商 V4实习合伙人 V5高级合伙人 V6特约合伙人 */
+- (void)setUnit:(NSString *)unit {
+    _unit = unit;
+    if ([_unit isEqualToString:@"V0"]) {
+        
+    } else if ([_unit isEqualToString:@"V2"]) {
+        _levelImageView.image = [UIImage imageNamed:@"sxjxs"];
+    }
+    else if ([_unit isEqualToString:@"V3"]) {
+        _levelImageView.image = [UIImage imageNamed:@"gjjss"];
+    }
+    else if ([_unit isEqualToString:@"V4"]) {
+        _levelImageView.image = [UIImage imageNamed:@"sxhhr"];
+    }
+    else if ([_unit isEqualToString:@"V5"]) {
+        _levelImageView.image = [UIImage imageNamed:@"gjhhr"];
+    }
+    else if ([_unit isEqualToString:@"V6"]) {
+        _levelImageView.image = [UIImage imageNamed:@""];
+    } else {
+        
+    }
+}
+
 #pragma mark - lazyload
 - (UILabel *)recommendLabel{
     
@@ -180,7 +229,7 @@
         _recommendLabel = [[UILabel alloc] init];
         _recommendLabel.font = KFitBoldFont(19);
         _recommendLabel.textColor = KCOLOR(@"272727");
-        _recommendLabel.text = @"您已经被推荐为:高级经销商";
+        _recommendLabel.text = @"您已经被推荐为:";
         _recommendLabel.textAlignment = NSTextAlignmentLeft;
     }
     return _recommendLabel;
@@ -194,7 +243,8 @@
         _payTimeLabel.font = KFitFont(13);
         _payTimeLabel.textColor = KAPP_272727_COLOR;
         _payTimeLabel.text = @"剩余支付时间:2天";
-        _payTimeLabel.textAlignment = NSTextAlignmentLeft;
+        _payTimeLabel.textAlignment = NSTextAlignmentCenter;
+        _time = @"剩余支付时间:2天";
     }
     return _payTimeLabel;
 }
@@ -208,6 +258,7 @@
         _inviterLabel.textColor = KAPP_b7b7b7_COLOR;
         _inviterLabel.text = @"邀请人:好几款";
         _inviterLabel.textAlignment = NSTextAlignmentLeft;
+//        _inviterLabel.backgroundColor = [UIColor redColor];
     }
     return _inviterLabel;
 }
@@ -236,8 +287,17 @@
         _introTextLabel.textAlignment = NSTextAlignmentLeft;
         _introTextLabel.verticalAlignment = VerticalAlignmentTop;
         _introTextLabel.numberOfLines = 0;
+//        _introTextLabel.backgroundColor = [UIColor grayColor];
     }
     return _introTextLabel;
+}
+
+- (UIView *)line {
+    if (!_line) {
+        _line = [[UIView alloc] init];
+        _line.backgroundColor = UIColorRGB(229, 229, 229);
+    }
+    return _line;
 }
 
 - (UILabel *)payMoneyLabel{
@@ -251,6 +311,14 @@
         _payMoneyLabel.textAlignment = NSTextAlignmentRight;
     }
     return _payMoneyLabel;
+}
+
+- (UIImageView *)levelImageView {
+    if (!_levelImageView) {
+        _levelImageView = [[UIImageView alloc] init];
+//        _levelImageView.backgroundColor = [UIColor redColor];
+    }
+    return _levelImageView;
 }
 
 - (void)awakeFromNib {

@@ -49,7 +49,7 @@
     for (NSInteger i = 0; i < _imageArray.count; i++) {
         
         UIImageView *imageView = [UIImageView new];
-        [imageView sd_setImageWithURL:[NSURL URLWithString:_imageArray[i]] placeholderImage:[UIImage imageNamed:@"productPlaceholder"]];
+        [imageView sd_setImageWithURL:[NSURL URLWithString:_imageArray[i]] placeholderImage:[UIImage imageNamed:ProductPlaceholder]];
         
        __block CGFloat originalImageWidth = 0;
        __block CGFloat originalImageHeight = 0;
@@ -60,7 +60,7 @@
         if (_imageArray[i]) {
             
             
-            [imageView sd_setImageWithURL:[NSURL URLWithString:_imageArray[i]] placeholderImage:[UIImage imageNamed:@"productPlaceholder"] options:SDWebImageRetryFailed completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+            [imageView sd_setImageWithURL:[NSURL URLWithString:_imageArray[i]] placeholderImage:[UIImage imageNamed:ProductPlaceholder] options:SDWebImageRetryFailed completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
                 
                 originalImageWidth = image.size.width != 0 ? image.size.width : 1;
                 originalImageHeight = image.size.height;

@@ -51,7 +51,7 @@
 - (void)postComment{
     
     NSString *str = [self.paramArray jsonStringEncoded];
-    DLog(@"%@",str);
+    NSLog(@"%@",str);
     
     BOOL isFillInfo = NO;       //记录是否填写了内容
     for (NSInteger i = 0; i < self.paramArray.count; i++) {

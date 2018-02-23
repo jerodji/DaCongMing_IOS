@@ -22,7 +22,7 @@
     
     [requestParam setValue:[HYUserModel sharedInstance].token forKey:@"token"];
     
-    [[HTTPManager shareHTTPManager] postDataFromUrl:API_ShowShppingCarts withParameter:requestParam isShowHUD:YES success:^(id returnData) {
+    [[HTTPManager shareHTTPManager] postDataFromUrl:API_ShowShppingCarts withParameter:requestParam isShowHUD:NO success:^(id returnData) {
         
         if (returnData) {
             
@@ -47,7 +47,7 @@
     NSMutableDictionary *requestParam = [NSMutableDictionary dictionary];
     [requestParam setValue:[HYUserModel sharedInstance].token forKey:@"token"];
     [requestParam setValue:guid forKey:@"totalC_array"];
-    [[HTTPManager shareHTTPManager] postDataFromUrl:API_CalculateCartsAmount withParameter:requestParam isShowHUD:YES success:^(id returnData) {
+    [[HTTPManager shareHTTPManager] postDataFromUrl:API_CalculateCartsAmount withParameter:requestParam isShowHUD:NO success:^(id returnData) {
         
         if (returnData) {
             
@@ -70,7 +70,7 @@
     NSMutableDictionary *requestParam = [NSMutableDictionary dictionary];
     [requestParam setValue:[HYUserModel sharedInstance].token forKey:@"token"];
     [requestParam setValue:editJson forKey:@"editC_json"];
-    [[HTTPManager shareHTTPManager] postDataFromUrl:API_BulkEditShoppingCarts withParameter:requestParam isShowHUD:YES success:^(id returnData) {
+    [[HTTPManager shareHTTPManager] postDataFromUrl:API_BulkEditShoppingCarts withParameter:requestParam isShowHUD:NO success:^(id returnData) {
         
         if (returnData) {
             
@@ -101,7 +101,7 @@
     [requestParam setValue:guids forKey:@"cart_guids"];
     [requestParam setValue:[HYUserModel sharedInstance].token forKey:@"token"];
     
-    [[HTTPManager shareHTTPManager] postDataFromUrl:API_SettleShoppingCarts withParameter:requestParam isShowHUD:YES success:^(id returnData) {
+    [[HTTPManager shareHTTPManager] postDataFromUrl:API_SettleShoppingCarts withParameter:requestParam isShowHUD:NO success:^(id returnData) {
         
         if (returnData) {
             
@@ -131,7 +131,7 @@
     NSMutableDictionary *requestParam = [NSMutableDictionary dictionary];
     [requestParam setValue:[HYUserModel sharedInstance].token forKey:@"token"];
     [requestParam setValue:guids forKey:@"arrayGuid"];
-    [[HTTPManager shareHTTPManager] postDataFromUrl:API_DeleteShoppingCarts withParameter:requestParam isShowHUD:YES success:^(id returnData) {
+    [[HTTPManager shareHTTPManager] postDataFromUrl:API_DeleteShoppingCarts withParameter:requestParam isShowHUD:NO success:^(id returnData) {
         
         if (returnData) {
             

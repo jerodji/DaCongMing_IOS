@@ -21,4 +21,7 @@ pod 'Bugly'
 pod 'UMengAnalytics'
 pod 'FDFullscreenPopGesture', '1.1'
 pod 'iCarousel'
+pod 'DCURLRouter', '~> 0.81'
+pod 'HMObjcSugar'
+pod 'SDCycleScrollView'
 end

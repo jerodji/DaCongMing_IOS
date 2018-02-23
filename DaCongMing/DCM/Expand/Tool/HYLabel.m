@@ -43,7 +43,9 @@
     return textRect;
 }
 
-
+/**
+ * drawTextInRect 如果在cell里面使用就非常消耗性能
+ */
 - (void)drawTextInRect:(CGRect)rect{
     
     CGRect actualRect = [self textRectForBounds:rect limitedToNumberOfLines:self.numberOfLines];

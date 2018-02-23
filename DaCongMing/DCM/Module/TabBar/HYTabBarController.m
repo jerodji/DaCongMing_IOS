@@ -13,9 +13,10 @@
 #import "HYPayParterCostViewController.h"
 #import "HYAlertManager.h"
 #import "HYInviteParterView.h"
+#import "HYGoodsListViewController.h"
 
 @interface HYTabBarController () <UIAlertViewDelegate>
-
+@property (nonatomic,strong) NSMutableArray * tabbarbuttonArray;
 @end
 
 @implementation HYTabBarController
@@ -49,8 +50,8 @@
 
 
 - (void)setupChildVC{
-    
-    NSArray *vcArray = @[@"HYHomePageViewController",@"HYSortViewController",@"HYShoppingCartViewController",@"HYMineViewController"];
+    //JJHomePageVC //HYHomePageViewController //HYGoodsListViewController //HYSortViewController
+    NSArray *vcArray = @[@"JJHomePageVC",@"HYGoodsListViewController",@"HYShoppingCartViewController",@"HYMineViewController"];
     NSArray *titleArray = @[@"首页",@"分类",@"购物车",@"我的"];
     NSArray *imageArray = @[@"tabBar_home",@"tabBar_sort",@"tabBar_shopCarts",@"tabBar_mine"];
     NSMutableArray *navArray = [NSMutableArray array];
@@ -87,7 +88,7 @@
             
             if (isLoginSuccess) {
                 
-                DLog(@"自动登录成功");
+                NSLog(@"自动登录成功");
             }
         }];
     }
@@ -96,13 +97,13 @@
     HYUserModel *shareModel = [HYUserModel sharedInstance];
     shareModel.token = userModel.token;
     shareModel.userInfo = userModel.userInfo;
-    DLog(@"user:---%@",shareModel);
+    NSLog(@"user:---%@",shareModel);
     if ([[KUSERDEFAULTS valueForKey:KUserLoginType] isEqualToString:@"weChat"]) {
         
         [HYUserHandle getMyUserInfoComplectionBlock:^(HYUserModel *userModel) {
            
             if (userModel) {
-                DLog(@"微信用户刷新数据成功");
+                NSLog(@"微信用户刷新数据成功");
             }
         }];
     }
@@ -117,18 +118,21 @@
     
     NSInteger index = [tabBar.items indexOfObject:item];
     [self animationWithIndex:index];
-    DLog(@"%ld",index);
+    NSLog(@"%ld",index);
 }
 
 // 动画
 - (void)animationWithIndex:(NSInteger) index {
     
-    NSMutableArray * tabbarbuttonArray = [NSMutableArray array];
-    for (UIView *tabBarButton in self.tabBar.subviews) {
-        if ([tabBarButton isKindOfClass:NSClassFromString(@"UITabBarButton")]) {
-            [tabbarbuttonArray addObject:tabBarButton];
+    if (IsNull(_tabbarbuttonArray)) {
+        _tabbarbuttonArray = [NSMutableArray array];
+        for (UIView *tabBarButton in self.tabBar.subviews) {
+            if ([tabBarButton isKindOfClass:NSClassFromString(@"UITabBarButton")]) {
+                [_tabbarbuttonArray addObject:tabBarButton];
+            }
         }
     }
+
     CABasicAnimation *pulse = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
     pulse.timingFunction= [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
     pulse.duration = 0.1;
@@ -136,7 +140,7 @@
     pulse.autoreverses= YES;
     pulse.fromValue= [NSNumber numberWithFloat:0.9];
     pulse.toValue= [NSNumber numberWithFloat:1.1];
-    [[tabbarbuttonArray[index] layer] addAnimation:pulse forKey:@"tabBarItemAnimation"];
+    [[_tabbarbuttonArray[index] layer] addAnimation:pulse forKey:@"tabBarItemAnimation"];
     
 }
 

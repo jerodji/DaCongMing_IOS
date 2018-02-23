@@ -16,8 +16,7 @@
 /** line */
 @property (nonatomic,strong) UIView *line;
 
-/** collectionView */
-@property (nonatomic,strong) UICollectionView *collectionView;
+
 
 @end
 
@@ -32,6 +31,28 @@
     
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         
+        //1.初始化layout
+        UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+        layout.scrollDirection = UICollectionViewScrollDirectionVertical;
+        layout.itemSize = CGSizeMake( (KSCREEN_WIDTH-30)/2, KItemHeight-10);
+//        layout.estimatedItemSize = CGSizeMake((KSCREEN_WIDTH - 15) / 2, KItemHeight - 10);
+        //        layout.itemSize = UICollectionViewFlowLayoutAutomaticSize;
+        //        layout.estimatedItemSize = UICollectionViewFlowLayoutAutomaticSize;
+        layout.scrollDirection = UICollectionViewScrollDirectionVertical;
+        layout.minimumInteritemSpacing = 10;
+        layout.minimumLineSpacing = 10;      //纵向间距
+        layout.sectionInset = UIEdgeInsetsMake(10, 10 , 10, 10);
+        
+        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
+        [_collectionView setCollectionViewLayout:layout];
+        _collectionView.backgroundColor = self.backgroundColor;
+        _collectionView.showsVerticalScrollIndicator = NO;
+        _collectionView.showsHorizontalScrollIndicator = NO;
+        _collectionView.delegate = self;
+        _collectionView.dataSource = self;
+        _collectionView.bounces = NO;
+        
+        [_collectionView registerClass:[HYGoodsItemCollectionViewCell class] forCellWithReuseIdentifier:@"collectionCell"];
         [self addSubview:self.collectionView];
         self.backgroundColor = KAPP_WHITE_COLOR;
         
@@ -48,32 +69,34 @@
 
 - (void)layoutSubviews{
     
+    [super layoutSubviews];
+    
     [_line mas_makeConstraints:^(MASConstraintMaker *make) {
-       
+
         make.top.left.right.equalTo(self);
         make.height.equalTo(@1);
     }];
-    
+
     [_guessLikeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-       
+
         make.top.left.right.equalTo(self);
         make.height.mas_equalTo(30 * WIDTH_MULTIPLE);
     }];
-    
+
     [_collectionView mas_remakeConstraints:^(MASConstraintMaker *make) {
-       
+
         make.left.right.equalTo(self);
         CGFloat height = ceil(_datalist.count / 2.0) * 348 * WIDTH_MULTIPLE;
         make.height.equalTo(@(height));
         if (_guessLikeLabel) {
-            
+
             make.top.equalTo(_guessLikeLabel.mas_bottom).offset(1 * WIDTH_MULTIPLE);
         }
         else{
-            
+
             make.top.equalTo(self).offset(10 * WIDTH_MULTIPLE);
         }
-        
+
     }];
 }
 
@@ -114,7 +137,7 @@
     NSDictionary *dict = _datalist[indexPath.item];
     HYGoodsItemModel *model = [HYGoodsItemModel modelWithDictionary:dict];
     
-    DLog(@"current itemID is %@",model.item_id);
+    NSLog(@"current itemID is %@",model.item_id);
     
     
     self.collectionSelect(model.item_id);
@@ -146,34 +169,34 @@
     return _line;
 }
 
-- (UICollectionView *)collectionView{
-    
-    if (!_collectionView) {
-        
-        //1.初始化layout
-        UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-        layout.scrollDirection = UICollectionViewScrollDirectionVertical;
-        layout.estimatedItemSize = CGSizeMake((KSCREEN_WIDTH - 15) / 2, KItemHeight - 10);
-//        layout.itemSize = UICollectionViewFlowLayoutAutomaticSize;
-//        layout.estimatedItemSize = UICollectionViewFlowLayoutAutomaticSize;
-        layout.scrollDirection = UICollectionViewScrollDirectionVertical;
-        layout.minimumInteritemSpacing = 5;
-        layout.minimumLineSpacing = 10 * WIDTH_MULTIPLE;      //纵向间距
-        layout.sectionInset = UIEdgeInsetsMake(10, 5 , 0, 5);
-    
-        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
-        [_collectionView setCollectionViewLayout:layout];
-        _collectionView.backgroundColor = self.backgroundColor;
-        _collectionView.showsVerticalScrollIndicator = NO;
-        _collectionView.showsHorizontalScrollIndicator = NO;
-        _collectionView.delegate = self;
-        _collectionView.dataSource = self;
-        _collectionView.bounces = NO;
-        
-        [_collectionView registerClass:[HYGoodsItemCollectionViewCell class] forCellWithReuseIdentifier:@"collectionCell"];
-    }
-    return _collectionView;
-}
+//- (UICollectionView *)collectionView{
+//
+//    if (!_collectionView) {
+//
+//        //1.初始化layout
+//        UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+//        layout.scrollDirection = UICollectionViewScrollDirectionVertical;
+//        layout.estimatedItemSize = CGSizeMake((KSCREEN_WIDTH - 15) / 2, KItemHeight - 10);
+////        layout.itemSize = UICollectionViewFlowLayoutAutomaticSize;
+////        layout.estimatedItemSize = UICollectionViewFlowLayoutAutomaticSize;
+//        layout.scrollDirection = UICollectionViewScrollDirectionVertical;
+//        layout.minimumInteritemSpacing = 5;
+//        layout.minimumLineSpacing = 10 * WIDTH_MULTIPLE;      //纵向间距
+//        layout.sectionInset = UIEdgeInsetsMake(10, 5 , 0, 5);
+//
+//        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
+//        [_collectionView setCollectionViewLayout:layout];
+//        _collectionView.backgroundColor = self.backgroundColor;
+//        _collectionView.showsVerticalScrollIndicator = NO;
+//        _collectionView.showsHorizontalScrollIndicator = NO;
+//        _collectionView.delegate = self;
+//        _collectionView.dataSource = self;
+//        _collectionView.bounces = NO;
+//
+//        [_collectionView registerClass:[HYGoodsItemCollectionViewCell class] forCellWithReuseIdentifier:@"collectionCell"];
+//    }
+//    return _collectionView;
+//}
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];

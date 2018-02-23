@@ -17,10 +17,7 @@
 @property (nonatomic,strong) UIButton *previousSelectBtn;
 /** hor */
 @property (nonatomic,strong) UIView *horizonLine;
-/** collectionView */
-@property (nonatomic,strong) UICollectionView *collectionView;
-/** datalist */
-@property (nonatomic,strong) NSMutableArray *datalist;
+
 /** 请求的页数 */
 @property (nonatomic,assign) NSInteger pageCount;
 /** 当前请求的类型 */
@@ -34,17 +31,39 @@
 
 @implementation HYGoodsListViewController
 
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        _IS_SEARCH = NO;
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     
     [super viewDidLoad];
     
-    self.pageCount = 1;
-    self.requestType = HYGoodsListTypeDefault;
+    NSLog(@"self.params %@",self.params);
+    
+    if (NotNull([self.params objectForKey:@"id"])) {
+        self.type = [self.params objectForKey:@"id"];
+    }
+    if (NotNull([self.params objectForKey:@"title"])) {
+//        self.keyword = [self.params objectForKey:@"title"];
+        self.title = [self.params objectForKey:@"title"];
+    }
     
     [self setupTopButtons];
     [self setupSubviews];
-    [self requestGoodsListWithSortType:self.requestType];
-
+    
+    self.pageCount = 1;
+    if (!_IS_SEARCH) {
+        
+        self.requestType = HYGoodsListTypeDefault;
+        [self requestGoodsListWithSortType:self.requestType];
+    } else {
+        NSLog(@"");
+    }
 }
 
 - (void)viewSafeAreaInsetsDidChange{
@@ -123,24 +142,32 @@
        
         if (datalist) {
             
-            [datalist enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                
+            for (int i=0; i < datalist.count; i++) {
+                NSDictionary * obj = (NSDictionary*)[datalist objectAtIndex:i];
                 HYGoodsItemModel *model = [HYGoodsItemModel modelWithDictionary:obj];
                 [self.datalist addObject:model];
-            }];
+            }
+//            [datalist enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//
+//                HYGoodsItemModel *model = [HYGoodsItemModel modelWithDictionary:obj];
+//                [self.datalist addObject:model];
+//            }];
             [_collectionView reloadData];
             
         }
         [_collectionView.mj_header endRefreshing];
-        [_collectionView.mj_footer endRefreshing];
-
+//        [_collectionView.mj_footer endRefreshing];
+        [_collectionView reloadData];
     }];
 }
 
 #pragma mark - refresh & reloadDataMore
 - (void)refreshData{
-    
-    [self requestGoodsListWithSortType:self.requestType];
+    if (!_IS_SEARCH) {
+        [self requestGoodsListWithSortType:self.requestType];
+    } else {
+        [_collectionView.mj_header endRefreshing];
+    }
 }
 
 - (void)reloadDataMore{
@@ -200,7 +227,11 @@
     button.selected = YES;
     _previousSelectBtn = button;
     
-    [self requestGoodsListWithSortType:self.requestType];
+    if (!_IS_SEARCH) {
+        [self requestGoodsListWithSortType:self.requestType];
+    } else {
+        [_collectionView.mj_header endRefreshing];
+    }
 }
 
 #pragma mark - collectionViewDataSource
@@ -288,13 +319,14 @@
         //1.初始化layout
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
         layout.scrollDirection = UICollectionViewScrollDirectionVertical;
-        layout.estimatedItemSize = CGSizeMake((KSCREEN_WIDTH - 15) / 2, KItemHeight - 10);
+        layout.estimatedItemSize = CGSizeMake(itemWidth, KItemHeight - 10);
+//        layout.itemSize = CGSizeMake((KSCREEN_WIDTH - 30) / 2.0f, KItemHeight - 10);
+        layout.sectionInset = UIEdgeInsetsMake(10, 10 , 10, 10);
 //        layout.estimatedItemSize = UICollectionViewFlowLayoutAutomaticSize;
 //        layout.itemSize = UICollectionViewFlowLayoutAutomaticSize;
         layout.scrollDirection = UICollectionViewScrollDirectionVertical;
-        layout.minimumInteritemSpacing = 5;
-        layout.minimumLineSpacing = 10 * WIDTH_MULTIPLE;      //纵向间距
-        layout.sectionInset = UIEdgeInsetsMake(10, 5 , 0, 5);
+        layout.minimumInteritemSpacing = 10; /* 横向间距（默认为10） */
+        layout.minimumLineSpacing = 10;      //纵向间距(默认为10)
         
         
         _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];

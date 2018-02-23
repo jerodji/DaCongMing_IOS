@@ -33,7 +33,7 @@
     self.guideArray = @[@"guide1",@"guide2",@"guide3"];
     [self.view addSubview:self.scrollView];
     [self.view addSubview:self.pageControl];
-    [self.view addSubview:self.skipBtn];
+//    [self.view addSubview:self.skipBtn];
 
     for (NSInteger i = 0; i < self.guideArray.count; i++) {
         

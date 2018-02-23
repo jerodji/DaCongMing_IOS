@@ -6,6 +6,7 @@
 
 #import "HYWebViewVC.h"
 #import <WebKit/WebKit.h>
+#import "HYShareView.h"
 
 
 @interface HYWebViewVC ()<WKUIDelegate,WKNavigationDelegate>
@@ -19,13 +20,66 @@
 /**progress*/
 @property (nonatomic,strong) UIProgressView *progressView;
 
+/** share */
+@property (nonatomic,strong) HYShareView *shareView;
+/* 分享的标题 */
+@property (nonatomic,copy) NSString * shareTitle;
 @end
 
 @implementation HYWebViewVC
 
+- (void)dealloc{
+    
+    [self.webView removeObserver:self forKeyPath:@"estimatedProgress"];
+}
+
+- (NSMutableDictionary*)analyzeURL:(NSString*)urlstr
+{
+    //tempDic中存放一个URL中转换的键值对
+    NSMutableDictionary *tempDic = [[NSMutableDictionary alloc] init];
+    
+    //获取问号的位置，问号后是参数列表
+    NSRange range = [urlstr rangeOfString:@"?"];
+    NSString* URL = [urlstr substringToIndex:range.location];
+    [tempDic setObject:URL forKey:@"url"];
+//    NSLog(@"参数列表开始的位置：%d", (int)range.location);
+    
+    //获取参数列表
+    NSString *propertys = [urlstr substringFromIndex:(int)(range.location+1)];
+//    NSLog(@"截取的参数列表：%@", propertys);
+    
+    //进行字符串的拆分，通过&来拆分，把每个参数分开
+    NSArray *subArray = [propertys componentsSeparatedByString:@"&"];
+//    NSLog(@"把每个参数列表进行拆分，返回为数组：\n%@", subArray);
+    
+    //把subArray转换为字典
+    for (int j = 0 ; j < subArray.count; j++) {
+        //在通过=拆分键和值
+        NSArray *dicArray = [subArray[j] componentsSeparatedByString:@"="];
+//        NSLog(@"再把每个参数通过=号进行拆分：\n%@", dicArray);
+        //给字典加入元素
+        [tempDic setObject:dicArray[1] forKey:dicArray[0]];
+    }
+    NSLog(@"打印参数列表生成的字典：\n%@", tempDic);
+    return tempDic;
+}
+
 - (void)viewDidLoad {
     
     [super viewDidLoad];
+    
+    if (NotNull(self.params)) {
+        NSLog(@"%@",self.params);
+        NSDictionary*dic = [self analyzeURL:self.params[@"urlStr"]];
+        if (NotNull([dic objectForKey:@"url"])) { self.url = [dic objectForKey:@"url"]; }
+        if (NotNull([dic objectForKey:@"img"])) { self.img = [dic objectForKey:@"img"]; }
+        if (NotNull([dic objectForKey:@"descriptions"])) {
+            self.descriptions = [NSString stringWithFormat:@"%@",[dic objectForKey:@"descriptions"]].stringByRemovingPercentEncoding;
+        }
+    }
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"分享" style:UIBarButtonItemStylePlain target:self action:@selector(shareHealthInfoAction)];
+    
     [self setupSubviews];
 }
 
@@ -38,9 +92,24 @@
     [MBProgressHUD showPregressHUDWithLoadingText:@"正在加载中！"];
 }
 
-- (void)dealloc{
+- (void)shareHealthInfoAction {
+    [KEYWINDOW addSubview:self.shareView];
+    [self.shareView showShareView];
     
-    [self.webView removeObserver:self forKeyPath:@"estimatedProgress"];
+    HYShareModel *model = [[HYShareModel alloc] init];
+    model.shareType = HYShareTypeWebUrl;
+    model.shareWebUrl = self.url;
+    model.shareTitle = self.shareTitle;
+    model.urlImg = self.img;
+    model.shareDescription = self.descriptions;
+    self.shareView.shareModel = model;
+}
+
+- (HYShareView *)shareView{
+    if (!_shareView) {
+        _shareView = [[HYShareView alloc] initWithFrame:CGRectMake(0, 0, KSCREEN_WIDTH, KSCREEN_HEIGHT)];
+    }
+    return _shareView;
 }
 
 #pragma mark ********监听加载进度********
@@ -66,8 +135,8 @@
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation{
     
     [self.webView evaluateJavaScript:@"document.title" completionHandler:^(id _Nullable result, NSError * _Nullable error) {
-        
-        self.title = result;
+        self.shareTitle = result;
+//        self.title = result;
     }];
     
     //    JSContext *context = [webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
@@ -109,8 +178,6 @@
     }
     return _webView;
 }
-
-
 
 - (UIProgressView *)progressView{
     

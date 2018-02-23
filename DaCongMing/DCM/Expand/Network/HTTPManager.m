@@ -21,6 +21,27 @@
     return httpManager;
 }
 
+- (AFSecurityPolicy *)customSecurityPolicy {
+    
+    NSString * cerPath = [[NSBundle mainBundle] pathForResource:@"com.hailin.dacongming" ofType:@"cer"];
+    NSData * cerData = [NSData dataWithContentsOfFile:cerPath];
+    NSSet * cerSet = [NSSet setWithObjects:cerData, nil];
+    
+    AFSecurityPolicy *securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeCertificate];
+    
+    // 是否验证域名
+    securityPolicy.validatesDomainName = YES;
+    
+    // 信任非法证书（自签名证书）
+    securityPolicy.allowInvalidCertificates = NO;
+    
+    // 设置证书
+    [securityPolicy setPinnedCertificates:cerSet];
+    
+    return securityPolicy;
+    
+}
+
 - (void)getDataFromUrl:(NSString *)url withParameter:(NSDictionary *)para isShowHUD:(BOOL)isShowHUD success:(requestSuccess)successBlock{
     
     if (isShowHUD) {
@@ -29,6 +50,8 @@
     }
     
     NSString *urlString= [NSString stringWithFormat:@"%@/%@",API_DomainStr,url];
+    NSLog(@"GET URL -> %@",urlString);
+    
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/html", nil];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
@@ -48,12 +71,13 @@
         successBlock(responseObject);
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        
+        NSLog(@"GET failure == %@\n Task == %@\n Error == %@",urlString,task,error);
         if (isShowHUD) {
             
             [MBProgressHUD hidePregressHUD:KEYWINDOW];
         }
-        [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"服务器云游四方去了"];
+        [MBProgressHUD showPregressHUD:KEYWINDOW];
+        //[MBProgressHUD showPregressHUD:KEYWINDOW withText:@"服务器云游四方去了"];
     }];
 }
 
@@ -65,6 +89,8 @@
     }
     
     NSString *urlString= [NSString stringWithFormat:@"%@/%@",API_DomainStr,url];
+    NSLog(@"POST URL -> %@",urlString);
+    
     urlString = [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain", @"text/html", nil];
@@ -102,13 +128,13 @@
         }
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        
+        NSLog(@"POST failure == %@\n Task == %@\n Error == %@",urlString,task,error);
         if (isShowHUD) {
             
             [MBProgressHUD hidePregressHUD:KEYWINDOW];
         }
         [MBProgressHUD hidePregressHUD:KEYWINDOW];
-        [JRToast showWithText:@"服务器云游四方去了"];
+        //[JRToast showWithText:@"服务器云游四方去了"];
         successBlock(nil);
     }];
 }

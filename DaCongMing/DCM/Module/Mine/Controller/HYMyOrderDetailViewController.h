@@ -12,4 +12,6 @@
 /** orderModel */
 @property (nonatomic,strong) HYMyOrderModel *orderModel;
 
+@property (nonatomic,assign) NSInteger purchesTag;
+
 @end

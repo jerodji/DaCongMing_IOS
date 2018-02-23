@@ -122,7 +122,7 @@
 - (void)setItemModel:(HYGoodsItemModel *)itemModel{
     
     _itemModel = itemModel;
-    [_itemImgView sd_setImageWithURL:[NSURL URLWithString:itemModel.item_title_image] placeholderImage:[UIImage imageNamed:@"productPlaceholder"]];
+    [_itemImgView sd_setImageWithURL:[NSURL URLWithString:itemModel.item_title_image] placeholderImage:[UIImage imageNamed:ProductPlaceholder]];
     _itemLabel.text = itemModel.item_name;
     _unitLabel.text = itemModel.unit;
     _PriceLabel.text = [NSString stringWithFormat:@"￥%@",itemModel.item_min_price];
@@ -167,7 +167,7 @@
 - (void)setOrderDetailModel:(HYMyOrderDetailsModel *)orderDetailModel{
     
     _orderDetailModel = orderDetailModel;
-    [_itemImgView sd_setImageWithURL:[NSURL URLWithString:orderDetailModel.item_title_image] placeholderImage:[UIImage imageNamed:@"productPlaceholder"]];
+    [_itemImgView sd_setImageWithURL:[NSURL URLWithString:orderDetailModel.item_title_image] placeholderImage:[UIImage imageNamed:ProductPlaceholder]];
     _itemLabel.text = orderDetailModel.item_name;
     _unitLabel.text = orderDetailModel.unit;
     _PriceLabel.text = [NSString stringWithFormat:@"￥%@",orderDetailModel.price];
@@ -235,7 +235,7 @@
         _itemImgView = [[UIImageView alloc] initWithFrame:CGRectZero];
         _itemImgView.contentMode = UIViewContentModeScaleAspectFill;
         _itemImgView.clipsToBounds = YES;
-        _itemImgView.image = [UIImage imageNamed:@"productPlaceholder"];
+        _itemImgView.image = [UIImage imageNamed:ProductPlaceholder];
     }
     
     return _itemImgView;

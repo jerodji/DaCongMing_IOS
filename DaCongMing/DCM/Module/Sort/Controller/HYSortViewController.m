@@ -25,12 +25,12 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-    
-    [self.view addSubview:self.tableView];
-    _datalist = [NSMutableArray array];
-    
-    [self requestSortData];
-    [self setupNav];
+    self.view.backgroundColor = [UIColor redColor];
+//    [self.view addSubview:self.tableView];
+//    _datalist = [NSMutableArray array];
+//
+//    [self requestSortData];
+//    [self setupNav];
 }
 
 - (void)setupNav{

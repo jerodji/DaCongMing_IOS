@@ -51,6 +51,8 @@
 @property (nonatomic,copy) NSArray *userCoupons;
 /** dataList */
 @property (nonatomic,copy) NSArray *dataList;
+/* 已为您节约 */
+@property (nonatomic,copy) NSString * save_amount;
 
 
 @end

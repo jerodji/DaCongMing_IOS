@@ -211,7 +211,7 @@
     
     HYMyAddressModel *addressModel = self.datalist[indexPath.section];
     if (_isJump) {
-        
+    
         self.selectAddBlock(addressModel);
         [self.navigationController popViewControllerAnimated:YES];
     }

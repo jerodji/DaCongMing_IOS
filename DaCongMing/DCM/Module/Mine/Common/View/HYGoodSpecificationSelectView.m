@@ -301,6 +301,8 @@
 
 #pragma mark - publicMethod
 - (void)showGoodsSpecificationView{
+    NSLog(@"");
+    !_showCB? : _showCB();
     
     [self setupSubviews];
     [UIView animateWithDuration:0.25 animations:^{
@@ -311,6 +313,8 @@
 }
 
 - (void)hideGoodsSpecificationView{
+    NSLog(@"");
+    !_hiddenCB? : _hiddenCB();
     
     [self.bgView removeFromSuperview];
     self.bgView = nil;

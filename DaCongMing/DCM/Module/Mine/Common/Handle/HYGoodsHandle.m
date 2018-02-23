@@ -17,7 +17,7 @@
     [param setValue:keyword forKey:@"keyWord"];
 
     
-    [[HTTPManager shareHTTPManager] postDataFromUrl:API_GoodsList withParameter:param isShowHUD:YES success:^(id returnData) {
+    [[HTTPManager shareHTTPManager] postDataFromUrl:API_GoodsList withParameter:param isShowHUD:NO success:^(id returnData) {
         
         if (returnData) {
             
@@ -87,7 +87,7 @@
     [param setValue:unit forKey:@"unit"];
     NSArray *arr = @[param];
     NSString *payOrderInfoStr = [arr jsonStringEncoded];
-    DLog(@"payOrderInfoStr:%@",payOrderInfoStr);
+    NSLog(@"payOrderInfoStr:%@",payOrderInfoStr);
 
     
     NSMutableDictionary *requestParam = [NSMutableDictionary dictionary];
@@ -212,6 +212,8 @@
                 
                 NSString *count = [NSString stringWithFormat:@"%@",[[returnData objectForKey:@"data"] objectForKey:@"cartItemCount"]];
                 complection(YES,count);
+                //发出通知
+                //[[NSNotificationCenter defaultCenter] postNotificationName:KAddShoppingCartsSuccess object:cartsCount];
             }
             else{
                 complection(NO,@"0");
@@ -282,7 +284,7 @@
     [requestParam setValue:@(pageNO) forKey:@"pageNo"];
 
     
-    [[HTTPManager shareHTTPManager] postDataFromUrl:API_ShopProductsList withParameter:requestParam isShowHUD:YES success:^(id returnData) {
+    [[HTTPManager shareHTTPManager] postDataFromUrl:API_ShopProductsList withParameter:requestParam isShowHUD:NO success:^(id returnData) {
         
         if (returnData) {
             

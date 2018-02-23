@@ -9,6 +9,7 @@
 #import <Bugly/Bugly.h>
 #import "QYSDK.h"
 #import <UMMobClick/MobClick.h>
+#import "HYShareView.h"
 
 @interface AppDelegate ()<WXApiDelegate>
 
@@ -19,10 +20,21 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
+    // po [UIFont familyNames]
+//    NSArray *familyNames = [UIFont familyNames];
+//    for( NSString *familyName in familyNames ){
+//        printf( "Family: %s \n", [familyName UTF8String] );
+//        NSArray *fontNames = [UIFont fontNamesForFamilyName:familyName];
+//        for( NSString *fontName in [UIFont familyNames] ){
+//            printf( "\tFont: %s \n", [fontName UTF8String] );
+//        }
+//    }
     
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = KAPP_TableView_BgColor;
     [self.window makeKeyAndVisible];
+    
+    [DCURLRouter loadConfigDictFromPlist:@"DCURLRouter.plist"];
     
     //让键盘自适应高度
     IQKeyboardManager *manager= [IQKeyboardManager sharedManager];
@@ -92,7 +104,7 @@
  */
 - (void)onResp:(BaseResp *)resp{
     
-    DLog(@"WeChat login callBack errorCode %@",resp.errStr);
+    NSLog(@"WeChat login callBack errorCode %@",resp.errStr);
     if ([resp isKindOfClass:[SendAuthResp class]]) {
         //微信登录授权
         if (resp.errCode == 0) {
@@ -109,11 +121,11 @@
         switch(response.errCode){
             case WXSuccess:
                 //服务器端查询支付通知或查询API返回的结果再提示成功
-                DLog(@"支付成功");
+                NSLog(@"支付成功");
                 [[NSNotificationCenter defaultCenter] postNotificationName:KWeChatPaySuccessNotification object:@"YES"];
                 break;
             default:
-                DLog(@"支付失败，retcode=%d",resp.errCode);
+                NSLog(@"支付失败，retcode=%d",resp.errCode);
                 [[NSNotificationCenter defaultCenter] postNotificationName:KWeChatPaySuccessNotification object:@"NO"];
                 break;
         }
@@ -139,6 +151,12 @@
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
+    //HYShareView
+    UIView* curtView = [[UIApplication sharedApplication].windows lastObject].subviews.lastObject;
+    if ([curtView isKindOfClass:[HYShareView class]]) {
+        [curtView removeFromSuperview];
+        curtView = nil;
+    }
 }
 
 

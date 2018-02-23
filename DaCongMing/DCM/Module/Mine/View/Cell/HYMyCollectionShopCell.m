@@ -168,7 +168,7 @@
     NSDictionary *dict = self.collectShopModel.item_list[indexPath.item];
     HYMyCollectShopItemList *itemList = [HYMyCollectShopItemList modelWithDictionary:dict];
     
-    DLog(@"current itemID is %@",itemList);
+    NSLog(@"current itemID is %@",itemList);
     self.collectionSelect(itemList.item_id);
 }
 

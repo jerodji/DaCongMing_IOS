@@ -61,7 +61,7 @@
 
     _commendTodayModel = commendTodayModel;
     
-    [_imgView sd_setImageWithURL:[NSURL URLWithString:commendTodayModel.image_url] placeholderImage:[UIImage imageNamed:@"productPlaceholder"]];
+    [_imgView sd_setImageWithURL:[NSURL URLWithString:commendTodayModel.image_url] placeholderImage:[UIImage imageNamed:ProductPlaceholder]];
     
     _titleLabel.text = commendTodayModel.item_name;
     _priceLabel.text = [NSString stringWithFormat:@"￥%@",commendTodayModel.price.description];
@@ -70,7 +70,7 @@
 - (void)setItemListModel:(HYItemListModel *)itemListModel{
 
     _itemListModel = itemListModel;
-    [_imgView sd_setImageWithURL:[NSURL URLWithString:itemListModel.item_title_image] placeholderImage:[UIImage imageNamed:@"productPlaceholder"]];
+    [_imgView sd_setImageWithURL:[NSURL URLWithString:itemListModel.item_title_image] placeholderImage:[UIImage imageNamed:ProductPlaceholder]];
     
     _titleLabel.text = itemListModel.item_name;
     _priceLabel.text = [NSString stringWithFormat:@"￥%@",itemListModel.item_min_price.description];

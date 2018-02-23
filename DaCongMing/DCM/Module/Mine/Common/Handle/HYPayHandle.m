@@ -69,4 +69,37 @@
     }];
 }
 
+/**
+ createAgentBankPayOrder.do
+ 
+ token
+ bankCard_id 银行卡号
+ bankName 打款银行
+ payer_name 打款人姓名
+ payer_phoneNum 打款人电话号码
+ */
++ (void)unipaymentOfflineWithBank:(NSString*)bank acount:(NSString*)acount name:(NSString*)name pbone:(NSString*)phone complectionBlock:(void (^)(BOOL suc))complection {
+    NSDictionary* params = @{
+                             @"token":[HYUserModel sharedInstance].token,
+                             @"bankName":bank,
+                             @"bankCard_id":acount,
+                             @"payer_name":name,
+                             @"payer_phoneNum":phone
+                             };
+    
+    [[HTTPManager shareHTTPManager] postDataFromUrl:API_createAgentBankPayOrder withParameter:params isShowHUD:YES success:^(id returnData) {
+        if (returnData) {
+             NSInteger code =[[returnData objectForKey:@"code"] integerValue];
+            if (code==000) {
+                complection(YES);
+            } else {
+                NSString* message = [returnData objectForKey:@"message"];
+                [MBProgressHUD showPregressHUD:KEYWINDOW withText:message];
+                complection(nil); //test
+            }
+        }
+    }];
+    
+}
+
 @end

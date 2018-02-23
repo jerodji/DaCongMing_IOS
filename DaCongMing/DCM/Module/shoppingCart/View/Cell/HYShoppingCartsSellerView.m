@@ -97,9 +97,9 @@
 #pragma mark - action
 - (void)sellerCheckAllBtnAction:(UIButton *)button{
     
-    DLog(@"button.select is %d",button.selected);
+    NSLog(@"button.select is %d",button.selected);
     button.selected = !button.selected;
-    DLog(@"button.select is %d",button.selected);
+    NSLog(@"button.select is %d",button.selected);
     
     if (_delegate && [_delegate respondsToSelector:@selector(cartSellerSelect:WithIndexPath:)]) {
         

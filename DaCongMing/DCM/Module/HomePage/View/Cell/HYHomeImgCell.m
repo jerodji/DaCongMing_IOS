@@ -60,7 +60,7 @@
         _imgView = [[UIImageView alloc] initWithFrame:CGRectZero];
         _imgView.contentMode = UIViewContentModeScaleAspectFill;
         _imgView.clipsToBounds = YES;
-        [_imgView sd_setImageWithURL:[NSURL URLWithString:_imgUrl] placeholderImage:[UIImage imageNamed:@"productPlaceholder"]];
+        [_imgView sd_setImageWithURL:[NSURL URLWithString:_imgUrl] placeholderImage:[UIImage imageNamed:ProductPlaceholder]];
     }
     
     return _imgView;

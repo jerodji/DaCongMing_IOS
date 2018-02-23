@@ -197,13 +197,13 @@
     
     if (sender == self.phoneTextField) {
         
-        if (sender.text.length > 11) {
-            sender.text = [sender.text substringToIndex:11];
-        }
+//        if (sender.text.length > 1) {
+//            sender.text = [sender.text substringToIndex:11];
+//        }
     }
     else{
         
-        if (sender.text.length >= 6) {
+        if (sender.text.length >= 1) {
             _loginBtn.userInteractionEnabled = YES;
             _loginBtn.backgroundColor = KCOLOR(@"53d76f");
         }
@@ -255,7 +255,7 @@
 - (void)weChatLoginCallBack:(NSNotification *)notification{
     
     self.weChatCallbackCode = notification.object;
-    DLog(@"wechatLogin callBack code %@",self.weChatCallbackCode);
+    NSLog(@"wechatLogin callBack code %@",self.weChatCallbackCode);
     
     NSDictionary *dict = @{@"code" : _weChatCallbackCode};
     [[HTTPManager shareHTTPManager] postDataFromUrl:API_WeChatLogin withParameter:dict isShowHUD:YES success:^(id returnData) {
@@ -321,8 +321,8 @@
     }
     else if (![self validatePhoneNum:_phoneTextField.text]){
         
-        [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"请输入正确的手机号"];
-        return NO;
+//        [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"请输入正确的手机号"];
+//        return NO;
 
     }
     else if ([_passwordTextField.text isEqualToString:@""] || _passwordTextField.text.length == 0){

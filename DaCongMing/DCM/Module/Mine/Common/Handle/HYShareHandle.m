@@ -5,6 +5,8 @@
 //
 
 #import "HYShareHandle.h"
+#import "JJTailorManager.h"
+#import "UIImage+AttributeImage.h"
 
 @implementation HYShareHandle
 
@@ -19,7 +21,9 @@
             break;
         case HYShareTypeImage:{
             WXMediaMessage *message = [WXMediaMessage message];
-            [message setThumbImage:shareModel.thumbnailImage];
+            UIImage * imag = [UIImage compressOriginalImage:shareModel.image toSize:CGSizeMake(70, 120)];
+            [message setThumbImage:imag];
+            
             WXImageObject *imageObject = [WXImageObject object];
             imageObject.imageData = UIImagePNGRepresentation(shareModel.image);
             message.mediaObject = imageObject;
@@ -31,7 +35,9 @@
             WXMediaMessage *message = [WXMediaMessage message];
             message.title = shareModel.shareTitle;
             message.description = shareModel.shareDescription;
-            UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:shareModel.shareWebUrl]]];
+//            message.thumbData = [NSData dataWithContentsOfURL:[NSURL URLWithString:shareModel.urlImg]];
+            UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:shareModel.urlImg]]];
+            image = [UIImage compressOriginalImage:image toSize:CGSizeMake(50, 50)];/* po [UIImageJPEGRepresentation(image, 1) length]/1024.0 */
             [message setThumbImage:image];
             
             WXWebpageObject *object = [WXWebpageObject object];
@@ -54,7 +60,7 @@
         req.scene = WXSceneTimeline;
     }
     [WXApi sendReq:req];
-    DLog(@"%d",[WXApi sendReq:req]);
+    NSLog(@"%d",[WXApi sendReq:req]);
 }
 
 @end

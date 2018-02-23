@@ -121,7 +121,7 @@
     
     if (!_cartsBtn) {
         _cartsBtn = [HYButton buttonWithType:UIButtonTypeCustom];
-        [_cartsBtn setTitle:@"联系客服" forState:UIControlStateNormal];
+        [_cartsBtn setTitle:@"电话咨询" forState:UIControlStateNormal];
         [_cartsBtn setImage:[UIImage imageNamed:@"product_contact"] forState:UIControlStateNormal];
         [_cartsBtn setTitleColor:KAPP_b7b7b7_COLOR forState:UIControlStateNormal];
         _cartsBtn.titleLabel.font = KFont(11);

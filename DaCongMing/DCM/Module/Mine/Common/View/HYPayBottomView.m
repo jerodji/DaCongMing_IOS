@@ -10,8 +10,7 @@
 
 /** 待支付 */
 @property (nonatomic,strong) UILabel *payMoneyLabel;
-/** 支付 */
-@property (nonatomic,strong) UIButton *payBtn;
+
 
 @property (nonatomic,strong) UIView *topLine;
 
@@ -46,14 +45,18 @@
     
     [_payBtn mas_makeConstraints:^(MASConstraintMaker *make) {
        
-        make.right.top.bottom.equalTo(self);
+        make.top.equalTo(self).offset(5);
+//        make.bottom.equalTo(self).offset(-5);
+        make.height.mas_equalTo(40*WIDTH_MULTIPLE);
+        make.right.equalTo(self).offset(-10);
         make.width.mas_equalTo(105 * WIDTH_MULTIPLE);
     }];
     
     [_payMoneyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.top.bottom.equalTo(self);
+        make.top.equalTo(self);
         make.right.equalTo(_payBtn.mas_left).offset(-30 * WIDTH_MULTIPLE);
+        make.bottom.equalTo(_payBtn);
         make.left.equalTo(self);
     }];
 }
@@ -104,10 +107,11 @@
     if (!_payBtn) {
         
         _payBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _payBtn.backgroundColor = KAPP_THEME_COLOR;
+        _payBtn.backgroundColor = UIColorRGB(56, 173, 152);// KAPP_THEME_COLOR;
         [_payBtn setTitle:@"支付" forState:UIControlStateNormal];
         [_payBtn setTitleColor:KAPP_WHITE_COLOR forState:UIControlStateNormal];
         _payBtn.titleLabel.font = KFitFont(15);
+        _payBtn.layer.cornerRadius = 5;
         [_payBtn addTarget:self action:@selector(payBtnAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return _payBtn;

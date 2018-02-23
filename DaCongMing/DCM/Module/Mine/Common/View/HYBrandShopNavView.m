@@ -103,7 +103,7 @@
 
 - (void)searchTextChanged:(UITextField *)textField{
     
-    DLog(@"%@",textField.text);
+    NSLog(@"%@",textField.text);
     if (_delegate && [_delegate respondsToSelector:@selector(searchTextFieldTextChanged:)]) {
         
         [_delegate searchTextFieldTextChanged:textField.text];

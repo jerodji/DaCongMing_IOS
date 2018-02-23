@@ -55,6 +55,13 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
+    
+    NSLog(@"接收的参数%@", self.params);
+    if (NotNull(self.params[@"id"])) {
+        self.sellerID = self.params[@"id"];
+    }
+
+    [self setupUI];
     [self requestNetwork];
     
     KAdjustsScrollViewInsets_NO(self, self.tableView);
@@ -63,7 +70,7 @@
 - (void)viewWillAppear:(BOOL)animated{
     
     [super viewWillAppear:animated];
-    [self setupUI];
+//    [self setupUI];
 }
 
 - (void)setupUI{
@@ -103,8 +110,10 @@
             self.headerView.storeInfo = self.shopInfoModel.storeInfo;
         }
         
-        [_tableView reloadData];
+        [self.tableView reloadData];
+        
     }];
+//    [self.tableView reloadData];
 }
 
 - (void)requestRecommendData{
@@ -129,14 +138,14 @@
     }];
 }
 
-- (void)reloadDataMore{
+- (void)reloadDataMoret {
     
     _pageNo++;
     [HYGoodsHandle getBrandsShopProductWithSeller:self.sellerID Type:self.topItem pageNo:_pageNo ComplectionBlock:^(NSArray *datalist) {
         
         [self.itemList addObjectsFromArray:datalist];
         if (datalist.count) {
-            
+
             [_tableView.mj_footer endRefreshing];
         }
         else{
@@ -192,6 +201,7 @@
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
         cell.datalist = self.itemList ;
+        //cell.collectionView.height = ceil(self.itemList.count / 2.0) * 287 * WIDTH_MULTIPLE;
         cell.collectionSelect = ^(NSString *productID) {
             
             HYGoodsDetailInfoViewController *detailVC = [[HYGoodsDetailInfoViewController alloc] init];
@@ -199,6 +209,8 @@
             detailVC.goodsID = productID;
             [self.navigationController pushViewController:detailVC animated:YES];
         };
+        [cell.collectionView reloadData];
+//        [cell setNeedsLayout];
         return cell;
     }
     static NSString *cellID = @"";
@@ -211,7 +223,7 @@
     return cell;
 }
 
-#pragma mark - tableViewDelegate
+#pragma mark  tableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     if (indexPath.section == 0) {
@@ -239,7 +251,7 @@
     if (indexPath.section == 1){
         
         //猜你喜欢
-        CGFloat height = ceil(self.itemList.count / 2.0) * 330 * WIDTH_MULTIPLE;
+        CGFloat height = ceil(self.itemList.count / 2.0) * 287 * WIDTH_MULTIPLE; //330 ??
         return height;
     }
     return 10;
@@ -331,7 +343,7 @@
     NSDictionary *dict = _datalist[indexPath.item];
     HYGoodsItemModel *model = [HYGoodsItemModel modelWithDictionary:dict];
     
-    DLog(@"current itemID is %@",model.item_id);
+    NSLog(@"current itemID is %@",model.item_id);
     
     
     HYGoodsDetailInfoViewController *detailVC = [[HYGoodsDetailInfoViewController alloc] init];
@@ -356,10 +368,10 @@
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
     
     if (self.isNoData) {
-        
+    
         return CGSizeMake(KSCREEN_WIDTH, 115 * WIDTH_MULTIPLE);
     }
-    
+
     return CGSizeMake(0, 0);
 }
 
@@ -385,8 +397,20 @@
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.backgroundColor = KCOLOR(@"f6f6f6");
         _tableView.tableHeaderView = self.headerView;
+/**
+  这个应该是UITableView最大的改变。我们知道在iOS8引入Self-Sizing 之后，我们可以通过实现estimatedRowHeight相关的属性来展示动态的内容，实现了estimatedRowHeight属性后，得到的初始contenSize是个估算值，是通过estimatedRowHeight 乘以 cell的个数得到的，并不是最终的contenSize，只是当前屏幕能够显示的cell个数，滑动时，tableView不停地得到新的cell，更新自己的contenSize。
+ Self-Sizing在iOS11下是默认开启的，Headers, footers, and cells都默认开启Self-Sizing，所有estimated 高度默认值从iOS11之前的 0 改变为UITableViewAutomaticDimension：
+ 如果目前项目中没有使用estimateRowHeight属性，在iOS11的环境下就要注意了，因为开启Self-Sizing之后，tableView是使用estimateRowHeight属性的，这样就会造成contentSize和contentOffset值的变化，如果是有动画是观察这两个属性的变化进行的，就会造成动画的异常，因为在估算行高机制下，contentSize的值是一点点地变化更新的，所有cell显示完后才是最终的contentSize值。因为不会缓存正确的行高，tableView reloadData的时候，会重新计算contentSize，就有可能会引起contentOffset的变化。
+ iOS11下不想使用Self-Sizing的话，可以通过以下方式关闭://添加以下代码
+*/
+        if (@available(iOS 11.0, *)) {
+            _tableView.estimatedRowHeight = 0;
+            _tableView.estimatedSectionHeaderHeight = 0;
+            _tableView.estimatedSectionFooterHeight = 0;
+        }
         
-        _tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(reloadDataMore)];
+        
+        _tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(reloadDataMoret)];
         _tableView.mj_footer.automaticallyHidden = YES;
     }
     return _tableView;

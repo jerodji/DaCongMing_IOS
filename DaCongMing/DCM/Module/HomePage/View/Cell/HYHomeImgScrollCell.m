@@ -71,7 +71,7 @@
     
     _goodHealthModel = goodHealthModel;
     
-    [_imgView sd_setImageWithURL:[NSURL URLWithString:goodHealthModel.image_url] placeholderImage:[UIImage imageNamed:@"productPlaceholder"]];
+    [_imgView sd_setImageWithURL:[NSURL URLWithString:goodHealthModel.image_url] placeholderImage:[UIImage imageNamed:ProductPlaceholder]];
     [_collectionView reloadData];
     
     _cellHeight = _bgView.bottom + 10 * WIDTH_MULTIPLE;
@@ -117,7 +117,7 @@
     NSDictionary *dict = _goodHealthModel.itemList[indexPath.item];
     HYGoodsItemModel *model = [HYGoodsItemModel modelWithDictionary:dict];
     
-    DLog(@"current itemID is %@",model.item_id);
+    NSLog(@"current itemID is %@",model.item_id);
     
     
     self.collectionSelect(model.item_id);

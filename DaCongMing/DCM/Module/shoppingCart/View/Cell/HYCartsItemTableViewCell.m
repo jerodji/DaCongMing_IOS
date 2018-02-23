@@ -127,7 +127,7 @@
     
     HYCartItem *item = [HYCartItem modelWithDictionary:items.item];
     
-    [_itemImgView sd_setImageWithURL:[NSURL URLWithString:item.item_title_image] placeholderImage:[UIImage imageNamed:@"productPlaceholder"]];
+    [_itemImgView sd_setImageWithURL:[NSURL URLWithString:item.item_title_image] placeholderImage:[UIImage imageNamed:ProductPlaceholder]];
     _itemLabel.text = item.item_name;
     _countLabel.text = [NSString stringWithFormat:@"x%@",items.qty];
     _unitLabel.text = items.unit;
@@ -150,9 +150,9 @@
 #pragma mark - action
 - (void)checkBtnAction:(UIButton *)button{
     
-    DLog(@"button.select is %d",button.selected);
+    NSLog(@"button.select is %d",button.selected);
     button.selected = !button.selected;
-    DLog(@"button.select is %d",button.selected);
+    NSLog(@"button.select is %d",button.selected);
     _items.isSelect = button.selected;
     
     if (_delegate && [_delegate respondsToSelector:@selector(cartItemSelect:WithIndexPath:)]) {
@@ -208,7 +208,7 @@
         _itemImgView = [[UIImageView alloc] initWithFrame:CGRectZero];
         _itemImgView.contentMode = UIViewContentModeScaleAspectFill;
         _itemImgView.clipsToBounds = YES;
-        _itemImgView.image = [UIImage imageNamed:@"productPlaceholder"];
+        _itemImgView.image = [UIImage imageNamed:ProductPlaceholder];
     }
     
     return _itemImgView;
