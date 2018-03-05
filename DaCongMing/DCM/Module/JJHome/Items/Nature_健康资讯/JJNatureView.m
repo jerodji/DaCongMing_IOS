@@ -29,7 +29,7 @@
             
             cell.btnCB = ^{
                 
-                NSString* url = [NSString stringWithFormat:@"%@?img=%@&title=%@&descriptions=%@",model.jumpUrl,model.img,model.title,model.descriptions];
+                NSString* url = [NSString stringWithFormat:@"%@?img=%@&title=%@&descriptions=%@&shareUrl=%@",model.jumpUrl,model.img,model.title,model.descriptions,model.shareUrl];
                 [DCURLRouter pushURLString:url animated:YES];
             };
             [cell setModel:model];

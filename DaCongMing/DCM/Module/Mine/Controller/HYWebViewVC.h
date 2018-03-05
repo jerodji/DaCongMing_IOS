@@ -15,4 +15,6 @@
 
 @property (nonatomic,copy) NSString * descriptions;
 
+@property (nonatomic,copy) NSString * shareUrl;
+
 @end

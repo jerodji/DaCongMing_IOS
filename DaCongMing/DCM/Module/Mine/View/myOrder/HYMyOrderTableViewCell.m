@@ -32,7 +32,7 @@
 @property (nonatomic,strong) UIButton *toPayBtn;
 /** 确认收货 */
 @property (nonatomic,strong) UIButton *confirmGoodsBtn;
-/** 电话咨询,电话咨询 */
+/** 电话咨询,电话咨询,联系客服 */
 @property (nonatomic,strong) UIButton *contactService;
 /** 评论 */
 @property (nonatomic,strong) UIButton *commentBtn;
@@ -326,7 +326,7 @@
     
     if (_delegate && [_delegate respondsToSelector:@selector(myOrderBtnActionWithStr:WithIndexPath:)]) {
         
-        [_delegate myOrderBtnActionWithStr:@"电话咨询" WithIndexPath:self.indexPath];
+        [_delegate myOrderBtnActionWithStr:@"联系客服" WithIndexPath:self.indexPath];
     }
 }
 
@@ -508,7 +508,7 @@
     if (!_contactService) {
         
         _contactService = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_contactService setTitle:@"电话咨询" forState:UIControlStateNormal];
+        [_contactService setTitle:@"联系客服" forState:UIControlStateNormal];
         _contactService.backgroundColor = KAPP_WHITE_COLOR;
         [_contactService setTitleColor:KAPP_272727_COLOR forState:UIControlStateNormal];
         _contactService.titleLabel.font = KFitFont(14);

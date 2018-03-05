@@ -403,9 +403,9 @@
         }
             break;
         case 5:{
-            
-            if([HYUserHandle jumpToLoginViewControllerFromVC:self])
-                return ;
+            //电话咨询
+//            if([HYUserHandle jumpToLoginViewControllerFromVC:self])
+//                return ;
             NSString * str = [[NSString alloc] initWithFormat:@"tel://%@",KCustomerServicePhone];
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
             

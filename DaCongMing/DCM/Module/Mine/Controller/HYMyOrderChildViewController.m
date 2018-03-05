@@ -205,7 +205,7 @@
         commentVC.orderID = model.sorder_id;
         [self.navigationController pushViewController:commentVC animated:YES];
     }
-    else if ([title isEqualToString:@"电话咨询"]){
+    else if ([title isEqualToString:@"联系客服"]){
         
         [self contactServiceWithModel:model];
     }
@@ -214,11 +214,11 @@
 - (void)contactServiceWithModel:(HYMyOrderModel *)orderModel{
     
     QYSource *source = [[QYSource alloc] init];
-    source.title =  @"电话咨询";
+    source.title =  @"联系客服";
     source.urlString = @"https://8.163.com/";
     QYSessionViewController *sessionViewController = [[QYSDK sharedSDK] sessionViewController];
     
-    sessionViewController.sessionTitle = @"电话咨询";
+    sessionViewController.sessionTitle = @"联系客服";
     QYUserInfo *userInfo = [[QYUserInfo alloc] init];
     userInfo.userId = [HYUserModel sharedInstance].userInfo.id;
     NSMutableArray *array = [NSMutableArray new];

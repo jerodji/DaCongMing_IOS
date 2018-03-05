@@ -16,6 +16,7 @@
 @property (nonatomic, copy) NSString* title;
 @property (nonatomic, copy) NSString* descriptions;
 @property (nonatomic, copy) NSString* jumpUrl;
+@property (nonatomic,copy) NSString * shareUrl;
 
 @end
 

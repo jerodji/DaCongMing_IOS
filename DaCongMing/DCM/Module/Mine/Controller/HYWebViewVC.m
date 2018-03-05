@@ -71,8 +71,15 @@
     if (NotNull(self.params)) {
         NSLog(@"%@",self.params);
         NSDictionary*dic = [self analyzeURL:self.params[@"urlStr"]];
-        if (NotNull([dic objectForKey:@"url"])) { self.url = [dic objectForKey:@"url"]; }
-        if (NotNull([dic objectForKey:@"img"])) { self.img = [dic objectForKey:@"img"]; }
+        if (NotNull([dic objectForKey:@"url"])) {
+            self.url = [dic objectForKey:@"url"];
+        }
+        if (NotNull([dic objectForKey:@"img"])) {
+            self.img = [dic objectForKey:@"img"];
+        }
+        if (NotNull([dic objectForKey:@"shareUrl"])) {
+            self.shareUrl = [dic objectForKey:@"shareUrl"];
+        }
         if (NotNull([dic objectForKey:@"descriptions"])) {
             self.descriptions = [NSString stringWithFormat:@"%@",[dic objectForKey:@"descriptions"]].stringByRemovingPercentEncoding;
         }
@@ -98,7 +105,7 @@
     
     HYShareModel *model = [[HYShareModel alloc] init];
     model.shareType = HYShareTypeWebUrl;
-    model.shareWebUrl = self.url;
+    model.shareWebUrl = self.shareUrl;
     model.shareTitle = self.shareTitle;
     model.urlImg = self.img;
     model.shareDescription = self.descriptions;

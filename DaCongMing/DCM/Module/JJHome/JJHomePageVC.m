@@ -18,15 +18,11 @@
     SDCycleScrollView   * _sdcyclesView;
     CGFloat border_top_y ; //上边界
     CGFloat border_btm_y ; //下边界
-//    BOOL    IS_NEWY_EQUAL_TOP;
 }
-
 @property (nonatomic, strong) UIView * statusBarView;
 @property (nonatomic, strong) JJSearchController * searchCtrl;
 @property (nonatomic, strong) JJTableController * tableCtrl;
-
 @property (nonatomic, assign) CGRect rect;
-
 @property (nonatomic,strong) NSMutableArray* bannerImages;
 @property (nonatomic,strong) NSMutableArray* bannerJumpUrls;
 @end

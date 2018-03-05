@@ -65,9 +65,11 @@
         UIImage *selectImage = [UIImage imageNamed:[NSString stringWithFormat:@"%@_press",imageArray[i]]];
         vc.tabBarItem.image = [normalImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         vc.tabBarItem.selectedImage = [selectImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        
         vc.tabBarItem.title = titleArray[i];
         [vc.tabBarItem setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor lightGrayColor]} forState:UIControlStateNormal];
         [vc.tabBarItem setTitleTextAttributes:@{NSForegroundColorAttributeName : KAPP_THEME_COLOR} forState:UIControlStateSelected];
+        
         nav.navigationBar.tintColor = KAPP_THEME_COLOR;
         
         //将文字上移

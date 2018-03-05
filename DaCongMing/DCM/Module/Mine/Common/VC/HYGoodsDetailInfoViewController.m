@@ -267,17 +267,26 @@
     };
 }
 
-//电话咨询
+//联系客服
 - (void)contactServiceWithModel:(NSString *)productID{
     
     QYSource *source = [[QYSource alloc] init];
-    source.title =  @"电话咨询";
+    source.title =  @"联系客服";
     source.urlString = @"https://8.163.com/";
-    QYSessionViewController *sessionViewController = [[QYSDK sharedSDK] sessionViewController];
     
-    sessionViewController.sessionTitle = @"电话咨询";
+    QYSessionViewController *sessionViewController = [[QYSDK sharedSDK] sessionViewController];
+    sessionViewController.sessionTitle = @"联系客服";
+    //    sessionViewController.navigationController.navigationBar.tintColor = KAPP_NAV_COLOR;
+
+    UIView* statusView = [[UIView alloc] init];
+    statusView.backgroundColor = [UIColor redColor];
+    statusView.frame = CGRectMake(0, -KSTATUSBAR_HEIGHT, KSCREEN_WIDTH, KSTATUSBAR_HEIGHT);
+    [sessionViewController.navigationController.navigationBar addSubview:statusView];
+    
+    
     QYUserInfo *userInfo = [[QYUserInfo alloc] init];
     userInfo.userId = [HYUserModel sharedInstance].userInfo.id;
+    
     NSMutableArray *array = [NSMutableArray new];
     NSMutableDictionary *dictRealName = [NSMutableDictionary new];
     [dictRealName setObject:@"real_name" forKey:@"key"];
