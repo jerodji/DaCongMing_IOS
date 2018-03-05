@@ -458,8 +458,12 @@
         _headerView.headerIconClickCB = ^{
             if([HYUserHandle jumpToLoginViewControllerFromVC:wkself])
                 return ;
-            HYMyAccountViewController *myAccountVC = [HYMyAccountViewController new];
-            [wkself.navigationController pushViewController:myAccountVC animated:YES];
+            
+//            if ([HYUserModel sharedInstance].token && [HYUserModel sharedInstance].userInfo) {
+                HYMyAccountViewController *myAccountVC = [HYMyAccountViewController new];
+                [wkself.navigationController pushViewController:myAccountVC animated:YES];
+//            }
+            
         };
         
     }

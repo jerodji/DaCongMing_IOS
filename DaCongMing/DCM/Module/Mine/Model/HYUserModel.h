@@ -9,6 +9,7 @@
 
 @interface HYParterRecommend : NSObject
 
+@property (nonatomic, copy) NSString *id;
 @property (nonatomic, copy) NSString *type;
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, copy) NSString *price;

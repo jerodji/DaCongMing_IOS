@@ -73,6 +73,9 @@
 //获取系统消息
 #define API_SystemMessage       @"HAILIN_SERVER/getUserRemind.do"
 
+//系统消息-实习
+#define API_remindisread        @"HAILIN_SERVER/remindisread.do"
+
 /********************************订单相关*********************************/
 #pragma mark - 订单相关
 

@@ -70,20 +70,34 @@
         
         [JJAlert showAlertTitle:@"提示" msg:@"是否到App Store下载\"聪明管理\"" cancleAction:^{
             
+            if ([HYUserModel sharedInstance].token && [HYUserModel sharedInstance].userInfo.id) {
+                [self request_remindisread:[HYUserModel sharedInstance].token msgid:[HYUserModel sharedInstance].userInfo.id];
+            }
+            
         } sureAction:^{
+            
+            if ([HYUserModel sharedInstance].token && [HYUserModel sharedInstance].userInfo.id) {
+                [self request_remindisread:[HYUserModel sharedInstance].token msgid:[HYUserModel sharedInstance].userInfo.id];
+            }
+            
             NSString *urlCode = [@"聪明管理" stringByURLEncode];
             NSString *str = [NSString stringWithFormat:
                              @"https://itunes.apple.com/cn/app/%@/id1319732695?mt=8",urlCode];
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
         }];
-
-    }
-    else{
         
+    } else{
         self.iconImageView.image = [UIImage imageNamed:@"recommend_fail"];
         self.title = @"支付失败";
         self.tipsLabel.text = @"支付失败";
     }
+}
+
+//API_remindisread
+- (void)request_remindisread:(NSString*)token msgid:(NSString*)msgid {
+    [[HTTPManager shareHTTPManager] postDataFromUrl:API_remindisread withParameter:@{@"token":token,@"id":msgid} isShowHUD:NO success:^(id returnData) {
+        NSLog(@"%@",returnData)
+    }];
 }
 
 #pragma mark - lazyload

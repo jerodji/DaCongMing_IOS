@@ -237,8 +237,8 @@
 }
 
 + (BOOL)jumpToLoginViewControllerFromVC:(UIViewController *)fromVC{
-    
-    if (![HYUserModel sharedInstance].token) {
+    //[HYUserModel sharedInstance].userInfo
+    if (![HYUserModel sharedInstance].token || ![HYUserModel sharedInstance].userInfo) {
         
         [MBProgressHUD showPregressHUD:KEYWINDOW withText:@"请登录后操作"];
         HYLoginViewController *loginVC = [[HYLoginViewController alloc] init];

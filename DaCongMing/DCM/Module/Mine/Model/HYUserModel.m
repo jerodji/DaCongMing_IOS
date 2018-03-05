@@ -9,6 +9,17 @@
 
 @implementation HYUserInfo
 
+//- (NSString *)id { if (_id) {return _id; } return @"";}
+//- (NSString *)name {if (_name) {return _name;} return @"";}
+//- (NSString *)age { if (_age) {return _age;} return @"";}
+//- (NSString *)sex {if (_sex) {return _sex;} return @"";}
+//- (NSString *)adress {if (_adress) {return _adress;} return @"";}
+//- (NSString *)phone {if (_phone) {return _phone;} return @"";}
+//- (NSString *)note {if (_note) {return _note;} return @"";}
+//- (NSString *)head_image_url {if (_head_image_url) {return _head_image_url;} return @"";}
+//- (NSString *)qrpath {if (_qrpath) {return _qrpath;} return @"";}
+
+
 - (instancetype)initWithCoder:(NSCoder *)aDecoder{
     
     if (self = [super init]) {
@@ -49,6 +60,17 @@
 
 @implementation HYParterRecommend
 
+//- (NSString *)id { if(_id){return _id;} return @"";}
+//- (NSString *)type { if(_type){return _type;} return @"";}
+//- (NSString *)title {if(_title){return _title;} return @"";}
+//- (NSString *)price {if(_price){return _price;} return @"";}
+//- (NSString *)msg {if(_msg){return _msg;} return @"";}
+//- (NSString *)recomMsg {if(_recomMsg){return _recomMsg;} return @"";}
+//- (NSString *)recomlevel {if(_recomlevel){return _recomlevel;} return @"";}
+//- (NSString *)recomer_name {if(_recomer_name){return _recomer_name;} return @"";}
+//- (NSString *)recomer_phone {if(_recomer_phone){return _recomer_phone;} return @"";}
+//- (NSString *)close_time {if(_close_time){return _close_time;} return @"";}
+
 - (instancetype)initWithCoder:(NSCoder *)aDecoder{
     
     if (self = [super init]) {
@@ -88,6 +110,9 @@
 @end
 
 @implementation HYUserModel
+
+//- (NSString *)token { if (_token) { return _token;} return @"";}
+//- (HYUserInfo *)userInfo {if (_userInfo) {return _userInfo;} return [HYUserInfo new];}
 
 + (instancetype)sharedInstance{
     
@@ -158,5 +183,7 @@
     
     free(ivars);
 }
+
+
 
 @end

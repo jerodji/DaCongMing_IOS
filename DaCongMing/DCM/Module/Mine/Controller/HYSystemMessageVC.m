@@ -82,17 +82,41 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     HYSystemMessageModel* model = self.datalist[indexPath.row];
     if ([model.recomlevel isEqualToString:@"V4"]) {
-        
+        //实习合伙人
         [JJAlert showAlertTitle:@"您已成为实习合伙人" msg:@"是否到App Store下载\"聪明管理\"" cancleAction:^{
-            
+            if ([HYUserModel sharedInstance].token && model.id) {
+                [self request_remindisread:[HYUserModel sharedInstance].token msgid:model.id];
+            }
         } sureAction:^{
+            if ([HYUserModel sharedInstance].token && model.id) {
+                [self request_remindisread:[HYUserModel sharedInstance].token msgid:model.id];
+            }
+            
             NSString *urlCode = [@"聪明管理" stringByURLEncode];
             NSString *str = [NSString stringWithFormat:
                              @"https://itunes.apple.com/cn/app/%@/id1319732695?mt=8",urlCode];
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
         }];
         
-    } else {
+    }
+    else if([model.recomlevel isEqualToString:@"V2"]) {
+        //实习经销商
+        [JJAlert showAlertTitle:@"您已成为实习经销商" msg:@"是否到App Store下载\"聪明管理\"" cancleAction:^{
+            if ([HYUserModel sharedInstance].token && model.id) {
+                [self request_remindisread:[HYUserModel sharedInstance].token msgid:model.id];
+            }
+        } sureAction:^{
+            if ([HYUserModel sharedInstance].token && model.id) {
+                 [self request_remindisread:[HYUserModel sharedInstance].token msgid:model.id];
+            }
+            
+            NSString *urlCode = [@"聪明管理" stringByURLEncode];
+            NSString *str = [NSString stringWithFormat:
+                             @"https://itunes.apple.com/cn/app/%@/id1319732695?mt=8",urlCode];
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+        }];
+    }
+    else {
         HYPayParterCostViewController* PayParterCostViewController = [HYPayParterCostViewController new];
         PayParterCostViewController.dataSourceList = self.datalist;
         PayParterCostViewController.selectIndex = indexPath.row;
@@ -100,6 +124,14 @@
         [self.navigationController pushViewController:PayParterCostViewController animated:YES];
     }
 }
+
+//API_remindisread
+- (void)request_remindisread:(NSString*)token msgid:(NSString*)msgid {
+    [[HTTPManager shareHTTPManager] postDataFromUrl:API_remindisread withParameter:@{@"token":token,@"id":msgid} isShowHUD:NO success:^(id returnData) {
+        NSLog(@"%@",returnData)
+    }];
+}
+
 
 /*
 // Override to support conditional editing of the table view.

@@ -17,7 +17,7 @@
 
 @property (nonatomic,copy) NSString * close_time;
 @property (nonatomic,copy) NSString * create_time;
-@property (nonatomic,copy) NSString * id;
+@property (nonatomic,copy) NSString * id; /* 系统消息id */
 @property (nonatomic,copy) NSString * msg;
 @property (nonatomic,copy) NSString * price;
 @property (nonatomic,copy) NSString * receive_bank_name;
@@ -27,7 +27,7 @@
 @property (nonatomic,copy) NSString * recomer_id;
 @property (nonatomic,copy) NSString * recomer_name; /* 推荐人 */
 @property (nonatomic,copy) NSString * recomer_phone;
-@property (nonatomic,copy) NSString * recomlevel;
+@property (nonatomic,copy) NSString * recomlevel; /** V0没有权限 V2实习经销商 V3高级经销商 V4实习合伙人 V5高级合伙人 V6特约合伙人 */
 @property (nonatomic,copy) NSString * stat;
 @property (nonatomic,copy) NSString * title;
 @property (nonatomic,copy) NSString * type;
