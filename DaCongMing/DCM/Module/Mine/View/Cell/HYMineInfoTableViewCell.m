@@ -39,10 +39,13 @@
     CGFloat itemWidth = KSCREEN_WIDTH / 4;
     CGFloat itemHeight = 45 * WIDTH_MULTIPLE;
     CGFloat itemMargin = 23 * WIDTH_MULTIPLE;
+    
     for (NSInteger i = 0; i < _titleArray.count; i++) {
         
+        NSString* title = _titleArray[i];
+        
         HYButton *button = [HYButton buttonWithType:UIButtonTypeCustom];
-        [button setTitle:_titleArray[i] forState:UIControlStateNormal];
+        [button setTitle:title forState:UIControlStateNormal];
         [button setImage:[UIImage imageNamed:_imgArray[i]] forState:UIControlStateNormal];
         button.frame = CGRectMake((i % 4) * itemWidth, (i / 4) * (itemHeight + itemMargin) + 18 * WIDTH_MULTIPLE, itemWidth, itemHeight);
         button.titleLabel.font = KFitFont(14);
@@ -50,6 +53,19 @@
         [button addTarget:self action:@selector(infoBtnAction:) forControlEvents:UIControlEventTouchUpInside];
         button.tag = 200 + i;
         [self addSubview:button];
+        
+        if ([title isEqualToString:@"系统消息"]) {
+            _redPointView = [[UIView alloc] initWithFrame:
+                             CGRectMake((i % 4) * itemWidth + itemWidth - 30,
+                                        (i / 4) * (itemHeight + itemMargin) + 18 * WIDTH_MULTIPLE + (-5),
+                                        10,
+                                        10)];
+            
+            _redPointView.backgroundColor = [UIColor redColor];
+            _redPointView.layer.cornerRadius = 5;
+            [self addSubview:_redPointView];
+            _redPointView.hidden = YES;
+        }
         
     }
 }

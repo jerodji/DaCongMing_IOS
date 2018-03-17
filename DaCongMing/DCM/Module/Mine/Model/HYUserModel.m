@@ -109,6 +109,8 @@
 
 @end
 
+#define DCMUserModelKey @"dcm_userModel"
+
 @implementation HYUserModel
 
 //- (NSString *)token { if (_token) { return _token;} return @"";}
@@ -125,6 +127,21 @@
     });
     
     return model;
+}
+
++ (void)saveUserModel:(HYUserModel*)userModel
+{
+//    NSString* data = [userModel mj_JSONString];
+    NSString* jsonString = [userModel modelToJSONString];
+    [[NSUserDefaults standardUserDefaults]setObject:jsonString forKey:DCMUserModelKey];
+    [[NSUserDefaults standardUserDefaults]synchronize];
+}
++ (HYUserModel*)getLocalUserModel
+{
+    NSString* jsonStr = [[NSUserDefaults standardUserDefaults]objectForKey:DCMUserModelKey];
+    NSDictionary* modelDic = [jsonStr modelToJSONObject];
+    HYUserModel* userModel = [HYUserModel modelWithDictionary:modelDic];
+    return userModel;
 }
 
 

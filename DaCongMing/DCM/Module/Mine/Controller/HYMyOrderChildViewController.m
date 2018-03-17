@@ -11,6 +11,7 @@
 #import "HYFillOrderViewController.h"
 #import "HYConfirmReceiveGoodsVC.h"
 #import "HYCommentVC.h"
+#import "HYMyUserInfo.h"
 
 @interface HYMyOrderChildViewController () <UITableViewDelegate,UITableViewDataSource,HYMyOrderBtnActionDelegate,DZNEmptyDataSetSource,DZNEmptyDataSetDelegate>
 
@@ -246,6 +247,12 @@
     [userDict setObject:@"用户ID" forKey:@"label"];
     [userDict setValue:[HYUserModel sharedInstance].userInfo.id forKey:@"value"];
     [array addObject:userDict];
+    
+    NSMutableDictionary * levelDict = [NSMutableDictionary new];
+    [levelDict setObject:@"level" forKey:@"key"];
+    [levelDict setObject:@"等级" forKey:@"label"];
+    [levelDict setValue:[HYMyUserInfo getUserStatusWithLevel:[HYMyUserInfo sharedInstance].level] forKey:@"value"];
+    [array addObject:levelDict];
     
 //    NSMutableDictionary *dictEmail = [NSMutableDictionary new];
 //    [dictEmail setObject:@"email" forKey:@"key"];

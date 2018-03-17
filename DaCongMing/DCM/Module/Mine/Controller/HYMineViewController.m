@@ -93,8 +93,6 @@
     [_cellInfoArray addObject:@[@"HYOrderTableViewCell"]];
     [_cellInfoArray addObject:@[@"HYMineInfoTableViewCell"]];
     [_cellInfoArray addObject:@[@"HYHomeDoodsCell"]];
-    
-    
 }
 
 - (void)requestNetwork{
@@ -168,6 +166,11 @@
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
         cell.delegate = self;
+        
+        if ([self.headerView.myUserInfo.hasUnreadMsg isEqualToString:@"1"]) {
+            cell.redPointView.hidden = NO;
+        }
+        
         return cell;
     }
     else if ([cellName isEqualToString:@"HYHomeDoodsCell"]){

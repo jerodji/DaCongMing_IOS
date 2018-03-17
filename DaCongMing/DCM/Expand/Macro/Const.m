@@ -10,6 +10,8 @@
 
 @implementation Const
 
+NSString * const kMyUserInfo = @"myUserInfo";
+
 NSString * const KUserModelData = @"userModelData";
 
 NSString * const KUserPhone = @"userLoginPhone";

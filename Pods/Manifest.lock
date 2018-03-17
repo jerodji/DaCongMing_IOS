@@ -32,7 +32,9 @@ PODS:
   - SDWebImage (4.0.0):
     - SDWebImage/Core (= 4.0.0)
   - SDWebImage/Core (4.0.0)
-  - UMengAnalytics (4.2.4)
+  - UMCCommon (1.4.1)
+  - UMCPush (3.0.1):
+    - UMCCommon
   - WechatOpenSDK (1.8.0)
   - YYKit (1.0.9):
     - YYKit/no-arc (= 1.0.9)
@@ -53,7 +55,7 @@ DEPENDENCIES:
   - MJRefresh (~> 3.1.12)
   - SDCycleScrollView
   - SDCycleScrollView (~> 1.65)
-  - UMengAnalytics
+  - UMCPush
   - WechatOpenSDK
   - YYKit (~> 1.0.9)
 
@@ -72,10 +74,11 @@ SPEC CHECKSUMS:
   MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
   SDCycleScrollView: d0fd5fe40a80918371fd8939214eb3be81033d83
   SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
-  UMengAnalytics: ef8d45f94c0e5771dc364cf6a5731d9d3b101da2
+  UMCCommon: ed0b882a939c45850f6803a5837698572a3e9b96
+  UMCPush: ab74d8141d0f82653112aa9f164a02eaf1e15f01
   WechatOpenSDK: 0ee07a8d492299d3e47372a33da5af26524a7576
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: b0cb7f184863c984f7ceba46156e6c33ab12cb5c
+PODFILE CHECKSUM: edba01b3437f3f2bdde22c3d5342f2cc0fad38ef
 
 COCOAPODS: 1.3.1

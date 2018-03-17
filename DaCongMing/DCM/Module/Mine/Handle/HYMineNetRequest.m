@@ -24,6 +24,9 @@
                 
                 HYMyUserInfo *myUserInfo = [HYMyUserInfo sharedInstance];
                 [myUserInfo modelSetWithDictionary:dict];
+                
+                [HYPlistTools archiveObject:myUserInfo withName:kMyUserInfo];
+                
                 complection(myUserInfo);
             }
             else{

@@ -18,4 +18,6 @@
 /** delegate */
 @property (nonatomic,weak) id<HYMineInfoBtnActionDelegate>delegate;
 
+@property (nonatomic,strong) UIView * redPointView;
+
 @end

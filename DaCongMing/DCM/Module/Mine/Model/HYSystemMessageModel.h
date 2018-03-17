@@ -27,7 +27,7 @@
 @property (nonatomic,copy) NSString * recomer_id;
 @property (nonatomic,copy) NSString * recomer_name; /* 推荐人 */
 @property (nonatomic,copy) NSString * recomer_phone;
-@property (nonatomic,copy) NSString * recomlevel; /** V0没有权限 V2实习经销商 V3高级经销商 V4实习合伙人 V5高级合伙人 V6特约合伙人 */
+@property (nonatomic,copy) NSString * recomlevel; /** V0没有权限 V1普通客户 V2实习经销商 V3高级经销商 V4实习合伙人 V5高级合伙人 V6特约合伙人 */
 @property (nonatomic,copy) NSString * stat;
 @property (nonatomic,copy) NSString * title;
 @property (nonatomic,copy) NSString * type;

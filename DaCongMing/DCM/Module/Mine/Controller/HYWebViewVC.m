@@ -105,12 +105,15 @@
     
     HYShareModel *model = [[HYShareModel alloc] init];
     model.shareType = HYShareTypeWebUrl;
-    model.shareWebUrl = self.shareUrl;
+    model.shareWebUrl = [NSString stringWithFormat:@"%@?user_id=%@",self.shareUrl,[HYUserModel sharedInstance].userInfo.id];
+//    model.user_id = [HYUserModel sharedInstance].userInfo.id;
     model.shareTitle = self.shareTitle;
     model.urlImg = self.img;
     model.shareDescription = self.descriptions;
     self.shareView.shareModel = model;
 }
+//http://www.laopdr.cn/HAILIN_SERVER/article/13295c5c-0041-4936-b5d5-427a10249d01.do
+//http://www.laopdr.cn/HAILIN_SERVER/article/13295c5c-0041-4936-b5d5-427a10249d01.do?user_id=null
 
 - (HYShareView *)shareView{
     if (!_shareView) {

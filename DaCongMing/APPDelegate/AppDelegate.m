@@ -1,6 +1,4 @@
 
-
-
 #import "AppDelegate.h"
 #import "HYTabBarController.h"
 #import "HYLoginViewController.h"
@@ -8,8 +6,8 @@
 #import <AlipaySDK/AlipaySDK.h>
 #import <Bugly/Bugly.h>
 #import "QYSDK.h"
-#import <UMMobClick/MobClick.h>
 #import "HYShareView.h"
+#import "AppDelegate+UMPush.h"
 
 @interface AppDelegate ()<WXApiDelegate>
 
@@ -19,16 +17,17 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
-    // po [UIFont familyNames]
-//    NSArray *familyNames = [UIFont familyNames];
-//    for( NSString *familyName in familyNames ){
-//        printf( "Family: %s \n", [familyName UTF8String] );
-//        NSArray *fontNames = [UIFont fontNamesForFamilyName:familyName];
-//        for( NSString *fontName in [UIFont familyNames] ){
-//            printf( "\tFont: %s \n", [fontName UTF8String] );
-//        }
-//    }
+    /**
+     // po [UIFont familyNames]
+     NSArray *familyNames = [UIFont familyNames];
+     for( NSString *familyName in familyNames ){
+         printf( "Family: %s \n", [familyName UTF8String] );
+         NSArray *fontNames = [UIFont fontNamesForFamilyName:familyName];
+         for( NSString *fontName in [UIFont familyNames] ){
+             printf( "\tFont: %s \n", [fontName UTF8String] );
+         }
+     }
+     */
     
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = KAPP_TableView_BgColor;
@@ -57,13 +56,10 @@
     
     [Bugly startWithAppId:TencentBuglyID];
     [[QYSDK sharedSDK] registerAppId:QIYUAPPID appName:@"大聪明"];
-    UMConfigInstance.appKey = UMengAPPKey;
-    [MobClick startWithConfigure:UMConfigInstance];
-    
-//    HYLoginViewController *loginVC = [[HYLoginViewController alloc] init];
-//    self.window.rootViewController = loginVC;
-    
     [WXApi registerApp:WXAppID];
+    
+    
+    [self initUMPush:application didFinishLaunchingWithOptions:launchOptions];
     
     return YES;
 }
@@ -136,6 +132,7 @@
     
     return YES;
 }
+
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

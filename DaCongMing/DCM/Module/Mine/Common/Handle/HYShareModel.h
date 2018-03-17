@@ -22,6 +22,8 @@ typedef NS_ENUM(NSUInteger, HYShareScene) {
 
 @interface HYShareModel : NSObject
 
+//@property (nonatomic,copy) NSString * user_id;
+
 @property (nonatomic,assign) HYShareType shareType;
 @property (nonatomic,assign) HYShareScene shareScene;
 /** 分享文本 */

@@ -130,6 +130,7 @@
 }
 
 #pragma mark - action
+//微信好友
 - (void)weChatShareBtnAction{
     
     if (self.shareModel) {
@@ -143,6 +144,7 @@
     }
 }
 
+//朋友圈
 - (void)lifeCircleShareBtnAction{
     
     if (self.shareModel) {

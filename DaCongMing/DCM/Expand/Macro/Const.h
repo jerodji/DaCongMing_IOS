@@ -10,6 +10,8 @@
 
 @interface Const : NSObject
 
+extern NSString * const kMyUserInfo;
+
 /** 用户信息模型 */
 extern NSString * const KUserModelData;
 

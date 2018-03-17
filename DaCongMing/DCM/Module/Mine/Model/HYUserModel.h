@@ -44,7 +44,18 @@
 @property (nonatomic, copy) NSString *qrpath;
 /** 推荐人 */
 @property (nonatomic,strong) HYParterRecommend *userRemind;
-
+//browseRecordsNum
+@property (nonatomic,copy) NSString * browseRecordsNum;
+//cartItemNum
+@property (nonatomic,copy) NSString * cartItemNum;
+//favItemNum
+@property (nonatomic,copy) NSString * favItemNum;
+//favStoreNum
+@property (nonatomic,copy) NSString * favStoreNum;
+//hasUnreadMsg
+@property (nonatomic,copy) NSString * hasUnreadMsg;
+//uid
+@property (nonatomic,copy) NSString * uid;
 @end
 
 @interface HYUserModel : HYBaseModel <NSCoding>
@@ -58,6 +69,7 @@
 /** 清除所有的数据 */
 - (void)clearData;
 
-
++ (void)saveUserModel:(HYUserModel*)userModel;
++ (HYUserModel*)getLocalUserModel;
 
 @end

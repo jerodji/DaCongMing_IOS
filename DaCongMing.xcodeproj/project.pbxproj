@@ -35,7 +35,6 @@
 		049D7B121FDFF0D5000A0A7B /* HYRecommendPayModeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 049D7B111FDFF0D5000A0A7B /* HYRecommendPayModeCell.m */; };
 		04CAEEA51FF504AF001127B5 /* UILabel+HYCopy.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CAEEA41FF504AF001127B5 /* UILabel+HYCopy.m */; };
 		38073EF92012020A00E74811 /* JJManWomamAreaController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38073EF82012020A00E74811 /* JJManWomamAreaController.m */; };
-		3811E1F720298E7A0008298D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3811E1F620298E7A0008298D /* Assets.xcassets */; };
 		3813F5D72010D812006779B6 /* NSObject+isNull.m in Sources */ = {isa = PBXBuildFile; fileRef = 3813F5D52010D812006779B6 /* NSObject+isNull.m */; };
 		3823AD5820175772002520A1 /* JJBoutiquCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3823AD5720175772002520A1 /* JJBoutiquCell.m */; };
 		3823AD5B201776DF002520A1 /* JJBoutiquModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3823AD5A201776DF002520A1 /* JJBoutiquModel.m */; };
@@ -52,10 +51,13 @@
 		3830E49020171FA900420FB0 /* JJTimeReCCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3830E48F20171FA900420FB0 /* JJTimeReCCell.xib */; };
 		3830E49320173B7F00420FB0 /* JJLTCView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3830E49220173B7F00420FB0 /* JJLTCView.m */; };
 		3830E49620173C4500420FB0 /* JJLTCModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3830E49520173C4500420FB0 /* JJLTCModel.m */; };
+		385CFD4420561DEB0014CB10 /* AppDelegate+UMPush.m in Sources */ = {isa = PBXBuildFile; fileRef = 385CFD4320561DEB0014CB10 /* AppDelegate+UMPush.m */; };
+		385CFD462056528B0014CB10 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 385CFD452056528B0014CB10 /* UserNotifications.framework */; };
 		3860547720207D780045D014 /* PayModeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3860547620207D780045D014 /* PayModeView.m */; };
 		3860547A2020A9AF0045D014 /* JJDCMDefine.m in Sources */ = {isa = PBXBuildFile; fileRef = 386054792020A9AF0045D014 /* JJDCMDefine.m */; };
 		386054802021703F0045D014 /* JJTimeStamp.m in Sources */ = {isa = PBXBuildFile; fileRef = 3860547C2021703E0045D014 /* JJTimeStamp.m */; };
 		386054812021703F0045D014 /* JJTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3860547D2021703E0045D014 /* JJTimer.m */; };
+		3864DAC7205D023600F89A25 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3864DAC6205D023600F89A25 /* Assets.xcassets */; };
 		3877EAF720157806006204E4 /* JJProductCategoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3877EAF620157806006204E4 /* JJProductCategoryModel.m */; };
 		3877EAFA2015928B006204E4 /* JJSortTypeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3877EAF92015928B006204E4 /* JJSortTypeCell.m */; };
 		3877EAFD2015C4CF006204E4 /* JJHotSaleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3877EAFC2015C4CF006204E4 /* JJHotSaleView.m */; };
@@ -371,7 +373,6 @@
 		36367516A039862097AF5595 /* Pods-DaCongMing.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DaCongMing.release.xcconfig"; path = "Pods/Target Support Files/Pods-DaCongMing/Pods-DaCongMing.release.xcconfig"; sourceTree = "<group>"; };
 		38073EF72012020A00E74811 /* JJManWomamAreaController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JJManWomamAreaController.h; sourceTree = "<group>"; };
 		38073EF82012020A00E74811 /* JJManWomamAreaController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JJManWomamAreaController.m; sourceTree = "<group>"; };
-		3811E1F620298E7A0008298D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3813F5D52010D812006779B6 /* NSObject+isNull.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+isNull.m"; sourceTree = "<group>"; };
 		3813F5D62010D812006779B6 /* NSObject+isNull.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+isNull.h"; sourceTree = "<group>"; };
 		3823AD5620175772002520A1 /* JJBoutiquCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JJBoutiquCell.h; sourceTree = "<group>"; };
@@ -401,6 +402,10 @@
 		3830E49220173B7F00420FB0 /* JJLTCView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JJLTCView.m; sourceTree = "<group>"; };
 		3830E49420173C4500420FB0 /* JJLTCModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JJLTCModel.h; sourceTree = "<group>"; };
 		3830E49520173C4500420FB0 /* JJLTCModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JJLTCModel.m; sourceTree = "<group>"; };
+		385CFD4120561CEE0014CB10 /* DaCongMing.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DaCongMing.entitlements; sourceTree = "<group>"; };
+		385CFD4220561DEB0014CB10 /* AppDelegate+UMPush.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+UMPush.h"; sourceTree = "<group>"; };
+		385CFD4320561DEB0014CB10 /* AppDelegate+UMPush.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+UMPush.m"; sourceTree = "<group>"; };
+		385CFD452056528B0014CB10 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		3860547520207D780045D014 /* PayModeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PayModeView.h; sourceTree = "<group>"; };
 		3860547620207D780045D014 /* PayModeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PayModeView.m; sourceTree = "<group>"; };
 		386054782020A9AF0045D014 /* JJDCMDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JJDCMDefine.h; sourceTree = "<group>"; };
@@ -409,6 +414,7 @@
 		3860547D2021703E0045D014 /* JJTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJTimer.m; sourceTree = "<group>"; };
 		3860547E2021703F0045D014 /* JJTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJTimer.h; sourceTree = "<group>"; };
 		3860547F2021703F0045D014 /* JJTimeStamp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJTimeStamp.h; sourceTree = "<group>"; };
+		3864DAC6205D023600F89A25 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3877EAF520157806006204E4 /* JJProductCategoryModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JJProductCategoryModel.h; sourceTree = "<group>"; };
 		3877EAF620157806006204E4 /* JJProductCategoryModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JJProductCategoryModel.m; sourceTree = "<group>"; };
 		3877EAF82015928B006204E4 /* JJSortTypeCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JJSortTypeCell.h; sourceTree = "<group>"; };
@@ -967,6 +973,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				385CFD462056528B0014CB10 /* UserNotifications.framework in Frameworks */,
 				3E0FDECF1FA4451700F52DC0 /* QYResource.bundle in Frameworks */,
 				3E0FDECB1FA442BF00F52DC0 /* libcrypto.a in Frameworks */,
 				3E0FDECC1FA442BF00F52DC0 /* libevent.a in Frameworks */,
@@ -1759,6 +1766,7 @@
 		3E56201B1F6B6A800063AA5B /* DaCongMing */ = {
 			isa = PBXGroup;
 			children = (
+				385CFD4120561CEE0014CB10 /* DaCongMing.entitlements */,
 				4BD2CE442008C5480038A611 /* AppDelegate */,
 				3E5620341F6B6D080063AA5B /* DCM */,
 				3E56201C1F6B6A800063AA5B /* Supporting Files */,
@@ -1771,8 +1779,8 @@
 			children = (
 				04066E141FED09F7002F4FA4 /* AppStoreOptions.plist */,
 				04066E121FECE993002F4FA4 /* AdhocOptions.plist */,
+				3864DAC6205D023600F89A25 /* Assets.xcassets */,
 				3E56201D1F6B6A800063AA5B /* main.m */,
-				3811E1F620298E7A0008298D /* Assets.xcassets */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -2357,6 +2365,8 @@
 			children = (
 				4BD2CE452008C5480038A611 /* AppDelegate.h */,
 				4BD2CE462008C5480038A611 /* AppDelegate.m */,
+				385CFD4220561DEB0014CB10 /* AppDelegate+UMPush.h */,
+				385CFD4320561DEB0014CB10 /* AppDelegate+UMPush.m */,
 				4BD2CE472008C5480038A611 /* Info.plist */,
 				3823AD6D201886EA002520A1 /* DCURLRouter.plist */,
 			);
@@ -2376,6 +2386,7 @@
 		A26883657B03753D71FBDDF9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				385CFD452056528B0014CB10 /* UserNotifications.framework */,
 				3E0FDEC91FA4421800F52DC0 /* libstdc++.6.0.9.tbd */,
 				3E0FDEB51FA4417E00F52DC0 /* ExportHeaders */,
 				3E0FDE981FA4416D00F52DC0 /* QIYU */,
@@ -2435,7 +2446,15 @@
 					3E5620181F6B6A800063AA5B = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = JR7BAVX2XH;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -2465,7 +2484,7 @@
 				3877EB072015E801006204E4 /* msyh.ttf in Resources */,
 				043AB0032004C8530032746D /* DINOT-CondBlack_0.otf in Resources */,
 				3877EB12201614C5006204E4 /* JJForMaleView.xib in Resources */,
-				3811E1F720298E7A0008298D /* Assets.xcassets in Resources */,
+				3864DAC7205D023600F89A25 /* Assets.xcassets in Resources */,
 				38D2EB3B2024A00600570407 /* FinishCommitVC.xib in Resources */,
 				3877EB1A2016D11D006204E4 /* JJNatureCell.xib in Resources */,
 				38CEB2752011E75700986A5D /* JJTitleView.xib in Resources */,
@@ -2645,6 +2664,7 @@
 				3EA0BC021F725CA100F78FDD /* HYProductsImageCell.m in Sources */,
 				3EDC21FA1F949F800013FFBA /* HYSendBackViewController.m in Sources */,
 				3EA0BC2C1F750EDD00F78FDD /* HYGoodsPayTableViewCell.m in Sources */,
+				385CFD4420561DEB0014CB10 /* AppDelegate+UMPush.m in Sources */,
 				388C0E3620109E4C00E02463 /* JJBannerModel.m in Sources */,
 				3877EB10201614B8006204E4 /* JJForMaleView.m in Sources */,
 				3877EB002015D152006204E4 /* JJCarouselCell.m in Sources */,
@@ -2867,8 +2887,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = DaCongMing/DaCongMing.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = JR7BAVX2XH;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2886,8 +2907,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.hailin.dacongming;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "96bb03eb-8eaa-4760-892b-090db6ca7dc2";
+				PROVISIONING_PROFILE_SPECIFIER = DEV_dacongming;
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
@@ -2991,8 +3012,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = DaCongMing/DaCongMing.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = JR7BAVX2XH;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3010,8 +3032,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.hailin.dacongming;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "3f3f8134-3605-410d-9f31-56d2a4a2dd80";
+				PROVISIONING_PROFILE_SPECIFIER = DEV_dacongming;
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
@@ -3023,8 +3045,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_ENTITLEMENTS = DaCongMing/DaCongMing.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = JR7BAVX2XH;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3042,8 +3065,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.hailin.dacongming;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "7b3e941b-6d7b-4a9f-9498-72de3b789e6e";
+				PROVISIONING_PROFILE_SPECIFIER = DIS_dacongming;
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "arm64 armv7 armv7s";
 			};

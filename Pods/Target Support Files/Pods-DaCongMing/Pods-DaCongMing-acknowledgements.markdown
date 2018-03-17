@@ -294,9 +294,14 @@ THE SOFTWARE.
 
 
 
-## UMengAnalytics
+## UMCCommon
 
-Copyright 2011 - 2015 UMeng.com. All rights reserved.
+Copyright 2011 - 2018 umeng.com. All rights reserved.
+
+
+## UMCPush
+
+Copyright 2011 - 2018 umeng.com. All rights reserved.
 
 
 ## WechatOpenSDK

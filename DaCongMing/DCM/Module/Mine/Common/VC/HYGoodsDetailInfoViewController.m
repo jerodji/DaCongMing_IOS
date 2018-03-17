@@ -313,6 +313,14 @@
     [userDict setValue:[HYUserModel sharedInstance].userInfo.id forKey:@"value"];
     [array addObject:userDict];
     
+    
+    NSMutableDictionary * levelDict = [NSMutableDictionary new];
+    [levelDict setObject:@"level" forKey:@"key"];
+    [levelDict setObject:@"等级" forKey:@"label"];
+    [levelDict setValue:[HYMyUserInfo getUserStatusWithLevel:[HYMyUserInfo sharedInstance].level] forKey:@"value"];
+    [array addObject:levelDict];
+    
+    
     //    NSMutableDictionary *dictEmail = [NSMutableDictionary new];
     //    [dictEmail setObject:@"email" forKey:@"key"];
     //    [dictEmail setObject:@"bianchen@163.com" forKey:@"value"];
