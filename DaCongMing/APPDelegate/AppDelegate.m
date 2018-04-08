@@ -8,6 +8,7 @@
 #import "QYSDK.h"
 #import "HYShareView.h"
 #import "AppDelegate+UMPush.h"
+#import "JJCheckNetwork.h"
 
 @interface AppDelegate ()<WXApiDelegate>
 
@@ -17,17 +18,17 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    /**
-     // po [UIFont familyNames]
-     NSArray *familyNames = [UIFont familyNames];
-     for( NSString *familyName in familyNames ){
-         printf( "Family: %s \n", [familyName UTF8String] );
-         NSArray *fontNames = [UIFont fontNamesForFamilyName:familyName];
-         for( NSString *fontName in [UIFont familyNames] ){
-             printf( "\tFont: %s \n", [fontName UTF8String] );
-         }
-     }
-     */
+    
+//     // po [UIFont familyNames]
+//     NSArray *familyNames = [UIFont familyNames];
+//     for( NSString *familyName in familyNames ){
+//         printf( "Family: %s \n", [familyName UTF8String] );
+//         NSArray *fontNames = [UIFont fontNamesForFamilyName:familyName];
+//         for( NSString *fontName in [UIFont familyNames] ){
+//             printf( "\tFont: %s \n", [fontName UTF8String] );
+//         }
+//     }
+    
     
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = KAPP_TableView_BgColor;
@@ -154,6 +155,11 @@
         [curtView removeFromSuperview];
         curtView = nil;
     }
+    
+//    int net = [JJCheckNetwork checkNetworkPermission];
+//    if (net != 2) {
+//        [JJAlert showAlertTitle:@"提 示" msg:@"网络权限被限制,建议您在\n设置 -> 无限局域网 -> 使用WLAN与蜂窝移动网的应用 -> 大聪明\n中打开权限\"WLAN与蜂窝移动网\"" cancleAction:nil sureAction:nil];
+//    }
 }
 
 

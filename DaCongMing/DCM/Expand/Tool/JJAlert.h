@@ -19,6 +19,6 @@ typedef void(^ACTION)(void);
 
 + (void)showAlert:(NSString*)message cancleAction:(CANCLE)_cancle sureAction:(SURE)_sure;
 + (void)showAlertTitle:(NSString*)title msg:(NSString*)message cancleAction:(CANCLE)_cancle sureAction:(SURE)_sure;
-+ (void)showAlertWithVC:(UIViewController*)vc message:(NSString*)message cancleAction:(CANCLE)_cancle sureAction:(SURE)_sure;
++ (void)showAlertWithVC:(UIViewController*)vc title:(NSString*)title message:(NSString*)message cancleAction:(CANCLE)_cancle sureAction:(SURE)_sure;
 
 @end

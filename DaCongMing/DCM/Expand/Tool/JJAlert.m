@@ -64,7 +64,6 @@
         if (_sure) {
             _sure();
         }
-        
     }];
     
     [alert addAction:cancleAction];

@@ -86,6 +86,8 @@
 		388E3BF9201313E800AF7543 /* JJHomeDefine.m in Sources */ = {isa = PBXBuildFile; fileRef = 388E3BF8201313E800AF7543 /* JJHomeDefine.m */; };
 		388E3BFC20131DC500AF7543 /* JJTableModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 388E3BFB20131DC500AF7543 /* JJTableModel.m */; };
 		388E3C132013400700AF7543 /* NSArray+crossLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 388E3C122013400700AF7543 /* NSArray+crossLine.m */; };
+		389AA09C206F30DC009AC93C /* JJCheckNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 389AA09B206F30DC009AC93C /* JJCheckNetwork.m */; };
+		389AA09F206F39F6009AC93C /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 389AA09E206F39F6009AC93C /* Reachability.m */; };
 		38CEB2662011CA2B00986A5D /* JJSearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38CEB2612011CA2B00986A5D /* JJSearchController.m */; };
 		38CEB2672011CA2B00986A5D /* JJSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 38CEB2642011CA2B00986A5D /* JJSearchBar.m */; };
 		38CEB2682011CA2B00986A5D /* JJSearchBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38CEB2652011CA2B00986A5D /* JJSearchBar.xib */; };
@@ -467,6 +469,10 @@
 		388E3BFB20131DC500AF7543 /* JJTableModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JJTableModel.m; sourceTree = "<group>"; };
 		388E3C112013400700AF7543 /* NSArray+crossLine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSArray+crossLine.h"; sourceTree = "<group>"; };
 		388E3C122013400700AF7543 /* NSArray+crossLine.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSArray+crossLine.m"; sourceTree = "<group>"; };
+		389AA09A206F30DC009AC93C /* JJCheckNetwork.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JJCheckNetwork.h; sourceTree = "<group>"; };
+		389AA09B206F30DC009AC93C /* JJCheckNetwork.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JJCheckNetwork.m; sourceTree = "<group>"; };
+		389AA09D206F39F6009AC93C /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		389AA09E206F39F6009AC93C /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		38CEB2602011CA2B00986A5D /* JJSearchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJSearchController.h; sourceTree = "<group>"; };
 		38CEB2612011CA2B00986A5D /* JJSearchController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJSearchController.m; sourceTree = "<group>"; };
 		38CEB2632011CA2B00986A5D /* JJSearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJSearchBar.h; sourceTree = "<group>"; };
@@ -2195,6 +2201,12 @@
 		3E56206B1F6B6DAC0063AA5B /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				3E5620741F6B6DAC0063AA5B /* JRToast.h */,
+				3E5620751F6B6DAC0063AA5B /* JRToast.m */,
+				389AA09A206F30DC009AC93C /* JJCheckNetwork.h */,
+				389AA09B206F30DC009AC93C /* JJCheckNetwork.m */,
+				389AA09D206F39F6009AC93C /* Reachability.h */,
+				389AA09E206F39F6009AC93C /* Reachability.m */,
 				388DAA55202C3A0E00D96019 /* JJTailorManager.h */,
 				388DAA56202C3A0E00D96019 /* JJTailorManager.m */,
 				38D2EB2C2024729900570407 /* JJAlert.h */,
@@ -2209,8 +2221,6 @@
 				3E5620711F6B6DAC0063AA5B /* HYPhoneInfo.m */,
 				3E5620721F6B6DAC0063AA5B /* HYPhotoBrowseView.h */,
 				3E5620731F6B6DAC0063AA5B /* HYPhotoBrowseView.m */,
-				3E5620741F6B6DAC0063AA5B /* JRToast.h */,
-				3E5620751F6B6DAC0063AA5B /* JRToast.m */,
 				3E5620761F6B6DAC0063AA5B /* TitleRoll.h */,
 				3E5620771F6B6DAC0063AA5B /* TitleRoll.m */,
 				3E27546F1F70C06C0010053E /* HYButton.h */,
@@ -2712,6 +2722,7 @@
 				3E4D78811F79038B00BC9C2B /* HYPayHandle.m in Sources */,
 				3E27544B1F6F734B0010053E /* HYTypeRecommendItemModel.m in Sources */,
 				38073EF92012020A00E74811 /* JJManWomamAreaController.m in Sources */,
+				389AA09C206F30DC009AC93C /* JJCheckNetwork.m in Sources */,
 				38CEB27E2011F57600986A5D /* JJTitleController.m in Sources */,
 				38CEB2AF2011FF6F00986A5D /* JJSelectedZoneController.m in Sources */,
 				048208251FE12B7B00961BCB /* HYParterPayResultVC.m in Sources */,
@@ -2792,6 +2803,7 @@
 				3E4D788A1F79088F00BC9C2B /* HYAlipayManager.m in Sources */,
 				3EEFBF271FA09371007BE12C /* HYCommentModel.m in Sources */,
 				3EED10E11F99E02D00C49A4A /* HYNoCollectImgView.m in Sources */,
+				389AA09F206F39F6009AC93C /* Reachability.m in Sources */,
 				3823AD67201831D6002520A1 /* JJHotInStoreCell.m in Sources */,
 				3E5620A41F6BA16D0063AA5B /* HYHomeViewModel.m in Sources */,
 				3E4D78A21F79F26200BC9C2B /* HYPayResultViewController.m in Sources */,
