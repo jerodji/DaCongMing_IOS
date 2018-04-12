@@ -251,11 +251,19 @@
             button.frame = CGRectMake(w, h, itemWidth, 30);
             w = w + itemWidth + 20;
             //如果button的位置超过屏幕边缘就换行
-            if (w > KSCREEN_WIDTH - 20) {
+            if (w > KSCREEN_WIDTH - 10) {
                 w = 26 * WIDTH_MULTIPLE;
                 h = h + button.height + 20;
                 //重设button的frame
                 button.frame = CGRectMake(w, h, itemWidth, 30);
+            }
+            
+            /**
+             暂时的bug处理
+             */
+            if ((i==3)&&[@"YN00006" isEqualToString:model.item_id]) {
+                w = 26 * WIDTH_MULTIPLE;
+                button.frame = CGRectMake(button.right+20, button.y, button.width, 30);
             }
             
             _endY = button.bottom + 10;

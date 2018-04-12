@@ -29,8 +29,8 @@
 }
 
 - (void)setupSubviews{
-    
-    self.guideArray = @[@"guide1",@"guide2",@"guide3"];
+    //@[@"guide1",@"guide2",@"guide3"];
+    self.guideArray = @[@"jguide1",@"jguide2",@"guide3"];
     [self.view addSubview:self.scrollView];
     [self.view addSubview:self.pageControl];
 //    [self.view addSubview:self.skipBtn];
