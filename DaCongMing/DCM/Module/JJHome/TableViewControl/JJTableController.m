@@ -46,10 +46,7 @@
         sortTypeCellHeight = (HeightSortTypeCell+10) * 1;
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateTableView:) name:NotyUpdateTableView object:nil];
         
-//        _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(fetchData)];
         _tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(fetchData)];
-//        MJRefreshBackNormalFooter* footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(fetchData)];
-//        _tableView.mj_footer = footer;
     }
     return self;
 }
@@ -147,19 +144,28 @@
 }
 
 #pragma mark 行高计算
-- (CGFloat)heightForItemAtIndex:(NSInteger)index {
+- (CGFloat)heightForItemAtIndex:(NSInteger)index
+{
     if (IsNull(_homeData)) { return 0; }
+    
     if (index >= _homeData.count) {return 0;}
     
     NSString* showType = [(NSDictionary*)_homeData[index] objectForKey:@"showType"];
+    
     if ([showType isEqualToString:ShowTypeNewBanner]) {return 0;}
+    
     if ([showType isEqualToString:ShowTypeBanner])    {return HeightBanner;}
+    
     if ([showType isEqualToString:ShowTypeSortType])  {
         return TitleViewHeight + sortTypeCellHeight;
     }
+    
     if ([showType isEqualToString:ShowTypeHotSale])   {return TitleViewHeight + HeightHotSale;}
+    
     if ([showType isEqualToString:ShowTypeHotInStore]){return TitleViewHeight + 330*WIDTH_MULTIPLE + 20;}
+    
     if ([showType isEqualToString:ShowTypeForMale])   {return TitleViewHeight + HeightForMale + 10;}
+    
     if ([showType isEqualToString:ShowTypeNature])    {
         NSDictionary* dict = (NSDictionary*)_homeData[index];
         NSString* showTypeValue = [dict objectForKey:@"showType"];
@@ -169,9 +175,10 @@
         else
             return 0;
     }
+    
     if ([showType isEqualToString:ShowTypeTimeReC])   {return TitleViewHeight + HeightTimeReC;}
+    
     if ([showType isEqualToString:ShowTypeBoutique])  {
-//        return TitleViewHeight + (HeightBoutique+20) ;
         NSDictionary* dict = (NSDictionary*)_homeData[index];
         NSString* showTypeValue = [dict objectForKey:@"showType"];
         NSArray* blockList = [[dict objectForKey:showTypeValue] objectForKey:@"block"];
@@ -180,8 +187,10 @@
         else
             return 0;
     }
+    
     if ([showType isEqualToString:ShowTypeLTC])       {
-        return TitleViewHeight + 5 + (KSCREEN_WIDTH-20)*(HeightLTC/356.f) + 20;}
+        return TitleViewHeight + 5 + (KSCREEN_WIDTH-20)*(HeightLTC/356.f) + 20;
+    }
     
     return 0;
 }

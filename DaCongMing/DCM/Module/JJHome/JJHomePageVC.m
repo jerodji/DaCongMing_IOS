@@ -84,7 +84,6 @@
 - (void)configSearchBar {
     self.searchCtrl = [[JJSearchController alloc] init];
     self.searchCtrl.searchBar.frame = CGRectMake(25, KSTATUSBAR_HEIGHT+8, KSCREEN_WIDTH - 25*2, 29);
-//    [self.view addSubview:self.searchCtrl.searchBar];
 }
 
 #pragma mark  table
@@ -94,9 +93,6 @@
     _rect = CGRectMake(0, -KNAV_HEIGHT, KSCREEN_WIDTH, KSCREEN_HEIGHT - KSTATUSBAR_HEIGHT - KTABBAR_HEIGHT);
     self.tableCtrl = [[JJTableController alloc] initWithFrame:_rect];
     self.tableCtrl.scrollDelegate = self;
-//    self.tableCtrl.scrolCB = ^(UIScrollView* scrollView){
-//        [wkself setupTableViewFrameWith:scrollView];
-//    };
     self.tableCtrl.typeCB = ^(NSArray* NewBannerList) {
 
         wkself.rect = CGRectMake(0, -KNAV_HEIGHT+HeightNewBanner, KSCREEN_WIDTH, KSCREEN_HEIGHT - KSTATUSBAR_HEIGHT - KTABBAR_HEIGHT);
@@ -115,22 +111,17 @@
 }
 
 #pragma mark - new banner
-//scrollDidscroll
-//- (void)setupTableViewFrameWith:(UIScrollView*)scrollView
+
 - (void)tableScrollDidScroll:(UIScrollView *)scrollView
 {
     CGFloat offset = scrollView.contentOffset.y + scrollView.contentInset.top; /* contentoffset.y 是一个负值    contentInset.top 是一个正值。 符号相反 */
-    //NSLog(@"offset --->  %f",offset);
     __block CGFloat newY = _tableCtrl.tableView.frame.origin.y - offset;
     
     if (offset <= 0) /* 下 */
     {
         _tableCtrl.tableView.backgroundColor = [UIColor whiteColor];
         if ( (border_top_y < newY)&&(newY < border_btm_y) ) {
-//        if ( border_top_y < newY ) {
-//            _tableCtrl.tableView.contentOffset = CGPointMake(0, scrollView.contentOffset.y);
-                _tableCtrl.tableView.y = newY;// newY
-            
+                _tableCtrl.tableView.y = newY;
             if (newY >= (-KNAV_HEIGHT + KSTATUSBAR_HEIGHT) ) {
                 [self configStatusWithBackcolor:[UIColor clearColor]];
             }
@@ -145,8 +136,6 @@
     else /* offset > 0 上 */
     {
         _tableCtrl.tableView.backgroundColor = [UIColor whiteColor];
-        //CGFloat newY = (_tableCtrl.tableView.y-offset);
-        //offset = offset/10000.0f;
         if (newY > border_top_y) {
             _tableCtrl.tableView.contentOffset = CGPointMake(0, 0);
             _tableCtrl.tableView.y = newY;
@@ -172,9 +161,7 @@
     if (!_headView) {
         _headView = [[UIView alloc]initWithFrame:CGRectMake(0, -KNAV_HEIGHT, KSCREEN_WIDTH, HeightNewBanner)];
         _headView.backgroundColor = [UIColor clearColor];
-        //_headView.userInteractionEnabled = NO;
-//        [self.view addSubview:_headView];
-        
+
         if (!_sdcyclesView)
         {
             _sdcyclesView = [SDCycleScrollView cycleScrollViewWithFrame:_headView.bounds imageURLStringsGroup:_bannerImages];

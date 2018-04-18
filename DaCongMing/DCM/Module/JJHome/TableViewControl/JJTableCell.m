@@ -154,8 +154,11 @@
     self.titleView.moreButton.hidden = NO;
     [self.contentView addSubview:self.titleView];
     self.titleView.moreNatureCB = ^{
-        // self.viewController -> JJHomePageVC
-        [wkself.viewController.navigationController pushViewController:[MoreArticleVC new] animated:YES];
+        if (NotNull([HYUserModel sharedInstance].token)) {
+            [wkself.viewController.navigationController pushViewController:[MoreArticleVC new] animated:YES];
+        } else {
+            [JRToast showWithText:@"请登录后操作"];
+        }
     };
     
     NSMutableArray* arr = [[NSMutableArray alloc] init];

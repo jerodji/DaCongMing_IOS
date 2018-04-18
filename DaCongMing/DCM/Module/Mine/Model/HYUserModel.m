@@ -113,7 +113,12 @@
 
 @implementation HYUserModel
 
-//- (NSString *)token { if (_token) { return _token;} return @"";}
+- (NSString *)token {
+    if (_token) {
+        return _token;
+    }
+    return @"";
+}
 //- (HYUserInfo *)userInfo {if (_userInfo) {return _userInfo;} return [HYUserInfo new];}
 
 + (instancetype)sharedInstance{
