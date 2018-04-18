@@ -112,8 +112,6 @@
     };
     [self.tableCtrl fetchData];
 
-    //添加手势
-//    [self.tableCtrl.tableView.panGestureRecognizer addTarget:self action:@selector(panAction:)];
 }
 
 #pragma mark - new banner
@@ -164,78 +162,10 @@
     
 }
 
-- (void)tableScrollWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset {
-    /**
-     * S = vt - (at^2)/2  匀减速运动公式
-     */
-    CGFloat S = fabs(scrollView.contentOffset.y);
-    __block CGFloat v = velocity.y; /* 初速度 */
-    CGFloat t = 0.02;       /* 单位时间 */
-    CGFloat a = 2;         /* 减速度 */
-    NSLog(@"v %f",v);
-    if (fabs(v) < a) {
-        return;
-    }
-    if (v < 0) { /* 下滑 */
-        
-        
-        
-//            v = v + a; // 负加正 -> 0
-//            if (v >= 0) {
-//
-//                return ;
-//            }
-//
-//            dispatch_async(dispatch_get_main_queue(), ^{
-//                _tableCtrl.tableView.y = _tableCtrl.tableView.y - v*t;
-//                NSLog(@"%f",_tableCtrl.tableView.y);
-//            });
-        
-        
-    } else { /* v<0 上滑 */
-        
-    }
-}
-
 - (void)tableScrollDidEndDragging:(UIScrollView *)scrollView {
     
 }
 
--(void)panAction:(UIPanGestureRecognizer *)sender
-{
-    CGPoint point = [sender translationInView:sender.view]; /* 获取手势一点的点 */
-    CGFloat offset = self.tableCtrl.tableView.contentOffset.y + self.tableCtrl.tableView.contentInset.top; /* contentoffset.y 是一个负值    contentInset.top 是一个正值。 符号相反 */
-    CGFloat newY = (_tableCtrl.tableView.y-offset);
-//    if (newY <= border_top_y ) {
-//        newY = border_top_y;
-//    }
-//    if (newY >= border_btm_y) {
-//        newY = border_btm_y;
-//    }
-    NSLog(@"---->  %f",offset);
-    
-//
-//    self.tableCtrl.tableView.y =  HeightNewBanner - offset;
-//    self.tableCtrl.tableView.contentOffset = CGPointZero;
-//    if (self.tableCtrl.tableView.y < border_top_y) {
-//        self.tableCtrl.tableView.y = border_top_y;
-//    }
-//    if (self.tableCtrl.tableView.y > border_btm_y) {
-//        self.tableCtrl.tableView.y = border_btm_y;
-//    }
-    
-//    if ((border_top_y < sender.view.y) && (sender.view.y < border_btm_y)) {
-        /* newY > border_top_y */
-//        [UIView animateWithDuration:1.0 animations:^{
-//            _tableCtrl.tableView.hm_y = border_top_y;
-//        }];
-//        sender.view.transform = CGAffineTransformTranslate(sender.view.transform, 0, point.y);
-//        [sender setTranslation:CGPointZero inView:sender.view]; /* 重置 */
-//    }
-    
-    
-
-}
 
 - (void)configNewBanner:(NSArray*)NewBannerList {
     //创建一个视图
@@ -248,6 +178,7 @@
         if (!_sdcyclesView)
         {
             _sdcyclesView = [SDCycleScrollView cycleScrollViewWithFrame:_headView.bounds imageURLStringsGroup:_bannerImages];
+            
             _sdcyclesView.delegate = self;
             _sdcyclesView.bannerImageViewContentMode = UIViewContentModeScaleAspectFill;
             _sdcyclesView.showPageControl = YES;

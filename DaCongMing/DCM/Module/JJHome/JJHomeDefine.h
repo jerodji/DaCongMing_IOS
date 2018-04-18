@@ -8,16 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-//#define IndexBanner      0
-//#define IndexSortType    1
-//#define IndexHotSale     2
-//#define IndexHotInStore  3
-//#define IndexForMale     4
-//#define IndexNature      5
-//#define IndexTimeReC     6
-//#define IndexBoutique    7
-//#define IndexLTC         8
-
 typedef NS_ENUM(NSInteger,TableItemStyle) {
     ItemBanner          = 0,
     ItemProductCategory = 1,
