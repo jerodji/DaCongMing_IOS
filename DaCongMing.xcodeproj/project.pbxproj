@@ -2451,7 +2451,7 @@
 			attributes = {
 				CLASSPREFIX = "";
 				LastUpgradeCheck = 0830;
-				ORGANIZATIONNAME = SaBai;
+				ORGANIZATIONNAME = Sabuy;
 				TargetAttributes = {
 					3E5620181F6B6A800063AA5B = {
 						CreatedOnToolsVersion = 8.3.3;
