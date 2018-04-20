@@ -71,15 +71,17 @@
 
 - (void)fetchData {
     
+    __weak typeof(self) wkself = self;
+    
     [[HTTPManager shareHTTPManager] postDataFromUrl:HomePageAPI withParameter:nil isShowHUD:YES success:^(id returnData) {
-        [self.tableView.mj_footer endRefreshing];
+        [wkself.tableView.mj_footer endRefreshing];
         //[self.tableView.mj_footer endRefreshingWithNoMoreData];
         if (IsNull(returnData)) {
             return;
         }
         
          NSDictionary* returnDict = (NSDictionary*)returnData;
-        if (NotNull(self.modelArray)) {
+        if (NotNull(wkself.modelArray)) {
             [self.modelArray removeAllObjects];
         }
         
@@ -98,7 +100,7 @@
             NSDictionary* dict = (NSDictionary*)_homeData[index];
             //计算行高
             JJTableModel* model = [[JJTableModel alloc] init];
-            model.cellHeight = [self heightForItemAtIndex:index];
+            model.cellHeight = [wkself heightForItemAtIndex:index];
             
             if (NotNull([dict objectForKey:@"showType"]))
             {
@@ -138,11 +140,11 @@
                     }
                 }
                 
-                [self.modelArray addObject:model];
+                [wkself.modelArray addObject:model];
             }
         }
         
-        [self.tableView reloadData];
+        [wkself.tableView reloadData];
     }];
 }
 
